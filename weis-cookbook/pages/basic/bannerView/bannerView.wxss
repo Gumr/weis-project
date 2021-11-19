@@ -1,0 +1,20 @@
+/* pages/basic/bannerWv/bannerWv.wxss */
+.banner {
+  width: 750rpx;
+  float: left;
+}
+.container {
+  padding: 0;
+}
+.btnbox {
+  width: 312rpx;
+  height: 104rpx;
+  position: fixed;
+  left: 50%;
+  bottom: 20rpx;
+  background: transparent;
+  transform: translateX(-50%);
+}
+.btnbox .img {
+  width: 312rpx;
+}

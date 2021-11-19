@@ -1,0 +1,73 @@
+page {
+  height: 100%;
+}
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.list {
+  width: 100%;
+  min-height: 100%;
+  background: linear-gradient(180deg, #FD812F 0%, #FFFFFF 50%);
+  padding: 42rpx 40rpx 0;
+  box-sizing: border-box;
+}
+.list-per {
+  padding: 30rpx;
+  width: 670rpx;
+  height: 233rpx;
+  border-radius: 10rpx;
+  display: flex;
+  background: #fff;
+  margin-bottom: 30rpx;
+}
+.list-per .icon {
+  width: 173rpx;
+  height: 173rpx;
+  background: #C4C4C4;
+  border-radius: 10rpx;
+  margin-right: 35rpx;
+}
+.list-per .per-info .title {
+  font-size: 36rpx;
+  font-family: PingFang SC-Bold, PingFang SC;
+  font-weight: bold;
+  color: #000000;
+  line-height: 42rpx;
+  margin-bottom: 25rpx;
+}
+.list-per .per-info .date {
+  font-size: 25rpx;
+  font-family: PingFang SC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  line-height: 29rpx;
+  margin-bottom: 25rpx;
+}
+.list-per .per-info .status {
+  font-size: 28rpx;
+  font-family: PingFang SC-Bold, PingFang SC;
+  font-weight: bold;
+  color: #999999;
+  line-height: 33rpx;
+}
+.list-per .per-info .date,
+.list-per .per-info .status {
+  position: relative;
+  text-indent: 20rpx;
+}
+.list-per .per-info .date::after,
+.list-per .per-info .status::after {
+  content: '';
+  display: block;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #999999;
+  position: absolute;
+  left: 0rpx;
+  top: 50%;
+  transform: translateY(-50%);
+}

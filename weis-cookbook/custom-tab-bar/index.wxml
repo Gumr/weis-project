@@ -1,0 +1,26 @@
+<cover-view class="tab-bar-container" scroll-top="0" style="bottom:{{isFullScreen ? 0 : '-30rpx'}}">
+  <!-- tabbar背景 -->
+  <cover-view class="bg">
+    <cover-image class="tab-bar-bg" scroll-top="0" src="/images/tabbar/nav_bg.png" />
+  </cover-view>
+  <!-- tab-bar -->
+  <cover-view class="tab-bar" scroll-top="0">
+    <cover-view class="tab-bar-item {{index === 1 ? 'tab-bar-item-c' : ''}}" wx:for="{{list}}" wx:key="index" data-path="{{item.pagePath}}" data-index="{{index}}" bindtap="switchTab">
+      <cover-image class="tab-bar-icon" src="{{selected === index ? item.selectedIconPath : item.iconPath}}" />
+      <cover-view class="tab-bar-text" style="color: {{selected === index ? selectedColor : color}}">{{item.text}}</cover-view>
+      <cover-view class="tip" hidden="{{index !== 1 || !collectterm}}">第{{collectterm}}期征集</cover-view>
+    </cover-view>
+  </cover-view>
+</cover-view>
+<!-- <image class="tab-bar-bg" src="/images/tabbar/nav_bg.png" style="bottom:{{isFullScreen ? 0 : '-30rpx'}}" /> -->
+
+
+<!-- <cover-view class="tab-bar-container">
+  <cover-image class="tab-bar-bg" src="/images/tabbar/nav_bg.png" />
+  <cover-view class="tab-bar">
+    <cover-view class="tab-bar-item" scroll-top="0">
+      <cover-image class="tab-bar-icon" src="/images/tabbar/mine.png" />
+      <cover-view>我的</cover-view>
+    </cover-view>
+  </cover-view>
+</cover-view> -->

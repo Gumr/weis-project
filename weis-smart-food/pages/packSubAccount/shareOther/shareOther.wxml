@@ -1,0 +1,27 @@
+<!--pages/packSubAccount/shareOther/shareOther.wxml-->
+<cp-nav-bar title-text="" home-icon="/images/backHome.png" background="transparent" color="#333333" backIconColor="black" />
+
+<view class="share" style="margin-top: -{{navStatusHeight}}px;padding-top: {{navStatusHeight * px2rpx + 60}}rpx;">
+    <image class="bg" mode="widthFix" src="https://prodstatic.weis1606.cn/api/smartFood/BG.png" />
+    <!-- 分享人 -->
+    <view class="mainShare" wx:if="{{uid == tsuUid}}">
+        <view class="title">你已共享该子账号数据</view>
+        <view class="card">
+            <image class="small" src="https://prodstatic.weis1606.cn/api/smartFood/BG2.png" />
+            <image class="head" src="https://prodstatic.weis1606.cn/api/smartFood/defaultAvatar.png" />
+            <view class="name">{{tsuSubUname}}</view>
+        </view>
+    </view>
+    <!-- 被分享人 -->
+    <view class="mainShare" wx:else>
+        <view class="title">我想与你共享该子账号数据</view>
+        <view class="card">
+            <image class="small" src="https://prodstatic.weis1606.cn/api/smartFood/BG2.png" />
+            <image class="head" src="https://prodstatic.weis1606.cn/api/smartFood/defaultAvatar.png" />
+            <view class="name">{{tsuSubUname}}</view>
+        </view>
+        <view class="agree" bind:tap="agree">{{agreeExist ? '已同意' : '同意'}}</view>
+        <view class="desc" style="margin-top: 30rpx">同意后该账号会添加到你的子账号中</view>
+        <view class="desc">并且同步其饮食方案，身体数据，摄入数据和相关订单</view>
+    </view>
+</view>

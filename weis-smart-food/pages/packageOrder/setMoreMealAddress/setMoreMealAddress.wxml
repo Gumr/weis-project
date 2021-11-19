@@ -1,0 +1,89 @@
+<!-- pages/packageOrder/setMoreMealAddress/setMoreMealAddress.wxml -->
+<cp-nav-bar title-text="设置地址和时间" background="#F3F4F5"></cp-nav-bar>
+<view class="meal">
+    <view class="main-title">{{dataInfo.tmfcDayNum}}日，每日{{dataInfo.tmfcMealNum}}餐，共{{dataInfo.tmfcMealNum*dataInfo.tmfcDayNum}}餐</view>
+    <view class="head">
+        <view class="flex switch">
+            <view data-value="{{item.value}}" data-key="selfTaking" wx:for="{{selfTakingList}}" wx:key="index" class="shadow-card disp-card {{form.selfTaking === item.value ? 'disp-card--active disp-card--active-' + index : ''}}" bind:tap="itemTap">
+                <!-- <image class="select-car {{'select-car-' + index}}" wx:if="{{form.selfTaking === item.value}}" src="{{index == 0 ? '/images/ps.png' : '/images/zq.png'}}" /> -->
+                <text>{{item.text}}</text>
+            </view>
+        </view>
+        <view class="ps-type">
+            <view class="title">冷热配送</view>
+            <view class="type-card flex">
+                <view class="select-card--item {{item.value === form.shipWithCold ? 'active' : ''}}" data-value="{{item.value}}" data-key="shipWithCold" wx:for="{{shipWithColdList}}" wx:key="index" bind:tap="itemTap">
+                    <view>{{form.selfTaking === '0' ? item.text_1 : item.text_2}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="ps-type">
+            <view class="title">配送频率</view>
+            <view class="type-card flex">
+                <view class="select-card--item {{item.value === form.shipTimes ? 'active' : ''}} {{ item.disabled ? 'item--disabled' : '' }}" data-value="{{item.value}}" data-disabled="{{item.disabled}}" data-key="shipTimes" wx:for="{{shipTimesList}}" wx:key="index" bind:tap="itemTap">
+                    <view>{{form.selfTaking === '0' ? item.text_1 : item.text_2 }}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 餐别 -->
+    <view class="main-title" style="margin-top: 40rpx">选择餐别，设置地址和送达时间</view>
+    <view class="c-box">
+        <view class="category" wx:for="{{mealList}}">
+            <view class="box {{!item.checked ? 'active' : ''}}" data-index="{{index}}" bind:tap="select">
+                <image src="{{item.checked ? '/images/order_list_select.png' : '/images/order_list_unchecked.png'}}" />
+                <view class="desc">{{item.name}}</view>
+            </view>
+            <!-- 地址信息 -->
+            <view class="info {{item.checked ? 'show' : ''}}">
+                <view class="address" wx:if="{{form.selfTaking == 0}}" data-index="{{index}}" bind:tap="selectAddress">
+                    <view class="col" wx:if="{{item.address}}">
+                        <view class="location">{{item.address.detail}}</view>
+                        <view class="name">{{item.address.name}} {{item.address.phone}}</view>
+                    </view>
+                    <view class="col" wx:else>
+                        <view class="location" style="color:#FA6400">请选择地址</view>
+                    </view>
+                    <image class="arrow" src="/images/my_next.png" />
+                </view>
+                <view class="address" wx:else data-index="{{index}}" bind:tap="heatPointTap">
+                    <view class="col">
+                        <view class="location">{{item.selfHeatpoint.hpName}}</view>
+                        <view class="name">{{item.selfHeatpoint.address}}</view>
+                    </view>
+                    <image class="arrow" src="/images/my_next.png" />
+                </view>
+                <!-- 送达时间 -->
+                <view class="address" data-index="{{index}}" bind:tap="editTime">
+                    <view class="title">送达时间</view>
+                    <view class="time">
+                        <view class="val">{{item.time ? item.time : form.selfTaking == 0 ? '请先选择地址' : '选择自取时间'}}</view>
+                        <image class="arrow" src="/images/my_next.png" />
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<cp-heatPoint-dialog bind:select="handleHeatPointSelect" selectHpid="{{mealList[mealIndex].selfHeatpoint && mealList[mealIndex].selfHeatpoint.hpId || 0}}" show="{{showHeatPointDialog}}" bind:close="handleHeatPointClose" heatList="{{heatList}}"></cp-heatPoint-dialog>
+<!-- 取餐时间 -->
+<view class="getTime" wx:if="{{showGetTime}}" catchtouchmove="true">
+  <view class="wrap timePicker {{showGetTime ? 'active' : ''}}">
+    <view class="head select-head">
+      <view class="name">{{timeSelectTitle}}</view>
+    </view>
+    <picker-view style="width: 568rpx; height: 400rpx;margin: 0 auto;" value="{{shortTime}}" bindchange="selectTime" bindpickstart="bindpickstart" bindpickend="bindpickend">
+      <picker-view-column>
+        <view wx:for="{{timeList}}" wx:key="key" style="text-align:center;line-height:80rpx;color: rgba(0,0,0,0.6);font-size:36rpx" class="{{shortTime[0] == index ? 'pickerCol' : ''}}">
+          {{item}}
+        </view>
+      </picker-view-column>
+    </picker-view>
+    <view class="sure-btn {{canSure ? 'active' : ''}}" bind:tap="sureTime">确定</view>
+  </view>
+  <view class="empty" bind:tap="cancelTime"></view>
+</view>
+
+<!-- 设置完成 -->
+<view class="complete {{canNext ? 'active' : ''}}" bind:tap="sure">设置完成</view>

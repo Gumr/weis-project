@@ -1,0 +1,46 @@
+@duration: 0.3s;
+
+.switch {
+  display: inline-block;
+  width: 100rpx;
+  height: 40rpx;
+  // border: 3rpx solid #f3f3f3;
+  border-radius: 24rpx;
+  background-color: #dedede;
+  transition: background-color @duration;
+  position: relative;
+  &--open {
+    background-color: #fa6400;
+  }
+  &__toggle {
+    position: absolute;
+    width: 32rpx;
+    height: 32rpx;
+    left: 4rpx;
+    top: 4rpx;
+    transition: left @duration;
+    &--open {
+      left: 64rpx;
+    }
+  }
+  &__icon {
+    position: absolute;
+    width: 28rpx;
+    height: 28rpx;
+    left: 2rpx;
+    top: 2rpx;
+    transition: opacity @duration;
+  }
+  &__dot {
+    background: #fff;
+    border-radius: 24rpx;
+  }
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.visible {
+  opacity: 1;
+}

@@ -1,0 +1,116 @@
+<!-- pages/mineBox/agreement/agreement.wxml -->
+<cp-nav-bar title-text="{{title}}" background="#fff" color="#333333" backIconColor="black" />
+<!-- <view class="activeRule">
+  <view style="margin-bottom: 16rpx">
+    <text>1.减脂营参与者，在减脂营期间点餐享受5折优惠\n</text>
+  </view>
+  <view>
+    <text>2.减脂营共有管住嘴，迈开腿，热情参与和减脂效果4个榜单。分别根据饮食打卡数据，步数数据，参与数据和体重数据进行排名。\n</text>
+  </view>
+  <view>
+    <text>
+      3.管住嘴积分规则\n
+      a.吃多了，还想减？ -3分\n
+      每日摄入>=基础代谢+日常活动+食物热+运动消耗\n
+      b.吃得多了一点，+1分。\n
+      基础代谢+日常活动+食物热≤每日摄入＜基础代谢+日常活动+食物热+运动消耗\n
+      c.吃得合理，继续保持。+3分\n
+      基础代谢-100=＜每日摄入＜基础代谢+日常活动+食物热+运动消耗\n
+      d.吃得偏少，减肥有效果，但会低血糖。+1分\n
+      0＜每日摄入＜基础代谢-100\n
+      e.不吃要升仙，不能只要身材不要命。-3分\n
+      每日摄入=0\n
+      f.摄入数据来源：手动饮食打卡和维士点餐（签收后自动饮食打卡）\n
+      g.每晚22:00统计当日摄入量，进行打分\n
+    </text>
+  </view>
+  <view>
+    <text>
+      4.迈开腿积分规则\n
+      a.数据来源微信步数\n
+      b.每日步数≤5000，+1分\n
+      c.5000＜每日步数≤10000，+2分\n
+      d.10000＜每日步数≤15000，+3分\n
+      e.15000＜每日步数≤20000，+4分\n
+      f.每日步数≥20000，+5分\n
+      g.每晚22:00统计当日步数，进行打分\n
+    </text>
+  </view>
+  <view>
+    <text class selectable="false" space="false" decode="false">
+      5.热情参与积分规则\n
+      a.每日登录小程序，+1分\n
+      b.每日运动打卡，+1分\n
+      c.每日饮食打卡，+1分\n
+      d.每餐订餐且签收，+1分，每日最多3分\n
+    </text>
+  </view>
+  <view>
+    <text class selectable="false" space="false" decode="false">
+      6.减脂效果规则\n
+      a.减脂效果=最新体重-初始体重\n
+    </text>
+  </view>
+</view> -->
+<view class="rule">
+  <image src="https://prodstatic.weis1606.cn/api/smartFood/enterprise_bj_rule.png" />
+  <view class="box">
+    <view class="list">
+      <view class="tag">活动优惠</view>
+      <view class="list-box">
+        <view class="desc">减脂PK赛参与者，在比赛期间点餐享受5折优惠</view>
+      </view>
+    </view>
+    <!-- 大赛榜单 -->
+    <view class="list">
+      <view class="tag">大赛榜单</view>
+      <view class="list-box">
+        <view class="desc">减脂PK赛共有过程积分榜和最终效果榜2个榜单。过程积分榜根据饮食数据，步数数据和参与数据获得积分进行排名，最终效果榜根据体重下降比例进行排名。</view>
+      </view>
+    </view>
+    <!-- 积分规则 -->
+    <view class="list">
+      <view class="tag">积分规则</view>
+      <view class="list-box">
+        <view class="small-box">
+          <view class="title">1.饮食积分规则</view>
+          <view class="sub-title">a.吃多了，还想减肥？ -3分</view>
+          <view class="sub-box">每日摄入≥基础代谢+日常活动+食物热+运动消耗</view>
+          <view class="sub-title">b.没吃，要升仙？不能只要身材不要命。-1分</view>
+          <view class="sub-box">每日摄入=0</view>
+          <view class="sub-title">c.吃得太少，不利健康。+2分</view>
+          <view class="sub-box">{{'0<每日摄入<基础代谢-200'}}</view>
+          <view class="sub-title">d.吃得合理，健康减脂。+5分</view>
+          <view class="sub-box">{{'基础代谢-200≤每日摄入<基础代谢+日常活动+食物热+运动消耗'}}</view>
+          <view class="sub-title">e.摄入数据来源：手动饮食打卡和维士点餐（签收后自动饮食打卡）</view>
+          <view class="sub-title">f.每晚22:00统计当日摄入量，进行打分</view>
+        </view>
+        <!-- 2 -->
+        <view class="small-box">
+          <view class="title">2.步数积分规则</view>
+          <view class="sub-title">a.数据来源微信步数</view>
+          <view class="sub-title">b.每日步数≤5000，+1分</view>
+          <view class="sub-title">c.5000＜每日步数≤10000，+2分</view>
+          <view class="sub-title">d.10000＜每日步数≤15000，+3分</view>
+          <view class="sub-title">e.15000＜每日步数≤20000，+4分</view>
+          <view class="sub-title">f.每日步数≥20000，+5分</view>
+        </view>
+        <!-- 3 -->
+        <view class="small-box">
+          <view class="title">3.热情参与积分规则</view>
+          <view class="sub-title">a.每日登录小程序，+1分</view>
+          <view class="sub-title">b.每日运动打卡，+1分</view>
+          <view class="sub-title">c.每日饮食打卡，+1分</view>
+          <view class="sub-title">d.每餐订餐且签收，+1分，每日最多3分</view>
+          <view class="sub-title">e.邀请好友点1个赞，+1分，每日最多5分</view>
+        </view>
+        <!-- 4 -->
+        <view class="small-box">
+          <view class="title">4.减脂效果积分规则</view>
+          <view class="sub-title">按体重下降比例排名：</view>
+          <view class="sub-title">体重下降比例=（最新体重-初始体重）/初始体重</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

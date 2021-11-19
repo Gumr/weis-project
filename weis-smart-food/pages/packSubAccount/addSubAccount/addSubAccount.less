@@ -1,0 +1,578 @@
+.addSub {
+    width: 100%;
+
+    .box {
+        margin-top: 50rpx;
+
+        .title-box {
+            display: flex;
+            align-items: baseline;
+            margin-left: 50rpx;
+
+            .title {
+                color: #333333;
+                font-size: 48rpx;
+                font-weight: bold;
+            }
+
+            .step {
+                color: #000000;
+                font-size: 24rpx;
+                margin-left: 26rpx;
+            }
+        }
+
+        .head {
+            display: block;
+            width: 200rpx;
+            height: 200rpx;
+            margin: 72rpx auto;
+        }
+
+        .name {
+            width: 650rpx;
+            height: 80rpx;
+            background: #E3E5E6;
+            border-radius: 40rpx;
+            margin: 44rpx auto 0;
+            font-size: 28rpx;
+            color: #333333;
+            box-sizing: border-box;
+            padding-left: 40rpx;
+        }
+
+        .input-placeholder {
+            color: #A9A9A9;
+        }
+
+        .campus {
+            margin-top: 160rpx;
+        }
+
+        .sex-list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 50rpx auto 52rpx;
+
+            .sex {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                &:first-of-type {
+                    margin-right: 80rpx;
+                }
+
+                image {
+                    width: 225rpx;
+                    height: 225rpx;
+                    margin-bottom: 16rpx;
+                }
+
+                .sex-name {
+                    color: #666666;
+                    font-size: 36rpx;
+
+                    &.active {
+                        color: #FA6400;
+                    }
+                }
+            }
+        }
+
+        .year {
+            width: 690rpx;
+            height: 80rpx;
+            background: #E3E5E6;
+            border-radius: 40rpx;
+            display: flex;
+            align-items: center;
+            margin: 50rpx auto 0;
+
+            .year-ipt {
+                height: 100%;
+                flex: 1;
+                padding-left: 40rpx;
+                color: #333333;
+                font-size: 28rpx;
+            }
+
+            .sympol {
+                padding: 0 40rpx;
+                color: #333333;
+                font-size: 28rpx;
+            }
+        }
+
+        .wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 650rpx;
+            margin: 0 auto;
+            border-radius: 10rpx;
+            margin-top: 87rpx;
+
+            .list {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 28rpx 0 29rpx 35rpx;
+                position: relative;
+                background: #f2f3f4;
+                margin-bottom: 20rpx;
+                border-radius: 10rpx;
+
+                &:last-of-type::after {
+                    display: none;
+                }
+
+                .name-wrap {
+                    font-size: 36rpx;
+                    font-weight: bold;
+                    color: #333333;
+                    margin-bottom: 4rpx;
+                }
+
+                .detail {
+                    font-size: 20rpx;
+                    color: #666666;
+                }
+
+                &.active {
+                    position: relative;
+                    background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+
+                    view {
+                        color: #ffffff;
+                    }
+                }
+            }
+        }
+    }
+
+    // 血糖值&主食
+    .sugar {
+        padding-top: 100rpx;
+
+        .title {
+            color: #333333;
+            font-size: 48rpx;
+            font-weight: bold;
+            margin: 0 0 20rpx 50rpx;
+
+            text:nth-of-type(2) {
+                font-size: 24rpx;
+                font-weight: 400;
+                color: #000000;
+                margin-left: 14rpx;
+            }
+        }
+
+
+        .wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 650rpx;
+            margin: 0 auto;
+            margin-top: 60rpx;
+
+            .list {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                width: 100%;
+                box-sizing: border-box;
+                position: relative;
+                background: #f2f3f4;
+                border-radius: 10rpx;
+                margin-right: 20rpx;
+                height: 180rpx;
+                text-align: center;
+
+                &:last-of-type {
+                    margin-right: 0;
+                }
+
+                .name {
+                    font-size: 36rpx;
+                    font-weight: bold;
+                    color: #333333;
+                    margin-bottom: 4rpx;
+                }
+
+                .detail {
+                    font-size: 24rpx;
+                    color: #333333;
+                }
+
+                &.active {
+                    position: relative;
+                    background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+
+                    view {
+                        color: #ffffff;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.btn {
+    width: 650rpx;
+    height: 88rpx;
+    background: #D8D8D8;
+    border-radius: 50rpx;
+    color: #FFFFFF;
+    font-size: 36rpx;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 100rpx;
+    text-align: center;
+    line-height: 88rpx;
+
+    &.active {
+        background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+        color: #ffffff;
+    }
+}
+
+
+// 块-样式
+.block {
+    .title-box {
+        display: flex;
+        align-items: baseline;
+        // margin-left: 50rpx;
+
+        .title {
+            color: #333333;
+            font-size: 48rpx;
+            font-weight: bold;
+        }
+
+        .step {
+            color: #000000;
+            font-size: 24rpx;
+            margin-left: 26rpx;
+        }
+    }
+
+    // padding-top: 100rpx;
+    padding-top: 20rpx;
+
+    .title {
+        color: #333333;
+        font-size: 48rpx;
+        font-weight: bold;
+        margin: 0 0 20rpx;
+        margin-left: 50rpx;
+
+        // margin: 100rpx 0 20rpx;
+        text:nth-of-type(2) {
+            font-size: 24rpx;
+            font-weight: 400;
+            color: #000000;
+            margin-left: 14rpx;
+        }
+    }
+
+    .tip {
+        font-size: 24rpx;
+        color: #666666;
+        margin-left: 50rpx;
+    }
+
+    .wrap {
+        display: flex;
+        // flex-direction: column;
+        // align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 650rpx;
+        margin: 0 auto;
+        border-radius: 10rpx;
+        margin-top: 87rpx;
+
+        .list {
+            display: flex;
+            // flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            // width: 100%;
+            width: 48%;
+            height: 150rpx;
+            box-sizing: border-box;
+            // padding: 28rpx 0 29rpx 35rpx;
+            // padding: 0 70rpx;
+            position: relative;
+            background: #f2f3f4;
+            margin-bottom: 20rpx;
+            border-radius: 10rpx;
+
+            &:last-of-type::after {
+                display: none;
+            }
+            .text {
+                padding-left: 30rpx;
+            }
+            .name {
+                // font-size: 36rpx;
+                font-size: 32rpx;
+                font-weight: bold;
+                color: #333333;
+                // text-align: center;
+                // margin-bottom: 4rpx;
+            }
+
+            .detail {
+              font-size: 20rpx;
+              color: #666666;
+              margin-top: 4rpx;
+            // text-align: center;
+              overflow:hidden; //超出的文本隐藏
+                text-overflow:ellipsis; //溢出用省略号显示
+                white-space:nowrap; //溢出不换行
+            }
+
+            .conne {
+                height: 100%;
+                width: 48rpx;
+                background: #E7E8E9;
+                opacity: 0.5;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-shrink: 0;
+                image {
+                    width: 32rpx;
+                    height: 32rpx;
+                }
+            }
+            &.active {
+                position: relative;
+                background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+
+                view {
+                    color: #ffffff;
+                }
+
+                text {
+                    color: #ffffff;
+                }
+                .conne {
+                    background: #E9590F;
+                }
+            }
+        }
+    }
+
+    .subTitle {
+        color: #333333;
+        font-size: 28rpx;
+        line-height: 40rpx;
+        margin-bottom: 30rpx;
+        margin-left: 50rpx;
+    }
+
+    // .eat {
+    //     display: flex;
+    //     justify-content: space-between;
+    //     align-items: center;
+    //     // flex-direction: column;
+    //     // align-items: center;
+    //     // justify-content: center;
+    //     width: 650rpx;
+    //     height: 140rpx;
+    //     background: #F2F3F4;
+    //     border-radius: 10rpx;
+    //     margin: 0 auto 47rpx;
+    //     .text {
+    //         padding-left: 32rpx;
+    //     }
+    //     .name {
+    //         color: #333333;
+    //         font-size: 36rpx;
+    //         line-height: 50rpx;
+    //         font-weight: bold;
+    //         margin-bottom: 4rpx;
+    //         &.normal{
+    //             display: flex;
+    //             justify-content: center;
+    //             align-items: center;
+    //             image{
+    //                 width: 32rpx;
+    //                 height: 32rpx;
+    //                 margin-left: 8rpx;
+    //             }
+    //         }
+    //     }
+
+    //     .exam {
+    //         color: #666666;
+    //         font-size: 20rpx;
+    //         line-height: 28rpx;
+    //     }
+    //     .conne {
+    //         height: 100%;
+    //         width: 80rpx;
+    //         background: #E7E8E9;
+    //         opacity: 0.5;
+    //         display: flex;
+    //         justify-content: center;
+    //         align-items: center;
+    //         image {
+    //           width: 32rpx;
+    //           height: 32rpx;
+    //         }
+    //     }
+    //     &.active {
+    //         background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+
+    //         view {
+    //             color: #ffffff;
+    //         }
+    //         .conne {
+    //             background: #E9590F;
+    //         }
+    //     }
+    // }
+
+    // .custom {
+    //     width: 650rpx;
+    //     height: 132rpx;
+    //     background: #F2F3F4;
+    //     border-radius: 10rpx;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     margin: 0 auto;
+
+    //     image {
+    //         width: 64rpx;
+    //         height: 64rpx;
+    //         margin-right: 24rpx;
+    //     }
+
+    //     .name {
+    //         color: #333333;
+    //         font-size: 32rpx;
+    //         line-height: 45rpx;
+    //         font-weight: bold;
+    //     }
+    // }
+    // 备注
+    // .remarks {
+    //     font-size: 20rpx;
+    //     color: #666666;
+    //     line-height: 28rpx;
+    //     padding: 24rpx 50rpx;
+    // }
+    &.eatMeth{
+        padding-bottom: 200rpx;
+        .wrap {
+            .list {
+                width: 100%;
+                .text {
+                    width: 628rpx;
+                    .detail {
+                        max-width: 628rpx!important;
+                    }
+                }
+                .conne {  
+                    width: 80rpx;
+                }
+            }
+        }
+        .intro{
+            width: 650rpx;
+            height: 364rpx;
+            background: #FAFAFA;
+            border-radius: 10rpx;
+            margin: 0 auto;
+            transform: translateY(-54rpx);
+            padding: 0rpx 32rpx 0;
+            position: relative;
+            z-index: -1;
+            .title-eat{
+              color: #666666;
+              font-size: 28rpx;
+              font-weight: bold;
+              margin-bottom: 16rpx;
+              padding-top: 56rpx;
+            }
+            view{
+              color: #666666;
+              font-size: 24rpx;
+              line-height: 33rpx;
+              &:nth-of-type(2){
+                margin-bottom: 24rpx;
+              }
+            }
+            &.active{
+              overflow: hidden;
+              height: 0;
+            //   transform: translateY(0rpx);
+              transition: all 0.3s linear;
+              padding: 0;
+            }
+          }
+          .more{
+            width: 650rpx;
+            height: 96rpx;
+            background: #FAFAFA;
+            border-radius: 10rpx;
+            border: 2rpx solid #ECEDEE;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999999;
+            font-size: 28rpx;
+            margin: -34rpx auto 0;
+            image{
+              width: 32rpx;
+              height: 32rpx;
+              transform: rotate(90deg);
+              margin-left: 8rpx;
+            }
+          }
+    }
+}
+
+.campus-box {
+    max-height: 770rpx;
+
+    .name {
+        width: 650rpx;
+        height: 132rpx;
+        background: #F2F3F4;
+        border-radius: 10rpx;
+        text-align: center;
+        line-height: 132rpx;
+        color: rgba(51, 51, 51, 1);
+        font-size: 32rpx;
+        margin: 0 auto 20rpx;
+
+        &:first-of-type {
+            margin-top: 40rpx;
+        }
+
+        &.active {
+            background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+            color: rgba(255, 255, 255, 1);
+        }
+    }
+}
+// 目标、慢病、住院 的吃法介绍-弹窗
+.conneTip {
+    padding: 0 40rpx 64rpx;
+    font-size: 28rpx;
+    font-weight: bold;
+    color: #999999;
+    line-height: 40rpx;
+  }

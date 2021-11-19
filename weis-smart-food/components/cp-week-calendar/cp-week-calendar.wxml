@@ -1,0 +1,42 @@
+<!--components/calendarWeek/calendarWeek.wxml-->
+<!-- 日历 -->
+<view
+  class="date-choose shrink border-bottom10"
+  style="padding-bottom: {{dayData ? '30rpx' : '23rpx'}}"
+>
+  <view class="header">
+    <view class="header__month">{{dateMonth}}</view>
+    <view bind:tap="backTodayTap" wx:if="{{dateCurrentStr !== todayId && backToToday}}">
+      <image class="header__icon" src="./icon_return_orange.png" />
+      <text class="header__label">返回今天</text>
+    </view>
+  </view>
+  <swiper
+    class="date-choose-swiper"
+    circular="true"
+    indicator-dots="{{false}}"
+    current="{{swiperCurrent}}"
+    bindchange="dateSwiperChange"
+  >
+    <block wx:for="{{dateList}}" wx:for-item="date" wx:key="key">
+      <swiper-item class="swiper-item">
+        <view class="dateday">
+          <block wx:for="{{date.days}}" wx:for-item="day" wx:key="key">
+            <view
+              class="wrap {{dateCurrentStr==day.id ? 'active': (dayData ? 'color' : '')}} {{today==day.id ? 'reds':''}} {{day.exist ? 'exist' : ''}}"
+              id="{{day.id}}"
+              bindtap="chooseDate"
+            >
+              <view>{{dateListArray[index]}}</view>
+              <view class="day">
+                <text wx:if="{{todayId === day.id}}">今</text>
+                <text wx:else>{{day.day == '01' && !dayData ? day.month+'月' : day.day}}</text>
+              </view>
+            </view>
+          </block>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<!-- 日历 -->

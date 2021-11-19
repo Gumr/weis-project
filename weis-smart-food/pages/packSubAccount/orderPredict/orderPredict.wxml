@@ -1,0 +1,192 @@
+<!-- pages/packSubAccount/orderPredict/orderPredict.wxml -->
+<cp-nav-bar title-text="{{title}}" background="#fff" color="#333333" backIconColor="black" />
+<!-- 预测单报告 -->
+<view class="predict" wx:if="{{type == '00'}}">
+    <!-- 未预测校区 -->
+    <view class="notForecast" wx:if="{{notForecast && notForecast.length > 0}}">
+        <view style="font-weight: bold">未预测校区：({{notForecast.length}})</view>
+        <view class="" wx:for="{{notForecast}}">{{item}}</view>
+    </view>
+    <view>
+        <view class="box" wx:for="{{list}}">
+            <view class="title">{{item.campusName}}</view>
+            <view class="table">
+                <!-- 套餐名 -->
+                <view class="col">
+                    <view class="name">套餐名</view>
+                    <view class="col-box">
+                        <view class="year" wx:for="{{item.comboInfo}}">{{item.setMealName}}</view>
+                    </view>
+                </view>
+                <!-- 份数 -->
+                <view class="col">
+                    <view class="name">份数</view>
+                    <view class="col-box">
+                        <view class="year" wx:for="{{item.comboInfo}}">{{item.forecastNum}}</view>
+                    </view>
+                </view>
+                <!-- 日期 -->
+                <view class="col">
+                    <scroll-view scroll-x="{{true}}">
+                        <view class="col-num">
+                            <view class="date-box">
+                                <view class="date" wx:for="{{item.comboInfo[0].weekInfo}}">
+                                    <view class="day">{{item.forecastDate}}</view>
+                                    <view class="week">{{item.week == '七' ? '日' : item.week}}</view>
+                                </view>
+                            </view>
+                            <view class="col-box">
+                                <view class="year-phase" wx:for="{{item.comboInfo}}">
+                                    <view class="num" wx:for="{{item.weekInfo}}">
+                                        {{item.forecastNum}}
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<!-- 下单报告 -->
+<view class="predict" wx:if="{{type == '01'}}">
+    <!-- 未下单校区 -->
+    <view class="notForecast" wx:if="{{notForecast && notForecast.length > 0}}">
+        <view style="font-weight: bold">未下单校区：({{notForecast.length}})</view>
+        <view class="" wx:for="{{notForecast}}">{{item}}</view>
+    </view>
+    <view class="date-title" wx:if="{{list.length > 0}}">用餐日期：{{eatDate}}</view>
+    <view>
+        <view class="box" wx:for="{{list}}">
+            <view class="title">{{item.campusName}}</view>
+            <view class="table">
+                <!-- 套餐名 -->
+                <view class="col">
+                    <view class="name">套餐名</view>
+                    <view class="col-box">
+                        <view class="year" wx:for="{{item.comboInfo}}">{{item.setMealName}}</view>
+                    </view>
+                </view>
+                <!-- 预测数 -->
+                <view class="col yc">
+                    <view class="name">预测数</view>
+                    <view class="col-box">
+                        <view class="year" wx:for="{{item.comboInfo}}">{{item.forecastNum}}</view>
+                    </view>
+                </view>
+                <!-- 下单数 -->
+                <view class="col xd">
+                    <view class="name">下单数</view>
+                    <view class="col-box">
+                        <view class="year" wx:for="{{item.comboInfo}}">{{item.buyOrderNum}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="predict" wx:if="{{type == '02'}}">
+    <!-- 即将下架菜品 -->
+    <view>
+        <view class="notForecast">
+            <view style="font-weight: bold">即将下架菜品</view>
+            <view class="empty" wx:if="{{skuData.length == 0}}">暂无即将下架菜品~~~</view>
+        </view>
+        <view>
+            <view class="box" wx:for="{{skuData}}">
+                <view class="table" style="border-bottom: 2rpx solid #E8E8E8">
+                    <!-- 套餐名 -->
+                    <view class="col">
+                        <view class="name" hidden="{{index !== 0}}">菜品名称</view>
+                        <view class="col-box">
+                            <view class="year">{{item.recordName}}</view>
+                        </view>
+                    </view>
+                    <!-- 预测数 -->
+                    <view class="col yc">
+                        <view class="name" hidden="{{index !== 0}}">售卖时间</view>
+                        <view class="col-box">
+                            <view class="year flex-center">{{item.sellDate}}</view>
+                        </view>
+                    </view>
+                    <!-- 下单数 -->
+                    <view class="col xd">
+                        <view class="name" hidden="{{index !== 0}}">剩余售卖时间</view>
+                        <view class="col-box">
+                            <view class="year">{{item.residueDate}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 受影响套餐 -->
+    <view>
+        <view class="notForecast">
+            <view style="font-weight: bold">受影响的套餐</view>
+            <view class="empty" wx:if="{{comboData.length == 0}}">暂无受影响的套餐~~~</view>
+        </view>
+        <view>
+            <view class="box" wx:for="{{comboData}}">
+                <view class="table" style="border-bottom: 2rpx solid #E8E8E8">
+                    <!-- 套餐名 -->
+                    <view class="col">
+                        <view class="name" hidden="{{index !== 0}}">套餐名称</view>
+                        <view class="col-box">
+                            <view class="year">{{item.recordName}}</view>
+                        </view>
+                    </view>
+                    <!-- 预测数 -->
+                    <view class="col yc">
+                        <view class="name" hidden="{{index !== 0}}">售卖时间</view>
+                        <view class="col-box">
+                            <view class="year flex-center">{{item.sellDate}}</view>
+                        </view>
+                    </view>
+                    <!-- 下单数 -->
+                    <view class="col xd">
+                        <view class="name" hidden="{{index !== 0}}">剩余售卖时间</view>
+                        <view class="col-box">
+                            <view class="year">{{item.residueDate}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 受影响的抖音套餐包 -->
+    <view>
+        <view class="notForecast">
+            <view style="font-weight: bold">受影响的抖音套餐包</view>
+            <view class="empty" wx:if="{{douData.length == 0}}">暂无受影响的抖音套餐包~~~</view>
+        </view>
+        <view>
+            <view class="box" wx:for="{{douData}}">
+                <view class="table" style="border-bottom: 2rpx solid #E8E8E8">
+                    <!-- 套餐名 -->
+                    <view class="col">
+                        <view class="name" hidden="{{index !== 0}}">套餐包名称</view>
+                        <view class="col-box">
+                            <view class="year ellipsis">{{item.recordName}}</view>
+                        </view>
+                    </view>
+                    <!-- 预测数 -->
+                    <view class="col yc">
+                        <view class="name" hidden="{{index !== 0}}">售卖时间</view>
+                        <view class="col-box">
+                            <view class="year flex-center">--</view>
+                        </view>
+                    </view>
+                    <!-- 下单数 -->
+                    <view class="col xd">
+                        <view class="name" hidden="{{index !== 0}}">剩余售卖时间</view>
+                        <view class="col-box">
+                            <view class="year">--</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

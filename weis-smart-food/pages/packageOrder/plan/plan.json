@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "cp-editPlan-dialog": "/components/cp-editPlan-dialog/cp-editPlan-dialog",
+    "cp-confirm-dialog": "/components/cp-confirm-dialog/cp-confirm-dialog",
+    "van-popup": "/components/vant/popup/index",
+    "cp-config-dialog": "/components/cp-config-dialog/cp-config-dialog",
+    "cp-ruler": "/components/cp-ruler/cp-ruler"
+  }
+}

@@ -1,0 +1,58 @@
+@import '../../style/common.less';
+
+.rank-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .avatar-box {
+    position: relative;
+  }
+  &__num {
+    font-family: 'DIN';
+    font-size: 42rpx;
+    font-weight: bold;
+    color: rgba(169, 169, 169, 1);
+    margin-right: 40rpx;
+  }
+  &__medal {
+    width: 43rpx;
+    height: 56rpx;
+    margin-right: 30rpx;
+  }
+  &__avatar {
+    width: 68rpx;
+    height: 68rpx;
+    border-radius: 50%;
+    margin-right: 20rpx;
+  }
+  &__nickname {
+    // white-space: nowrap;
+    font-size: 26rpx;
+    color: #333;
+    max-width: 250rpx;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+  }
+  &__value {
+    white-space: nowrap;
+    font-size: 26rpx;
+    color: #fe5e0f;
+  }
+  &__next {
+    margin-left: 10rpx;
+    width: 20rpx;
+    height: 20rpx;
+  }
+  &__leader {
+    padding: 3rpx 12rpx;
+    font-size: 16rpx;
+    color: #333;
+    background-color: #ffe600;
+    border-radius: 11rpx;
+    position: absolute;
+    top: 47rpx;
+    left: 6rpx;
+  }
+}

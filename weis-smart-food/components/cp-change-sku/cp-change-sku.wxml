@@ -1,0 +1,101 @@
+<!-- components/cp-change-sku/cp-change-sku.wxml -->
+<view class="kind" style="height: {{scrollHeight}}rpx">
+    <view class="sort">
+        <scroll-view class="wrap" scroll-y="true" style="height:{{scrollHeight}}rpx">
+            <view class="name {{leftIndex== index ? 'active' : ''}}" style="height: {{item.lineBreakPosition > 0 ? 114 : 88}}rpx" wx:for="{{nameList}}" wx:key="key" data-index="{{index}}" bind:tap="selectKind">
+                <text>{{item.skuKind}}</text>
+                <view class="num {{leftIndex== index ? 'active' : ''}}" wx:if="{{item.num}}">
+                    {{item.num}}
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+    <view class="goods">
+        <scroll-view class="wrap" scroll-y="true" scroll-into-view="{{intoIndex}}" scroll-with-animation="{{true}}" style="height:{{scrollHeight}}rpx" data-scroll="true" bindscroll="scroll">
+            <view class="wrap-box" id="{{'scroll_' + wrapIndex}}" wx:for="{{nameList}}" wx:key="key" wx:for-index="wrapIndex">
+                <view class="kind-name">
+                    <view>{{item.skuCatalog}}</view>
+                </view>
+                <view class="list-box">
+                    <view class="list {{(item.checkStock && item.stock<=0) ? 'active' : ''}}" wx:for="{{item.detailList}}" wx:key="key" wx:for-index="index" wx:for-item="item">
+                        <!-- 单品UI -->
+                        <view class="top">
+                            <view class="area" data-combo="{{item.type == '01' ? '01' : '00'}}" data-id="{{item.id}}" data-forbid="{{!item.energy && !item.protein && !item.fat && !item.carbonwater ? true : false}}"></view>
+                            <view class="l-img-box">
+                                <view class="tag yellow" wx:if="{{item.skuTitle}}">
+                                    {{item.skuTitle}}
+                                </view>
+                                <image class="l-img" lazy-load="{{true}}" src="{{item.primaryImgUrl}}" />
+                                <view class="nosku" wx:if="{{(item.checkStock && item.stock<=0)}}">
+                                    <view class="sq">已售罄</view>
+                                </view>
+                                <view class="nosku" wx:elif="{{item.noDiscount == '01'}}">
+                                    <view class="sq" style="color: #FFE59D">不参与折扣</view>
+                                </view>
+                                <image class="children" wx:if="{{ageType == '01'}}" src="https://prodstatic.weis1606.cn/api/smartFood/toddler_label.png" />
+                            </view>
+                            <view class="c">
+                                <view class="name">{{item.skuname}} {{item.energy}}kcal</view>
+                                <view class="label-wrap">
+                                    <view class="label" wx:for="{{item.dietLabelList}}" wx:for-index="labelIndex" wx:for-item="labelItem" wx:if="{{labelItem.type == '12' || labelItem.type == '14'}}">
+                                        {{labelItem.name}}
+                                    </view>
+                                </view>
+                                <view class="hot-box dp {{item.dietLabelList.length > 0?'ellipsis':''}}" wx:if="{{item.energy || item.protein || item.fat || item.carbonwater}}">
+                                    <view class="hot" wx:if="{{item.protein}}">
+                                        蛋白质{{item.protein}}g
+                                        <text class="hot-line">/</text>
+                                    </view>
+                                    <view class="hot" wx:if="{{item.fat}}">
+                                        脂肪{{item.fat}}g
+                                        <text class="hot-line">/</text>
+                                    </view>
+                                    <view class="hot" wx:if="{{item.carbonwater}}">
+                                        碳水{{item.carbonwater}}g
+                                    </view>
+                                </view>
+                                <view class="monthly-sale" wx:if="{{matchHpid.shopType == '10'}}">
+                                    月售{{item.sale30DaysSum}}份
+                                </view>
+                                <view class="price">
+                                    <!-- 现价 -->
+                                    <view class="cost">
+                                        ¥
+                                        <view class="acturePrice">
+                                            {{item.discountPrice || item.price}}
+                                        </view>
+                                    </view>
+                                    <!-- 原价 -->
+                                    <view class="origin" wx:if="{{item.discountPrice && item.price>item.discountPrice}}">
+                                        ¥{{item.price}}
+                                    </view>
+                                    <view class="net">/{{item.quality + item.unit}}</view>
+                                </view>
+                            </view>
+                            <!-- 增减 -->
+                            <view class="right {{item.num <= 0 && (!item.checkStock || item.stock>0) ? 'single' : ''}}">
+                                <view class="dot" hover-class="color" hover-stay-time="200" data-combo="{{item.type == '01' ? '01' : '00'}}" data-cid="{{item.cid}}" data-wrapindex="{{wrapIndex}}" data-index="{{index}}" data-type="reduce" bind:tap="add" wx:if="{{item.num>=1}}">
+                                    <image class="reduce" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/reduce.png" />
+                                </view>
+                                <view class="num" wx:if="{{item.num>=1}}">{{item.num}}</view>
+                                <view class="dot already" wx:if="{{item.checkStock && item.stock<=0 && matchHpid.shopType == '10' && item.num == 0}}" bind:tap="reserve">
+                                    去预定
+                                </view>
+                                <view class="dot" wx:if="{{!item.checkStock || (item.checkStock && (item.stock>0||item.num>0))}}" hover-class="color" hover-stay-time="200" data-combo="{{item.type == '01' ? '01' : '00'}}" data-cid="{{item.cid}}" data-wrapindex="{{wrapIndex}}" data-index="{{index}}" data-type="add" bind:tap="add">
+                                    <image class="add" src="{{item.num>=1 ? 'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/add.png' : 'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/add-1.png'}}" />
+                                </view>
+                            </view>
+                        </view>
+                        <view class="extra" wx:if="{{item.checkStock && item.stock<=3 && item.stock>0}}">
+                            <view style="border:none;font-size: 20rpx" wx:if="{{(item.checkStock && item.stock<=3 && item.stock>0)}}">
+                                仅剩{{item.stock}}份
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+</view>
+
+<cp-cart wx:if="{{totalNum && totalNum > 0}}" piece="{{totalNum}}" price="{{countPrice}}" confirmText="立即更换" bind:pay="confirmChangeFn" />

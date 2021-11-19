@@ -1,0 +1,79 @@
+<!-- pages/mineBox/balance/balance.wxml -->
+<cp-nav-bar title-text="余额充值" color="#FFFFFF" background="linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%)" backIconColor="white" />
+<view class="balance {{isIpx ? 'isIpx' : ''}}">
+  <view class="box" bind:tap="goPersonal">
+    <view class="box__cash">
+      <text>￥</text>
+      <text>{{balance.totalBalance}}</text>
+    </view>
+    <view class="box__detail" bindtap="goBalanceDetail">
+      <text>余额明细</text>
+      <image src="/images/my/icon_right.png" />
+    </view>
+    <view class="box__cash__new" wx:if="{{uncheck.ctime}}" bindtap="goBalanceDetail">
+      {{uncheck.date}}{{uncheck.businessDesc || (uncheck.business === '05' ? '分享返现' : '拼单退运费')}}
+      <text>+¥{{uncheck.totalcash}}</text>
+    </view>
+    <!-- 激活实体卡 -->
+    <view class="activation" bind:tap="activation">
+      <view class="name">激活实体卡</view>
+      <image src="/images/icon_right.png" />
+    </view>
+  </view>
+  <!-- 充值操作 -->
+  <view class="operate">
+    <view class="title">充值</view>
+    <view class="r-cash">
+      <view class="unit">¥</view>
+      <input type="number" placeholder-class="placeholderStyle" value="{{rgAmount}}" placeholder="{{higestAmount == 0 ? '不可充值' : '输入充值金额'}}" disabled="{{higestAmount == 0}}" bindinput="inputCashFn" />
+      <view class="present" wx:if="{{present > 0}}">
+        赠送
+        <text>￥{{present}}</text>
+      </view>
+    </view>
+    <view class="r-tips" wx:if="{{higestAmount > 0}}" bind:tap="showDialog">
+      <text>* 你当前最多可充值</text>
+      <text class="num">￥{{higestAmount}}</text>
+      <image class="icon" src="/images/icon_right.png" />
+    </view>
+    <view class="r-tips" wx:if="{{higestAmount == 0}}" bind:tap="showDialog">
+      <text>你当前已超过1000，不可充值</text>
+      <image class="icon" src="/images/icon_right.png" />
+    </view>
+    <view class="r-rules">
+      <view class="r-rules-t">充值规则</view>
+      <view class="r-rules-list">
+        <view class="per">1. 500≤充值金额＜1000，赠送充值金额5%</view>
+        <view class="per">2. 充值金额=1000，赠送100元</view>
+      </view>
+    </view>
+    <!-- <view class="r-box">
+      <view class="opts">
+        <view class="opt {{item.isDefault ? 'active' : ''}}" wx:for="{{discountList}}" wx:key="index" data-index="{{index}}" bindtap="selectCash">
+          <text class="opt__cash">¥{{item.amount}}</text>
+          <text class="opt__tip" wx:if="{{item.discount > 0}}">
+            送{{item.amount * item.discount}}
+          </text>
+        </view>
+      </view>
+    </view> -->
+  </view>
+  <view class="bottom {{isIpx ? 'isIpx' : ''}}">
+    <view class="xy" bindtap="xyFn">
+      <image src="{{agree ? '/images/my/icon_selected.png' : '/images/my/icon_unselected.png'}}" />
+      <text>我同意</text>
+      <text catch:tap="goRechargeDeal">《维士充值协议》</text>
+      <text>，余额不可提现</text>
+    </view>
+    <view class="btn {{!agree || discountList.length == 0 || rgAmount <= 0 ? 'disabled' : ''}}" bindtap="recharge">
+      立即充值
+    </view>
+  </view>
+</view>
+<!-- 充值金额1000限制弹窗 -->
+<cp-confirm-dialog class="dialog" show="{{show}}" title=" " titleStyle="margin-top:30rpx;" show-close="{{true}}" left-close="{{true}}" show-cancel="{{false}}" confirm-text="知道了" bind:on-confirm="knowFn">
+  <view class="title">
+    <view class="txt">由于维士余额账户受银行监管，充值时要保证本金部分不得超过1000元。</view>
+    <view class="txt">你当前账户本金{{balance.totalRecharge}}元，最多只能再充值{{higestAmount}}元。</view>
+  </view>
+</cp-confirm-dialog>

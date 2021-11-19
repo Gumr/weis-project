@@ -1,0 +1,112 @@
+.border {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 2rpx;
+    background: #E9E9E9;
+    transform: scaleY(0.5);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+page{
+    background: #F3F4F5;
+}
+
+.record{
+    background: #F3F4F5;
+    .content{
+        .date{
+            padding: 24rpx 0 16rpx 30rpx;
+            color: #333333;
+            font-size: 36rpx;
+            font-weight: bold;
+        }
+        .box{
+            width: 750rpx;
+            background: #FFFFFF;
+            border-radius: 20rpx;
+            padding: 0 30rpx;
+            .record-invoice{
+                padding: 46rpx 0;
+                position: relative;
+                &:not(:last-of-type)::after {
+                    .border();
+                }
+               .list{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 8rpx;
+                   .left{
+                    color: #333333;
+                    font-size: 28rpx;
+                    display: flex;
+                    align-items: center;
+                    .time{
+                        margin-right: 35rpx;
+                        width: 228rpx;
+                    }
+                   }
+                   .right{
+                       display: flex;
+                       align-items: center;
+                    .total{
+                        width: 210rpx;
+                        text-align: left;
+                        color: #333333;
+                        font-size: 28rpx;
+                        font-weight: bold;
+                    }
+                    .status{
+                        display: flex;
+                        align-items: center;
+                        view{
+                            color: #999999;
+                            font-size: 28rpx;
+                        }
+                        image{
+                            width: 38rpx;
+                            height: 38rpx;
+                        }
+                    }
+                   }
+               }
+               .date-time{
+                   color: #999999;
+                   font-size: 20rpx;
+                   line-height: 28rpx;
+               }
+            }
+        }
+    }
+    .loading{
+        width: 100%;
+        height: 80rpx;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #666666;
+        font-size: 28rpx;
+    }
+}
+
+.empty{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 248rpx;
+    .tip-title{
+        color: #666666;
+        font-size: 36rpx;
+        margin-bottom: 20rpx;
+    }
+    .desc{
+        color: #666666;
+        font-size: 30rpx;
+    }
+}

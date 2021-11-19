@@ -1,0 +1,47 @@
+<!--pages/marketing/slimmingCamp/slimmingCampRecharge/slimmingCampRecharge.wxml-->
+
+<cp-nav-bar title-text="充值" backIconColor></cp-nav-bar>
+<view class="container" style="height: calc(100vh - {{navStatusHeight}}px)">
+  <view class="recharge">
+    <!-- <image
+      class="recharge__background"
+      src="https://prodstatic.weis1606.cn/api/activity/recharge_card.png"
+    />-->
+    <view class="recharge__cards">
+      <view
+        class="recharge__card {{cardIndex === index ? 'recharge__card--active' : ''}}"
+        wx:for="{{cardList}}"
+        wx:key="index"
+        data-index="{{index}}"
+        bind:tap="cardTap"
+      >
+        <view class="recharge__card-title">充{{item.cardModelBean.amount}}元</view>
+        <view class="recharge__card-label">得{{item.totalAmount}}元</view>
+      </view>
+    </view>
+    <!-- <view
+      class="recharge__title"
+    >充{{rechargeCard.cardModelBean.amount}}元，得{{rechargeCard.totalAmount}}元</view>-->
+    <view>
+      <view style="line-height: 48rpx;" class="label-bold">①减脂营期间，首次入营享受5折优惠，再次入营享受9折优惠；</view>
+      <view style="line-height: 48rpx;">*已有折扣会员不叠加折扣，享受单个最低折扣。</view>
+    </view>
+    <view style="margin: 30rpx 0 40rpx;" class="label-bold">②预订5日确认订单后，立返30元现金礼包!</view>
+    <view>
+      <view style="line-height: 60rpx;" class="label-bold">充值规则：</view>
+      <view style="line-height: 60rpx;">①充值后实时存入账户余额；</view>
+      <view style="line-height: 60rpx;">②充值成功后无法退款；</view>
+    </view>
+  </view>
+  <view class="footer" style="padding-bottom: {{isIpx ? 84 : 52}}rpx;">
+    <view class="protocol flex-items-center" catch:tap="checkProtocolTap">
+      <image
+        class="check-icon"
+        src="{{checked ? '/images/order_list_select.png' : '/images/order_list_unchecked.png'}}"
+      />
+      <text class="label" style="margin-left: 10rpx;">我同意</text>
+      <text catch:tap="protocolTap" class="label label--active">《维士健康(付费)会员协议》</text>
+    </view>
+    <view bind:tap="btnTap" class="btn {{checked ? 'button--primary' : 'disabled-btn'}}">确认加入并充值</view>
+  </view>
+</view>

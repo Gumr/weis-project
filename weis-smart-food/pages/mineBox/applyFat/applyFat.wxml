@@ -1,0 +1,5 @@
+<!--pages/mineBox/agreement/agreement.wxml-->
+<cp-nav-bar title-text="{{title}}" background="#fff" color="#333333" backIconColor="black"/>
+<view class="applyFat">
+     <rich-text nodes="{{htmlSnip}}"></rich-text>
+</view>

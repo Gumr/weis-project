@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "cp-payment-status": "/components/cp-payment-status/cp-payment-status"
+  }
+}

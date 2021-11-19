@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "data-pie": "/components/cp-data-pie/cp-data-pie",
+    "van-loading": "/components/vant/loading/index"
+  }
+}

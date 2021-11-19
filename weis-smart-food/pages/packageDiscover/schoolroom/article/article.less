@@ -1,0 +1,44 @@
+.article {
+  width: 100%;
+  padding: 40rpx;
+
+  .content {
+    .list {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40rpx;
+      // 超出省略
+      .ellipsis {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .img {
+        width: 150rpx;
+        height: 150rpx;
+        border-radius: 10rpx;
+      }
+      .info {
+        width: 496rpx;
+        .name {
+          font-size: 28rpx;
+          font-weight: bold;
+          color: #333333;
+          margin-bottom: 20rpx;
+          // 1行省略
+          .ellipsis();
+          -webkit-line-clamp: 1;
+        }
+        .desc {
+          font-size: 24rpx;
+          color: #adadad;
+          line-height: 33rpx;
+          // 2行省略
+          .ellipsis();
+          -webkit-line-clamp: 2;
+        }
+      }
+    }
+  }
+}

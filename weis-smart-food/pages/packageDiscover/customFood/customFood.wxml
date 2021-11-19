@@ -1,0 +1,153 @@
+<!-- pages/datas/customFood/customFood.wxml -->
+<cp-nav-bar title-text="添加自定义食物" ></cp-nav-bar>
+<view class="page-container">
+  <!-- 基本信息 -->
+  <view class="custom-section">
+    <view class="info-item-wrap gray-bottom-border">
+      <view class="info-item custom-section-title">基本信息</view>
+    </view>
+
+    <view class="info-item-wrap gray-bottom-border">
+      <view class="info-item flex-jc-sbt">
+        <text>食物名称</text>
+        <input
+          class="info-input"
+          placeholder="如:西红柿"
+          data-key="tdlFoodName"
+          maxlength="10"
+          value="{{customFoodInfo.tdlFoodName}}"
+          bindinput="handleInputChange"
+        />
+      </view>
+    </view>
+
+    <view class="info-item-wrap gray-bottom-border">
+      <view class="info-item flex-jc-sbt">
+        <text>计量</text>
+        <view class="display-flex">
+          <input
+            class="info-input"
+            placeholder="如:240"
+            type="text"
+            data-key="tdlTotalWeight"
+            data-limit="1"
+            maxlength="4"
+            value="{{customFoodInfo.tdlTotalWeight}}"
+            bindinput="handleInputChange"
+          />
+          <text class="input-unit">克</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="info-item info-item-margin flex-jc-sbt">
+      <text>能量</text>
+      <view class="display-flex">
+        <view class="display-flex">
+          <input
+            class="info-input"
+            placeholder="如:100"
+            type="text"
+            data-key="tdlTotalKcal"
+            data-limit="1"
+            maxlength="6"
+            value="{{customFoodInfo.tdlTotalKcal}}"
+            bindinput="handleInputChange"
+          />
+          <text class="input-unit energy-unit">{{energyUnit}}</text>
+        </view>
+        <view class="unit-switch display-flex">
+          <view
+            class="switch-tab {{activeEnergy === '1' ? 'active-tab' : ''}}"
+            data-value="1"
+            bindtap="changeActiveEnergy"
+          >千卡</view>
+          <view
+            class="switch-tab {{activeEnergy === '2' ? 'active-tab' : ''}}"
+            data-value="2"
+            bindtap="changeActiveEnergy"
+          >千焦</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 营养元素信息块 -->
+  <view class="custom-section">
+    <view class="info-item-wrap gray-bottom-border">
+      <view class="info-item custom-section-title">营养元素信息(选填)</view>
+    </view>
+
+    <view class="info-item-wrap gray-bottom-border">
+      <view class="info-item flex-jc-sbt">
+        <text>蛋白质</text>
+        <view class="display-flex">
+          <input
+            class="info-input"
+            type="text"
+            data-key="tdlProteinTotal"
+            data-type="digit"
+            maxlength="6"
+            value="{{customFoodInfo.tdlProteinTotal}}"
+            bindinput="handleInputChange"
+          />
+          <text class="input-unit">克</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="info-item-wrap gray-bottom-border">
+      <view class="info-item flex-jc-sbt">
+        <text>碳水化合物</text>
+        <view class="display-flex">
+          <input
+            class="info-input"
+            type="text"
+            data-key="tdlCarbohydrateTotal"
+            data-type="digit"
+            maxlength="6"
+            value="{{customFoodInfo.tdlCarbohydrateTotal}}"
+            bindinput="handleInputChange"
+          />
+          <text class="input-unit">克</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="info-item info-item-margin flex-jc-sbt">
+      <text>脂肪</text>
+      <view class="display-flex">
+        <input
+          class="info-input"
+          type="text"
+          data-key="tdlFatTotal"
+          data-type="digit"
+          maxlength="6"
+          value="{{customFoodInfo.tdlFatTotal}}"
+          bindinput="handleInputChange"
+        />
+        <text class="input-unit">克</text>
+      </view>
+    </view>
+  </view>
+  <!-- 相关推荐 -->
+  <view class="custom-footer">
+    <view class="custom-section-title">相关推荐</view>
+    <view class="recomment-tag-wrap">
+      <view
+        class="recommend-tag"
+        hover-class="hover-recommend-tag"
+        wx:for="{{recommendFoods}}"
+        wx:key="index"
+        bindtap="recommendTagTap"
+        data-index="{{index}}"
+      >{{item.name}}</view>
+    </view>
+    <view class="confirm-btn-wrap">
+      <button
+        hidden="{{pageStatus === 'edit'}}"
+        class="confirm-btn {{ infoCompleted ? 'confirm-btn-complete shadow-btn' : ''}}"
+        bindtap="handleConfirmTap"
+      >确定</button>
+    </view>
+  </view>
+</view>

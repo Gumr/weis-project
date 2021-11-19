@@ -1,0 +1,62 @@
+.fans {
+  padding: 16rpx 30rpx 0;
+  box-sizing: border-box;
+}
+.fans .each {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 36rpx;
+}
+.fans .each .human {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.fans .each .human image {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  margin-right: 40rpx;
+}
+.fans .each .human h4 {
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  line-height: 45rpx;
+}
+.fans .each .status {
+  width: 128rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  border-radius: 23rpx;
+  border: 2rpx solid #e6b838;
+  text-align: center;
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #e6b838;
+}
+.fans .each .status.followed {
+  background: #e0e0e0;
+  border: none;
+  color: #999999;
+}
+.fans-no {
+  width: 100%;
+  text-align: center;
+  margin-top: 104rpx;
+}
+.fans-no image {
+  width: 300rpx;
+  height: 300rpx;
+  margin-bottom: 22rpx;
+}
+.fans-no view {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999999;
+  line-height: 40rpx;
+}

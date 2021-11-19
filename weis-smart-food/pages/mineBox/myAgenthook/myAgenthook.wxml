@@ -1,0 +1,86 @@
+<!-- pages/mineBox/myAgenthook/myAgenthook.wxml -->
+<cp-nav-bar title-text="饮食顾问"></cp-nav-bar>
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
+<view class="hook">
+    <view class="my">
+        <view class="title">我的精准饮食顾问</view>
+        <view wx:if="{{counselorInfo}}">
+            <view class="box" data-id="{{counselorInfo.id}}" bind:tap="detail">
+                <view class="left">
+                    <image class='head' src="{{counselorInfo.counselorIcon}}" />
+                    <view class="c-box">
+                        <view class="name">{{counselorInfo.counselorName}}</view>
+                    </view>
+                </view>
+                <image class='arrow' src="/images/blackRight.png" />
+            </view>
+            <!-- <view class="target">
+                *你现在的目标是“{{planTypeStatus[identifer]}}”，由{{identifer != '04' && identifer != '14' ? '客户经理' : '营养师'}}为你提供专业服务
+            </view> -->
+        </view>
+        <view class="box" wx:else bind:tap="list">
+            <image class="add" src="/images/agent_add.png" />
+        </view>
+    </view>
+    <view class='record'>
+        <view class='title'>代点餐服务</view>
+        <!-- <view class="no" wx:if="{{replaceList.length == 0}}">暂无</view> -->
+        <view class="replace" bind:tap="replace">
+            <view class="l-box">
+                <view class="name" wx:if="{{replaceList.length>0}}">
+                    你有{{replaceList.length}}个订单待支付
+                </view>
+                <view class="name" wx:else>你没有订单待支付</view>
+                <image wx:if="{{replaceList.length>0}}" class="have" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/order_bubble.png" />
+            </view>
+            <view class="r-box">
+                <view class="popupview" wx:if="{{replaceList.length>0}}">
+                    {{replaceList.length}}
+                </view>
+                <image src="/images/blackRight.png" />
+            </view>
+        </view>
+    </view>
+    <view class="my history" wx:if="{{historyList.length>0 && counselorInfo}}">
+        <!-- <view class="title">历史客户经理</view> -->
+        <view class="title">
+            <text>历史饮食顾问</text>
+        </view>
+        <view class="history-box">
+            <van-swipe-cell wx:for="{{historyList}}" wx:key="key" left-width="{{0}}" right-width="{{rightWidth}}">
+                <view class="box {{index == historyList.length-1 ? 'active' : ''}}" data-from="myagent" bind:tap="detail" data-id="{{item.id}}">
+                    <view class="left">
+                        <image class='head minhead' src="{{item.counselorIcon}}" />
+                        <view class="c-box">
+                            <view class="name">{{item.counselorName}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="delete" slot="right" bind:tap="delete" data-counselorid="{{item.counselorId}}">
+                    <text>删除</text>
+                </view>
+            </van-swipe-cell>
+        </view>
+    </view>
+</view>
+<!-- 弹框 -->
+<confirm-dialog dialog-style="border-radius:20rpx;" show="{{options.result && showTip}}" showCancel="{{true}}" showConfirm="{{true}}" showClose="{{true}}" title=" " cancel-text="不必了" confirm-text="好的" auto-cancel="{{true}}" bind:on-confirm="handleConfirm">
+    <view class="counselor-dialog-box">
+        <view class='header'>
+            <image class='img' src="{{options.counselorIcon}}" />
+            <view class="name">Hello, 我是客户经理{{options.counselorName}}</view>
+        </view>
+        <view class='content'>
+            <text>
+                你真棒！已经遵循数据吃掉{{options.orderSize}}餐啦~ 未来你可能会遇到有关于减脂健身饮食方法和知识等其他问题；我都会帮你一 一解决。
+            </text>
+            <text>让我陪你一起边吃边瘦吧！</text>
+        </view>
+        <view class="footer">
+            <view class="footer-box" bind:tap="noTipChange">
+                <image class="img" src="{{ noTipSelect ? '/images/order_list_select.png' : '/images/order_list_unchecked.png'}}" />
+                <text class="word">不再提示</text>
+            </view>
+        </view>
+    </view>
+</confirm-dialog>

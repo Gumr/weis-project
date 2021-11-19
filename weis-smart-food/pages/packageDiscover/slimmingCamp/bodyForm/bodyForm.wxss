@@ -1,0 +1,45 @@
+.container {
+  padding: 40rpx 30rpx;
+}
+.title {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 44rpx;
+}
+.flex {
+  display: flex;
+}
+.flex-items-center {
+  display: flex;
+  align-items: center;
+}
+.input {
+  height: 88rpx;
+  margin: 40rpx 0;
+  font-size: 28rpx;
+  padding: 0 30rpx;
+  background: rgba(233, 233, 233, 0.5);
+  border-radius: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.input__label {
+  color: #808080;
+}
+.input__unit {
+  color: #333;
+}
+.input__el {
+  text-align: right;
+}
+.tip {
+  font-size: 24rpx;
+  color: #a9a9a9;
+  line-height: 44rpx;
+}
+.tip__warning {
+  font-size: 24rpx;
+  margin: 30rpx 0 40rpx;
+  color: #fe5e0f;
+}

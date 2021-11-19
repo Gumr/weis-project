@@ -1,0 +1,21 @@
+<!--pages/basic/editInfos/editInfos.wxml-->
+<nav title="{{navtitle}}"></nav>
+<!-- 修改昵称 -->
+<view class="profile" wx:if="{{type === 'nickname'}}">
+  <view class="wrap">
+    <input type="text" maxlength="10" value="{{newValue}}" bindinput="inputFn" />
+    <view class="iconbox" wx:if="{{newValue.length > 0}}" bind:tap="clearWord">
+      <image class="icon" src="/images/icon_ipt_close.png" />
+    </view>
+  </view>
+  <view class="btn {{newValue.length === 0 ? 'disabled' : ''}}" bindtap="submitUpdate">确定</view>
+</view>
+
+<!-- 修改简介 -->
+<view class="info" wx:else>
+  <view class="wrap">
+    <textarea value="{{newValue}}" maxlength="{{maxLength}}" placeholder="简单介绍自己，更容易获得关注哦～" bindinput="inputFn"></textarea>
+    <text class="tip">{{nowLength}}/50</text>
+  </view>
+  <view class="btn {{newValue.length === 0 ? 'disabled' : ''}}" bindtap="submitUpdate">确定</view>
+</view>

@@ -1,0 +1,111 @@
+<!-- pages/record/markSugar/markSugar.wxml -->
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
+<cp-nav-bar
+  model:date="{{navDate}}"
+  mode="date"
+  backIconColor="white"
+  disabledDate="{{disabledDate}}"
+  background="{{showCalendar ? '#FF9722' : 'transparent'}}"
+  bind:title-tap="tapTitle"
+  bind:date-change="goAhead"
+></cp-nav-bar>
+<view class="background"></view>
+<view class="record">
+  <view class="head">
+    <view class="tab" style="top:{{navBarHeight}}px">
+      <scroll-view
+        class="scroll-box"
+        scroll-x="{{true}}"
+        scroll-into-view="{{intoView}}"
+        scroll-with-animation="{{true}}"
+      >
+        <view
+          class="t-b {{tabIndex == index ? 'active' : ''}}"
+          wx:for="{{tab}}"
+          id="view{{index}}"
+          data-index="{{index}}"
+          bind:tap="tab"
+        >{{item.name}}</view>
+      </scroll-view>
+    </view>
+    <view class="circle">
+      <view class="c-box" bind:tap="showDia">
+        <view class="name">血糖</view>
+        <view
+          class="v {{bodyDataInfoList[tabIndex].bdValue > 0 ? 'active' : ''}}"
+        >{{bodyDataInfoList[tabIndex].bdValue > 0 ? bodyDataInfoList[tabIndex].bdValue : '0'}}</view>
+        <view class="unit">mmol/L</view>
+      </view>
+    </view>
+  </view>
+  <!-- 历史 -->
+  <view class="his-record">
+    <view class="head-box" bind:tap="history">
+      <view class="title">当日血糖</view>
+      <view class="r-b" bind:tap="chartTap">
+        <image src="/images/icons/line_chart.png" />
+        <view class="his-name">曲线</view>
+      </view>
+    </view>
+    <view class="list-box">
+      <view wx:if="{{!showWhite}}">
+        <van-swipe-cell
+          id="swipe-cell"
+          wx:for="{{bodyDataInfoList}}"
+          wx:if="{{item.bdValue > 0}}"
+          right-width="{{ 90 }}"
+          data-id="{{item.id}}"
+          data-index="{{index}}"
+          bind:open="onOpen"
+          async-close
+          bind:close="onClose"
+        >
+          <view class="list {{selectIndex === index ? 'active' : ''}}">
+            <view class="time">{{keyObj[item.bdKey]}}</view>
+            <view class="v-box">{{item.bdValue}} mmol/L</view>
+          </view>
+          <view slot="right" class="van-swipe-cell__right">删除</view>
+        </van-swipe-cell>
+      </view>
+      <!-- 空 -->
+      <view class="white" wx:if="{{showWhite}}">- 还没有血糖记录哦 -</view>
+    </view>
+  </view>
+</view>
+<!-- 输入 -->
+<view class="shadow" wx:if="{{showDialog}}">
+  <view class="dialog {{showDialog ? 'active' : ''}}">
+    <view class="h-box">
+      <image src="/images/icon_down.png" bind:tap="hide" />
+      <view
+        class="title"
+      >{{selectDate == today ? '今天' : filters.format(selectDate)}} {{tab[tabIndex].name}}</view>
+    </view>
+    <view class="c-box">
+      <input
+        type="digit"
+        placeholder="0.0"
+        placeholder-class="input-placeholder"
+        focus="{{true}}"
+        value="{{sugarVal}}"
+        bindinput="sugarVal"
+        cursor-spacing="{{cursorSpacing}}"
+      />
+      <view class="unit">mmol/L</view>
+    </view>
+    <view class="btn {{sugarVal ? 'active' : ''}}" bind:tap="recordSugar">记录血糖</view>
+  </view>
+  <view class="emp" bind:tap="hide"></view>
+</view>
+<view class="calendar-dialog" wx:if="{{showCalendar}}" style="padding-top:{{navBarHeight}}px">
+  <view class="c-b {{initCal ? 'active' : ''}}">
+    <calendar
+      id="calendar"
+      config="{{calendarConfig}}"
+      bind:afterCalendarRender="afterCalendarRender"
+      bind:afterTapDay="afterTapDay"
+      bind:backToday="backToday"
+    />
+    <view class="empty" bind:tap="hideCal"></view>
+  </view>
+</view>

@@ -1,0 +1,176 @@
+<!-- pages/orderFood/replaceDetail/replaceDetail.wxml -->
+<cp-nav-bar title-text="代点餐详情"></cp-nav-bar>
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
+<view class="detail" wx:if="{{resList}}">
+  <view class="fix-title" style="top:{{navStatusHeight}}px" bind:tap="allChecked">
+    <view class="select-box" wx:if="{{!complete}}">
+      <image
+        src="{{allSelect ? '/images/order_list_select.png' : '/images/order_list_unchecked.png'}}"
+      />
+      <view class="all">全选</view>
+    </view>
+    <view class="title">{{allDay}}天餐食，含{{allCategoryNum}}餐</view>
+  </view>
+  <view class="empty" style="height:88rpx"></view>
+  <scroll-view
+    class="order-box"
+    style="height:{{scrollHeight}}px"
+    scroll-y="true"
+    bindscrolltolower
+    bindscroll
+  >
+    <view class="date-box" wx:for="{{resList}}" wx:for-item="item1" wx:key="index">
+      <view class="date" bind:tap="selectDate" data-index="{{index}}">
+        <image
+          wx:if="{{!complete}}"
+          src="{{item1.checked ? '/images/order_list_select.png' : '/images/order_list_unchecked.png'}}"
+        />
+        <view class="name">{{filters.toDate(item1.date)}}</view>
+      </view>
+      <view class="meal-all">
+        <view class="meal">
+          <view class="list" wx:for="{{item1.detailList}}" wx:for-item="item2" wx:key="index">
+            <view class="h-box" wx:for="{{item2.heatPoint}}" wx:for-item="item3" wx:key="index">
+              <view class="ct-box">
+                <view class="title">{{category[item2.category]}}</view>
+                <view class="status" wx:if="{{complete}}">{{status[item3.dataStt]}}</view>
+              </view>
+              <view class="good-box">
+                <scroll-view class="good-scroll" scroll-x="{{true}}" style="width:500rpx">
+                  <view
+                    class="good"
+                    wx:for="{{item3.detailMapList}}"
+                    wx:for-item="item4"
+                    wx:key="index"
+                  >
+                    <image class="icon" src="{{item4.primaryImgUrl}}" />
+                    <view class="name">{{item4.skuName}}</view>
+                  </view>
+                </scroll-view>
+                <view class="info-box">
+                  <view class="price">￥{{item3.allPrice}}</view>
+                  <view class="num">共{{item3.allNum}}件</view>
+                </view>
+              </view>
+              <view class="day-data">
+                <view class="t-box">当餐数据</view>
+                <view class="data-box">
+                  <view class="circle">
+                    <van-circle
+                      id="circle"
+                      value="{{ 65 }}"
+                      color="{{item3.actualEnergy/item3.planEnergy >= 1 ? '#FF5959' : '#41C48C'}}"
+                      layer-color="#E9E9E9"
+                      stroke-width="4"
+                      size="{{circleWidth ? circleWidth : 64}}"
+                    >
+                      <view class="today">
+                        <view class="name">能量kcal</view>
+                        <view class="percent">
+                          <view
+                            class="energy {{item3.actualEnergy/item3.planEnergy > 1 ? 'active' : ''}}"
+                          >
+                            <view wx:if="{{item3.actualEnergy/item3.planEnergy > 1}}">+</view>
+                            {{item3.actualEnergy-item3.planEnergy}}
+                          </view>
+                          /{{item3.planEnergy}}
+                        </view>
+                      </view>
+                    </van-circle>
+                  </view>
+                  <view class="progress">
+                    <view class="pro-box">
+                      <view class="name">蛋白质</view>
+                      <view class="bar">
+                        <van-progress
+                          percentage="{{filters.toParseInt((item3.actualProtein/item3.planProtein > 1 ? 1 : item3.actualProtein/item3.planProtein)*100)}}"
+                          show-pivot="{{false}}"
+                          color="{{item3.actualProtein/item3.planProtein >= 1 ? '#FF5959' : '#41C48C'}}"
+                          track-color="#E9E9E9"
+                          stroke-width="6"
+                        />
+                      </view>
+                      <view class="num">
+                        <view
+                          class="acture {{item3.actualProtein/item3.planProtein >= 1 ? 'active' : ''}}"
+                        >
+                          <view wx:if="{{item3.actualProtein/item3.planProtein >= 1}}">+</view>
+                          {{filters.toFixOne(item3.actualProtein - item3.planProtein)}}g
+                        </view>/
+                        <view class="all">{{filters.toFixOne(item3.planProtein)}}g</view>
+                      </view>
+                    </view>
+                    <view class="pro-box">
+                      <view class="name">脂肪</view>
+                      <view class="bar">
+                        <van-progress
+                          percentage="{{filters.toParseInt((item3.actualFat/item3.planFat > 1 ? 1 : item3.actualFat/item3.planFat)*100)}}"
+                          show-pivot="{{false}}"
+                          color="{{item3.actualFat/item3.planFat >= 1 ? '#FF5959' : '#41C48C'}}"
+                          track-color="#E9E9E9"
+                          stroke-width="6"
+                        />
+                      </view>
+                      <view class="num">
+                        <view class="acture {{item3.actualFat/item3.planFat >= 1 ? 'active' : ''}}">
+                          <view wx:if="{{item3.actualFat/item3.planFat >= 1}}">+</view>
+                          {{filters.toFixOne(item3.actualFat - item3.planFat)}}g
+                        </view>/
+                        <view class="all">{{filters.toFixOne(item3.planFat)}}g</view>
+                      </view>
+                    </view>
+                    <view class="pro-box">
+                      <view class="name">碳水</view>
+                      <view class="bar">
+                        <van-progress
+                          percentage="{{filters.toParseInt((item3.actualCarbonwater/item3.planCarbonwater > 1 ? 1 : item3.actualCarbonwater/item3.planCarbonwater)*100)}}"
+                          show-pivot="{{false}}"
+                          color="{{item3.actualCarbonwater/item3.planCarbonwater >= 1 ? '#FF5959' : '#41C48C'}}"
+                          track-color="#E9E9E9"
+                          stroke-width="6"
+                        />
+                      </view>
+                      <view class="num">
+                        <view
+                          class="acture {{item3.actualCarbonwater/item3.planCarbonwater >= 1 ? 'active' : ''}}"
+                        >
+                          <view wx:if="{{item3.actualCarbonwater/item3.planCarbonwater >= 1}}">+</view>
+                          {{filters.toFixOne(item3.actualCarbonwater - item3.planCarbonwater)}}g
+                        </view>/
+                        <view class="all">{{filters.toFixOne(item3.planCarbonwater)}}g</view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="all-price">总价：￥{{item1.dayPrice}}</view>
+      </view>
+    </view>
+    <view class="empty" style="height:20rpx"></view>
+    <!-- 客户经理 -->
+    <view class="manager-box" wx:if="{{!complete}}">
+      <view class="i-box">
+        <image src="{{counselorInfo.counselorIcon}}" />
+        <view class="name-box">
+          <view class="name">{{counselorInfo.counselorName}}</view>
+          <view class="title">{{planType == '04' ? '饮食顾问' : '饮食顾问'}}</view>
+        </view>
+      </view>
+      <view class="list-box">
+        <view class="list">已为您点好符合您的数据饮食餐食，请查收。</view>
+        <view class="list">对个别单品不满意可点击“加入购物车”后再修改。</view>
+        <view class="list">当您满意本次点餐，可以直接付款。</view>
+      </view>
+    </view>
+  </scroll-view>
+  <cover-view class="bot" wx:if="{{!complete}}">
+    <cover-view class="btn" data-type="edit" bind:tap="overturnReplaceRelation">修改菜品</cover-view>
+    <cover-view class="btn" data-type="buy" bind:tap="overturnReplaceRelation">同意购买</cover-view>
+  </cover-view>
+</view>
+<view class="loading" wx:else>
+  <van-loading size="20" text-size="12" color="#21C4C0" type="circular" vertical></van-loading>
+</view>

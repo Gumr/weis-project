@@ -1,0 +1,95 @@
+.data-box {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+
+  .circle {
+    width: 154rpx;
+    height: 154rpx;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .today {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .name {
+        color: #333333;
+        font-size: 18rpx;
+        margin-bottom: 12rpx;
+      }
+
+      .percent {
+        display: flex;
+        align-items: baseline;
+        color: #a9a9a9;
+        font-size: 22rpx;
+
+        .energy {
+          color: #333333;
+          display: flex;
+          align-items: center;
+
+          &.active {
+            color: #fa6400;
+          }
+        }
+        .denom {
+          font-size: 16rpx;
+        }
+      }
+    }
+  }
+
+  .progress {
+    margin: 0 0 0 44rpx;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    .pro-box {
+      display: flex;
+      align-items: center;
+      &:nth-of-type(2) {
+        margin: 20rpx 0;
+      }
+
+      .name {
+        width: 60rpx;
+        color: #333333;
+        font-size: 20rpx;
+      }
+
+      .bar {
+        width: 250rpx;
+        height: 10rpx;
+        border-radius: 6rpx;
+        margin: 0 0 0 20rpx;
+      }
+
+      .num {
+        width: 100rpx;
+        color: #333333;
+        font-size: 20rpx;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-left: 10rpx;
+
+        .acture {
+          display: flex;
+          align-items: center;
+          color: #333333;
+
+          &.active {
+            color: #fa6400;
+          }
+        }
+      }
+    }
+  }
+}

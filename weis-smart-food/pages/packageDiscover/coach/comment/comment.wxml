@@ -1,0 +1,34 @@
+<!-- pages/packageDiscover/coach/comment/comment.wxml -->
+<cp-nav-bar title-text="评价该教练" background="#FAFAFA"></cp-nav-bar>
+<view class="comment">
+    <!-- 评价 -->
+    <view class="horseman">
+        <view class="discuss-box">
+            <view class="rate">
+                <van-rate value="{{ 0 }}" gutter="{{'30rpx'}}" size="{{'56rpx'}}" value="{{evaluate || 0}}" color="#FD9D00" void-color="#DCDCDC" void-icon="star" bind:change="evaluate" />
+                <view class="desc" wx:if="{{evaluate}}">{{rateMap[evaluate]}}</view>
+            </view>
+            <!-- 最多输入500字 -->
+            <view class="area">
+                <textarea maxlength="500" placeholder-class="active" value="{{psAdvise}}" bindinput="psAdvise" placeholder="输入评价，最多500字"></textarea>
+                <view class="limit">{{psAdvise ? psAdvise.length : 0}}/500</view>
+            </view>
+            <!-- 配送上传图片 -->
+            <view class="img-box">
+                <view class="img" wx:if="{{horseManImgList && horseManImgList.length > 0}}">
+                    <view class="upload-img" wx:for="{{horseManImgList}}" wx:key="index">
+                        <image src="{{item}}" />
+                        <image class="upload__close" src="/images/icons/upload_delete.png" data-index="{{index}}" bind:tap="deleteImage" />
+                    </view>
+                </view>
+                <image class="camera" wx:if="{{!horseManImgList || horseManImgList.length < 4}}" bind:tap="chooseImage" src="https://prodstatic.weis1606.cn/api/smartFood/camera%202%E5%A4%87%E4%BB%BD%203.png" />
+            </view>
+        </view>
+    </view>
+    <!-- 提交 -->
+    <view class="bot">
+        <button class="submit {{evaluate && psAdvise.length > 0? 'active' : ''}}" bind:tap="addComment">
+            提交
+        </button>
+    </view>
+</view>

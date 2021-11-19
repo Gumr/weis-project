@@ -1,0 +1,86 @@
+.null {
+  background: #ffffff;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
+}
+.null image {
+  width: 320rpx;
+  height: 240rpx;
+}
+.null text {
+  text-align: center;
+  color: #a9a9a9;
+  font-size: 28rpx;
+  line-height: 44rpx;
+  margin-top: 20rpx;
+}
+.MyuserList {
+  padding-bottom: 80rpx;
+}
+.userList {
+  display: flex;
+  justify-content: space-between;
+  width: 750rpx;
+  padding-top: 30rpx;
+  padding-left: 35rpx;
+  padding-right: 35rpx;
+}
+.userList .userinfo {
+  display: flex;
+}
+.userList .userinfo image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  margin-right: 30rpx;
+}
+.userList .userinfo .user {
+  margin-top: 30rpx;
+}
+.userList .userinfo .user view:nth-child(1) {
+  font-weight: bold;
+  font-size: 30rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+}
+.userList .userinfo .user view:nth-child(2) {
+  font-size: 24rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: #BEBEBE;
+}
+.userList .exit {
+  padding-top: 40rpx;
+}
+.userList .exit button {
+  width: 120rpx;
+  height: 45rpx;
+  background: #FFFFFF;
+  border-radius: 23rpx;
+  opacity: 0.6;
+  border: 1rpx solid #000000;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #000000;
+  line-height: 45rpx;
+}
+.tip-label {
+  box-sizing: border-box;
+  width: 640rpx;
+  margin: 76rpx 0 30rpx;
+  padding: 0 66rpx;
+  text-align: center;
+  color: #333;
+  line-height: 44rpx;
+  font-weight: bold;
+  font-size: 32rpx;
+}

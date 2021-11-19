@@ -1,0 +1,26 @@
+<!--pages/packageDiscover/coach/courseDetail/courseDetail.wxml-->
+<cp-nav-bar title-text="课程详情" background="#FFFFFF"></cp-nav-bar>
+<view class="courseDetail">
+    <image class="banner" src="{{detail.tccCoverList[0]}}" />
+    <view class="info">
+        <view class="info__price">¥<text>{{detail.tccPrice}}</text>/节</view>
+        <view class="info__name">{{detail.tccName}}</view>
+    </view>
+    <view class="content">
+        <view>课程内容</view>
+        <view>{{detail.tccContent}}</view>
+    </view>
+    <view class="becomingPers">
+        <view>适合人群</view>
+        <view>{{detail.tccBecomingPers}}</view>
+    </view>
+
+    <!-- 底部-按钮 -->
+    <view class="tail flex-content-between">
+        <view class="tail__weChat" bindtap="copyCode">复制教练微信</view>
+        <view class="tail__contact" bindtap="call">联系教练</view>
+    </view>
+</view>
+
+<!-- 弹窗 -->
+<cp-confirm-dialog show="{{showCall}}" title="{{coach.phone}}" confirmText="拨打" bind:on-confirm="sureCall"></cp-confirm-dialog>

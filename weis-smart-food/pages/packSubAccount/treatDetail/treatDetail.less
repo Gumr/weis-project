@@ -1,0 +1,94 @@
+page{
+    background: #FFFFFF;
+}
+
+.treat{
+    width: 100%;
+    background: #FFFFFF;
+    .head{
+        width: 100%;
+        background: linear-gradient(135deg, #FF9722 0%, #FE5E0F 100%);
+        .title{
+            color: #FFFFFF;
+            font-size: 28rpx;
+            font-weight: bold;
+            text-align: center;
+        }
+        .price{
+            color: #FFFFFF;
+            font-size: 96rpx;
+            font-family: "DINCondensedC";
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40rpx;
+            text{
+                font-size: 60rpx;
+            }
+        }
+        .btn{
+            width: 256rpx;
+            height: 64rpx;
+            background: #FCCC49;
+            border-radius: 32rpx;
+            border: 2rpx solid #FFE08A;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #674C00;
+            font-size: 28rpx;
+            font-weight: bold;
+            margin: 26rpx auto 0;
+        }
+    }
+    .content{
+        width: 100%;
+        background: #FFFFFF;
+        padding-top: 36rpx;
+        margin-top: -36rpx;
+        position: relative;
+        z-index: 10;
+        border-radius: 40rpx 40rpx 0rpx 0rpx;
+        .box{
+            width: 100%;
+            height: 96rpx;
+            background: #FFFFFF;
+            padding: 0 30rpx;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            &::after{
+                display: block;
+                content: '';
+                width: 690rpx;
+                height: 2rpx;
+                background: rgba(0, 0, 0, 0.1);
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%) scaleY(0.5);
+                bottom: 0;
+            }
+            .name{
+                color: #666666;
+                font-size: 28rpx;
+            }
+            .info{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .num{
+                    color: #333333;
+                    font-size: 28rpx;
+                    font-weight: bold;
+                }
+                image{
+                    width: 32rpx;
+                    height: 32rpx;
+                    margin-left: 4rpx;
+                }
+            }
+        }
+    }
+}

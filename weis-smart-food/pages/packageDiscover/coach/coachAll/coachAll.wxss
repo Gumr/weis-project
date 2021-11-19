@@ -1,0 +1,57 @@
+page {
+  background: #fafafa;
+}
+.coachAll {
+  width: 100%;
+}
+.coachAll .coachList {
+  padding: 30rpx;
+}
+.coachAll .coachList .list {
+  position: relative;
+  height: 160rpx;
+  background: #ffffff;
+  box-shadow: 0rpx 4rpx 24rpx -6rpx rgba(186, 186, 186, 0.3);
+  border-radius: 10rpx;
+  padding: 20rpx 30rpx;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+.coachAll .coachList .list__image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.coachAll .coachList .list__text {
+  margin-left: 20rpx;
+  color: #333333;
+}
+.coachAll .coachList .list__text .name {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 14rpx;
+}
+.coachAll .coachList .list__text .label {
+  font-size: 24rpx;
+  max-width: 500rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.coachAll .coachList .list__star {
+  position: absolute;
+  right: 0;
+  top: 45rpx;
+  text-align: center;
+  width: 62rpx;
+  height: 32rpx;
+  background: linear-gradient(90deg, #fd9d00 0%, #fa6400 100%);
+  border-radius: 100rpx 0rpx 0rpx 100rpx;
+  font-size: 24rpx;
+  font-family: "DIN";
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 32rpx;
+}

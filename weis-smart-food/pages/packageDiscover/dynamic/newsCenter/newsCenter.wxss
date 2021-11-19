@@ -1,0 +1,118 @@
+.border {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1rpx;
+  background: #333333;
+  opacity: 0.1;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.newsCenter {
+  width: 100%;
+  padding: 0 30rpx;
+}
+.newsCenter .nav {
+  padding: 34rpx 0 40rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+}
+.newsCenter .nav::after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1rpx;
+  background: #333333;
+  opacity: 0.1;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.newsCenter .nav .navList {
+  text-align: center;
+}
+.newsCenter .nav .navList image {
+  width: 120rpx;
+  height: 120rpx;
+}
+.newsCenter .nav .navList view {
+  font-size: 24rpx;
+  color: #333333;
+}
+.newsCenter .dynamic {
+  background: #ffffff;
+  border-radius: 10rpx;
+  padding-top: 30rpx;
+}
+.newsCenter .dynamic .content .list {
+  padding: 30rpx 0;
+  position: relative;
+}
+.newsCenter .dynamic .content .list::after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1rpx;
+  background: #333333;
+  opacity: 0.1;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 604rpx;
+}
+.newsCenter .dynamic .content .list .head {
+  display: flex;
+  align-items: center;
+}
+.newsCenter .dynamic .content .list .head .headImg {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  margin-right: 14rpx;
+}
+.newsCenter .dynamic .content .list .head .headInfo view:nth-child(1) {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 10rpx;
+}
+.newsCenter .dynamic .content .list .head .headInfo view:nth-child(2) {
+  font-size: 20rpx;
+  color: #adadad;
+}
+.newsCenter .dynamic .content .list .words {
+  font-size: 28rpx;
+  color: #333333;
+  line-height: 38rpx;
+  margin: 30rpx 0 24rpx 86rpx;
+}
+.newsCenter .dynamic .content .list .con {
+  background: #f6f6f6;
+  border-radius: 10rpx;
+  padding: 20rpx 48rpx;
+  position: relative;
+  margin-left: 86rpx;
+}
+.newsCenter .dynamic .content .list .con image {
+  width: 18rpx;
+  height: 18rpx;
+  position: absolute;
+}
+.newsCenter .dynamic .content .list .con_start {
+  left: 8px;
+}
+.newsCenter .dynamic .content .list .con_end {
+  right: 8px;
+  bottom: 10rpx;
+}
+.newsCenter .dynamic .content .list .con_text {
+  font-size: 24rpx;
+  color: #adadad;
+  line-height: 36rpx;
+}

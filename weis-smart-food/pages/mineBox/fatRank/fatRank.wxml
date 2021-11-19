@@ -1,0 +1,109 @@
+<!-- pages/mineBox/fatDetail/fatDetail.wxml -->
+<import src="/templates/rank-item/rank-item"></import>
+<cp-nav-bar title-text="{{detail.tclwName}}" background="#fff" backIconColor="black" mode="home" />
+<view class="fatDetail" style="padding-bottom: {{paddingBottom}}rpx;">
+  <view class="banner" bind:tap="toRule">
+    <image class="bg" src="{{detail.tclwCoverImg}}" />
+    <view class="intro">大赛简介</view>
+  </view>
+  <!-- 页面 -->
+  <view class="page">
+    <!-- 内容 -->
+    <view class="content">
+      <view class="rule">
+        <view class="rule__title title">减脂营</view>
+        <view class="rule__list">
+          <view>活动日期</view>
+          <view>{{detail.startDate}}-{{detail.endDate}}</view>
+        </view>
+        <view class="rule__list">
+          <view>当前状态</view>
+          <view style="color: #FE5E0F;">{{status}}</view>
+        </view>
+        <view class="rule__list">
+          <view>活动规则</view>
+          <view class="arrow" bind:tap="activeRule">
+            <text>查看详情</text>
+            <image src="/images/enterprise_next.png" />
+          </view>
+        </view>
+        <view class="rule__list" style="padding: 54rpx 0" wx:if="{{((inviteUid && inviteUid == uid) || !inviteUid) && status != '已结束' && myRank}}">
+          <view style="padding: 0"></view>
+          <view class="arrow" bind:tap="invite">
+            <text>邀请点赞</text>
+            <image src="/images/enterprise_next.png" />
+          </view>
+        </view>
+      </view>
+
+  <!-- 点赞 -->
+      <view class="like" wx:if="{{inviteUid && inviteUid != uid}}">
+        <image class="tag" src="https://prodstatic.weis1606.cn/api/smartFood/fabulous_bubble.png" />
+        <view class="like-box">
+          <view class="like-l">
+            <view class="rank-like">{{inviteObj.rankings}}</view>
+            <image src="{{inviteObj.headUrl}}" />
+            <view class="name">{{inviteObj.uname}}</view>
+          </view>
+          <view class="like-r">
+            <view class="score">{{inviteObj.$value}}</view>
+            <image bind:tap="like" src="{{result ? 'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/content_fabulous_press_1.png' : 'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/content_fabulous_1.png'}}" />
+          </view>
+        </view>
+      </view>
+
+      <view class="introduce">
+        <view class="rank-tabs flex-content-center">
+          <view
+            class="rank-tab flex-items-center font-28 {{activeRankTab === item.value ? 'rank-tab--active' : ''}}"
+            wx:for="{{rankTabs}}"
+            wx:key="index"
+            data-value="{{item.value}}"
+            bind:tap="rankTabTap"
+          >{{item.label}}</view>
+        </view>
+        <view class="type-tabs flex">
+          <view
+            class="type-tab font-26 {{activeTypeTab === item.value ? 'type-tab--active' : ''}}"
+            wx:for="{{typeTabs}}"
+            wx:key="index"
+            data-value="{{item.value}}"
+            bind:tap="typeTabTap"
+          >{{item.label}}</view>
+        </view>
+        <view class="rank-list">
+          <view class="my-rank" bind:tap="myRankClick" wx:if="{{myRank}}">
+            <template is="rank-item" data="{{...myRank}}"></template>
+          </view>
+          <view class="rank-list__item" wx:for="{{rankList}}" wx:key="index">
+            <template is="rank-item" data="{{...item}}"></template>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 注册后送券 -->
+<cp-login-coupon />
+
+
+<!-- 分享 -->
+<vant-popup show="{{showShare}}" position="bottom" custom-style="border-radius: 40rpx 40rpx 0rpx 0rpx;" bind:click-overlay="cancel">
+  <view class="share">
+    <view class="share-box">
+      <view class="box" bind:tap="inviteWechat">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/share_wechat.png" />
+        <view class="text">微信好友</view>
+        <button open-type="share"></button>
+      </view>
+      <view class="box" bind:tap="saveShareTap">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/share_moments.png" />
+        <view class="text">朋友圈</view>
+      </view>
+    </view>
+    <view class="cancel" bind:tap="cancel">取消</view>
+  </view>
+</vant-popup>
+
+<!-- 海报 -->
+<canvas class="hide" canvas-id="share" style="width: 750rpx; height: 1624rpx;"></canvas>

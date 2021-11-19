@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "ec-canvas": "/components/ec-canvas/ec-canvas",
+    "cp-loading": "/components/cp-loading/cp-loading",
+    "cp-bottom-button": "/components/cp-bottom-button/cp-bottom-button"
+  }
+}

@@ -1,0 +1,153 @@
+page {
+  background: #f8f8f8;
+}
+.borderDel {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 2rpx;
+  background: rgba(0, 0, 0, 0.5);
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  bottom: 50%;
+  margin: auto;
+}
+.submit {
+  // 头部
+  .header {
+    padding: 46rpx 30rpx 30rpx;
+    background: #ffffff;
+    border-radius: 0px 0px 20rpx 20rpx;
+    .info {
+      display: flex;
+      justify-content: space-between;
+      &_l {
+        width: 200rpx;
+        height: 200rpx;
+      }
+      &_r {
+        width: 454rpx;
+        .name {
+          font-size: 36rpx;
+          font-weight: bold;
+          color: #333333;
+          margin: 32rpx 0;
+        }
+        .price {
+          display: flex;
+          align-items: flex-end;
+          &_now {
+            font-size: 36rpx;
+            font-weight: bold;
+            color: #fa6400;
+            line-height: 33rpx;
+            margin-right: 16rpx;
+            text {
+              font-size: 56rpx;
+            }
+          }
+          &_origin {
+            font-size: 24rpx;
+            color: rgba(0, 0, 0, 0.5);
+            line-height: 33rpx;
+            position: relative;
+            &::after {
+              .borderDel();
+            }
+          }
+        }
+      }
+    }
+    .desc {
+      background: #fef7f5;
+      border-radius: 10rpx;
+      display: flex;
+      justify-content: space-between;
+      padding: 16rpx 24rpx;
+      margin-top: 16rpx;
+      .list {
+        display: flex;
+        &_img {
+          width: 32rpx;
+          height: 32rpx;
+          margin-right: 12rpx;
+        }
+        &_word {
+          font-size: 24rpx;
+          color: rgba(0, 0, 0, 0.6);
+        }
+      }
+    }
+  }
+  // 支付方式
+  .payMethod {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    margin-top: 20rpx;
+    padding: 30rpx;
+    border-radius: 20rpx;
+    &_l {
+      font-size: 28rpx;
+      color: rgba(51, 51, 51, 0.7);
+    }
+    &_r {
+      display: flex;
+      align-items: center;
+      image {
+        width: 44rpx;
+        height: 44rpx;
+        margin-right: 16rpx;
+      }
+      font-size: 28rpx;
+      color: #333333;
+    }
+  }
+  //   底部
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #ffffff;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22rpx 30rpx 32rpx;
+    .price {
+      display: flex;
+      align-items: flex-end;
+      &_now {
+        font-size: 36rpx;
+        font-weight: bold;
+        color: #fa6400;
+        line-height: 33rpx;
+        margin-right: 16rpx;
+        text {
+          font-size: 56rpx;
+        }
+      }
+      &_origin {
+        font-size: 24rpx;
+        color: rgba(0, 0, 0, 0.5);
+        line-height: 33rpx;
+        position: relative;
+        &::after {
+          .borderDel();
+        }
+      }
+    }
+    .buy {
+      width: 280rpx;
+      height: 90rpx;
+      line-height: 90rpx;
+      background: #fa6400;
+      border-radius: 45rpx;
+      font-size: 36rpx;
+      color: #ffffff;
+      text-align: center;
+    }
+  }
+}

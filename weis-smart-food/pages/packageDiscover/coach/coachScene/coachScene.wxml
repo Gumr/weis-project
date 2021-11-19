@@ -1,0 +1,8 @@
+<!--pages/packageDiscover/coach/coachScene/coachScene.wxml-->
+<cp-nav-bar title-text="教练风采" background="#FFFFFF"></cp-nav-bar>
+<view class="coachScene">
+    <view class="box" wx:if="{{dataList.length > 0}}">
+        <image wx:for="{{dataList}}" src="{{item}}" data-url="{{item}}" bind:tap="previewImage" />
+    </view>
+    <cp-null show="{{dataList.length == 0}}" imgSrc="https://prodstatic.weis1606.cn/api/smartFood/null_coach.png" text="暂无照片"></cp-null>
+</view>

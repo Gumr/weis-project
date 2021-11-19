@@ -1,0 +1,37 @@
+<!--pages/packageOrder/spellSucc/spellSucc.wxml-->
+<cp-nav-bar title-text=" " background="#FFF1CC" homeIcon/>
+<!-- 拼单 -->
+<!-- style="padding-top:{{statusHeight * px2rpx + 178}}rpx;height:{{screenHeight}}px" -->
+<view  wx:if="{{spellOrder && spellInfo}}" class="spell" style="padding-top:178rpx;">
+    <view class="card">
+        <!-- <view class="price"><view class="sympol">￥</view>{{spellInfo.waybillRecord.freightPrice}}</view> -->
+        <view class="btn-box">
+            <view class="btn">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/btn_%E9%82%80%E8%AF%B7%E5%A5%BD%E5%8F%8B%E6%8B%BC%E5%8D%95.png" />
+                <button open-type="share" data-type="spellOrder"></button>
+            </view>
+            <view class="btn" bind:tap="goSucc">
+                <image src="{{unShare ? 'https://prodstatic.weis1606.cn/api/smartFood/spellGroup-share2.png' : 'https://prodstatic.weis1606.cn/api/smartFood/btn_%E5%8E%BB%E5%88%86%E4%BA%AB%E8%BF%94%E7%8E%B0.png'}}" />
+            </view>
+        </view>
+    </view>
+    <view class="tip">注意：拼友只能和你同一地址和配送时间哦</view>
+</view>
+
+<!-- 拼组 -->
+<view  wx:if="{{spellGroup && spellInfo}}" class="spell spellGroup" style="padding-top:97rpx;">
+    <image class="rule" src="https://prodstatic.weis1606.cn/api/smartFood/spellGroup-rule.png" />
+    <view class="card">
+        <!-- <view class="price"><view class="sympol">￥</view>{{spellInfo.waybillRecord.freightPrice}}</view> -->
+        <view class="btn-box">
+            <view class="btn">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/spellGroup-invite.png" />
+                <button open-type="share" data-type="spellGroup"></button>
+            </view>
+            <view class="btn" bind:tap="goSucc">
+                <image src="{{unShare ? 'https://prodstatic.weis1606.cn/api/smartFood/spellGroup-share2.png' : 'https://prodstatic.weis1606.cn/api/smartFood/spellGroup-share.png?a=2'}}" />
+            </view>
+        </view>
+    </view>
+    <!-- <view class="tip">注意：拼友只能和你同一地址和配送时间哦</view> -->
+</view>

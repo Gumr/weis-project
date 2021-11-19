@@ -1,0 +1,51 @@
+page {
+  background: #267dff;
+}
+.rules {
+  background: #267dff;
+  padding-bottom: 72rpx;
+}
+.rules .rule_bj {
+  width: 750rpx;
+  height: 654rpx;
+}
+.rules .info {
+  width: 690rpx;
+  padding: 40rpx 30rpx;
+  background: #ffffff;
+  border-radius: 20rpx;
+  margin: -418rpx auto 0;
+  position: relative;
+  z-index: 10;
+}
+.rules .info .activityInfo {
+  background: #f9f9f9;
+  padding: 40rpx 30rpx 30rpx;
+  border-radius: 10rpx;
+}
+.rules .info .activityInfo .rule {
+  position: relative;
+}
+.rules .info .activityInfo .rule image {
+  width: 570rpx;
+  position: relative;
+}
+.rules .info .activityInfo .rule text {
+  position: absolute;
+  font-size: 36rpx;
+  font-family: YouSheBiaoTiHei;
+  color: #fe5e0f;
+  font-weight: bold;
+}
+.rules .info .activityInfo .rule .smdis {
+  top: 210rpx;
+  left: 118rpx;
+}
+.rules .info .activityInfo .rule .ladis {
+  top: 364rpx;
+  left: 90rpx;
+}
+.rules .info .activityInfo .rule .dedis {
+  top: 520rpx;
+  left: 199rpx;
+}

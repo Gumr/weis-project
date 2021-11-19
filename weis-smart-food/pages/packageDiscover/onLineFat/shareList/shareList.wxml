@@ -1,0 +1,42 @@
+<cp-nav-bar title-text="{{today}}" home-icon="/images/backHome.png" backIconColor="black" />
+<view class="friendsList">
+  <view class="tips">每个赞得{{integralRuleLike}}分，每天最多{{integralRuleLikeLimit}}分</view>
+  <scroll-view scroll-y="true" style="height: 1100rpx;margin-top:30rpx" wx:if="{{companyLikeRels.length>0}}">
+    <view class="friendsInfo" wx:for="{{companyLikeRels}}" wx:key="index">
+        <view>
+         <image src="{{item.headUrl}}" />
+         {{item.uname}}
+        </view>
+        <view>
+        <image src="/images/content_fabulous_press.png" />
+        </view>  
+    </view>
+  </scroll-view>
+    <!-- 空状态 -->
+    <view wx:else class="null">
+      <image src="https://prodstatic.weis1606.cn/api/smartFood/nullFriends.png" />
+      <view>暂无好友点赞</view>
+    </view>
+</view>
+
+<!-- 分享 -->
+<vant-popup show="{{showShare}}" position="bottom" custom-style="border-radius: 40rpx 40rpx 0rpx 0rpx;" bind:click-overlay="cancel">
+  <view class="share">
+    <view class="share-box">
+      <view class="box" bind:tap="inviteWechat">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/share_wechat.png" />
+        <view class="text">微信好友</view>
+        <button open-type="share"></button>
+      </view>
+      <view class="box" bind:tap="saveShareTap">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/share_moments.png" />
+        <view class="text">朋友圈</view>
+      </view>
+    </view>
+    <view class="cancel" bind:tap="cancel">取消</view>
+  </view>
+</vant-popup>
+<cp-bottom-button  title="邀请好友点赞" bind:on-tap="buttonTap"></cp-bottom-button>
+
+<!-- 海报 -->
+<canvas class="hide" canvas-id="share" style="width: 750rpx; height: 1624rpx;"></canvas>

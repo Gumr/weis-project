@@ -1,0 +1,38 @@
+<!--pages/mineBox/recovery/menuList/menuList.wxml-->
+<cp-nav-bar title-text=" " backIconColor="block"/>
+<wxs module="filters" src="../../../../utils/filter.wxs"></wxs>
+<view class="menuList">
+    <image class="headerBg" src="https://prodstatic.weis1606.cn/api/smartFood/recovery_ai%402x.png" />
+    <view class="box">
+        <view class="header">
+            <view class="header_word">
+                <text>请选择你要回收哪个餐单的盒子，回收餐盒后可</text>
+                <text>获得红包奖励。</text>
+            </view>
+            <image class="header_img" src="https://prodstatic.weis1606.cn/api/smartFood/recovery_ai_red@2x.png" />
+        </view>
+        <view class="content" style="{{!isLogin || menu.length == 0 ? 'height: 740rpx;' : ''}}">
+            <view class="title">
+                <view>时间/餐别</view>
+                <view>可回收数量</view>
+            </view>
+            <view wx:if="{{!isLogin}}" class="login" bind:tap="login">请登录</view>
+            <view class="listBox" wx:if="{{isLogin && menu.length > 0}}">
+                <view class="list" wx:for="{{menu}}">
+                    <view class="list_l">{{filters.toDateCustom(item.date, '-')}} {{categoryMap[item.category]}}</view>
+                    <view class="list_m">{{item.boxSum}}个盒子</view>
+                    <view class="list_r" data-itemobj="{{item}}" bind:tap="listTap">点击回收</view>
+                </view>
+            </view>
+            <!-- 空状态 -->
+            <cp-null show="{{isLogin && menu.length == 0}}" imgStyle="width:294rpx;height: 222rpx;margin-bottom: 24rpx;" imgSrc="https://prodstatic.weis1606.cn/api/smartFood/menu-null.png" text="没有可以回收的餐盒"></cp-null>
+            
+        </view>
+        <view class="footer">只能回收近三天已签收/取餐餐单的盒子 ~</view>
+    </view>
+</view>
+
+<!-- 回收-弹窗 -->
+<cp-confirm-dialog model:show="{{recoveryShow}}" title=" " bind:on-confirm="recoveryConfirm">
+  <view class="recoveryDialog">你确定已经回收了{{filters.toDates(itemobj.date)}}{{categoryMap[itemobj.category]}}的盒子吗？</view>
+</cp-confirm-dialog>

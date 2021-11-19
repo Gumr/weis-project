@@ -1,0 +1,24 @@
+<import src="/templates/eat-card/eat-card"></import>
+<!--pages/packageDiscover/eatMethodList/eatMethodList.wxml-->
+<cp-nav-bar title-text="吃法列表" backIconColor="black"></cp-nav-bar>
+<view class="tabs">
+  <view
+    class="tab {{item.value===activeTab ? 'tab--active' : ''}}"
+    wx:for="{{tabs}}"
+    wx:key="index"
+    data-value="{{item.value}}"
+    bind:tap="tabTap"
+  >{{item.label}}</view>
+</view>
+<scroll-view style="height: calc(100vh - 72rpx - {{statusHeight}}px);" scroll-y>
+  <view class="cards">
+    <view class="card" wx:for="{{playList}}" wx:key="index">
+      <template is="eat-card" data="{{...item, index}}"></template>
+      <image
+        class="card__icon"
+        wx:if="{{currentPlay.name === item.name}}"
+        src="/images/icons/howselect.png"
+      />
+    </view>
+  </view>
+</scroll-view>

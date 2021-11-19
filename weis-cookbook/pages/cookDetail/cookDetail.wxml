@@ -1,0 +1,159 @@
+<!--pages/cookDetail/cookDetail.wxml-->
+<wxs module="filters" src="../../utils/wxs/filters.wxs"></wxs>
+<nav humanInfo="{{humanInfo}}" customBackEvent="{{true}}" bind:handleBackEvent="backEvent" showBackHome="{{showBackHome}}" navtype="{{navtype}}" bind:followEvent="updateFollow" bind:toUserInfo="toUserInfo"></nav>
+<view class="cookDetail">
+  <view class="container">
+    <view class="cookImg" data-index="{{0}}" data-type="main">
+      <!-- 菜谱封面图或视频 -->
+      <video id="video" wx:if="{{recipesDetail.trVideo}}" direction="0" autoplay="{{true}}" custom-cache="{{false}}" enable-auto-rotation="{{true}}" play-btn-position="center" style="width: 100%;height: 450rpx;" src="{{recipesDetail.trVideo}}" bindfullscreenchange="fullscreenchange"></video>
+      <image wx:else mode="widthFix" src="{{recipesDetail.trCoverImageUrl}}" data-type="main" catch:tap="previewImage" />
+
+      <!-- 状态栏显示 -->
+      <view class="cookStatus {{recipesDetail.trAuditResult === '00' ? 'violation' : ''}} {{!showMore && recipesDetail.trNote === '' && recipesDetail.preVoting === '' ? 'noword' : ''}}" wx:if="{{!statusNull}}">
+        <!-- from: 01显示全部状态 -->
+        <view class="text" wx:if="{{from === '01'}}">
+          <image mode="widthFix" wx:if="{{recipesDetail.trAuditResult === '00' || recipesDetail.trAuditResult === '08' || !recipesDetail.cook}}" src="{{filters.handleDetailIcon(recipesDetail.trAuditResult)}}" />
+          <!-- 投票之前显示 -->
+          <text wx:if="{{recipesDetail.trAuditResult === '00' || ((recipesDetail.trAuditResult === '01' || recipesDetail.trAuditResult === '02' || recipesDetail.trAuditResult === '03' || recipesDetail.trAuditResult === '04') && !recipesDetail.cook)}}">{{recipesDetail.trAuditResult === '00' ? recipesDetail.trNote : recipesDetail.preVoting}}</text>
+        </view>
+
+        <!-- from: 02只显示投票中 -->
+        <view class="text" wx:if="{{from === '02' && !recipesDetail.cook}}">
+          <image mode="widthFix" wx:if="{{recipesDetail.trAuditResult === '05'}}" src="{{filters.handleDetailIcon(recipesDetail.trAuditResult)}}" />
+        </view>
+
+        <!-- <view class="null" wx:else></view> -->
+        <image class="more" wx:if="{{showMore}}" src="/images/icon_more.png" catchtap="togglePopup" />
+      </view>
+      <!-- 已上架菜谱跳转饮食或数搭小程序 -->
+      <view class="databox {{recipesDetail.trVideo ? 'hasVideo' : ''}}" wx:if="{{recipesDetail.trAuditResult === '08'}}" catch:tap="jumpToMini">
+        <image class="goodimg" src="{{foodSku.skuImgUrl[0].imgUrl}}" />
+        <view class="datas">
+          <view class="name">{{foodSku.skuName}}</view>
+          <view class="info">
+            <text>能量{{filters.parseintNum(foodSku.energy)}}kcal / </text><text>蛋白质{{filters.parseintNum(foodSku.protein)}}g / </text><text>脂肪{{filters.parseintNum(foodSku.fat)}}g / </text><text>碳水{{filters.parseintNum(foodSku.carbonWater)}}g</text>
+          </view>
+          <view class="info special">
+            <text wx:if="{{foodSku.salesVolume >= 0}}">{{foodSku.publishTime}}至今</text><text wx:if="{{foodSku.salesVolume >= 0}}">销售额<text class="txt">{{filters.parseintNum(foodSku.salesVolume)}}</text>元</text><text wx:if="{{foodSku.income >= 0}}">提成<text class="txt">{{filters.parseintNum(foodSku.income)}}</text>元</text>
+          </view>
+        </view>
+        <image class="arrow" src="{{recipesDetail.trVideo ? '/images/icon_right.png' : '/images/icon_right_w.png'}}" />
+      </view>
+    </view>
+    <view class="cookName mb72">
+      <view class="tip" wx:if="{{(recipesDetail.trRanking === '一' || recipesDetail.trRanking === '二' || recipesDetail.trRanking === '三' || recipesDetail.trAuditResult === '05') && !recipesDetail.cook}}" bind:tap="toLeaderboard">
+        <image src="/images/pre.png" />
+        <text class="pre">《我想吃》第{{activityBean.taPhase}}期 </text>
+        <text class="last">{{ recipesDetail.trAuditResult === '05' ? '投票中' : '第' + recipesDetail.trRanking + '名'}}</text>
+      </view>
+      <view class="box">
+        <h4>{{recipesDetail.trName}}</h4>
+        <button hidden="{{recipesDetail.trAuditResult === '00'}}" class="share" open-type="share">
+          <image src="/images/icon_share.png" />
+          <text>分享</text>
+        </button>
+      </view>
+      <view class="see">
+        <image src="/images/icon_see.png" />
+        <text>{{recipesDetail.trViewNumber ? recipesDetail.trViewNumber + '次查看' : '查看'}}</text>
+      </view>
+      <p>{{recipesDetail.trStory}}</p>
+    </view>
+    <!-- 用料详情 -->
+    <view class="materials mb72">
+      <view class="title">
+        <image src="/images/icon_title.png" />
+        <view class="label">用料</view>
+      </view>
+      <view class="list">
+        <view class="each" wx:for="{{recipesDetail.trSeasoning}}" wx:key="index">
+          <view class="name">{{item.seasoning}}</view>
+          <view class="num">{{item.consumption}}</view>
+        </view>
+      </view>
+    </view>
+    <!-- 步骤详情 -->
+    <view class="steps">
+      <view class="step mb72" wx:for="{{recipesDetail.trPractice}}" wx:key="index">
+        <view class="title">
+          <image src="/images/icon_title.png" />
+          <view class="label">
+            <text>步骤{{index + 1}}</text>
+            <text>/{{recipesDetail.trPractice.length}}</text>
+          </view>
+        </view>
+        <view class="imgbox" data-index="{{index}}" data-type="non-main" bind:tap="previewImage">
+          <image class="stepImg" mode="widthFix" src="{{item.stepImageUrl}}" />
+        </view>
+        <view class="desc">{{item.description}}</view>
+      </view>
+    </view>
+    <!-- 小贴士 -->
+    <view class="tips" wx:if="{{recipesDetail.trTip}}">
+      <view class="title">
+        <image src="/images/icon_title.png" />
+        <view class="label">小贴士</view>
+      </view>
+      <text class="content">{{recipesDetail.trTip}}</text>
+    </view>
+    <view class="createTime {{hasComments != null ? 'showComments' : ''}}">{{recipesDetail.trCreateTime}}</view>
+    <!-- 投票数/查看/收藏/分享 -->
+    <view class="operate" hidden="{{showKbPublish}}" style="height: {{isFullScreen ? '116rpx' : '96rpx'}};">
+      <view class="wrap">
+        <view class="each">
+          <view class="comment" style="width: {{!recipesDetail.showVote ? '420rpx' : '280rpx'}}" bindtap="showCommentsFn">喜欢评论的人...</view>
+          <view class="icons" bind:tap="scrollToComment">
+            <image class="icon" src="/images/icon_comment.png" />
+            <text>{{commentTotal || '评论'}}</text>
+          </view>
+        </view>
+        <view class="each {{!recipesDetail.canVote ? 'cantvote' : ''}}" wx:if="{{recipesDetail.showVote}}" catchtap="voteRecipes">
+          <image src="{{!recipesDetail.canVote ? '/images/icon_vote3.png' : recipesDetail.vote ? '/images/icon_vote.png' : '/images/icon_vote2.png'}}" />
+          <text>{{recipesDetail.trVoteNumber ? recipesDetail.trVoteNumber + '人投票' : '投票'}}</text>
+        </view>
+        <view class="each" catchtap="collectRecipes">
+          <image src="{{recipesDetail.collect ? '/images/icon_fav.png' : '/images/icon_fav2.png'}}" />
+          <text>{{recipesDetail.trCollectNumber ? recipesDetail.trCollectNumber : '收藏'}}</text>
+        </view>
+      </view>
+      <view class="null" wx:if="{{isFullScreen}}" style="width: 100%;height: 30rpx;background: #fff;"></view>
+    </view>
+  </view>
+  <!-- 评论区 -->
+  <comment id="comment" cookid="{{cookid}}" loginInfo="{{loginInfo}}" commentTotal="{{commentTotal}}" bind:refreshEvent="queryRecipesById" bind:scrollToComment="scrollToComment" bind:hideKbPublish = "hideKbPublish"></comment>
+
+  <!-- 分享邀请 -->
+  <!-- <view class="shareCanvas">
+    <canvas id="shareCanvas" canvas-id="myCanvas" width="300" height="{{300 * recipesDetail.trCoverImageHeight / recipesDetail.trCoverImageWide}}"></canvas>
+  </view> -->
+</view>
+<!-- 输入评论 - 键盘跟随 -->
+<!-- <view class="publish-kb {{showKbPublish ? 'show' : ''}}" wx:if="{{showKbPublish}}">
+  <textarea adjust-position="{{true}}" show-confirm-bar="{{false}}" disable-default-padding="{{true}}" auto-height focus="{{showKbPublish}}" cursor-spacing="{{100}}" type="text" placeholder="喜欢评论的人，做菜一定超好吃~" maxlength="100" value="{{comment}}" bindinput="inputComment" />
+  <view class="submit {{!comment ? 'disabled' : ''}}" bind:tap="submitComment">发布</view>
+</view> -->
+
+<!-- 底部弹窗 -->
+<view class="pop-ups" wx:if="{{popupFlag}}">
+  <view class="options">
+    <view class="opt" data-type="edit" bindtap="handlePopupEvent">
+      <image src="/images/icon_edit.png" />
+      <view class="txt">编辑</view>
+    </view>
+    <view class="opt" data-type="del" bindtap="handlePopupEvent">
+      <image src="/images/icon_del.png" />
+      <view class="txt">删除</view>
+    </view>
+  </view>
+  <view class="cancel" style="margin-bottom: {{isFullScreen ? '42rpx' : '22rpx'}}" bindtap="togglePopup">取消</view>
+</view>
+
+<view class="delete" wx:if="{{deleteFlag}}">
+  <view class="tips">确定删除此菜谱吗？</view>
+  <view class="options">
+    <view class="opt" bindtap="cancelDeleteCook">取消</view>
+    <view class="opt del" bindtap="deleteCook">删除</view>
+  </view>
+</view>
+
+<overlay show="{{popupFlag || deleteFlag || hasComments === false}}" hide></overlay>

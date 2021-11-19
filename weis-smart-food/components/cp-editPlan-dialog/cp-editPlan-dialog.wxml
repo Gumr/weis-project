@@ -1,0 +1,38 @@
+<!-- components/pay-popup/pay-popup.wxml -->
+
+<view class="shadow" wx:if="{{show}}">
+  <view class="empt" bind:tap="handleClickOverlay"></view>
+  <view class="edit-box" style="bottom:{{keyboardheight}}px">
+    <view class="head">
+      <image src="/images/icon_down.png" bind:tap="handleClickOverlay" />
+      <view class="title">{{title}}</view>
+    </view>
+    <view class="subtitle" wx:if="{{subTitle}}">{{subTitle}}</view>
+    <!-- 修改名称输入框 -->
+    <view class="ipt-box" wx:if="{{iptType == '1'}}">
+      <input class="name" value="{{iptVal}}" maxlength="15" adjust-position="{{false}}" bindinput="change" hold-keyboard="{{true}}" bind:tap="focus" bindblur="bindblur" />
+      <image class="clear" src="/images/icondel.png" bind:tap="clear"/>
+    </view>
+    <!-- 修改三大营养素 -->
+    <view class="nutrient moreBox" wx:if="{{iptType == '2'}}">
+      <view class="n-box" wx:for="{{listArr}}">
+        <view class="name">{{item.name}}</view>
+        <view class="n-ipt">
+          <input type="number" style="margin-left:{{item.val > 10 ? 26 : (item.val > 0 ? 4 : -12) }}rpx" maxlength="2" value="{{item.val}}" hold-keyboard="{{true}}" adjust-position="{{false}}" bind:tap="focus" bindblur="bindblur" data-index="{{index}}" bindinput="edit" />
+          <view class="unit">{{item.unit}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="tip" wx:if="{{iptType == '2' && err && errTip}}">{{errTip}}</view>
+
+    <!-- 修改 -->
+    <view class="nutrient nut" wx:if="{{iptType == '3'}}">
+      <input type="number" adjust-position="{{false}}" hold-keyboard="{{true}}" bindblur="bindblur" bind:tap="focus"  value="{{oneObj.val}}" placeholder="{{oneObj.val || 0}}" bindinput="editIntake" />
+      <view class="unit">{{oneObj.unit}}</view>
+    </view>
+
+    <!-- 按钮 -->
+    <view class="btn {{err || btnDisabled ? 'active' : ''}}" style="margin-top:{{err ? '25rpx' : btnHeightTop}}" bind:tap="save">{{btnText}}</view>
+  </view>
+</view>

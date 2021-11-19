@@ -1,0 +1,165 @@
+.flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.textoverflow {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.top {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40rpx;
+  margin-top: 30rpx;
+}
+.top .status {
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  color: #333333;
+  font-weight: bold;
+  line-height: 26rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.top .status image {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 16rpx;
+}
+.top .status text {
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  line-height: 32rpx;
+}
+.top .status text.voting {
+  color: #FA6400;
+}
+.top .previous {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.top .previous text {
+  margin-right: 8rpx;
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #666666;
+  line-height: 26rpx;
+}
+.top .previous image {
+  width: 36rpx;
+  height: 36rpx;
+}
+.list .each {
+  margin-bottom: 30rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-between;
+}
+.list .each .box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.list .each .series {
+  width: 64rpx;
+  height: 76rpx;
+  line-height: 76rpx;
+  text-align: center;
+  margin-right: 28rpx;
+}
+.list .each .series image {
+  width: 64rpx;
+  height: 76rpx;
+}
+.list .each .series text {
+  font-size: 50rpx;
+  font-family: DINCondensed-Bold, DINCondensed;
+  font-weight: bold;
+  color: #333333;
+  line-height: 60rpx;
+}
+.list .each .cook {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.list .each .cook .imgbox {
+  width: 140rpx;
+  height: 140rpx;
+  overflow: hidden;
+  position: relative;
+  margin: 0 30rpx 20rpx 0;
+  border-radius: 20rpx;
+}
+.list .each .cook .imgbox image:first-child {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.list .each .cook .imgbox image.icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 80rpx;
+  height: 24rpx;
+}
+.list .each .cook .name {
+  max-width: 220rpx;
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  line-height: 45rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.list .each .vote {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.list .each .vote image {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 10rpx;
+}
+.list .each .vote text {
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #666666;
+  line-height: 37rpx;
+}
+.cook-no {
+  width: 100%;
+  text-align: center;
+  margin-top: 104rpx;
+}
+.cook-no image {
+  width: 300rpx;
+  height: 300rpx;
+  margin-bottom: 22rpx;
+}
+.cook-no view {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999999;
+  line-height: 40rpx;
+}
+.loading {
+  text-align: center;
+  margin-top: 200rpx;
+}

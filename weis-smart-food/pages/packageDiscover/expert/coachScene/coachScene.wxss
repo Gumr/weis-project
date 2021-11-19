@@ -1,0 +1,16 @@
+.coachScene {
+  width: 100%;
+}
+.coachScene .box {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 30rpx;
+}
+.coachScene .box image {
+  width: 223rpx;
+  height: 223rpx;
+  margin-bottom: 10rpx;
+}
+.coachScene .box image:not(:nth-child(3n + 3)) {
+  margin-right: 10rpx;
+}

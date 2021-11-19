@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "van-popup": "/components/vant/popup/index",
+    "cp-confirm-dialog": "/components/cp-confirm-dialog/cp-confirm-dialog"
+  }
+}

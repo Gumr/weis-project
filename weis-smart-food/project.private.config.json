@@ -1,0 +1,252 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "tabIndex=2",
+          "scene": null
+        },
+        {
+          "name": "pages/packSubAccount/recommend/recommend",
+          "pathName": "pages/packSubAccount/recommend/recommend",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mineBox/question/question",
+          "pathName": "pages/mineBox/question/question",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mineBox/order/index",
+          "pathName": "pages/mineBox/order/index",
+          "query": "spellOrder=true&mergeCode=TMCP87E12813488D49BDAC0F2&date=2021/10/21&category=02&corpId=",
+          "scene": null
+        },
+        {
+          "name": "pages/packageOrder/preference/preference",
+          "pathName": "pages/packageOrder/preference/preference",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageOrder/moreMealDetail/moreMealDetail",
+          "pathName": "pages/packageOrder/moreMealDetail/moreMealDetail",
+          "query": "id=153029",
+          "scene": null
+        },
+        {
+          "name": "pages/packageOrder/replaceMeal/replaceMeal",
+          "pathName": "pages/packageOrder/replaceMeal/replaceMeal",
+          "query": ""
+        },
+        {
+          "name": "pages/packageDiscover/riceBall/preRiceBall/preRiceBall",
+          "pathName": "pages/packageDiscover/riceBall/preRiceBall/preRiceBall",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageDiscover/riceBall/establish/establish",
+          "pathName": "pages/packageDiscover/riceBall/establish/establish",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageDiscover/riceBall/riceBallDetail/riceBallDetail",
+          "pathName": "pages/packageDiscover/riceBall/riceBallDetail/riceBallDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageDiscover/riceBall/establish/establish",
+          "pathName": "pages/packageDiscover/riceBall/establish/establish",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageOrder/replaceSku/replaceSku",
+          "pathName": "pages/packageOrder/replaceSku/replaceSku",
+          "query": ""
+        },
+        {
+          "name": "pages/packageDiscover/riceBall/riceBallDetail/riceBallDetail",
+          "pathName": "pages/packageDiscover/riceBall/riceBallDetail/riceBallDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageOrder/setMoreMealAddress/setMoreMealAddress",
+          "pathName": "pages/packageOrder/setMoreMealAddress/setMoreMealAddress",
+          "query": ""
+        },
+        {
+          "name": "pages/packageDiscover/riceBall/preRiceBall/preRiceBall",
+          "pathName": "pages/packageDiscover/riceBall/preRiceBall/preRiceBall",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageOrder/goodsDetail/goodsDetail",
+          "pathName": "pages/packageOrder/goodsDetail/goodsDetail",
+          "query": "param={\"id\":106222,\"orderMethod\":\"01\",\"category\":\"02\",\"dateTime\":\"20211020\",\"deliveryIndex\":0,\"addressId\":0,\"heatId\":100016,\"combo\":\"00\",\"comboid\":0,\"shipType\":\"00\",\"ageType\":\"02\"}",
+          "scene": null
+        },
+        {
+          "name": "pages/packSubAccount/orderPredict/orderPredict",
+          "pathName": "pages/packSubAccount/orderPredict/orderPredict",
+          "query": "type=02"
+        },
+        {
+          "name": "pages/packageDiscover/riceBall/riceBallDetail/riceBallDetail",
+          "pathName": "pages/packageDiscover/riceBall/riceBallDetail/riceBallDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageDiscover/riceBall/preRiceBall/preRiceBall",
+          "pathName": "pages/packageDiscover/riceBall/preRiceBall/preRiceBall",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageDiscover/riceBall/riceBallDetail/riceBallDetail",
+          "pathName": "pages/packageDiscover/riceBall/riceBallDetail/riceBallDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageDiscover/riceBall/riceBallDetail/riceBallDetail",
+          "pathName": "pages/packageDiscover/riceBall/riceBallDetail/riceBallDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageDiscover/riceBall/riceBallDetail/riceBallDetail",
+          "pathName": "pages/packageDiscover/riceBall/riceBallDetail/riceBallDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageDiscover/riceBall/rules/rules",
+          "pathName": "pages/packageDiscover/riceBall/rules/rules",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mineBox/balance/balance",
+          "pathName": "pages/mineBox/balance/balance",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mineBox/balanceDetail/balanceDetail",
+          "pathName": "pages/mineBox/balanceDetail/balanceDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mineBox/helpRecharge/helpRecharge",
+          "pathName": "pages/mineBox/helpRecharge/helpRecharge",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageOrder/payStatus/payStatus",
+          "pathName": "pages/packageOrder/payStatus/payStatus",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mineBox/billDetail/billDetail",
+          "pathName": "pages/mineBox/billDetail/billDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageOrder/payStatus/payStatus",
+          "pathName": "pages/packageOrder/payStatus/payStatus",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageOrder/payStatus/payStatus",
+          "pathName": "pages/packageOrder/payStatus/payStatus"
+        },
+        {
+          "name": "pages/packageDiscover/riceBall/establish/establish",
+          "pathName": "pages/packageDiscover/riceBall/establish/establish",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageDiscover/riceBall/establish/establish",
+          "pathName": "pages/packageDiscover/riceBall/establish/establish",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageDiscover/riceBall/riceBallDetail/riceBallDetail",
+          "pathName": "pages/packageDiscover/riceBall/riceBallDetail/riceBallDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mineBox/balance/balance",
+          "pathName": "pages/mineBox/balance/balance",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/discover/discover",
+          "pathName": "pages/discover/discover",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageDiscover/dishesVote/dishesVote",
+          "pathName": "pages/packageDiscover/dishesVote/dishesVote",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageDiscover/dishesVote/dishesVote",
+          "pathName": "pages/packageDiscover/dishesVote/dishesVote",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageDiscover/voteHistory/voteHistory",
+          "pathName": "pages/packageDiscover/voteHistory/voteHistory",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageOrder/submit/submit",
+          "pathName": "pages/packageOrder/submit/submit",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/packageDiscover/riceBall/riceBallDetail/riceBallDetail",
+          "pathName": "pages/packageDiscover/riceBall/riceBallDetail/riceBallDetail",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

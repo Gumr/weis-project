@@ -1,0 +1,298 @@
+<!-- components/cp-meal-pie/cp-meal-pie.wxml -->
+<wxs module="filters">
+  module.exports.format = function(num) {
+    var val = num >= 10 ? num.toFixed(0) : num;
+    return val
+  }
+</wxs>
+<!-- 简约皮肤 -->
+<view class="simple" wx:if="{{theme == 'simple'}}">
+    <view class="sem-box">
+        <view class="box-s">
+            <cp-semicircle-process dia="{{150}}" percent="{{plateData.proteinPercent}}" value="{{plateData.proteinSupply}}" total="{{plateData.totalProtein}}" fontSize="{{smallSize}}" margin="{{11}}" lineWidth="{{lineWidth}}" title="蛋白质"></cp-semicircle-process>
+        </view>
+        <view class="box-s">
+            <cp-semicircle-process dia="{{150}}" percent="{{plateData.carbonwaterPercent}}" value="{{plateData.carbonwaterSupply}}" total="{{plateData.totalCarbonwater}}" fontSize="{{smallSize}}" margin="{{11}}" lineWidth="{{lineWidth}}" title="碳水"></cp-semicircle-process>
+        </view>
+        <view class="box-s">
+            <cp-semicircle-process dia="{{150}}" percent="{{plateData.fatPercent}}" value="{{plateData.fatSupply}}" total="{{plateData.totalFat}}" fontSize="{{smallSize}}" margin="{{11}}" lineWidth="{{lineWidth}}" title="脂肪"></cp-semicircle-process>
+        </view>
+    </view>
+    <view class="progress-line">
+        <view class="wrap">
+            <view class="rate">
+                <view class="all-energy">
+                    总能量
+                    <text>(千卡)</text>
+                </view>
+                <view class="p-box">
+                    <view class="actual">{{plateData.energySupply}}</view>
+                    <view class="plan">/{{plateData.totalEnergy}}</view>
+                </view>
+            </view>
+            <view class="bar">
+                <view class="dot" wx:if="{{!plateData.energyPercent}}"></view>
+                <view class="dot-per" wx:else style="left:{{(plateData.energyPercent > 100 ? 100 : plateData.energyPercent) + '%'}};border-color:{{plateData.energyPercent >= 100 ? '#FE5E0F' : 'F7B500'}};">
+                    {{plateData.energyPercent}}
+                    <view class="unit">%</view>
+                </view>
+                <progress active-mode="forwards" duration="10" border-radius="3" active="{{true}}" percent="{{plateData.energyPercent > 100 ? 100 : plateData.energyPercent}}" backgroundColor="#E9E9E9" activeColor="{{plateData.energyPercent > 100 ? '#FE5E0F' : '#F7B500'}}" stroke-width="6" />
+            </view>
+        </view>
+        <view class="wrap">
+            <view class="rate">
+                <view class="all-energy">
+                    盐量
+                    <text>(克)</text>
+                </view>
+                <view class="p-box">
+                    <view class="actual">{{plateData.saltSupply}}</view>
+                    <view class="plan">/{{plateData.totalSalt}}</view>
+                </view>
+            </view>
+            <view class="bar">
+                <view class="dot" wx:if="{{!plateData.saltPercent}}"></view>
+                <view class="dot-per" wx:else style="left:{{(plateData.saltPercent > 100 ? 100 : plateData.saltPercent) + '%'}};border-color:{{plateData.saltPercent >= 100 ? '#FE5E0F' : 'F7B500'}};">
+                    {{plateData.saltPercent}}
+                    <view class="unit">%</view>
+                </view>
+                <progress active-mode="forwards" duration="10" border-radius="3" active="{{true}}" percent="{{plateData.saltPercent > 100 ? 100 : plateData.saltPercent}}" backgroundColor="#E9E9E9" activeColor="{{plateData.saltPercent > 100 ? '#FE5E0F' : '#F7B500'}}" stroke-width="6" />
+            </view>
+        </view>
+    </view>
+</view>
+<!-- 汽车仪表盘 -->
+<view class="dial" wx:if="{{theme == 'panel'}}">
+    <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/circle/surface.png" />
+    <image class="bot-bg" src="https://prodstatic.weis1606.cn/api/smartFood/circle/circle-bot.png" />
+    <!-- 碳水 蛋白质 脂肪 -->
+    <view class="micro">
+        <!-- 碳水 -->
+        <view class="ele">
+            <view class="icon">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/circle/ts.png" />
+                <view class="name">碳水</view>
+            </view>
+            <view class="circle-line">
+                <view class="val" style="margin-left: {{plateData.carbonwaterPercent > 67 ? 67 : plateData.carbonwaterPercent}}%;">
+                    {{plateData.carbonwaterSupply}}g
+                </view>
+                <!-- 实际线 -->
+                <view class="all">
+                    <view class="acture-line {{plateData.carbonwaterSupply > plateData.totalCarbonwater ? 'active' : ''}}" style="width: {{plateData.carbonwaterPercent}}%"></view>
+                </view>
+                <!-- 参照线 -->
+                <view class="reference">
+                    <view class="safe"></view>
+                </view>
+                <view class="box">
+                    <view class="min">0</view>
+                    <view class="max">{{plateData.totalCarbonwater}}g</view>
+                </view>
+            </view>
+        </view>
+        <!-- 蛋白质 -->
+        <view class="ele">
+            <view class="icon">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/circle/dbz.png" />
+                <view class="name">蛋白质</view>
+            </view>
+            <view class="circle-line">
+                <view class="val" style="margin-left: {{plateData.proteinPercent > 67 ? 67 : plateData.proteinPercent}}%">
+                    {{plateData.proteinSupply}}g
+                </view>
+                <!-- 实际线 -->
+                <view class="all">
+                    <view class="acture-line {{plateData.proteinSupply > plateData.totalProtein ? 'active' : ''}}" style="width: {{plateData.proteinPercent}}%"></view>
+                </view>
+                <!-- 参照线 -->
+                <view class="reference">
+                    <view class="safe"></view>
+                </view>
+                <view class="box">
+                    <view class="min">0</view>
+                    <view class="max">{{plateData.totalProtein}}g</view>
+                </view>
+            </view>
+        </view>
+        <!-- 脂肪 -->
+        <view class="ele">
+            <view class="icon">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/circle/zf.png" />
+                <view class="name">脂肪</view>
+            </view>
+            <view class="circle-line">
+                <view class="val" style="margin-left: {{plateData.fatPercent > 67 ? 67 : plateData.fatPercent}}%">
+                    {{plateData.fatSupply}}g
+                </view>
+                <!-- 实际线 -->
+                <view class="all">
+                    <view class="acture-line {{plateData.fatSupply > plateData.totalFat ? 'active' : ''}}" style="width: {{plateData.fatPercent}}%"></view>
+                </view>
+                <!-- 参照线 -->
+                <view class="reference">
+                    <view class="safe"></view>
+                </view>
+                <view class="box">
+                    <view class="min">0</view>
+                    <view class="max">{{plateData.totalFat}}g</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 表盘 -->
+    <view class="circle">
+        <image class="bg-circle" src="https://prodstatic.weis1606.cn/api/smartFood/circle/circle.png?a=2" />
+        <view class="data-pie">
+            <image style="width:100%;height:100%" wx:if="{{mode === 'image' && image}}" src="{{image}}" />
+            <ec-canvas class="{{mode === 'image' && image ? 'outside' : ''}}" bind:on-finished="finished" id="panel" ec="{{ec}}" style="width:328rpx;height:328rpx;"></ec-canvas>
+            <!-- 能量值 -->
+            <view class="small">
+                <view class="energy-act">{{plateData.energySupply}}</view>
+                <view class="energy-line"></view>
+                <view class="energy-plan">{{plateData.totalEnergy}}kcal</view>
+                <view class="energy-percent">
+                    {{plateData.energyPercent}}
+                    <view>%</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 盐量 食物多样性 -->
+    <view class="right-box">
+        <view class="salt">
+            <view class="salt-val">
+                <view class="act">{{plateData.saltSupply}}</view>
+                <view class="plan">/{{plateData.totalSalt}}g</view>
+            </view>
+            <view class="name">盐量</view>
+        </view>
+        <view class="salt">
+            <view class="salt-val">
+                <view class="act">{{plateData.foodTypeNum}}</view>
+                <view class="plan">/{{plateData.totalDiversity}}种</view>
+            </view>
+            <view class="name">食物多样性</view>
+        </view>
+    </view>
+</view>
+<!-- 条形盘 -->
+<view class="pillars" wx:if="{{theme == 'pillars'}}" bind:tap="score">
+    <!-- 首页总能量 -->
+    <!-- 健康得分 -->
+    <view class="score-box {{page}}" wx:if="{{!hideScore}}">
+        <view class="num">{{plateData.nutritionHealthScore}}</view>
+        <view class="name">营养健康分</view>
+        <image class="control" wx:if="{{showControl}}" catch:tap="control" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/tk.png" />
+    </view>
+    <view class="r-box">
+        <view class="bar {{page}}">
+            <!-- 计划线 -->
+            <view class="plan-line" wx:if="{{plateData.carbonwaterPercent>100 || plateData.proteinPercent>100 || plateData.fatPercent>100 || plateData.fiberPercent>100 || plateData.saltPercent>100 || plateData.foodPercent>100}}"></view>
+            <!-- 总热量 -->
+            <view class="box index" wx:if="{{page}}">
+                <view class="bar-box index">
+                    <!-- 计划 实际 -->
+                    <view class="chart"></view>
+                    <view class="chart {{plateData.energyPercent > 105 ? 'red' : (plateData.energyPercent < 95 ? 'white' : 'green')}}" style="height:{{plateData.energyPercent}}%">
+                       <view class="actual" wx:if="{{plateData.energySupply}}">
+                            {{filters.format(plateData.energySupply)}}<text>kcal</text>
+                       </view>
+                    </view>
+                </view>
+                <view class="name index">总能量<text>{{plateData.totalEnergy}}kcal</text></view>
+            </view>
+            <!-- 碳水 -->
+            <view class="box">
+                <view class="bar-box">
+                    <!-- 计划 实际 -->
+                    <view class="chart"></view>
+                    <view class="chart {{plateData.carbonwaterPercent > 105 ? 'red' : (plateData.carbonwaterPercent < 95 ? 'white' : 'green')}}" style="height:{{plateData.carbonwaterPercent}}%">
+                       <view class="actual" wx:if="{{plateData.carbonwaterSupply}}">
+                            {{filters.format(plateData.carbonwaterSupply)}}<text>g</text>
+                       </view>
+                    </view>
+                </view>
+                <view class="name">碳水<text>{{plateData.totalCarbonwater}}g</text></view>
+            </view>
+            <!-- 蛋白质 -->
+            <view class="box">
+                <view class="bar-box">
+                    <!-- 计划 实际 -->
+                    <view class="chart"></view>
+                    <view class="chart {{plateData.proteinPercent > 105 ? 'red' : (plateData.proteinPercent < 95 ? 'white' : 'green')}}" style="height:{{plateData.proteinPercent}}%">
+                        <view class="actual" wx:if="{{plateData.proteinSupply}}">
+                            {{filters.format(plateData.proteinSupply)}}<text>g</text>
+                       </view>
+                    </view>
+                </view>
+                <!-- <view class="bar-line"></view> -->
+                <view class="name">蛋白质<text>{{plateData.totalProtein}}g</text></view>
+            </view>
+            <!-- 脂肪 -->
+            <view class="box">
+                <view class="bar-box">
+                    <!-- 计划 实际 -->
+                    <view class="chart"></view>
+                    <view class="chart {{plateData.fatPercent > 105 ? 'red' : (plateData.fatPercent < 95 ? 'white' : 'green')}}" style="height:{{plateData.fatPercent}}%">
+                        <view class="actual" wx:if="{{plateData.fatSupply}}">
+                            {{filters.format(plateData.fatSupply)}}<text>g</text>
+                       </view>
+                    </view>
+                </view>
+                <view class="name">脂肪<text>{{plateData.totalFat}}g</text></view>
+            </view>
+            <!-- 膳食纤维 -->
+            <view class="box">
+                <view class="bar-box">
+                    <!-- 计划 实际 -->
+                    <view class="chart"></view>
+                    <view class="chart {{plateData.fiberPercent < 100 ? 'red' : 'green'}}" style="height:{{plateData.fiberPercent}}%">
+                        <view class="actual" wx:if="{{plateData.fiberSupply}}">
+                            {{filters.format(plateData.fiberSupply)}}<text>g</text>
+                       </view>
+                    </view>
+                </view>
+                <view class="name">膳食纤维<text>{{plateData.totalFiber}}g</text></view>
+            </view>
+            <!-- 盐量 -->
+            <view class="box">
+                <view class="bar-box">
+                    <!-- 计划 实际 -->
+                    <view class="chart"></view>
+                    <view class="chart {{plateData.saltPercent > 105 ? 'red' : (plateData.saltPercent < 95 ? 'white' : 'green')}}" style="height:{{plateData.saltPercent}}%">
+                        <view class="actual" wx:if="{{plateData.saltSupply}}">
+                            {{filters.format(plateData.saltSupply)}}<text>g</text>
+                       </view>
+                    </view>
+                </view>
+                <view class="name">盐量<text>{{plateData.totalSalt}}g</text></view>
+            </view>
+            <!-- 食物多样性 -->
+            <view class="box">
+                <view class="bar-box">
+                    <!-- 计划 实际 -->
+                    <view class="chart"></view>
+                    <view class="chart {{plateData.foodPercent < 100 ? 'red' : 'green'}}" style="height:{{plateData.foodPercent}}%">
+                        <view class="actual" wx:if="{{plateData.foodTypeNum}}">
+                            {{plateData.foodTypeNum}}<text>种</text>
+                       </view>
+                    </view>
+                </view>
+                <view class="name">食物多样<text>{{plateData.totalDiversity}}种</text></view>
+            </view>
+        </view>
+        <!-- 总能量 -->
+        <view class="energy" wx:if="{{!page}}">
+            <view class="name">总能量<text>{{plateData.totalEnergy}}kcal</text></view>
+            <view class="bar-energy">
+                <view class="perc {{plateData.energyPercent > 105 ? 'red' : (plateData.energyPercent < 95 ? 'white' : 'green')}}" style="width:{{plateData.energyPercent}}%">
+                    <view class="actual" wx:if="{{plateData.energySupply}}">
+                        {{plateData.energySupply}}<text>kcal</text>
+                    </view>
+                </view>
+                <view class="plan-line" wx:if="{{plateData.energyPercent>100}}"></view>
+            </view>
+        </view>
+    </view>
+</view>

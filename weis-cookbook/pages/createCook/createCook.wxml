@@ -1,0 +1,23 @@
+<!--pages/uploadCookbook/uploadCookbook.wxml-->
+<nav backIcon="close" title="创建菜谱"></nav>
+<view class="theme" wx:if="{{collectterm}}">
+  <view class="title">第{{collectterm}}期《我想吃》美味征集中…</view>
+  <view class="tip">{{endVoteDate}}截止</view>
+</view>
+<view class="category_tit">选择菜谱类型</view>
+<view class="category">
+  <view class="opt {{nowTab === index ? 'selected' : ''}}" wx:for="{{category}}" wx:key="id" data-index="{{index}}" bindtap="chooseCategory">
+    <image src="{{item.img}}" />
+    <view>{{item.name}}</view>
+    <view class="tip">{{item.example}}</view>
+  </view>
+</view>
+<!-- 规则 -->
+<view class="rules">
+  <view class="rules-tit">{{nowTab === null ? '活动规则' : nowTab === 0 ? '蛋白质菜品要求' : nowTab === 1 ? '蔬菜菜品要求' : '碳水菜品要求'}}</view>
+  <view class="rule" wx:for="{{nowTab === null ? rules : nowTab === 0 ? rulesWithProtein : nowTab === 1 ? rulesWithVegetable : rulesWithCarbonWater}}" wx:key="id">
+    {{item.txt}}
+  </view>
+</view>
+
+<view class="next {{nowTab === null ? 'disabled' : ''}}" bindtap="uploadCook">下一步</view>

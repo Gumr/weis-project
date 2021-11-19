@@ -1,0 +1,117 @@
+page {
+  background: #fbfbfb;
+}
+
+.refund {
+  box-sizing: border-box;
+  width: 690rpx;
+  // height: 614rpx;
+  background: #FFFFFF;
+  box-shadow: 0rpx 4rpx 24rpx -6rpx rgba(186, 186, 186, 0.3);
+  border-radius: 10rpx;
+  padding: 30rpx 30rpx 36rpx;
+  .b-box {
+    // 标题1
+    .reason-title {
+      padding: 30rpx 0;
+      font-size: 28rpx;
+      font-weight: bold;
+      color: #333333;
+    }
+    // 内容1
+    .reason-box {
+      width: 630rpx;
+      height: 360rpx;
+      background: #F3F4F5;
+      border-radius: 10rpx;
+      border: 2rpx solid #EEEEEE;
+      padding: 24rpx;
+      position: relative;
+      textarea {
+        width: 100%;
+        height: 100%;
+      }
+
+      .textarea-placeholder {
+        font-size: 24rpx;
+        color: #a9a9a9;
+      }
+
+      .limit {
+        position: absolute;
+        right: 10rpx;
+        bottom: 10rpx;
+        color: #a9a9a9;
+        font-size: 20rpx;
+      }
+    }
+
+    // 标题2
+    .title-b {
+      color: #333333;
+      font-size: 28rpx;
+      padding: 34rpx 0 40rpx;
+      font-weight: bold;
+    }
+
+    .upload-image-list {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 24rpx;
+      .upload-image-wrap {
+        width: 120rpx;
+        height: 120rpx;
+        margin: 0 60rpx 24rpx 0;
+        position: relative;
+        // 已上传的图片
+        .food-image {
+          width: 100%;
+          height: 100%;
+        }
+        // 删除的图标
+        .delete-icon {
+          width: 36rpx;
+          height: 36rpx;
+          position: absolute;
+          right: -18rpx;
+          top: -18rpx;
+        }
+      }
+      // 相机
+      .camera {
+        width: 120rpx;
+        height: 120rpx;
+        margin-bottom: 24rpx;
+      }
+    }
+    // 提示
+    .tip {
+      color: #a9a9a9;
+      font-size: 20rpx;
+    }
+  }
+}
+// 按钮
+.btn-box {
+  width: 750rpx;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 65rpx;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  .btn {
+    width: 650rpx;
+    height: 88rpx;
+    background: #d8d8d8;
+    border-radius: 50rpx;
+    font-size: 36rpx;
+    color: #ffffff;
+    text-align: center;
+    line-height: 88rpx;
+    &.active {
+      background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+    }
+  }
+}

@@ -1,0 +1,27 @@
+page {
+  background: #f3f4f5;
+}
+.goodsList {
+  width: 100%;
+  padding: 32rpx 30rpx 0;
+}
+.goodsList .list {
+  background: #fff;
+  margin-bottom: 20rpx;
+  padding: 30rpx;
+  display: flex;
+  border-radius: 10rpx;
+}
+.goodsList .list .list_image {
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 40rpx;
+  flex-shrink: 0;
+}
+.goodsList .list .list_name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #000000;
+  line-height: 42rpx;
+  margin-top: 10rpx;
+}

@@ -1,0 +1,201 @@
+.border {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2rpx;
+  background: rgba(238, 238, 238, 1);
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+
+.shadow {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  left: 0;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .empt{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 0;
+  }
+  .edit-box {
+    position: absolute;
+    width: 100%;
+    background: #FFFFFF;
+    border-radius: 20rpx 20rpx 0 0;
+    padding-bottom: 50rpx;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+
+    .head {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 35rpx 0 0;
+
+      image {
+        width: 44rpx;
+        height: 44rpx;
+        position: absolute;
+        left: 35rpx;
+        top: 35rpx;
+      }
+
+      .title {
+        text-align: center;
+        color: #000000;
+        font-size: 32rpx;
+        font-weight: 550;
+        line-height: 45rpx;
+      }
+    }
+
+    .subtitle {
+      color: #666666;
+      font-size: 22rpx;
+      margin: 10rpx auto 0;
+      text-align: center;
+    }
+
+    .ipt-box {
+      width: 660rpx;
+      height: 90rpx;
+      background: #EEEEEE;
+      border-radius: 10rpx;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 40rpx auto 0;
+
+      .name {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        padding: 0 40rpx;
+        color: #333333;
+        font-size: 36rpx;
+      }
+      .clear {
+        width: 36rpx;
+        height: 36rpx;
+        margin-right: 28rpx;
+      }
+    }
+
+    .nutrient{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 36rpx;
+      .n-box{
+        width: 200rpx;
+        height: 202rpx;
+        background: #F1F1F1;
+        border-radius: 10rpx;
+        margin-right: 20rpx;
+        margin-bottom: 20rpx;
+        box-sizing: border-box;
+        padding-top: 32rpx;
+        &:last-of-type{
+          margin-right: 0;
+        }
+        .name{
+          color: #000000;
+          font-size: 28rpx;
+          text-align: center;
+          margin-bottom: 5rpx;
+        }
+        .n-ipt{
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+          align-items: center;
+          margin-top: 5rpx;
+          font-family: "DINCondensedC";
+          height: 98rpx;
+          input{
+            height: 100%;
+            color: #333333;
+            font-size: 60rpx;
+            text-align: right;
+            line-height: 93rpx;
+            width: 50%;
+          }
+          .unit{
+            flex: 1;
+            color: #333333;
+            font-size: 40rpx;
+            margin-top: 10rpx;
+          }
+        }
+      }
+      &.moreBox{
+        justify-content: initial;
+        flex-wrap: wrap;
+        padding: 0 55rpx;
+        .n-box{
+          &:nth-of-type(3n){
+            margin-right: 0;
+          }
+        }
+      }
+      &.nut{
+        display: flex;
+        flex-direction: column;
+        margin-top: 45rpx;
+        input{
+          width: 100%;
+          height: 140rpx;
+          line-height: 140rpx;
+          color: #333333;
+          font-size: 100rpx;
+          text-align: center;
+        }
+        .unit{
+          color: #666666;
+          font-size: 28rpx;
+          margin: 9rpx auto 0;
+          text-align: center;
+        }
+      }
+    }
+
+    .tip{
+      color: #FA6400;
+      font-size: 22rpx;
+      margin-top: 15rpx;
+      text-align: center;
+    }
+
+    .btn {
+      width: 450rpx;
+      height: 88rpx;
+      background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+      border-radius: 50rpx;
+      color: #FFFFFF;
+      font-size: 36rpx;
+      margin: 0 auto 0;
+      text-align: center;
+      line-height: 88rpx;
+      &.active{
+        background: #D8D8D8;
+        color: #6D7278;
+      }
+    }
+  }
+}

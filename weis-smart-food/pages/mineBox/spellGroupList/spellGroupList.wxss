@@ -1,0 +1,42 @@
+.spellGroupList {
+  width: 100%;
+  padding: 0 35rpx 50rpx;
+}
+.spellGroupList .list {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 50rpx;
+}
+.spellGroupList .list .head {
+  position: relative;
+  height: 100rpx;
+  margin-right: 30rpx;
+}
+.spellGroupList .list .head image {
+  width: 100rpx;
+  height: 100rpx;
+  border: 2rpx solid #ffffff;
+  border-radius: 50%;
+}
+.spellGroupList .list .head .spell-main {
+  width: 70rpx;
+  height: 30rpx;
+  background: #fccc49;
+  border-radius: 15rpx;
+  border: 2rpx solid #ffffff;
+  text-align: center;
+  line-height: 26rpx;
+  color: #ffffff;
+  font-size: 20rpx;
+  position: absolute;
+  left: 50rpx;
+  bottom: -14rpx;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+.spellGroupList .list .nick {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #000000;
+}

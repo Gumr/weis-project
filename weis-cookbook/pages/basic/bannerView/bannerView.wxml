@@ -1,0 +1,9 @@
+<!--pages/basic/bannerWv/bannerWv.wxml-->
+<!-- <web-view src="{{banners[index].jumpLink}}"></web-view> -->
+<nav hasBg="{{false}}" showBackHome="{{showBackHome}}"></nav>
+<view class="container">
+  <image class="banner" mode="widthFix" wx:for="{{banners}}" src="{{item}}" wx:key="index" />
+  <button class="btnbox" open-type="share">
+    <image class="img" mode="widthFix" style="bottom: {{isFullscreen ? '50rpx' : '30rpx'}}" src="{{btnImg}}" />
+  </button>
+</view>

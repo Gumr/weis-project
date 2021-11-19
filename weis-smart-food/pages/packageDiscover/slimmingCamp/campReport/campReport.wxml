@@ -1,0 +1,72 @@
+<!--pages/marketing/slimmingCamp/campReport/campReport.wxml-->
+<cp-nav-bar title-text="结营报告" backIconCOlor></cp-nav-bar>
+<image
+  class="background"
+  style="height: {{hasRank ? 1624 : 1500}}rpx;"
+  src="https://prodstatic.weis1606.cn/api/activity/christmas_card_bj_3.png"
+/>
+<view class="container" style="padding-bottom: {{buttonHeight}}px;">
+  <view class="report" style="height: {{hasRank ? 1350 : 1164}}rpx;">
+    <image
+      class="report__border"
+      style="height: {{hasRank ? 1330 : 1144}}rpx;"
+      src="https://prodstatic.weis1606.cn/api/activity/card_bj.png"
+    />
+    <view class="flex-content-center">
+      <image class="report__title" src="https://prodstatic.weis1606.cn/api/activity/card_title.png" />
+    </view>
+    <view class="flex-content-center">
+      <view class="report__avatar">
+        <view class="report__avatar-background"></view>
+        <image
+          class="report__crown"
+          src="https://prodstatic.weis1606.cn/api/activity/card_crown.png"
+        />
+        <image class="report__avatar-image" src="{{userInfo.headImgUrl}}" />
+      </view>
+    </view>
+    <view class="report__name">{{userInfo.uname}}</view>
+
+    <image class="report__slogan" src="https://prodstatic.weis1606.cn/api/activity/card_slogan.png" />
+
+    <view>
+      <view class="report__label">连续坚持14天，绘出了漂亮的阶段性成果：</view>
+      <view class="report__chart">
+        <ec-canvas
+          custom-style="width: 610rpx;height: 488rpx;"
+          id="canvas"
+          ec="{{ec}}"
+          image
+          bind:on-finished="handleCanvasFinished"
+        ></ec-canvas>
+      </view>
+    </view>
+
+    <view class="report__footer" wx:if="{{hasRank}}">
+      <view>
+        <view class="report__medal-title">在瘦身营中名列第{{report.rank}}名</view>
+        <view class="report__medal-label">
+          <text>获得</text>
+          <text class="report__medal-price">{{report.bounty}}</text>
+          <text>元奖励金！</text>
+        </view>
+      </view>
+      <image
+        class="report__medal"
+        src="https://prodstatic.weis1606.cn/api/activity/card_medal_1.png"
+      />
+    </view>
+  </view>
+</view>
+
+<canvas
+  canvas-id="share"
+  style="position: fixed; top: -9999px; width: 750rpx; height: {{canvasHeight}}rpx;"
+></canvas>
+
+<fixed-button
+  title="保存并分享"
+  background-color="#006560"
+  bind:on-height="handleButtonHeight"
+  bind:on-tap="shareTap"
+></fixed-button>

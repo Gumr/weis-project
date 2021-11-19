@@ -1,0 +1,123 @@
+.aiFatSetInfo {
+  width: 100%;
+  padding: 0 50rpx;
+}
+.aiFatSetInfo .target {
+  margin-top: 50rpx;
+}
+.aiFatSetInfo .target .title-box {
+  display: flex;
+  align-items: baseline;
+}
+.aiFatSetInfo .target .title-box .title {
+  color: #333333;
+  font-size: 48rpx;
+  font-weight: bold;
+}
+.aiFatSetInfo .target .input-placeholder {
+  color: #a9a9a9;
+}
+.aiFatSetInfo .target .year {
+  height: 80rpx;
+  background: #e3e5e6;
+  border-radius: 40rpx;
+  display: flex;
+  align-items: center;
+  margin: 50rpx auto 0;
+  position: relative;
+}
+.aiFatSetInfo .target .year .year-ipt {
+  height: 100%;
+  flex: 1;
+  padding-left: 40rpx;
+  color: #333333;
+  font-size: 28rpx;
+}
+.aiFatSetInfo .target .year .sympol {
+  padding: 0 40rpx;
+  color: #333333;
+  font-size: 28rpx;
+}
+.aiFatSetInfo .target .year .error {
+  position: absolute;
+  bottom: -50rpx;
+  font-size: 24rpx;
+  color: #fa6400;
+  line-height: 33rpx;
+  padding-left: 20rpx;
+}
+.aiFatSetInfo .time {
+  margin-top: 50rpx;
+}
+.aiFatSetInfo .time .title {
+  color: #333333;
+  font-size: 44rpx;
+  font-weight: 550;
+}
+.aiFatSetInfo .time .scale-value {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 100rpx auto 24rpx;
+  font-size: 28rpx;
+  color: #fe5e0f;
+}
+.aiFatSetInfo .time .scale-value text {
+  font-size: 80rpx;
+  font-weight: bold;
+  color: #fe5e0f;
+  line-height: 66rpx;
+}
+.aiFatSetInfo .time .scale-tip {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 20rpx;
+}
+.aiFatSetInfo .time .scale-tip view {
+  position: relative;
+}
+.aiFatSetInfo .time .scale-tip view text {
+  height: 40rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  color: #ffffff;
+  line-height: 40rpx;
+  padding: 0 20rpx;
+  display: inline-block;
+}
+.aiFatSetInfo .time .scale-tip view image {
+  width: 28rpx;
+  height: 28rpx;
+  position: absolute;
+  right: -48rpx;
+  top: 6rpx;
+}
+.tip-label {
+  box-sizing: border-box;
+  width: 640rpx;
+  margin: 76rpx 0 30rpx;
+  padding: 0 66rpx;
+  color: #333;
+  line-height: 44rpx;
+  font-weight: bold;
+  font-size: 32rpx;
+}
+.btn {
+  width: 650rpx;
+  height: 88rpx;
+  background: #d8d8d8;
+  border-radius: 50rpx;
+  color: #ffffff;
+  font-size: 36rpx;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100rpx;
+  text-align: center;
+  line-height: 88rpx;
+}
+.btn.active {
+  background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+  color: #ffffff;
+}

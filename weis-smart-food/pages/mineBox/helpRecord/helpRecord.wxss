@@ -1,0 +1,100 @@
+.border {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1rpx;
+  background: #000000;
+  opacity: 0.1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.detail {
+  width: 100%;
+}
+.detail .list {
+  padding: 16rpx 30rpx 0;
+}
+.detail .list .each {
+  height: 124rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.detail .list .each image {
+  width: 56rpx;
+  height: 56rpx;
+  margin-right: 24rpx;
+}
+.detail .list .each .content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 610rpx;
+  height: 124rpx;
+}
+.detail .list .each .content::after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1rpx;
+  background: #000000;
+  opacity: 0.1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 0;
+}
+.detail .list .each .content .main {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.detail .list .each .content .main .main__left text {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #333333;
+  line-height: 26rpx;
+  margin-bottom: 10rpx;
+  display: block;
+}
+.detail .list .each .content .main .main__left view {
+  font-size: 20rpx;
+  color: #a9a9a9;
+  line-height: 20rpx;
+}
+.detail .list .each .content .main .main__right {
+  text-align: right;
+}
+.detail .list .each .content .main .main__right text {
+  font-size: 30rpx;
+  font-family: "DINCondensedC";
+  font-weight: bold;
+  color: #333333;
+  line-height: 30rpx;
+  margin-bottom: 10rpx;
+  display: block;
+}
+.detail .list .each .content .main .main__right view {
+  font-size: 20rpx;
+  color: #a9a9a9;
+  line-height: 20rpx;
+}
+.detail .list .each .content .main .main__right .active {
+  color: #fe5e0f;
+}
+.detail .null {
+  margin-top: 232rpx;
+  text-align: center;
+}
+.detail .null image {
+  width: 320rpx;
+  height: 240rpx;
+  margin-bottom: 40rpx;
+}
+.detail .null view {
+  font-size: 30rpx;
+  color: #d3d3d3;
+}

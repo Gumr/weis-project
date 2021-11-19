@@ -1,0 +1,12 @@
+<!-- pages/mineBox/tool/toolDetail/toolDetail.wxml -->
+<cp-nav-bar title-text=""/>
+<view class="toolDetail">
+    <image class="contentImg" src="https://prodstatic.weis1606.cn/api/smartFood/tool_kit_details.png" />
+    <view class="bottom">
+        <view class="share" wx:if="{{inviteUid && inviteUid != uid}}" bind:tap="toInfo">测一测你的基础代谢</view>
+        <view class="share" wx:else>
+            发给好友
+            <button open-type="share"></button>
+        </view>
+    </view>
+</view>

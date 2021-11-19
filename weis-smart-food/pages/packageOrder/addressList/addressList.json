@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-swipe-cell": "/components/vant/swipe-cell/index",
+    "cp-pay-popup": "/components/cp-pay-popup/cp-pay-popup",
+    "cp-confirm-dialog": "/components/cp-confirm-dialog/cp-confirm-dialog"
+  }
+}

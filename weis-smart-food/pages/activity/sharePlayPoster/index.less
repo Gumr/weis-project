@@ -1,0 +1,177 @@
+page{
+ background: #F6F6F6FF;
+}
+
+.myPoster{
+  position: relative;
+  .newposterbg{
+    width: 750rpx;
+    height: 1190rpx;
+  }
+  .cardInfo{
+    .carddre{
+      position: absolute;
+      left: 100rpx;
+      top: 786rpx;
+      view:nth-child(1) {          
+        font-size: 36rpx;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: bold;
+        color: #333333;
+        // text-align: center;
+        margin-bottom: 12rpx;
+          }
+          view:nth-child(2) {          
+          font-size: 24rpx;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #333333;
+          // text-align: center;
+          // padding-left: 30rpx;
+          padding-right: 30rpx;
+          width: 430rpx;
+          line-height: 0.6;
+          }
+    }
+    image{
+      width: 360rpx;
+      height: 492rpx;
+      position: absolute;
+      left: 37rpx;
+      top: 223rpx;
+    }
+    .eatplay{
+      // width: 680rpx;
+      // position: absolute;
+      // left: 66rpx;
+      // height: 952rpx;
+
+      // height: 301rpx;
+      // background: #FFFFFFFF;
+      // border-bottom-left-radius: 20rpx;
+      // border-bottom-right-radius: 20rpx;
+      // text-align: left;
+      .pos {
+        // position: relative;
+        // display: flex;
+        .alreadyDay{
+          min-width: 150rpx;
+          height: 28rpx;
+          
+          background: linear-gradient(270deg, #EECA01 0%, #FC6A2A 100%);
+          box-shadow: 0rpx 2rpx 24rpx -6rpx rgba(186, 186, 186, 0.3);
+          display: flex;
+          border-radius: 14rpx;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+          top: 903rpx;
+          color: #FFFFFFFF;
+          font-size: 20rpx;
+          font-weight: 550;
+          padding-left: 20rpx;
+          padding-right: 20rpx;
+          left: 260rpx;
+        }
+        .alreadyDay::after {
+          display: block;
+          content: '';
+          width: 0rpx;
+          height: 0rpx;
+          border-right: 12rpx solid transparent;
+          border-left: 12rpx solid transparent;
+          border-top: 12rpx solid #FC6A2AFF;
+          position: absolute;
+          right: 0;
+          left: 0;
+          bottom: -10rpx;
+          margin: auto;
+      }
+        image{
+          width: 423rpx;
+          height: 180rpx;
+          position: absolute;
+          left: 66rpx;
+          top: 952rpx;
+        }
+        .banneryiy{
+          position: absolute;
+          position: absolute;
+          left: 50rpx;
+          top: 1002rpx;
+          view:nth-child(1) {          
+              font-size: 36rpx;
+              font-family: PingFangSC-Medium, PingFang SC;
+              font-weight: bold;
+              color: #333333;
+              text-align: center;
+              margin-bottom: 12rpx;
+          }
+          view:nth-child(2) {          
+          font-size: 24rpx;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #333333;
+          text-align: center;
+          padding-left: 40rpx;
+          padding-right: 30rpx;
+          width: 430rpx;
+          line-height: 1.2;
+          }
+        }
+        .qrcode{
+          width: 150rpx!important;
+          height: 150rpx!important;
+          position: absolute;
+          top: 960rpx;
+          left: 541rpx!important;
+        }
+      }
+
+    }
+  }
+  .playdata{
+    position: absolute;
+    left: 509rpx;
+    top: 260rpx;
+    line-height: 2.73;
+    font-size: 22rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #333333;
+view{
+  line-height: 2.7;
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 200rpx;
+  text:nth-child(1) {
+    // margin-right: 50rpx;
+  }
+}
+  }
+  .share-btn {
+    position: fixed;
+    left: 85rpx;
+    bottom: 60rpx;
+    z-index: 1;
+    width: 580rpx;
+    padding: 28rpx 0;
+    font-size: 32rpx;
+    color: #fff;
+    text-align: center;
+    background: linear-gradient(
+      135deg,
+      rgba(251, 137, 45, 1) 0%,
+      rgba(254, 94, 15, 1) 100%
+    );
+    border-radius: 44rpx;
+  }
+
+}
+.canvas {
+  width: 750rpx;
+  height: 1190rpx;
+  position: fixed;
+  top: -9999px;
+}

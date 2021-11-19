@@ -1,0 +1,99 @@
+<!--pages/aboutOrder/skuRefundDetail/skuRefundDetail.wxml-->
+<cp-nav-bar title-text="退款详情" iconBackColor background="#F3F4F5"></cp-nav-bar>
+<!-- <view class="bg" style="margin-top: {{statusHeight}}px;"></view> -->
+<view class="page">
+  <view class="header flex-content-between">
+    <view class="header__title">{{queryLog.$statusLabel}}</view>
+    <view
+      class="flex-items-center"
+      wx:if="{{queryLog.handleStt === '02' || queryLog.handleStt === '20'}}"
+    >
+      <view class="btn" style="margin-right: 20rpx;" bind:tap="contactTap">联系客服</view>
+      <view
+        class="btn btn__orange"
+        bind:tap="recallTap"
+        wx:if="{{queryLog.handleStt !== '20' && reversalLogList.length === 1}}"
+      >撤回</view>
+    </view>
+  </view>
+  <view class="card">
+    <view class="label__bold">配送信息</view>
+    <view class="label__normal date">{{sku.$date}} {{sku.$category}}</view>
+    <view class="sku flex">
+      <image class="image" src="{{sku.primaryImgUrl}}" />
+      <view class="sku__content">
+        <view class="label__bold">{{sku.skuname}}</view>
+        <view class="flex-content-between">
+          <view>
+            <text class="label__unit">￥</text>
+            <text class="label__price">{{sku.price}}</text>
+          </view>
+          <view>x{{queryLog.num}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="line" style="margin: 35rpx 0 28rpx;"></view>
+    <view class="flex-content-between">
+      <view class="label__bold">退款金额</view>
+      <view class="label__bold">
+        <text>￥</text>
+        <text>{{queryLog.price}}</text>
+      </view>
+    </view>
+    <view class="flex-content-between" style="margin-top: 40rpx;">
+      <view class="label__bold">退款账户</view>
+      <view class="label__bold">{{queryLog.payWay === 'balance' ? '余额' : '微信'}}</view>
+    </view>
+  </view>
+  <view class="card">
+    <view>
+      <view class="label__bold" style="margin-bottom: 12rpx;">退款原因</view>
+      <view
+        class="color-gray"
+        style="font-size: 24rpx; margin: 12rpx 0 30rpx;"
+      >{{queryLog.applicationReason}}</view>
+      <view>
+        <image
+          wx:for="{{queryLog.$imgUrlList}}"
+          wx:key="index"
+          class="image"
+          style="margin-right: 20rpx;"
+          src="{{item}}"
+        />
+      </view>
+    </view>
+  </view>
+  <view class="card">
+    <view class="label__bold">退款流程</view>
+    <view class="line" style="margin: 30rpx 0 28rpx;"></view>
+    <view class="logs">
+      <view>
+        <view class="logs__item" wx:for="{{reversalLogList}}" wx:key="index">
+          <view>
+            <view class="nowrap logs__date {{index === 0 ? '' : 'logs__date--gray'}}">{{item.$date}}</view>
+            <view class="nowrap logs__time color-gray" style="text-align: right;">{{item.$time}}</view>
+          </view>
+          <view>
+            <view class="logs__dot {{index === 0 ? 'logs__dot--active' : ''}}"></view>
+          </view>
+          <view class="logs__labels">
+            <view
+              class="label__bold {{index === 0 ? 'color-light' : 'color-gray'}}"
+            >{{item.$statusLabel}}</view>
+            <view class="logs__tip" wx:if="{{item.handleStt === '03'}}">
+              正在将{{queryLog.price}}元入账您的支付账户零钱，预计最晚{{reversalLogList[1].handleMsg}}完成入账，具体入账进度请使用交易号{{queryLog.refundNum}}拨打客服：
+              <text bind:tap="phone">400 668 1606</text>查询
+            </view>
+            <view
+              class="logs__tip"
+              wx:elif="{{item.handleStt === '12'}}"
+            >{{queryLog.price}}元的退款已提交微信/您的余额</view>
+            <view class="logs__tip" wx:elif="{{item.handleStt === '20'}}">拒绝原因：{{queryLog.remarks}}</view>
+            <view class="logs__tip" wx:elif="{{item.handleStt === '02'}}">收到您的申请，商家正在快速处理。</view>
+          </view>
+        </view>
+      </view>
+      <view class="logs__path" wx:if="{{reversalLogList.length > 1}}"></view>
+    </view>
+  </view>
+</view>

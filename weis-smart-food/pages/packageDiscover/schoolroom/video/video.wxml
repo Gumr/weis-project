@@ -1,0 +1,17 @@
+<!--pages/packageDiscover/schoolroom/video/video.wxml-->
+<cp-nav-bar title-text=" " backIconColor="black" />
+<view class="video">
+    <view class="content">
+        <video 
+            class="video"
+            id="myVideo" 
+            src="{{item.video}}" 
+            binderror="videoErrorCallback" 
+            show-center-play-btn='{{false}}' 
+            autoplay="{{true}}"
+            bindenterpictureinpicture='bindVideoEnterPictureInPicture'
+            bindleavepictureinpicture='bindVideoLeavePictureInPicture'
+        ></video>
+        <view class="name">{{item.name}}</view>
+    </view>
+</view>

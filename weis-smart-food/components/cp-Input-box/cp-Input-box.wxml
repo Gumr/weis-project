@@ -1,0 +1,38 @@
+<!-- components/wxInput/wxInput.wxml -->
+<view class="shadow" catchtouchmove="true" wx:if="{{show}}">
+    <view class="empty" bind:tap="cancel"></view>
+    <!-- 名称 带加减符号 -->
+    <view class="goal" wx:if="{{symbol}}" style="height:{{height}}rpx">
+        <view class="title">{{title}}</view>
+        <view class="box">
+            <view class="symbol">
+                <view class="kj" bind:tap="sym">
+                    <view class="small">{{symbolIndex == 0 ? '-' : '+'}}</view>
+                    <image class="{{selectFh ? 'active' : ''}}" src="/images/list_next.png" />
+                </view>
+                <view class="list {{selectFh ? 'active' : ''}}">
+                    <view class="icon" data-index="{{0}}" catch:tap="sureSymbol">-</view>
+                    <view class="icon" data-index="{{1}}" catch:tap="sureSymbol">+</view>
+                </view>
+            </view>
+            <input placeholder="{{placeholder}}" auto-focus="{{true}}" maxlength="{{maxlength}}" focus="{{focus}}" confirm-type="{{confirmType}}" confirm-hold="{{confirmHold}}" disabled="{{disabled}}" type="{{type}}" value="{{value}}" bindinput="handleInputChange" bindfocus="handleInputFocus" bindblur="handleInputBlur" bindconfirm="handleInputConfirm" cursor-spacing="120" adjust-position="{{true}}" placeholder-class="ph-color" />
+            <view class="unit" wx:if="{{unit}}">{{unit}}</view>
+        </view>
+        <view class="btn">
+            <view class="qx" bind:tap="cancel">取消</view>
+            <view class="sure {{value !=='' ? 'active' : ''}}" bind:tap="sure">确定</view>
+        </view>
+    </view>
+    <!-- 名称 -->
+    <view class="goal" wx:else style="bottom:{{keyboardheight}}px">
+        <view class="title">{{title}}</view>
+        <view class="box">
+            <input placeholder="{{placeholder}}" auto-focus="{{false}}" maxlength="{{maxlength}}" focus="{{focus}}" confirm-type="{{confirmType}}" confirm-hold="{{confirmHold}}" disabled="{{disabled}}" type="{{type}}" value="{{value}}" adjust-position="{{false}}" bind:tap="keyboardheight" bindinput="handleInputChange" bindfocus="handleInputFocus" bindblur="handleInputBlur" bindconfirm="handleInputConfirm" placeholder-class="ph-color" />
+            <view class="unit" wx:if="{{unit}}">{{unit}}</view>
+        </view>
+        <view class="btn">
+            <view class="sure {{value !=='' ? 'active' : ''}}" bind:tap="sure">确定</view>
+        </view>
+        <image class="close" bind:tap="cancel" src="/images/icon_down.png" />
+    </view>
+</view>

@@ -1,0 +1,149 @@
+.flex {
+  display: flex;
+}
+.hidden-canvas {
+  position: fixed;
+  top: -9999px;
+}
+.grow-1 {
+  flex-grow: 1;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.flex-content-center {
+  display: flex;
+  justify-content: center;
+}
+.flex-items-center {
+  display: flex;
+  align-items: center;
+}
+.flex-center {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+.flex-content-between {
+  display: flex;
+  justify-content: space-between;
+}
+.family-din {
+  font-family: 'DINCondensedC';
+}
+.font-20 {
+  font-size: 20rpx;
+}
+.font-22 {
+  font-size: 22rpx;
+}
+.font-24 {
+  font-size: 24rpx;
+}
+.font-26 {
+  font-size: 26rpx;
+}
+.font-28 {
+  font-size: 28rpx;
+}
+.font-30 {
+  font-size: 30rpx;
+}
+.font-32 {
+  font-size: 32rpx;
+}
+.font-36 {
+  font-size: 36rpx;
+}
+.font-num {
+  font-size: 52rpx;
+}
+.font-88 {
+  font-size: 88rpx;
+}
+.font-unit {
+  font-size: 28rpx;
+}
+.font-bold {
+  font-weight: bold;
+}
+.text-center {
+  text-align: center;
+}
+.orange {
+  color: #fa6400;
+}
+.gray-33 {
+  color: #333;
+}
+.gray-a9 {
+  color: #a9a9a9;
+}
+.gray-99 {
+  color: #999999;
+}
+.navigator {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+.reset-box {
+  margin: 0;
+  padding: 0;
+}
+.rank-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.rank-item .avatar-box {
+  position: relative;
+}
+.rank-item__num {
+  font-family: 'DIN';
+  font-size: 42rpx;
+  font-weight: bold;
+  color: #a9a9a9;
+  margin-right: 40rpx;
+}
+.rank-item__medal {
+  width: 43rpx;
+  height: 56rpx;
+  margin-right: 30rpx;
+}
+.rank-item__avatar {
+  width: 68rpx;
+  height: 68rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.rank-item__nickname {
+  font-size: 26rpx;
+  color: #333;
+  max-width: 250rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+.rank-item__value {
+  white-space: nowrap;
+  font-size: 26rpx;
+  color: #fe5e0f;
+}
+.rank-item__next {
+  margin-left: 10rpx;
+  width: 20rpx;
+  height: 20rpx;
+}
+.rank-item__leader {
+  padding: 3rpx 12rpx;
+  font-size: 16rpx;
+  color: #333;
+  background-color: #ffe600;
+  border-radius: 11rpx;
+  position: absolute;
+  top: 47rpx;
+  left: 6rpx;
+}

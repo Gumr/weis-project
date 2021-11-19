@@ -1,0 +1,47 @@
+<!-- pages/mineAddress/mineAddress.wxml -->
+<cp-nav-bar title-text="{{title}}" color="#000" background="#FFFFFF"></cp-nav-bar>
+<view class="address">
+  <view class="wrap" wx:if="{{addressList.length>0}}">
+    <van-swipe-cell class="box" wx:for="{{addressList}}" wx:key="key" data-index="{{index}}" left-width="{{0}}" right-width="{{63}}">
+      <view class="list" data-index="{{index}}" bind:tap="select">
+        <view class="col-l">
+          <view class="name">{{item.detail + item.houseNum}}</view>
+          <view class="bot">
+            <view class="tag-box">
+              <view class="tag default" wx:if="{{item.tuaDef == '1'}}">默认</view>
+              <view class="tag {{sortStatus[item.sortNum].class}}" wx:if="{{sortStatus[item.sortNum].name}}">
+                {{sortStatus[item.sortNum].name}}
+              </view>
+            </view>
+            <view class="info">
+              <text>{{item.name}}</text>
+              {{item.phone}}
+            </view>
+          </view>
+        </view>
+        <image data-index="{{index}}" catch:tap="edit" class="col-r" src="/images/edit_gray.png" />
+      </view>
+      <!-- 删除 -->
+      <view data-index="{{index}}" bindtap="delItem" slot="right" class="delete">删除</view>
+    </van-swipe-cell>
+  </view>
+  <view class="no" wx:else>
+    <image src="https://prodstatic.weis1606.cn/api/smartFood/blank_case_ai.png" />
+    <view class="desc">暂无地址</view>
+  </view>
+</view>
+<view class="bottom">
+  <view class="btn" bind:tap="add">新增地址</view>
+</view>
+<cp-confirm-dialog show="{{showPayFreightDialog}}" title="地址修改提示" confirm-text="确认支付" cancel-text="我在想想" bind:on-confirm="handlePayFreightDialogConfirm">
+  <view class="freight-text">
+    该地址配送费发生改变，请支付差额
+    <text class="freight-price">{{freightPrice}}元</text>
+  </view>
+</cp-confirm-dialog>
+
+<cp-confirm-dialog show="{{showRefundFreightDialog}}" title="地址修改提示" confirm-text="确认更改" cancel-text="我再想想" bind:on-confirm="handleRefundFreightConfirm">
+  <view class="freight-text">该地址配送费发生变化，差额将退回到您的账户。</view>
+</cp-confirm-dialog>
+
+<cp-pay-popup id="pay" bind:on-confirm="handlePayConfirm"></cp-pay-popup>

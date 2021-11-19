@@ -1,0 +1,289 @@
+.border {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1rpx;
+  // background: #e9e9e9;
+  background: #F6F6F6;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+// ---------个人信息------------
+page{
+  background: #F3F4F5;
+}
+
+.person {
+  width: 100%;
+  position: relative;
+  padding-bottom: 50rpx;
+  background: #F3F4F5;
+  // &::before {
+  //   .border();
+  //   top: 0;
+  // }
+  .box:nth-child(1) {
+    border-bottom: 20rpx solid #F6F6F6;
+  }
+  .box {
+    box-sizing: border-box;
+    // padding: 0 30rpx;
+    padding: 0 40rpx 0 35rpx;
+    background: #ffffff;
+    
+    .wrap {
+      width: 100%;
+      height: 112rpx;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      &::after {
+        .border();
+        bottom: 0;
+      }
+      // &:last-of-type::after {
+      //   display: none;
+      // }
+      .col-l {
+        font-size: 28rpx;
+        color: #000000;
+      }
+      .col-r {
+        display: flex;
+        align-items: center;
+        .name {
+          // color: #808080;
+          font-size: 28rpx;
+          color: #000000;
+          &.allergen{
+            max-width: 330rpx;
+            overflow: hidden;
+            word-break: break-all;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            -webkit-line-clamp: 1;
+          }
+        }
+        image {
+          // width: 28rpx;
+          // height: 28rpx;
+          // margin-left: 28rpx;
+          width: 28rpx;
+          height: 28rpx;
+          margin-left: 6rpx;
+        }
+      }
+      // 未设置
+      .notSet {
+        font-size: 28rpx;
+        color: #000000;
+        display: flex;
+        align-items: center;
+        image {
+          width: 28rpx;
+          height: 28rpx;
+          margin-left: 6rpx;
+        }
+      }
+    }
+    // 头像
+    .headImg {
+      height: 180rpx;
+      .col-r {
+        image:nth-child(1) {
+          width: 140rpx;
+          height: 140rpx;
+          border-radius: 50%;
+        }
+      }
+    }
+    &.delete{
+      margin-top: 56rpx;
+      .wrap{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .col-l{
+          color: #FA6400;
+          font-size: 28rpx;
+        }
+      }
+    }
+  }
+}
+
+// ---------目标------------
+// 目标-弹窗滚动器
+.targetWrap {
+  padding: 87rpx 50rpx 78rpx;
+  // 1列的情况
+  .list {
+    picker-view {
+      &.active {
+        font-size: 48rpx;
+        font-weight: 500;
+        color: #fa6400;
+      }
+      .active {
+        color: #fa6400;
+      }
+      picker-view-column {
+        &.dw {
+          width: 68rpx;
+          position: absolute;
+          left: 55%;
+          transform: translateX(70%);
+          background: #ffffff;
+          color: #fa6400;
+        }
+        view {
+          text-align: center;
+          &.selected {
+            color: #fa6400;
+            font-size: 48rpx !important;
+          }
+        }
+      }
+    }
+  }
+  // 2列的情况（年 && 月）
+  // .two {
+  //   picker-view {
+  //     picker-view-column {
+  //       // 第1列
+  //       &.val {
+  //         padding-left: 145rpx;
+  //       }
+  //       &.dw {
+  //         background: none;
+  //         left: 30%;
+  //       }
+  //       // 第2列
+  //       &.val2 {
+  //         view {
+  //           padding-left: 60rpx;
+  //         }
+  //       }
+  //       &.dw2 {
+  //         background: none;
+  //         view {
+  //           margin-right: 130rpx;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+}
+// 目标-确认框
+.dialog {
+  // .dialog-title {
+  //   margin: 34rpx 40rpx 44rpx!important;
+  //   font-size: 32rpx;
+  //   font-weight: bold;
+  //   color: #333333;
+  // }
+  .dialog-label {
+    margin: 0 48rpx;
+    font-size: 28rpx;
+    color: #666666;
+    line-height: 40rpx;
+    view {
+      text-align: center;
+    }
+    view:nth-child(2) {
+      margin-top: 40rpx;
+    }
+    .deleteTip{
+      padding: 78rpx 0;
+      color: #333333;
+      font-size: 32rpx;
+      font-weight: bold;
+    }
+  }
+}
+
+// ---------年龄&身高&体重------------
+// 年龄&身高&体重-窗口
+.age {
+  text-align: center;
+  padding: 48rpx 0 92rpx;
+  input {
+    height: 140rpx;
+    font-size: 120rpx;
+    font-family: 'DIN';
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 10rpx;
+  }
+  text {
+    font-size: 28rpx;
+    color: #666666;
+  }
+}
+
+// ---------性别------------
+// 性别-窗口
+.sexShadow {
+  width: 750rpx;
+  // height: 783rpx;
+  background: rgba(255, 255, 255, 1);
+  .wrap {
+    padding: 125rpx 90rpx 93rpx 90rpx;
+    display: flex;
+    justify-content: space-between;
+    .list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      image {
+        width: 250rpx;
+        height: 250rpx;
+      }
+      .sex {
+        font-size: 36rpx;
+        color: #000000;
+        line-height: 50rpx;
+        margin-top: 4rpx;
+        &.active {
+          font-weight: bold;
+          color: #FA6400;
+        }
+      }
+    }
+  }
+}
+// 性别-头部-公用
+.header {
+  position: relative;
+  padding-top: 35rpx;
+  width: 100%;
+  .close {
+    width: 44rpx;
+    height: 44rpx;
+    position: absolute;
+    left: 35rpx;
+  }
+  .title {
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+    
+  }
+}
+// 性别-确认按钮-公用
+.scale-btn {
+  width: 650rpx;
+  height: 88rpx;
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+  border-radius: 50rpx;
+  font-size: 36rpx;
+  color: #FFFFFF;
+  line-height: 88rpx;
+  text-align: center;
+  margin: 0 auto 65rpx;
+}

@@ -1,0 +1,93 @@
+.hobby{
+    width: 100%;
+    .title{
+        // text-align: center;
+        // margin: 40rpx auto;
+        margin: 40rpx 70rpx;
+        text{
+            color: rgba(51, 51, 51, 0.5);
+            font-size: 26rpx;
+            line-height: 50rpx;
+        }
+    }
+    .tip {
+        font-size: 32rpx;
+        font-weight: bold;
+        color: #333333;
+        margin: 0 70rpx 40rpx;
+    }
+    .wrap{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        // padding: 0 0 182rpx 94rpx;
+        padding: 0 0 182rpx 70rpx;
+        .list{
+            // margin: 0 44rpx 60rpx 0;
+            margin: 0 66rpx 60rpx 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            &:nth-of-type(3n){
+                margin-right: 0;
+            }
+            .col-t{
+                width: 158rpx;
+                height: 158rpx;
+                margin-bottom: 20rpx;
+                position: relative;
+                &:nth-of-type(3n){
+                    margin-right: 0;
+                }
+                .vege{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                }
+                .icon{
+                    width: 52rpx;
+                    height: 52rpx;
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                }
+            }
+            .name{
+                max-width: 158rpx;
+                color: #333333;
+                font-size: 26rpx;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 1;
+                overflow: hidden;
+            }
+        }
+    }
+    .btn-box{
+        position: fixed;
+        width: 100%;
+        height: 182rpx;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .btn{
+            width: 650rpx;
+            height: 88rpx;
+            background: rgba(216, 216, 216, 1);
+            border-radius: 44rpx;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36rpx;
+            color: rgba(255,255,255,1);
+            &.active{
+                background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+            }
+        }
+    }
+}

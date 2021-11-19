@@ -1,0 +1,33 @@
+<cp-nav-bar title-text="{{today}}" color="#fff" background="transparent" />
+<cp-refresh-view id="refresh-view" backgroundColor="#F8F8F8" bind:onRefresh="onPullDownRefresh"></cp-refresh-view>
+<view class="myPerformance"  bindtouchstart="handletouchstart" bindtouchmove="handletouchmove" bindtouchend="handletouchend" bindtouchcancel="handletouchcancel">
+  <view class="sumPerformance">
+     
+     <view class="IncomeDetail">
+      <view><text><text class="Com">¥</text>{{totalIncome.orderPrices}}</text><text>该营产生消费</text></view>
+      <view><text><text class="Com">¥</text>{{totalIncome.incomeTotal}}</text><text>当日到手提成</text></view>
+     </view>
+  </view>
+  <view class="myPerformanceList">
+    <view class="title">当日到手提成详情</view>
+    <scroll-view scroll-y="true" style="height: 1000rpx;" wx:if="{{IncomeList.length>0}}">
+      <view wx:for="{{IncomeList}}" wx:key="index" class="list">
+        <view class="date"><image src="{{item.headImgUrl}}" />{{item.uName}}</view>
+        <view class="listmoney">￥{{item.incomeTotal}}</view>      
+      </view>
+    </scroll-view>
+    
+    <view wx:else class="null"> 
+      <image src="https://prodstatic.weis1606.cn/api/smartFood/nullFriends.png" />
+      <view>当日无提成</view>
+    </view>
+  
+    
+  </view>
+</view>
+<cp-confirm-dialog model:show="{{showtips}}" show-cancel="{{false}}" confirm-text="好的" auto-confirm="{{true}}">
+  <view class="dialog">
+  <view class="tip-label">实际提成比例=初始提成比例-减脂营优惠折扣</view>
+  <view class="content"> 你的初始提成比例为30%，该减脂营享8折优惠，你的该减脂营实际提成比例为10%</view>
+  </view>
+</cp-confirm-dialog>

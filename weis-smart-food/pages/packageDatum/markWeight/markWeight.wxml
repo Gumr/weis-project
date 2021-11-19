@@ -1,0 +1,112 @@
+<!-- pages/record/markSugar/markSugar.wxml -->
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
+<cp-nav-bar
+  model:date="{{navDate}}"
+  mode="date"
+  disabled-date="{{disabledDate}}"
+  backIconColor="white"
+  background="{{showCalendar ? '#FF9722' : 'transparent'}}"
+  bind:title-tap="tapTitle"
+  bind:date-change="goAhead"
+></cp-nav-bar>
+<view class="background"></view>
+<view class="record">
+  <view class="tabs">
+    <view
+      data-value="{{item.value}}"
+      data-index="{{index}}"
+      bind:tap="tabTap"
+      class="tab {{activeTab === item.value ? 'tab--active' : ''}}"
+      wx:for="{{tabs}}"
+      wx:key="index"
+    >{{item.label}}</view>
+  </view>
+  <view class="head">
+    <view class="circle">
+      <view class="c-box" bind:tap="showDia">
+        <view class="name">{{labels.title}}</view>
+        <view
+          wx:if="{{tabIndex === 0}}"
+          class="v {{bodyDataInfoList[tabIndex].bdValue > 0 ? 'active' : ''}}"
+        >{{bodyDataInfoList[tabIndex].bdValue > 0 ? bodyDataInfoList[tabIndex].bdValue : '0.0'}}</view>
+        <view
+          wx:if="{{tabIndex === 1}}"
+          class="v {{bodyDataInfoList[tabIndex].bdValue > 0 ? 'active' : ''}}"
+        >{{bodyDataInfoList[tabIndex].bdValue > 0 ? bodyDataInfoList[tabIndex].bdValue : '0.0'}}</view>
+        <view class="unit">{{labels.unit}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 历史 -->
+  <view class="his-record">
+    <view class="head-box">
+      <view class="title">历史{{labels.title}}</view>
+      <view class="r-b" bind:tap="chartTap">
+        <image src="/images/icons/line_chart.png" />
+        <view class="his-name">曲线</view>
+      </view>
+    </view>
+    <view class="list-box">
+      <view wx:if="{{!showWhite}}">
+        <van-swipe-cell
+          id="swipe-cell"
+          wx:for="{{bodyDataVOList}}"
+          wx:if="{{item.bdValue > 0}}"
+          wx:key="index"
+          right-width="{{ 90 }}"
+          data-id="{{item.id}}"
+          data-index="{{index}}"
+          asyncClose
+          bind:reset="reset"
+          bind:open="onOpen"
+          bind:close="onClose"
+        >
+          <view class="list {{selectIndex === index ? 'active' : ''}}">
+            <view class="time">{{item.time == today ? '今天' : filters.format(item.time)}}</view>
+            <view class="v-box">{{item.bdValue}} {{labels.unit}}</view>
+          </view>
+          <view slot="right" class="van-swipe-cell__right">删除</view>
+        </van-swipe-cell>
+      </view>
+      <!-- 空 -->
+      <view class="white" wx:if="{{showWhite}}">- 还没有历史{{labels.title}}记录哦 -</view>
+    </view>
+  </view>
+</view>
+<!-- 输入 -->
+<view class="shadow" wx:if="{{showDialog}}">
+  <view class="dialog {{showDialog ? 'active' : ''}}">
+    <view class="h-box">
+      <image src="/images/icon_down.png" bind:tap="hide" />
+      <view
+        class="title"
+      >{{selectDate == today ? '今天' : filters.format(selectDate)}} {{tab[tabIndex].name}}</view>
+    </view>
+    <view class="c-box">
+      <input
+        type="digit"
+        placeholder="{{tabIndex === 0 ? '0' : '0.0'}}"
+        placeholder-class="input-placeholder"
+        focus="{{true}}"
+        value="{{weightVal}}"
+        bindinput="weightVal"
+        cursor-spacing="{{cursorSpacing}}"
+      />
+      <view class="unit">{{labels.unit}}</view>
+    </view>
+    <view class="btn {{weightVal ? 'active' : ''}}" bind:tap="record">记录{{labels.title}}</view>
+  </view>
+  <view class="emp" bind:tap="hide"></view>
+</view>
+<view class="calendar-dialog" wx:if="{{showCalendar}}" style="padding-top:{{navBarHeight}}px">
+  <view class="c-b {{initCal ? 'active' : ''}}">
+    <calendar
+      id="calendar"
+      config="{{calendarConfig}}"
+      bind:afterCalendarRender="afterCalendarRender"
+      bind:afterTapDay="afterTapDay"
+      bind:backToday="backToday"
+    />
+    <view class="empty" bind:tap="hideCal"></view>
+  </view>
+</view>

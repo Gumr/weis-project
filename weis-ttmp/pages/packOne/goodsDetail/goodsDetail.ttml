@@ -1,0 +1,62 @@
+<!-- e:\project\weis-ttmp\weis-ttmp-nlm\weis-ttmp\pages\packOne\goodsDetail\goodsDetail\goodsDetail.ttml -->
+<cp-nav-bar title-text="维士小盒饭" />
+<view class="goodsDetail">
+    <!-- 头部 -->
+    <view class="header">
+        <!-- 轮播 -->
+        <view class="slideshow" wx:if="{{mealDetail && mealDetail.tdp_cover_img.length > 0}}">
+            <swiper style="height: 515rpx" indicator-dots="{{false}}" circular autoplay="{{true}}" interval="{{4000}}" duration="{{400}}"  bindchange="slideshowChange">
+                <swiper-item wx:for="{{mealDetail.tdp_cover_img}}" wx:key="key">
+                    <image class="slideshow__image" src="{{item}}" />
+                </swiper-item>
+            </swiper>
+            <view class="slideshow__dots">
+                <view wx:for="{{mealDetail.tdp_cover_img}}" wx:key="index" class="slideshow__dot {{index === currentSlideshow ? 'slideshow__dot--active' : ''}}"></view>
+            </view>
+        </view>
+        <!-- 信息 -->
+        <view class="info">
+            <view class="name">{{mealDetail.tdp_name}}</view>
+            <view class="price">
+                <view class="price_now">¥<text>{{mealDetail.tdp_sale_price}}</text></view>
+                <view class="price_origin">¥{{mealDetail.tdp_combo_price}}</view>
+            </view>
+            <view class="desc">
+                <view class="list">
+                    <image class="list_img" src="{{imgPrefix}}selectGd.png" />
+                    <view class="list_word">核销期限：30天</view>
+                </view>
+                <view class="list">
+                    <image class="list_img" src="{{imgPrefix}}selectGd.png" />
+                    <view class="list_word">未核销无条件退款</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 商品详情 -->
+    <view class="content">
+        <view class="title">商品详情</view>
+        <view class="tip">{{mealDetail.tdp_days_num}}日套餐，每日{{mealDetail.tdp_meals_num}}餐，共{{mealDetail.tdp_days_num * mealDetail.tdp_meals_num}}餐</view>
+        <view class="detailImg">
+            <image class="list" mode="widthFix" tt:for="{{mealDetail.tdp_detail_img}}" src="{{item}}" />
+        </view>
+    </view>
+    <!-- 底部 -->
+    <view class="footer">
+        <!-- <view class="price">
+            <view class="price_now">¥<text>{{mealDetail.tdp_sale_price}}</text></view>
+            <view class="price_origin">¥{{mealDetail.tdp_combo_price}}</view>
+        </view> -->
+        <view class="icon" bind:tap="share">
+            <image src="{{imgPrefix}}share.png" />
+            <view class="text">分享</view>
+            <button open-type="share" wx:if="{{isLogin}}"></button>
+        </view>
+        <view class="icon" bind:tap="contact">
+            <image src="{{imgPrefix}}service.png" />
+            <view class="text">客服</view>
+            <button open-type="contact" wx:if="{{isLogin}}"></button>
+        </view>
+        <view class="buy" bindtap="buy">立即购买</view>
+    </view>
+</view>

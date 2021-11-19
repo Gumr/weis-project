@@ -1,0 +1,25 @@
+<!-- pages/packageDiscover/riceBall/establish/establish.wxml -->
+<cp-nav-bar title-text="健康饭团" color="#333" home-icon="/images/backHome.png"></cp-nav-bar>
+<view class="container">
+  <image class="bg" mode="widthFix" src="https://prodstatic.weis1606.cn/api/smartFood/meal_details_picture.png" />
+  <view class="infos">
+    <image class="icon" src="{{preImg + '/riceball_rules.png'}}" />
+    <!-- <view class="infos__step">1.吃饭有伴，你我成团，幸福就是一日三餐四季有你们的陪伴。</view>
+    <view class="infos__step">2.工作再繁杂，生活再忙碌，请记得好好吃饭。邀上好友一起饭团一下，在这里不仅能享受优惠，更能感受按数吃饭的健康生活方式。</view>
+    <view class="infos__step">
+      <view class="infos__step-label">3.健康饭团点餐规则：</view>
+      <view class="graytext">
+       ◎ 饭团最少5人才可开团，开团成功后立即享受8折点餐优惠
+      </view>
+      <view class="graytext">
+        ◎点一餐得5分，每日最多得15分
+      </view>
+      <image class="icon" mode="widthFix" src="https://prodstatic.weis1606.cn/api/smartFood/meal_details.png" />
+       <view class="graytext">
+        ◎活动中途有团员退出，则团队总分中会扣除该团员所得积分
+      </view>
+    </view>
+    <view class="infos__step">4.报名时间和活动时间均可自行设定，但均不得超过30天。</view> -->
+  </view>
+  <view class="btn" bindtap="toestablish" wx:if="{{!showtype}}">创建我的饭团</view>
+</view>

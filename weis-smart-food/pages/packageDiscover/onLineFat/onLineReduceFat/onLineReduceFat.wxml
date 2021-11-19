@@ -1,0 +1,27 @@
+<!-- pages/packageDiscover/onLineFat/onLineReduceFat/onLineReduceFat.wxml -->
+<cp-nav-bar homeIcon="/images/backHome.png" title-text="线上减脂营" />
+<view class="reduce">
+    <!-- 暂无减脂营 -->
+    <view class="empty" wx:if="{{activityList.length == 0}}">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/empty.png" />
+        <view class="desc">暂无减脂营</view>
+    </view>
+    <view class="box" wx:else>
+        <view class="content">
+            <view class="list" wx:for="{{activityList}}" data-index="{{index}}" data-id="{{item.activity.activityId}}" bind:tap="fatDetail">
+                <image class="list__image" src="{{item.activity.activityImgUrl || 'https://prodstatic.weis1606.cn/api/smartFood/reduce_fat_kv.png'}}" mode="aspectFill" />
+                <view class="list__text">
+                    <view class="name">{{item.activity.name}}</view>
+                    <view class="date">{{item.activity.startTime}} ~ {{item.activity.endTime}}</view>
+                    <view class="status" style="{{'color: #FE5E0F'}}">
+                        {{onLineCampStatus[item.activity.type]}}
+                    </view>
+                </view>
+                <view class="list__label" wx:if="{{item.ifJoin && item.activity.type != '03'}}">{{item.activity.type == '01' ? '已报名' : '已参加'}}</view>
+            </view>
+        </view>
+        <view class="tip">「 你参加的减脂营在“我的”→“我的活动”中查看 」</view>
+    </view>
+</view>
+<!-- 申请开通 -->
+<view class="applyOpen" bind:tap="apply">申请开通减脂营</view>

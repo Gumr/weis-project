@@ -1,0 +1,142 @@
+.step-1 {
+  width: 100%;
+  padding: 40rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.step-1 .weight-input {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  background: #e9e9e9;
+  border-radius: 66rpx;
+  width: 690rpx;
+  margin: 0 30rpx;
+  font-size: 28rpx;
+}
+.step-1 .weight-input .input {
+  flex-grow: 1;
+}
+.step-1 .weight-input .unit {
+  color: #333333;
+}
+.step-1 .banner {
+  width: 690rpx;
+  height: 140rpx;
+  margin: 40rpx 30rpx;
+}
+.btn {
+  width: 670rpx;
+  color: #fff;
+  font-size: 30rpx;
+  padding: 30rpx 0;
+  text-align: center;
+  background: #a9a9a9;
+  border-radius: 44rpx;
+}
+.btn-active {
+  background: linear-gradient(180deg, #ff9722 0%, #fe5e0f 100%);
+}
+.step-2 {
+  padding: 40rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.step-2 .date-tip {
+  margin: 40rpx 30rpx;
+  color: #333;
+  font-size: 28rpx;
+}
+.step-2 .date-image-item {
+  margin: 40rpx 30rpx;
+  margin-top: 0;
+  width: 690rpx;
+  height: 140rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.step-2 .date-image-item .date-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.step-2 .date-image-item .date-select {
+  position: relative;
+  z-index: 1;
+  margin-left: 30rpx;
+  font-size: 28rpx;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+.step-2 .date-image-item .date-select .select-icon {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 16rpx;
+}
+.step-2 .date-box {
+  width: 690rpx;
+  margin: 0 30rpx;
+  padding: 56rpx 30rpx;
+  font-size: 28rpx;
+  color: #333;
+  border-radius: 6rpx;
+  background: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.step-2 .date-box .date-next-icon {
+  width: 28rpx;
+  height: 28rpx;
+}
+.step-2 .date-box .date-text {
+  display: flex;
+  align-items: center;
+  color: #808080;
+  font-size: 28rpx;
+}
+.step-2 .date-warning {
+  padding: 20rpx 30rpx;
+  background: rgba(254, 94, 15, 0.1);
+  font-size: 24rpx;
+  color: #ff7448;
+  width: 690rpx;
+  margin: 20rpx 30rpx;
+}
+.date-popup-header {
+  padding: 40rpx 30rpx;
+  border-bottom: 1rpx solid #e9e9e9;
+}
+.date-popup-header .title {
+  font-size: 32rpx;
+  color: #333;
+  position: relative;
+  text-align: center;
+}
+.date-popup-header .close-icon {
+  width: 34rpx;
+  height: 34rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.btn-box {
+  width: 690rpx;
+  padding: 44rpx 40rpx;
+}
+.btn-box .btn {
+  width: 100%;
+  background: linear-gradient(180deg, #ff9722 0%, #fe5e0f 100%);
+  border-radius: 44rpx;
+  color: #fff;
+  text-align: center;
+  padding: 29rpx 0;
+}

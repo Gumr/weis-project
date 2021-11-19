@@ -1,0 +1,57 @@
+.search {
+  width: 100%;
+  padding: 30rpx 64rpx 0 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.search .inputBox {
+  position: relative;
+  width: 592rpx;
+  background: #efefef;
+  border-radius: 40rpx;
+}
+.search .inputBox input {
+  width: 500rpx;
+  height: 80rpx;
+  background: #efefef;
+  border-radius: 40rpx;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+}
+.search .inputBox input::placeholder {
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #666666;
+  line-height: 30rpx;
+}
+.search .inputBox .closeBox {
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  position: absolute;
+  top: 50%;
+  right: 20rpx;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.search .inputBox .close {
+  width: 36rpx;
+  height: 36rpx;
+}
+.search .imgbox {
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+}
+.search .imgbox image {
+  width: 48rpx;
+  height: 48rpx;
+  vertical-align: middle;
+}

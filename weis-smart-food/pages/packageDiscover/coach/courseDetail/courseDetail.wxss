@@ -1,0 +1,108 @@
+.border {
+  display: block;
+  content: "";
+  width: 690rpx;
+  height: 1rpx;
+  background: #333333;
+  opacity: 0.1;
+  position: absolute;
+  bottom: 0;
+  margin: auto;
+}
+.flex {
+  display: flex;
+}
+.flex-items-center {
+  display: flex;
+  align-items: center;
+}
+.flex-content-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.courseDetail {
+  width: 100%;
+  padding-bottom: 156rpx;
+}
+.courseDetail .banner {
+  width: 100%;
+  height: 422rpx;
+}
+.courseDetail .info {
+  padding: 40rpx 30rpx;
+  position: relative;
+}
+.courseDetail .info::after {
+  display: block;
+  content: "";
+  width: 690rpx;
+  height: 1rpx;
+  background: #333333;
+  opacity: 0.1;
+  position: absolute;
+  bottom: 0;
+  margin: auto;
+}
+.courseDetail .info__price {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #fa6400;
+  line-height: 48rpx;
+}
+.courseDetail .info__price text {
+  font-size: 48rpx;
+}
+.courseDetail .info__name {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-top: 30rpx;
+}
+.courseDetail .content {
+  padding: 40rpx 30rpx 60rpx;
+}
+.courseDetail .becomingPers {
+  padding: 0 30rpx;
+}
+.courseDetail .content view:nth-child(1),
+.courseDetail .becomingPers view:nth-child(1) {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 30rpx;
+}
+.courseDetail .content view:nth-child(2),
+.courseDetail .becomingPers view:nth-child(2) {
+  font-size: 26rpx;
+  color: #333333;
+  line-height: 52rpx;
+}
+.courseDetail .tail {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  width: 100%;
+  padding: 10rpx 50rpx 58rpx;
+}
+.courseDetail .tail__weChat {
+  width: 315rpx;
+  height: 88rpx;
+  border-radius: 44rpx;
+  border: 1rpx solid #333333;
+  text-align: center;
+  font-size: 36rpx;
+  color: #333333;
+  line-height: 88rpx;
+}
+.courseDetail .tail__contact {
+  width: 315rpx;
+  height: 88rpx;
+  background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+  border-radius: 44rpx;
+  text-align: center;
+  font-size: 36rpx;
+  color: #ffffff;
+  line-height: 88rpx;
+}

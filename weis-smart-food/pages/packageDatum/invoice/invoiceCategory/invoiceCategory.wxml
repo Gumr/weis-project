@@ -1,0 +1,8 @@
+<!--pages/packageDatum/invoice/invoiceCategory/invoiceCategory.wxml-->
+<cp-nav-bar title-text="所含餐单" background="#F3F4F5" color="#000" backIconColor="black" />
+<view class="category">
+    <view class="list" wx:for="{{invoiceArr}}">
+        <view class="date">{{item.date}}  {{item.categoryText}}</view>
+        <view class="price">{{item.tirdPayWay == 'balance' ? '余额' : '微信'}}支付{{item.tirdPayAmount}}元，可开票金额<view>{{item.tirdActualAmount}}</view>元</view>
+    </view>
+</view>

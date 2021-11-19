@@ -1,0 +1,222 @@
+.border {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1rpx;
+  background: #F6F6F6;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+page {
+  background: #F3F4F5;
+}
+.person {
+  width: 100%;
+  position: relative;
+  padding-bottom: 50rpx;
+  background: #F3F4F5;
+}
+.person .box:nth-child(1) {
+  border-bottom: 20rpx solid #F6F6F6;
+}
+.person .box {
+  box-sizing: border-box;
+  padding: 0 40rpx 0 35rpx;
+  background: #ffffff;
+}
+.person .box .wrap {
+  width: 100%;
+  height: 112rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.person .box .wrap::after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1rpx;
+  background: #F6F6F6;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 0;
+}
+.person .box .wrap .col-l {
+  font-size: 28rpx;
+  color: #000000;
+}
+.person .box .wrap .col-r {
+  display: flex;
+  align-items: center;
+}
+.person .box .wrap .col-r .name {
+  font-size: 28rpx;
+  color: #000000;
+}
+.person .box .wrap .col-r .name.allergen {
+  max-width: 330rpx;
+  overflow: hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-line-clamp: 1;
+}
+.person .box .wrap .col-r image {
+  width: 28rpx;
+  height: 28rpx;
+  margin-left: 6rpx;
+}
+.person .box .wrap .notSet {
+  font-size: 28rpx;
+  color: #000000;
+  display: flex;
+  align-items: center;
+}
+.person .box .wrap .notSet image {
+  width: 28rpx;
+  height: 28rpx;
+  margin-left: 6rpx;
+}
+.person .box .headImg {
+  height: 180rpx;
+}
+.person .box .headImg .col-r image:nth-child(1) {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+}
+.person .box.delete {
+  margin-top: 56rpx;
+}
+.person .box.delete .wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.person .box.delete .wrap .col-l {
+  color: #FA6400;
+  font-size: 28rpx;
+}
+.targetWrap {
+  padding: 87rpx 50rpx 78rpx;
+}
+.targetWrap .list picker-view.active {
+  font-size: 48rpx;
+  font-weight: 500;
+  color: #fa6400;
+}
+.targetWrap .list picker-view .active {
+  color: #fa6400;
+}
+.targetWrap .list picker-view picker-view-column.dw {
+  width: 68rpx;
+  position: absolute;
+  left: 55%;
+  transform: translateX(70%);
+  background: #ffffff;
+  color: #fa6400;
+}
+.targetWrap .list picker-view picker-view-column view {
+  text-align: center;
+}
+.targetWrap .list picker-view picker-view-column view.selected {
+  color: #fa6400;
+  font-size: 48rpx !important;
+}
+.dialog .dialog-label {
+  margin: 0 48rpx;
+  font-size: 28rpx;
+  color: #666666;
+  line-height: 40rpx;
+}
+.dialog .dialog-label view {
+  text-align: center;
+}
+.dialog .dialog-label view:nth-child(2) {
+  margin-top: 40rpx;
+}
+.dialog .dialog-label .deleteTip {
+  padding: 78rpx 0;
+  color: #333333;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.age {
+  text-align: center;
+  padding: 48rpx 0 92rpx;
+}
+.age input {
+  height: 140rpx;
+  font-size: 120rpx;
+  font-family: 'DIN';
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 10rpx;
+}
+.age text {
+  font-size: 28rpx;
+  color: #666666;
+}
+.sexShadow {
+  width: 750rpx;
+  background: #ffffff;
+}
+.sexShadow .wrap {
+  padding: 125rpx 90rpx 93rpx 90rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.sexShadow .wrap .list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sexShadow .wrap .list image {
+  width: 250rpx;
+  height: 250rpx;
+}
+.sexShadow .wrap .list .sex {
+  font-size: 36rpx;
+  color: #000000;
+  line-height: 50rpx;
+  margin-top: 4rpx;
+}
+.sexShadow .wrap .list .sex.active {
+  font-weight: bold;
+  color: #FA6400;
+}
+.header {
+  position: relative;
+  padding-top: 35rpx;
+  width: 100%;
+}
+.header .close {
+  width: 44rpx;
+  height: 44rpx;
+  position: absolute;
+  left: 35rpx;
+}
+.header .title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+}
+.scale-btn {
+  width: 650rpx;
+  height: 88rpx;
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+  border-radius: 50rpx;
+  font-size: 36rpx;
+  color: #FFFFFF;
+  line-height: 88rpx;
+  text-align: center;
+  margin: 0 auto 65rpx;
+}

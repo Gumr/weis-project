@@ -1,0 +1,51 @@
+<!-- /Users/weis/Desktop/miniprogram/weis-ttmp/components/calendar-date-range/calendar-date-range.ttml -->
+
+<sjs module="utils">
+  function parseInt(v){ return Math.floor(v); } module.exports = { parseInt: parseInt }
+</sjs>
+<!-- 加个框根据宽度缩放 -->
+<view style="height:{{(months[current].length<29?548:months[current].length<36?644:740)*width/690}}rpx;width={{width}}rpx">
+  <view class="container" style="height:{{months[current].length<29?548:months[current].length<36?644:740}}rpx;transform:scale({{width/690}},{{width/690}});transform-origin:left top">
+    <!-- 头部 -->
+    <view class="header">
+      <!-- 上一月 -->
+      <image bindtap="tapPrev" src="http://prodstatic.weis1606.cn/api/ttmpFood/order/write_off_previous.png" />
+      <!-- 年月 -->
+      <view class="month">{{(startMonth+current)%12==0?12:(startMonth+current)%12}}月</view>
+      <view class="year">/{{startYear+utils.parseInt((startMonth+current-1)/12)}}</view>
+      <!-- 下一月 -->
+      <image bindtap="tapNext" src="http://prodstatic.weis1606.cn/api/ttmpFood/order/write_off_next.png" />
+    </view>
+    <view class="week">
+      <!-- 星期 -->
+      <view class="text" tt:for="{{weeks}}">
+        {{item.text}}
+      </view>
+    </view>
+    <view class="line"></view>
+    <swiper bindchange="change" current="{{current}}" style="height:{{months[current].length<29?384:months[current].length<36?480:576}}rpx;">
+      <block tt:for="{{months}}" tt:for-item="item">
+        <swiper-item>
+          <view class="item">
+            <view class="week" tt:for="{{6}}" tt:for-item="w" tt:for-index="index">
+              <!-- 展示行数看天数来决定 -->
+              <view tt:if="{{index<5||(index<6&&item.length>28)||item.length>35}}" tt:for="{{7}}" tt:for-item="d" tt:for-index="idx">
+                <view class="date-box">
+                  <!-- 左侧背景，每周第一天/未选中/前一天未选中则透明 -->
+                  <view class="bg-{{idx==0||!item[index*7+idx].selected||!item[index*7+idx-1].selected?'none':'active'}}"></view>
+                  <!-- 右侧背景，每周最后一天/未选中/后一天未选中则透明 -->
+                  <view class="bg-{{idx==6||!item[index*7+idx].selected||!item[index*7+idx+1].selected?'none':'active'}}"></view>
+                  <!-- 圆形背景选中则显示未选中则透明 -->
+                  <view data-index="{{index*7+idx}}" data-date="{{item[index*7+idx]}}" bindtap="tapDate" class="date" style="background:{{item[index*7+idx].selected?'#FE5E0F':'transparent'}};">
+                    <!-- 选中字体白色未选中0.85黑色 -->
+                    <view class="text" style="color:{{item[index*7+idx].disable?'#999999':item[index*7+idx].selected?'white':'rgba(0, 0, 0, 0.85)'}};">{{item[index*7+idx].text||item[index*7+idx].date}}</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+</view>

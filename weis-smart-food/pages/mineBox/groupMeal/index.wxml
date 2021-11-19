@@ -1,0 +1,117 @@
+<!--pages/mineBox/groupMeal/index.wxml-->
+<!-- <cp-nav-bar title-text="{{tgcAreaType == 01? '学校点餐入口':'企业点餐入口'}}" color="#333333" background="#fff" backIconColor="black" /> -->
+<cp-nav-bar title-text="企业优惠点餐" color="#333333" background="#fff" backIconColor="black" />
+<!-- 企业点餐 -->
+<view class="groupsMeal">
+  <view class="mealtitle" wx:if="{{joincompanyimg.length>=1}}">
+    {{tgcAreaType == 01? '我的学校/公司' :'我的公司'}}
+    <text>\n 你点过餐的公司会显示在此处</text>
+  </view>
+  <view class="nowgroup" wx:if="{{joincompanyimg.length>=1}}">
+    <image
+      wx:for="{{joincompanyimg}}"
+      wx:key="index"
+      data-item="{{item}}"
+      data-corp-id="{{item.tgcId}}"
+      src="{{item.tgcLogoImg}}"
+      data-type="{{item.tgcType}}"
+      bindtap="goAllmeal"
+      mode="aspectFill"
+      data-tgeRole="{{item.tgeRole}}"
+      data-tgeInterType="{{item.tgeInterType}}"
+    />
+  </view>
+  <view class="mealtitle mr">
+    {{tgcAreaType == 01? '全部学校/公司' :'全部公司'}}
+    <text>{{Allcompany.length}}个</text>
+  </view>
+  <!--搜索 -->
+  <view class="search">
+    <input
+      type="text"
+      placeholder="请输入公司名称"
+      bindinput="search"
+      value="{{searchName}}"
+      bindconfirm="search"
+      maxlength="20"
+    />
+    <image
+      src="/images/icondel.png"
+      class="mr"
+      wx:if="{{showdelete && searchName}}"
+      catchtap="deletename"
+    />
+    <image
+      src="/images/search.png"
+      data-value="{{searchName}}"
+      class="sericon"
+      bindtap="search"
+      mode="scaleToFill"
+    />
+  </view>
+
+  <view class="joinimg">
+    <image
+      class="w-100"
+      wx:for="{{Allcompany}}"
+      wx:key="index"
+      bindtap="goAllmeal"
+      data-item="{{item}}"
+      data-corp-id="{{item.tgcId}}"
+      data-type="{{item.tgcType}}"
+      src="{{item.tgcLogoImg}}"
+      mode="aspectFill"
+      data-tgeRole="{{item.tgeRole}}"
+      data-tgeInterType="{{item.tgeInterType}}"
+    />
+  </view>
+  <!--空-->
+  <view class="no" wx:if="{{Allcompany.length <= 0}}">
+    <image src="https://prodstatic.weis1606.cn/api/smartFood/searchEmt.png" />
+    <view class="desc">没有该公司</view>
+  </view>
+
+  <view class="groupsbtn">
+    <button bindtap="gogroup">申请团膳合作</button>
+  </view>
+</view>
+<!--企业点餐-中行验证-->
+<cp-bottom-popup
+  model:show="{{showUserCheck}}"
+  showCustom
+  use-slot
+  title="员工验证"
+  confirm-disabled="{{!(userName.length>0 && userCode.length>0)}}"
+  confirm-style="width: 450rpx;"
+  bind:on-confirm="confirmcheck"
+>
+  <view class="userCheck">
+    <view class="usertips">
+      若验证失败，请先去中国银行app绑定餐卡
+      <text bindtap="tojump">查看步骤</text>
+    </view>
+    <view class="inputUser inputUser--name">
+      姓名
+      <input
+        type="text"
+        placeholder="请输入姓名"
+        bindinput="inputname"
+        value="{{userName}}"
+        maxlength="7"
+        placeholder-style="color: #999999;font-weight: normal;"
+      />
+    </view>
+    <view class="inputUser inputUser--code">
+      工号
+      <input
+        type="text"
+        placeholder="请输入工号"
+        bindinput="inpucode"
+        value="{{userCode}}"
+        maxlength="20"
+        placeholder-style="color: #999999;font-weight: normal;"
+      />
+    </view>
+    <view class="errortips">{{errortips}}</view>
+  </view>
+</cp-bottom-popup>

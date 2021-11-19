@@ -1,0 +1,292 @@
+page {
+  background: #f6f6f6;
+}
+.border {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2rpx;
+  background: #e9e9e9;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.hook {
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  padding: 0 30rpx 53rpx;
+}
+.hook::after {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2rpx;
+  background: #e9e9e9;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0;
+}
+.hook .my {
+  background: #ffffff;
+  box-shadow: 0rpx 4rpx 20rpx 0rpx rgba(164, 180, 183, 0.2);
+  border-radius: 10rpx;
+  padding: 30rpx 30rpx 30rpx;
+  margin: 40rpx auto 0;
+}
+.hook .my .title {
+  font-weight: 550;
+  color: #333333;
+  font-size: 28rpx;
+  margin-bottom: 40rpx;
+}
+.hook .my.history {
+  height: initial;
+  background: #ffffff;
+  border-radius: 10rpx;
+  padding: 30rpx 0 30rpx 30rpx;
+}
+.hook .my.history .title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10rpx;
+}
+.hook .my.history .title text:nth-child(2) {
+  font-weight: 400;
+  color: #FE5E0F;
+  font-size: 24rpx;
+  padding-right: 30rpx;
+}
+.hook .my.history .history-box .box {
+  padding: 30rpx 30rpx 30rpx 0;
+  padding-bottom: 0;
+}
+.hook .my.history .history-box .box.active {
+  margin-bottom: 0;
+}
+.hook .my.history .history-box .delete {
+  width: 100%;
+  height: 100%;
+  background: #FE5E0F;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hook .my.history .history-box .delete text {
+  font-size: 24rpx;
+  color: #FFFFFF;
+}
+.hook .my .box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.hook .my .box .left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.hook .my .box .left .head {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  border: 2rpx solid #BABABA4D;
+}
+.hook .my .box .left .minhead {
+  width: 120rpx!important;
+  height: 120rpx!important;
+}
+.hook .my .box .left .c-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hook .my .box .left .c-box .name {
+  color: #333333;
+  font-size: 28rpx;
+  margin-bottom: 14rpx;
+  font-weight: 550;
+}
+.hook .my .box .left .c-box .like {
+  color: #808080;
+  font-size: 24rpx;
+}
+.hook .my .box .arrow {
+  width: 38rpx;
+  height: 38rpx;
+}
+.hook .my .box .add {
+  width: 96rpx;
+  height: 96rpx;
+}
+.hook .my .target {
+  width: 630rpx;
+  background: #FFF1D9FF;
+  border-radius: 0px 32rpx 32rpx 25rpx;
+  margin-top: 30rpx;
+  font-size: 22rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #DF8D00;
+  line-height: 52rpx;
+  padding-left: 20rpx;
+}
+.hook .my .van-swipe-cell__right {
+  width: 98rpx;
+  height: 156rpx;
+  background: #ff5959;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-size: 24rpx;
+}
+.hook .record {
+  padding: 30rpx 30rpx 0;
+  background: #ffffff;
+  box-shadow: 0rpx 4rpx 20rpx 0rpx rgba(164, 180, 183, 0.2);
+  border-radius: 10rpx;
+  margin: 40rpx auto 0;
+}
+.hook .record .title {
+  color: #333333;
+  font-size: 28rpx;
+  font-weight: 550;
+}
+.hook .record .no {
+  padding: 40rpx 0 30rpx 0;
+  color: #808080;
+  font-size: 24rpx;
+}
+.hook .record .replace {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 40rpx 5rpx 40rpx 0;
+  position: relative;
+}
+.hook .record .replace::after {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2rpx;
+  background: #e9e9e9;
+  transform: scaleY(0.5);
+  position: absolute;
+  right: 0;
+  margin: auto;
+  width: 630rpx;
+  bottom: 0;
+  left: 0;
+  right: initial;
+}
+.hook .record .replace .l-box {
+  display: flex;
+  align-items: center;
+}
+.hook .record .replace .l-box .name {
+  color: #333333;
+  font-size: 28rpx;
+  margin-right: 10rpx;
+}
+.hook .record .replace .l-box .have {
+  width: 86rpx;
+  height: 28rpx;
+}
+.hook .record .replace .r-box {
+  display: flex;
+  align-items: center;
+}
+.hook .record .replace .r-box .popupview {
+  width: 28rpx;
+  height: 28rpx;
+  background: linear-gradient(135deg, #FF9722 0%, #FE5E0F 100%);
+  border-radius: 0px 100rpx 100rpx 100rpx;
+  font-size: 22rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-align: center;
+}
+.hook .record .replace .r-box .lose {
+  color: #808080;
+  font-size: 26rpx;
+}
+.hook .record .replace .r-box image {
+  width: 38rpx;
+  height: 38rpx;
+  margin-left: 7rpx;
+}
+.hook .record .record-box {
+  box-sizing: border-box;
+  padding: 40rpx 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hook .record .record-box .date {
+  color: #333333;
+  font-size: 28rpx;
+  margin-bottom: 24rpx;
+}
+.hook .record .record-box .solution {
+  color: #808080;
+  font-size: 24rpx;
+}
+.counselor-dialog-box {
+  padding: 0 40rpx;
+}
+.counselor-dialog-box .header {
+  display: flex;
+  align-items: center;
+}
+.counselor-dialog-box .header .img {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.counselor-dialog-box .header .name {
+  color: #333333;
+  font-size: 28rpx;
+  font-weight: 550;
+  line-height: 28rpx;
+}
+.counselor-dialog-box .content {
+  margin: 44rpx 0 52rpx 4rpx;
+  font-size: 28rpx;
+  color: #A9A9A9;
+  font-weight: 400;
+}
+.counselor-dialog-box .content text:nth-child(1) {
+  line-height: 44rpx;
+  display: inline-block;
+  margin-bottom: 30rpx;
+}
+.counselor-dialog-box .content text:nth-child(2) {
+  line-height: 28px;
+  display: inline-block;
+}
+.counselor-dialog-box .footer .footer-box {
+  display: flex;
+  align-items: center;
+}
+.counselor-dialog-box .footer .footer-box .img {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 10rpx;
+}
+.counselor-dialog-box .footer .footer-box .word {
+  font-size: 24rpx;
+  color: #333333;
+  line-height: 24rpx;
+}

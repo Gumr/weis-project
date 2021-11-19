@@ -1,0 +1,47 @@
+<!-- pages/packSubAccount/treat/treat.wxml -->
+<cp-nav-bar title-text="请客吃饭" background="transparent" color="#fff" backIconColor="white" />
+<view class="treat">
+    <view class="banner" style="margin-top:-{{navStatusHeight}}px">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/treat-bg.png" />
+    </view>
+    <!--  -->
+    <view class="main-treat">
+        <!-- 请客人数 -->
+        <view class="box">
+            <view class="title">请客人数</view>
+            <view class="num-box">
+                <input type="number" placeholder="输入人数" placeholder-class="input-placeholder" bindinput="changeNum" value="{{number}}" />
+                <view class="sympol">人</view>
+            </view>
+        </view>
+        <!-- 每人金额 -->
+        <view class="box">
+            <view class="title">每人金额</view>
+            <view class="num-box">
+                <input type="digit" placeholder="0.00" placeholder-class="input-placeholder" bindinput="changePrice" value="{{price}}" />
+                <view class="sympol">元</view>
+            </view>
+            <!-- 提示 -->
+            <view class="tip {{price > 50 ? 'active' : ''}}">* 每人不得超过50元</view>
+        </view>
+    </view>
+    <!-- 总金额 -->
+    <view class="all-box">
+        <view class="name">总金额</view>
+        <view class="price-box">
+            <view class="sympol">￥</view>
+            <view class="price">{{allPrice}}</view>
+        </view>
+    </view>
+    <!-- 支付 -->
+    <view class="pay {{number > 0 && price > 0 && price <= 50 ? 'active' : ''}}" bind:tap="pay">支付后发给好友</view>
+    <text class="rule">请新用户吃饭返还所领金额的50%，\n支付后24h和未领金额一起返还至余额。</text>
+    <!-- 请客记录 -->
+    <view class="record" bind:tap="record">
+        <view class="name">请客记录</view>
+        <image src="/images/icon_right.png" />
+    </view>
+</view>
+
+<!-- 选择支付方式 -->
+<cp-pay-popup id="pay" source="treat" bind:on-confirm="wxPay"></cp-pay-popup>

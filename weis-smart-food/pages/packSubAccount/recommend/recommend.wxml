@@ -1,0 +1,74 @@
+<!--pages/packSubAccount/member/member.wxml-->
+<cp-nav-bar title-text="" background="#F3F4F5"/>
+<view class="member">
+    <!-- 优惠券 -->
+    <view class="couponBox" wx:if="{{couponUserVos.length > 0}}">
+        <view class="header">你有80元优惠券可用</view>
+        <view class="coupon">
+            <scroll-view scroll-x="{{true}}" style="width:660rpx">
+                <view class="content">
+                    <view class="list" wx:for="{{couponUserVos}}">
+                        <view class="card">
+                            <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/coupon_bg.png" />
+                            <view class="con">
+                                <view class="newUser">新人券</view>
+                                <view class="info">
+                                    <view class="info_price"><text>{{item.tcuAmount}}</text>元</view>
+                                    <view class="info_operator">×</view>
+                                    <view class="info_num"><text>{{item.num}}</text>张</view>
+                                </view>
+                                <view class="threshold">满{{item.tcuRestrictAmount}}可用</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+    <!-- 优惠套餐 -->
+    <view class="packageBox" wx:if="{{dietSetMeals.length > 0}}">
+        <view class="header">新人专享优惠套餐</view>
+        <view class="package"> 
+            <view class="content">
+                <view class="list" wx:for="{{dietSetMeals}}">
+                    <view class="sku" data-index="{{index}}" bind:tap="skuTap">
+                        <view class="card">
+                            <image class="bg" src="{{item.primaryImgUrl}}" />
+                        </view>
+                        <view class="info">
+                            <view class="name">{{item.name}}</view>
+                            <view class="desc">{{item.packageForm}}</view>
+                            <!-- <view class="price">
+                                <view class="left">
+                                    <view class="left_now">¥<text>{{item.tvccActualAmount}}</text></view>
+                                    <view class="left_num">/100g</view>
+                                </view>
+                                <view class="right" bind:tap="addBuy">加购</view>
+                            </view> -->
+                            <view class="price">
+                                <view class="left">
+                                    <view class="left_sign">券后价</view>
+                                    <view class="left_now">¥<text>{{item.discountPrice}}</text></view>
+                                    <view class="left_origin">¥{{item.price}}</view>
+                                </view>
+                                <view class="right" data-item="{{item}}" catch:tap="add">加购</view>
+                            </view>
+                        </view>
+                    </view>
+                    <scroll-view wx:if="{{item.select}}" scroll-x="{{true}}" style="width:690rpx;height: 248rpx;background: #F3F4F5;">
+                        <view class="skuBox">
+                            <view class="skuBoxList" wx:for="{{item.setMealDateils}}" wx:for-item="item2" wx:for-index="index2">
+                                <image class="img" src="{{item2.primaryImgUrl}}" />
+                                <view class="name">{{item2.name}}</view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 底部 -->
+    <view class="bottom">
+        <view class="bottom_btn" bind:tap="toIndex">跳过</view>
+    </view>
+</view>

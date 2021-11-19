@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "refresh": "/components/refresh/refresh",
+    "van-loading": "/components/vant/loading/index"
+  },
+  "onReachBottomDistance":1000
+}

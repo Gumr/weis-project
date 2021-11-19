@@ -1,0 +1,225 @@
+<!--pages/mineBox/scheme/scheme.wxml-->
+<cp-nav-bar wx:if="{{from == 'aiFat'}}" title-text="我的减脂饮食吃法" color="#000000" background="#F3F4F5" backIconColor="black" />
+<view class="scheme" style="{{(from == 'question' || from == 'toolInfo')?'padding-top: '+navStatusHeight * px2rpx+'rpx':'background: #F3F4F5;'}}">
+    <image wx:if="{{(from == 'question' || from == 'toolInfo')}}" class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/scheme_BG.png" />
+    <!-- 页面内容 -->
+    <view class="page">
+        <view wx:if="{{from == 'question'}}" class="title">
+            <image src="https://prodstatic.weis1606.cn/api/smartFood/scheme_title.png" />
+            <view class="name">
+                <text class="line"></text>
+                <text class="planName">{{dietPlan.planName}}</text>
+                <text class="line"></text>
+            </view>
+            <view class="description">
+                {{dietPlan.planDescription}}
+                <view wx:if="{{dietPlan.planningType == '23'}}" bind:tap="checkDetail">
+                    <text>查看详情</text>
+                    <image src="/images/detail_arrow.png" />
+                </view>
+            </view>
+        </view>
+        <view wx:if="{{from == 'toolInfo'}}" class="title-toolInfo">
+            <image src="https://prodstatic.weis1606.cn/api/smartFood/scheme_title_tool.png" />
+            <view class="value">
+                <view class="num">{{dietPlan.basalMetabolism}}</view>
+                <view class="unit">kcal</view>
+            </view>
+            <view class="description">推荐你使用七分饱饮食法，每天在不运动的情况下有{{dietPlan.energyDifference}}kcal热量差，预计一个月能瘦{{infoObj.weightLoss}}斤，如果有额外运动的情况下瘦的效果会更明显。</view>
+        </view>
+        <view class="box">
+            <!-- 每日消耗 consume-->
+            <view wx:if="{{from == 'question'}}" class="box_public consume">
+                <view class="header">预计每日消耗</view>
+                <view class="content">
+                    <view class="circle" style="width:initial;height:initial;background:none;">
+                        <cp-data-pie
+                        mode="image"
+                        delay="{{400}}"
+                        custom-style="width: 194rpx;height: 194rpx;"
+                        data="{{dietPlan.pieData}}"
+                        customRadius="{{customRadius}}"
+                        ></cp-data-pie>
+                    </view>
+                    <view class="box">
+                        <view class="all">
+                            <view class="name">预计总消耗:</view>
+                            <view class="num">{{dietPlan.total}}<view>kcal</view></view>
+                        </view>
+                        <view class="box-a">
+                            <text class="box-color"></text>
+                            <text class="box-name">基础代谢</text>
+                            <text class="box-value">{{dietPlan.basalMetabolism}}kcal</text>
+                        </view>
+                        <view class="box-a">
+                            <text class="box-color"></text>
+                            <text class="box-name">日常活动</text>
+                            <text class="box-value">{{dietPlan.dailyConsume}}kcal</text>
+                        </view>
+                        <view class="box-a">
+                            <text class="box-color"></text>
+                            <text class="box-name">食物热</text>
+                            <text class="box-value">{{dietPlan.totalThermalEffect}}kcal</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+            <!-- 每日应摄入 intake(完善信息的”每日应摄入“)-->
+            <view wx:if="{{from == 'question'}}" class="box_public intake" >
+                <view class="header">建议每日摄入</view>
+                <view class="content">
+                    <view class="circle">
+                       <view class="name">建议摄入总量</view>
+                       <view class="num">{{intake.total}}</view>
+                       <view class="unit">kcal</view>
+                    </view>
+                     <view class="box">
+                        <view class="box-a">
+                            <text class="box-color"></text>
+                            <text class="box-name">蛋白质</text>
+                            <text class="box-value">{{intake.resultProteinWeight}}g</text>
+                        </view>
+                        <view class="box-a">
+                            <text class="box-color"></text>
+                            <text class="box-name">脂肪</text>
+                            <text class="box-value">{{intake.resultFatWeight}}g</text>
+                        </view>
+                        <view class="box-a">
+                            <text class="box-color"></text>
+                            <text class="box-name">碳水化合物</text>
+                            <text class="box-value">{{intake.resultCarbohydrateWeight}}g</text>
+                        </view>
+                        <view class="box-a">
+                            <text class="box-color"></text>
+                            <text class="box-name">膳食纤维</text>
+                            <text class="box-value">{{intake.resultFiber}}g</text>
+                        </view>
+                        <view class="box-a">
+                            <text class="box-color"></text>
+                            <text class="box-name">盐量</text>
+                            <text class="box-value">{{intake.resultSalt}}g</text>
+                        </view>
+                        <view class="box-a">
+                            <text class="box-color"></text>
+                            <text class="box-name">食物多样性</text>
+                            <text class="box-value">{{intake.resultDiversity}}种</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+            <!-- 小目标 intake(AI智能减脂的”每日应摄入“)-->
+            <view wx:if="{{from == 'aiFat'}}" class="box_public intake smallTarget" >
+                <view class="header">
+                    <text>{{intake.days}}天减重{{intake.loseWeight}}kg</text>
+                    <image src="https://prodstatic.weis1606.cn/api/smartFood/small_target.png" />
+                </view>
+                <view class="content">
+                    <view class="info">
+                        <text>我每日应摄入</text>
+                        <text>{{intake.total}}</text>
+                        <text>kcal</text>
+                    </view>
+                     <view class="box">
+                        <view class="box-a">
+                            <!-- <text class="box-color"></text> -->
+                            <text class="box-name">碳水</text>
+                            <text class="box-percent">{{intake.resultCarbohydrateRatio}}%</text>
+                            <text class="box-value">{{intake.resultCarbohydrateWeight}}g</text>
+                        </view>
+                        <view class="box-a">
+                            <!-- <text class="box-color"></text> -->
+                            <text class="box-name">蛋白质</text>
+                            <text class="box-percent">{{intake.resultProteinRatio}}%</text>
+                            <text class="box-value">{{intake.resultProteinWeight}}g</text>
+                        </view>
+                        <view class="box-a">
+                            <!-- <text class="box-color"></text> -->
+                            <text class="box-name">脂肪</text>
+                            <text class="box-percent">{{intake.resultFatRatio}}%</text>
+                            <text class="box-value">{{intake.resultFatWeight}}g</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view wx:if="{{from == 'aiFat'}}" class="intakeTitle">每日饮食</view>
+            <!-- 早/午/晚餐总能量 -->
+            <view class="box_public intake" wx:for="{{skuList[longdate]}}" wx:key="index" hidden="{{from == 'toolInfo' && index == 3}}">
+                <view class="header" style="background: {{index == 0?'#FA6400;':index == 1?'#32E1B7;':index == 2?'#FFBB00':''}}">{{item.categoryType}}营养分配</view>
+                <view class="content">
+                    <view class="circle box{{index}}">
+                        <view class="name">总热量</view>
+                       <view class="num">{{item.planDetail.totalKcal}}</view>
+                       <view class="unit">kcal</view>
+                    </view>
+                     <view class="box">
+                        <view class="box-a">
+                            <text class="box-color"></text>
+                            <text class="box-name">蛋白质</text>
+                            <text class="box-value">{{item.planDetail.proteinTotal}}g</text>
+                        </view>
+                        <view class="box-a">
+                            <text class="box-color"></text>
+                            <text class="box-name">脂肪</text>
+                            <text class="box-value">{{item.planDetail.fatTotal}}g</text>
+                        </view>
+                         <view class="box-a">
+                            <text class="box-color"></text>
+                            <text class="box-name">碳水化合物</text>
+                            <text class="box-value">{{item.planDetail.carbohydrateTotal}}g</text>
+                        </view>
+                        <view class="box-a">
+                            <text class="box-color"></text>
+                            <text class="box-name">膳食纤维</text>
+                            <text class="box-value">{{item.planDetail.dietaryFiber}}g</text>
+                        </view>
+                        <view class="box-a">
+                            <text class="box-color"></text>
+                            <text class="box-name">盐量</text>
+                            <text class="box-value">{{item.planDetail.salt}}g</text>
+                        </view>
+                        <view class="box-a">
+                            <text class="box-color"></text>
+                            <text class="box-name">食物多样性</text>
+                            <text class="box-value">{{item.planDetail.diversity}}种</text>
+                        </view>
+                    </view>
+                </view>
+                <view class="good-box">
+                    <scroll-view class="good-scroll" scroll-x="{{true}}">
+                        <view class="good" wx:for="{{item.list[item.comboIndex].getCategoryList}}" wx:for-item="subItem" wx:for-index="subIndex" wx:key="subIndex">
+                            <image class="icon" src="{{subItem.primaryImgUrl}}" />
+                            <view class="name">{{subItem.skuname}}</view>
+                            <view class="trace">
+                                <view class="trace-text">能量 {{subItem.energy}}kcal</view>
+                                <view class="trace-text">蛋白质 {{subItem.protein}}g</view>
+                                <view class="trace-text">脂肪 {{subItem.fat}}g</view>
+                                <view class="trace-text">碳水 {{subItem.carbonwater}}g</view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                    
+                </view>
+                <view class="b" hidden="{{from == 'toolInfo'}}">
+                    <view class="change" data-index="{{index}}" bind:tap="changeSku">换菜品</view>
+                </view>
+            </view>
+        </view>
+        <!-- 说明 -->
+        <view wx:if="{{from == 'toolInfo'}}" class="explain">你可以按照以上方案自己制作菜品，我们也为你提供美味减脂餐，动动手指美味送到家</view>
+    </view>
+    <!-- 底部 -->
+    <view wx:if="{{(from == 'question' || from == 'toolInfo')}}" class="bottom question">
+        <image wx:if="{{from == 'toolInfo'}}" class="btn" src="https://prodstatic.weis1606.cn/api/smartFood/fatReduce.png" bind:tap="okAction"/>
+        <image wx:else class="btn" src="https://prodstatic.weis1606.cn/api/smartFood/know.png" bind:tap="okAction"/>
+        <!-- <view class="btn" bind:tap="okAction">知道啦</view> -->
+    </view>
+    <view wx:if="{{from == 'aiFat'}}" class="bottom aiFat">
+        <view class="btnLeft" bind:tap="setTargetAction">重设目标</view>
+        <view class="btnRight" bind:tap="startFatAction">开始减肥</view>
+    </view>
+</view>
+
+<!-- 中国居民-弹窗 -->
+<cp-resident-diet show="{{residentDietShow}}" data="{{residentDietData}}"></cp-resident-diet>

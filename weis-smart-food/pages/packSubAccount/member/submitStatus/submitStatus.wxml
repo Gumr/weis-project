@@ -1,0 +1,8 @@
+<!--pages/mineBox/forecast/submitStatus/submitStatus.wxml-->
+<cp-nav-bar title=""></cp-nav-bar>
+<cp-payment-status 
+    style="width: 100%;"
+    data="{{payData}}"
+    bind:on-back="back"
+    bind:on-submit="recharge"
+></cp-payment-status>

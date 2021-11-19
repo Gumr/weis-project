@@ -1,0 +1,117 @@
+<!-- pages/market/sharePlay/index.wxml
+<wxs module="filters" src="../../../libs/filter/filter.wxs"></wxs> -->
+<cp-nav-bar home-icon="/images/backHome.png" background="transparent" backIconColor="black" userInfo="{{humanInfoWithScore}}"></cp-nav-bar>
+<image class="topbg" mode="widthFix" src="{{ imgPrefix }}share-play-bg.png" alt="" />
+<image src="{{ imgPrefix }}activedetail.png" class="activedetail" bindtap="toRules" />
+<view class='main'>
+    <!-- 正面的框 -->
+    <view class="playcard b1" animation="{{animationMain}}" bindtap="rotateFn">
+        <view class="playcard-poker">
+            <image class="pokerImg" src="https://prodstatic.weis1606.cn/api/smartFood/fanpai-new.png" />
+            <view class="poker-cnt">
+                <view>{{scoreForms.dateText}} {{scoreForms.categoryText}}</view>
+                <view>营养健康分</view>
+                <view class="poker-cnt__score">{{scoreForms.totalScore}}</view>
+                <!-- <image src="{{imgPrefix}}fanpai-tip.png" /> -->
+            </view>
+        </view>
+    </view>
+    <!-- <view class="box b1" animation="{{animationMain}}" bindtap="rotateFn" data-id="1">
+        <image src="{{ imgPrefix }}fanpai.png"></image>
+        <view class="rechangebgimg">
+            <view>{{playBase.ctitle}}</view>
+            <view>{{playBase.cbannerTitle}}</view>
+            <view>{{playBase.cdescription}}</view>
+        </view>
+    </view> -->
+    <!-- 背面的框 -->
+    <view class="playcard b2" animation="{{animationBack}}">
+        <!-- 扑克牌 -->
+        <view class="playcard-poker">
+            <image class="pokerImg" src="https://prodstatic.weis1606.cn/api/smartFood/fanpai_opened-new.png" />
+            <!-- 健康分 -->
+            <view class="poker__score {{scoreImg ? 'active' : ''}}">
+                <view class="poker__score__total">营养健康分：{{scoreForms.totalScore}}</view>
+               <cp-radar-panel radarStyle="width:424rpx;height:424rpx;" radius="50%" mode="image" score="{{score}}" bind:on-finished="finished" />
+            </view>
+            <view class="help" wx:if="{{error}}">今天已完成3次助力</view>
+            <view class="help" wx:else>成功为好友助力{{couplist.shareAmount}}元</view>
+            <view class="newcardcoupbg" wx:if="{{!error && couplist.userCouponAmount > 0}}">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/roteCard-new.png" />
+                <view class="left">
+                    <view class="money">
+                        <view class="sympol">￥</view>
+                        {{couplist.userCoupons[0].tcuAmount}}
+                    </view>
+                    <view class="limit">满{{couplist.userCoupons[0].tcuRestrictAmount}}可用</view>
+                </view>
+                <view class="right">
+                    <view>送你一张现金券</view>
+                    <view>有效期1天</view>
+                </view>
+            </view>
+            <view class="newcardcoupbg" wx:else bind:tap="toHealthScore">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/img-healscore-detail-new.png" />
+            </view>
+        </view>
+    </view>
+    <!-- <view class="box b2" animation="{{animationBack}}">
+        <image src="{{playBase.waveringImgUrl}}"></image>
+        <view class="coupInfoList">
+            <text wx:if="{{!error}}">助力好友翻出{{couplist.shareAmount}}元</text>
+            <view wx:else class="errorview">
+                <text>o(╥﹏╥)o \n翻牌机会用完了</text>
+                <view>\n每天只能翻牌助力3次</view>
+            </view>
+            <view class="newcardcoupbg" wx:if="{{!error && couplist.userCouponAmount > 0}}">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/roteCard.png" />
+                <view class="left">
+                    <view class="money">
+                        <view class="sympol">￥</view>
+                        {{couplist.userCoupons[0].tcuAmount}}
+                    </view>
+                    <view class="limit">满{{couplist.userCoupons[0].tcuRestrictAmount}}可用</view>
+                </view>
+                <view class="right">
+                    <view>送你一张现金券</view>
+                    <view>有效期1天</view>
+                </view>
+            </view>
+            <view class="newcardcoupbg" wx:if="{{!error && (!couplist.userCouponAmount || couplist.userCouponAmount == 0)}}">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/good.png" />
+            </view>
+        </view>
+    </view> -->
+</view>
+<image class="downimg" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/down.png" />
+<button class="shareBtn" bindtap="toMeal" hover-class="button-hover" wx:if="{{!showMeal}}">
+    <image src="{{imgPrefix}}newclclmeal.png" />
+</button>
+<view class="historyList">
+    <image src="https://prodstatic.weis1606.cn/api/smartFood/downline.png" />
+    <view class="bgcolor">
+        <view class="loadingtips" wx:if="{{sharePlayPlanList.length>0}}">
+            最高返现{{totalPrice}}元,已翻出
+            <text>{{getPrice}}</text>
+            元
+        </view>
+        <text wx:if="{{sharePlayPlanList.length>0}}" class="graycolor">订单签收后，金额将返现到维士余额中，不可提现</text>
+        <view class="progress" wx:if="{{sharePlayPlanList.length>0}}">
+            <progress percent="{{progress}}" activeColor="#FB892DFF" active stroke-width="14" border-radius="8" />
+        </view>
+        <view class="bglist" wx:if="{{sharePlayPlanList.length>0}}">
+            <view class="share-peo" wx:for="{{sharePlayPlanList}}" wx:key="index">
+                <view class="shview">
+                    <image src="{{item.headImgUrl}}" />
+                    <text>{{item.uName}}</text>
+                </view>
+                <view class="shmon">翻出{{item.tsppShareAmount}}元</view>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{sharePlayPlanList.length<=0}}" class="tips">
+        <text>最高返现{{totalPrice}}元，却没有人愿意帮我翻牌吗？\n  o(╥﹏╥)o</text>
+    </view>
+</view>
+<!-- 登录注册"" -->
+<cp-login-view id="login-dialog" bind:updateSucc="updateLogin"></cp-login-view>

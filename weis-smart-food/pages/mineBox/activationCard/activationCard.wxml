@@ -1,0 +1,26 @@
+<!-- pages/mineBox/activationCard/activationCard.wxml -->
+<cp-nav-bar title-text="激活实体卡" color="#000000" background="#fff" backIconColor="black" />
+
+<view class="exchange">
+<view class="tip-title">实体卡激活后自动充值到我的余额</view>
+    <view class="exchange-code">
+        <image bind:tap="searchScanTap" src="/images/scan.png" />
+        <input type="text" placeholder="输入激活码/扫码激活" placeholder-class="input-placeholder" value="{{code}}" bindinput="bindCode" bindfocus="focus" bindblur="blur" bindkeyboardheightchange="boardHeightChange" />
+    </view>
+    <view class="error {{errActive ? 'active' : ''}}" wx:if="{{err}}">
+        <view class="tip">*兑换码输入错误</view>
+    </view>
+    <view class="bot-box" style="bottom: {{btnHeight ? btnHeight + 'px' : '40px'}};">
+        <view class="xy" bind:tap="agree">
+            <image wx:if="{{xy}}" src="/images/my/icon_selected.png" />
+            <image wx:else src="/images/my/icon_unselected.png" />
+            <view class="xy_cont">
+                我同意
+                <text catch:tap="xy">《维士健康(付费)会员协议》</text>
+            </view>
+        </view>
+        <view class="next {{xy && code ? '' : 'disabled-btn'}}" bind:tap="exchangeCardTicket">
+            立即激活
+        </view>
+    </view>
+</view>

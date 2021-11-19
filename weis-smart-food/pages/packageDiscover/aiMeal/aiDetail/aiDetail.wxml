@@ -1,0 +1,42 @@
+<cp-nav-bar background="#FFE590" backIconColor></cp-nav-bar>
+<!-- <image class="image-background" src="{{imagePrefix+'ai_setmeal_bj.png'}}" /> -->
+<view class="page" style="padding-bottom: {{isIpx ? 176 : 128}}rpx;">
+  <image
+    style="height: 705rpx; margin: 40rpx 0;"
+    class="image-section"
+    src="{{imagePrefix+'ai_setmeal_bj.png'}}"
+  />
+  <image style="height: 860rpx;" class="image-section" src="{{imagePrefix+'ai_setmeal_1.png'}}" />
+  <image style="height: 862rpx;" class="image-section" src="{{imagePrefix+'ai_setmeal_2.png'}}" />
+  <image style="height: 802rpx;" class="image-section" src="{{imagePrefix+'ai_setmeal_3.png'}}" />
+  <image style="height: 886rpx;" class="image-section" src="{{imagePrefix+'ai_setmeal_4.png'}}" />
+  <image style="height: 1312rpx;" class="image-section" src="{{imagePrefix+'ai_setmeal_5.png'}}" />
+  <image style="height: 820rpx;" class="image-section" src="{{imagePrefix+'ai_setmeal_6.png'}}" />
+  <image style="height: 1810rpx;" class="image-section" src="{{imagePrefix+'ai_setmeal_7.png'}}" />
+  <image style="height: 390rpx;" class="image-section" src="{{imagePrefix+'ai_setmeal_8.png'}}" />
+  <view class="image-section qrcode-section">
+    <image style="width: 100%; height: 524rpx;" src="{{imagePrefix+'ai_setmeal_9.png'}}" />
+    <image
+      class="qrcode"
+      src="{{qrcode}}"
+      data-src="{{qrcode}}"
+      show-menu-by-longpress
+      bindtap="previewQRCodeTap"
+    />
+  </view>
+</view>
+
+<view class="fix-btn" style="padding-bottom: {{isIpx ? 88 : 20}}rpx;">
+  <view class="btn" bindtap="btnTap">开启AI瘦身计划</view>
+</view>
+
+<cp-confirm-dialog
+  show="{{showDialog}}"
+  title="您有正在配送的套餐订单"
+  show-cancel="{{false}}"
+  confirm-text="好的"
+  bind:on-confirm="handleDialogConfirm"
+  dialog-style="width: 670rpx;"
+>
+  <view class="dialog-text">请结束正在进行中的瘦身套餐后，在订购AI智能瘦身计划吧！</view>
+</cp-confirm-dialog>

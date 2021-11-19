@@ -1,0 +1,14 @@
+<!-- components/cp-cart/cp-cart.wxml -->
+<view class="cart {{styleNum != 1 ? 'cart_theme' : ''}}">
+  <view class="cart-left" bindtap="showCart">
+    <view class="cart-left__img">
+      <image src="https://prodstatic.weis1606.cn/api/smartFood/%E7%BB%84%E4%BB%B6%EF%BC%8Ficon%EF%BC%8F%E8%B4%AD%E7%89%A9%E8%BD%A6.png" alt="" />
+      <text class="amount" wx:if="{{piece > 0}}">{{ piece }}</text>
+    </view>
+    <view class="cart-left__price">
+      <text>￥</text>
+      <text>{{ price }}</text>
+    </view>
+  </view>
+  <view bindtap="toPay" class="cart-right">{{confirmText}}</view>
+</view>

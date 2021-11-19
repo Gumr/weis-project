@@ -1,0 +1,478 @@
+<!-- pages/datas/diet/diet.wxml -->
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
+<cp-nav-bar
+  date="{{navTitle}}"
+  disabled-date="{{disabledDate}}"
+  mode="date"
+  dateIconColorObj="{{dateIconColor}}"
+  backIconColor="black"
+  background="#fff"
+  bind:title-tap="showCalendar"
+  bind:date-change="headTap"
+></cp-nav-bar>
+<!-- 时间选择器 -->
+<view
+  class="calendar-container {{ showCalender ? 'calendar-container-active' : ''}}"
+  style="top: {{calendarTop}}px;"
+>
+  <multiSelectCalendar
+    id="calendar"
+    bind:backToday="backToday"
+    calendarConfig="{{calendarConfig}}"
+    bind:afterTapDay="selectDate"
+    bind:afterCalendarRender="afterCalendarRender"
+    bind:whenChangeMonth="selectMonthChange"
+  ></multiSelectCalendar>
+</view>
+<!-- <view class="gray-bottom-border" style="width: 100%;"></view> -->
+<!-- 消耗详情顶部栏 -->
+<view class="program">
+  <view class="sem-box">
+    <view class="box-s">
+      <cp-semicircle-process
+        dia="{{158}}"
+        percent="{{myData.totalProteinPercent}}"
+        value="{{myData.proteinSupply}}"
+        total="{{myData.proteinTotal}}"
+        fontSize="{{smallSize}}"
+        margin="{{11}}"
+        lineWidth="{{lineWidth}}"
+        title="蛋白质"
+      ></cp-semicircle-process>
+    </view>
+    <view class="box-s">
+      <cp-semicircle-process
+        dia="{{212}}"
+        percent="{{myData.totalCarbonwaterPercent}}"
+        value="{{myData.carbohydrateSupply}}"
+        total="{{myData.carbohydrateTotal}}"
+        fontSize="{{smallSize}}"
+        margin="{{11}}"
+        lineWidth="{{lineWidth}}"
+        title="碳水"
+      ></cp-semicircle-process>
+    </view>
+    <view class="box-s">
+      <cp-semicircle-process
+        dia="{{158}}"
+        percent="{{myData.totalFatKcalPercent}}"
+        value="{{myData.fatSupply}}"
+        total="{{myData.fatTotal}}"
+        fontSize="{{smallSize}}"
+        margin="{{11}}"
+        lineWidth="{{lineWidth}}"
+        title="脂肪"
+      ></cp-semicircle-process>
+    </view>
+  </view>
+  <view class="progress-line">
+    <view class="all-energy">
+      总能量
+      <text>(千卡)</text>
+    </view>
+    <view class="bar">
+      <view class="dot" wx:if="{{!myData.energyPercent}}"></view>
+      <view
+        class="dot-per"
+        wx:else
+        style="left:{{(myData.energyPercent > 100 ? 100 : myData.energyPercent) + '%'}};border-color:{{myData.energyPercent >= 100 ? '#FE5E0F' : 'F7B500'}};"
+      >
+        {{myData.energyPercent}}
+        <view class="unit">%</view>
+      </view>
+      <progress
+        active-mode="forwards"
+        duration="10"
+        border-radius="3"
+        active="{{true}}"
+        percent="{{myData.energyPercent > 100 ? 100 : myData.energyPercent}}"
+        backgroundColor="#E9E9E9"
+        activeColor="{{myData.kcalDvalue > 0 ? '#FE5E0F' : '#F7B500'}}"
+        stroke-width="6"
+      />
+    </view>
+    <view class="p-box">
+      <view class="actual">{{myData.kcalSupply}}</view>
+      <view class="plan">/{{myData.totalKcal}}</view>
+    </view>
+  </view>
+</view>
+<!-- 选餐列表 -->
+<view class="meal-item-wrap {{dataList.length == 0 && isIpx ? 'active' : ''}}">
+  <view
+    class="meal-item-box gray-bottom-border"
+    hidden="{{foodOrderCollection.breakfast.length <= 0}}"
+  >
+    <view class="meal-item-header" bindtap="meal" data-type="01">
+      <view class="meal-title-box">
+        <!-- <image class="meal-icon" src="/images/scheme_breakfast.png" /> -->
+        <text class="meal-title">早餐</text>
+        <text class="meal-recommand">推荐{{myData.breakfastTotalKcal}}kcal</text>
+      </view>
+      <view class="reality">
+        <view class="real">
+          <text
+            class="{{real.breakfastCal > myData.breakfastTotalKcal ? 'add' : 'reduce'}}"
+          >{{real.breakfastCal}}</text>kcal
+        </view>
+        <image class="add-meal-icon" src="/images/scheme_open.png" />
+      </view>
+    </view>
+    <view class="meal-food-list">
+      <template is="foodList" data="{{ list: foodOrderCollection.breakfast, type: 'breakfast' }}"></template>
+    </view>
+  </view>
+  <view class="meal-item-box gray-bottom-border" hidden="{{foodOrderCollection.lunch.length <= 0}}">
+    <view class="meal-item-header" bindtap="meal" data-type="02">
+      <view class="meal-title-box">
+        <!-- <image class="meal-icon" src="/images/scheme_lunch.png" /> -->
+        <text class="meal-title">午餐</text>
+        <text class="meal-recommand">推荐{{myData.lunchTotalKcal}}kcal</text>
+      </view>
+      <view class="reality">
+        <view class="real">
+          <text
+            class="{{real.lunchCal > myData.lunchTotalKcal ? 'add' : 'reduce'}}"
+          >{{real.lunchCal}}</text>kcal
+        </view>
+        <image class="add-meal-icon" src="/images/scheme_open.png" />
+      </view>
+    </view>
+    <view class="meal-food-list">
+      <template is="foodList" data="{{ list: foodOrderCollection.lunch, type: 'lunch' }}"></template>
+    </view>
+  </view>
+  <view
+    class="meal-item-box gray-bottom-border"
+    hidden="{{foodOrderCollection.dinner.length <= 0}}"
+  >
+    <view class="meal-item-header" bindtap="meal" data-type="03">
+      <view class="meal-title-box">
+        <!-- <image class="meal-icon" src="/images/scheme_dinner.png" /> -->
+        <text class="meal-title">晚餐</text>
+        <text class="meal-recommand">推荐{{myData.dinnerTotalKcal}}kcal</text>
+      </view>
+      <view class="reality">
+        <view class="real">
+          <text
+            class="{{real.dinnerCal > myData.dinnerTotalKcal ? 'add' : 'reduce'}}"
+          >{{real.dinnerCal}}</text>kcal
+        </view>
+        <image class="add-meal-icon" src="/images/scheme_open.png" />
+      </view>
+    </view>
+    <view class="meal-food-list">
+      <template is="foodList" data="{{ list: foodOrderCollection.dinner, type: 'dinner' }}"></template>
+    </view>
+  </view>
+  <view class="meal-item-box gray-bottom-border" hidden="{{foodOrderCollection.snack.length <= 0}}">
+    <view class="meal-item-header" bindtap="meal" data-type="04">
+      <view class="meal-title-box">
+        <!-- <image class="meal-icon" src="/images/scheme_snack.png" /> -->
+        <text class="meal-title">加餐</text>
+        <text class="meal-recommand">推荐{{myData.extraMealTotalKcal}}kcal</text>
+      </view>
+      <view class="reality">
+        <view class="real">
+          <text class="{{real.snackCal > myData.extraMealTotalKcal ? 'add' : 'reduce'}}">{{real.snackCal}}</text>kcal
+        </view>
+        <image class="add-meal-icon" src="/images/scheme_open.png" />
+      </view>
+    </view>
+    <view class="meal-food-list">
+      <template is="foodList" data="{{ list: foodOrderCollection.snack, type: 'snack' }}"></template>
+    </view>
+  </view>
+</view>
+<!-- 暂无打卡记录 -->
+<!-- <view class="no-card" wx:if="{{foodOrderCollection.breakfast.length <= 0 && foodOrderCollection.lunch.length <= 0 && foodOrderCollection.dinner.length <= 0 && foodOrderCollection.snack.length <= 0}}">
+  <view class="box">
+    <view>暂无打卡记录</view>
+    <view>请点击屏幕下方按钮添加</view>
+  </view>
+</view>-->
+<!-- 动作列表 -->
+<view class="sport-box" wx:if="{{dataList.length>0}}">
+  <view class="title">运动</view>
+  <view class="actionlist {{isIpx ? 'active' : ''}}">
+    <view class="content" wx:for="{{dataList}}" wx:key="index">
+      <van-swipe-cell left-width="{{0}}" right-width="{{98}}">
+        <view class="sport-record-item">
+          <view class="c-l">
+            <image class="icon" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/motion_icon.png" />
+            <view class="c-main">
+              <view class="sport-name">{{ item.sportName }}</view>
+              <view class="sport-text-wrap">
+                <view
+                  class="sport-text-item mr10"
+                  wx:for="{{item.tmrParamType}}"
+                  wx:for-item="item2"
+                  wx:key="index2"
+                >
+                  <view class="sport-text" wx:if="{{item2 == 1}}">
+                    {{ item.weight }}
+                    <text class="sport-unit">kg</text>
+                  </view>
+                  <view class="sport-text" wx:if="{{item2 == 2}}">
+                    {{ item.frequency }}
+                    <text class="sport-unit">次</text>
+                  </view>
+                  <view class="sport-text" wx:if="{{item2 == 3}}">
+                    {{ item.tmrSportTime }}
+                    <text class="sport-unit">分钟</text>
+                  </view>
+                  <view class="sport-text" wx:if="{{item2 == 4}}">
+                    {{ item.tmrAngle }}
+                    <text class="sport-unit">坡度</text>
+                  </view>
+                  <view class="sport-text" wx:if="{{item2 == 5}}">
+                    {{ item.tmrSpeed/10 }}
+                    <text class="sport-unit">速度</text>
+                  </view>
+                  <view class="sport-text" wx:if="{{item2 == 6}}">
+                    {{ item.tmrSecond }}
+                    <text class="sport-unit">秒</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="sport-text-item sport-icon">
+            <view class="sport-text">
+              {{ item.calorie }}
+              <text class="sport-unit">kcal</text>
+            </view>
+            <image class="arrow" src="/images/my_next.png" />
+          </view>
+        </view>
+        <view
+          class="copy"
+          slot="right"
+          bind:tap="copyCard"
+          data-index="{{index}}"
+          data-item="{{item}}"
+        >复制</view>
+        <view
+          class="delete"
+          slot="right"
+          bind:tap="delete"
+          data-index="{{index}}"
+          data-id="{{item.id}}"
+        >删除</view>
+      </van-swipe-cell>
+    </view>
+  </view>
+</view>
+<!-- 空白 -->
+<view class="empty" wx:if="{{real.dietCardList.length == 0 && dataList.length == 0}}">点击饮食/运动打卡👇</view>
+<!-- 底部按钮 -->
+<view class="tab {{isIpx ? 'active' : ''}}">
+  <view
+    class="tab-box"
+    wx:for="{{meal}}"
+    wx:key="key"
+    bindtap="orderFoodTap"
+    data-type="{{item.type}}"
+  >
+    <image src="{{item.img}}" />
+    <view class="meal">+{{item.name}}</view>
+  </view>
+</view>
+<view class="mask" wx:if="{{showCalender}}" bindtap="closeCalendar"></view>
+<!-- 添加食物的弹窗 -->
+<van-popup
+  duration="200"
+  catchtouchmove="true"
+  position="bottom"
+  show="{{showAddPopup}}"
+  bind:click-overlay="hideAddPopup"
+  close-on-click-overlay="{{true}}"
+  custom-style="width: 101%;"
+>
+  <view>
+    <view class="gray-bottom-border">
+      <view class="add-food-header">
+        <text class="add-food-action-text" bindtap="hideAddPopup">取消</text>
+        <text class="add-food-title">修改食物</text>
+        <text class="add-food-action-text add-text" bindtap="changeFoodCardTap">修改</text>
+      </view>
+    </view>
+    <view class="food-list-item popup-foot-item">
+      <view class="display-flex">
+        <image class="food-image" src="{{currentFood.tdcImage}}" />
+        <view class="food-text-wrap">
+          <view class="food-name">{{currentFood.tdcFoodName}}</view>
+          <view>
+            <text class="food-text food-kcal">{{currentFood.tdcTotalKcal}}</text>
+            <text
+              class="food-text"
+            >kcal/{{currentFood.tdcType === '04' ? currentFoodUnit.label : currentFood.$tdcTotalWeight + 'g'}}</text>
+          </view>
+        </view>
+      </view>
+      <image
+        wx:if="{{ currentFood.tdcType === '04' }}"
+        class="detail-icon"
+        data-id="{{currentFood.tdcFid}}"
+        data-type="{{currentFood.tdcType}}"
+        bindtap="goDetailPage"
+        src="/images/icon_right.png"
+      />
+    </view>
+    <view>
+      <view class="food-count-bar">
+        <text
+          class="food-count-text"
+        >{{currentFood.tdcType === '04' ? currentFood.tdcFoodNum : currentFood.tdcTotalWeight}}</text>
+        <text>{{currentFoodUnit.label}}</text>
+      </view>
+      <view class="food-count-scale-wrap">
+        <scale-component
+          id="scale"
+          value="{{currentFood.tdcType === '04' ? currentFood.tdcFoodNum : currentFood.tdcTotalWeight}}"
+          interval-width="{{30}}"
+          precision="{{scale.precision}}"
+          min="{{1}}"
+          max="{{scale.max}}"
+          bind:change="foodCountChange"
+        ></scale-component>
+      </view>
+      <view class="food-unit-bar">
+        <scroll-view scroll-into-view="{{unitIntoView}}" scroll-x>
+          <view
+            wx:for="{{unitOpts}}"
+            wx:key="index"
+            id="{{item.value}}"
+            class="food-unit-text {{currentFoodUnit.value === item.value ? 'food-unit-text-active' : ''}}"
+            wx:if="{{!item.show || item.show === currentFood.tdcType}}"
+            bind:tap="unitTap"
+            data-unit="{{item.value}}"
+          >{{item.label}}</view>
+        </scroll-view>
+      </view>
+    </view>
+    <!-- <view class="gray-top-border" style="margin: 0 30rpx;">
+      <view
+        class="delete-food-bar {{isFullScreen ? 'full-screen-mg-bt' : ''}}"
+        hidden="{{ activeTab === '02' }}"
+      >
+        <view class="delete-food-box" bindtap="deleteCurrentFoodTap">
+          <image class="delete-food-icon" src="/images/popup_delete.png" />
+          <text class="delete-food-text">删除这条记录</text>
+        </view>
+      </view>
+    </view>-->
+  </view>
+</van-popup>
+<!-- 补充食用程度弹窗 -->
+<van-popup
+  duration="200"
+  position="bottom"
+  catchtouchmove="true"
+  show="{{showExtendPopup}}"
+  bind:click-overlay="hideExtendPopup"
+  close-on-click-overlay="{{true}}"
+  custom-style="width: 101%;"
+>
+  <view>
+    <view class="gray-bottom-border">
+      <view class="add-food-header">
+        <text class="add-food-action-text" bindtap="hideExtendPopup">取消</text>
+        <text class="add-food-title">编辑食物记录</text>
+        <text class="add-food-action-text add-text" bindtap="changeFoodPercentTap">添加</text>
+      </view>
+    </view>
+    <view class="food-list-item popup-foot-item">
+      <view class="display-flex">
+        <image class="food-image" src="{{currentFood.tdcImage}}" />
+        <view class="food-text-wrap">
+          <view class="food-name">{{currentFood.tdcFoodName}}</view>
+          <view>
+            <text class="food-text food-kcal">{{currentFood.tdcTotalKcal}}</text>
+            <text class="food-text">kcal/{{currentFood.$tdcTotalWeight}}</text>
+          </view>
+        </view>
+      </view>
+      <image
+        class="detail-icon"
+        data-id="{{currentFood.tdcFid}}"
+        data-type="{{currentFood.tdcType}}"
+        bindtap="goGoodsDetail"
+        src="/images/icon_right.png"
+      />
+    </view>
+    <view>
+      <view class="food-count-bar">
+        <text class="food-count-text">{{currentFood.tdcEdibleRatio}}</text>
+        <text>%</text>
+      </view>
+      <view class="food-count-scale-wrap">
+        <scale-component
+          id="scale2"
+          value="{{currentFood.tdcEdibleRatio}}"
+          interval-width="{{30}}"
+          precision="{{1}}"
+          min="{{0}}"
+          max="{{100}}"
+          bind:change="foodPercentChange"
+        ></scale-component>
+      </view>
+      <view class="food-unit-bar {{isFullScreen ? 'full-screen-mg-bt' : ''}}">
+        <text class="food-unit-text food-unit-text-active">食用程度百分比</text>
+      </view>
+    </view>
+  </view>
+</van-popup>
+<!-- template -->
+<template name="foodList">
+  <van-swipe-cell
+    wx:for="{{list}}"
+    wx:key="index"
+    left-width="{{0}}"
+    right-width="{{item.tdcType !== '01' ? 64 : 0}}"
+  >
+    <view
+      class="meal-food-item"
+      data-type="{{type}}"
+      data-index="{{index}}"
+      catch:tap="foodCardTap"
+    >
+      <view class="meal-food-box">
+        <view class="food-image-box">
+          <image
+            wx:if="{{item.tdcType === '01'}}"
+            class="card-head-label"
+            src="/images/datum/index/label_weis.png"
+          />
+          <image class="meal-food-image" src="{{item.tdcImage || 'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/default_graph.png'}}" />
+        </view>
+        <view>
+          <view class="meal-food-name">{{item.tdcFoodName}}</view>
+          <view class="meal-food-text">{{item.unitTotalLabel}}</view>
+        </view>
+      </view>
+      <view class="food-swipe-next-box">
+        <text
+          class="meal-food-text"
+          style="margin-right: 8rpx;"
+          wx:if="{{item.tdcType === '01'}}"
+        >食用程度{{item.tdcEdibleRatio}}%</text>
+        <text class="meal-food-text">{{item.tdcTotalKcal}}kcal</text>
+        <image class="next-icon" src="/images/scheme_open.png" />
+      </view>
+    </view>
+    <view
+      wx:if="{{item.tdcType !== '01'}}"
+      class="food-swipe-right"
+      slot="right"
+      bindtap="deleteOrderFoodTap"
+      data-type="{{type}}"
+      data-index="{{index}}"
+    >
+      <text class="food-swipe-text">删除</text>
+    </view>
+  </van-swipe-cell>
+</template>
+<!-- <confirm-dialog dialog-style="border-radius:20rpx;" show="{{showClock}}" showCancel="{{false}}" showClose="{{true}}" confirmStyle="width: 590rpx" title="已完成任务" confirm-text="立即签到" auto-cancel="{{true}}" bind:on-confirm="clock">
+  <view style="font-size:28rpx;color:#a9a9a9;text-align:center;">打卡分享给好友，可获得现金红包！</view>
+</confirm-dialog>-->

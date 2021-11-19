@@ -1,0 +1,13 @@
+<!-- /Users/weis/Desktop/miniprogram/weis-ttmp/pages/packTwo/writeOffResult/writeOffResult.ttml -->
+<cp-nav-bar title-text="" preventBack="{{true}}" bind:back="back" background="#F3F4F5"></cp-nav-bar>
+<!-- status: 0,//1成功 2失败 3下架 -->
+<view class="page" tt:if="{{status!=0}}">
+  <image src="https://prodstatic.weis1606.cn/api/ttmpFood/order/write_off_{{status!=1?'failed':'success'}}.png" />
+  <view class="result">{{status!=1?'核销失败':'核销成功'}}</view>
+  <view class="tips">{{status==3?errMsg+'，请立即联系客服处理':status!=1?' ':'我们会按时送餐，可以在订单里查看每餐详情'}}</view>
+  <view class="btn-row">
+    <view class="back" bindtap="back">返回</view>
+    <view tt:if="{{status==1}}" class="detail" bindtap="tapDetail">查看餐单详情</view>
+    <button tt:if="{{status==3}}" class="detail" open-type="contact">联系客服</button>
+  </view>
+</view>

@@ -1,0 +1,110 @@
+<!-- pages/mineBox/discuss/discuss.wxml -->
+<cp-nav-bar title-text="{{discussSucc ? '' : '订单评价'}}" background="#fff" color="#333333" />
+<view class="discuss" wx:if="{{!discussSucc}}">
+  <!-- 配送评价 -->
+  <view class="horseman" wx:if="{{waybillRecord.distributionMode == 0 && waybillRecord.uid == uid}}">
+    <view class="discuss-box">
+      <view class="name">配送评价</view>
+      <view class="rate">
+        <van-rate value="{{ 0 }}" gutter="{{'30rpx'}}" size="{{'56rpx'}}" value="{{evaluate || 0}}" readonly="{{evaluationStt}}" color="#FD9D00" void-color="#DCDCDC" void-icon="star" bind:change="evaluate" />
+        <view class="desc" wx:if="{{evaluate}}">{{rateMap[evaluate]}}</view>
+      </view>
+      <!-- 最多输入100字 -->
+      <view class="area" wx:if="{{!evaluationStt}}">
+        <textarea maxlength="100" placeholder-class="active" value="{{psAdvise}}" disabled="{{evaluationStt}}" bindinput="psAdvise" placeholder="最多输入100字"></textarea>
+        <view class="limit">{{psAdvise ? psAdvise.length : 0}}/100</view>
+      </view>
+      <!-- 回选 -->
+      <view class="election" wx:if="{{evaluationStt && psAdvise}}">{{psAdvise}}</view>
+      <!-- 配送上传图片 -->
+      <view class="img-box">
+        <view class="img" wx:if="{{horseManImgList && horseManImgList.length > 0}}">
+          <view class="upload-img" wx:for="{{horseManImgList}}" wx:key="index">
+            <image src="{{item}}" />
+            <image wx:if="{{!evaluationStt}}" class="upload__close" src="/images/icons/upload_delete.png" data-index="{{index}}" bind:tap="deleteImage" />
+          </view>
+        </view>
+        <image class="camera" wx:if="{{(!horseManImgList || horseManImgList.length < 4) && !evaluationStt}}" bind:tap="chooseImage" src="https://prodstatic.weis1606.cn/api/smartFood/camera%202%E5%A4%87%E4%BB%BD%203.png" />
+      </view>
+    </view>
+  </view>
+  <!-- 菜品未评价 -->
+  <view class="goods" wx:if="{{!evaluationStt}}">
+    <view class="box" wx:for="{{shipResult}}" wx:key="key">
+      <!-- 评价 -->
+      <view class="date">{{item.$date}}  {{item.$category}}</view>
+      <view class="discuss-box">
+        <view class="name">菜品评价</view>
+        <!-- sku -->
+        <view class="sku-box">
+          <view class="sku {{idx == item.selectIdx ? 'active' : ''}}" wx:for="{{item.detail.skuList}}" wx:key="index" wx:for-item="itm" wx:for-index="idx" bind:tap="selectSku" data-index="{{index}}" data-idx="{{idx}}">
+            <image src="{{itm.primaryImgUrl}}" />
+            <view class="skuname">{{itm.skuname}}</view>
+          </view>
+        </view>
+        <view class="rate">
+          <van-rate data-index="{{index}}" gutter="{{'30rpx'}}" readonly="{{evaluationStt}}" value="{{ item.detail.skuList[item.selectIdx].taste || 0 }}" size="{{'56rpx'}}" color="#FD9D00" void-color="#DCDCDC" void-icon="star" bind:change="taste" />
+          <view class="desc" wx:if="{{item.detail.skuList[item.selectIdx].taste}}">
+            {{rateMap[item.detail.skuList[item.selectIdx].taste]}}
+          </view>
+        </view>
+        <!-- 最多输入100字 -->
+        <view class="area" wx:if="{{!evaluationStt}}">
+          <textarea maxlength="100" placeholder-class="active" data-index="{{index}}" value="{{item.detail.skuList[item.selectIdx].advise || ''}}" bindinput="advise" disabled="{{evaluationStt}}" placeholder="最多输入100字"></textarea>
+          <view class="limit">
+            {{item.detail.skuList[item.selectIdx].advise ? item.detail.skuList[item.selectIdx].advise.length : 0}}/100
+          </view>
+        </view>
+        <!-- 回选 -->
+        <!-- <view class="election" wx:if="{{evaluationStt && item.advise}}">{{item.advise}}</view> -->
+        <!-- 菜品上传图片 -->
+        <view class="img-box">
+          <view class="img" wx:if="{{item.detail.skuList[item.selectIdx].horseManImgList && item.detail.skuList[item.selectIdx].horseManImgList.length > 0}}">
+            <view class="upload-img" wx:for="{{item.detail.skuList[item.selectIdx].horseManImgList}}" wx:key="index" wx:for-index="idx">
+              <image src="{{item}}" />
+              <image class="upload__close" src="/images/icons/upload_delete.png" data-index="{{index}}" data-sku-idx="{{idx}}" bind:tap="deleteSkuImage" />
+            </view>
+          </view>
+          <image class="camera" wx:if="{{!item.detail.skuList[item.selectIdx].horseManImgList || item.detail.skuList[item.selectIdx].horseManImgList.length < 4}}" data-index="{{index}}" bind:tap="chooseSkuImage" src="https://prodstatic.weis1606.cn/api/smartFood/camera%202%E5%A4%87%E4%BB%BD%203.png" />
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 评价后展示菜品 -->
+  <view class="goods" wx:else>
+    <view class="box check" wx:for="{{shipResult}}" wx:key="key" wx:if="{{item.show}}">
+      <!-- 评价 -->
+      <view class="date">{{item.$date}}  {{item.$category}}</view>
+      <view class="cate">
+        <view class="discuss-box" wx:for="{{item.detail.skuList}}" wx:if="{{item.taste > 0 || item.advise || (item.horseManImgList && item.horseManImgList.length > 0)}}">
+          <view class="name">{{item.skuname}}</view>
+          <view class="rate">
+            <van-rate gutter="{{'30rpx'}}" readonly="{{evaluationStt}}" value="{{ item.taste || 0 }}" size="{{'56rpx'}}" color="#FD9D00" void-color="#DCDCDC" void-icon="star" />
+            <view class="desc" wx:if="{{item.taste}}">{{rateMap[item.taste]}}</view>
+          </view>
+          <!-- 回选 -->
+          <view class="election" wx:if="{{evaluationStt && item.advise}}">{{item.advise}}</view>
+          <!-- 菜品上传图片 -->
+          <view class="img-box">
+            <view class="img" wx:if="{{item.horseManImgList && item.horseManImgList.length > 0}}">
+              <view class="upload-img" wx:for="{{item.horseManImgList}}" wx:key="index" data-src="{{item}}" bind:tap="previewImage">
+                <image src="{{item}}" />
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 提交 -->
+  <view class="bot" wx:if="{{!evaluationStt}}">
+    <button class="submit {{active && (evaluate || waybillRecord.distributionMode == 1 || waybillRecord.uid != uid) ? 'active' : ''}}" bind:tap="submit">
+      提交
+    </button>
+  </view>
+</view>
+<view class="succ" wx:else>
+  <image src="https://prodstatic.weis1606.cn/api/smartFood/icon_discuss.png" />
+  <view class="title">评价提交成功</view>
+  <view class="back" bind:tap="back">返回</view>
+</view>

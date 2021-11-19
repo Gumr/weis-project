@@ -1,0 +1,80 @@
+<!--index.wxml-->
+<import src="../../template/loadMore.wxml" />
+<wxs module="filters" src="../../utils/wxs/filters.wxs"></wxs>
+<nav showSearch="{{true}}" bindgoSearchCook="goSearchCook"></nav>
+<refresh id="refresh" loadmore bind:handleRefresh="refresh" successed="{{refreshSuccess}}"></refresh>
+<view class="container" bind:touchstart="touchstartEvent" bind:touchmove="touchmoveEvent" bind:touchend="touchEndEvent">
+  <swiper class="carousel">
+    <block wx:key="index">
+      <swiper-item class="swiper-item" wx:for="{{banners}}" wx:key="index" data-index="{{index}}" bind:tap="toBannerView">
+        <image src="{{item.bannerUrl}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 榜单 -->
+  <view class="leaderboard" wx:if="{{ranklist.length > 0}}">
+    <view class="title">
+      <view class="name">
+        <text class="txt">第{{term}}期榜单</text>
+        <image class="icon" wx:if="{{processing}}" src="/images/icon_vote_hot.png" />
+      </view>
+      <view class="opt" bindtap="toLeaderboard">
+        <text>全部</text>
+        <image src="/images/icon_right.png" />
+      </view>
+    </view>
+    <!-- 榜单-菜品列表 -->
+    <swiper class="goodsCarousel" bindchange="carouselChange" previous-margin="0rpx" next-margin="0rpx">
+      <block wx:for="{{ranklist}}" wx:key="index">
+        <swiper-item class="swiper-item">
+          <view class="li" wx:for="{{ item }}" wx:for-item="subItem" wx:for-index="subIndex" wx:key="subIndex" data-type="00" data-index="{{index}}" data-subindex="{{subIndex}}" data-id="{{subItem.trId}}" bindtap="toCookDetail">
+            <view class="imgbox">
+              <image mode="{{subItem.trCoverImageWide < subItem.trCoverImageHeight ? 'widthFix' : 'heightFix'}}" src="{{subItem.trCoverImageUrl}}" style="{{subItem.trCoverImageWide < subItem.trCoverImageHeight ? 'width: 158rpx;' : 'height: 158rpx;'}}" class="slide-image" />
+            </view>
+            <view class="name">{{subItem.trName}}</view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- 菜品列表 -->
+  <view class="tabs" style="position: {{fixedTab ? 'fixed' : 'static'}};top: {{navBarHeight - 1 + 'px'}};left: 0;">
+    <view class="tab" wx:for="{{tabs}}" wx:key="id" data-target = "{{item.id}}" data-index="{{index}}" bindtap="switchTab">
+      <view class="tabname">{{item.name}}</view>
+      <view class="line" hidden="{{nowTab !== index}}"></view>
+    </view>
+  </view>
+  <scroll-view class="waterfall">
+    <view class="box" wx:if="{{cookList.length > 0}}">
+      <view class="column" id="{{index % 2 === 0 ? 'waterfall_left' : 'waterfall_right'}}" wx:for="{{cookList}}" wx:key="index">
+        <view class="good" wx:for="{{item}}" wx:for-item="subItem" wx:for-index="subIndex" wx:key="subIndex" data-type="02" data-index="{{index}}" data-subindex="{{subIndex}}" data-id="{{subItem.trId}}" bindtap="toCookDetail">
+          <!-- 菜谱状态 -->
+          <image class="status" mode="heightFix" wx:if="{{subItem.trAuditResult === '05' && !subItem.cook}}" src="{{filters.handleTopLeftIcon(subItem.trAuditResult)}}" />
+          <!-- 是否含视频 -->
+          <image class="video_icon" wx:if="{{subItem.trVideo}}" src="/images/icon_video_play_s.png" />
+          <view class="imgBox">
+            <image class="goodimg" mode="{{335 * (subItem.trCoverImageHeight / subItem.trCoverImageWide) < 300 || 335 * (subItem.trCoverImageHeight / subItem.trCoverImageWide) > 500 ? 'heightFix' : 'widthFix'}}"
+            style="height: {{335 * (subItem.trCoverImageHeight / subItem.trCoverImageWide) < 300 ? '300rpx' : 335 * (subItem.trCoverImageHeight / subItem.trCoverImageWide) > 500 ? '500rpx' : '100%'}}" src="{{subItem.trCoverImageUrl}}" />
+          </view>
+          <view class="name">{{subItem.trName}}</view>
+          <view class="author">
+            <view class="human" data-uid="{{subItem.trUid}}" data-subitem="{{subItem}}" catchtap="toUserInfo">
+              <view class="imgbox">
+                <image src="{{subItem.headImgUrl}}" />
+                <image class="icon" wx:if="{{subItem.cook}}" src="/images/icon_V_sm.png" />
+              </view>
+              <text>{{subItem.uname}}</text>
+            </view>
+            <view class="operate" wx:if="{{subItem.trAuditResult === '05'}}" data-status="{{subItem.vote}}" data-id="{{subItem.trId}}" data-index="{{index}}" data-subindex="{{subIndex}}" catchtap="voteRecipes">
+              <image src="{{subItem.vote ? '/images/icon_vote.png' : '/images/icon_vote2.png'}}" />
+              <text>{{subItem.trVoteNumber}}人投票</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 加载中 -->
+    <van-loading wx:if="{{isRequest}}" type="spinner" size="24px" vertical></van-loading>
+    <template is="loadmore" wx:if="{{ loadmoreFlag }}"></template>
+  </scroll-view>
+</view>

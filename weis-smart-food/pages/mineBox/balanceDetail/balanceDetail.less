@@ -1,0 +1,217 @@
+.border {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1rpx;
+  transform: translateY(0.5);
+  background: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.detail {
+  width: 100%;
+
+  .category {
+    display: flex;
+    justify-content: space-between;
+    padding: 60rpx 0 80rpx 0;
+    background: #F3F4F5;
+    background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+
+    .per {
+      width: 50%;
+      text-align: center;
+
+      &-count {
+        font-family: "DINCondensedC";
+        font-weight: bold;
+        color: #fff;
+        line-height: 60rpx;
+
+        .val {
+          font-size: 96rpx;
+        }
+
+        .unit {
+          font-size: 50rpx;
+        }
+      }
+
+      &-tip {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 30rpx;
+
+        text {
+          font-size: 28rpx;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 550;
+          color: #fff;
+          line-height: 40rpx;
+          margin-right: 8rpx;
+        }
+
+        image {
+          width: 32rpx;
+          height: 32rpx;
+        }
+      }
+    }
+  }
+
+  // 列表内容
+  .list {
+    padding: 16rpx 30rpx 0;
+    background: #FFFFFF;
+    border-radius: 40rpx 40rpx 0px 0px;
+    transform: translateY(-38rpx);
+
+
+    .each {
+      height: 124rpx;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      // 图标
+      image {
+        width: 56rpx;
+        height: 56rpx;
+        margin-right: 24rpx;
+      }
+
+      // 内容
+      .content {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 610rpx;
+        height: 124rpx;
+
+        &::after {
+          .border();
+          bottom: 0;
+        }
+
+        .main {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+
+          .main__left {
+            text {
+              font-size: 26rpx;
+              font-weight: bold;
+              color: #333333;
+              line-height: 26rpx;
+              margin-bottom: 10rpx;
+              display: block;
+            }
+
+            view {
+              font-size: 20rpx;
+              color: #a9a9a9;
+              line-height: 20rpx;
+            }
+          }
+
+          .main__right {
+            text-align: right;
+
+            text {
+              font-size: 30rpx;
+              font-family: "DINCondensedC";
+              font-weight: bold;
+              color: #333333;
+              line-height: 30rpx;
+              margin-bottom: 10rpx;
+              display: block;
+            }
+
+            view {
+              font-size: 20rpx;
+              color: #a9a9a9;
+              line-height: 20rpx;
+            }
+
+            .active {
+              color: #fe5e0f;
+            }
+          }
+        }
+      }
+
+      &:last-of-type {
+        .content {
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  // 空状态
+  .null {
+    margin-top: 232rpx;
+    text-align: center;
+
+    image {
+      width: 320rpx;
+      height: 240rpx;
+      margin-bottom: 40rpx;
+    }
+
+    view {
+      font-size: 30rpx;
+      color: #d3d3d3;
+    }
+  }
+}
+
+.dialog-tip {
+  width: 100%;
+  height: 460rpx;
+  padding: 0 48rpx;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+
+  .tip-que {
+    font-size: 32rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 550;
+    color: #333333;
+    line-height: 32rpx;
+    margin-bottom: 20rpx;
+  }
+
+  .tip-answer {
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #666666;
+    line-height: 40rpx;
+  }
+}
+
+.dialog-know {
+  width: 336rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+  border-radius: 38rpx;
+  font-size: 30rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-align: center;
+  margin: 0 auto 40rpx;
+}

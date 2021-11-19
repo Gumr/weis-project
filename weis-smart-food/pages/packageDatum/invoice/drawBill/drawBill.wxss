@@ -1,0 +1,273 @@
+page {
+  background: #F3F4F5;
+}
+.invoice {
+  background: #F3F4F5;
+}
+.border {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2rpx;
+  background: #E9E9E9;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.invoice {
+  padding-bottom: 130rpx;
+}
+.invoice .tip {
+  width: 750rpx;
+  height: 88rpx;
+  background: #FEE0CC;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30rpx;
+}
+.invoice .tip.fix {
+  position: fixed;
+  left: 0;
+  z-index: 10;
+}
+.invoice .tip .fix-l {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.invoice .tip .fix-l image {
+  width: 32rpx;
+  height: 32rpx;
+}
+.invoice .tip .fix-l .title {
+  color: #FA6400;
+  font-size: 24rpx;
+  margin: 0 4rpx 0 8rpx;
+}
+.invoice .tip .record {
+  width: 152rpx;
+  height: 48rpx;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  border: 2rpx solid #FA6400;
+  text-align: center;
+  line-height: 44rpx;
+  color: #FA6400;
+  font-size: 24rpx;
+}
+.invoice .list-box {
+  margin-top: 16rpx;
+}
+.invoice .list-box .list {
+  margin-bottom: 30rpx;
+}
+.invoice .list-box .list .date {
+  color: #333333;
+  font-size: 36rpx;
+  line-height: 50rpx;
+  font-weight: bold;
+  padding: 0 0  0 30rpx;
+  margin-bottom: 16rpx;
+}
+.invoice .list-box .list .box {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  padding: 0 30rpx;
+}
+.invoice .list-box .list .box .category {
+  display: flex;
+  align-items: center;
+  height: 168rpx;
+  padding-left: 30rpx;
+}
+.invoice .list-box .list .box .category image {
+  width: 38rpx;
+  height: 38rpx;
+  margin-right: 19rpx;
+}
+.invoice .list-box .list .box .category .info {
+  flex: 1;
+  padding-left: 16rpx;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.invoice .list-box .list .box .category .info .title .time {
+  display: flex;
+  align-items: center;
+  color: #999999;
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+.invoice .list-box .list .box .category .info .title .time .isok {
+  width: 89rpx;
+  height: 32rpx;
+  background: linear-gradient(90deg, #FD9D00 0%, #FA6400 100%);
+  border-radius: 14rpx 14rpx 14rpx 0rpx;
+  text-align: center;
+  line-height: 32rpx;
+  color: #FFFFFF;
+  font-size: 18rpx;
+  margin-left: 6rpx;
+}
+.invoice .list-box .list .box .category .info .total {
+  display: flex;
+  align-items: baseline;
+  color: #333333;
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+.invoice .list-box .list .box .category .info .total .price {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.invoice .list-box .list .box .category:not(:last-of-type) .info::after {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2rpx;
+  background: #E9E9E9;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 0;
+}
+.invoice .list-box .loading {
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #666666;
+  font-size: 28rpx;
+}
+.invoice .empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 248rpx;
+}
+.invoice .empty .tip-title {
+  color: #666666;
+  font-size: 36rpx;
+  margin-bottom: 20rpx;
+}
+.invoice .empty .desc {
+  color: #666666;
+  font-size: 30rpx;
+}
+.bot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 750rpx;
+  height: 128rpx;
+  background: #FFFFFF;
+  padding: 0 30rpx;
+  position: fixed;
+  bottom: 0;
+}
+.bot .info {
+  display: flex;
+  align-items: center;
+  color: #333333;
+  font-size: 28rpx;
+  position: relative;
+}
+.bot .info .price {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.bot .info .tip-limit {
+  width: 400rpx;
+  position: absolute;
+  left: 0;
+  bottom: -28rpx;
+  color: #FA6400;
+  font-size: 20rpx;
+}
+.bot .btn {
+  width: 218rpx;
+  height: 72rpx;
+  background: #D8D8D8;
+  border-radius: 38rpx;
+  text-align: center;
+  line-height: 72rpx;
+  color: #FFFFFF;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.bot .btn.active {
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+}
+.shadow {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+.shadow .dialog {
+  width: 100%;
+  height: 0;
+  background: #FFFFFF;
+  border-radius: 0rpx 0rpx 20rpx 20rpx;
+  padding: 30rpx 27rpx 0 30rpx;
+  position: absolute;
+  overflow-y: hidden;
+}
+.shadow .dialog.active {
+  animation: anima 200ms ease forwards;
+}
+@keyframes anima {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 852rpx;
+  }
+}
+.shadow .dialog .title {
+  color: #333333;
+  font-size: 32rpx;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 auto 22rpx;
+}
+.shadow .dialog .row {
+  display: flex;
+  margin-bottom: 35rpx;
+}
+.shadow .dialog .row .num {
+  color: #333333;
+  font-size: 28rpx;
+}
+.shadow .dialog .row .row-r {
+  color: #333333;
+  font-size: 28rpx;
+}
+.shadow .dialog .row .row-r .name {
+  font-weight: bold;
+}
+.shadow .dialog .btn {
+  width: 336rpx;
+  height: 72rpx;
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+  border-radius: 38rpx;
+  text-align: center;
+  line-height: 72rpx;
+  color: #FFFFFF;
+  font-size: 30rpx;
+  font-weight: bold;
+  margin: 60rpx auto 0;
+}

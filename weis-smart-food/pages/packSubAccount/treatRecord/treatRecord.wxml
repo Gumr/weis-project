@@ -1,0 +1,15 @@
+<!--pages/packSubAccount/treatRecord/treatRecord.wxml-->
+<cp-nav-bar title-text="请客记录" background="#F3F4F5" color="#000000" backIconColor="black" />
+
+<view class="treat" wx:if="{{list && list.length > 0}}">
+    <view class="box" wx:for="{{list}}" data-index="{{index}}" bind:tap="toDetail">
+        <view class="name">请{{item.inviteNum}}人吃饭，每人{{item.preAmount}}元，{{item.receiveNum}}人领取</view>
+        <view class="time">{{item.ctime}}</view>
+    </view>
+</view>
+
+<!-- 无请客记录 -->
+<view class="empty" wx:if="{{list && list.length == 0}}">
+    <view>（＾∀＾）</view>
+    <view>还没有请客记录哟</view>
+</view>

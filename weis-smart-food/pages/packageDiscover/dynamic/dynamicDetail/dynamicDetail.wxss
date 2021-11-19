@@ -1,0 +1,232 @@
+.border {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1rpx;
+  background: #333333;
+  opacity: 0.1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.dynamicDetail {
+  width: 100%;
+  padding-bottom: 122rpx;
+  /* 遮罩层 */
+}
+.dynamicDetail .head {
+  display: flex;
+  align-items: center;
+}
+.dynamicDetail .head .headImg {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  margin-right: 14rpx;
+}
+.dynamicDetail .head .headInfo view:nth-child(1) {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 10rpx;
+}
+.dynamicDetail .head .headInfo view:nth-child(2) {
+  font-size: 20rpx;
+  color: #adadad;
+}
+.dynamicDetail .dynamic {
+  background: #ffffff;
+  border-radius: 10rpx;
+  padding: 0 30rpx;
+}
+.dynamicDetail .dynamic .content .list {
+  margin-top: 40rpx;
+  position: relative;
+}
+.dynamicDetail .dynamic .content .list::after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1rpx;
+  background: #333333;
+  opacity: 0.1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.dynamicDetail .dynamic .content .list .words {
+  font-size: 28rpx;
+  color: #333333;
+  line-height: 38rpx;
+  margin: 30rpx 0;
+}
+.dynamicDetail .dynamic .content .list .words view {
+  display: inline;
+  word-break: break-all;
+}
+.dynamicDetail .dynamic .content .list .words .wordsUrl {
+  color: #2440B3;
+}
+.dynamicDetail .dynamic .content .list .words .wordsUrl .urlIcon {
+  width: 28rpx;
+  height: 28rpx;
+}
+.dynamicDetail .dynamic .content .list .img image {
+  width: 223rpx;
+  height: 223rpx;
+  border-radius: 10rpx;
+  margin: 0 10rpx 5rpx 0;
+}
+.dynamicDetail .dynamic .content .list .img image:nth-of-type(3n) {
+  margin-right: 0;
+}
+.dynamicDetail .dynamic .content .list .menu {
+  height: 96rpx;
+  background: #f6f6f6;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  margin: 24rpx 0;
+}
+.dynamicDetail .dynamic .content .list .menu view:nth-child(1) {
+  width: 108rpx;
+  background: #d1fffc;
+  border-radius: 10rpx 0rpx 0rpx 10rpx;
+  font-size: 68rpx;
+  font-family: "DINCondensedC";
+  font-weight: bold;
+  color: #18c5c1;
+  line-height: 96rpx;
+  text-align: center;
+  margin-right: 20rpx;
+}
+.dynamicDetail .dynamic .content .list .menu view:nth-child(1).addRed {
+  background: linear-gradient(180deg, #fff3eb 0%, #ffdac1 100%);
+  color: #fa6400;
+}
+.dynamicDetail .dynamic .content .list .menu view:nth-child(2) {
+  width: 630rpx;
+  background: #f6f6f6;
+  font-size: 28rpx;
+  color: #adadad;
+}
+.dynamicDetail .dynamic .content .list .operate {
+  padding-bottom: 30rpx;
+}
+.dynamicDetail .dynamic .content .list .operate_delete {
+  width: 100%;
+  text-align: right;
+}
+.dynamicDetail .dynamic .content .list .operate_delete image {
+  width: 36rpx;
+  height: 36rpx;
+}
+.dynamicDetail .evaluate {
+  padding: 0 30rpx;
+}
+.dynamicDetail .evaluate .title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333333;
+  padding-top: 40rpx;
+}
+.dynamicDetail .evaluate .content .list {
+  margin-top: 40rpx;
+  position: relative;
+}
+.dynamicDetail .evaluate .content .list:not(:last-child)::after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1rpx;
+  background: #333333;
+  opacity: 0.1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.dynamicDetail .evaluate .content .list .words {
+  font-size: 28rpx;
+  color: #707070;
+  line-height: 40rpx;
+  margin: 30rpx 0;
+  padding-left: 84rpx;
+}
+.dynamicDetail .evaluate .content .list .delete {
+  text-align: right;
+}
+.dynamicDetail .evaluate .content .list .delete image {
+  width: 36rpx;
+  height: 36rpx;
+}
+.dynamicDetail .comment {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15rpx 30rpx 35rpx;
+  position: fixed;
+  bottom: 0;
+  box-shadow: 0rpx 2rpx 24rpx 0rpx rgba(102, 102, 102, 0.15);
+  background: #ffffff;
+}
+.dynamicDetail .comment_input {
+  width: 572rpx;
+  height: 82rpx;
+  background: #F6F6F6;
+  border-radius: 40rpx;
+  font-size: 26rpx;
+  color: #A9A9A9;
+  line-height: 82rpx;
+  padding-left: 30rpx;
+}
+.dynamicDetail .comment_order {
+  position: relative;
+}
+.dynamicDetail .comment_order image {
+  width: 52rpx;
+  height: 52rpx;
+  margin-right: 38rpx;
+}
+.dynamicDetail .comment_order view {
+  position: absolute;
+  left: 21px;
+  top: -8px;
+  font-size: 20rpx;
+  color: #adadad;
+}
+.dynamicDetail .commentInput {
+  width: 750rpx;
+  background: #FFFFFF;
+  box-shadow: 0rpx 2rpx 24rpx 0rpx rgba(102, 102, 102, 0.15);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 102;
+  padding: 20rpx 30rpx;
+}
+.dynamicDetail .commentInput .placeholder {
+  font-size: 26rpx;
+  color: #a9a9a9;
+}
+.dynamicDetail .commentInput_input {
+  width: 690rpx;
+  min-height: 82rpx;
+  max-height: 130rpx;
+  background: #f6f6f6;
+  border-radius: 40rpx;
+  box-sizing: border-box;
+  color: #A9A9A9;
+}
+.dynamicDetail .mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  background: rgba(51, 51, 51, 0.4);
+}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "cp-pay-popup": "/components/cp-pay-popup/cp-pay-popup",
+    "vant-popup": "/components/vant/popup/index"
+  }
+}

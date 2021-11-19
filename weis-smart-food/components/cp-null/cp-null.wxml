@@ -1,0 +1,7 @@
+<!-- components/cp-null/cp-null.wxml -->
+<!-- 空状态 -->
+<view wx:if="{{show}}" class="null">
+    <image style="{{imgStyle}}" src="{{imgSrc}}" />
+    <view>{{text}}</view>
+    <slot></slot>
+</view>

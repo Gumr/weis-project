@@ -1,0 +1,75 @@
+<!-- /Users/weis/Desktop/miniprogram/weis-ttmp/pages/packTwo/writeOffInfo/writeOffInfo.ttml -->
+
+<sjs module="utils">
+  function str2Int(v){ 
+    return parseInt(v); 
+  }
+  function weekStr(v){ 
+    switch(v){
+      case '1': return '周一';
+      case '2': return '周二';
+      case '3': return '周三';
+      case '4': return '周四';
+      case '5': return '周五';
+      case '6': return '周六';
+      default : return '周日';
+    } 
+  } 
+  function categoryStr(v){
+    switch(v){
+      case '02': return '午餐';
+      case '03': return '晚餐';
+      default : return '早餐';
+    }
+  }
+   module.exports = { str2Int: str2Int ,weekStr: weekStr,categoryStr:categoryStr}
+</sjs>
+<cp-nav-bar title-text="每日套餐" preventBack="{{true}}" bind:back="back" background="#F3F4F5"></cp-nav-bar>
+<view class="page">
+  <view class="title">{{dayNum}}日套餐，每日{{mealNum}}餐，共{{dayNum*mealNum}}餐</view>
+  <view class="address-box" bindtap="tapAddress">
+  <!-- 地址选择 -->
+    <view class="address-row">
+      <image class="icon" src="http://prodstatic.weis1606.cn/api/ttmpFood/order/write_off_location.png" />
+      <view class="address">{{address.detail + address.houseNum}}</view>
+      <image class="arrow" src="http://prodstatic.weis1606.cn/api/ttmpFood/order/write_off_arrow.png" />
+    </view>
+    <view class="info">{{address.name+' '+address.phone}}</view>
+  </view>
+  <view class="list" tt:for="{{list}}" tt:for-item="item" tt:for-index="index">
+    <!-- 日期 -->
+    <view class="date">{{utils.str2Int(item.orderDate[4]+item.orderDate[5])}}月{{utils.str2Int(item.orderDate[6]+item.orderDate[7])}}日 {{utils.weekStr(item.weeks)}}</view>
+    <view class="meal-box">
+      <view tt:for="{{item.cateringBagList}}" tt:for-item="c" tt:for-index="idx">
+      <!-- 中间显示横线 -->
+        <view tt:if="{{idx > 0}}" class="line"></view>
+        <!-- 餐别 -->
+        <view class="category">{{utils.categoryStr(c.category)}}</view>
+        <view class="content">
+          <!-- 横向滑动餐品列表 -->
+          <scroll-view class="scroll" scroll-x="true">
+            <view class="item" tt:for="{{c.infoComposes}}" tt:for-item="comp">
+              <!-- 餐品图片 -->
+              <image mode="aspectFill" src="{{comp.primaryImgUrl}}" />
+              <!-- 餐品名称 -->
+              <view class="text">{{comp.skuname}}</view>
+              <!-- <view class="text">日式照烧青花鱼</view> -->
+            </view>
+            <view class="item"></view>
+          </scroll-view>
+          <!-- 餐品总计 -->
+          <view class="count">
+            <view class="text">共{{c.num}}件</view>
+          </view>
+        </view>
+        <view class="time-box">
+        <image src="https://prodstatic.weis1606.cn/api/ttmpFood/order/write_off_time.png" />
+        <view class="text">送达时间</view>
+        <view class="time">{{c.mealTakingTime}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <image class="tips" src="https://prodstatic.weis1606.cn/api/ttmpFood/order/write_off_tips.png" />
+    <view class="confirm" style="{{list.length>0?'':'background:#D8D8D8'}}" bindtap="writeOff">确认信息无误，立即核销</view>
+</view>

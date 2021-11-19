@@ -1,0 +1,61 @@
+<!--pages/mineBox/nutrientReport/nutrientReport.wxml-->
+<cp-nav-bar 
+  title-text="{{options.title}}"
+  titleStyle="font-size: 32rpx;font-weight: blod;color: #fff;"
+  background="transparent"
+  navBgImg="https://prodstatic.weis1606.cn/api/smartFood/navBgImg_top.png"
+  backIconColor='white'>
+</cp-nav-bar>
+
+<view class="nutrientReport">
+    <image class="navBarBg" src="https://prodstatic.weis1606.cn/api/smartFood/navBgImg_bottom.png" style="top:{{navStatusHeight * px2rpx}}rpx" />
+    <!-- 头部-进度条 -->
+    <view class="header">
+        <view class="title">
+          <text>{{headerData.title}}</text>
+          <text>({{headerData.unit}})</text>
+        </view>
+        <view class="content">
+            <view class="list" wx:for="{{headerData.list}}" wx:key="key">
+              <view class="list_name">{{item.name}}</view>
+              <view class="list_progress">
+                <view style="width: {{item.width}};background: {{item.bgColor}}"></view>
+              </view>
+              <view class="list_value">{{item.value}}</view>
+          </view>
+        </view>
+    </view>
+    <!-- 营养素 -->
+    <view class="nutrient">
+      <view class="circle">
+          <cp-data-pie
+            wx:if="{{customOption}}"
+            mode="image"
+            delay="{{400}}"
+            custom-style="width: 1000rpx;height: 500rpx;"
+            data="{{pieData}}"
+            customOption="{{customOption}}"
+            ishighlight="{{false}}"
+          ></cp-data-pie>
+      </view>
+
+      <view class="info">
+        <view class="name">
+            <view>餐别</view>
+            <view>摄入<text>({{options.unit}})</text></view>
+            <view>计划<text>({{options.unit}})</text></view>
+        </view>
+         <view class="content">
+           <view class="list" wx:for="{{infoData}}" wx:key="key">
+            <view class="list_name">{{item.name}}</view>
+            <view class="list_intake" style="color: {{item.actual > item.plan && item.plan? '#FA6400':'#18C5C1'}}">{{item.actual}}</view>
+            <view class="list_plan">{{item.plan}}</view>
+            <!-- <image class="list_img" src="/images/list_next.png" /> -->
+          </view>
+         </view>
+      </view>
+      
+    </view>
+    <!-- 提示 -->
+    <!-- <view class="tip">* 盐量和食物多样性只计算点餐后自动打卡的菜品</view> -->
+</view>

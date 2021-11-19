@@ -1,0 +1,54 @@
+.display-flex {
+  display: flex;
+}
+.step-wrap {
+  padding-bottom: 56rpx;
+}
+.pos-relative {
+  position: relative;
+}
+.step-bar {
+  height: 6rpx;
+  position: absolute;
+  top: 13.5rpx;
+  left: 10rpx;
+  z-index: -2;
+}
+.step-dot-box {
+  width: 28rpx;
+  max-width: 28rpx;
+  z-index: 1;
+  position: relative;
+}
+.step-dot-item {
+  flex-grow: 1;
+  position: relative;
+}
+.step-dot-item.last-dot-item {
+  width: 28rpx;
+  max-width: 28rpx;
+}
+.step-dot-item .step-bar-item {
+  position: absolute;
+  width: 100%;
+  top: 13.5rpx;
+  height: 6rpx;
+  background-color: #d8d8d8;
+}
+.step-dot-item .step-bar-item.show-step-bar-item {
+  background-color: transparent;
+}
+.step-dot-item .step-label {
+  font-size: 24rpx;
+  margin-top: 32rpx;
+  white-space: nowrap;
+  position: absolute;
+  left: 14rpx;
+  transform: translateX(-50%);
+}
+.step-dot {
+  width: 28rpx;
+  height: 28rpx;
+  border: 2px solid #fff;
+  border-radius: 56rpx;
+}

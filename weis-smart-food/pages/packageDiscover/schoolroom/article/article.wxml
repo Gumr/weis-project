@@ -1,0 +1,13 @@
+<!-- pages/packageDiscover/schoolroom/article/article.wxml -->
+<cp-nav-bar title-text="{{title}}" color="#000000" backIconColor="black" />
+<view class="article">
+    <view class="content">
+        <view class="list" wx:for="{{article}}" wx:key="index" data-link="{{item.link}}" bind:tap="articleTap">
+            <image class="img" src="{{item.imgUrl}}"></image>
+            <view class="info">
+                <view class="name">{{item.headline}}</view>
+                <view class="desc">{{item.subheading}}</view>
+            </view>
+        </view>
+    </view>
+</view>

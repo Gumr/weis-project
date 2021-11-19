@@ -1,0 +1,256 @@
+<!--pages/packSubAccount/member/member.wxml-->
+<cp-nav-bar title-text="维士会员" color="#000000" backIconColor="black" navBgImg="https://prodstatic.weis1606.cn/api/smartFood/member_navBg_top.png"/>
+<wxs module="filters" src="../../../../utils/filter.wxs"></wxs>
+<view class="member" wx:if="{{pageShow}}">
+    <image class="navBarBg" src="https://prodstatic.weis1606.cn/api/smartFood/member_navBg_bottom.png" style="top:{{navStatusHeight * px2rpx}}rpx" />
+    <!-- 未开通 && 过期 -->
+    <!-- wx:if="{{btnStatus == '01' || (btnStatus == '02' && coupon.length == 0)}}" -->
+    <view class="boxOne" wx:if="{{vipCoupon.vipStt == '01' || vipCoupon.vipStt == '02'}}">
+        <view class="tip" wx:if="{{vipCoupon.vipStt == '01'}}">开通维士会员享受<text>3</text>大特权</view>
+        <view class="tip" wx:if="{{vipCoupon.vipStt == '02'}}">你的会员已到期，续费维士会员享受<text>3</text>大特权</view> 
+        <!-- 特权1-优惠券 -->
+        <view class="boxBg coupon"> 
+            <view class="header">
+                 <view class="tag">
+                    <image src="https://prodstatic.weis1606.cn/api/smartFood/vip_label.png" />
+                    <text>特权1</text>
+                </view>
+                <view class="title">每月享受<text>{{vipCouponConfigList.tvccCouponTotalAmount}}元</text>优惠</view> 
+            </view>       
+            <view class="content">
+                <view class="list" wx:for="{{vipCouponConfigList.tvccNum}}">
+                    <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/vip_coupons.png" />
+                    <view class="con">
+                        <view class="con_price">¥<text>{{vipCouponConfigList.tvccCouponAmount}}</text></view>
+                        <view class="con_threshold">优惠券</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- 特权2-加量包 -->
+        <view class="boxBg add">
+            <view class="header">
+                 <view class="tag">
+                    <image src="https://prodstatic.weis1606.cn/api/smartFood/vip_label.png" />
+                    <text>特权2</text>
+                </view>
+                <view class="title">可以低价购买会员加量包</view>
+            </view>
+            <scroll-view scroll-x="{{true}}" style="width:660rpx">     
+                <view class="content">
+                    <view class="list" wx:for="{{add}}">
+                        <view class="card">
+                            <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/vip_card_bag2.png" />
+                            <view class="con">
+                                <view class="con_price"><text>{{item.tvccCouponAmount}}</text>元</view>
+                                <view class="con_operator">×</view>
+                                <view class="con_num"><text>{{item.tvccNum}}</text>张</view>
+                            </view>
+                        </view>
+                        <view class="price">
+                            <view class="price_now">¥<text>{{item.tvccActualAmount}}</text></view>
+                            <view class="price_origin">¥{{item.tvccCouponTotalAmount}}</view>
+                        </view>
+                        <view class="buy">{{item.tvccDiscount}}折购买</view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+        <!-- 特权3-会员标识 -->
+        <view class="boxBg sign">
+            <view class="header">
+                 <view class="tag">
+                    <image src="https://prodstatic.weis1606.cn/api/smartFood/vip_label.png" />
+                    <text>特权3</text>
+                </view>
+                <view class="title">会员标识</view>
+            </view>       
+            <view class="content">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/crown_large.png" />
+                <view>获得尊贵会员标识</view>
+            </view>
+        </view>
+        <!-- 底部 -->
+        <view class="bottom">
+            <view class="bottom_btn" data-paytype="{{vipCoupon.firstJoinVip?'01':'02'}}" bind:tap="recharge">
+                <text>￥</text>
+                <text>{{vipCoupon.vipPayAmount}}</text>
+                <text>{{vipCoupon.firstJoinVip?'首次开通会员':'续费会员'}}</text>
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/button_tips-new.png" />
+            </view>
+            <view class="bottom_record" bind:tap="buyRecord">
+                <text>购买记录</text>
+                <image src="/images/list_next.png" />
+            </view>
+        </view>
+    </view>
+
+    <!-- ------------------------------------ -->
+
+    <!-- 开通 && 券用完 -->
+    <!-- wx:if="{{btnStatus == '03' || (btnStatus == '02' && coupon.length > 0)}}" -->
+    <view class="boxTwo" wx:if="{{vipCoupon.vipStt == '03' || vipCoupon.vipStt == '04'}}">
+        <!-- 特权1-优惠券 -->
+        <view class="boxBg coupon">
+            <view class="header">
+                <view class="title">本月可用会员券<text>{{vipCoupon.couponNum}}</text>张</view>
+                <view class="renew" bind:tap="renew">立即续费</view>
+            </view>
+            <scroll-view scroll-x="{{true}}" style="width:660rpx">        
+                <view class="content">
+                    <view class="list {{item.haveUsed?'haveUsed':''}}" wx:for="{{coupon}}">
+                        <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/{{item.haveUsed?'vip_coupon_prohibit':'vip_coupon_normal'}}.png" />
+                        <view class="con">
+                            <view class="con_price">¥<text>{{item.tvccCouponAmount}}</text></view>
+                            <view class="con_threshold">优惠券</view>
+                            <view class="con_use" wx:if="{{item.haveUsed}}">已使用</view>
+                            <view class="con_use" wx:else bind:tap="toUse">去使用</view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+            <view class="remark">*{{vipCoupon.couponNum}}张会员券，{{filters.toDateCustom(vipCoupon.endDate, '.')}}到期</view>
+            <view class="remark list" wx:if="{{couponBeanList.length}}" wx:for="{{couponBeanList}}">*待发放会员券{{item.tvccNum}}张，将于{{filters.toDateCustom(item.tvccSaleBeginDate, '.')}}发放</view>
+        </view>
+        <!-- 特权2-加量包 -->
+        <view class="boxBg add">
+            <view class="header">
+                <view class="title">加量包</view>
+                <view class="addTip">
+                    <image src="https://prodstatic.weis1606.cn/api/smartFood/vip_tip.png" />
+                    <text>请在{{filters.toDateCustom(vipCoupon.endDate, '.')}}前购买和使用</text>
+                </view>
+            </view>
+            <view class="content">
+                <view class="list" wx:for="{{add}}">
+                    <view class="card">
+                        <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/vip_card_bag2.png" />
+                        <view class="con">
+                            <view class="con_price"><text>{{item.tvccCouponAmount}}</text>元</view>
+                            <view class="con_operator">×</view>
+                            <view class="con_num"><text>{{item.tvccNum}}</text>张</view>
+                        </view>
+                    </view>
+                    <view class="info">
+                            <view class="name">{{item.tvccCouponTotalAmount}}元加量包</view>
+                            <view class="price">
+                                <view class="price_now">¥<text>{{item.tvccActualAmount}}</text></view>
+                                <view class="price_origin">¥{{item.tvccCouponTotalAmount}}</view>
+                            </view>
+                    </view>
+                    <view class="buy haveUsed" wx:if="{{item.haveUsed}}">已买过</view>
+                    <view class="buy" wx:else bind:tap="addBuy" data-item="{{item}}">5折购买</view>
+                </view>
+            </view>
+        </view>
+        <!-- 底部 -->
+        <view class="bottom">
+            <view class="bottom_record" bind:tap="buyRecord">
+                <text>购买记录</text>
+                <image src="/images/list_next.png" />
+            </view>
+        </view>
+    </view>
+</view>
+
+
+
+<!-- 续费会员-弹窗 -->
+<cp-bottom-popup model:show="{{renewShow}}" title="续费会员" use-slot show-button="{{false}}" customStylePopup="background: #F3F4F5;">
+  <view class="popup renewPopup">
+    <view class="card">
+       <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/renew_card_bj.png" />
+        <view class="con">
+            <view class="con_date">{{vipRecord.tvrDateArr[0]}} 到 {{vipRecord.tvrDateArr[1]}}</view>
+            <view class="con_list">
+                <view class="coupon">
+                    <view class="coupon_box">
+                        <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/renew_coupons.png" />
+                        <view class="ct">
+                            <view class="ct_price"><text>{{vipCouponConfigList.tvccCouponAmount}}</text>元</view>
+                            <view class="ct_operator">×</view>
+                            <view class="ct_num"><text>{{vipCouponConfigList.tvccNum}}</text>张</view>
+                        </view>
+                    </view>
+                    <view class="name">{{vipCouponConfigList.tvccCouponTotalAmount}}元优惠券</view>
+                </view>
+                <view class="add">
+                    <view class="add_box">
+                        <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/renew_card_bag.png" />
+                    </view>
+                    <view class="name">{{vipCoupon.couponDiscount}}折购买</view>
+                </view>
+                 <view class="sign">
+                    <view class="sign_box">
+                        <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/renew_vip.png" />
+                    </view>
+                    <view class="name">专属会员标志</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="price">
+        <view class="priceList price_origin">
+            <view>原价</view>
+            <view>¥{{vipCouponConfigList.tvccCouponTotalAmount}}</view>
+        </view>
+        <view class="priceList price_discount">
+            <view>折扣</view>
+            <view>-¥{{filters.toFixCustom((vipCouponConfigList.tvccCouponTotalAmount - vipCoupon.vipPayAmount), 2)}}</view>
+        </view>
+        <view class="priceList price_now">
+            <view>实付</view>
+            <view>¥<text>{{vipCoupon.vipPayAmount}}</text></view>
+        </view>
+    </view>
+    <view class="buy">
+        <view class="money">
+            <view class="money_now">￥<text>{{vipCoupon.vipPayAmount}}</text></view>
+            <view class="money_discount">已优惠￥{{filters.toFixCustom((vipCouponConfigList.tvccCouponTotalAmount - vipCoupon.vipPayAmount), 2)}}</view>
+        </view>
+        <view class="btn" data-paytype="{{'02'}}" bind:tap="recharge">去支付</view>
+    </view>
+  </view>
+</cp-bottom-popup>
+
+<!-- 加量包购买-弹窗 -->
+<cp-bottom-popup model:show="{{addBuyShow}}" title="购买加量包" use-slot show-button="{{false}}" customStylePopup="background: #F3F4F5;">
+  <view class="popup addBuyPopup">
+    <view class="list">
+        <view class="card">
+            <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/vip_card_bag2.png" />
+            <view class="con">
+                <view class="con_price"><text>{{addBuyData.tvccCouponAmount}}</text>元</view>
+                <view class="con_operator">×</view>
+                <view class="con_num"><text>{{addBuyData.tvccNum}}</text>张</view>
+            </view>
+        </view>
+        <view class="info">
+                <view class="name">{{addBuyData.tvccCouponTotalAmount}}元加量包</view>
+                <view class="remark">有效期至{{filters.toDateCustom(vipCoupon.endDate, '.')}}（剩{{vipCoupon.days}}天）</view>
+        </view>
+    </view>
+    <view class="price">
+        <view class="priceList price_origin">
+            <view>原价</view>
+            <view>¥{{addBuyData.tvccCouponTotalAmount}}</view>
+        </view>
+        <view class="priceList price_discount">
+            <view>折扣</view>
+            <view>-¥{{filters.toFixCustom((addBuyData.tvccCouponTotalAmount - addBuyData.tvccActualAmount), 2)}}</view>
+        </view>
+        <view class="priceList price_now">
+            <view>实付</view>
+            <view>¥<text>{{addBuyData.tvccActualAmount}}</text></view>
+        </view>
+    </view>
+    <view class="buy">
+        <view class="money">
+            <view class="money_now">￥<text>{{addBuyData.tvccActualAmount}}</text></view>
+            <view class="money_discount">已优惠￥{{filters.toFixCustom((addBuyData.tvccCouponTotalAmount - addBuyData.tvccActualAmount), 2)}}</view>
+        </view>
+        <view class="btn" data-paytype="03" data-item="{{addBuyData}}" bind:tap="recharge">去支付</view>
+    </view>
+  </view>
+</cp-bottom-popup>

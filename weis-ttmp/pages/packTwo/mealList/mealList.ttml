@@ -1,0 +1,63 @@
+<!-- /Users/weis/Desktop/miniprogram/weis-ttmp/pages/order/mealList/mealList.ttml -->
+
+<sjs module="utils">
+  function weekStr(v){ 
+    switch(v){
+      case 0: return '周一';
+      case 1: return '周二';
+      case 2: return '周三';
+      case 3: return '周四';
+      case 4: return '周五';
+      case 5: return '周六';
+      default : return '周日';
+    } 
+  } 
+   module.exports = { weekStr: weekStr}
+</sjs>
+
+<cp-nav-bar title-text="{{title}}" preventBack="{{true}}" bind:back="back" background="#F3F4F5"></cp-nav-bar>
+
+<view class="meal">
+  <view class="tab fix" style="top:{{navStatusHeight}}px;">
+    <view class="name {{index == tabIndex ? 'active' : ''}}" tt:for="{{tab}}" data-index="{{index}}" bindtap="tab">{{item.name}}</view>
+  </view>
+
+  <!-- 没有餐单 -->
+  <view class="no-meal" tt:if="{{!list||list.length==0}}">
+    <image mode="aspectFit" src="http://prodstatic.weis1606.cn/api/ttmpFood/order/no_meal_list.png" />
+    <view class="text">暂无餐单</view>
+  </view>
+
+  <!-- 餐单列表 -->
+  <view class="list">
+    <view class="item" tt:for="{{list}}" tt:for-item="item" tt:for-index="index" >
+      <!-- 餐单日期 -->
+      <view class="date" tt:if="{{index<=0||item.date!=list[index-1].date}}">{{item.date[4]+item.date[5]}}月{{item.date[6]+item.date[7]}}日 {{utils.weekStr(item.week)}}</view>
+
+      <view class="box" bindtap="tapItem" data-ship="{{item.shipOid}}">
+        <view class="top">
+          <!-- 餐别 -->
+          <view class="category">{{item.categoryText}}</view>
+          <!-- 配送状态 -->
+          <view class="status" style="color: #fa6400;">{{item.orderSttText}}</view>
+        </view>
+        <view class="content">
+          <!-- 横向滑动餐品列表 -->
+          <scroll-view class="scroll" scroll-x="true">
+            <view class="item" tt:for="{{item.dietOrderDetails}}" tt:for-item="detail" tt:for-index="idx">
+              <!-- 餐品图片 -->
+              <image mode="aspectFill" src="{{detail.imgUrl}}" />
+              <!-- 餐品名称 -->
+              <view class="text">{{detail.skuname}}</view>
+            </view>
+            <view class="item"></view>
+          </scroll-view>
+          <!-- 餐品总计 -->
+          <view class="count">
+            <view class="text">共{{item.count}}件</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

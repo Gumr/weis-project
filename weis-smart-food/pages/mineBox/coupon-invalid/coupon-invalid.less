@@ -1,0 +1,357 @@
+@color: #a9a9a9;
+.border {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 2rpx;
+  background: #e9e9e9;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+page{
+  background: #F3F4F5;
+}
+
+// 优惠券
+.coupon {
+  width: 100%;
+  height: 100%;
+  padding: 30rpx 35rpx 0;
+  position: relative;
+  background: #f3f4f5;
+  &::before {
+    .border();
+    top: 0;
+  }
+  .coupon-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .list {
+      position: relative;
+      width: 680rpx;
+      height: 192rpx;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+      // padding: 20rpx;
+      color: #ffffff;
+      margin-bottom: 32rpx;
+      // 背景图片
+      .bg {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        // z-index: -1;
+      }
+
+      .c-t {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        box-sizing: border-box;
+        position: relative;
+        // 左边内容
+        .c-left {
+          width: 192rpx;
+          // padding: 34rpx 0 0 45rpx;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          font-size: #fff;
+          // .money{
+          //   display: flex;
+          //   align-items: baseline;
+          //   // ¥
+          //   .symbol {
+          //     font-size: 36rpx;
+          //     font-family: "DINCondensedC";
+          //     font-weight: bold;
+          //     line-height: 24rpx;
+          //   }
+          //   // 价格
+          //   .amount {
+          //     font-size: 120rpx;
+          //     font-family: "DINCondensedC";
+          //     font-weight: bold;
+          //     line-height: 90rpx;
+          //     margin-left: -12rpx;
+          //   }
+          // }
+          // ¥价格
+          .amount {
+            font-size: 36rpx;
+            font-family: "DINCondensedC";
+            font-weight: bold;
+            line-height: 24rpx;
+            text {
+              font-size: 120rpx;
+              font-family: "DINCondensedC";
+              font-weight: bold;
+              line-height: 90rpx;
+              margin-left: -12rpx;
+            }
+          }
+          .limit{
+            font-size: 24rpx;
+            font-weight: bold;
+            line-height: 33rpx;
+            margin-top: 10rpx;
+          }
+        }
+        // 右边内容
+        .c-right {
+          padding: 30rpx 0 20rpx 30rpx;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          color: #666666;
+          .name{
+            max-width: 256rpx;
+            font-size: 32rpx;
+            line-height: 36rpx;
+            overflow: hidden;
+            word-break: break-all;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            -webkit-line-clamp: 2;
+            font-weight: bold;
+          }
+
+          .bot-box{
+            .date {
+              font-size: 22rpx;
+              color: #A9A9A9;
+              margin-bottom: 10rpx;
+            }
+            .userule {
+              font-size: 22rpx;
+              color: #A9A9A9;
+              display: flex;
+              align-items: center;
+              image {
+                width: 20rpx;
+                height: 20rpx;
+                margin-left: 6rpx;
+              }
+            }
+          }
+        }
+        // 去使用-按钮
+        .seal {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          width: 168rpx;
+          height: 120rpx;
+        }
+      }
+    }
+  }
+  // 暂无优惠券
+  .no {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    // z-index: -1;
+    image {
+      width: 268rpx;
+      height: 268rpx;
+    }
+    .desc {
+      text-align: center;
+      color: @color;
+      font-size: 22rpx;
+      // margin-top: 20rpx;
+    }
+  }
+  // 这是底线
+  .over {
+    font-size: 28rpx;
+    color: #000000;
+    line-height: 28rpx;
+    display: flex;
+    justify-content: center;
+    // margin-top: 29rpx;
+    margin: 50rpx 0;
+  }
+}
+
+
+
+// 红包
+.redPacket {
+  width: 100%;
+  height: 100%;
+  padding: 30rpx 35rpx 0;
+  position: relative;
+  background: #f3f4f5;
+  &::before {
+    .border();
+    top: 0;
+  }
+  .redPacket-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .list {
+      position: relative;
+      width: 700rpx;
+      height: 212rpx;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+      // padding: 20rpx;
+      color: #ffffff;
+      margin-bottom: 12rpx;
+      // 背景图片
+      .bg {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        // z-index: -1;
+      }
+
+      .c-t {
+        width: 680rpx;
+        height: 192rpx;
+        display: flex;
+        box-sizing: border-box;
+        position: relative;
+        margin: 10rpx;
+        // 左边内容
+        .c-left {
+          margin-left: 12rpx;
+          width: 192rpx;
+          // padding: 34rpx 0 0 45rpx;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          color: #ABA9A9;
+          // ¥价格
+          .amount {
+            font-size: 36rpx;
+            font-family: "DINCondensedC";
+            font-weight: bold;
+            line-height: 24rpx;
+            text {
+              font-size: 90rpx;
+              font-family: "DINCondensedC";
+              font-weight: bold;
+              line-height: 90rpx;
+              margin-left: -12rpx;
+            }
+          }
+          .limit{
+            font-size: 24rpx;
+            font-weight: bold;
+            line-height: 33rpx;
+            margin-top: 10rpx;
+          }
+        }
+        // 右边内容
+        .c-right {
+          margin-left: 12rpx;
+          padding: 30rpx 0 20rpx 30rpx;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          color: #FFFFFF;
+          .name{
+            max-width: 256rpx;
+            font-size: 32rpx;
+            line-height: 36rpx;
+            overflow: hidden;
+            word-break: break-all;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            -webkit-line-clamp: 2;
+            font-weight: bold;
+          }
+
+          .bot-box{
+            .date {
+              font-size: 22rpx;
+              color: #FFFFFF;
+              margin-bottom: 10rpx;
+            }
+            .userule {
+              font-size: 22rpx;
+              color: #FFFFFF;
+              display: flex;
+              align-items: center;
+              image {
+                width: 20rpx;
+                height: 20rpx;
+                margin-left: 6rpx;
+              }
+            }
+          }
+        }
+        // 去使用-按钮
+        .seal {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          width: 168rpx;
+          height: 120rpx;
+        }
+      }
+    }
+  }
+  // 暂无优惠券
+  .no {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    // z-index: -1;
+    image {
+      width: 268rpx;
+      height: 268rpx;
+    }
+    .desc {
+      text-align: center;
+      color: @color;
+      font-size: 22rpx;
+      // margin-top: 20rpx;
+    }
+  }
+  // 这是底线
+  .over {
+    font-size: 28rpx;
+    color: #000000;
+    line-height: 28rpx;
+    display: flex;
+    justify-content: center;
+    // margin-top: 29rpx;
+    margin: 50rpx 0;
+  }
+}

@@ -1,0 +1,73 @@
+<!--pages/packageDiscover/groupMeal/groupMeal.wxml-->
+<cp-nav-bar title-text="企业点餐" background="#F3F4F5"/>
+<!-- 企业优惠 -->
+<view class="compony">
+    <!-- 我的公司 -->
+    <view class="incor" wx:if="{{joincompanyimg && joincompanyimg.length > 0}}">
+        <image class="title_bg" src="https://prodstatic.weis1606.cn/api/smartFood/discover/fing_bj_orange@2x.png" />
+        <view class="title" style="color: #FE5E0F">
+            <image src="https://prodstatic.weis1606.cn/api/smartFood/discover/find_my@2x.png" />
+            我的公司
+        </view>
+        <view class="incor-box">
+            <image wx:for="{{joincompanyimg}}" class="box" src="{{item.tgcLogoImg}}" mode="aspectFit|aspectFill|widthFix" lazy-load="true" data-corp-id="{{item.tgcId}}" data-type="{{item.tgcType}}" bindtap="goAllmeal" data-tgeRole="{{item.tgeRole}}" data-tgeInterType="{{item.tgeInterType}}" />
+        </view>
+    </view>
+    <!-- 所有公司 -->
+    <view class="incor">
+        <image class="title_bg" src="https://prodstatic.weis1606.cn/api/smartFood/discover/fing_bj_violet@2x.png" />
+        <view class="title" style="color: #6553A7">
+            <image src="https://prodstatic.weis1606.cn/api/smartFood/discover/find_company@2x.png" />
+            全部公司
+            <view class="num"> | {{Allcompany.length}}个</view>
+        </view>
+        <view class="ipt-box">
+            <input placeholder="输入公司名称" maxlength="20" value="{{searchName}}" bindinput="search" />
+            <image src="/images/search.png" />
+        </view>
+        <view class="incor-box">
+            <image wx:for="{{Allcompany}}" class="box" src="{{item.tgcLogoImg}}" mode="aspectFit|aspectFill|widthFix" lazy-load="true" data-corp-id="{{item.tgcId}}" data-type="{{item.tgcType}}" bindtap="goAllmeal" data-tgeRole="{{item.tgeRole}}" data-tgeInterType="{{item.tgeInterType}}" />
+        </view>
+    </view>
+</view>
+
+<!--企业点餐-中行验证-->
+<cp-bottom-popup
+  model:show="{{showUserCheck}}"
+  showCustom
+  use-slot
+  title="员工验证"
+  confirm-disabled="{{!(userName.length>0 && userCode.length>0)}}"
+  confirm-style="width: 450rpx;"
+  bind:on-confirm="confirmcheck"
+>
+  <view class="userCheck">
+    <view class="usertips">
+      若验证失败，请先去中国银行app绑定餐卡
+      <text bindtap="tojump">查看步骤</text>
+    </view>
+    <view class="inputUser inputUser--name">
+      姓名
+      <input
+        type="text"
+        placeholder="请输入姓名"
+        bindinput="inputname"
+        value="{{userName}}"
+        maxlength="7"
+        placeholder-style="color: #999999;font-weight: normal;"
+      />
+    </view>
+    <view class="inputUser inputUser--code">
+      工号
+      <input
+        type="text"
+        placeholder="请输入工号"
+        bindinput="inpucode"
+        value="{{userCode}}"
+        maxlength="20"
+        placeholder-style="color: #999999;font-weight: normal;"
+      />
+    </view>
+    <view class="errortips">{{errortips}}</view>
+  </view>
+</cp-bottom-popup>

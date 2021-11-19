@@ -1,0 +1,65 @@
+<cp-nav-bar title-text="我的收入" color="#fff" background="transparent" />
+<cp-refresh-view id="refresh-view" backgroundColor="#F8F8F8" bind:onRefresh="onPullDownRefresh"></cp-refresh-view>
+<view class="myPerformance" bindtouchstart="handletouchstart" bindtouchmove="handletouchmove" bindtouchend="handletouchend" bindtouchcancel="handletouchcancel">
+  <view class="sumPerformance">
+    <view class="Income">
+      <text>
+        <text class="Com">¥</text>{{totalIncome.incomeTotal}}</text>
+      <text>到手提成</text>
+    </view>
+    <view class="IncomeDetail">
+      <view>
+        <text>
+          <text class="Com">¥</text>{{totalIncome.orderPrices}}</text>
+        <text>该营产生消费</text>
+      </view>
+      <view bindtap="showusertips">
+        <text>{{totalIncome.royaltyRatio}}<text class="Com">%</text>
+        </text>
+        <view class="tipstxt">
+          提成比例
+          <image class="tipsimg" src="/images/income_white.png" />
+        </view>
+      </view>
+      <view>
+        <text>
+          <text class="Com">¥</text>{{totalIncome.incomeExpect}}</text>
+        <text>预计提成</text>
+      </view>
+    </view>
+  </view>
+  <view class="myPerformanceList">
+    <view class="title">到手提成详情</view>
+    <scroll-view scroll-y="true" style="height: 900rpx;" wx:if="{{IncomeList.length>0}}">
+      <view
+        wx:for="{{IncomeList}}"
+        wx:key="index"
+        class="list"
+        catchtap="myPerformanceDetail"
+        data-mydate="{{item.dateTime}}">
+        <view class="date">{{item.dateTime}}</view>
+        <view class="listmoney">
+          ￥{{item.incomeTotal}}
+          <image src="/images/blackRight.png" />
+        </view>
+      </view>
+    </scroll-view>
+
+    <view wx:else class="null">
+      <image src="https://prodstatic.weis1606.cn/api/smartFood/nullFriends.png" />
+      <view>还没有到手提成</view>
+    </view>
+  </view>
+</view>
+
+<cp-confirm-dialog
+  model:show="{{showtips}}"
+  show-cancel="{{false}}"
+  confirm-text="好的"
+  auto-confirm="{{true}}"
+>
+  <view class="dialog">
+    <view class="tip-label">实际提成比例=初始提成比例-减脂营优惠折扣</view>
+    <view class="content">你的初始提成比例为{{actratio}}%,该减脂营享{{campDiscount}}折优惠，你的该减脂营实际提成比例为{{totalIncome.royaltyRatio}}%</view>
+  </view>
+</cp-confirm-dialog>

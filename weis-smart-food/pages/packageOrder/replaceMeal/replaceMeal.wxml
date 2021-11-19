@@ -1,0 +1,46 @@
+<!-- pages/packageOrder/replaceMeal/replaceMeal.wxml -->
+<cp-nav-bar title-text="换套餐" background="#F3F4F5"></cp-nav-bar>
+<view class="meal">
+    <!-- 热卖套餐 -->
+    <view class="meal-square" wx:for="{{recomMealList}}">
+        <view class="head">
+            <view class="title">{{item.name}}</view>
+            <view class="val">{{item.energy}}kcal</view>
+            <view class="difference" style="{{item.energyDifference > 0 ? 'color: #FA6400' : 'color: #3BC7A8'}}">
+                {{item.energyDifference}}kcal
+            </view>
+        </view>
+        <scroll-view scroll-x="{{true}}" style="width: 660rpx">
+            <view class="child" wx:for="{{item.setMealDateils}}">
+                <image src="{{item.primaryImgUrl}}" />
+                <view class="name">{{item.name}}</view>
+            </view>
+        </scroll-view>
+        <view class="meal-bot">
+            <view class="info">
+                <view class="num">共{{item.setMealDateils.length}}个菜品</view>
+                <view class="price">
+                    ￥
+                    <text>{{item.muchFoodPrice || item.price}}</text>
+                </view>
+                <view class="origin">¥{{item.originalPrice}}</view>
+            </view>
+            <view class="right {{item.num <= 0 ? 'single' : ''}}">
+                <view class="dot" hover-class="color" hover-stay-time="200" data-index="{{index}}" data-type="reduce" bind:tap="add" wx:if="{{item.num>=1}}">
+                    <image class="reduce" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/reduce.png" />
+                </view>
+                <view class="num" wx:if="{{item.num>=1}}">{{item.num}}</view>
+                <view class="dot" hover-class="color" hover-stay-time="200" data-index="{{index}}" data-type="add" bind:tap="add">
+                    <image class="add" src="{{item.num>=1 ? 'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/add.png' : 'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/add-1.png'}}" />
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="loading-meal" wx:if="{{recomMealList && recomMealList.length > 0 && more}}">
+        <van-loading color="#FE5E0F" size="20" text-size="12" type="circular">
+            加载中...
+        </van-loading>
+    </view>
+</view>
+
+<cp-cart wx:if="{{totalNum && totalNum > 0}}" piece="{{totalNum}}" price="{{countPrice}}" confirmText="立即更换" bind:pay="confirmChangeFn" />

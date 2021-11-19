@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "van-search": "/components/vant/search/index",
+    "van-swipe-cell": "/components/vant/swipe-cell/index",
+    "van-popup": "/components/vant/popup/index",
+    "scale-component": "/components/cp-scale/cp-scale",
+    "cp-load-more": "/components/cp-load-more/cp-load-more"
+  }
+}

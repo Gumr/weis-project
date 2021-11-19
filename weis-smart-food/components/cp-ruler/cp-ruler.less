@@ -1,0 +1,167 @@
+
+.ruler{
+    .ruler-box{
+        height: 132rpx;
+        background: linear-gradient(180deg, #FFFFFF 0%, #F3F4F5 50%, #FFFFFF 100%);
+        position: relative;
+        .ruler-list{
+            width: 100%;
+            height: 132rpx;
+            display: flex;
+            align-items: flex-start;
+            white-space: nowrap;
+            position: relative;
+            .empty{
+                display: inline-block;
+                height: 100%;
+            }
+            .box{
+                display: inline-block;
+                height: 100%;
+                position: relative;
+                margin-right: 4px;
+                &.last{
+                    margin-right: 0;
+                }
+                .lattice{
+                    width: 1px;
+                    height: 12rpx;
+                    background: #B4B4B4;
+                    &.bot{
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                    }
+                    &.five{
+                        height: 16rpx;
+                    }
+                    &.ten{
+                        height: 20rpx;
+                    }
+                }
+                .num{
+                    color: #666666;
+                    font-size: 20rpx;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%,-50%);
+                }
+            }
+        }
+        .ruler-line{
+            // width: 0;
+            height: 100%;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .triangle{
+                width: 0;
+                height: 0;
+                border-left: 16rpx solid transparent;
+                border-right: 16rpx solid transparent;
+                border-top: 15rpx solid #FA6400;
+                position: relative;
+                &::after{
+                    display: block;
+                    content: '';
+                    width: 2rpx;
+                    height: 34rpx;
+                    background: #FA6400;
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    top: 0;
+                }
+                &:nth-of-type(2){
+                    border-top: none;
+                    border-bottom: 15rpx solid #FA6400;
+                    &::after{
+                        top: initial;
+                        bottom: 0;
+                    }
+                }
+            }
+        }
+        &.vertical{
+            width: 132rpx;
+            .ruler-list{
+                width: 100%;
+                height: 100%;
+                display: initial;
+                white-space: initial;
+                .empty{
+                    width: 100%;
+                    display: block;
+                }
+                .box{
+                    width: 100%;
+                    height: 1px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-right: 0;
+                    margin-bottom: 4px;
+                    &.last{
+                        margin-bottom: 0;
+                    }
+                    .lattice{
+                        width: 12rpx;
+                        height: 100%;
+                        &.bot{
+                            position: initial;
+                        }
+                        &.five{
+                            width: 16rpx;
+                        }
+                        &.ten{
+                            width: 20rpx;
+                        }
+                    }
+                }
+            }
+            .ruler-line{
+                width: 100%;
+                height: fit-content;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                .triangle{
+                    width: 0;
+                    height: 0;
+                    border-top: 16rpx solid transparent;
+                    border-bottom: 16rpx solid transparent;
+                    border-left: 15rpx solid #FA6400;
+                    position: relative;
+                    &::after{
+                        display: block;
+                        content: '';
+                        width: 34rpx;
+                        height: 2rpx;
+                        background: #FA6400;
+                        position: absolute;
+                        left: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                    }
+                    &:nth-of-type(2){
+                        border-left: none;
+                        border-right: 15rpx solid #FA6400;
+                        &::after{
+                            left: initial;
+                            right: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

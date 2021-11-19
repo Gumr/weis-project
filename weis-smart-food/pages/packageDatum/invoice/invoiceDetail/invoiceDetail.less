@@ -1,0 +1,104 @@
+.border {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 2rpx;
+    background: #F3F4F5;
+    transform: scaleY(0.5);
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+page{
+    background: #F3F4F5;
+}
+
+.invoice {
+    background: #F3F4F5;
+    padding-bottom: 330rpx;
+    .body {
+        .t-box {
+            display: flex;
+            justify-content: space-between;
+            padding: 40rpx 30rpx 16rpx;
+
+            .title {
+                color: #333333;
+                font-size: 36rpx;
+                font-weight: bold;
+            }
+        }
+
+        .info-box {
+            width: 750rpx;
+            background: #FFFFFF;
+            border-radius: 20rpx;
+            padding: 0 30rpx;
+
+            .row {
+                height: 100rpx;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .name {
+                    color: #333333;
+                    font-size: 28rpx;
+                    width: 120rpx;
+                }
+
+                .ipt-box{
+                    display: flex;
+                    align-items: center;
+                    image{
+                        width: 38rpx;
+                        height: 38rpx;
+                    }
+                }
+
+                .ipt {
+                    width: 470rpx;
+                    height: 100%;
+                    text-align: right;
+                    font-size: 28rpx;
+                    color: #999999;
+                    line-height: 100rpx;
+                }
+
+                &.area {
+                    height: initial;
+                    padding: 30rpx 0;
+                    align-items: flex-start;
+                    .rise{
+                        text-align: right;
+                        color: #999999;
+                        font-size: 28rpx;
+                        line-height: 40rpx;
+                        width: 472rpx;
+                    }
+                }
+            }
+        }
+    }
+    .btn-box{
+        width: 100%;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        padding: 40rpx 0 80rpx;
+        background: #F3F4F5;
+        .btn{
+            width: 650rpx;
+            height: 88rpx;
+            background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+            border-radius: 50rpx;
+            text-align: center;
+            line-height: 88rpx;
+            margin: 0 auto;
+            color: #FFFFFF;
+            font-size: 36rpx;
+        }
+    }
+}

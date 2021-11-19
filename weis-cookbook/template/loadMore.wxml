@@ -1,0 +1,6 @@
+<template name="loadmore">
+  <view class="loadMore-block" style="height:{{loadMoreHeight}}px"> 
+    <image  class="rate" src="/images/icon_loading.png"></image>
+    <text  class="loading-text" >正在加载更多...</text> 
+  </view> 
+</template>

@@ -1,0 +1,5 @@
+<!--pages/mineBox/rechargeDeal/rechargeDeal.wxml-->
+<cp-nav-bar title-text="{{title}}" background="#fff" color="#000000" backIconColor="black"/>
+<view class="rechargeDeal" style="padding: 0 45rpx;">
+    <rich-text nodes="{{htmlSnip}}"></rich-text>
+</view>

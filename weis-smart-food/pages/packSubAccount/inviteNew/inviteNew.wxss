@@ -1,0 +1,236 @@
+page {
+  height: 100%;
+  background: #FFF0B1;
+}
+.invite {
+  width: 750rpx;
+  background: #FFF0B1;
+  padding-bottom: 90rpx;
+}
+.invite .head {
+  width: 100%;
+  position: relative;
+  padding-top: 234rpx;
+}
+.invite .head .bg {
+  width: 750rpx;
+  height: 844rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.invite .head .box {
+  width: 671rpx;
+  height: 611rpx;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+.invite .head .box .wallet {
+  width: 100%;
+  height: 100%;
+}
+.invite .head .box .btn {
+  width: 512rpx;
+  height: 149rpx;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 17rpx;
+  background: transparent;
+}
+.invite .head .box .btn image {
+  width: 100%;
+  height: 100%;
+}
+.invite .content .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 49rpx;
+}
+.invite .content .title image {
+  width: 101rpx;
+  height: 24rpx;
+}
+.invite .content .title .name {
+  color: #BD7B20;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin: 0 16rpx;
+}
+.invite .content .step {
+  display: flex;
+  margin: 40rpx auto 0;
+  width: 680rpx;
+  height: 177rpx;
+  background: linear-gradient(180deg, rgba(255, 206, 103, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 20rpx;
+  padding-top: 20rpx;
+}
+.invite .content .step .box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.invite .content .step .box .img {
+  position: relative;
+}
+.invite .content .step .box .img image {
+  width: 90rpx;
+  height: 90rpx;
+  margin-bottom: 20rpx;
+}
+.invite .content .step .box .img .num {
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 50%;
+  background: #FCCC49;
+  border: 2rpx solid #FFF6D0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FFFFFF;
+  font-size: 20rpx;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.invite .content .step .box text {
+  display: inline-flex;
+  align-items: center;
+  height: 40rpx;
+  text-align: center;
+  color: #674C00;
+  font-size: 18rpx;
+  line-height: 20rpx;
+}
+.invite .content .record-box {
+  width: 680rpx;
+  padding: 35rpx 0;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  margin: 57rpx auto 0;
+}
+.invite .content .record-box .title {
+  margin-top: 0;
+}
+.invite .content .record-box .no-record text {
+  color: #999999;
+  font-size: 28rpx;
+  line-height: 48rpx;
+  font-weight: bold;
+  text-align: center;
+  display: block;
+  margin: 88rpx auto 0;
+  padding-bottom: 45rpx;
+}
+.invite .content .record-box .has-record .box {
+  width: 620rpx;
+  height: 140rpx;
+  background: #FFF7EA;
+  border-radius: 10rpx;
+  margin: 42rpx auto 0;
+  display: flex;
+  padding-top: 25rpx;
+}
+.invite .content .record-box .has-record .box .info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.invite .content .record-box .has-record .box .info .row {
+  display: flex;
+  align-items: baseline;
+  color: #FA6400;
+  font-size: 24rpx;
+}
+.invite .content .record-box .has-record .box .info .row .num {
+  font-family: 'DINCondensedC';
+  font-size: 56rpx;
+}
+.invite .content .record-box .has-record .box .info .name {
+  color: #666666;
+  font-size: 24rpx;
+  text-align: center;
+  margin-top: 5rpx;
+}
+.invite .content .record-box .has-record .box .info:last-of-type .row {
+  font-family: 'DINCondensedC';
+  font-size: 56rpx;
+}
+.invite .content .record-box .has-record .box .info:last-of-type .row .num {
+  font-size: 24rpx;
+  font-family: 'PingFangSC-Regular', 'PingFangSC';
+}
+.invite .content .record-box .has-record .list {
+  margin: 40rpx auto 0;
+}
+.invite .content .record-box .has-record .list .row-list {
+  padding: 0 30rpx;
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+.invite .content .record-box .has-record .list .row-list .head-icon {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 24rpx;
+}
+.invite .content .record-box .has-record .list .row-list .user {
+  width: 182rpx;
+  margin-right: 46rpx;
+}
+.invite .content .record-box .has-record .list .row-list .user .nick {
+  color: #000000;
+  font-size: 26rpx;
+  font-weight: bold;
+  overflow: hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-line-clamp: 1;
+}
+.invite .content .record-box .has-record .list .row-list .user .date {
+  color: #A9A9A9;
+  font-size: 20rpx;
+  margin-top: 10rpx;
+}
+.invite .content .record-box .has-record .list .row-list .status {
+  color: #a9a9a9;
+  font-size: 26rpx;
+  font-weight: bold;
+  margin-right: 70rpx;
+}
+.invite .content .record-box .has-record .list .row-list .status.active {
+  color: #000000;
+}
+.invite .content .record-box .has-record .list .row-list .get {
+  width: 119rpx;
+  color: #FA6400;
+  font-size: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.invite .content .record-box .has-record .list .row-list .get view.money {
+  font-size: 26rpx;
+  margin-top: 10rpx;
+}
+.invite .content .record-box .has-record .list .row-list .share {
+  width: 119rpx;
+  height: 40rpx;
+  background: linear-gradient(90deg, #FD9D00 0%, #FA6400 100%);
+  border-radius: 20rpx;
+  text-align: center;
+  line-height: 40rpx;
+  color: #FFFFFF;
+  font-size: 20rpx;
+  font-weight: bold;
+  padding: 0;
+}

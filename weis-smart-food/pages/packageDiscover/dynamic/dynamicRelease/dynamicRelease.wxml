@@ -1,0 +1,44 @@
+<!-- pages/packageDiscover/dynamic/dynamicRelease/dynamicRelease.wxml -->
+<cp-nav-bar title-text="发布动态" preventBack="{{true}}" bind:back="back"></cp-nav-bar>
+<wxs module="filters" src="../../../../utils/filter.wxs"></wxs>
+<view class="dynamicRelease">
+    <!-- 评价 -->
+    <view class="horseman">
+        <view class="discuss-box">
+            <!-- 最多输入500字 -->
+            <view class="area">
+                <textarea maxlength="500" placeholder-class="active" value="{{psAdvise}}" bindinput="psAdvise" placeholder="说点什么…"></textarea>
+                <view class="limit">{{psAdvise ? psAdvise.length : 0}}/500</view>
+            </view>
+            <!-- 上传图片 -->
+            <view class="img-box">
+                <view class="img">
+                    <view class="upload-img" wx:for="{{horseManImgList}}" wx:key="index">
+                        <image src="{{item}}" mode="aspectFill"/>
+                        <image class="upload__close" src="/images/icons/upload_delete.png" data-index="{{index}}" bind:tap="deleteImage" />
+                    </view>
+                    <image class="camera" wx:if="{{!horseManImgList || horseManImgList.length < 6}}" bind:tap="chooseImage" src="https://prodstatic.weis1606.cn/api/smartFood/camera%202%E5%A4%87%E4%BB%BD%203.png" />
+                </view>
+            </view>
+        </view>
+        <view class="myMenu" bind:tap="relationMenu" wx:if="{{!menu}}">
+            <view>关联我的餐单</view>
+            <image src="/images/blackRight.png" />
+        </view>
+        <view class="menu" bind:tap="relationMenu" wx:else>
+            <view class="{{menu.totalScore < 100?'addRed':''}}">{{menu.totalScore}}</view>
+            <view>
+                {{filters.toDates(menu.dateTime)}} {{categoryMap[menu.category]}}营养健康分{{menu.totalScore}}
+                <image src="/images/arrow-grey.png" />
+            </view>
+        </view>
+    </view>
+    <!-- 发布 -->
+    <view class="bot">
+        <button class="submit {{psAdvise.length > 0? 'active' : ''}}" bind:tap="addDynamic">
+            发布
+        </button>
+    </view>
+</view>
+
+<cp-confirm-dialog show="{{showBack}}" title="确定退出编辑状态吗？" bind:on-confirm="sureBack"></cp-confirm-dialog>

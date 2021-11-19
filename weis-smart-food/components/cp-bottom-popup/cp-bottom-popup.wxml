@@ -1,0 +1,41 @@
+<!-- components/cp-bottom-popup/cp-bottom-popup.wxml -->
+<view class="cp-bottom-popup">
+  <van-popup position="bottom" round show="{{show}}" bind:click-overlay="close" close-on-click-overlay="{{true}}" custom-style="border-radius: 40rpx 40rpx 0rpx 0rpx; {{customStylePopup}}" zIndex="{{zIndex}}">
+    <view class="pickerShadow">
+      <view class="header" wx:if="{{showClose}}">
+        <image class="close" src="{{closeImg}}" bind:tap="close" />
+        <view class="title">{{title}}</view>
+      </view>
+      <slot wx:if="{{useSlot}}"></slot>
+      <view wx:else class="wrap">
+        <view class="list {{data2.length !== 0 && dw2?'two':''}}">
+          <picker-view indicator-style="height: 40px;line-height: 40px" indicator-class="active" style="width: 100%; height: 360rpx;" value="{{val}}" bindchange="change">
+            <!-- 列1-滚动值 -->
+            <picker-view-column class="val">
+              <view class="{{val[0] == index ? 'selected' : ''}}" wx:for="{{data}}" wx:key="key" style="height: 40px;line-height: 40px;font-size: 36rpx;">
+                {{item}}
+              </view>
+            </picker-view-column>
+            <!-- 列1-单位 -->
+            <picker-view-column class="dw" wx:if="{{dw}}" style="{{dwStyleCustom}}">
+              <view class="selected" style="line-height: 40px; font-size: 40rpx;">{{dw}}</view>
+            </picker-view-column>
+            <!-- 列2-滚动值 -->
+            <picker-view-column class="val2" wx:if="{{data2.length !== 0}}">
+              <view class="{{val[2] == index2 ? 'selected' : ''}}" wx:for="{{data2}}" wx:key="index2" style="height: 40px;line-height: 40px;font-size: 36rpx;" wx:for-item="item2" wx:for-index="index2">
+                {{item2}}
+              </view>
+            </picker-view-column>
+            <!-- 列2-单位 -->
+            <picker-view-column class="dw2" wx:if="{{dw2}}">
+              <view class="selected" style="line-height: 40px; font-size: 40rpx;">{{dw2}}</view>
+            </picker-view-column>
+          </picker-view>
+        </view>
+      </view>
+      <view class="confirm-btn {{confirmDisabled ? 'confirm-btn--disabled': ''}}" style="{{confirmStyle}} " data-disabled="{{confirmDisabled}}" bindtap="confirm" wx:if="{{showButton}}">
+        {{confirmText}}
+      </view>
+    </view>
+  </van-popup>
+</view>

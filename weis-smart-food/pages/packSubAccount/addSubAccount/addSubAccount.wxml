@@ -1,0 +1,251 @@
+<!-- pages/packSubAccount/addSubAccount/addSubAccount.wxml -->
+<cp-nav-bar title-text="{{tsuSubType == '00' ? '添加私人子账号' : '添加企业子账号'}}" background="#FF893A" color="#333333" backIconColor="black" />
+<view class="addSub">
+<image style="width: 750rpx;height: 344rpx;" src="https://prodstatic.weis1606.cn/api/smartFood/infoFill.png" />
+<scroll-view scroll-y="true" style="height:{{scrollHeight}}rpx">
+    <!-- 头像昵称 -->
+    <view class="box" wx:if="{{stepNum == '2'}}">
+        <view class="title-box">
+            <view class="title">昵称</view>
+            <!-- <view class="step">1/4</view> -->
+        </view>
+        <!-- <image class="head" src="https://prodstatic.weis1606.cn/api/smartFood/defaultAvatar.png" /> -->
+        <input class="name" maxlength="10" bindinput="nickChange" value="{{nickName}}" placeholder-class="input-placeholder" placeholder="输入账号昵称" />
+        <!-- 选择校区 -->
+        <view class="campus" wx:if="{{tsuSubType == '01'}}">
+            <view class="title-box">
+                <view class="title">选择校区</view>
+            </view>
+            <input class="name" bind:tap="campusClose" disabled="{{true}}" value="{{tgcaName}}" placeholder-class="input-placeholder" placeholder="点击选择校区" />
+        <!-- 选择校区 -->
+        </view>
+    </view>
+    <view class="box" wx:if="{{stepNum == '3'}}">
+        <view class="title-box">
+            <view class="title">性别</view>
+            <!-- <view class="step">2/4</view> -->
+        </view>
+        <view class="sex-list">
+            <view class="sex" wx:for="{{sexList}}" wx:key="index" data-id="{{item.id}}" data-index="{{index}}" bind:tap="sexSelect">
+                <image src="{{sexId == item.id ? item.imgSelected : item.img}}" />
+                <view class="sex-name {{sexId == item.id ? 'active' : ''}}">{{item.name}}</view>
+            </view>
+        </view>
+        <view class="title-box">
+            <view class="title">年龄</view>
+        </view>
+        <view class="year">
+            <input class="year-ipt" maxlength="2" type="number" placeholder="输入年龄" bindinput="yearChange" />
+            <view class="sympol">岁</view>
+        </view>
+    </view>
+    <view class="box" wx:if="{{stepNum == '4'}}">
+        <view class="title-box">
+            <view class="title">身高</view>
+            <!-- <view class="step">3/4</view> -->
+        </view>
+        <view class="year">
+            <input class="year-ipt" maxlength="3" type="number" placeholder="输入身高" bindinput="heightChange" />
+            <view class="sympol">cm</view>
+        </view>
+        <view class="title-box" style="margin-top:263rpx">
+            <view class="title">体重</view>
+        </view>
+        <view class="year">
+            <input class="year-ipt" maxlength="5" type="digit" placeholder="输入体重" bindinput="weightChange" />
+            <view class="sympol">kg</view>
+        </view>
+    </view>
+    <view class="box" wx:if="{{stepNum == '5'}}">
+        <view class="title-box">
+            <view class="title">日常活动强度</view>
+            <!-- <view class="step">4/4</view> -->
+        </view>
+        <view class="wrap">
+            <view class="list {{activityValue === item.value ? 'active' : ''}}" wx:for="{{activityList}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" bind:tap="activitySelect">
+                <view class="name-wrap">{{item.name}}</view>
+                <view class="detail">{{item.title}}</view>
+            </view>
+        </view>
+    </view>
+    <!-- <view class="box" wx:if="{{stepNum == '5'}}">
+        <view class="title-box">
+            <view class="title">选择目标</view>
+            <view class="step">5/5</view>
+        </view>
+        <view class="wrap">
+            <view class="list {{targetValue === item.value ? 'active' : ''}}" wx:for="{{targetList}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" bind:tap="targetSelect">
+                <view class="name-wrap">{{item.name}}</view>
+                <view class="detail">{{item.title}}</view>
+            </view>
+        </view>
+    </view> -->
+    <!-- 选择吃法 -->
+    <view class="block eatMeth" wx:if="{{stepNum == '1'}}">
+        <view class="title-box">
+            <view class="title">选择吃法</view>
+        </view>
+        <view class="wrap" style="margin-top: 0;">
+            <!-- wx:if="{{more ? index >= 0 : index == 0}}" -->
+            <view class="list {{targetSelect === index ? 'active' : ''}}" wx:for="{{targetList}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" data-planningtype="{{item.planningType}}" bind:tap="targetSelect">
+                <view class="text">
+                    <view class="name">{{item.name}}</view>
+                    <view class="detail" style="max-width: 230rpx">{{item.detail}}</view>
+                </view>
+                <view class="conne" wx:if="{{item.detail}}" data-planningtype="{{item.planningType}}" data-from="target" data-value="{{item.value}}" bind:tap="conneTip">
+                    <image src="{{targetSelect === index ? '/images/conne_select.png':'/images/conne_unSelect.png'}}" />
+                </view>
+            </view>
+        </view>
+        <!-- 吃法简介 -->
+        <!-- <view class="intro {{more ? 'active' : ''}}" wx:if="{{targetDesc[targetList[0].name] && !more}}">
+            <view class="title-eat">吃法简介</view>
+            <view>{{targetDesc[targetList[0].name]}}</view>
+        </view> -->
+        <!-- 更多吃法 -->
+        <!-- <view class="more" wx:if="{{!more && targetList.length > 1}}" bind:tap="checkMore">
+            更多吃法
+            <image src="/images/my_next.png" />
+        </view> -->
+    </view>
+    <!-- --- -->
+    <!-- <view class="block eatMeth" wx:if="{{stepNum == '5'}}">
+        <view class="title-box">
+            <view class="title">选择吃法</view>
+        </view>
+        <view class="subTitle" wx:if="{{year >= 18}}">普通健康吃法推荐</view>
+        <view class="wrap" style="margin-top: 0;">
+            <view class="list {{targetSelect === index ? 'active' : ''}}" wx:for="{{targetList}}" wx:if="{{item.value == 11 && (index == 0 || index == 1)}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" data-planningtype="{{item.planningType}}" bind:tap="targetSelect">
+                <view class="text">
+                    <view class="name normal">{{item.name}}</view>
+                    <view class="detail">{{item.title}}</view>
+                </view>
+                <view class="conne" bind:tap="residentDiet">
+                    <image src="{{targetSelect === index ? '/images/conne_select.png':'/images/conne_unSelect.png'}}" />
+                </view>
+            </view>
+        </view>
+        <view class="subTitle">功能性吃法推荐</view>
+        <view class="wrap" style="margin-top: 0;">
+            <view class="list {{targetSelect === index ? 'active' : ''}}" wx:if="{{(item.value != 11 || (item.value == 11 && index != 0 && index != 1)) && item.value != 09}}" wx:for="{{targetList}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" data-planningtype="{{item.planningType}}" bind:tap="targetSelect">
+                <view class="text">
+                    <view class="name">{{item.name}}</view>
+                    <view class="detail" style="max-width: 230rpx">{{item.title}}</view>
+                </view>
+                <view class="conne" wx:if="{{item.value != 04 && item.value != 07 && item.value != 11}}" data-from="target" data-value="{{item.value}}" bind:tap="conneTip">
+                    <image src="{{targetSelect === index ? '/images/conne_select.png':'/images/conne_unSelect.png'}}" />
+                </view>
+            </view>
+        </view>
+        <view class="subTitle">自定义吃法</view>
+        <view class="custom {{targetSelect === index ? 'active' : ''}}" bind:tap="targetSelect"  wx:for="{{targetList}}" wx:if="{{item.value == 09}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" data-planningtype="{{item.planningType}}" bind:tap="targetSelect">
+            <image src="https://prodstatic.weis1606.cn/api/smartFood/add-icon2.png" />
+            <view class="name">创建健康饮食吃法</view>
+        </view>
+        <view class="remarks">* 以上所有推荐吃法均源自相关科学出处。仅供参考，不可替代专业人士的建议。</view>
+    </view> -->
+    <!-- ------------------- -->
+    <!-- 慢病饮食干预 -->
+    <view class="block" wx:if="{{showChronic && stepNum == 'chronic'}}"> 
+        <view class="title">
+        <text>慢病饮食干预</text>
+        </view>
+        <view class="tip">请选择你的主要病种</view>
+        <view class="wrap">
+        <view class="list {{chronicValue === item.value ? 'active' : ''}}" wx:for="{{chronicList}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" bind:tap="chronicSelect">
+            <view class="text">
+                <view class="name">{{item.name}}</view>
+                <view class="detail" style="max-width: 230rpx">{{item.title}}</view>
+            </view>
+            <view class="conne" data-from="chronic" data-value="{{item.value}}" bind:tap="conneTip">
+                <image src="{{chronicValue === item.value ? '/images/conne_select.png':'/images/conne_unSelect.png'}}" />
+            </view>
+        </view>
+        </view>
+    </view>
+    <!-- 住院饮食干预 -->
+    <view class="block" wx:if="{{showLive && stepNum == 'live'}}">
+        <view class="title">
+        <text>住院饮食干预</text>
+        </view>
+        <view class="tip">请选择你的主要病种</view>
+        <view class="wrap">
+        <view class="list {{liveValue === item.value ? 'active' : ''}}" wx:for="{{liveList}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" bind:tap="liveSelect">
+            <view class="text">
+                <view class="name">{{item.name}}</view>
+                <view class="detail" style="max-width: 230rpx">{{item.title}}</view>
+            </view>
+            <view class="conne" data-from="live" data-value="{{item.value}}" bind:tap="conneTip">
+                <image src="{{liveValue === item.value ? '/images/conne_select.png':'/images/conne_unSelect.png'}}" />
+            </view>
+        </view>
+        </view>
+    </view>
+    <!-- ------------------- -->
+    <!-- 血糖值&主食 -->
+    <view class="sugar" wx:if="{{showSugar && stepNum == 'sugar'}}">
+        <view class="title">
+            <text>最近餐后2小时血糖值</text>
+        </view>
+        <view class="wrap">
+            <view class="list {{sugarValue === item.value ? 'active' : ''}}" wx:for="{{sugarList}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" bind:tap="sugarSelect">
+                <view class="name">{{item.name}}</view>
+                <view class="detail">{{item.title}}</view>
+            </view>
+        </view>
+        <view class="title" style="margin-top: 160rpx;">
+            <text>最近午餐吃几碗主食</text>
+        </view>
+        <view class="wrap">
+            <view class="list {{foodValue === item.value ? 'active' : ''}}" wx:for="{{foodList}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" bind:tap="foodSelect">
+                <view class="name">{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+    <!-- 你的怀孕周期 -->
+    <view class="block" wx:if="{{showPregnant && stepNum == 'pregnant'}}">
+        <view class="title">
+            <text>你的怀孕周期</text>
+        </view>
+        <!-- <view class="tip">妊娠附加信息，填完立即获得控糖饮食方案</view> -->
+        <view class="wrap">
+        <view class="list {{pregnantValue === item.value ? 'active' : ''}}" wx:for="{{pregnantList}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" bind:tap="pregnantSelect" style="display: initial;text-align: center;padding: 30rpx 0">
+            <view class="name">{{item.name}}</view>
+            <view class="name">{{item.title}}</view>
+        </view>
+        </view>
+    </view>
+    <!-- 你的肾病是第几期 -->
+    <view class="block" wx:if="{{showKidney && stepNum == 'kidney'}}">
+        <view class="title">
+            <text>你的肾病是第几期</text>
+        </view>
+        <!-- <view class="tip">肾病附加信息，填完立即获得控糖饮食方案</view> -->
+        <view class="wrap">
+        <view class="list {{kidneyValue === item.value ? 'active' : ''}}" wx:for="{{kidneyList}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" bind:tap="kidneySelect" style="justify-content: center;">
+            <text class="name">{{item.name}}</text>
+        </view>
+        </view>
+    </view>
+    <!-- <cp-loading show="{{stepNum == 'loading'}}" bind:on-end="loadingEnd">
+        <view>正在添加子账号...</view>
+    </cp-loading> -->
+</scroll-view>
+</view>
+<view wx:if="{{stepNum !== 'loading'}}" class="btn {{btnSelect ? 'active' : ''}}" bind:tap="nextStep">
+    {{btnText ? btnText : '下一步'}}
+</view>
+
+<cp-bottom-popup title="选择校区" show="{{showCampus}}" showButton="{{false}}" use-slot bind:on-close="campusClose">
+  <scroll-view class="campus-box" scroll-y="{{true}}">
+      <view class="name {{tgcaId == item.tgcaId ? 'active' : ''}}" wx:for="{{messageBeans}}" data-index="{{index}}" bind:tap="select">{{item.tgcaName}}</view>
+  </scroll-view>
+</cp-bottom-popup>
+
+<!-- 中国居民-弹窗 -->
+<cp-resident-diet show="{{residentDietShow}}" data="{{residentDietData}}"></cp-resident-diet>
+
+<!-- 目标、慢病、住院 的吃法介绍-弹窗 -->
+<cp-confirm-dialog show="{{conneTipShow}}" title="吃法介绍" titleStyle="margin: 34rpx 40rpx 44rpx" showClose leftClose showCancel="{{false}}" showConfirm="{{false}}" dialogStyle="width: 650rpx;">
+    <view class="conneTip">{{conneTipData}}</view>
+</cp-confirm-dialog>

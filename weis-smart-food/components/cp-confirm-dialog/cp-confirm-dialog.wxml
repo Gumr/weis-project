@@ -1,0 +1,16 @@
+<!-- components/confirm-dialog/confirm-dialog.wxml -->
+<van-popup show="{{show}}" custom-style="border-radius:20rpx; {{dialogStyle}}" z-index="1000" catch:touchmove="true">
+  <view wx:if="{{title}}" class="dialog-title" style="{{titleStyle}}">
+    <text class selectable="false" space="false" decode="false">{{title}}</text>
+    <image bindtap="cancelTap" class="close-icon" style="{{leftClose?'left: 0;':''}}" wx:if="{{showClose}}" src="/images/logistics_popup_off.png" />
+  </view>
+  <slot></slot>
+  <view class="dialog-footer" style="padding:{{showCancel || showConfirm ? '40rpx 40rpx' : '0rpx'}}">
+    <view class="cancel-btn" style="{{cancelStyle}}" bindtap="cancelTap" wx:if="{{showCancel}}">
+      {{cancelText}}
+    </view>
+    <view class="confirm-btn {{confirmDisabled ? 'confirm-btn--disabled': ''}}" style="{{confirmStyle}} " data-disabled="{{confirmDisabled}}" bindtap="confirmTap" wx:if="{{showConfirm}}">
+      {{confirmText}}
+    </view>
+  </view>
+</van-popup>

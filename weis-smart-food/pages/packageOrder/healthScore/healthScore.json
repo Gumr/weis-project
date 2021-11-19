@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "van-popup": "/components/vant/popup/index",
+    "cp-confirm-dialog": "/components/cp-confirm-dialog/cp-confirm-dialog",
+    "painter": "/components/painter/painter",
+    "cp-radar-panel": "/components/cp-radar-panel/cp-radar-panel"
+  }
+}

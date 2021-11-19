@@ -1,0 +1,38 @@
+<!--pages/packSubAccount/withdrawal/detail/detail.wxml-->
+<cp-nav-bar title-text="提现明细" color="#000" background="#F3F4F5"></cp-nav-bar>
+<view class="detail">
+    <!-- 标签栏目 -->
+    <view class="tabs" style="top: {{navStatusHeight}}px;">
+        <view bind:tap="tabTap" class="tab {{currentTab === item.value ? 'tab__active' : ''}}" wx:for="{{tabs}}" wx:key="index" data-value="{{item.value}}">
+            {{item.label}}
+        </view>
+    </view>
+    <!-- 日期 -->
+    <view class="date" style="top: {{navStatusHeight + 72}}px;" bind:tap="date">
+        <text>{{years[dateValue[0]]}}年{{months[dateValue[2]]}}月</text>
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/detailed-time_next.png" />
+    </view>
+    <!-- 明细列表 -->
+    <scroll-view scroll-y="{{true}}" style="height:{{windowHeight - (navStatusHeight + 72 + 29)}}px; margin-top: {{72 + 29}}px;">
+        <view class="content" wx:if="{{yzhWxpayList.length != 0}}">
+            <view class="list" wx:for="{{yzhWxpayList}}">
+                <view class="listTop">
+                    <view class="listTop_l">
+                        <view>¥{{item.pay}}</view>
+                        <view>提现时间：{{item.ctime}}</view>
+                        <view wx:if="{{item.orderStatus == '02'}}">到账时间：{{item.utime}}</view>
+                    </view>
+                    <!-- 订单状态 00：全部 01：提现中；02：提现成功；03：提现失败 -->
+                    <view class="listTop_r" style="color: {{withdrawalList[item.orderStatus].color}}">{{withdrawalList[item.orderStatus].name}}</view>
+                </view>
+                <view class="listBottom" wx:if="{{item.orderStatus == '03'}}">
+                    <view>提现失败详细说明</view>
+                    <view>{{item.statusMessage}}</view>
+                </view>
+            </view>
+        </view>
+        <cp-null show="{{yzhWxpayList.length == 0}}" imgSrc="https://prodstatic.weis1606.cn/api/smartFood/null_withdrawal_detail.png" text="暂无明细"></cp-null>
+    </scroll-view>
+</view>
+
+<cp-bottom-popup title="选择时间" show="{{showDate}}" val="{{dateValue}}" data="{{years}}" dw="年" data2="{{months}}" dw2="月" bind:on-confirm="dateConfirm"></cp-bottom-popup>

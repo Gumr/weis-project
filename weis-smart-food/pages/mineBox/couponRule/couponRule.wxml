@@ -1,0 +1,35 @@
+<!-- pages/mineBox/couponRule/couponRule.wxml -->
+<cp-nav-bar title-text="{{typeValue == 0?'优惠券使用规则':'维士红包使用规则'}}" background="#fff" color="#333333" backIconColor="#fff" />
+<view class="rule" wx:if="{{typeValue == 0}}">
+    <view class="title">{{coupon.tcuName}}</view>
+    <view class="box-1">
+        <view class="date">使用规则</view>
+        <view class="desc-box">
+            <view class="desc">{{coupon.tcaIntro}}</view>
+        </view>
+    </view>
+    <view class="box-1" wx:if="{{coupon.tcuStt == '01'}}">
+        <view class="date">有效期限</view>
+        <view class="desc-box">
+            <view class="desc">{{coupon.sTime}}-{{coupon.eTime}}</view>
+        </view>
+    </view>
+</view>
+<view class="rule" wx:if="{{typeValue == 1}}">
+    <view class="title">{{redPacket.rpName}}</view>
+    <view class="box-1">
+        <view class="date">使用规则</view>
+        <view class="desc-box">
+            <view class="desc">{{redPacket.rpIntro}}</view>
+        </view>
+    </view>
+    <view class="box-1">
+        <view class="date">有效期限</view>
+        <view class="desc-box">
+            <view class="desc">{{redPacket.sTime}}-{{redPacket.eTime}}</view>
+        </view>
+    </view>
+</view>
+<!-- <view class="bot" wx:if="{{coupon.status == '01' || coupon.status == '02'}}">
+    <view class="btn" bind:tap="use">立即使用</view>
+</view> -->

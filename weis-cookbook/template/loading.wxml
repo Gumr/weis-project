@@ -1,0 +1,30 @@
+<!--components/loading/loading.wxml-->
+<template name="loading">
+  <!-- <view class="spinner">
+    <view class="rectBox">
+      <view class="rect1"></view>
+      <view class="rect2"></view>
+      <view class="rect3"></view>
+      <view class="rect4"></view>
+      <view class="rect5"></view>
+    </view>
+  </view> -->
+
+  <!-- <view class="canvas canvas3">
+    <view class="spinner3"></view>   
+  </view> -->
+
+  <view id="loading">
+    <view class="circleBox">
+      <view class="wrap clearfix">
+        <view class="circling"></view>
+        <view class="circling"></view>
+        <view class="circling"></view>
+        <view class="circling"></view>
+        <view class="circling"></view>
+      </view>
+      <view class="text"> 加载中...</view>
+    </view>
+  </view>
+
+</template>

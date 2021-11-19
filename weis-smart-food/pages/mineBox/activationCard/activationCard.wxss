@@ -1,0 +1,110 @@
+.exchange .tip-title {
+  color: #666666;
+  font-size: 24rpx;
+  text-align: center;
+  margin-top: 10rpx;
+}
+.exchange .exchange-code {
+  display: flex;
+  align-items: center;
+  margin: 40rpx auto 0;
+}
+.exchange .exchange-code image {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 24rpx;
+}
+.exchange .exchange-code input {
+  width: 586rpx;
+  height: 80rpx;
+  background: #E3E5E6;
+  border-radius: 40rpx;
+  box-sizing: border-box;
+  padding: 0 0 0 36rpx;
+  color: #333333;
+  font-size: 28rpx;
+}
+.exchange .exchange-code .input-placeholder {
+  color: #a9a9a9;
+  font-size: 28rpx;
+}
+.exchange .error {
+  width: 690rpx;
+  margin: 24rpx auto 0;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding-left: 140rpx;
+}
+.exchange .error image {
+  width: 26rpx;
+  height: 26rpx;
+  margin-right: 10rpx;
+}
+.exchange .error .tip {
+  color: #fe5e0f;
+  font-size: 24rpx;
+}
+.exchange .error.active {
+  animation: shake 0.3s linear forwards;
+}
+@keyframes shake {
+  0%,
+  100% {
+    -webkit-transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: translateX(-5rpx);
+  }
+  20%,
+  40%,
+  80% {
+    -webkit-transform: translateX(5rpx);
+  }
+}
+.exchange .bot-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 80rpx;
+  margin: 0 auto;
+}
+.exchange .bot-box .next {
+  width: 670rpx;
+  height: 88rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32rpx;
+  color: #fff;
+  font-weight: 550;
+  margin: 30rpx auto 0;
+  background: linear-gradient(180deg, #ff9722 0%, #fe5e0f 100%);
+  box-shadow: 0rpx 6rpx 14rpx 0rpx rgba(254, 94, 15, 0.5);
+  border-radius: 44rpx;
+}
+.exchange .bot-box .disabled-btn {
+  background: #a9a9a9;
+  box-shadow: 0rpx 6rpx 14rpx 0rpx rgba(169, 169, 169, 0.5);
+}
+.exchange .bot-box .xy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.exchange .bot-box .xy image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+.exchange .bot-box .xy .xy_cont {
+  color: #333333;
+  font-size: 24rpx;
+}
+.exchange .bot-box .xy .xy_cont text {
+  color: #fe5e0f;
+}

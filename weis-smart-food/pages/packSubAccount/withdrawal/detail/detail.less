@@ -1,0 +1,123 @@
+page {
+  background: #f3f4f5;
+}
+.border {
+  display: block;
+  content: "";
+  width: 690rpx;
+  height: 1px;
+  background: #000000;
+  opacity: 0.1;
+  //   transform: scaleY(0.5);
+  position: absolute;
+  left: 30rpx;
+  bottom: 0;
+  margin: auto;
+}
+.detail {
+  width: 100%;
+  .tabs {
+    // background-color: #f3f4f5;
+    z-index: 2;
+    position: fixed;
+    left: 0;
+    height: 76rpx;
+    width: 100%;
+    display: flex;
+    // box-shadow: 0rpx 2rpx 20rpx 0rpx rgba(0, 0, 0, 0.05);
+    margin: 27rpx 0 40rpx;
+    .tab {
+      flex-grow: 1;
+      font-size: 30rpx;
+      color: rgba(0, 0, 0, 0.6);
+      position: relative;
+      display: flex;
+      text-align: center;
+      justify-content: space-around;
+
+      &__active {
+        color: #000000;
+        font-size: 36rpx;
+        font-weight: bold;
+      }
+      &__active::after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 6rpx;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50rpx;
+        height: 10rpx;
+        background: #fa6400;
+        border-radius: 5rpx;
+      }
+    }
+  }
+  .date {
+    position: fixed;
+    left: 0;
+    margin: 0 30rpx 30rpx;
+    text {
+      font-size: 28rpx;
+      color: #333333;
+      margin-right: 6rpx;
+    }
+    image {
+      width: 26rpx;
+      height: 16rpx;
+    }
+  }
+  .content {
+    width: 100%;
+    // position: fixed;
+    // left: 0;
+    background: #ffffff;
+    border-radius: 40rpx 40rpx 0rpx 0rpx;
+    .list {
+      padding: 40rpx 30rpx;
+      position: relative;
+      &::after {
+        .border();
+      }
+      .listTop {
+        display: flex;
+        justify-content: space-between;
+        &_l {
+          view {
+            font-size: 24rpx;
+            color: rgba(51, 51, 51, 0.5);
+            margin-bottom: 20rpx;
+          }
+          view:nth-child(1) {
+            font-size: 40rpx;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 40rpx;
+          }
+          view:last-child {
+            margin-bottom: 0;
+          }
+          // view:nth-child(2) {
+          //   font-size: 24rpx;
+          //   color: rgba(51, 51, 51, 0.5);
+          // }
+        }
+      }
+      .listBottom {
+        background: rgba(254, 94, 15, 0.05);
+        border-radius: 10rpx;
+        padding: 30rpx 20rpx;
+        margin-top: 20rpx;
+        view {
+          font-size: 24rpx;
+          color: #fa6400;
+        }
+        view:nth-child(1) {
+          font-weight: bold;
+          margin-bottom: 24rpx;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<!--pages/mineBox/forecast/submitStatus/submitStatus.wxml-->
+<cp-nav-bar title=""></cp-nav-bar>
+<view class="submitStatus">
+    <view class="status success" wx:if="{{status == 1}}">
+        <image class="img" src="https://prodstatic.weis1606.cn/api/smartFood/forecast_success.png"/>
+        <view class="tip">销量预测表提交成功</view>
+        <view class="btn">
+            <view class="back" bind:tap="back">返回</view>
+        </view>
+    </view>
+    <view class="status fail" wx:if="{{status == 0}}">
+        <image class="img" src="https://prodstatic.weis1606.cn/api/smartFood/forecast_fail.png"/>
+        <view class="tip">销量预测表提交失败</view>
+        <view class="btn">
+            <view class="back" bind:tap="back">返回</view>
+            <view class="reset" bind:tap="submit">重新提交</view>
+        </view>
+    </view>
+</view>

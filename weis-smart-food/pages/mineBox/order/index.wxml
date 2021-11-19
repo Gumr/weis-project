@@ -1,0 +1,531 @@
+<!-- pages/index/index.wxml -->
+<!-- <cp-nav-bar title-text="{{showHpid ? '选择门店' : '维士小盒饭'}}" color="#fff" background="transparent" custom="{{true}}" customText="{{isLogin ? list[mealIndex].hpName : (loginInfo.isAuthorized && loginInfo.isLogin ? '大冲店' : '请登录')}}" bind:tapcustom="tapcustom"></cp-nav-bar> -->
+<cp-nav-bar wx:if="{{spellOrder}}" homeIcon="{{showSpell ? '' : '/images/backHome.png'}}" title-text="{{dateTime}} {{categoryMap[category]}}" color="{{showSpell ? '#000' : (theme == 'pillars' ? '#7A3E00' : '#fff')}}" background="transparent"></cp-nav-bar>
+<cp-nav-bar wx:if="{{spellGroup}}" title-text="" theme="{{theme}}" color="#333333" background="#fff" homeIcon="/images/backHome.png" custom="{{true}}" customText="{{loginInfo.isAuthorized && loginInfo.isLogin ? list[mealIndex].addressName || list[mealIndex].hpName : '请登录'}}" customStyle="left: 30%" bind:tapcustom="tapcustom"></cp-nav-bar>
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
+<!-- 点餐 -->
+<view class="menu" wx:if="{{hideLoad}}">
+    <!-- 选择套餐 单点 -->
+    <view class="tab-wrap">
+        <view class="tab">
+            <view class="box-t {{index == tabIndex ? 'active' : ''}}" wx:for="{{tab}}" data-index="{{index}}" bind:tap="tabType">
+                {{item.name}}
+            </view>
+            <view class="line-checked line-checked-{{tabIndex}}"></view>
+        </view>
+    </view>
+    <view class="meal-box {{theme}}">
+        <!-- 头部-拼单 -->
+        <view class="header {{theme}}" wx:if="{{spellOrder}}">
+            <view class="location">
+                <image src="{{theme == 'pillars' ? 'https://prodstatic.weis1606.cn/api/smartFood/circle/icon-location.png' : '/images/location.png'}}" />
+                <text>{{spellInfo.waybillRecord.receivingAddress}}</text>
+            </view>
+            <view class="spell" bind:tap="check">
+                <view>
+                    {{spellInfo.mergeTeamInfo.dietOrderMergeDetails.length}}人正在拼单，{{endTime}}后拼单结束
+                </view>
+                <view>查看详情</view>
+            </view>
+        </view>
+        <!-- 头部-拼租 -->
+        <view class="header {{theme}}" wx:if="{{spellGroup}}">
+            <view class="spell">
+                <view>{{dateTime}} {{categoryMap[spellInfo.category]}}，拼单人越多，返现越多</view>
+            </view>
+            <view class="spell" bind:tap="spellGroupCheck">
+                <view>
+                    {{spellInfo.mergeTeamInfo.dietOrderMergeDetails.length}}人正在拼单{{spellInfo.mergeTeamInfo.dietOrderMergeDetails.length > 1?'，可享受'+spellInfo.mergeTeamInfo.dietOrderMerge.discount+'折优惠':''}}
+                </view>
+                <view>查看详情</view>
+            </view>
+        </view>
+    </view>
+    <view class="content" wx:if="{{tabIndex == 1}}">
+        <!-- 已注册 -->
+        <view class="semicircle {{theme}}" wx:if="{{isLogin}}">
+            <view class="icon-head"></view>
+            <image class="bg-icon" src="https://prodstatic.weis1606.cn/api/smartFood/new-meal.png?a=1" />
+            <view class="sem-t">
+                <view class="plan" bind:tap="toPlan">
+                    <image class="icon" wx:if="{{subToken}}" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/subIcon.png" />
+                    <view class="plan-name">{{total.dietPlan.planName}}</view>
+                    <!-- <image wx:if="{{total.dietPlan.planningType == '01' || total.dietPlan.planningType == '02' || total.dietPlan.planningType == '03'}}" src="/images/ico_switch.png" /> -->
+                </view>
+                <view class="adjust" bind:tap="adjust">
+                    <view class="edit">修改数据</view>
+                    <image src="{{theme == 'pillars' ? 'https://prodstatic.weis1606.cn/api/smartFood/circle/grey.png' : '/images/arrow-grey.png'}}" />
+                </view>
+            </view>
+            <!-- 仪表盘 -->
+            <view class="pan">
+                <cp-meal-pie dialData="{{dialData}}" theme="{{theme}}" mode="image" page="index" bind:toHealth="toHealth" />
+            </view>
+        </view>
+        <!-- 未注册 -->
+        <cp-login-status login-info="{{loginInfo}}" bind:loginClick="loginClick" />
+        <!-- 点餐 -->
+        <view class="kind" wx:if="{{nameList.length>0}}" style="height: {{scrollHeight}}rpx">
+            <view class="sort">
+                <scroll-view class="wrap" scroll-y="true" style="height:{{total.piece ? scrollHeight-88 : scrollHeight}}rpx">
+                    <!-- 标签筛选 -->
+                    <view class="tag-filter" bind:tap="tapTag">
+                        <image src="/images/filter.png" />
+                        <view class="trace">筛选</view>
+                        <view class="tag-num {{tagNum > 9 ? 'active' : ''}}" wx:if="{{tagNum}}">
+                            {{tagNum}}
+                        </view>
+                    </view>
+                    <view class="name {{leftIndex== index ? 'active' : ''}}" style="height: {{item.lineBreakPosition > 0 ? 114 : 88}}rpx" wx:for="{{nameList}}" wx:key="key" data-index="{{index}}" bind:tap="selectKind">
+                        <text>{{item.skuKind}}</text>
+                        <view class="num {{leftIndex== index ? 'active' : ''}}" wx:if="{{item.num}}">
+                            {{item.num}}
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+            <view class="goods" wx:if="{{nameList[leftIndex].detailList && nameList[leftIndex].detailList.length>0}}">
+                <scroll-view class="wrap" scroll-y="true" scroll-into-view="{{intoIndex}}" scroll-with-animation="{{true}}" style="height:{{total.piece ? scrollHeight-88 : scrollHeight}}rpx" data-scroll="true" bindscroll="scroll">
+                    <view class="wrap-box" id="{{'scroll_' + wrapIndex}}" wx:for="{{nameList}}" wx:key="key" wx:for-index="wrapIndex">
+                        <view class="kind-name">
+                            <view>{{item.skuCatalog}}</view>
+                        </view>
+                        <view class="list-box">
+                            <view class="list {{(item.checkStock && item.stock<=0) ? 'active' : ''}}" wx:for="{{nameList[wrapIndex].detailList}}" wx:key="key" wx:for-index="index" wx:for-item="item">
+                                <!-- 单品UI -->
+                                <view class="top">
+                                    <view class="area" data-combo="00" data-id="{{item.id}}" data-forbid="{{!item.energy && !item.protein && !item.fat && !item.carbonwater ? true : false}}" bind:tap="goodsDetail"></view>
+                                    <view class="l-img-box">
+                                        <view class="tag yellow" wx:if="{{item.skuTitle}}">
+                                            {{item.skuTitle}}
+                                        </view>
+                                        <image class="l-img" lazy-load="{{true}}" src="{{item.primaryImgUrl}}" />
+                                        <view class="nosku" wx:if="{{(item.checkStock && item.stock<=0)}}">
+                                            <view class="sq">已售罄</view>
+                                        </view>
+                                        <view class="nosku" wx:elif="{{item.noDiscount == '01'}}">
+                                            <view class="sq" style="color: #FFE59D">不参与折扣</view>
+                                        </view>
+                                        <image class="children" wx:if="{{ageType == '01'}}" src="https://prodstatic.weis1606.cn/api/smartFood/toddler_label.png" />
+                                    </view>
+                                    <view class="c">
+                                        <view class="name">
+                                            {{item.skuname}} {{item.energy}}kcal
+                                        </view>
+                                        <view class="label-wrap">
+                                            <view class="label" wx:for="{{item.dietLabelList}}" wx:for-index="labelIndex" wx:for-item="labelItem" wx:if="{{labelItem.type == '12' || labelItem.type == '14'}}">
+                                                {{labelItem.name}}
+                                            </view>
+                                        </view>
+                                        <view class="hot-box dp {{item.dietLabelList.length > 0?'ellipsis':''}}" wx:if="{{item.energy || item.protein || item.fat || item.carbonwater}}">
+                                            <view class="hot" wx:if="{{item.protein}}">
+                                                蛋白质{{item.protein}}g
+                                                <text class="hot-line">/</text>
+                                            </view>
+                                            <view class="hot" wx:if="{{item.fat}}">
+                                                脂肪{{item.fat}}g
+                                                <text class="hot-line">/</text>
+                                            </view>
+                                            <view class="hot" wx:if="{{item.carbonwater}}">
+                                                碳水{{item.carbonwater}}g
+                                            </view>
+                                        </view>
+                                        <!-- shopType - 10：加热点 20：贩卖机  wx:if="{{matchHpid.shopType == '10'}}"-->
+                                        <view class="monthly-sale">
+                                            月售{{item.sale30DaysSum}}份
+                                        </view>
+                                        <view class="price">
+                                            <!-- 现价 -->
+                                            <view class="cost">
+                                                ¥
+                                                <view class="acturePrice">
+                                                    {{item.discountPrice || item.price}}
+                                                </view>
+                                            </view>
+                                            <!-- 原价 -->
+                                            <view class="origin" wx:if="{{item.discountPrice && item.price>item.discountPrice}}">
+                                                ¥{{item.price}}
+                                            </view>
+                                            <view class="net">/{{item.quality + item.unit}}</view>
+                                        </view>
+                                    </view>
+                                    <!-- 增减 -->
+                                    <view class="right {{item.num <= 0 && (!item.checkStock || item.stock>0) ? 'single' : (item.checkStock && item.stock<=0) ? 'sellout' : ''}}">
+                                        <view class="dot" hover-class="color" hover-stay-time="200" data-combo="00" data-cid="{{item.cid}}" data-wrapindex="{{wrapIndex}}" data-index="{{index}}" data-type="reduce" bind:tap="add" wx:if="{{item.num>=1}}">
+                                            <image class="reduce" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/reduce.png" />
+                                        </view>
+                                        <view class="num" wx:if="{{item.num>=1}}">
+                                            {{item.num}}
+                                        </view>
+                                        <view class="dot already" wx:if="{{(item.checkStock && item.stock<=0)}}">
+                                            已售罄
+                                        </view>
+                                        <view class="dot" wx:if="{{!item.checkStock || (item.checkStock && (item.stock>0||item.num>0))}}" hover-class="color" hover-stay-time="200" data-combo="{{item.type == '01' ? '01' : '00'}}" data-cid="{{item.cid}}" data-wrapindex="{{wrapIndex}}" data-index="{{index}}" data-type="add" bind:tap="add">
+                                            <image class="add" src="{{item.num>=1 ? 'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/add.png' : 'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/add-1.png'}}" />
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="extra" wx:if="{{item.checkStock && item.stock<=3 && item.stock>0}}">
+                                    <view style="border:none;font-size: 20rpx" wx:if="{{(item.checkStock && item.stock<=3 && item.stock>0)}}">
+                                        仅剩{{item.stock}}份
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+            <view class="goods blank" style="height:100%" wx:else>
+                <view class="no_empty">
+                    <image src="https://prodstatic.weis1606.cn/api/smartFood/blank_case_ai.png" />
+                    <text class="desc">打烊啦~下次再来</text>
+                    <text class="time">营业时间：07:00-19:30</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 套餐 -->
+    <view class="content" wx:if="{{tabIndex == 0}}">
+        <view class="semicircle {{theme}}">
+            <view class="icon-head"></view>
+            <image class="bg-icon" src="https://prodstatic.weis1606.cn/api/smartFood/new-meal.png?a=1" />
+            <view class="sem-t">
+                <view class="plan" bind:tap="toPlan">
+                    <image class="icon" wx:if="{{subToken}}" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/subIcon.png" />
+                    <view class="plan-name">{{total.dietPlan.planName}}</view>
+                    <!-- <image wx:if="{{total.dietPlan.planningType == '01' || total.dietPlan.planningType == '02' || total.dietPlan.planningType == '03'}}" src="/images/ico_switch.png" /> -->
+                </view>
+                <view class="adjust" bind:tap="adjust">
+                    <view class="edit">修改数据</view>
+                    <image src="{{theme == 'pillars' ? 'https://prodstatic.weis1606.cn/api/smartFood/circle/grey.png' : '/images/arrow-grey.png'}}" />
+                </view>
+            </view>
+        </view>
+        <!-- 套餐 -->
+        <view class="setMeal">
+            <view class="sort">
+                <!-- style="height:{{total.piece ? scrollHeight-88 : scrollHeight}}rpx" -->
+                <scroll-view class="wrap" scroll-y="true">
+                    <view class="name {{leftIndex2 == index ? 'active' : ''}}"  wx:for="{{setMealTypes}}" wx:key="key" data-index="{{index}}" data-code="{{item.code}}" data-pagesize="{{item.pageSize}}" bind:tap="selectsetMeal">
+                        {{item.desc}}
+                    </view>
+                </scroll-view>
+            </view>
+            <view class="goods">
+                <scroll-view class="mealBox {{!isLogin ? 'noLogin' : ''}}" scroll-y="true" refresher-enabled bindrefresherrefresh="refresh" refresher-triggered="{{triggered}}" scroll-with-animation="true" style="height:{{total.piece ? mealHeight-88 : mealHeight}}rpx" bindscrolltolower="requestRecom">
+                    <!-- 轮播 -->
+                    <view class="slideshow" wx:if="{{isLogin && dietBanners && dietBanners.length > 0}}">
+                        <swiper style="height: inherit;" indicator-dots="{{false}}" bindchange="slideshowChange" circular autoplay="{{true}}" interval="{{4000}}" duration="{{400}}">
+                            <swiper-item wx:for="{{dietBanners}}" wx:key="key" bind:tap="slideshowTap" data-id="{{item.id}}" data-type="{{item.linkType}}" data-url="{{item.link}}">
+                                <image src="{{item.imgUrl}}" class="slideshow__image" />
+                            </swiper-item>
+                        </swiper>
+                        <view class="slideshow__dots">
+                            <view wx:for="{{dietBanners}}" wx:key="index" class="slideshow__dot {{index === currentSlideshow ? 'slideshow__dot--active' : ''}}"></view>
+                        </view>
+                    </view>
+                    <view class="kind-meal">
+                        <!-- wx:for="{{recomMealList}}" wx:for-index="wrapIndex" -->
+                        <view class="kind-box">
+                            <!-- <view class="name-title">{{item.mealTitle}}</view> -->
+                            <view class="list">
+                                <!-- 热卖套餐 -->
+                                <view class="meal-square" wx:for="{{recomMealList}}" data-combo="01" data-comboid="{{item.comboId}}" data-id="{{item.id}}" bind:tap="goodsDetail">
+                                    <view class="head">
+                                        <view class="title">{{item.name}}</view>
+                                        <view class="right">
+                                            <view class="val">{{item.energy}}kcal</view>
+                                            <view class="difference" style="{{item.energyDifference > 0 ? 'color: #FA6400' : 'color: #3BC7A8'}}">{{item.energyDifference}}kcal</view>
+                                        </view>
+                                        <!-- <view class="score">{{item.score}}分</view> -->
+                                    </view>
+                                    <scroll-view scroll-x="{{true}}" style="width:582rpx;height:260rpx;">
+                                        <view class="child" wx:for="{{item.setMealDateils}}">
+                                            <image src="{{item.primaryImgUrl}}" />
+                                            <view class="name">{{item.name}}</view>
+                                        </view>
+                                    </scroll-view>
+                                    <view class="meal-bot">
+                                        <view class="info">
+                                            <view class="num">共{{item.allNum}}个菜品</view>
+                                            <view class="price">￥<text>{{item.price}}</text></view>
+                                            <view class="origin">¥{{item.originalPrice}}</view>
+                                        </view>
+                                        <!-- data-wrapindex="{{wrapIndex}}" -->
+                                        <view class="select {{item.num >= 1 ? 'yet' : ''}}" data-combo="01" data-comboid="{{item.comboId}}" data-cid="{{item.id}}" data-index="{{index}}" data-type="add" catch:tap="add">
+                                            <view wx:if="{{item.num >= 1}}">已选</view>
+                                            <image wx:else src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/add-1.png" />
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="no-more" wx:if="{{isLogin && requestComplete && recomMealList && recomMealList.length > 0 && !more}}">- 无更多套餐 -</view>
+                    <!-- 上拉加载中 -->
+                    <view class="loading-meal" wx:if="{{isLogin && recomMealList && recomMealList.length > 0 && more}}">
+                        <van-loading color="#FE5E0F" size="20" text-size="12" type="circular">
+                            加载中...
+                        </van-loading>
+                    </view>
+                    <!-- 无推荐套餐 -->
+                    <view class="empty-meal" wx:if="{{isLogin && requestComplete && recomMealList && recomMealList.length == 0}}">
+                        <image src="https://prodstatic.weis1606.cn/api/smartFood/new-empty.png" />
+                        <view class="e-tip">当餐剩余菜品已不能推出适合你的套餐，请去单品自选</view>
+                        <view class="self" data-index="1" bind:tap="tabType">去单品自选</view>
+                    </view>
+                    <!-- 请求数据中 -->
+                    <view class="empty-meal" wx:if="{{isLogin && !requestComplete && recomMealList && recomMealList.length == 0}}" style="margin-top: 217rpx">
+                        <van-loading color="#FE5E0F" size="20" text-size="12" type="circular" vertical>
+                            加载中...
+                        </van-loading>
+                    </view>
+                    <!-- 未注册 -->
+                    <view wx:if="{{!isLogin}}" style="margin-top: 30rpx"><cp-login-status login-info="{{loginInfo}}" bind:loginClick="loginClick" /></view>
+                    <view class="login-empty" wx:if="{{!isLogin}}">
+                        <image mode="widthFix" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/new1.png" />
+                        <image mode="widthFix" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/new2.png" />
+                        <image mode="widthFix" bind:tap="loginClick" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/new3.png" />
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+          
+    </view>
+    <view class="bot {{isIpx ? 'isIpx' : ''}}" wx:if="{{total.piece}}" bind:tap="editCart">
+        <view class="cart" id="cart">
+            <image src="https://prodstatic.weis1606.cn/api/smartFood/%E7%BB%84%E4%BB%B6%EF%BC%8Ficon%EF%BC%8F%E8%B4%AD%E7%89%A9%E8%BD%A6.png" />
+            <view class="allNum {{scale ? 'active' : ''}} {{total.piece > 9 ? 'fang' : ''}} {{total.piece > 99 ? 'square' : ''}}" wx:if="{{total.piece>0}}">
+                {{total.piece}}
+            </view>
+        </view>
+        <view class="allPrice">
+            <view class="price-t">
+                <!-- 现价 -->
+                <view class="acturePrice">
+                    <text>¥</text>
+                    {{total.totalPrice>0 ? total.totalPrice : 0}}
+                </view>
+                <view class="origin" wx:if="{{total.discount > 0}}">
+                    ¥{{total.totalOriginalPrice}}
+                </view>
+            </view>
+            <!-- 折扣 -->
+            <text class="discount" wx:if="{{total.discount > 0}}">已优惠{{total.discount}}元</text>
+        </view>
+        <view class="spell">
+            <view class="spell-buy" catch:tap="spell">
+                <view>拼单买</view>
+                <view>超省钱</view>
+            </view>
+        </view>
+    </view>
+</view>
+<!-- loading -->
+<view class="loading" wx:else>
+    <van-loading size="20" text-size="12" color="#FE5E0F" type="circular" vertical></van-loading>
+</view>
+<!-- 购物车弹窗 -->
+<view class="cartPoup" wx:if="{{showCart}}" catch:touchmove="true">
+    <view class="closePopup" bind:tap="hideCart"></view>
+    <view class="shopcart {{showCart ? 'active' : ''}}" wx:if="{{showCart}}">
+        <view class="wrap-date">
+            <image class="down" bind:tap="hideCart" src="/images/icon_down.png" />
+            <view class="title">购物车</view>
+            <view class="clear-box" bind:tap="clear" data-type="tip">
+                <image src="/images/clear.png" />
+                <view class="close clear">清空</view>
+            </view>
+        </view>
+        <view class="skuList">
+            <scroll-view class="scroll" scroll-y="{{true}}">
+                <view class="list" wx:key="index1" wx:for="{{allCart}}" wx:for-item="item1" wx:for-index="index1">
+                    <view class="heat-box" wx:for="{{item1.categoryCart}}" wx:key="key" wx:for-item="item2" wx:for-index="index2">
+                        <view class="cateroy">
+                            {{item1.dateTime}} {{cart[item2.category]}} {{item2.list[0].heatingPointIdName}}
+                        </view>
+                        <view class="wrap">
+                            <view class="goods-wrap" wx:key="key" wx:if="{{item3.num}}" wx:for="{{item2.list}}" wx:for-item="item3" wx:for-index="index3">
+                                <view class="l-img-box">
+                                    <image class="img" src="{{item3.primaryImgUrl}}" />
+                                </view>
+                                <view class="goods-right">
+                                    <view class="name">{{item3.skuname}}</view>
+                                    <!-- <view class="tag-wrap">
+                                        <view class="tag {{item.type == '02' ? 'gm' : 'ph'}}" wx:key="key" wx:for="{{item3.dietLabelList}}">
+                                            {{item.name}}
+                                        </view>
+                                    </view> -->
+                                    <view class="energy">热量{{item3.energy}}kcal</view>
+                                    <view class="param">
+                                        <view class="price">
+                                            <view class="unit">￥</view>
+                                            {{item3.ifNewUser == 1 ? item3.newUserPrice : item3.price}}
+                                        </view>
+                                        <!-- <view class="calculate">/{{item3.quality}}g</view> -->
+                                    </view>
+                                    <!-- 商品增减 -->
+                                    <view class="operate">
+                                        <image class="reduce" data-cid="{{item3.cid}}" data-groupComboId="{{item3.groupComboId}}" data-category="{{item2.category}}" data-index1="{{index1}}" data-index2="{{index2}}" data-index3="{{index3}}" data-type="reduce" data-combo="{{item3.type == '01'  ? '01' : '00'}}" bind:tap="edit" src="/images/reduce.png" />
+                                        <view class="num">{{item3.num}}</view>
+                                        <image class="add" data-cid="{{item3.cid}}" data-groupComboId="{{item3.groupComboId}}" data-category="{{item2.category}}" data-index1="{{index1}}" data-index2="{{index2}}" data-index3="{{index3}}" data-type="add" data-combo="{{item3.type == '01'  ? '01' : '00'}}" bind:tap="edit" src="/images/add.png" />
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+</view>
+<!-- 筛选标签 -->
+<view class="filter-shadow" wx:if="{{showFilter}}">
+    <view class="empty" bind:tap="tapTag"></view>
+    <view class="filter-box">
+        <view class="title">筛选标签</view>
+        <image class="close" bind:tap="tapTag" src="/images/icon_down.png" />
+        <view class="tag-box">
+            <view class="tag-wrap" wx:for="{{labelsTag}}" wx:key="key" wx:for-index="index1">
+                <view class="name">{{item.name}}</view>
+                <view class="list-box">
+                    <view class="list {{item.checked ? 'active' : ''}}" wx:for="{{item.list}}" wx:for-index="index2" data-index1="{{index1}}" data-index2="{{index2}}" bind:tap="selectTag">
+                        {{item.name}}
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="b-box">
+            <view class="btn {{selectAct ? 'select' : ''}}" bind:tap="reset">重置</view>
+            <view class="btn {{selectAct ? 'active' : ''}}" bind:tap="sureTag">确定</view>
+        </view>
+    </view>
+</view>
+<!-- 清除购物车 -->
+<cp-confirm-dialog id="dialog" show="{{clearCartTip}}" title="确定清空购物车吗？" bind:on-cancel="cancelTap" bind:on-confirm="clear"></cp-confirm-dialog>
+<!-- 注册后送券 -->
+<cp-login-coupon />
+<!-- 拼单结束 -->
+<view class="emptyOrderEnd" wx:if="{{spellInfo && (curUid == spellInfo.waybillRecord.uid || !spellOrderStatus || (spellInfo.waybillRecord.orderStt == '03' && spellOrder))}}">
+    <view class="box">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/icon_orderEnd.png" />
+        <view class="tip">
+            {{curUid == spellInfo.waybillRecord.uid ? '你是拼主' : (spellInfo.waybillRecord.orderStt == '03' && spellOrder? '该拼单已取消，去首页订餐吧' : '拼单结束，请去首页点餐')}}
+        </view>
+        <view class="btn" bindtap="order">去点餐</view>
+    </view>
+</view>
+<!-- 拼单提示 -->
+<van-popup show="{{spellOrder && spellTip && spellInfo && spellOrderStatus && spellInfo.waybillRecord.orderStt != '03' && curUid != spellInfo.waybillRecord.uid}}" position="top" custom-style="border-radius:0rpx 0rpx 20rpx 20rpx;" bind:click-overlay="check" z-index="99">
+    <view class="spell-tip {{theme}}" style="padding-top:{{navStatusHeight * px2rpx}}rpx">
+        <view class="content">
+            <!-- 拼单信息 -->
+            <view class="spell">
+                <view class="title">{{endTime}}结束</view>
+                <view class="info">
+                    <view class="address">
+                        <image class="icon" src="/images/order_list_address.png" />
+                        <view class="loca">{{spellInfo.waybillRecord.receivingAddress}}</view>
+                    </view>
+                    <view class="time">
+                        送达时间：{{dateTime}} {{spellInfo.waybillRecord.expectTime}}  配送方式：{{distributionMode['00'][spellInfo.waybillRecord.shipWithCold]}}
+                    </view>
+                </view>
+                <view class="notice">注意：不可更改配送地址，送达时间和配送方式</view>
+                <view class="spell-wrap">
+                    <view class="list" wx:for="{{spellInfo.mergeTeamInfo.dietOrderMergeDetails}}">
+                        <image src="{{item.headImgUrl}}" />
+                        <view class="spell-main" wx:if="{{index == 0}}">拼主</view>
+                        <!-- <image class="crownHead" wx:if="{{isVip}}" src="https://prodstatic.weis1606.cn/api/smartFood/crown_head.png" /> -->
+                        <view class="nick">{{item.uname}}</view>
+                    </view>
+                    <view class="list" wx:if="{{spellInfo.num < 5 || (spellInfo.num > 5 && spellInfo.num < 10)}}" wx:for="{{spellInfo.num < 5 ? 5-spellInfo.num : 10-spellInfo.num}}">
+                        <image style="border: none" src="/images/icons/unknow.png" />
+                    </view>
+                    <view class="dash" wx:if="{{spellInfo.num > 10}}"></view>
+                </view>
+                <view class="invite" bind:tap="checkInfo">
+                    {{spellInfo.num}}人正在拼单，已省
+                    <text class="color" style="color:rgba(254, 94, 15, 1);display:inline-block;">￥{{spellInfo.num * spellInfo.mergeTeamInfo.dietOrderMerge.shipFee}}</text>配送费
+                    <image src="/images/icons/warning-circle.png" />
+                </view>
+                <!-- <button open-type="share">邀请好友拼单</button>
+                <view class="spell-order">* 使用拼单购买，不可取消订单，不可更改收货和送达时间</view> -->
+            </view>
+        </view>
+    </view>
+</van-popup>
+<van-popup show="{{showSpell}}" position="top" custom-style="border-radius:0rpx 0rpx 20rpx 20rpx;" bind:click-overlay="checkInfo" z-index="99">
+    <view class="spell-tip-s" style="height:{{navStatusHeight * px2rpx + 380}}rpx;padding-top:{{navStatusHeight * px2rpx}}rpx">
+        <view class="content">
+            <view class="desc">拼单成员需要和拼主</view>
+            <view class="desc">
+                同一配送地址
+                <text>和</text>
+                配送时间
+            </view>
+            <view class="desc">最多5人一起拼单</view>
+            <view class="ok" bind:tap="checkInfo">好的</view>
+        </view>
+    </view>
+</van-popup>
+<!-- 拼组提示 -->
+<van-popup show="{{spellGroup && spellGroupTip && spellInfo && spellOrderStatus && spellInfo.waybillRecord.orderStt != '03' && curUid != spellInfo.waybillRecord.uid}}" position="top" custom-style="border-radius:0rpx 0rpx 20rpx 20rpx;" bind:click-overlay="spellGroupCheck" z-index="99">
+    <view class="spell-tip {{theme}} spellGroup" style="padding-top:{{navStatusHeight * px2rpx}}rpx">
+        <view class="content">
+            <!-- 拼单信息 -->
+            <view class="spell">
+                <view class="title">{{endTime}} 结束</view>
+                <view class="spell-wrap" style="max-height: 500rpx;">
+                    <view class="list" wx:for="{{spellInfo.mergeTeamInfo.dietOrderMergeDetails}}" wx:if="{{index < 9}}">
+                        <image src="{{item.headImgUrl}}" />
+                        <view class="spell-main" wx:if="{{index == 0}}">拼主</view>
+                        <view class="nick ellipsis">{{item.uname}}</view>
+                    </view>
+                    <view class="list" wx:if="{{spellInfo.num < 5 || (spellInfo.num > 5 && spellInfo.num < 10)}}" wx:for="{{spellInfo.num < 5 ? 5-spellInfo.num : 10-spellInfo.num}}">
+                        <image style="border: none" src="/images/icons/unknow.png" />
+                    </view>
+                    <view class="list more" wx:if="{{spellInfo.num >= 10}}" bind:tap="spellGroupMore">
+                        ...
+                    </view>
+                </view>
+                <view class="invite">
+                    {{spellInfo.num}}人正在拼单{{spellInfo.num > 1?'，可享受'+spellInfo.mergeTeamInfo.dietOrderMerge.discount+'折优惠':''}}
+                </view>
+                <view class="invite">2人拼单享9折，3-5人拼单享8.5折，5人以上享8折</view>
+                <view class="tip">签收后当晚24:00立即返现到余额</view>
+            </view>
+        </view>
+    </view>
+</van-popup>
+<!-- 点餐更换套餐弹窗 -->
+<van-popup show="{{isChangeSkuInfo && isChangeSkuInfo.showTip && !hideReplace}}" custom-style="background: transparent;" catchtouchmove="true" z-index="103">
+    <view class="replace-box">
+        <view class="replace">
+            <view class="title">{{isChangeSkuInfo.tip}}，建议换成推荐健康套餐。</view>
+            <view class="row">
+                <view class="score">
+                    <view class="val">{{setMeal[setMealIndex].score}}</view>
+                    <view class="unit">分</view>
+                </view>
+                <view class="change" hover-class="active" hover-stay-time="600" bind:tap="changeSku">
+                    <image src="/images/icon_change.png" />
+                    <view class="tip">换一套</view>
+                </view>
+            </view>
+            <scroll-view scroll-y="true" class="sku-box">
+                <view class="sku" wx:for="{{setMeal[setMealIndex].setMealDateils}}">
+                    <image src="{{item.primaryImgUrl}}" />
+                    <view class="name">{{item.name}}</view>
+                </view>
+            </scroll-view>
+            <view class="remind" bind:tap="refuse">
+                <image src="{{refuseTip ? '/images/order_list_select.png' : '/images/order_list_unchecked.png'}}" />
+                <view class="refuse">不再提醒更换菜品</view>
+            </view>
+            <view class="tip-text" wx:if="{{refuseTip}}">关闭提醒后，可在“我的”→“设置”中打开</view>
+            <view class="rechange" bind:tap="replaceSku">立即更换</view>
+        </view>
+        <image class="close" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/playClose.png" bind:tap="closeChangeTip" />
+    </view>
+</van-popup>

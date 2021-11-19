@@ -1,0 +1,12 @@
+<!--components/search/search.wxml-->
+<view class="search">
+  <view class="inputBox">
+    <input type="text" placeholder="{{placeholder}}" bindinput="inputFn" bindconfirm="searchFn" value="{{inputValue}}" auto-focus />
+    <view class="closeBox" catch:tap="clearFn" wx:if="{{inputValue != ''}}">
+      <image class="close" src="/images/icon_ipt_close.png" />
+    </view>
+  </view>
+  <view class="imgbox" catchtap="searchFn">
+    <image src="/images/icon_search.png" />
+  </view>
+</view>

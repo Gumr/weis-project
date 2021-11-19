@@ -1,0 +1,67 @@
+<!-- pages/packageDiscover/schemeLibrary/schemeLibrary.wxml -->
+<cp-nav-bar title-text="定制吃法" backIconColor="black"></cp-nav-bar>
+<view class="library">
+    <view class="t-box" style="top:{{navStatusHeight}}px">
+        <view class="tab {{index == tabIndex ? 'active' : ''}}" wx:for="{{tabList}}" wx:key="key" data-stt="{{item.stt}}" data-index="{{index}}" bind:tap="tab">
+            {{item.name}}
+        </view>
+    </view>
+    <!-- 减脂 -->
+    <view class="wrap" wx:if="{{tabIndex == 0 || tabIndex == 1}}">
+        <waterfall custom-class="waterfall-box" wx:if="{{updateIsOk}}">
+            <waterfall-item custom-class="list-item-box" wx:for="{{solutionList}}" wx:key="index" data-id="{{item.tcFid}}" data-index="{{index}}" bind:tap="detail">
+                <view class="list">
+                    <image src="{{item.tcImgUrl}}" />
+                    <view class="l-b">
+                        <view class="title">{{item.tcTitle}}</view>
+                        <view class="subTitle">{{item.tcDescribe}}</view>
+                        <view class="use">
+                            <image src="/images/programme_hook.png" />
+                            <view class="num">{{item.tcUseNum}}人应用</view>
+                        </view>
+                    </view>
+                </view>
+            </waterfall-item>
+        </waterfall>
+        <view class="loading" wx:else>
+            <van-loading size="20" text-size="12" color="#FE5E0F" type="circular" vertical></van-loading>
+        </view>
+    </view>
+    <!-- 我的吃法 -->
+    <view class="wrap" wx:else>
+        <view class="create" bind:tap="createFn">
+            <image class="icon" src="https://prodstatic.weis1606.cn/api/smartFood/programme_bear.png" />
+            <view class="create__txt">
+                <view class="txt-big">自定义吃法</view>
+                <view class="txt-sm">创建属于自己的饮食吃法</view>
+            </view>
+            <view class="create__btn">创建</view>
+        </view>
+        <waterfall custom-class="waterfall-box" loading="{{updateLoading}}" isAllLoaded="{{isAllLoaded}}" wx:if="{{updateIsOk && queryList.length > 0}}">
+            <waterfall-item custom-class="list-item-box" wx:for="{{queryList}}" wx:key="index" data-id="{{item.id}}" data-stt="{{item.currStt ? item.currStt : '00'}}" bind:tap="goPlan">
+                <view class="list">
+                    <image src="{{item.imgUrl}}" />
+                    <view class="l-b">
+                        <view class="title">{{item.planName}}</view>
+                        <view class="subTitle">{{item.planName}}</view>
+                        <view class="use">
+                            <view class="type {{'t' + item.planType}}">
+                                #{{typeStatus[item.planType]}}
+                            </view>
+                            <image src="/images/programme_time.png" />
+                            <view class="num">{{item.ctime}}</view>
+                        </view>
+                    </view>
+                </view>
+            </waterfall-item>
+        </waterfall>
+        <view class="loading" wx:if="{{!updateIsOk}}">
+            <van-loading size="20" text-size="12" color="#FE5E0F" type="circular" vertical></van-loading>
+        </view>
+        <view class="empty" wx:if="{{updateIsOk && queryList.length == 0}}">
+            <image class="icon" src="https://prodstatic.weis1606.cn/api/smartFood/scheLib_null.png" />
+            <view class="empty-tip">你还没有创建吃法</view>
+            <!-- <image src="https://prodstatic.weis1606.cn/api/smartFood/order-empty.png" /> -->
+        </view>
+    </view>
+</view>

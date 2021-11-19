@@ -1,0 +1,11 @@
+<view class="container" wx:if="{{show}}">
+  <view class="load">
+    <view class="rotate">
+      <text></text>
+    </view>
+    <image class="circle" src="https://prodstatic.weis1606.cn/api/smartFood/LOGO.png" />
+  </view>
+  <view class="word">
+    <slot></slot>
+  </view>
+</view>

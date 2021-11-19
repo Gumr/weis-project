@@ -1,0 +1,86 @@
+<!-- pages/mineBox/tool/info/info.wxml -->
+<cp-nav-bar title-text="输入信息，测基础代谢" color="#000000" />
+<view class="info">
+    <view class="head">
+        <image class="headImg" src="{{userInfo.headImgUrl}}" />
+        <view class="headName">{{userInfo.uname}}</view>
+    </view>
+    <view class="content">
+        <view class="list">
+            <view class="title">年龄</view>
+            <view class="ipt">
+                <input class="input" value="{{age}}" maxlength="2" type="number" placeholder="输入年龄" bindinput="ageChange" />
+                <view class="sympol">岁</view>
+            </view>
+        </view>
+        <view class="list">
+            <view class="title">性别</view>
+            <view class="ipt" bind:tap="sexTap">
+                <input class="input" value="{{sex}}" type="text" placeholder="选择性别" disabled/>
+                <image class="arrow" src="https://prodstatic.weis1606.cn/api/smartFood/down_arrow.png" />
+            </view>
+        </view>
+        <view class="list">
+            <view class="title">身高</view> 
+            <view class="ipt">
+                <input class="input" value="{{height}}" type="number" placeholder="输入身高" bindinput="heightChange" />
+                <view class="sympol">cm</view>
+            </view>
+            <view class="err" wx:if="{{heightErr}}">身高不得小于50cm，不得大于200cm</view>
+        </view>
+        <view class="list">
+            <view class="title">体重</view>
+            <view class="ipt">
+                <input class="input" value="{{weight}}" type="number" placeholder="输入体重" bindinput="weightChange" />
+                <view class="sympol">kg</view>
+            </view>
+            <view class="err" wx:if="{{weightErr}}">体重不得小于5kg，不得大于200kg</view>
+        </view>
+        <view class="list">
+            <view class="title">运动强度</view>
+            <view class="ipt" bind:tap="activityTap">
+                <input class="input" value="{{activity}}" placeholder="选择你日常运动强度" disabled />
+                <image class="arrow" src="https://prodstatic.weis1606.cn/api/smartFood/down_arrow.png" />
+            </view>
+        </view>
+    </view>
+    <view class="bottom">
+        <view class="btn {{btnSelect?'active':''}}" bind:tap="submit">测一测你的基础代谢</view>
+    </view>
+</view>
+
+
+
+<!-- 性别-选择 -->
+<van-popup position="bottom" round show="{{sexShow}}" bind:click-overlay="sexHide" close-on-click-overlay="{{true}}" custom-style="border-radius: 40rpx 40rpx 0rpx 0rpx;">
+  <view class="sexShadow">
+    <view class="header">
+      <image class="close" src="/images/icon_down.png" bind:tap="sexHide" />
+      <view class="title">选择性别</view>
+    </view>
+    <view class="wrap">
+      <view class="list" wx:for="{{sexList}}" wx:key="key" data-index="{{index}}" bind:tap="sexChange">
+        <image src="{{sexIndex == index ? item.imgSelected : item.img}}" />
+        <view class="sex {{sexIndex == index ? 'active' : ''}}">{{item.name}}士</view>
+      </view>
+    </view>
+    <view class="scale-btn" bindtap="sexConfirm">确定</view>
+  </view>
+</van-popup>
+
+<!-- 日常活动强度-选择 -->
+<van-popup position="bottom" round show="{{activityShow}}" bind:click-overlay="activityHide" close-on-click-overlay="{{true}}" custom-style="border-radius: 40rpx 40rpx 0rpx 0rpx;">
+  <view class="activityShadow">
+    <view class="header">
+      <image class="close" src="/images/icon_down.png" bind:tap="activityHide" />
+      <view class="title">设置日常活动强度</view>
+    </view>
+    <view class="wrap">
+      <view class="list {{activityIndex === index ? 'active' : ''}}" wx:for="{{activityList}}" wx:key="key" data-index="{{index}}" bind:tap="activityChange">
+        <view class="name">{{item.name}}</view>
+        <view class="detail">{{item.title}}</view>
+      </view>
+    </view>
+    <view class="scale-btn" bindtap="activityConfirm">确定</view>
+  </view>
+</van-popup>

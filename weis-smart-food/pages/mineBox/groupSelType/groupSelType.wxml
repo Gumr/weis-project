@@ -1,0 +1,5 @@
+<cp-nav-bar title-text="请选择点餐方式" color="#333333" background="#fff" backIconColor="black" />
+<view class="content">
+   <image src="https://prodstatic.weis1606.cn/api/smartFood/child.png" bindtap="selChild" />
+   <image src="https://prodstatic.weis1606.cn/api/smartFood/teacher.png" bindtap="selTeacher" />
+</view>

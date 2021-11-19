@@ -1,0 +1,53 @@
+<!--pages/packageDiscover/onLineFat/payStatus/payStatus.wxml-->
+<cp-nav-bar
+  title-text="{{status ? '支付成功' : '支付失败'}}"
+  color="#000"
+  background="#FFFFFF"
+  home-icon="/images/backHome.png"
+  preventBack
+  bind:back="backCamp"
+></cp-nav-bar>
+
+<view class="pay">
+  <!-- 失败状态 -->
+  <view wx:if="{{!status}}">
+    <view class="head">
+      <image
+        src="https://prodstatic.weis1606.cn/api/smartFood/icon_%E6%94%AF%E4%BB%98%E5%A4%B1%E8%B4%A5.png"
+      />
+      <view class="status">支付失败</view>
+    </view>
+    <view class="btn-box">
+      <view class="btn" bind:tap="backCamp">回减脂营</view>
+      <view class="btn fail" bind:tap="rePay">重新支付</view>
+    </view>
+  </view>
+  <!-- 普通成功态 -->
+  <view wx:else>
+    <view class="head">
+      <image
+        src="https://prodstatic.weis1606.cn/api/smartFood/icon_%E6%94%AF%E4%BB%98%E6%88%90%E5%8A%9F.png"
+      />
+      <view class="status">支付成功</view>
+    </view> 
+    <view class="btn-box">
+      <view class="btn" bind:tap="backCamp">回减脂营</view>
+      <view class="btn" bind:tap="checkOrder">{{joinCode?'立即入群':'查看订单'}}</view>
+    </view>
+  </view>
+</view>
+<!--群二维码-->
+<vant-popup show="{{showCode && status}}"  custom-style="border-radius: 40rpx ;background: transparent;">
+    <view class="joinpopup">
+        <view class="joincode">
+            <image src="{{code}}"  class="qrcode" bindtap="priveimg" />
+            <view>长按保存二维码，扫描二维码入群</view>
+        </view>
+        <image class="usercloseimg" src="https://prodstatic.weis1606.cn/api/smartFood/qr_off.png" bindtap="showQrcode" />
+    </view>
+</vant-popup>
+<cp-pay-popup id="pay" bind:on-confirm="handlePayConfirm"></cp-pay-popup>
+
+
+
+

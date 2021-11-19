@@ -1,0 +1,77 @@
+.my .headBj {
+  width: 100%;
+  height: 456rpx;
+  position: absolute;
+  z-index: -1;
+}
+.my .headBox {
+  width: 100%;
+  height: 456rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 236rpx 50rpx 0;
+}
+.my .headBox_l {
+  display: flex;
+  align-items: center;
+}
+.my .headBox_l .headImg {
+  width: 160rpx;
+  height: 160rpx;
+  background: #f1f1f1;
+  box-shadow: 0rpx 9rpx 26rpx 0rpx rgba(237, 214, 170, 0.44);
+  border: 4rpx solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 30rpx;
+}
+.my .headBox_l .headImg image {
+  width: 120rpx;
+  height: 120rpx;
+}
+.my .headBox_l .uname {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333333;
+}
+.my .headBox_r {
+  width: 26rpx;
+  height: 26rpx;
+}
+.my .content {
+  padding: 18rpx 50rpx;
+}
+.my .content .list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 42rpx 0;
+  position: relative;
+}
+.my .content .list:not(:last-of-type) {
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
+}
+.my .content .list_l {
+  display: flex;
+  align-items: center;
+}
+.my .content .list_l .icon {
+  width: 44rpx;
+  height: 44rpx;
+  margin-right: 20rpx;
+}
+.my .content .list_r {
+  width: 26rpx;
+  height: 26rpx;
+}
+.my .content .list button {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}

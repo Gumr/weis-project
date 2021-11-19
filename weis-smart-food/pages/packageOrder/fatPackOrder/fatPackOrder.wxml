@@ -1,0 +1,84 @@
+<!-- pages/mineBox/fatPackOrder/fatPackOrder.wxml -->
+<cp-nav-bar title-text="{{title}}"></cp-nav-bar>
+<van-loading size="20" text-size="12" class="loading" wx:if="{{loading}}" color="#FE5E0F" />
+<view class="wrap {{stt == '00' ? 'active' : ''}}" wx:elif="{{!loading && orderTransferMap.length > 0}}">
+  <view class="list-box" wx:if="{{orderTransferMap.length > 0}}">
+    <!-- 配送单 -->
+    <view class="list" wx:for="{{orderTransferMap}}" wx:key="index" wx:for-item="item1" wx:for-index="index1">
+      <view class="date">
+        <view class="date-text">{{item1.dateText}}</view>
+        <view class="type-text {{item1.shipWithCold == '01' ? 'cold' : ''}}">{{item1.psText}}</view>
+      </view>
+      <!-- 餐别 -->
+      <view class="cate-box" bind:tap="orderDetail" data-id="{{item1.shipOid}}" data-index="{{index1}}">
+        <view class="break" wx:for="{{item1.dietOrderResult}}" wx:key="index" wx:for-item="item2">
+          <view class="title">
+            <view class="name">{{cart[item2.category]}}</view>
+            <view class="status">{{item1.orderSttText}}</view>
+          </view>
+          <view class="goods">
+            <scroll-view scroll-x="{{true}}" class="img_box">
+              <view class="box" wx:for="{{item2.dietOrderDetailList}}" wx:key="key" wx:for-item="item3">
+                <image src="{{item3.skuImgUrl}}" />
+                <view class="small">{{item3.skuname}}</view>
+              </view>
+              <view class="box" style="margin: 0;"></view>
+            </scroll-view>
+            <view class="goods-price">
+              <view class="total">
+                <view class="price">￥{{item2.totalPrice}}</view>
+                <view class="num">共{{item2.num}}件</view>
+              </view>
+              <image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAACsCAMAAADllnb2AAAAVFBMVEX///////////////////////////////////////////////////////////////////////////////////////////////////////////////+UMeA9AAAAG3RSTlMGEh4fKzdDRFBcaGl1gY2Zmqayvr/L1+Pk8Pwh/C9RAAAA8ElEQVR42u3UQQrAIAwEwMT//zkFFesHCg3MEhRvQZbJyJF7rit+nTHPmtMmIxpmLb3rUPejQz3eVIel63xuNqn26XRGk26spfMuRfXpdPRqCKc5zWlOc5rTnOY0pznNaU5zmtOc5jSnOc1pTnOa05zmNKc5zWlOc5rTnOY0pznNaU5zmtOc5jSnOc1pTnOa05zmNKc5zWlOc5rTnOY0pznNaU5zmtOc5jSnOc1pTnOa05zmNKc5zWlOc5rTnOY0pznNaU5zmtOc5jSnOc1pTnOa05zmNKc5zWlOc5rTnOY0pznNaU5zmtOc5jSnOf1hHkC61nIZUJuDAAAAAElFTkSuQmCC" />
+            </view>
+          </view>
+          <!-- <view class="circle">
+            <view class="box-circle">
+              <data-pie mode="image" delay="{{400}}" custom-style="width: 160rpx;height: 160rpx;" data="{{item2.pieData}}"></data-pie>
+            </view>
+            <view class="kind-box">
+              <view class="box-a">
+                <view class="box-color"></view>
+                <view class="box-name">蛋白质</view>
+                <view class="box-percent">{{item2.stringMap.proteinRatio}}%</view>
+                <view class="box-value">{{item2.stringMap.proteinWeight}}g</view>
+              </view>
+              <view class="box-a">
+                <view class="box-color"></view>
+                <view class="box-name">脂肪</view>
+                <view class="box-percent">{{item2.stringMap.fatRatio}}%</view>
+                <view class="box-value">{{item2.stringMap.fatWeight}}g</view>
+              </view>
+              <view class="box-a">
+                <view class="box-color"></view>
+                <view class="box-name">碳水化合物</view>
+                <view class="box-percent">{{item2.stringMap.carbonRatio}}%</view>
+                <view class="box-value">{{item2.stringMap.carbonWeight}}g</view>
+              </view>
+              <view class="box-a">
+                  <view class="box-color"></view>
+                  <view class="box-name">盐分</view>
+                  <view class="box-percent"></view>
+                  <view class="box-value">{{item2.stringMap.saltWeight}}g</view>
+              </view>
+              <view class="c-b">
+                <view class="energy">能量：{{item2.stringMap.energy}}kcal</view> -->
+                <!-- <view class="energy">
+                  差值：
+                  <view class="desc {{item2.stringMap.energyDiff > 0 ? 'add' : (item2.stringMap.energyDiff < 0 ? 'reduce' : '')}}">
+                    <view wx:if="{{item2.stringMap.energyDiff > 0}}">+</view>
+                    {{item2.stringMap.energyDiff}}kcal
+                  </view>
+                </view> -->
+              <!-- </view>
+            </view>
+          </view> -->
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="no" wx:else>
+  <image src="https://prodstatic.weis1606.cn/api/smartFood/order-empty.png" />
+  <!-- <view class="desc">暂无订单</view> -->
+</view>

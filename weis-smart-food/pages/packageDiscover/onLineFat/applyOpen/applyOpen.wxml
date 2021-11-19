@@ -1,0 +1,10 @@
+<!--pages/packageDiscover/onLineFat/onLineReduceFat/applyOpen/applyOpen.wxml-->
+<cp-nav-bar title-text="申请开通减脂营" />
+
+<view class="open">
+    <view class="desc">维士对公众号开放开营权限，你可以申请成立自己的减脂营，并且享受以下4项权益：</view>
+    <view class="img">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/application_detail.png" />
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/yuanye.png" bindtap="priveimg" bindlongpress="priveimg" />
+    </view>
+</view>

@@ -1,0 +1,12 @@
+<canvas
+  class="ec-canvas {{imageUrl ? 'outside-screen' : ''}}"
+  style="{{customStyle}}"
+  canvas-id="{{ canvasId }}"
+  bindinit="init"
+  bindtouchstart="{{ ec.disableTouch ? '' : 'touchStart' }}"
+  bindtouchmove="{{ ec.disableTouch ? '' : 'touchMove' }}"
+  bindtouchend="{{ ec.disableTouch ? '' : 'touchEnd' }}"
+>
+  <slot></slot>
+</canvas>
+<image class="ec-canvas" wx:if="{{imageUrl}}" src="{{imageUrl}}" />

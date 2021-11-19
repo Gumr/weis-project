@@ -1,0 +1,235 @@
+
+page{
+    background: #F3F4F5;
+}
+.border{
+    display: block;
+    content: '';
+    width: 100%;
+    height: 2rpx;
+    background: rgba(0, 0, 0, 0.05);
+    transform: scaleY(0.5);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.detail{
+    height: 100%;
+    background: #F3F4F5;
+    .status-box{
+        padding: 44rpx 30rpx 26rpx;
+        display: flex;
+        justify-content: space-between;
+        .status{
+            color: #333333;
+            font-size: 44rpx;
+            font-weight: bold;
+        }
+        .act1{
+            width: 160rpx;
+            height: 52rpx;
+            background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+            border-radius: 26rpx;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #FFFFFF;
+            font-size: 24rpx;
+        }
+        .act2{
+            width: 160rpx;
+            height: 52rpx;
+            border         : 2rpx solid rgba(51, 51, 51, 0.5);
+            border-radius: 26rpx;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333333;
+            font-size: 24rpx;
+        }
+    }
+    .tip{
+        width: 690rpx;
+        height: 44rpx;
+        
+        border-radius: 22rpx;
+        display: flex;
+        align-items: center;
+        padding-left: 20rpx;
+        margin: 0 auto;
+        image{
+            width: 32rpx;
+            height: 32rpx;
+            margin-right: 14rpx;
+        }
+        .title{
+            display: flex;
+            align-items: center;
+            color: #333333;
+            font-size: 24rpx;
+            view{
+                color: #FA6400;
+                font-size: 28rpx;
+            }
+        }
+    }
+    .box-square{
+        width: 690rpx;
+        padding: 30rpx 30rpx 0;
+        background: #FFFFFF;
+        box-shadow: 0rpx 4rpx 24rpx -6rpx rgba(186, 186, 186, 0.3);
+        border-radius: 10rpx;
+        margin: 40rpx auto 0rpx;
+        .info{
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 30rpx;
+            position: relative;
+            &::after{
+                .border();
+            }
+            .col{
+                display: flex;
+                align-items: flex-start;
+                image{
+                    width: 140rpx;
+                    height: 140rpx;
+                    border-radius: 12rpx;
+                    margin-right: 20rpx;
+                }
+                .name{
+                    color: rgba(0, 0, 0, 1);
+                    font-size: 28rpx;
+                    line-height: 48rpx;
+                    font-weight: bold;
+                    width: 326rpx;
+                    /* 内容过长显示两行，多余为省略号 */
+                    text-overflow:ellipsis;/*设置隐藏部分为省略号*/
+                    overflow: hidden;/*设置隐藏*/
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;/*设置显示行数，此处为2行，可设置其他数字*/
+                    -webkit-box-orient: vertical;
+                }
+            }
+            .col-r{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                .status{
+                    color: rgba(250, 100, 0, 1);
+                    font-size: 28rpx;
+                    line-height: 48rpx;
+                    margin-bottom: 10rpx;
+                }
+                .price{
+                    color: rgba(51, 51, 51, 1);
+                    font-size: 24rpx;
+                    line-height: 44rpx;
+                }
+            }
+        }
+        .info-b{
+            padding: 30rpx 0;
+            .distribution{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .ps{
+                  color: rgba(51, 51, 51, 0.5);
+                  font-size: 24rpx;
+                  line-height: 24rpx;  
+                }
+                .actual{
+                    display: flex;
+                    align-items: center;
+                    color: rgba(51, 51, 51, 1);
+                    font-size: 26rpx;
+                    line-height: 30rpx;
+                    font-weight: bold;
+                    view{
+                        font-size: 30rpx;
+                    }
+                }
+            }
+            .btn{
+                width: 160rpx;
+                height: 50rpx;
+                border-radius: 25rpx;
+                border: 2rpx solid rgba(51, 51, 51, 0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: rgba(51, 51, 51, 1);
+                font-size: 24rpx;
+                margin: 30rpx 0 0 auto;
+            }
+        }
+    }
+    .orderInfo{
+        width: 690rpx;
+        // height: 313rpx;
+        background: #FFFFFF;
+        box-shadow: 0rpx 4rpx 24rpx -6rpx rgba(186, 186, 186, 0.3);
+        border-radius: 10rpx;
+        margin: 20rpx auto 0;
+        padding: 0 30rpx 30rpx;
+        .title{
+            width: 100%;
+            padding: 30rpx 0;
+            color: #333333;
+            font-size: 28rpx;
+            font-weight: bold;
+            position: relative;
+            &::after{
+                .border();
+            }
+        }
+        .row{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40rpx;
+            .name{
+                color: #A9A9A9;
+                font-size: 28rpx;
+            }
+            .col-r{
+                display: flex;
+                align-items: center;
+                .desc{
+                    color: #333333;
+                    font-size: 28rpx;
+                }
+                image{
+                    width: 28rpx;
+                    height: 28rpx;
+                    margin-left: 10rpx;
+                }
+            }
+        }
+    }
+    .contact{
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        margin: 40rpx auto 0;
+        view{
+            color: #333333;
+            font-size: 24rpx;
+        }
+        button{
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            height: 24rpx;
+            line-height: 24rpx;
+            color: #FA6400;
+            font-size: 24rpx;
+            margin-left: 10rpx;
+            border-bottom: 2rpx solid #FA6400;
+            &::after{
+                display: none;
+            }
+        }
+    }
+}

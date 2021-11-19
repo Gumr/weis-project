@@ -1,0 +1,56 @@
+.sugar {
+  padding: 0 30rpx 34rpx;
+  text-align: center;
+}
+.sugar .title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333333;
+}
+.sugar .tip {
+  font-size: 24rpx;
+  color: #666666;
+}
+.sugar .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 580rpx;
+  margin: 0 auto;
+}
+.sugar .wrap .list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  background: #f2f3f4;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+  height: 150rpx;
+  text-align: center;
+}
+.sugar .wrap .list:last-of-type {
+  margin-right: 0;
+}
+.sugar .wrap .list .name {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333333;
+  margin-bottom: 4rpx;
+}
+.sugar .wrap .list .detail {
+  font-size: 24rpx;
+  color: #333333;
+}
+.sugar .wrap .list.active {
+  position: relative;
+  background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+}
+.sugar .wrap .list.active view {
+  color: #ffffff;
+}
+.sugar .wrap .list.active text {
+  color: #ffffff;
+}

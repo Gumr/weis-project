@@ -1,0 +1,62 @@
+.succ {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.succ image {
+  width: 180rpx;
+  height: 180rpx;
+  margin-bottom: 32rpx;
+  margin-top: 86rpx;
+}
+.succ .name {
+  color: #333333;
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+.succ .total {
+  display: flex;
+  align-items: baseline;
+  color: #333333;
+  font-family: "DINCondensedC";
+  margin-bottom: 5rpx;
+  font-weight: bold;
+}
+.succ .total .symbol {
+  font-size: 40rpx;
+}
+.succ .total .price {
+  font-size: 96rpx;
+}
+.succ .grey {
+  color: #666666;
+  font-size: 28rpx;
+  margin-bottom: 5rpx;
+  display: flex;
+  align-items: center;
+}
+.succ .btn {
+  width: 420rpx;
+  height: 88rpx;
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+  border-radius: 50rpx;
+  color: #ffffff;
+  font-size: 36rpx;
+  text-align: center;
+  line-height: 88rpx;
+  margin-top: 95rpx;
+}
+.succ.helpRecharge .grey {
+  margin-bottom: 32rpx;
+}
+.succ.helpRecharge .phone {
+  margin-bottom: 10rpx;
+}
+.succ.helpRecharge .uname {
+  margin-bottom: 0;
+}
+.succ.helpRecharge .btn {
+  margin-top: 59rpx;
+}

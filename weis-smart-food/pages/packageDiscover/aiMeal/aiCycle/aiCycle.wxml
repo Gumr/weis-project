@@ -1,0 +1,68 @@
+<!--pages/solution/aiLossWeight/aiLossWeight.wxml-->
+<cp-nav-bar title-text="日期设置" backIconColor></cp-nav-bar>
+<view class="step-2" style="height: calc(100vh - {{navHeight}}px);">
+  <view>
+    <view class="date-tip">根据你的目标，营养师推荐以下周期</view>
+    <view
+      class="date-image-item"
+      wx:for="{{dateList}}"
+      wx:key="key"
+      data-value="{{item.value}}"
+      bind:tap="typeItemTap"
+    >
+      <view class="date-select">
+        <image
+          class="select-icon"
+          src="{{plan.type === item.value ? '/images/date_select_white.png' : '/images/date_list_unchecked_white.png' }}"
+        />
+        <view>{{item.text}}</view>
+      </view>
+      <image class="date-image" src="{{item.image}}" />
+    </view>
+    <view class="date-box" bindtap="dateTap">
+      <view>开始日期</view>
+      <view class="date-text">
+        <view>{{date}}</view>
+        <image class="date-next-icon" src="/images/list_next.png" />
+      </view>
+    </view>
+    <!-- <view
+      class="date-warning"
+      wx:if="{{infeasible}}"
+    >*别逞强，一口吃不成个大胖子。不积跬步无以至千里，不积小流无以至江河。选一个小计划，达成理想体重。</view>-->
+  </view>
+
+  <view class="btn {{(feasible) ? 'button--primary' : ''}}" bind:tap="completeTap">完成设置</view>
+</view>
+
+<van-popup show="{{showDateDialog}}" custom-style="border-radius:20rpx; width: 690rpx;">
+  <view class="date-popup-header">
+    <view class="title">
+      选择开始日期
+      <image bindtap="closeCalendarTap" class="close-icon" src="/images/logistics_popup_off.png" />
+    </view>
+  </view>
+  <cp-meal-calendar
+    id="calendar"
+    bind:select="handleCalendarSelect"
+    expand
+    multiply="{{false}}"
+    complete
+    disableDate="{{disableDate}}"
+  ></cp-meal-calendar>
+  <view class="btn-box">
+    <view class="btn button--primary" bind:tap="calendarConfirmTap">确定</view>
+  </view>
+</van-popup>
+
+<cp-confirm-dialog
+  show-close
+  show="{{showUnfeasibleDialog}}"
+  title="别逞强，一口吃不成大胖子!"
+  confirm-text="好，先瘦瘦看"
+  cancel-text="{{plan.type === 21 ? '不瘦了' : '换个周期'}}"
+  bind:on-cancel="handleUnfeasibleCancel"
+  bind:on-confirm="handleUnfeasibleConfirm"
+>
+  <view class="dialog-text">{{plan.type}}天好好吃饭，可以帮你先瘦{{maxCycleWeight}}kg脂肪</view>
+</cp-confirm-dialog>

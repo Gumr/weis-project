@@ -1,0 +1,20 @@
+<!--pages/mineBox/operate/operate-order/operate-order.wxml-->
+<cp-nav-bar title-text="我的订单" background="#fff" color="#333333" backIconColor="#fff" />
+<view class="operate-order">
+    <view class="list" wx:if="{{list.length > 0}}" wx:for="{{list}}" wx:key="key" data-item="{{item}}" bind:tap="orderDetail">
+        <image class="list-l" src="{{item.operatedActivity.activityImgList[0]}}" />
+        <view class="list-r">
+            <view>{{item.operatedActivity.productName}}</view>
+            <view>
+                <text>实付</text>
+                <text>¥</text>
+                <text>{{item.actualPrice}}</text>
+            </view>
+        </view>
+    </view>
+    <!-- 空状态 -->
+    <view wx:if="{{list.length <= 0}}" class="null">
+      <image src="https://prodstatic.weis1606.cn/api/smartFood/null-operate-order.png" />
+      <view>还没有购买过商品</view>
+    </view>
+</view>

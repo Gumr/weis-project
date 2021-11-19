@@ -1,0 +1,187 @@
+.info {
+  width: 100%;
+  padding: 0 30rpx 200rpx;
+  .head {
+    display: flex;
+    align-items: center;
+    margin-top: 40rpx;
+    .headImg {
+      width: 96rpx;
+      height: 96rpx;
+      border: 3rpx solid #fa6400;
+      border-radius: 50%;
+      margin-right: 40rpx;
+    }
+    .headName {
+      font-size: 28rpx;
+      font-weight: bold;
+      color: #333333;
+    }
+  }
+  .content {
+    .list {
+      position: relative;
+      .title {
+        font-size: 30rpx;
+        font-weight: bold;
+        color: #333333;
+        margin: 60rpx 0 24rpx 20rpx;
+      }
+      .ipt {
+        height: 80rpx;
+        background: #e3e5e6;
+        border-radius: 40rpx;
+        display: flex;
+        align-items: center;
+        font-size: 28px;
+        color: #333333;
+
+        .input {
+          height: 100%;
+          flex: 1;
+          padding-left: 40rpx;
+          color: #333333;
+          font-size: 28rpx;
+        }
+        .sympol {
+          padding: 0 40rpx;
+          color: #333333;
+          font-size: 28rpx;
+        }
+        .arrow {
+          padding: 0 40rpx;
+          width: 24rpx;
+          height: 24rpx;
+        }
+      }
+      .err {
+        position: absolute;
+        left: 20rpx;
+        bottom: -40rpx;
+        font-size: 24rpx;
+        color: #fa6400;
+      }
+    }
+  }
+  .bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    padding: 10rpx 50rpx 58rpx;
+    background: #ffffff;
+    .btn {
+      width: 650rpx;
+      height: 88rpx;
+      background: #d8d8d8;
+      border-radius: 50rpx;
+      font-size: 36rpx;
+      color: #ffffff;
+      line-height: 88rpx;
+      text-align: center;
+      &.active {
+        background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+      }
+    }
+  }
+}
+
+// ---------弹窗------------
+// 公用-----
+// 头部
+.header {
+  position: relative;
+  padding-top: 35rpx;
+  width: 100%;
+  .close {
+    width: 44rpx;
+    height: 44rpx;
+    position: absolute;
+    left: 35rpx;
+  }
+  .title {
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+  }
+}
+// 确认按钮
+.scale-btn {
+  width: 650rpx;
+  height: 88rpx;
+  background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+  border-radius: 50rpx;
+  font-size: 36rpx;
+  color: #ffffff;
+  line-height: 88rpx;
+  text-align: center;
+  margin: 0 auto 65rpx;
+}
+// 内容-----
+// 性别
+.sexShadow {
+  width: 750rpx;
+  background: rgba(255, 255, 255, 1);
+  .wrap {
+    padding: 125rpx 90rpx 93rpx 90rpx;
+    display: flex;
+    justify-content: space-between;
+    .list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      image {
+        width: 250rpx;
+        height: 250rpx;
+      }
+      .sex {
+        font-size: 36rpx;
+        color: #000000;
+        line-height: 50rpx;
+        margin-top: 4rpx;
+        &.active {
+          font-weight: bold;
+          color: #fa6400;
+        }
+      }
+    }
+  }
+}
+// 运动强度
+.activityShadow {
+  .wrap {
+    padding: 88rpx 50rpx 78rpx;
+    .list {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 28rpx 0 29rpx 35rpx;
+      position: relative;
+      background: #f2f3f4;
+      margin-bottom: 20rpx;
+      border-radius: 10rpx;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+      .name {
+        font-size: 36rpx;
+        font-weight: bold;
+        color: #333333;
+        margin-bottom: 4rpx;
+      }
+      .detail {
+        font-size: 20rpx;
+        color: #666666;
+      }
+      &.active {
+        background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+        color: #ffffff;
+        view {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}

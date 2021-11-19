@@ -1,0 +1,99 @@
+
+page{
+    background: #F3F4F5;
+    height: 100%;
+}
+
+.treat{
+    width: 100%;
+    background: #F3F4F5;
+    .box{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 112rpx;
+        padding: 0 40rpx 0 34rpx;
+        position: relative;
+        background: rgba(243, 244, 245, 0.57);
+        &::after{
+            display: block;
+            content: '';
+            width: 690rpx;
+            height: 2rpx;
+            background: rgba(0, 0, 0, 0.1);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%) scaleY(0.5);
+            bottom: 0;
+        }
+        // &:last-of-type{
+        //     &::after{
+        //         display: none;
+        //     }
+        // }
+        .info{
+            display: flex;
+            .head{
+                width: 72rpx;
+                height: 72rpx;
+                border-radius: 50%;
+                border: 2rpx solid #FCCC49;
+                margin-right: 24rpx;
+            }
+            .box-col{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                .name{
+                    color: #333333;
+                    font-size: 28rpx;
+                    font-weight: bold;
+                    display: flex;
+                    align-items: center;
+                    image{
+                        width: 85rpx;
+                        height: 28rpx;
+                        margin-left: 12rpx;
+                    }
+                }
+                .date{
+                    color: #999999;
+                    font-size: 20rpx;
+                    margin-top: 8rpx;
+                }
+            }
+        }
+        .info-right{
+            display: flex;
+            align-items: center;
+            color: #333333;
+            font-size: 28rpx;
+            font-weight: bold;
+            .price{
+                text-align: right;
+            }
+            .backPrice{
+                width: 140rpx;
+                text-align: right;
+            }
+        }
+    }
+}
+
+.empty{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 287rpx;
+    view{
+        color: #999999;
+        font-size: 28rpx;
+        &:first-of-type{
+            font-weight: bold;
+            font-size: 40rpx;
+            line-height: 64rpx;
+            margin-bottom: 22rpx;
+        }
+    }
+}

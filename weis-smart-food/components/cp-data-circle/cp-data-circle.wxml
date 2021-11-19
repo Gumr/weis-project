@@ -1,0 +1,61 @@
+<!-- components/cp-data-circle/cp-data-circle.wxml -->
+<view class="data-box">
+    <view class="circle">
+        <van-circle mode="image" id="circle" value="{{planData.energyPercent > 100 ? 100 : planData.energyPercent}}" color="{{planData.energyPercent > 100 ? '#FF5959' : '#FCA649'}}" layer-color="#E9E9E9" stroke-width="5" size="{{77}}">
+            <view class="today">
+                <view class="name">能量kcal</view>
+                <view class="percent">
+                    <view class="energy {{planData.energyPercent > 100 ? 'active' : ''}}">
+                        <view wx:if="{{planData.energyPercent > 100}}">+</view>
+                        {{planData.energySupply}}
+                    </view>
+                    <view class="denom">/{{planData.totalEnergy}}</view>
+                </view>
+            </view>
+        </van-circle>
+    </view>
+    <view class="progress">
+        <view class="pro-box">
+            <view class="name">蛋白质</view>
+            <view class="bar">
+                <van-progress percentage="{{planData.proteinPercent > 100 ? 100 : planData.proteinPercent}}" show-pivot="{{false}}" color="{{planData.proteinPercent > 100 ? '#FF5959' : '#FCA649'}}" track-color="#E9E9E9" stroke-width="6" />
+            </view>
+            <view class="num">
+                <view class="acture {{planData.proteinPercent > 100 ? 'active' : ''}}">
+                    <!-- <view wx:if="{{planData.proteinPercent > 100}}">+</view> -->
+                    {{planData.proteinSupply}}
+                </view>
+                /
+                <view class="all">{{planData.totalProtein}}g</view>
+            </view>
+        </view>
+        <view class="pro-box">
+            <view class="name">脂肪</view>
+            <view class="bar">
+                <van-progress percentage="{{planData.fatPercent > 100 ? 100 : planData.fatPercent}}" show-pivot="{{false}}" color="{{planData.fatPercent > 100 ? '#FF5959' : '#FCA649'}}" track-color="#E9E9E9" stroke-width="6" />
+            </view>
+            <view class="num">
+                <view class="acture {{planData.fatPercent > 100 ? 'active' : ''}}">
+                    <!-- <view wx:if="{{planData.fatPercent > 100}}">+</view> -->
+                    {{planData.fatSupply}}
+                </view>
+                /
+                <view class="all">{{planData.totalFat}}g</view>
+            </view>
+        </view>
+        <view class="pro-box">
+            <view class="name">碳水</view>
+            <view class="bar">
+                <van-progress percentage="{{planData.carbonwaterPercent > 100 ? 100 : planData.carbonwaterPercent}}" show-pivot="{{false}}" color="{{planData.carbonwaterPercent > 100 ? '#FF5959' : '#FCA649'}}" track-color="#E9E9E9" stroke-width="6" />
+            </view>
+            <view class="num">
+                <view class="acture {{planData.carbonwaterPercent > 100 ? 'active' : ''}}">
+                    <!-- <view wx:if="{{planData.carbonwaterPercent > 100}}">+</view> -->
+                    {{planData.carbonwaterSupply}}
+                </view>
+                /
+                <view class="all">{{planData.totalCarbonwater}}g</view>
+            </view>
+        </view>
+    </view>
+</view>

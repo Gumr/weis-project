@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "ec-canvas": "/components/ec-canvas/ec-canvas",
+    "cp-data-pie": "/components/cp-data-pie/cp-data-pie",
+    "cp-rb-calendar": "/components/cp-rb-calendar/cp-rb-calendar",
+    "multiSelect-calendar": "/components/calendarPlugin/index"
+  }
+}

@@ -1,0 +1,44 @@
+.border {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2rpx;
+  background: #e9e9e9;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+page {
+  height: 100%;
+}
+.rule {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 40rpx 30rpx 0;
+}
+.rule .title {
+  color: #FE5E0F;
+  font-size: 36rpx;
+  font-weight: 550;
+  margin-bottom: 50rpx;
+}
+.rule .box-1 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+.rule .box-1 .date {
+  color: #fe5e0f;
+  font-size: 28rpx;
+  font-weight: 550;
+  margin-bottom: 24rpx;
+}
+.rule .box-1 .desc {
+  color: #6d7278;
+  font-size: 26rpx;
+  line-height: 50rpx;
+}

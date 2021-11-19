@@ -1,0 +1,51 @@
+@import '../../../style/common.less';
+@import '../../../templates/eat-card/eat-card.less';
+.tabs {
+  width: 100%;
+  box-sizing: border-box;
+  .flex-items-center();
+  .flex-content-between();
+  padding: 0 83rpx;
+  .tab {
+    padding: 20rpx 0 24rpx;
+    font-size: 28rpx;
+    color: #333;
+    position: relative;
+    &--active {
+      color: #fe5e0f;
+      &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-16rpx);
+        width: 32rpx;
+        height: 8rpx;
+        background: #fe5e0f;
+        border-radius: 4rpx;
+      }
+    }
+  }
+}
+
+.cards {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30rpx;
+  .card {
+    display: inline-block;
+    margin-right: 20rpx;
+    margin-bottom: 20rpx;
+    position: relative;
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
+    &__icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 60rpx;
+      height: 40rpx;
+    }
+  }
+}

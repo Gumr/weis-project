@@ -1,0 +1,89 @@
+.hobby {
+  width: 100%;
+}
+.hobby .title {
+  margin: 40rpx 70rpx;
+}
+.hobby .title text {
+  color: rgba(51, 51, 51, 0.5);
+  font-size: 26rpx;
+  line-height: 50rpx;
+}
+.hobby .tip {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+  margin: 0 70rpx 40rpx;
+}
+.hobby .wrap {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: 0 0 182rpx 70rpx;
+}
+.hobby .wrap .list {
+  margin: 0 66rpx 60rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hobby .wrap .list:nth-of-type(3n) {
+  margin-right: 0;
+}
+.hobby .wrap .list .col-t {
+  width: 158rpx;
+  height: 158rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+}
+.hobby .wrap .list .col-t:nth-of-type(3n) {
+  margin-right: 0;
+}
+.hobby .wrap .list .col-t .vege {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.hobby .wrap .list .col-t .icon {
+  width: 52rpx;
+  height: 52rpx;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.hobby .wrap .list .name {
+  max-width: 158rpx;
+  color: #333333;
+  font-size: 26rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+.hobby .btn-box {
+  position: fixed;
+  width: 100%;
+  height: 182rpx;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hobby .btn-box .btn {
+  width: 650rpx;
+  height: 88rpx;
+  background: #d8d8d8;
+  border-radius: 44rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36rpx;
+  color: #ffffff;
+}
+.hobby .btn-box .btn.active {
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+}

@@ -1,0 +1,117 @@
+.border {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2rpx;
+  background: #E9E9E9;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+page {
+  background: #F3F4F5;
+}
+.record {
+  background: #F3F4F5;
+}
+.record .content .date {
+  padding: 24rpx 0 16rpx 30rpx;
+  color: #333333;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.record .content .box {
+  width: 750rpx;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  padding: 0 30rpx;
+}
+.record .content .box .record-invoice {
+  padding: 46rpx 0;
+  position: relative;
+}
+.record .content .box .record-invoice:not(:last-of-type)::after {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2rpx;
+  background: #E9E9E9;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.record .content .box .record-invoice .list {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+.record .content .box .record-invoice .list .left {
+  color: #333333;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+}
+.record .content .box .record-invoice .list .left .time {
+  margin-right: 35rpx;
+  width: 228rpx;
+}
+.record .content .box .record-invoice .list .right {
+  display: flex;
+  align-items: center;
+}
+.record .content .box .record-invoice .list .right .total {
+  width: 210rpx;
+  text-align: left;
+  color: #333333;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.record .content .box .record-invoice .list .right .status {
+  display: flex;
+  align-items: center;
+}
+.record .content .box .record-invoice .list .right .status view {
+  color: #999999;
+  font-size: 28rpx;
+}
+.record .content .box .record-invoice .list .right .status image {
+  width: 38rpx;
+  height: 38rpx;
+}
+.record .content .box .record-invoice .date-time {
+  color: #999999;
+  font-size: 20rpx;
+  line-height: 28rpx;
+}
+.record .loading {
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #666666;
+  font-size: 28rpx;
+}
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 248rpx;
+}
+.empty .tip-title {
+  color: #666666;
+  font-size: 36rpx;
+  margin-bottom: 20rpx;
+}
+.empty .desc {
+  color: #666666;
+  font-size: 30rpx;
+}

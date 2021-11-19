@@ -1,0 +1,72 @@
+.role {
+  width: 100%;
+  padding-bottom: 164rpx;
+}
+.role .header {
+  width: 100%;
+  height: 350rpx;
+  margin-bottom: 30rpx;
+}
+.role .content .list {
+  margin: 0 50rpx;
+  width: 650rpx;
+  height: 132rpx;
+  line-height: 132rpx;
+  background: #f2f3f4;
+  border-radius: 10rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+  text-align: center;
+}
+.role .content .list.active {
+  background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+  color: #ffffff;
+}
+.role .content .list:not(:last-child) {
+  margin-bottom: 30rpx;
+}
+.role .tip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 650rpx;
+  height: 132rpx;
+  background: #FFF2E9;
+  border-radius: 10rpx;
+  margin: 30rpx auto 0;
+}
+.role .tip view:nth-child(1) {
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FA6400;
+}
+.role .tip view:nth-child(1) image {
+  width: 32rpx;
+  height: 32rpx;
+}
+.role .tip view:nth-child(2) {
+  font-size: 28rpx;
+  color: #FA6400;
+}
+.role .footer {
+  position: fixed;
+  bottom: 0;
+  padding: 10rpx 50rpx 66rpx;
+}
+.role .footer .btn {
+  width: 650rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: #d8d8d8;
+  border-radius: 50rpx;
+  text-align: center;
+  font-size: 36rpx;
+  color: #ffffff;
+}
+.role .footer .btn.active {
+  background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+}

@@ -1,0 +1,35 @@
+<!-- pages/packSubAccount/withdrawal/wallet/wallet.wxml -->
+<cp-nav-bar title-text="提现至微信钱包" color="#000"></cp-nav-bar>
+<view class="wallet">
+    <view class="price">
+        <view class="title">提现金额</view>
+        <view class="num">
+            <text class="num_sign">¥</text>
+            <input class="num_num" type="digit" value="{{price}}" placeholder="金额50元起" placeholder-class="input-placeholder" bindinput="inputPrice"/>
+            <text class="num_all" bind:tap="allPrice">全部</text>
+        </view>
+        <view class="all">可提现金额 ¥{{effectivePay}}</view>
+    </view>
+    <view class="info">
+        <view class="info_list">
+            <view class="l">微信账号</view>
+            <view class="r">
+                <image src="{{userInfo.headImgUrl}}" />
+                <text>{{userInfo.uname}}</text>
+            </view>
+        </view>
+        <view class="info_list">
+            <view class="l">姓名</view>
+            <view class="r">
+                <input class="num" type="text" value="{{name}}" placeholder="填写真实姓名"  placeholder-class="input-placeholder" placeholder-style="text-align:right;" bindinput="inputName"/>
+            </view>
+        </view>
+        <view class="info_list">
+            <view class="l">身份证</view>
+            <view class="r">
+                <input class="num" type="idcard" value="{{idCard}}" placeholder="填写身份证号码" placeholder-class="input-placeholder" placeholder-style="text-align:right" bindinput="inputIdCard"/>
+            </view>
+        </view>
+    </view>
+    <view class="btn {{btnActive?'active':''}}" bind:tap="withdrawal">确认提现</view>
+</view>

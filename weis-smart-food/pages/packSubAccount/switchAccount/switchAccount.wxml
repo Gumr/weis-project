@@ -1,0 +1,110 @@
+<!-- pages/packSubAccount/switchAccount/switchAccount.wxml -->
+<cp-nav-bar title-text="切换账号" background="#fff" color="#333333" backIconColor="black" />
+<view class="account">
+    <view class="main">
+        <view class="main_account">主账号</view>
+        <view class="info" bind:tap="goPerson">
+            <view class="info_left">
+                <image class="head" src="{{info.headImgUrl}}" />
+                <view class="name">{{info.uname}}</view>
+            </view>
+            <view class="status {{subInfo.tsuSubUid ? '' : 'active'}}" catch:tap="selectMain">
+                {{subInfo.tsuSubUid ? '选择' : '当前使用'}}
+            </view>
+        </view>
+    </view>
+    <!-- 私人子账号 企业子账号 -->
+    <view class="account-box" wx:if="{{corpSubUserInfos.length > 0 || isEmpInterface}}">
+        <view class="tab">
+            <view class="box {{index == tabIndex ? 'active'+index + ' ' + 'active' : 'normal'+index}}" wx:for="{{tab}}" bind:tap="tapAccount" data-index="{{index}}">
+                <view class="name">{{item.name}}</view>
+            </view>
+        </view>
+        <!-- 私人子账号 -->
+        <view class="private" wx:if="{{tabIndex == 0}}">
+            <view class="subList">
+                <view class="info" wx:for="{{subUserInfoList}}" wx:key="index" data-tsu-sub-uid="{{item.tsuSubUid}}" data-sub-token="{{item.subToken}}" bind:tap="goPerson">
+                    <view class="info_left">
+                        <image class="icon" src="/images/subAccount.png" />
+                        <image class="head" src="{{item.defaultAvatar}}" />
+                        <view class="name">{{item.tsuSubUname}}</view>
+                    </view>
+                    <view class="status {{item.tsuSubUid == subInfo.tsuSubUid ? 'active' : ''}}" data-index="{{index}}" catch:tap="select">
+                        {{item.tsuSubUid == subInfo.tsuSubUid ? '当前使用' : '选择'}}
+                    </view>
+                </view>
+            </view>
+            <view class="info" bind:tap="add" data-type="00">
+                <view class="info_left">
+                    <image class="head" src="https://prodstatic.weis1606.cn/api/smartFood/add_icon.png" />
+                    <view class="name">添加私人子账号</view>
+                </view>
+            </view>
+        </view>
+        <!-- 企业子账号 -->
+        <view class="enterpriseAccount" wx:if="{{tabIndex == 1}}">
+            <!-- 校区列表 -->
+            <view class="campus">
+                <view class="list" wx:for="{{corpSubUserInfos}}" wx:key="index">
+                    <view class="campus-box" bind:tap="selectCampus" data-index="{{index}}">
+                        <view class="name">{{item.tgcaName}}</view>
+                        <view class="wrap">
+                            <view class="num">{{item.subUserInfos.length}}个子账号</view>
+                            <image src="{{item.selected ? 'https://prodstatic.weis1606.cn/api/smartFood/camp-top.png' : 'https://prodstatic.weis1606.cn/api/smartFood/camp-down.png'}}" />
+                        </view>
+                    </view>
+                    <view class="subList {{item.selected ? 'active' : ''}}" style="height:{{item.selected ? item.subUserInfos.length * 184 : 0}}rpx;">
+                        <view class="info" wx:for="{{item.subUserInfos}}" wx:for-index="idx" wx:key="idx" wx:for-item="main" data-tgca-name="{{item.tgcaName}}" data-tsu-sub-uid="{{main.tsuSubUid}}" data-sub-token="{{main.subToken}}" bind:tap="goPerson">
+                            <view class="info_left campus-col">
+                                <image class="icon" src="/images/subAccount.png" />
+                                <image class="head" src="{{main.defaultAvatar}}" />
+                                <view class="c">
+                                    <view class="name">{{main.tsuSubUname}}</view>
+                                    <view class="xq">{{item.tgcaName}}</view>
+                                </view>
+                            </view>
+                            <view class="status {{main.tsuSubUid == subInfo.tsuSubUid ? 'active' : ''}}" data-index="{{index}}" data-idx="{{idx}}" catch:tap="switchCampus">
+                                {{main.tsuSubUid == subInfo.tsuSubUid ? '当前使用' : '选择'}}
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="info add" bind:tap="add" wx:if="{{isEmpInterface}}" data-type="01">
+                <view class="info_left">
+                    <image class="head" src="https://prodstatic.weis1606.cn/api/smartFood/add_icon.png" />
+                    <view class="name">添加企业子账号</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 只显示私人子账号 -->
+    <view class="main sub" wx:if="{{!isEmpInterface && corpSubUserInfos.length == 0}}">
+        <view class="main_account">私人子账号</view>
+        <view class="subList">
+            <view class="info" wx:for="{{subUserInfoList}}" wx:key="index" data-tsu-sub-uid="{{item.tsuSubUid}}" data-sub-token="{{item.subToken}}" bind:tap="goPerson">
+                <view class="info_left">
+                    <image class="icon" src="/images/subAccount.png" />
+                    <image class="head" src="{{item.defaultAvatar}}" />
+                    <view class="name">{{item.tsuSubUname}}</view>
+                </view>
+                <view class="status {{item.tsuSubUid == subInfo.tsuSubUid ? 'active' : ''}}" data-index="{{index}}" catch:tap="select">
+                    {{item.tsuSubUid == subInfo.tsuSubUid ? '当前使用' : '选择'}}
+                </view>
+            </view>
+        </view>
+        <view class="info" bind:tap="add" data-type="00">
+            <view class="info_left">
+                <image class="head" src="https://prodstatic.weis1606.cn/api/smartFood/add_icon.png" />
+                <view class="name">添加私人子账号</view>
+            </view>
+        </view>
+    </view>
+    <view class="tip">添加子账号后会生成相应饮食方案，可用于帮亲朋好友点餐</view>
+</view>
+<cp-confirm-dialog class="dialog" show="{{showDialog}}" title="提示" bind:on-confirm="targetConfirmDialog">
+    <view class="dialog-label">
+        <view>切换账号后【点餐方案】、【发现页】、【数据页】均会改变。</view>
+        <view>确定切换账号码？</view>
+    </view>
+</cp-confirm-dialog>

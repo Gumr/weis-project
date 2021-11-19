@@ -1,0 +1,313 @@
+.flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+page {
+  background: rgba(255, 239, 195, 1);
+}
+
+.sign-in-dates {
+  width: 710rpx;
+  height: 311rpx;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  margin: 32rpx auto 20rpx;
+  text-align: center;
+
+  .dates-tip {
+    width: 440rpx;
+    margin: 0 auto;
+    font-size: 24rpx;
+    line-height: 48rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #9D6937;
+    border-radius: 0px 0px 23rpx 23rpx;
+    position: relative;
+
+    image {
+      width: 440rpx;
+      height: 48rpx;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  .dates-list {
+    width: 100%;
+    .flex();
+    justify-content: space-around;
+    margin: 92rpx 0 64rpx;
+
+    &__day {
+      width: calc(1 / 7 * 100%);
+      position: relative;
+
+      .day-tip {
+        width: 98rpx;
+        height: 30rpx;
+        position: absolute;
+        left: 50%;
+        top: -30rpx;
+        transform: translateX(-50%);
+        animation: dayTipAct 1s .6s 2 forwards;
+      }
+
+      .day-box {
+        .flex();
+        flex-direction: column;
+
+        image {
+          width: 56rpx;
+          height: 59rpx;
+          margin-bottom: 24rpx;
+        }
+
+        view {
+          font-size: 22rpx;
+          font-family: PingFangSC-Medium, PingFang SC;
+          font-weight: 550;
+          color: #333333;
+
+          &.active {
+            min-width: 60rpx;
+            padding: 2rpx 14rpx;
+            background: rgba(250, 100, 0, 1);
+            border-radius: 17rpx;
+            color: #FFFFFF;
+          }
+        }
+      }
+    }
+  }
+
+  .line-through {
+    width: 640rpx;
+    height: 2rpx;
+    border: 1rpx dashed #F7B500;
+    margin: -148rpx auto 0;
+  }
+}
+
+.sign-in-current {
+  width: 710rpx;
+  height: 1024rpx;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  margin: 20rpx auto;
+  padding: 60rpx 92rpx 0;
+  text-align: center;
+
+  .current-tit {
+    font-size: 36rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 550;
+    color: #333333;
+
+    &.opened {
+      color: #8F5620;
+    }
+  }
+
+  .current-hb {
+    width: 527rpx;
+    margin: 44rpx auto 0;
+    position: relative;
+    text-align: center;
+    z-index: 10;
+
+    &-bg {
+      width: 100%;
+      height: 708rpx;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    &-open {
+      width: 220rpx;
+      height: 220rpx;
+      margin: 220rpx auto 0;
+      position: inherit;
+    }
+
+    &-tap {
+      font-size: 26rpx;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #FAD3A8;
+      margin-top: 154rpx;
+      position: inherit;
+
+      &.opened {
+        width: 390rpx;
+        height: 82rpx;
+        background: linear-gradient(90deg, #FFF6E7 0%, #FAD3A8 100%);
+        border-radius: 41rpx;
+      }
+    }
+
+    // 已开红包
+    &-opened {
+      position: relative;
+      margin-top: 60rpx;
+      .flex();
+      flex-direction: column;
+
+      .opened-part {
+
+        &.part-1 {
+          width: 527rpx;
+
+          &.opened {
+            animation: part1Act 0s forwards;
+          }
+
+          &.opening {
+            animation: part1Act .5s forwards;
+          }
+
+          image {
+            width: 100%;
+          }
+        }
+
+        &.part-2 {
+          width: 453rpx;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          opacity: 0;
+          transform: translate(-50%, 250rpx);
+          animation: part2Act .5s .5s forwards;
+
+          .amount {
+            width: 100%;
+            position: absolute;
+            left: 50%;
+            top: 110rpx;
+            transform: translateX(-50%);
+
+            text {
+              font-size: 120rpx;
+              font-weight: 550;
+              color: #8F5620;
+
+              &:last-of-type {
+                font-size: 44rpx;
+                font-weight: 500;
+              }
+            }
+          }
+
+          image {
+            width: 100%;
+          }
+        }
+
+        &.part-3 {
+          width: 555rpx;
+          position: relative;
+          transform: translateY(-140);
+
+          &.opened {
+            animation: part3Act 0s forwards;
+          }
+
+          &.opening {
+            animation: part3Act .5s forwards;
+          }
+
+          image {
+            width: 100%;
+          }
+
+          .check {
+            position: absolute;
+            left: 40%;
+            bottom: 218rpx;
+            font-size: 26rpx;
+            color: #FAD3A8;
+            line-height: 26rpx;
+            image {
+              width: 24rpx;
+              height: 24rpx;
+            }
+          }
+          .text {
+            width: 390rpx;
+            height: 82rpx;
+            line-height: 82rpx;
+            background: linear-gradient(90deg, #FFF6E7 0%, #FAD3A8 100%);
+            border-radius: 41rpx;
+            font-size: 32rpx;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #8F5620;
+            position: absolute;
+            left: 50%;
+            bottom: 100rpx;
+            transform: translateX(-50%);
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes part1Act {
+  from {
+    transform: translateY(-160rpx);
+  }
+
+  to {
+    transform: translateY(0rpx);
+  }
+}
+
+@keyframes part2Act {
+  from {
+    transform: translate(-50%, 250rpx);
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes part3Act {
+  from {
+    transform: translateY(160rpx);
+  }
+
+  to {
+    transform: translateY(-140rpx);
+  }
+}
+
+@keyframes dayTipAct {
+  0% {
+    transform: translateX(-50%) scale(1)
+  }
+
+  25% {
+    transform: translateX(-50%) scale(.9);
+  }
+
+  50% {
+    transform: translateX(-50%) scale(1);
+  }
+
+  75% {
+    transform: translateX(-50%) scale(.8);
+  }
+
+  100% {
+    transform: translateX(-50%) scale(1);
+  }
+}

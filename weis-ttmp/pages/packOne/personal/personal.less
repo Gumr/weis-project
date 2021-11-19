@@ -1,0 +1,68 @@
+.border {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1rpx;
+  background: #f6f6f6;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.personal {
+  width: 100%;
+  position: relative;
+  background: #f3f4f5;
+  .box {
+    box-sizing: border-box;
+    padding: 0 40rpx 0 35rpx;
+    background: #ffffff;
+
+    .wrap {
+      width: 100%;
+      height: 112rpx;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      &::after {
+        .border();
+        bottom: 0;
+      }
+      .col-l {
+        font-size: 28rpx;
+        color: #000000;
+      }
+      .col-r {
+        display: flex;
+        align-items: center;
+        .name {
+          font-size: 28rpx;
+          color: #000000;
+        }
+        image {
+          width: 22rpx;
+          height: 22rpx;
+          margin-left: 6rpx;
+        }
+      }
+      // 未设置
+      .notSet {
+        font-size: 28rpx;
+        color: #000000;
+      }
+    }
+    // 头像
+    .headImg {
+      height: 180rpx;
+      .col-r {
+        image:nth-child(1) {
+          width: 140rpx;
+          height: 140rpx;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}

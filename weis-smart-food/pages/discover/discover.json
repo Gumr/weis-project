@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "cp-confirm-dialog": "/components/cp-confirm-dialog/cp-confirm-dialog",
+    "cp-config-dialog": "/components/cp-config-dialog/cp-config-dialog"
+  }
+}

@@ -1,0 +1,517 @@
+page {
+  background: #FFD47BFF;
+  position: relative;
+}
+page button {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}
+page button::after {
+  border: none;
+}
+.errorview text:nth-child(1) {
+  font-size: 28rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+}
+.errorview view {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  margin-top: 12rpx;
+}
+.main {
+  width: 562rpx;
+  height: 760rpx;
+  perspective: 1500;
+  -webkit-perspective: 1500;
+  -moz-perspective: 1500;
+  margin-top: 154rpx;
+  position: relative;
+}
+.playcard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 1s;
+  backface-visibility: hidden;
+}
+.playcard-poker {
+  width: 560rpx;
+  height: 820rpx;
+  text-align: center;
+  position: relative;
+  margin-top: 25rpx;
+}
+.playcard-poker .poker-cnt {
+  position: relative;
+  z-index: 88;
+  transform: translateY(180rpx);
+}
+.playcard-poker .poker-cnt view {
+  font-size: 30rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: bold;
+  color: #FCCC49;
+}
+.playcard-poker .poker-cnt view.poker-cnt__score {
+  font-size: 150rpx;
+  font-family: DINCondensedC;
+  font-weight: bold;
+  color: #FFEAC1;
+}
+.playcard-poker .poker-cnt image {
+  width: 288rpx;
+  height: 48rpx;
+  margin-top: 40rpx;
+}
+.playcard-poker .pokerImg {
+  width: 560rpx;
+  height: 820rpx;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+.playcard-poker .poker__score {
+  position: relative;
+  z-index: 88;
+  transform: translateY(-999rpx);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.playcard-poker .poker__score.active {
+  transform: translateY(82rpx);
+}
+.playcard-poker .poker__score--detail {
+  width: 310rpx;
+  height: 50rpx;
+  margin: 0 auto;
+  position: relative;
+  z-index: 88;
+  transform: translateY(168rpx);
+  background: linear-gradient(270deg, rgba(226, 69, 64, 0) 0%, #F4885B 46%, rgba(222, 68, 62, 0) 100%);
+}
+.playcard-poker .poker__score--detail text {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFE9DA;
+}
+.playcard-poker .poker__score--detail image {
+  width: 20rpx;
+  height: 20rpx;
+  margin-left: 8rpx;
+  vertical-align: middle;
+}
+.playcard-poker .poker__score__total {
+  font-size: 40rpx;
+  line-height: 56rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+.playcard-poker .poker__score__each {
+  width: 220rpx;
+  margin: 0 auto 12rpx;
+  text-align: right;
+  display: flex;
+  justify-content: space-between;
+}
+.playcard-poker .poker__score__each text {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFE0A2;
+}
+.playcard-poker .shareBtn {
+  position: relative;
+  z-index: 88;
+  transform: translateY(305rpx);
+}
+.playcard-poker .shareBtn image {
+  width: 394rpx;
+  height: 94rpx;
+}
+.playcard-poker .timeout {
+  position: relative;
+  z-index: 88;
+  transform: translateY(150rpx);
+}
+.playcard-poker .timeout image {
+  width: 394rpx;
+  height: 124rpx;
+}
+.downimg {
+  width: 88rpx;
+  height: 48rpx;
+  position: relative;
+  margin-top: 40rpx;
+  z-index: -1;
+}
+.box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 560rpx;
+  height: 810rpx;
+  transition: all 1s;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.box image {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.b2 {
+  transform: rotateY(-180deg);
+}
+.shareBtn {
+  margin: 23rpx auto 0;
+}
+.topbg {
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+.shareBtn image {
+  width: 360rpx;
+  height: 94rpx;
+}
+.clickchange {
+  width: 366rpx;
+  height: 94rpx;
+  position: absolute;
+  top: 920rpx;
+}
+.button-hover {
+  background: #FFFFFFFF;
+}
+.tipstop {
+  top: 1190rpx !important;
+}
+.bgtop {
+  top: 1240rpx !important;
+}
+.histop {
+  top: 1300rpx !important;
+}
+.graycolor {
+  color: #735516;
+  font-size: 20rpx;
+}
+.loadingtips {
+  padding-top: 40rpx;
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  text-align: left;
+  text-align: center;
+}
+.loadingtips text {
+  font-size: 56rpx;
+  font-weight: bold;
+}
+.progress {
+  width: 670rpx;
+  height: 50rpx;
+  background: #FFFFFF;
+  border-radius: 25rpx;
+  border: 4rpx solid #333333;
+  margin-top: 28rpx;
+  padding-top: 8rpx;
+  padding-left: 4rpx;
+  padding-right: 4rpx;
+  margin-left: 34rpx;
+}
+.bglist {
+  width: 670rpx;
+  background: #FFD47C;
+  border-radius: 10rpx;
+  padding-left: 56rpx;
+  padding-right: 56rpx;
+  padding-bottom: 30rpx;
+  margin-left: 34rpx;
+  margin-bottom: 53rpx;
+}
+.share-peo {
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.share-peo:first-of-type {
+  padding-top: 30rpx;
+}
+.share-peo .shmon {
+  font-size: 26rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: #000000;
+}
+.share-peo .shview image {
+  width: 100rpx;
+  height: 100rpx;
+  border: 2rpx solid #FFFFFF;
+  border-radius: 50rpx;
+  vertical-align: middle;
+  margin-right: 24rpx;
+}
+.share-peo .shview text {
+  font-size: 26rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: #000000;
+}
+.tips {
+  margin-top: -6rpx;
+  line-height: 1.4;
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  text-align: center;
+  background: #F7C45A;
+  min-height: 340rpx;
+  padding-top: 100rpx;
+}
+.bgcolor {
+  background: #F7C45A;
+  margin-top: -6rpx;
+  padding-bottom: 60rpx;
+}
+.historyList {
+  text-align: center;
+  margin: 40rpx auto 0;
+}
+.historyList image {
+  width: 750rpx;
+  height: 80rpx;
+}
+.coupInfoList {
+  position: absolute;
+  top: 550rpx;
+  text-align: center;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  width: 100%;
+}
+.coupInfoList .mr30 {
+  margin-top: 30rpx;
+}
+.coupInfoList .mr20 {
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+}
+.coupInfoList .getmoney {
+  font-size: 48rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: bold;
+  color: #C05100;
+  margin-top: 15rpx;
+  margin-bottom: 68rpx;
+}
+.coupInfoList image {
+  width: 394rpx !important;
+  height: 124rpx !important;
+  margin-top: 20rpx;
+}
+.coupInfoList .coupinfo {
+  position: absolute;
+  bottom: 30rpx;
+  width: 100%;
+  padding-left: 72rpx;
+}
+.coupInfoList .coupinfo .mon {
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: #333333;
+}
+.coupInfoList .coupinfo .coin {
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+}
+.rechangebgimg {
+  text-align: center;
+  position: absolute;
+  width: 480rpx;
+  top: 200rpx;
+  left: 40rpx;
+}
+.rechangebgimg view:nth-child(1) {
+  font-size: 50rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: bold;
+  color: #FCCC49;
+}
+.rechangebgimg view:nth-child(2) {
+  font-size: 32rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #FCCC49;
+  margin-top: 140rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  text-align: center;
+}
+.rechangebgimg view:nth-child(3) {
+  margin-top: 20rpx;
+  margin-left: 80rpx;
+  margin-right: 80rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FCCC49;
+}
+.activedetail {
+  width: 60rpx;
+  height: 156rpx;
+  position: absolute;
+  right: 0;
+  top: 172rpx;
+}
+.playList {
+  position: relative;
+}
+.playList image {
+  width: 560rpx;
+  height: 180rpx;
+}
+.playList view {
+  position: absolute;
+  top: 46rpx;
+  width: 100%;
+}
+.playList view text:nth-child(1) {
+  font-size: 36rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 26rpx;
+}
+.playList view text:nth-child(2) {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+}
+.topname {
+  position: absolute;
+  left: 34%;
+  top: 1100rpx;
+  min-width: 217rpx;
+  text-align: center;
+  background: #FF8839;
+  border-radius: 18rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+}
+.topname view {
+  max-width: 100rpx;
+  white-space: nowrap;
+  /*规定段落中的文本不进行换行*/
+  overflow: hidden;
+  /*内容会被修剪，并且其余内容是不可见的。*/
+  text-overflow: ellipsis;
+  /*显示省略号来代表被修剪的文本*/
+}
+.downdip {
+  width: 22rpx;
+  height: 8rpx;
+  position: absolute;
+  left: 80rpx;
+  bottom: -8rpx;
+}
+.help {
+  color: #C46321;
+  font-size: 30rpx;
+  position: relative;
+  z-index: 88;
+  margin-top: 70rpx;
+}
+.newcardcoupbg {
+  width: 430rpx;
+  height: 124rpx;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  z-index: 88;
+  position: absolute;
+  left: 50%;
+  bottom: 82rpx;
+  transform: translateX(-50%);
+}
+.newcardcoupbg image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  margin-top: 0;
+  border-radius: 0;
+}
+.newcardcoupbg view {
+  position: relative;
+  z-index: 10;
+}
+.newcardcoupbg .left {
+  width: 136rpx;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 40rpx;
+}
+.newcardcoupbg .left .money {
+  color: #854800;
+  font-size: 72rpx;
+  font-family: 'DINCondensedC';
+  display: flex;
+  align-items: baseline;
+}
+.newcardcoupbg .left .money .sympol {
+  font-size: 30rpx;
+  margin-right: -10rpx;
+}
+.newcardcoupbg .left .limit {
+  color: #854800;
+  font-size: 18rpx;
+  margin-top: -10rpx;
+}
+.newcardcoupbg .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.newcardcoupbg .right view {
+  color: #ffe8b9;
+  width: fit-content;
+}
+.newcardcoupbg .right view:nth-of-type(1) {
+  font-size: 28rpx;
+  line-height: 32rpx;
+  margin-bottom: 13rpx;
+  font-weight: bold;
+}
+.newcardcoupbg .right view:nth-of-type(2) {
+  font-size: 18rpx;
+}

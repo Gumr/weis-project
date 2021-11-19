@@ -1,0 +1,154 @@
+<!-- pages/record/markSugar/markSugar.wxml -->
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
+<cp-nav-bar
+  model:date="{{navDate}}"
+  mode="date"
+  backIconColor="white"
+  background="{{showCalendar ? '#FF9722' : 'transparent'}}"
+  disabledDate="{{disabledDate}}"
+  bind:title-tap="tapTitle"
+  bind:date-change="goAhead"
+></cp-nav-bar>
+<!-- <nav
+  bgcolor="{{showCalendar ? '#F2C344' : 'transparent'}}"
+  custom="true"
+  date-title="{{selectDate == today ? '今天' : filters.format(selectDate)}}"
+  showRightIcon="{{showRightIcon}}"
+  bind:goAhead="goAhead"
+  bind:tapTitle="tapTitle"
+  bind:goForward="goForward"
+></nav>-->
+<view class="background"></view>
+<view class="record">
+  <view class="head">
+    <view class="tab" style="top:{{navBarHeight}}px">
+      <scroll-view
+        class="scroll-box"
+        scroll-x="{{true}}"
+        scroll-into-view="{{intoView}}"
+        scroll-with-animation="{{true}}"
+      >
+        <view class="tab-e">
+          <view
+            class="t-b {{tabIndex == index ? 'active' : ''}}"
+            wx:for="{{tab}}"
+            wx:key="index"
+            id="view{{index}}"
+            data-index="{{index}}"
+            bind:tap="tab"
+          >{{item.name}}</view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="circle">
+      <view class="c-box" bind:tap="showDia">
+        <view class="c-box-one" style="height: inherit; border-right: 2rpx solid #FE5E0F;">
+          <view class="name">高压</view>
+          <view
+            class="v {{bodyDataInfoList[tabIndex].high.bdValue > 0 ? 'active' : ''}}"
+          >{{bodyDataInfoList[tabIndex].high.bdValue || 0}}</view>
+          <view class="unit">mmHg</view>
+        </view>
+        <view class="c-box-one">
+          <view class="name">低压</view>
+          <view
+            class="v {{bodyDataInfoList[tabIndex].less.bdValue > 0 ? 'active' : ''}}"
+          >{{bodyDataInfoList[tabIndex].less.bdValue || 0}}</view>
+          <view class="unit">mmHg</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 历史 -->
+  <view class="his-record">
+    <view class="head-box" bind:tap="history">
+      <view class="title">当日血压</view>
+      <view class="r-b" bind:tap="chartTap">
+        <image src="/images/icons/line_chart.png" />
+        <view class="his-name">曲线</view>
+      </view>
+    </view>
+    <view class="list-box">
+      <view wx:if="{{!showWhite}}">
+        <van-swipe-cell
+          id="swipe-cell"
+          wx:for="{{bodyDataInfoList}}"
+          wx:key="index"
+          wx:if="{{item.less.bdValue > 0}}"
+          right-width="{{ 90 }}"
+          data-index="{{index}}"
+          bind:open="onOpen"
+          async-close
+          bind:close="onClose"
+        >
+          <view class="list {{selectIndex === index ? 'active' : ''}}">
+            <view class="time">{{keyObj[item.less.bdKey]}}</view>
+            <view class="v-box">{{item.high.bdValue}}/{{item.less.bdValue}} mmHg</view>
+          </view>
+          <view slot="right" class="van-swipe-cell__right">删除</view>
+        </van-swipe-cell>
+      </view>
+      <!-- 空 -->
+      <view class="white" wx:else>- 还没有血压记录哦 -</view>
+    </view>
+  </view>
+</view>
+<!-- 输入 -->
+<view class="popup-record" wx:if="{{showRecord}}">
+  <view class="shadow"></view>
+  <view class="popup-tit">
+    <image class="icon" src="/images/icon_down.png" bindtap="hideModal" />
+    <text>{{selectDate == today ? '今天' : filters.format(selectDate)}} {{tab[tabIndex].name}}</text>
+  </view>
+  <view class="popup-content">
+    <view class="ipt-wrapper">
+      <view class="{{!highVal ? 'null' : ''}}">高压</view>
+      <input
+        type="number"
+        maxlength="3"
+        placeholder="0"
+        data-type="high"
+        value="{{highVal}}"
+        always-embed="{{true}}"
+        adjust-position="{{true}}"
+        cursor-spacing="120"
+        bindinput="iptFn"
+      />
+      <view class="unit">mmHg</view>
+    </view>
+    <view class="ipt-wrapper">
+      <view class="{{!lessVal ? 'null' : ''}}">低压</view>
+      <input
+        type="number"
+        maxlength="3"
+        placeholder="0"
+        data-type="less"
+        value="{{lessVal}}"
+        always-embed="{{true}}"
+        adjust-position="{{true}}"
+        cursor-spacing="120"
+        bindinput="iptFn"
+      />
+      <view class="unit">mmHg</view>
+    </view>
+  </view>
+  <view
+    class="popup-btn {{recordDisabled ? 'disabled' : ''}}"
+    data-disabled="{{recordDisabled}}"
+    bindtap="record"
+  >记录血压</view>
+</view>
+<van-overlay show="{{showRecord}}" bind:click="hideModal"></van-overlay>
+
+<view class="calendar-dialog" wx:if="{{showCalendar}}" style="padding-top:{{navBarHeight}}px">
+  <view class="c-b {{initCal ? 'active' : ''}}">
+    <calendar
+      id="calendar"
+      config="{{calendarConfig}}"
+      bind:afterCalendarRender="afterCalendarRender"
+      bind:afterTapDay="afterTapDay"
+      bind:backToday="backToday"
+    />
+    <view class="empty" bind:tap="hideCal"></view>
+  </view>
+</view>

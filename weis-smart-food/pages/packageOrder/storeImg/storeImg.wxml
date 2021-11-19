@@ -1,0 +1,7 @@
+<!--pages/packageOrder/storeImg/storeImg.wxml-->
+<cp-nav-bar title-text="{{machineInfo.hpName}}" background="#F3F4F5" />
+<view class="store">
+    <view class="img" data-src="{{item.imageUrl}}" wx:for="{{machineInfo.signUrl}}" bind:tap="previewImage">
+        <image src="{{item.imageUrl}}" />
+    </view>
+</view>

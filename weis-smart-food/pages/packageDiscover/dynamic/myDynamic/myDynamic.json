@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "cp-null": "/components/cp-null/cp-null",
+    "cp-confirm-dialog": "/components/cp-confirm-dialog/cp-confirm-dialog"
+  }
+}

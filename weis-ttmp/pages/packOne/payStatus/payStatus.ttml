@@ -1,0 +1,24 @@
+<!-- e:\project\weis-ttmp\weis-ttmp-nlm\weis-ttmp\pages\packOne\payStatus\payStatus\payStatus.ttml -->
+<cp-nav-bar title-text="" preventBack="{{true}}" bind:back="barBack"></cp-nav-bar>
+<view class="payStatus">
+    <!-- 成功 -->
+    <view class="content" tt:if="{{status == 1}}">
+        <image class="topImg" src="{{imgPrefix}}paySucc.png" />
+        <view class="title">购买成功</view>
+        <view class="tip">建议你立即核销点餐，马上享用美味营养餐</view>
+        <view class="btn">
+            <view bindtap="tapWriteOff">立即核销点餐</view>
+            <view bindtap="tapOrder">查看订单</view>
+        </view>
+    </view>
+    <!-- 失败 -->
+    <view class="content" tt:else>
+        <image class="topImg" src="{{imgPrefix}}payFail.png" />
+        <view class="title">购买失败</view>
+        <!-- <view class="tip">建议你立即核销点餐，马上享用美味营养餐</view> -->
+        <view class="btn">
+            <view bindtap="submit">重新购买</view>
+            <view bindtap="back">返回</view>
+        </view>
+    </view>
+</view>

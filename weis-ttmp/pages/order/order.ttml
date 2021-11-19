@@ -1,0 +1,53 @@
+<!-- h:\material\weis-ttmp\pages\order\order\order.ttml -->
+
+<cp-nav-bar title-text="我的订单" preventBack="{{true}}" bind:back="back" background="#F3F4F5"></cp-nav-bar>
+
+<view class="order">
+  <!-- 登录 */-->
+  <view class="tab fix" style="top:{{navStatusHeight}}px;">
+    <view class="name {{index == tabIndex ? 'active' : ''}}" tt:for="{{tab}}" data-index="{{index}}" bindtap="tab">{{item.name}}</view>
+  </view>
+  <view class="tab"></view>
+  <!-- 订单列表 -->
+  <view tt:if="{{isLogin}}" class="list">
+    <view class="box" tt:for="{{list}}" bindtap="tapItem" data-item="{{item}}" data-index="{{index}}">
+      <view class="info">
+        <view class="col">
+          <image mode="aspectFill" src="{{item.dou_pack.tdp_cover_img[0]}}"></image>
+          <view class="name">{{item.dou_pack.tdp_name}}</view>
+        </view>
+        <!-- 状态 -->
+        <view class="col-r">
+          <view class="status">{{item.sttDesc}}</view>
+          <view class="price">￥{{item.tdpoComboPrice}}</view>
+        </view>
+      </view>
+      <!-- 配送信息 实付 -->
+      <view class="info-b">
+        <view class="distribution">
+          <view class="ps">{{item.descMapping!=stt[1]?'':item.total_sum+'餐已签收'+item.finished_sum+'餐'}}</view>
+          <view class="actual">实付：¥ <view>{{item.tdpoActualPrice}}</view></view>
+        </view>
+        <view tt:if="{{item.descMapping==stt[0]||item.descMapping==stt[1]}}" class="btn{{item.descMapping==stt[1]?'1':'2'}}" data-item="{{item}}" catchtap="tapMeal">{{item.descMapping==stt[1]?'查看餐单':'去核销点餐'}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 未登录 -->
+  <view class="login" tt:if="{{!isLogin}}">
+    <view class="login">
+      <image src="https://prodstatic.weis1606.cn/api/smartFood/app_ttImg/empty.png" />
+      <view class="title">请先登录</view>
+      <view class="sub">登录后可查看订单信息哦</view>
+      <view class="btn" bindtap="tapLogin">登录</view>
+    </view>
+  </view>
+  <!-- 无订单 -->
+  <view class="login" tt:if="{{isLogin&&(!list||list.length==0)}}">
+    <view class="login">
+      <image src="https://prodstatic.weis1606.cn/api/ttmpFood/order/no_data.png" />
+      <view class="title">暂无订单</view>
+      <view class="sub">去选一个你喜欢的套餐吧</view>
+      <view class="btn" bindtap="tapShop">去选套餐</view>
+    </view>
+  </view>
+</view>

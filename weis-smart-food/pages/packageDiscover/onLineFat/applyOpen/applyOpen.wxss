@@ -1,0 +1,29 @@
+page {
+  background: #fe5e0f;
+}
+.open {
+  padding: 40rpx 40rpx 0;
+  background: #fe5e0f;
+}
+.open .desc {
+  color: #ffffff;
+  font-size: 28rpx;
+  line-height: 44rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+.open .img {
+  position: relative;
+}
+.open .img image:nth-child(1) {
+  width: 670rpx;
+  height: 1192rpx;
+  position: relative;
+}
+.open .img image:nth-child(2) {
+  position: absolute;
+  width: 290rpx;
+  height: 290rpx;
+  left: 190rpx;
+  bottom: 60rpx;
+}

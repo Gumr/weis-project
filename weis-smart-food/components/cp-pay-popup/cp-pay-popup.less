@@ -1,0 +1,143 @@
+.border {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2rpx;
+  background: rgba(238, 238, 238, 1);
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.pay-icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.select-icon {
+  width: 38rpx;
+  height: 38rpx;
+}
+
+.recharge{
+  width: 133rpx;
+  height: 50rpx;
+  background: linear-gradient(90deg, #FCD006 0%, #FCBD06 100%);
+  border-radius: 25rpx;
+  text-align: center;
+  line-height: 50rpx;
+  color: #333333;
+  font-size: 24rpx;
+}
+
+.pay-header {
+  font-size: 32rpx;
+  text-align: center;
+  padding: 35rpx 0 15rpx;
+  color: #000000;
+}
+
+.tip{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 645rpx;
+  height: 64rpx;
+  background: rgba(252, 204, 73, 0.2);
+  border-radius: 6rpx;
+  padding: 0 30rpx 0 12rpx;
+  margin: 17rpx auto 25rpx;
+  .c-l{
+    display: flex;
+    align-items: center;
+    image{
+      width: 40rpx;
+      height: 40rpx;
+      margin-right: 8rpx;
+    }
+    .num{
+      color: rgba(250, 100, 0, 1);
+      font-size: 28rpx;
+      line-height: 40rpx;
+    }
+  }
+  .price{
+    color: rgba(250, 100, 0, 1);
+    font-size: 28rpx;
+    font-weight: bold;
+  }
+}
+
+.flex-items-center {
+  display: flex;
+  align-items: center;
+}
+
+.pay-main {
+  padding: 0 50rpx;
+  .pay-item {
+    padding: 40rpx 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    &.disabled{
+      padding: 35rpx 0;
+    }
+    &::after{
+      .border();
+      bottom: 0;
+    }
+    .pay-text {
+      display: flex;
+      align-items: center;
+      font-size: 28rpx;
+      color: rgba(0, 0, 0, 0.6);
+      font-weight: bold;
+    }
+    .text {
+      margin-left: 8rpx;
+    }
+  }
+  .pay-check-icon {
+    width: 38rpx;
+    height: 38rpx;
+  }
+  .pay-protocol {
+    margin-top: 26rpx;
+  }
+  .pay-label {
+    font-size: 24rpx;
+    &__normal {
+      color: #333;
+    }
+    &__active {
+      color: #fe5e0f;
+    }
+  }
+
+  .pay-btn {
+    margin: 23rpx auto 0;
+    color: #fff;
+    width: 650rpx;
+    height: 88rpx;
+    background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+    border-radius: 50rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .disabled-btn {
+    background: #a9a9a9;
+    box-shadow: 0rpx 6rpx 14rpx 0rpx rgba(169, 169, 169, 0.5);
+  }
+}
+
+.ing{
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 5rpx;
+}

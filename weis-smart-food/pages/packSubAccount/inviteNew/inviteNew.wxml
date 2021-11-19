@@ -1,0 +1,102 @@
+<!--pages/packSubAccount/inviteNew/inviteNew.wxml-->
+<cp-nav-bar title-text="" background="transparent" backIconColor="white"/>
+
+<view class="invite">
+    <view class="head" style="margin-top: -{{navStatusHeight}}px">
+        <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/inviteNew/bg.png" />
+        <view class="box">
+            <image class="wallet" src="https://prodstatic.weis1606.cn/api/smartFood/inviteNew/wallet-newUser.png" />
+            <button class="btn" open-type="share">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/inviteNew/btn-invite.png" />
+            </button>
+        </view>
+    </view>
+    <!--  -->
+    <view class="content">
+        <view class="title">
+            <image src="https://prodstatic.weis1606.cn/api/smartFood/inviteNew/icon-1.png" />
+            <view class="name">三步获得奖励</view>
+            <image src="https://prodstatic.weis1606.cn/api/smartFood/inviteNew/icon-2.png" />
+        </view>
+        <view class="step">
+            <view class="box">
+                <view class="img">
+                    <image src="https://prodstatic.weis1606.cn/api/smartFood/inviteNew/001.png" />
+                    <view class="num">1</view>
+                </view>
+                <text>发送邀请</text>
+            </view>
+            <view class="box">
+                <view class="img">
+                    <image src="https://prodstatic.weis1606.cn/api/smartFood/inviteNew/002.png" />
+                    <view class="num">2</view>
+                </view>
+                <text>新人注册\n获得80元优惠券</text>
+            </view>
+            <view class="box">
+                <view class="img">
+                    <image src="https://prodstatic.weis1606.cn/api/smartFood/inviteNew/003.png" />
+                    <view class="num">3</view>
+                </view>
+                <text>好友下单并签收</text>
+            </view>
+            <view class="box">
+                <view class="img">
+                    <image src="https://prodstatic.weis1606.cn/api/smartFood/inviteNew/004.png" />
+                    <view class="num">4</view>
+                </view>
+                <text>你获得10元现金\n发放到余额</text>
+            </view>
+        </view>
+        <!-- 邀请记录 -->
+        <view class="record-box">
+            <view class="title">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/inviteNew/icon-1.png" />
+                <view class="name">邀请记录</view>
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/inviteNew/icon-2.png" />
+            </view>
+            <!-- 无记录 -->
+            <view class="no-record" wx:if="{{info && info.list.length == 0}}">
+                <text>╮(╯▽╰)╭ \n还没有邀请记录</text>
+            </view>
+            <!-- 有记录 -->
+            <view class="has-record" wx:if="{{info && info.list.length > 0}}">
+                <view class="box">
+                    <view class="info">
+                        <view class="row">
+                            <view class="num">{{info.inviteCount}}</view>人
+                        </view>
+                        <view class="name">已邀请</view>
+                    </view>
+                    <view class="info">
+                        <view class="row">
+                            <view class="num">{{info.finishCount}}</view>人
+                        </view>
+                        <view class="name">已下单</view>
+                    </view>
+                    <view class="info">
+                        <view class="row">
+                            <view class="num">￥</view>{{info.rewardBalance}}
+                        </view>
+                        <view class="name">已获得</view>
+                    </view>
+                </view>
+                <view class="list">
+                    <view class="row-list" wx:for="{{info.list}}">
+                        <image class="head-icon" src="{{item.headImg}}" />
+                        <view class="user">
+                            <view class="nick">{{item.uname}}</view>
+                            <view class="date">{{item.registerTime}}</view>
+                        </view>
+                        <view class="status {{item.inviteStt ? 'active' : ''}}">{{item.inviteStt ? '已下单' : '未下单'}}</view>
+                        <view class="get" wx:if="{{item.inviteStt}}">
+                            <view>你获得</view>
+                            <view class="money">￥10</view>
+                        </view>
+                        <button class="share" wx:else open-type="share" data-type="order">邀请下单</button>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

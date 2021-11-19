@@ -1,0 +1,19 @@
+<!-- pages/orderFood/rule/rule.wxml -->
+<cp-nav-bar title-text="积分规则" backIconColor></cp-nav-bar>
+<view class="rule">
+  <view class="box-1" style="margin-bottom:60rpx">
+    <view class="date">如何获得积分？</view>
+    <text
+      class="desc"
+    >在营期间 \n①每日首次运动打卡，计1分，重复打卡不会重复计分； \n②每日首次外食打卡，计1分，重复打卡不会重复计分； \n③每确认签收一单，计5分，多单签收按次数计分； 结营日将以最后一次体重记录，计算在减脂营减脂体重差，每瘦身1斤，计1分。</text>
+  </view>
+  <view class="box-1" style="margin-bottom:40rpx">
+    <view class="date">计分规则</view>
+    <text
+      class="desc"
+    >①结营时，积分中至少有确认签收10单才能进入排行榜竞争； \n②删除运动打卡及外食打卡记录，将删除对应积分； \n③对于虚拟作假数据用户，将失去进榜机会，成绩作废。 \n④手动确认收货后自动同步积分，若无操作24小时自动确认收货后将同步积分。</text>
+  </view>
+  <view class="box-1">
+    <view class="date">*活动最终解释权归维士智慧健康管理有限公司。</view>
+  </view>
+</view>

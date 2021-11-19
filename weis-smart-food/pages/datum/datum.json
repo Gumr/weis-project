@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "cp-login-view": "/components/cp-login-view/cp-login-view",
+    "cp-data-circle-bar": "/components/cp-data-circle-bar/cp-data-circle-bar",
+    "cp-confirm-dialog": "/components/cp-confirm-dialog/cp-confirm-dialog",
+    "cp-config-dialog": "/components/cp-config-dialog/cp-config-dialog"
+  }
+}

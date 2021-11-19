@@ -1,0 +1,235 @@
+.border {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1rpx;
+  background: #333333;
+  opacity: 0.1;
+  //   transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.dynamicDetail {
+  width: 100%;
+  padding-bottom: 122rpx;
+  // padding: 0 30rpx;
+  // 公共-----------
+  // 头像
+  .head {
+    display: flex;
+    align-items: center;
+    .headImg {
+      width: 72rpx;
+      height: 72rpx;
+      border-radius: 50%;
+      margin-right: 14rpx;
+    }
+    .headInfo {
+      view:nth-child(1) {
+        font-size: 24rpx;
+        font-weight: bold;
+        color: #333333;
+        margin-bottom: 10rpx;
+      }
+      view:nth-child(2) {
+        font-size: 20rpx;
+        color: #adadad;
+      }
+    }
+  }
+  // 饭圈动态-----------
+  .dynamic {
+    background: #ffffff;
+    border-radius: 10rpx;
+    padding: 0 30rpx;
+    .content {
+      .list {
+        margin-top: 40rpx;
+        position: relative;
+        &::after {
+          .border();
+        }
+
+        .words {
+          font-size: 28rpx;
+          color: #333333;
+          line-height: 38rpx;
+          margin: 30rpx 0;
+          view {
+            display: inline;
+            word-break: break-all;
+          }
+          .wordsUrl {
+            color: #2440B3;
+            .urlIcon {
+              width: 28rpx;
+              height: 28rpx;
+            }
+          }
+        }
+        .img {
+          image {
+            width: 223rpx;
+            height: 223rpx;
+            border-radius: 10rpx;
+            margin: 0 10rpx 5rpx 0;
+            &:nth-of-type(3n) {
+              margin-right: 0;
+            }
+          }
+        }
+        .menu {
+          height: 96rpx;
+          background: #f6f6f6;
+          border-radius: 10rpx;
+          display: flex;
+          align-items: center;
+          margin: 24rpx 0;
+          view:nth-child(1) {
+            width: 108rpx;
+            background: #d1fffc;
+            border-radius: 10rpx 0rpx 0rpx 10rpx;
+            font-size: 68rpx;
+            font-family: "DINCondensedC";
+            font-weight: bold;
+            color: #18c5c1;
+            line-height: 96rpx;
+            text-align: center;
+            margin-right: 20rpx;
+            &.addRed {
+              background: linear-gradient(180deg, #fff3eb 0%, #ffdac1 100%);
+              color: #fa6400;
+            }
+          }
+          view:nth-child(2) {
+            width: 630rpx;
+            background: #f6f6f6;
+            //   border-radius: 10rpx;
+
+            font-size: 28rpx;
+            color: #adadad;
+          }
+        }
+        .operate {
+          padding-bottom: 30rpx;
+          &_delete {
+            width: 100%;
+            text-align: right;
+            image {
+              width: 36rpx;
+              height: 36rpx;
+            }
+          }
+        }
+      }
+    }
+  }
+  // 评价-----------
+  .evaluate {
+    padding: 0 30rpx;
+    .title {
+      font-size: 28rpx;
+      font-weight: bold;
+      color: #333333;
+      padding-top: 40rpx;
+    }
+    .content {
+      .list {
+        margin-top: 40rpx;
+        position: relative;
+        &:not(:last-child)::after {
+          .border();
+        }
+
+        .words {
+          font-size: 28rpx;
+          color: #707070;
+          line-height: 40rpx;
+          margin: 30rpx 0;
+          padding-left: 84rpx;
+        }
+        .delete {
+          text-align: right;
+          image {
+            width: 36rpx;
+            height: 36rpx;
+          }
+        }
+      }
+    }
+  }
+  // 输入评论-----------
+  .comment {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15rpx 30rpx 35rpx;
+    position: fixed;
+    bottom: 0;
+    box-shadow: 0rpx 2rpx 24rpx 0rpx rgba(102, 102, 102, 0.15);
+    background: #ffffff;
+    &_input {
+      width: 572rpx;
+      height: 82rpx;
+      background: #F6F6F6;
+      border-radius: 40rpx;
+      font-size: 26rpx;
+      color: #A9A9A9;
+      line-height: 82rpx;
+      padding-left: 30rpx;
+    }
+    &_order {
+      position: relative;
+      image {
+        width: 52rpx;
+        height: 52rpx;
+        margin-right: 38rpx;
+      }
+      view {
+        position: absolute;
+        left: 21px;
+        top: -8px;
+        font-size: 20rpx;
+        color: #adadad;
+      }
+    }
+  }
+  // 输入评论输入框-----------
+  .commentInput {
+    width: 750rpx;
+    background: #FFFFFF;
+    box-shadow: 0rpx 2rpx 24rpx 0rpx rgba(102, 102, 102, 0.15);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 102;
+    padding: 20rpx 30rpx;
+    .placeholder {
+      font-size: 26rpx;
+      color: #a9a9a9;
+    }
+    &_input {
+      width: 690rpx;
+      min-height: 82rpx;
+      max-height: 130rpx;
+      background: #f6f6f6;
+      border-radius: 40rpx;
+      // padding: 16rpx 30rpx;
+      box-sizing: border-box;
+      color: #A9A9A9;
+    }
+  }
+  /* 遮罩层 */
+  .mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 101;
+    background: rgba( 51,51,51, 0.4);
+  }
+}

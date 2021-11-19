@@ -1,0 +1,52 @@
+<!-- pages/mineBox/helpRecharge/helpRecharge.wxml -->
+<cp-nav-bar title-text="帮充值" background="transparent" color="#fff" backIconColor="white" />
+<view class="recharge" style="margin-top: -{{navStatusHeight}}px">
+    <view class="top" style="height:{{navStatusHeight*px2rpx + 384}}rpx;padding-top:{{navStatusHeight*px2rpx + 32}}rpx">
+        <view class="name">输入对方手机号</view>
+        <view class="ipt">
+            <input type="number" maxlength="11" bindinput="phoneChange" placeholder="请输入对方手机号" placeholder-class="input-placeholder" />
+        </view>
+        <view class="tip" wx:if="{{errStatus == '1'}}">用户不存在</view>
+        <view class="tip" wx:if="{{errStatus == '2'}}">对方昵称：{{info.uname}}</view>
+    </view>
+    <view class="bot-b">
+        <view class="name">选择充值金额</view>
+        <view class="recharge-box">
+            <view class="box {{item.discount > 0 ? 'active' : ''}} {{selectIndex === index ? 'select' : ''}}" data-index="{{index}}" bind:tap="select" wx:for="{{discountList}}" wx:key="index">
+                <view class="total">￥{{item.amount}}</view>
+                <view class="donate" wx:if="{{item.discount > 0}}">
+                    送{{item.amount * item.discount}}
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 充值协议 -->
+    <view class="agree" style="bottom: {{isIpx ? 88 : 20}}rpx">
+        <view class="xy">
+            <image bind:tap="agree" src="{{agree ? '/images/my/icon_selected.png' : '/images/my/icon_unselected.png'}}" />
+            <view class="title">我同意</view>
+            <view class="title color" bind:tap="checkXy">《维士健康(付费)会员协议》</view>
+        </view>
+        <view class="btn {{errStatus == '2' && agree && selectIndex !== '' ? 'active' : ''}}" bind:tap="sure">
+            帮TA充值
+        </view>
+        <view class="record" bind:tap="record">
+            <view class="r">帮充值记录</view>
+            <image src="/images/my_next.png" />
+        </view>
+    </view>
+</view>
+<cp-confirm-dialog show="{{showDialog}}" title="提示" bind:on-confirm="confirm" bind:on-cancel="sure">
+    <view class="c-dialog">
+        <view class="title-c">请确认对方手机号和昵称是否正确</view>
+        <view class="phone">{{info.phone}}</view>
+        <view class="name">{{info.uname}}</view>
+    </view>
+</cp-confirm-dialog>
+<!-- 充值金额1000限制弹窗 -->
+<cp-confirm-dialog class="dialog" show="{{showCharge}}" title=" " titleStyle="margin-top:30rpx;" show-close="{{true}}" left-close="{{true}}" show-cancel="{{false}}" confirm-text="知道了" bind:on-confirm="knowFn">
+    <view class="title">
+        <view class="txt">由于维士余额账户受银行监管，充值时要保证本金部分不得超过1000元。</view>
+        <view class="txt">你帮对方充值后，对方账户本金会超过1000元，所以不能帮充值。</view>
+    </view>
+</cp-confirm-dialog>

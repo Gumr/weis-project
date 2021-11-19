@@ -1,0 +1,24 @@
+<!--pages/mineBox/operate/orderDetail/orderDetail.wxml-->
+<cp-nav-bar title-text="订单详情" background="#fff" color="#333333" backIconColor="#fff" />
+<view class="operateOrderDetail">
+    <view class="list">
+        <image class="list-l" src="{{item.operatedActivity.activityImgList[0]}}" />
+        <view class="list-r">
+            <view>{{item.operatedActivity.productName}}</view>
+            <view>
+                <text>实付</text>
+                <text>¥</text>
+                <text>{{item.actualPrice}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="contact">
+        <view bindtap="copyCode" data-code="{{item.operatedActivity.staffWeChat}}">加工作人员微信</view>
+        <view bindtap="call" data-number="{{item.operatedActivity.staffPhone}}">联系工作人员</view>
+    </view>
+    <view class="info">
+        <view>订单编号：{{item.operatedPayRecord.orderId}}</view>
+        <view>支付方式：{{item.operatedPayRecord.payWayFilter}}</view>
+        <view>下单时间：{{item.operatedPayRecord.ctimeFilter}}</view>
+    </view>
+</view>

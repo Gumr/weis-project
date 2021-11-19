@@ -1,0 +1,18 @@
+<!-- pages/mineBox/customer/customer.wxml -->
+<cp-nav-bar title-text="{{name}}" background="#fff" color="#000000" backIconColor="black"/>
+<view class="mycode">客户{{users.length}}人</view>
+
+<view class="detail-wrap" wx:if="{{users.length > 0}}">
+  <view class="detail-item" wx:for="{{users}}" wx:key="index">
+    <image class="item-img" src="{{item.headImgUrl}}" />
+    <view class="item-cont" bindtap="toMycustomer">
+      <view>{{item.uname}}</view>
+      <view>{{item.ctime}}</view>
+    </view>
+  </view>
+</view>
+<!-- 空状态 -->
+<view wx:else class="null">
+  <image src="https://prodstatic.weis1606.cn/api/smartFood/null_customer.png" />
+  <view>没有客户</view>
+</view>

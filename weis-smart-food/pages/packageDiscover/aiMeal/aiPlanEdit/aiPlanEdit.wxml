@@ -1,0 +1,87 @@
+<!--pages/solution/aiMeal/aiPlanEdit/aiPlanEdit.wxml-->
+<cp-nav-bar title-text="更改AI方案" backIconColor></cp-nav-bar>
+
+<view class="step-2">
+  <view>
+    <view class="date-tip">我想瘦</view>
+    <view class="weight-input">
+      <input
+        value="{{plan.weight}}"
+        class="input"
+        placeholder="你想瘦多少"
+        type="text"
+        maxlength="6"
+        bindinput="handleWeightInput"
+        bindkeyboardheightchange="handleKeyboardheightchange"
+      />
+      <view class="unit">kg</view>
+    </view>
+  </view>
+  <view>
+    <view class="date-tip">选择周期</view>
+    <view
+      class="date-image-item"
+      wx:for="{{dateList}}"
+      wx:key="key"
+      data-value="{{item.value}}"
+      bind:tap="typeItemTap"
+    >
+      <view class="date-select">
+        <image
+          class="select-icon"
+          src="{{plan.type === item.value ? '/images/date_select_white.png' : '/images/date_list_unchecked_white.png' }}"
+        />
+        <view>{{item.text}}</view>
+      </view>
+      <image class="date-image" src="{{item.image}}" />
+    </view>
+    <view class="date-box" bindtap="dateTap">
+      <view>开始日期</view>
+      <view class="date-text">
+        <view>{{date}}</view>
+        <image class="date-next-icon" src="/images/list_next.png" />
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="fix-btn" style="padding-bottom: {{isIpx ? 108 : 40}}rpx;">
+  <view class="btn" bind:tap="deleteTap">删除方案</view>
+  <view
+    class="btn {{disabled ? 'btn-disabled' : 'btn-active button--primary' }}"
+    data-disabled="{{disabled}}"
+    bind:tap="completeTap"
+  >保存更改</view>
+</view>
+
+<van-popup show="{{showDateDialog}}" custom-style="border-radius:20rpx; width: 690rpx;">
+  <view class="date-popup-header">
+    <view class="title">
+      选择开始日期
+      <image bindtap="closeCalendarTap" class="close-icon" src="/images/logistics_popup_off.png" />
+    </view>
+  </view>
+  <cp-meal-calendar
+    id="calendar"
+    bind:select="handleCalendarSelect"
+    expand
+    multiply="{{false}}"
+    complete
+    disableDate="{{disableDate}}"
+  ></cp-meal-calendar>
+  <view class="btn-box">
+    <view class="btn {{feasible ? 'btn-active' : ''}}" bind:tap="calendarConfirmTap">确定</view>
+  </view>
+</van-popup>
+
+<cp-confirm-dialog
+  show-close
+  show="{{showUnfeasibleDialog}}"
+  title="别逞强，一口吃不成大胖子!"
+  confirm-text="好，先瘦瘦看"
+  cancel-text="{{plan.type === 21 ? '不瘦了' : '换个周期'}}"
+  bind:on-cancel="handleUnfeasibleCancel"
+  bind:on-confirm="handleUnfeasibleConfirm"
+>
+  <view class="dialog-text">{{plan.type}}天好好吃饭，可以帮你先瘦{{maxCycleWeight}}kg脂肪</view>
+</cp-confirm-dialog>

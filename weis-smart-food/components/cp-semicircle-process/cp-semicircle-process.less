@@ -1,0 +1,56 @@
+.circle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color:#333333;
+  &__canvas {
+    position: fixed;
+    top: -9999px;
+  }
+  &__image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 0;
+  }
+  &__title {
+    color: #333333;
+    font-size: 24rpx;
+  }
+  &__label {
+    font-size: 24rpx;
+  }
+  &__value {
+    font-family: 'DINCondensedC';
+    font-size: 60rpx;
+  }
+  &__unit {
+    font-size: 18rpx;
+  }
+}
+.circle_small{
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  border: 3rpx solid #F7B500;
+  background: #ffffff;
+  position: absolute;
+  border-radius: 50%;
+  transform: translate(-50%,-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333333;
+  font-size: 20rpx;
+  font-family: "DINCondensedC";
+  .unit{
+    font-size: 14rpx;
+  }
+}

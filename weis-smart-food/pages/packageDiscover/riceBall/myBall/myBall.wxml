@@ -1,0 +1,20 @@
+<!-- pages/mineBox/mineActive/mineActive.wxml -->
+<cp-nav-bar title-text="历史饭团" color="#333333" background="#fff" backIconColor="black" />
+<view class="activity">
+  <!-- 内容 -->
+  <view class="content" wx:if="{{activityList.length>0}}">
+    <view class="list" wx:for="{{activityList}}" wx:key="index" data-index="{{index}}"  data-id="{{item.trrrId}}" bind:tap="detail">
+      <image class="cover" src="https://prodstatic.weis1606.cn/api/smartFood/meal_history.png" />
+      <view class="right">
+        <view class="title">{{item.uname}}</view>
+        <view class="date">{{item.date}}</view>
+      </view>
+    </view>
+    <view class="tips">「 你曾创建/参加的饭团会显示在此处 」</view>
+  </view>
+  <!-- 空状态 -->
+  <view class="null" wx:else>
+    <image src="https://prodstatic.weis1606.cn/api/smartFood/emp.png" />
+    <text>暂无历史饭团</text>
+  </view>
+</view>

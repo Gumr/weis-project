@@ -1,0 +1,140 @@
+// 企业优惠
+page {
+  background: #f3f4f5;
+}
+.compony {
+  .incor {
+    width: 690rpx;
+    background: #ffffff;
+    border-radius: 10rpx;
+    margin: 0 auto 20rpx;
+    padding: 30rpx;
+    position: relative;
+    .title_bg {
+      width: 690rpx;
+      height: 102rpx;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .title {
+      // padding-left: 13rpx;
+      color: #333333;
+      font-size: 32rpx;
+      font-weight: bold;
+      position: relative;
+      margin-bottom: 10rpx;
+      display: flex;
+      align-items: center;
+      image {
+        width: 32rpx;
+        height: 32rpx;
+        padding-right: 8rpx;
+      }
+      // &::before{
+      //   display: block;
+      //   content: '';
+      //   width: 5rpx;
+      //   height: 26rpx;
+      //   background: #FA6400;
+      //   border-radius: 9rpx;
+      //   position: absolute;
+      //   left: 0;
+      //   top: 0;
+      //   bottom: 0;
+      //   margin: auto;
+      // }
+      .num {
+        font-size: 22rpx;
+        margin-left: 10rpx;
+      }
+    }
+    .ipt-box {
+      width: 630rpx;
+      height: 80rpx;
+      background: rgba(246, 246, 246, 0.72);
+      border-radius: 40rpx;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 0 30rpx 0 40rpx;
+      margin: 20rpx auto 0;
+      input {
+        flex: 1;
+        height: 100%;
+      }
+      image {
+        width: 44rpx;
+        height: 44rpx;
+      }
+    }
+    .incor-box {
+      display: flex;
+      flex-wrap: wrap;
+      image {
+        width: 307rpx;
+        height: 134rpx;
+        border-radius: 20rpx;
+        margin-right: 10rpx;
+        border: 2rpx solid #f6f6f6;
+        margin-top: 28rpx;
+        &:nth-of-type(2n) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+// 员工验证
+.userCheck {
+  position: relative;
+  overflow: hidden;
+  // 用户提示
+  .usertips {
+    text-align: center;
+    font-size: 24rpx;
+    color: #808080;
+    line-height: 24rpx;
+    margin: 22rpx 0 40rpx;
+    text {
+      display: inline-block;
+      width: 96rpx;
+      height: 24rpx;
+      border-radius: 12rpx;
+      border: 1rpx solid #979797;
+      font-size: 16rpx;
+      color: #808080;
+      line-height: 24rpx;
+    }
+  }
+  // 输入框
+  .inputUser {
+    display: flex;
+    margin: 0 75rpx;
+    padding-bottom: 20rpx;
+    font-size: 36rpx;
+    color: #000000;
+    line-height: 50rpx;
+    border-bottom: 1rpx solid #e8e8e8;
+    input {
+      padding-left: 56rpx;
+      width: 78%;
+      font-weight: bold;
+    }
+    &--name {
+      margin-bottom: 50rpx;
+    }
+    &--code {
+      margin-bottom: 60rpx;
+    }
+  }
+  // 错误提示
+  .errortips {
+    font-size: 24rpx;
+    color: #fa6400;
+    position: absolute;
+    left: 200rpx;
+    bottom: 18rpx;
+  }
+}

@@ -1,0 +1,31 @@
+.tabs {
+  background-color: #fff;
+  z-index: 2;
+  position: fixed;
+  left: 0;
+  height: 76rpx;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  line-height: 70rpx;
+  .tab {
+    color: rgba(51, 51, 51, 0.5);
+    position: relative;
+    &__active {
+      color: rgba(250, 100, 0, 1);
+      font-size: 32rpx;
+    }
+    &__active::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 6rpx;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32rpx;
+      height: 6rpx;
+      background: #fa6400;
+      border-radius: 4rpx;
+    }
+  }
+}

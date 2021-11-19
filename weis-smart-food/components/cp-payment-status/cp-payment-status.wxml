@@ -1,0 +1,20 @@
+<!--components/cp-payment-status/cp-payment-status.wxml-->
+<view class="paymentStatus">
+    <view class="status" wx:if="{{data.status == 1}}">
+        <image class="img" src="{{data.success.icon?data.success.icon:'https://prodstatic.weis1606.cn/api/smartFood/forecast_success.png'}}"/>
+        <view class="con">{{data.success.content}}</view>
+        <view class="tip">{{data.success.tip}}</view>
+        <view class="btn {{data.success.btnText?'btnTwo':''}}">
+            <view class="back" bind:tap="back">返回</view>
+            <view class="reset" bind:tap="detail" wx:if="{{data.success.btnText}}">{{data.success.btnText?data.success.btnText:'查看明细'}}</view>
+        </view>
+    </view>
+    <view class="status" wx:if="{{data.status == 0}}">
+        <image class="img" src="{{data.fail.icon?data.fail.icon:'https://prodstatic.weis1606.cn/api/smartFood/forecast_fail.png'}}"/>
+        <view class="con">{{data.fail.content}}</view>
+        <view class="btn btnTwo">
+            <view class="back" bind:tap="back">返回</view>
+            <view class="reset" bind:tap="submit">{{data.fail.btnText?data.fail.btnText:'重新提交'}}</view>
+        </view>
+    </view>
+</view>

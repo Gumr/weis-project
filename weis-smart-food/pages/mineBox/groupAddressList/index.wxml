@@ -1,0 +1,56 @@
+<!--pages/mineBox/groupAddressList/index.wxml-->
+<cp-nav-bar title-text="公司名称" color="#333333" background="#fff" backIconColor="black" />
+<view class="AddressList">
+  <view class="selectAdd" wx:if="{{tgctype == '00'}}" bindtap="toresever" data-type="userAdd">
+    <view class="addname flexname">
+      <image src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/userAdd.png" />
+      <view class="titfont noright">
+        自定义收货地址点餐
+        <view>配送到公司以外的地址时使用，自付配送费</view>
+      </view>
+    </view>
+  </view>
+
+  <view
+    class="selectAdd"
+    wx:for="{{corpAddress}}"
+    wx:key="index"
+    bindtap="toresever"
+    data-tgca-id="{{item.tgcaId}}"
+    data-tgcAreaType="{{item.tgcAreaType}}"
+    data-tgcaEmpId="{{item.tgcaEmpId}}"
+  >
+    <view class="addname">
+      <view class="titfont">
+        {{item.tgcaName}}
+        <view>{{item.tgcaProvince}}{{item.tgcaCity}}{{item.tgcaArea}}{{item.tgcaAddress}}</view>
+      </view>
+    </view>
+    <view class="adddistance">
+      <text>距离您\n{{item.distance < 1000 ? item.distance + 'm' : item.distance/1000 + 'km'}}</text>
+    </view>
+  </view>
+</view>
+<!--切换主账号-->
+<van-popup show="{{showPopup}}" round  position="bottom">
+  <view class="changeUser">
+    <view class="title">
+      当前不支持用子账号点餐，请切换为主账号
+    </view>
+    <view class="content">
+      <view class="user">
+      <image src="{{subInfo.tsuHeadImg?subInfo.tsuHeadImg:subInfo.defaultAvatar}}" />
+      <view class="info"><text>{{subInfo.tsuSubUname}}</text> <view>当前子账号</view></view>    
+      </view>  
+       <view class="user">
+      <image src="{{userInfo.headImgUrl}}" />
+      <view class="info"><text>{{userInfo.uname}}</text> <view class="changetips">需切换成</view></view>    
+      </view>     
+    </view>
+    <view class="btnlist">
+      <button class="cancel" bindtap="cancelbtn">取消</button>
+      <button class="confrim" bindtap="changeUser">立即切换</button>    
+    </view>
+    
+  </view>
+</van-popup>

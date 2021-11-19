@@ -1,0 +1,28 @@
+<!-- <cover-view class="tab-bar-container" scroll-top="0" style="padding-bottom:{{isIpx ? '30rpx' : 0}}" wx:if="{{showTabbar}}"> -->
+<!-- tabbar背景 -->
+<!-- <cover-view class="bg">
+    <cover-image class="tab-bar-bg" scroll-top="0" src="/images/tabbar/nav_bg.png" />
+  </cover-view> -->
+<!-- tab-bar -->
+<!-- <cover-view class="tab-bar-container" scroll-top="0" style="padding-bottom:{{isIpx ? '30rpx' : 0}}" wx:if="{{showTabbar}}">
+  <cover-view class="tab-bar" scroll-top="0">
+    <cover-view class="tab-bar-item" wx:for="{{list}}" wx:key="index" data-url="{{item.pagePath}}" bindtap="switchTab">
+      <cover-image class="tab-bar-icon" src="{{selected === index ? item.selectedIconPath : item.iconPath}}" />
+      <cover-view class="tab-bar-text" style="color: {{selected === index ? selectedColor : color}}">
+        {{item.text}}
+      </cover-view>
+      <cover-view class="tab-bar-uncheck" wx:if="{{index === 3 && uncheck}}"></cover-view>
+    </cover-view>
+  </cover-view>
+</cover-view> -->
+<view class="tab-bar-container" scroll-top="0" style="padding-bottom:{{isIpx ? '30rpx' : 0}}" wx:if="{{showTabbar}}">
+  <view class="tab-bar" scroll-top="0">
+    <view class="tab-bar-item" wx:for="{{list}}" wx:key="index" data-url="{{item.pagePath}}" bindtap="switchTab">
+      <image class="tab-bar-icon" src="{{selected === index ? item.selectedIconPath : item.iconPath}}" />
+      <view class="tab-bar-text" style="color: {{selected === index ? selectedColor : color}}">
+        {{item.text}}
+      </view>
+      <view class="tab-bar-uncheck" wx:if="{{index === 3 && uncheck}}"></view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,760 @@
+page {
+  background: #f3f4f5;
+}
+.border {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 2rpx;
+  background: #333333;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  bottom: 50%;
+  margin: auto;
+}
+.member {
+  width: 100%;
+}
+.member .navBarBg {
+  width: 100%;
+  height: 302rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.member .boxOne {
+  padding: 50rpx 30rpx 300rpx;
+}
+.member .boxOne .tip {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333333;
+  text-align: center;
+  padding-bottom: 42rpx;
+}
+.member .boxOne .tip text {
+  color: #fa6400;
+}
+.member .boxOne .boxBg {
+  background: #ffffff;
+  box-shadow: 0rpx 4rpx 24rpx -6rpx rgba(186, 186, 186, 0.3);
+  border-radius: 20rpx;
+  margin-bottom: 30rpx;
+  padding: 0 30rpx;
+}
+.member .boxOne .header {
+  display: flex;
+  padding: 30rpx 0 26rpx;
+  margin-left: -40rpx;
+}
+.member .boxOne .header .tag {
+  position: relative;
+  width: 104rpx;
+  height: 60rpx;
+}
+.member .boxOne .header .tag image {
+  width: 104rpx;
+  height: 60rpx;
+}
+.member .boxOne .header .tag text {
+  position: absolute;
+  left: 8px;
+  top: 3px;
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #82502d;
+}
+.member .boxOne .header .title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.85);
+  margin-left: 20rpx;
+}
+.member .boxOne .header .title text {
+  color: #fa6400;
+}
+.member .boxOne .coupon {
+  padding-bottom: 10rpx;
+}
+.member .boxOne .coupon .content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.member .boxOne .coupon .content .list {
+  position: relative;
+  width: 196rpx;
+  height: 110rpx;
+  margin-bottom: 20rpx;
+}
+.member .boxOne .coupon .content .list .bg {
+  width: 196rpx;
+  height: 110rpx;
+}
+.member .boxOne .coupon .content .list .con {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 196rpx;
+  height: 110rpx;
+  padding: 14rpx 0 16rpx;
+  text-align: center;
+}
+.member .boxOne .coupon .content .list .con_price {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #fa6400;
+  line-height: 24rpx;
+}
+.member .boxOne .coupon .content .list .con_price text {
+  font-size: 52rpx;
+  line-height: 52rpx;
+}
+.member .boxOne .coupon .content .list .con_threshold {
+  font-size: 20rpx;
+  color: #7d573d;
+  margin-top: 8rpx;
+}
+.member .boxOne .add {
+  padding-bottom: 38rpx;
+}
+.member .boxOne .add .content {
+  display: flex;
+}
+.member .boxOne .add .content .list .card {
+  position: relative;
+  width: 232rpx;
+  height: 176rpx;
+  margin-right: 20rpx;
+}
+.member .boxOne .add .content .list .card .bg {
+  width: 232rpx;
+  height: 176rpx;
+}
+.member .boxOne .add .content .list .card .con {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 232rpx;
+  height: 176rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 52rpx 0 70rpx;
+}
+.member .boxOne .add .content .list .card .con_price,
+.member .boxOne .add .content .list .card .con_num {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #fa6400;
+  line-height: 24rpx;
+}
+.member .boxOne .add .content .list .card .con_price text,
+.member .boxOne .add .content .list .card .con_num text {
+  font-size: 52rpx;
+  line-height: 52rpx;
+}
+.member .boxOne .add .content .list .card .con_operator {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #fb9148;
+  line-height: 24rpx;
+  padding: 0 10rpx;
+}
+.member .boxOne .add .content .list .price {
+  display: flex;
+  align-items: center;
+  margin: 26rpx 0 24rpx;
+}
+.member .boxOne .add .content .list .price_now {
+  font-size: 22rpx;
+  font-weight: bold;
+  color: #333333;
+  line-height: 22rpx;
+}
+.member .boxOne .add .content .list .price_now text {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333333;
+  line-height: 36rpx;
+}
+.member .boxOne .add .content .list .price_origin {
+  color: rgba(51, 51, 51, 0.5);
+  font-size: 22rpx;
+  margin-left: 10rpx;
+  position: relative;
+}
+.member .boxOne .add .content .list .price_origin::after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 2rpx;
+  background: #333333;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  bottom: 50%;
+  margin: auto;
+}
+.member .boxOne .add .content .list .buy {
+  width: 108rpx;
+  height: 38rpx;
+  background: rgba(250, 100, 0, 0.06);
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  font-weight: bold;
+  color: #fa6400;
+  line-height: 38rpx;
+  text-align: center;
+}
+.member .boxOne .sign .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 54rpx 0 80rpx;
+}
+.member .boxOne .sign .content image {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 20rpx;
+}
+.member .boxOne .sign .content view {
+  font-size: 28rpx;
+  color: rgba(0, 0, 0, 0.85);
+}
+.member .boxOne .bottom {
+  width: 100%;
+  background: #ffffff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  padding: 0 50rpx;
+}
+.member .boxOne .bottom_btn {
+  position: relative;
+  width: 650rpx;
+  height: 88rpx;
+  background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+  border-radius: 44rpx;
+  text-align: center;
+  font-size: 36rpx;
+  color: #ffffff;
+  line-height: 88rpx;
+  margin-top: 10rpx;
+}
+.member .boxOne .bottom_btn text:nth-child(1) {
+  font-size: 24rpx;
+}
+.member .boxOne .bottom_btn text:nth-child(2) {
+  font-weight: bold;
+  margin-right: 10rpx;
+}
+.member .boxOne .bottom_btn image {
+  width: 310rpx;
+  height: 75rpx;
+  position: absolute;
+  right: 0;
+  top: -24rpx;
+}
+.member .boxOne .bottom_record {
+  margin: 30rpx 0 58rpx;
+}
+.member .boxOne .bottom_record text {
+  font-size: 28rpx;
+  color: #999999;
+}
+.member .boxOne .bottom_record image {
+  width: 24rpx;
+  height: 24rpx;
+}
+.member .boxTwo {
+  padding: 50rpx 30rpx 190rpx;
+}
+.member .boxTwo .tip {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333333;
+  text-align: center;
+  padding-bottom: 42rpx;
+}
+.member .boxTwo .tip text {
+  color: #fa6400;
+}
+.member .boxTwo .boxBg {
+  background: #ffffff;
+  box-shadow: 0rpx 4rpx 24rpx -6rpx rgba(186, 186, 186, 0.3);
+  border-radius: 20rpx;
+  margin-bottom: 30rpx;
+  padding: 0 30rpx;
+}
+.member .boxTwo .header {
+  padding: 30rpx 0 26rpx;
+}
+.member .boxTwo .header .title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.85);
+}
+.member .boxTwo .header .title text {
+  color: #fa6400;
+}
+.member .boxTwo .coupon {
+  padding-bottom: 10rpx;
+}
+.member .boxTwo .coupon .header {
+  display: flex;
+  justify-content: space-between;
+}
+.member .boxTwo .coupon .header .renew {
+  width: 136rpx;
+  height: 46rpx;
+  line-height: 46rpx;
+  background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+  border-radius: 23rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+}
+.member .boxTwo .coupon .content {
+  display: flex;
+}
+.member .boxTwo .coupon .content .list {
+  position: relative;
+  width: 170rpx;
+  height: 220rpx;
+  margin-right: 20rpx;
+}
+.member .boxTwo .coupon .content .list.haveUsed .con {
+  color: #666666;
+}
+.member .boxTwo .coupon .content .list.haveUsed .con_price {
+  color: #666666;
+}
+.member .boxTwo .coupon .content .list.haveUsed .con_threshold {
+  color: #666666;
+}
+.member .boxTwo .coupon .content .list.haveUsed .con_use {
+  color: #666666;
+  border: none;
+}
+.member .boxTwo .coupon .content .list .bg {
+  width: 170rpx;
+  height: 220rpx;
+}
+.member .boxTwo .coupon .content .list .con {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 170rpx;
+  height: 220rpx;
+  padding: 20rpx 0 30rpx;
+  text-align: center;
+}
+.member .boxTwo .coupon .content .list .con_price {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #fa6400;
+  line-height: 24rpx;
+}
+.member .boxTwo .coupon .content .list .con_price text {
+  font-size: 52rpx;
+  line-height: 52rpx;
+}
+.member .boxTwo .coupon .content .list .con_threshold {
+  font-size: 20rpx;
+  color: #7d573d;
+  margin-top: 8rpx;
+}
+.member .boxTwo .coupon .content .list .con_use {
+  width: 120rpx;
+  height: 38rpx;
+  line-height: 36rpx;
+  border-radius: 20rpx;
+  border: 2rpx solid rgba(125, 87, 61, 0.5);
+  font-size: 20rpx;
+  font-weight: bold;
+  color: #7d573d;
+  margin: 60rpx auto 0;
+}
+.member .boxTwo .coupon .remark {
+  font-size: 24rpx;
+  color: #7d573d;
+  margin: 30rpx 0 20rpx;
+}
+.member .boxTwo .coupon .remark.list {
+  margin-top: 0;
+}
+.member .boxTwo .add {
+  padding-bottom: 38rpx;
+}
+.member .boxTwo .add .header {
+  display: flex;
+}
+.member .boxTwo .add .header .addTip {
+  padding: 0 20rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  background: rgba(250, 100, 0, 0.1);
+  border-radius: 22rpx;
+  display: flex;
+  align-items: center;
+  margin-left: 10rpx;
+}
+.member .boxTwo .add .header .addTip image {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 8rpx;
+}
+.member .boxTwo .add .header .addTip text {
+  font-size: 24rpx;
+  color: #7d573d;
+}
+.member .boxTwo .add .content .list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 60rpx;
+}
+.member .boxTwo .add .content .list .card {
+  position: relative;
+  width: 232rpx;
+  height: 176rpx;
+  margin-right: 20rpx;
+}
+.member .boxTwo .add .content .list .card .bg {
+  width: 232rpx;
+  height: 176rpx;
+}
+.member .boxTwo .add .content .list .card .con {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 232rpx;
+  height: 176rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 52rpx 0 70rpx;
+}
+.member .boxTwo .add .content .list .card .con_price,
+.member .boxTwo .add .content .list .card .con_num {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #fa6400;
+  line-height: 24rpx;
+}
+.member .boxTwo .add .content .list .card .con_price text,
+.member .boxTwo .add .content .list .card .con_num text {
+  font-size: 52rpx;
+  line-height: 52rpx;
+}
+.member .boxTwo .add .content .list .card .con_operator {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #fb9148;
+  line-height: 24rpx;
+  padding: 0 10rpx;
+}
+.member .boxTwo .add .content .list .info {
+  width: 230rpx;
+}
+.member .boxTwo .add .content .list .info .name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333333;
+}
+.member .boxTwo .add .content .list .info .price {
+  display: flex;
+  align-items: center;
+  margin: 26rpx 0 24rpx;
+}
+.member .boxTwo .add .content .list .info .price_now {
+  font-size: 22rpx;
+  font-weight: bold;
+  color: #fa6400;
+  line-height: 22rpx;
+}
+.member .boxTwo .add .content .list .info .price_now text {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #fa6400;
+  line-height: 36rpx;
+}
+.member .boxTwo .add .content .list .info .price_origin {
+  color: rgba(51, 51, 51, 0.5);
+  font-size: 22rpx;
+  margin-left: 10rpx;
+  position: relative;
+}
+.member .boxTwo .add .content .list .info .price_origin::after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 2rpx;
+  background: #333333;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  bottom: 50%;
+  margin: auto;
+}
+.member .boxTwo .add .content .list .buy {
+  height: 46rpx;
+  line-height: 46rpx;
+  background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+  border-radius: 23rpx;
+  padding: 0 24rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #ffffff;
+}
+.member .boxTwo .add .content .list .buy.haveUsed {
+  background: linear-gradient(90deg, #ededed 0%, #d4d4d4 100%);
+  color: #666666;
+}
+.member .boxTwo .bottom {
+  width: 100%;
+  background: #ffffff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  padding: 0 50rpx;
+}
+.member .boxTwo .bottom_record {
+  margin: 30rpx 0 58rpx;
+}
+.member .boxTwo .bottom_record text {
+  font-size: 28rpx;
+  color: #999999;
+}
+.member .boxTwo .bottom_record image {
+  width: 24rpx;
+  height: 24rpx;
+}
+.popup .price {
+  background: #f9f9f9;
+  border-radius: 20rpx;
+  padding: 40rpx 30rpx 46rpx;
+}
+.popup .price .priceList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.popup .price .priceList view:nth-child(1) {
+  font-size: 28rpx;
+  color: #000000;
+}
+.popup .price_origin view:nth-child(2) {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #000000;
+}
+.popup .price_discount {
+  margin: 40rpx 0 46rpx;
+}
+.popup .price_discount view:nth-child(2) {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #fa6400;
+}
+.popup .price_now view:nth-child(2) {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #000000;
+}
+.popup .price_now view:nth-child(2) text {
+  font-size: 40rpx;
+}
+.popup .buy {
+  overflow: hidden;
+  width: 680rpx;
+  height: 88rpx;
+  background: #393636;
+  box-shadow: 0rpx 9rpx 30rpx -6rpx rgba(102, 102, 102, 0.5);
+  border-radius: 44rpx;
+  padding-left: 48rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 46rpx 0;
+}
+.popup .buy .money {
+  display: flex;
+  align-items: center;
+}
+.popup .buy .money_now {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 24rpx;
+}
+.popup .buy .money_now text {
+  font-size: 44rpx;
+  line-height: 40rpx;
+}
+.popup .buy .money_discount {
+  font-size: 20rpx;
+  color: #999999;
+  margin-left: 10rpx;
+}
+.popup .buy .btn {
+  width: 182rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: linear-gradient(135deg, #fb892d 0%, #fe5e0f 100%);
+  box-shadow: 0rpx 2rpx 24rpx 0rpx rgba(102, 102, 102, 0.15);
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+}
+.renewPopup {
+  padding: 0 40rpx;
+}
+.renewPopup .card {
+  position: relative;
+  width: 670rpx;
+  height: 343rpx;
+  margin: 46rpx 0 10rpx;
+}
+.renewPopup .card .bg {
+  width: 670rpx;
+  height: 343rpx;
+}
+.renewPopup .card .con {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 670rpx;
+  height: 343rpx;
+  padding: 0 24rpx;
+}
+.renewPopup .card .con_date {
+  font-size: 24rpx;
+  color: #fa6400;
+  margin: 80rpx 0 40rpx;
+  text-align: center;
+}
+.renewPopup .card .con_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.renewPopup .card .con_list .name {
+  font-size: 24rpx;
+  color: #907d59;
+  margin: 24rpx 0 30rpx;
+}
+.renewPopup .card .con_list .coupon {
+  text-align: center;
+}
+.renewPopup .card .con_list .coupon_box {
+  position: relative;
+  width: 186rpx;
+  height: 120rpx;
+}
+.renewPopup .card .con_list .coupon_box .bg {
+  width: 186rpx;
+  height: 120rpx;
+}
+.renewPopup .card .con_list .coupon_box .ct {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 186rpx;
+  height: 120rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #7d573d;
+}
+.renewPopup .card .con_list .add {
+  text-align: center;
+}
+.renewPopup .card .con_list .add_box {
+  width: 176rpx;
+  height: 120rpx;
+}
+.renewPopup .card .con_list .add_box .bg {
+  width: 176rpx;
+  height: 120rpx;
+}
+.renewPopup .card .con_list .sign {
+  text-align: center;
+}
+.renewPopup .card .con_list .sign_box {
+  width: 196rpx;
+  height: 120rpx;
+}
+.renewPopup .card .con_list .sign_box .bg {
+  width: 196rpx;
+  height: 120rpx;
+}
+.addBuyPopup {
+  padding: 0 40rpx;
+}
+.addBuyPopup .list {
+  display: flex;
+  align-items: center;
+  margin: 46rpx 0 10rpx;
+  padding: 40rpx 30rpx;
+  background: #f9f9f9;
+  border-radius: 20rpx;
+}
+.addBuyPopup .list .card {
+  position: relative;
+  width: 232rpx;
+  height: 176rpx;
+  margin-right: 20rpx;
+}
+.addBuyPopup .list .card .bg {
+  width: 232rpx;
+  height: 176rpx;
+}
+.addBuyPopup .list .card .con {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 232rpx;
+  height: 176rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 52rpx 0 70rpx;
+}
+.addBuyPopup .list .card .con_price,
+.addBuyPopup .list .card .con_num {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #fa6400;
+  line-height: 24rpx;
+}
+.addBuyPopup .list .card .con_price text,
+.addBuyPopup .list .card .con_num text {
+  font-size: 52rpx;
+  line-height: 52rpx;
+}
+.addBuyPopup .list .card .con_operator {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #fb9148;
+  line-height: 24rpx;
+  padding: 0 10rpx;
+}
+.addBuyPopup .list .info .name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333333;
+}
+.addBuyPopup .list .info .remark {
+  font-size: 24rpx;
+  color: #fa6400;
+}

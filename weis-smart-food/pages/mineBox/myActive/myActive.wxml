@@ -1,0 +1,44 @@
+<!-- pages/mineBox/mineActive/mineActive.wxml -->
+<cp-nav-bar title-text="我的活动" color="#333333" background="#fff" backIconColor="black" />
+<view class="activity">
+  <!-- tab-保留勿删,后续需加 -->
+  <!-- <view class="tab">
+    <view class="tab_sub {{selectTab == 0 ? 'active' : ''}}" data-index="0" bindtap="switchTab">
+      减脂营
+    </view>
+    <view class="tab_sub {{selectTab == 1 ? 'active' : ''}}" data-index="1" bindtap="switchTab">
+      AI瘦身
+    </view>
+  </view> -->
+  <!-- 内容 -->
+  <view class="content" wx:if="{{activityList.length>0}}">
+    <!-- <view class="list" wx:for="{{activityList}}" wx:key="index" data-label="{{item.$label}}" data-index="{{index}}" bind:tap="campTap">
+      <image class="top" src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/new_banner%E5%A4%87%E4%BB%BD.png" />
+      <view class="bottom">
+        <view class="bottom-l">
+          <view class="name">{{item.title}}</view>
+          <view class="date">开营/结营时间：{{item.startDate}}-{{item.endDate}}</view>
+        </view>
+        <view class="bottom-r">
+          <view class="btn">
+            {{item.$label}}
+            <image wx:if="{{item.stt !== '03'}}" src="/images/my/find_chifa_next_gules.png" />
+          </view>
+        </view>
+      </view>
+    </view> -->
+    <view class="list" wx:for="{{activityList}}" wx:key="index" data-index="{{index}}" bind:tap="detail">
+      <image class="cover" src="{{item.imgUrl}}" />
+      <view class="right">
+        <view class="title">{{item.campName}}</view>
+        <view class="date">{{item.sTime}}～{{item.eTime}}</view>
+        <view class="status {{(item.type == '02' && item.stt == '04') || (item.type == '01' && item.stt == '03') ? 'black' : ''}}">{{item.type == '02' ? campStatus[item.stt] : onLineCampStatus[item.stt]}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 空状态 -->
+  <view class="null" wx:else>
+    <image src="https://prodstatic.weis1606.cn/api/smartFood/emp.png" />
+    <text>你参加的线上减脂营和\n企业减脂PK赛会显示在此处</text>
+  </view>
+</view>

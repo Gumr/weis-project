@@ -1,0 +1,44 @@
+.container {
+  text-align: center;
+  margin-top: 164rpx;
+}
+.container .errimage {
+  width: 320rpx;
+  height: 240rpx;
+}
+.container .tips {
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 600;
+  color: #333333;
+  margin-top: 33rpx;
+  margin-bottom: 100rpx;
+}
+.container .number {
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 600;
+  color: #FE5E0F;
+}
+.container .number image {
+  width: 20rpx;
+  height: 20rpx;
+}
+.container .gray {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #A9A9A9;
+  margin-top: 30rpx;
+}
+.container button {
+  width: 420rpx;
+  height: 88rpx;
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+  border-radius: 50rpx;
+  font-size: 36rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin-top: 99rpx;
+}

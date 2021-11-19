@@ -1,0 +1,13 @@
+<!--pages/exitMini/exitMini.wxml-->
+
+<van-popup show="{{true}}" custom-style="border-radius:20rpx;" z-index="1000" catch:touchmove="true">
+  <view class="dialog-title">
+    <text class selectable="false" space="false" decode="false">提示</text>
+  </view>
+  <view class="tip">请在系统设置中打开定位服务，并删除小程序，重新下载</view>
+  <view class="dialog-footer">
+    <navigator target="miniProgram" open-type="exit" class="confirm-btn">
+      确定
+    </navigator>
+  </view>
+</van-popup>

@@ -1,0 +1,233 @@
+page {
+  background: #f8f8f8;
+}
+.borderDel {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 2rpx;
+  background: rgba(0, 0, 0, 0.5);
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  bottom: 50%;
+  margin: auto;
+}
+.goodsDetail {
+  padding-bottom: 144rpx;
+  // 头部
+  .header {
+    padding: 30rpx;
+    background: #ffffff;
+    border-radius: 0rpx 0rpx 20rpx 20rpx;
+    margin-bottom: 20rpx;
+    // 轮播
+    .slideshow {
+      width: 690rpx;
+      &.active {
+        animation: amima 200ms linear forwards;
+      }
+
+      &.hide {
+        animation: hide 200ms linear forwards;
+      }
+
+      @keyframes hide {
+        0% {
+          height: 136rpx;
+        }
+
+        100% {
+          height: 0;
+        }
+      }
+
+      @keyframes amima {
+        0% {
+          height: 0;
+        }
+
+        100% {
+          height: 136rpx;
+        }
+      }
+
+      &__image {
+        width: 100%;
+        height: 515rpx;
+        border-radius: 12rpx;
+      }
+
+      &__dots {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10rpx 0;
+      }
+
+      &__dot {
+        width: 10rpx;
+        height: 10rpx;
+        background: #d8d8d8;
+        margin-right: 10rpx;
+        border-radius: 50%;
+        display: flex;
+
+        &--active {
+          width: 12rpx;
+          height: 12rpx;
+          background: #fa6400;
+        }
+      }
+    }
+    .info {
+      .name {
+        font-size: 36rpx;
+        font-weight: bold;
+        color: #333333;
+        margin: 32rpx 0;
+      }
+      .price {
+        display: flex;
+        align-items: flex-end;
+        &_now {
+          font-size: 36rpx;
+          font-weight: bold;
+          color: #fa6400;
+          line-height: 33rpx;
+          margin-right: 16rpx;
+          text {
+            font-size: 56rpx;
+          }
+        }
+        &_origin {
+          font-size: 24rpx;
+          color: rgba(0, 0, 0, 0.5);
+          line-height: 33rpx;
+          position: relative;
+          &::after {
+            .borderDel();
+          }
+        }
+      }
+      .desc {
+        background: #fef7f5;
+        border-radius: 10rpx;
+        display: flex;
+        justify-content: space-between;
+        padding: 16rpx 24rpx;
+        margin-top: 16rpx;
+        .list {
+          display: flex;
+          &_img {
+            width: 32rpx;
+            height: 32rpx;
+            margin-right: 12rpx;
+          }
+          &_word {
+            font-size: 24rpx;
+            color: rgba(0, 0, 0, 0.6);
+          }
+        }
+      }
+    }
+  }
+  // 商品详情
+  .content {
+    padding: 30rpx 30rpx 0;
+    background: #ffffff;
+    border-radius: 0rpx 0rpx 20rpx 20rpx;
+    // margin-bottom: 20rpx;
+    .title {
+      font-size: 36rpx;
+      font-weight: bold;
+      color: #333333;
+    }
+    .tip {
+      font-size: 28rpx;
+      color: rgba(51, 51, 51, 0.7);
+      margin: 16rpx 0 32rpx;
+    }
+    .detailImg {
+      .list {
+        width: 100%;
+        // height: 606rpx;
+        margin-bottom: 20rpx;
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  //   底部
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #ffffff;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22rpx 30rpx 32rpx;
+    .price {
+      display: flex;
+      align-items: flex-end;
+      &_now {
+        font-size: 36rpx;
+        font-weight: bold;
+        color: #fa6400;
+        line-height: 33rpx;
+        margin-right: 16rpx;
+        text {
+          font-size: 56rpx;
+        }
+      }
+      &_origin {
+        font-size: 24rpx;
+        color: rgba(0, 0, 0, 0.5);
+        line-height: 33rpx;
+        position: relative;
+        &::after {
+          .borderDel();
+        }
+      }
+    }
+    .icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      // margin-left: 40rpx;
+      padding: 0 21rpx;
+      image {
+        width: 48rpx;
+        height: 48rpx;
+        margin-bottom: 4rpx;
+      }
+      .text {
+        font-size: 20rpx;
+        color: rgba(0, 0, 0, 0.7);
+      }
+      button {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        opacity: 0;
+      }
+    }
+    .buy {
+      width: 500rpx;
+      height: 90rpx;
+      line-height: 90rpx;
+      background: #fa6400;
+      border-radius: 45rpx;
+      font-size: 36rpx;
+      color: #ffffff;
+      text-align: center;
+      margin-left: 10rpx;
+    }
+  }
+}

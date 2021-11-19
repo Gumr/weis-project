@@ -1,0 +1,122 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrap .type {
+  color: #666666;
+  font-size: 32rpx;
+  line-height: 32rpx;
+}
+.wrap .type:first-of-type {
+  margin-right: 62rpx;
+}
+.wrap .type.active {
+  color: #333333;
+  font-weight: bold;
+  position: relative;
+}
+.wrap .type.active::after {
+  display: block;
+  content: "";
+  width: 64rpx;
+  height: 8rpx;
+  background: #fa6400;
+  border-radius: 4rpx;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -15rpx;
+}
+.operateShare {
+  width: 750rpx;
+  padding: 0 50rpx 100rpx;
+}
+.operateShare .title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #000000;
+  line-height: 40rpx;
+  padding: 26rpx 0 14rpx;
+}
+.operateShare .share .list .list-item {
+  height: 150rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.operateShare .share .list .list-item .list-item-img {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-right: 30rpx;
+}
+.operateShare .share .list .list-item .list-item-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #000000;
+  line-height: 42rpx;
+  max-width: 270rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.operateShare .share .list .list-item .list-item-status {
+  position: absolute;
+  right: 0;
+  padding: 0 22rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  border-radius: 18rpx;
+  border: 1rpx solid #999999;
+  font-size: 22rpx;
+  color: #999999;
+}
+.operateShare .rank .list .list-item {
+  height: 150rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.operateShare .rank .list .list-item .list-item-rank {
+  position: absolute;
+  left: 0;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #000000;
+}
+.operateShare .rank .list .list-item .list-item-img {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin: 0 30rpx 0 60rpx;
+}
+.operateShare .rank .list .list-item .list-item-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #000000;
+  line-height: 42rpx;
+  max-width: 270rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.operateShare .rank .list .list-item .list-item-num {
+  position: absolute;
+  right: 0;
+  font-size: 28rpx;
+  color: #999999;
+}
+.operateShare .null {
+  margin-top: 270rpx;
+  text-align: center;
+}
+.operateShare .null image {
+  width: 320rpx;
+  height: 240rpx;
+}
+.operateShare .null view {
+  font-size: 28rpx;
+  color: #a9a9a9;
+  line-height: 40rpx;
+}

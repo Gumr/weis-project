@@ -1,0 +1,158 @@
+.flex {
+  display: flex;
+}
+.flex-items-center {
+  display: flex;
+  align-items: center;
+}
+.flex-content-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.flex-content-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.sku {
+  padding: 40rpx 0 35rpx;
+  border-bottom: 2rpx solid rgba(151, 151, 151, 0.2);
+}
+.sku__content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.sku__count {
+  margin: 7rpx 0 12rpx;
+}
+.card {
+  padding: 0 30rpx;
+  background: #ffffff;
+  box-shadow: 0rpx 4rpx 20rpx 0rpx rgba(164, 180, 183, 0.2);
+  border-radius: 10rpx;
+  margin-bottom: 30rpx;
+}
+.upload-list {
+  margin: 20rpx 0;
+}
+.upload-list .upload {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f2f3f4;
+  border-radius: 10rpx;
+  position: relative;
+  margin-right: 20rpx;
+}
+.upload-list .upload__image {
+  width: 80rpx;
+  height: 80rpx;
+}
+.upload-list .upload__close {
+  position: absolute;
+  width: 36rpx;
+  height: 36rpx;
+  right: -18rpx;
+  top: -18rpx;
+}
+.upload-list .upload__camera {
+  border-radius: 10rpx;
+}
+.textarea {
+  padding: 20rpx;
+  background: #f2f3f4;
+  border-radius: 10rpx;
+}
+.refund-price {
+  padding: 36rpx 0;
+}
+.refund-reason {
+  padding: 34rpx 0 20rpx;
+}
+.line {
+  position: relative;
+  left: -35rpx;
+  width: 750rpx;
+  height: 2rpx;
+  background: rgba(151, 151, 151, 0.2);
+}
+.text-end {
+  text-align: end;
+}
+.container {
+  background-color: #f3f4f5;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 36rpx;
+}
+.sku__unit {
+  font-size: 24rpx;
+  color: #ff5959;
+}
+.sku__price {
+  font-size: 32rpx;
+  color: #ff5959;
+}
+.title {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.sku-image {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 10rpx;
+}
+.close-icon {
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.label {
+  font-size: 30rpx;
+  display: inline-block;
+  width: 70rpx;
+  text-align: center;
+}
+.label__unit {
+  color: #333333;
+  font-size: 24rpx;
+}
+.label__price {
+  color: #333333;
+  font-size: 42rpx;
+  font-weight: bold;
+}
+.label__tip {
+  color: #a9a9a9;
+  font-size: 20rpx;
+}
+.calc-icon {
+  width: 42rpx;
+  height: 42rpx;
+}
+.fixed-bottom {
+  background-color: #f3f4f5;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30rpx 50rpx 0;
+}
+.fixed-bottom .btn {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  justify-content: center;
+  width: 650rpx;
+  height: 88rpx;
+  background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+  border-radius: 50rpx;
+  font-size: 36rpx;
+}
+.fixed-bottom .btn__disabled {
+  background: #d8d8d8;
+}

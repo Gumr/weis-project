@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "van-popup": "/components/vant/popup/index",
+    "cp-bottom-popup": "/components/cp-bottom-popup/cp-bottom-popup",
+    "cp-confirm-dialog": "/components/cp-confirm-dialog/cp-confirm-dialog",
+    "cp-control-sugar": "/components/cp-control-sugar/cp-control-sugar"
+  }
+}

@@ -1,0 +1,74 @@
+<!--pages/mineBox/groupAddressList/index.wxml-->
+<wxs module="filters" src="../../../../utils/filter.wxs"></wxs>
+<cp-nav-bar title-text="签收单详情" color="#333333" background="#F3F4F5" backIconColor="black" />
+<view class="confirmList">
+  <view class="com-tit">
+    <view>共{{corpOrderDetailBean.totalCopies}}份，已签收{{corpOrderDetailBean.signCopies}}份</view>
+    <button open-type="share" wx:if="{{!share}}">给别人签收</button>
+  </view>
+  <view class="com-info">
+    <view>
+      <text class>收货日期</text>
+      <text class>{{corpOrderDetailBean.orderDate}}</text>
+    </view>
+    <view>
+      <text class>取餐地址</text>
+      <text>{{corpOrderDetailBean.orderAddress}}</text>
+    </view>
+    <view>
+      <text class>接口人</text>
+      <view bind:tap="call" data-number="{{corpOrderDetailBean.orderPhone}}">
+        {{corpOrderDetailBean.orderUname}} {{corpOrderDetailBean.orderPhone}}
+        <image src="/images/telephone.png" class="telicon" />
+      </view>
+    </view>
+  </view>
+  <view class="com-list" wx:for="{{corpOrderDetailBean.corpOrderSignDetailBeans}}" wx:key="index">
+    <view class="catory">
+      <image
+        src="{{item.category == '01' ? '/images/icon-b.png':item.category == '02' ? '/images/icon-d.png':'/images/icon-l.png'}}"
+      />
+      {{categoryStatus[item.category]}}
+    </view>
+    <view class="skulist" wx:for="{{item.beanCategoryList}}" wx:for-item="item2" wx:key="index2">
+      <view class="skuinfo">
+        <view class="l-img">
+          <image src="{{item2.imgUrl}}" />
+          <view class="isconfirm" wx:if="{{item2.signFlg}}">
+            <view class="qs">{{filters.toDate(item2.tcosSignDate)}}签收</view>
+          </view>
+        </view>
+        <view class="l-name">
+          <text class="l-t {{item2.signFlg?'graytxt':''}}">{{item2.skuName}} \n</text>
+          <text class="l-or {{item2.signFlg?'graytxt':''}}">x{{item2.skuSignNum}}</text>
+        </view>
+        <view class="l-num {{item2.signFlg?'signview':''}}">
+          <input value="{{item2.skuNum}}" disabled="{{item2.signFlg?true:false}}"  bindinput="iptNumber" />
+          份
+        </view>
+          <view class="l-btn pd" wx:if="{{item2.signFlg}}">
+          <text class="graytxt">{{item2.signUname}}</text>
+          <image src="{{item2.imgHeadUrl}}" />
+        </view>
+        <view class="l-btn" wx:else>
+          <button bind:tap="showConfirm" data-cid="{{item2.cid}}" data-skuType="{{item2.skuType}}" data-sid="{{item2.sid}}" data-category="{{item.category}}" data-name="{{item2.skuName}}" data-num="{{item2.skuNum}}">签收</button>
+        </view>
+      </view>
+    </view>
+  </view>
+ 
+
+  
+</view>
+<!-- 提示弹窗 -->
+<cp-confirm-dialog
+  model:show="{{tipDialog}}"
+  confirm-text="确定"
+  cancel-text="取消"
+  auto-confirm="{{true}}"
+  bind:on-confirm="signOrder"
+>
+  <view class="tip-label">
+    <text>签收后不可修改！\n你确定已签收「{{skuName}}」{{skuNum}} 份吗？</text>
+  </view>
+</cp-confirm-dialog>

@@ -1,0 +1,328 @@
+page {
+  background: #FFD47BFF;
+  flex: unset;
+}
+page button {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}
+page button::after {
+  border: none;
+}
+.playcard {
+  width: 100%;
+}
+.playcard .topbg {
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+.playcard .activedetail {
+  width: 60rpx;
+  height: 156rpx;
+  position: absolute;
+  right: 0;
+  top: 172rpx;
+}
+.playcard-poker {
+  text-align: center;
+  position: relative;
+  margin: 160rpx auto 0;
+  width: 608rpx;
+  height: 858rpx;
+  padding-top: 100rpx;
+}
+.playcard-poker .pokerImg {
+  width: 608rpx;
+  height: 858rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.playcard-poker .downimg {
+  width: 88rpx;
+  height: 48rpx;
+  position: absolute;
+  top: 959rpx;
+}
+.playcard-poker .poker__score {
+  position: relative;
+  z-index: 88;
+}
+.playcard-poker .poker__score__total {
+  font-size: 40rpx;
+  line-height: 56rpx;
+  font-weight: bold;
+  color: #fff;
+}
+.playcard-poker .poker__score .heal-score {
+  margin: 10rpx auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.playcard-poker .poker__score__each {
+  width: 220rpx;
+  margin: 0 auto 12rpx;
+  text-align: right;
+  display: flex;
+  justify-content: space-between;
+}
+.playcard-poker .poker__score__each text {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFE0A2;
+}
+.playcard-poker .shareBtn {
+  position: relative;
+  z-index: 88;
+  margin-top: 75rpx;
+}
+.playcard-poker .shareBtn image {
+  width: 394rpx;
+  height: 94rpx;
+}
+.playcard-poker .timeout {
+  position: relative;
+  z-index: 88;
+  margin-top: 40rpx;
+}
+.playcard-poker .timeout image {
+  width: 431rpx;
+  height: 124rpx;
+}
+.shareList {
+  text-align: center;
+}
+.shareList .topline {
+  width: 726rpx;
+  height: 46rpx;
+  position: relative;
+  margin-top: -4rpx;
+}
+.shareList .shareinfo {
+  width: 690rpx;
+  margin: 0 auto;
+  position: relative;
+}
+.shareList .shareinfo .toptitle {
+  width: 400rpx;
+  height: 68rpx;
+  margin-top: -3rpx;
+}
+.shareList .shareinfo .topname {
+  position: absolute;
+  left: 30%;
+  top: 0;
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: #333333;
+  display: flex;
+  background: #FF8839;
+  border-radius: 18rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+}
+.shareList .shareinfo .topname .downdip {
+  width: 22rpx;
+  height: 8rpx;
+  position: absolute;
+  left: 80rpx;
+  bottom: -8rpx;
+}
+.shareList .shareinfo .cardinfo {
+  width: 560rpx;
+  height: 180rpx;
+  margin-top: 50rpx;
+  margin-bottom: 30rpx;
+}
+.shareList .shareinfo .cardslogn {
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+}
+.shareList .shareinfo .cutdown {
+  font-weight: bold;
+}
+.notop {
+  position: fixed;
+  bottom: 0;
+}
+.notop image {
+  margin-top: unset !important;
+}
+.button-hover {
+  background: transparent;
+}
+.loadingtips {
+  margin-top: -6rpx;
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  text-align: center;
+  padding-top: 43rpx;
+}
+.loadingtips text {
+  font-size: 56rpx;
+  font-weight: bold;
+}
+.shareLoading {
+  text-align: center;
+  margin-top: 60rpx;
+}
+.shareLoading image {
+  width: 750rpx;
+  height: 80rpx;
+}
+.shareLoading .shareinfo {
+  position: relative;
+  background: #F7C45A;
+  padding-left: 45rpx;
+  padding-bottom: 190rpx;
+}
+.shareLoading .shareinfo .graycolor {
+  color: #735516;
+  font-size: 20rpx;
+}
+.shareLoading .shareinfo .toptitle {
+  width: 400rpx;
+  height: 68rpx;
+}
+.shareLoading .shareinfo .topname {
+  position: absolute;
+  left: 42%;
+  top: 18rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: #333333;
+}
+.shareLoading .shareinfo .progress {
+  width: 670rpx;
+  height: 50rpx;
+  background: #FFFFFF;
+  border-radius: 25rpx;
+  border: 4rpx solid #333333;
+  margin-top: 28rpx;
+  padding-top: 8rpx;
+  padding-left: 4rpx;
+  padding-right: 4rpx;
+}
+.shareLoading .shareinfo .bglist {
+  width: 670rpx;
+  background: #FFD47C;
+  border-radius: 10rpx;
+  padding-left: 56rpx;
+  padding-right: 56rpx;
+  padding-bottom: 30rpx;
+}
+.shareLoading .shareinfo .share-peo {
+  margin-top: 43rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30rpx;
+}
+.shareLoading .shareinfo .share-peo .shmon {
+  font-size: 26rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: #000000;
+}
+.shareLoading .shareinfo .share-peo .shview image {
+  width: 100rpx;
+  height: 100rpx;
+  border: 2rpx solid #FFFFFF;
+  border-radius: 50rpx;
+  vertical-align: middle;
+  margin-right: 24rpx;
+}
+.shareLoading .shareinfo .share-peo .shview text {
+  font-size: 26rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: #000000;
+}
+.tips {
+  margin-top: -6rpx;
+  line-height: 1.4;
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  padding-bottom: 80rpx;
+  padding-top: 117rpx;
+}
+.playList {
+  position: relative;
+}
+.playList view {
+  position: absolute;
+  top: 100rpx;
+  width: 100%;
+}
+.playList view text:nth-child(1) {
+  font-size: 36rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 26rpx;
+}
+.playList view text:nth-child(2) {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+}
+.leftb {
+  left: 45% !important;
+}
+.share-drawer .share-title {
+  font-size: 32rpx;
+  color: #333;
+  text-align: center;
+  margin: 52rpx 0 72rpx;
+}
+.share-drawer .share-icon-box {
+  display: flex;
+  padding: 0 144rpx;
+  justify-content: space-between;
+}
+.share-drawer .share-icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.share-drawer .share-icon {
+  width: 128rpx;
+  height: 128rpx;
+}
+.share-drawer .mer {
+  margin-top: 16rpx;
+}
+.share-drawer .share-label {
+  font-size: 28rpx;
+  color: #333;
+}
+.share-drawer .share-cancel-btn {
+  margin: 72rpx 40rpx 40rpx;
+  background: #e8e8e8;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  padding: 28rpx 0;
+  text-align: center;
+}

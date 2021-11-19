@@ -1,0 +1,12 @@
+<!--pages/mineBox/nickName/nickName.wxml-->
+<cp-nav-bar title-text="设置昵称" background="fff" color="#333333" backIconColor="#fff"/>
+<view class="nick">
+    <view class="box">
+        <input type="text" maxlength="10" placeholder-class="input-placeholder" value="{{nickName}}" auto-focus="{{true}}" bindinput="changeNick"/>
+        <image bind:tap="cancel" src="/images/my/input_delete.png" />
+    </view>
+    <view class="btn" bind:tap="save">确定</view>
+</view>
+
+<!-- <view class="btn" bind:tap="save">保存</view> -->
+

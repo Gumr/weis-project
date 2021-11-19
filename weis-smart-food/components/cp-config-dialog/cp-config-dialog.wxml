@@ -1,0 +1,44 @@
+<!--components/cp-config-dialog/cp-config-dialog.wxml-->
+
+<cp-confirm-dialog class="configDialog" show="{{discoverDialogs}}" dialogStyle="background:transparent;" title="" showCancel="{{false}}" showConfirm="{{false}}">
+    <!-- 自定义弹窗 -->
+    <view class="dialog-config" wx:if="{{discoverDialogs.type == '10'}}">
+        <image class="img" src="{{discoverDialogs.imgUrl}}" bind:tap="configShowTap" data-type="{{discoverDialogs.linkType}}" data-url="{{discoverDialogs.link}}" data-appid="{{discoverDialogs.appid}}" />
+        <image class="close" bind:tap="closeConfig" src="https://prodstatic.weis1606.cn/api/smartFood/closeConfig.png" />
+    </view>
+    <!-- 开合有礼 -->
+    <view class="openbox" wx:if="{{discoverDialogs.type == '01'}}">
+        <image class="openbg" src="https://prodstatic.weis1606.cn/api/smartFood/%E7%BC%96%E7%BB%84%205%20%282%29.png" />
+        <image src="/images/X.png" class="closeimg" catch:tap="closeConfig" />
+        <view class="opencontent">
+            <view class="boxtitle">
+                <text>召唤锦鲤\n测一测你们今天是什么友情</text>
+            </view>
+            <view class="boxtips">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/flipCard/tag.png" />
+                各得30元现金券
+            </view>
+            <view class="boxtips">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/flipCard/tag2.png" />
+                各得8元现金券
+            </view>
+            <view class="boxtips">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/flipCard/tag4.png" />
+                各得5元现金券
+            </view>
+            <view class="boxtips">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/flipCard/tag1.png" />
+                各得3元现金券
+            </view>
+            <view class="boxtips">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/flipCard/tag3.png" />
+                各得1元现金券
+            </view>
+            <view class="footer-box" bind:tap="noTipChange">
+                <image class="img" src="{{ noTipSelect ? '/images/my/icon_selected.png' : '/images/my/icon_unselected.png'}}" />
+                <text class="word">以后不再弹出</text>
+            </view>
+            <button open-type="share" data-type="openbox">发给好友测一测</button>
+        </view>
+    </view>
+</cp-confirm-dialog>

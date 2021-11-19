@@ -1,0 +1,101 @@
+<!--pages/packageDatum/invoice/invoicing/invoicing.wxml-->
+<cp-nav-bar title-text="开电子发票" background="#F3F4F5" color="#000" backIconColor="black" />
+
+<view class="invoice">
+    <view class="header">
+        <view class="name">共{{selectOrder.length}}个餐单</view>
+        <view class="title">全部以电子发票进行开具</view>
+    </view>
+    <view class="body">
+        <view class="t-box">
+            <view class="title">发票详情</view>
+            <view class="import" bind:tap="toWechat">一键导入微信开票信息</view>
+        </view>
+        <view class="info-box">
+            <view class="row">
+                <view class="name">发票类型</view>
+                <input class="ipt" placeholder-class="input-placeholder" disabled="{{true}}" placeholder="电子发票(共{{selectOrder.length}}个餐单)" />
+            </view>
+            <view class="row">
+                <view class="name">抬头类型</view>
+                <view class="type">
+                    <view class="box" wx:for="{{type}}" bind:tap="switchType" data-index ="{{index}}">
+                        <image src="{{selectIndex == index ? '/images/order_list_select.png' : '/images/order_list_unchecked.png'}}" />
+                        <view class="title">{{item.name}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="row area">
+                <view class="name">发票抬头</view>
+                <view class="text-box">
+                    <text>{{rise}}</text>
+                    <textarea class="textarea" placeholder-class="textarea-placeholder" value="{{rise}}" placeholder="请输入抬头(必填)" bindinput="getInput" maxlength="1000"/>
+                </view>
+                <!-- 抬头列表 -->
+                <view class="crop" wx:if="{{cropList && cropList.length > 0}}">
+                    <view class="list" wx:for="{{cropList}}" data-code="{{item.code}}" bind:tap="selectCrop">{{item.name}}</view>
+                </view>
+            </view>
+            <view class="row" wx:if="{{selectIndex == 0}}">
+                <view class="name">税号</view>
+                <input class="ipt" placeholder-class="input-placeholder" placeholder="请输入税号(必填)" value="{{dutyNo}}" bindinput="getDutyNo" />
+            </view>
+            <view class="row">
+                <view class="name">发票内容</view>
+                <input class="ipt" placeholder-class="input-placeholder" disabled="{{true}}" placeholder="餐饮费" />
+            </view>
+            <view class="row">
+                <view class="name">发票金额</view>
+                <input class="ipt" placeholder-class="input-placeholder" disabled="{{true}}" placeholder="{{totalPrice + '元'}}" />
+            </view>
+            <view class="row">
+                <view class="name">备注信息</view>
+                <input class="ipt" placeholder-class="input-placeholder" placeholder="请输入备注(非必填)" value="{{mark}}" bindinput="getMark" />
+            </view>
+        </view>
+    </view>
+    <view class="body">
+        <view class="t-box">
+            <view class="title">收件人信息(必填)</view>
+        </view>
+        <view class="info-box">
+            <view class="row">
+                <view class="name">收件人</view>
+                <input class="ipt" placeholder-class="input-placeholder" placeholder="请输入姓名" adjust-position="{{true}}" value="{{name}}" bindinput="getName" />
+            </view>
+            <view class="row">
+                <view class="name">手机号码</view>
+                <input class="ipt" placeholder-class="input-placeholder" type="number" placeholder="请输入手机号" adjust-position="{{true}}" value="{{phone}}" bindinput="getPhone" />
+            </view>
+            <view class="row">
+                <view class="name">电子邮箱</view>
+                <input class="ipt" placeholder-class="input-placeholder" placeholder="请输入邮箱" adjust-position="{{true}}" value="{{email}}" bindinput="getEmail" />
+            </view>
+        </view>
+    </view>
+    <view class="btn {{checkSucc ? 'active' : ''}}" bind:tap="upload">提交电子发票</view>
+</view>
+
+<!--components/dispatch-select-popup/dispatch-select-popup.wxml-->
+<van-popup show="{{showSure}}" position="bottom" bind:click-overlay="closeTap" custom-style="border-radius:40rpx 40rpx 0rpx 0rpx;">
+  <view class="popup-header">
+    <view class="header-title">开票主要信息确认</view>
+    <image class="close-icon" src="/images/icon_down.png" bind:tap="closeTap" />
+  </view>
+  <view class="content">
+      <view class="list">
+          <view class="name">发票抬头</view>
+          <view class="txt">{{rise}}</view>
+      </view>
+      <view class="list" wx:if="{{selectIndex == 0}}">
+          <view class="name">税号</view>
+          <view class="txt">{{dutyNo}}</view>
+      </view>
+      <view class="list">
+          <view class="name">邮箱地址</view>
+          <view class="txt">{{email}}</view>
+      </view>
+      <view class="box">请确认发票抬头和邮箱无误，电子发票将在系统开具后发送到你的邮箱。<view>请注意发票一旦提交不可撤销重开。</view></view>
+      <view class="submit" bind:tap="submit">确认信息无误，提交</view>
+  </view>
+</van-popup>

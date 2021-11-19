@@ -1,0 +1,92 @@
+.border {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 2rpx;
+    background: rgba(238, 238, 238, 1);
+    transform: scaleY(0.5);
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+
+  
+  .spell{
+    width: 750rpx;
+    height: 467rpx;
+    background: #FFFFFF;
+    border-radius: 20rpx 20rpx 0rpx 0rpx;
+    position: relative;
+    
+    .spell-header {
+        font-size: 32rpx;
+        text-align: center;
+        padding: 32rpx 0 54rpx;
+        color: rgba(51, 51, 51, 1);
+        font-weight: bold;
+      }
+
+      .box{
+          display: flex;
+          justify-content: center;
+          .list{
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              width: 260rpx;
+            height: 260rpx;
+            background: #F3F4F5;
+            border-radius: 20rpx;
+            position: relative;
+            &:nth-child(1){
+                margin-right: 60rpx;
+            }
+
+              image{
+                width: 100rpx;
+                height: 100rpx;
+              }
+              .icon{
+                  width: 64rpx;
+                  height: 33rpx;
+                  position: absolute;
+                  top: -2rpx;
+                  right: -2rpx;
+              }
+              .title{
+                color: rgba(51, 51, 51, 1);
+                font-size: 32rpx;
+                line-height: 45rpx;
+                margin-top: 24rpx;
+              }
+              .subText{
+                color: #666666;
+                font-size: 20rpx;
+              }
+              &.active{
+                  background: rgba(255, 244, 237, 1);
+                  border: 2rpx solid #FA6400;
+                  .title,.subText{
+                    color: #FA6400;
+                  }
+              }
+              &.disable{
+                .title{
+                  color: rgba(153, 153, 153, 1);
+                }
+              }
+          }
+      }
+
+      .close{
+        width: 44rpx;
+        height: 44rpx;
+        position: absolute;
+        left: 35rpx;
+        top: 26rpx;
+      }
+      
+  }

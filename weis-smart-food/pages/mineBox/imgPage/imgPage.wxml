@@ -1,0 +1,5 @@
+<!--pages/mineBox/imgPage/imgPage.wxml-->
+<cp-nav-bar title-text="维士小盒饭"/>
+<view class="img">
+    <image mode="widthFix" src="{{img}}" />
+</view>

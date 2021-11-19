@@ -1,0 +1,6 @@
+<!--pages/appSource/appSource.wxml-->
+<view class="open">
+    <image mode="widthFix" src="{{img}}" bindload="toPage" binderror="toPage" />
+    <view class="ing {{isIpx ? 'isIpx' : ''}}">进入中…</view>
+</view>
+

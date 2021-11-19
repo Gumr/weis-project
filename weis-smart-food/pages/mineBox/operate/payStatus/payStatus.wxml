@@ -1,0 +1,51 @@
+<!--pages/mineBox/operate/payStatus/payStatus.wxml-->
+<cp-nav-bar
+  title-text="{{status ? '支付成功' : '支付失败'}}"
+  color="#000"
+  background="#FFFFFF"
+  home-icon="/images/backHome.png"
+  preventBack
+  bind:back="back"
+></cp-nav-bar>
+
+<view class="pay">
+  <!-- 失败状态 -->
+  <view wx:if="{{!status}}">
+    <view class="head">
+      <image
+        src="https://prodstatic.weis1606.cn/api/smartFood/icon_%E6%94%AF%E4%BB%98%E5%A4%B1%E8%B4%A5.png"
+      />
+      <view class="status">支付失败</view>
+    </view>
+    <view class="btn-box">
+      <view class="btn" bind:tap="back">返回</view>
+      <view class="btn fail" bind:tap="rePay">重新支付</view>
+    </view>
+  </view>
+  <!-- 普通成功态 -->
+  <view wx:else>
+    <view class="head">
+      <image
+        src="https://prodstatic.weis1606.cn/api/smartFood/icon_%E6%94%AF%E4%BB%98%E6%88%90%E5%8A%9F.png"
+      />
+      <view class="status">支付成功</view>
+    </view>
+
+    <view class="copyCode">
+      <view class="word">加工作人员微信</view>
+      <view class="code">
+        <text>{{staffWeChat}}</text>
+        <image src="/images/copy.png" bindtap="copyCode" data-code="{{staffWeChat}}"/>
+      </view>
+    </view>
+
+    <view class="btn-box"> 
+      <view class="btn" bind:tap="checkOrder">查看订单</view>
+      <view class="btn fail" bindtap="call" data-number="{{staffPhone}}">联系工作人员</view>
+    </view>
+  </view>
+</view>
+
+
+
+

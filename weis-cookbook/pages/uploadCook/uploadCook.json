@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-loading": "/components/vant/loading/index",
+    "overlay": "/components/overlay/overlay",
+    "dialog": "/components/dialog/dialog"
+  }
+}

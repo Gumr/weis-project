@@ -1,0 +1,32 @@
+<!--pages/mineBox/inviteLike/inviteLike.wxml-->
+<cp-nav-bar title-text="邀请点赞"/>
+
+<view class="score">
+    <view class="box">
+        <view class="list" wx:for="{{list}}" wx:key="index">
+            <view class="row" bind:tap="open" data-index="{{index}}">
+                <view class="date">{{item.date}}</view>
+                <view class="score-box">
+                    <view class="score-val">+{{item.detail.length}}分</view>
+                    <view class="center-box">
+                        <image src="/images/content_fabulous_press.png" />
+                        <view class="num">{{item.detail.length}}</view>
+                    </view>
+                    <image class="arr {{item.openBox ? 'active' : ''}}" src="/images/scheme_open.png" />
+                </view>
+            </view>
+            <view class="small-box {{item.openBox ? 'active' : ''}}">
+                <view class="box-list" wx:for="{{item.detail}}">
+                    <view class="l-box">
+                        <image class="header" src="{{item.headUrl}}" />
+                        <view class="name">{{item.uname}}</view>
+                    </view>
+                    <view class="r-box">
+                        <image src="/images/content_fabulous.png" />
+                        <view class="val">+1</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

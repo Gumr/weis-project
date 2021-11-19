@@ -1,0 +1,184 @@
+@import './base.less';
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+h3 {
+  font-size: 1em;
+}
+.el-cascader-menu {
+  height: 300px;
+}
+
+@side-width: 220px;
+
+.header-menus-wrap {
+  width: calc(100% - @side-width);
+}
+
+// .width-transition {
+//   transition: width 0.6s;
+// }
+
+.app-sidebar,
+.header-title,
+.header-menus-wrap,
+.app-main-wrap {
+  transition: width 0.3s;
+}
+@media screen and (max-width: 1350px) {
+  .app-sidebar,
+  .header-title {
+    width: 160px !important;
+  }
+  .header-menus-wrap,
+  .app-main-wrap {
+    width: calc(100% - 160px) !important;
+  }
+}
+// layout width css
+
+.brand-color {
+  color: @brand-color;
+}
+
+.danger-color {
+  color: @danger-color;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.inline-center {
+  text-align: center;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.float-right {
+  float: right;
+}
+
+.table-wrap {
+  padding: 0 14px;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.page-container {
+  // padding: 20px;
+  padding: 0 20px;
+  min-height: calc(100vh - 170px);
+  // overflow: auto;
+}
+
+.pagination-wrap {
+  margin: 14px 0;
+  text-align: right;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.flex-items-center {
+  display: flex;
+  align-items: center;
+}
+
+.flex-content-center {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-content-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.medium-input {
+  width: 350px;
+  margin-right: 20px;
+}
+
+.section-label {
+  display: inline-block;
+}
+
+.section-item {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  min-height: 30px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  button {
+    height: 30px;
+    line-height: 5px;
+  }
+}
+
+.table-action-label {
+  .cursor-pointer();
+  .brand-color();
+  white-space: nowrap;
+}
+
+.query-bar {
+  margin: 20px 0;
+}
+
+.padding-20 {
+  padding: 20px;
+}
+
+.padding-0-20 {
+  padding: 0 20px;
+}
+
+.label-1 {
+  width: 170px;
+  margin-right: 12px;
+  text-align: right;
+}
+
+.label-2 {
+  width: 150px;
+}
+
+.font-size-14 {
+  font-size: 14px;
+}
+
+.btn-footer {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.asterisk::before {
+  content: '*';
+  color: red;
+}

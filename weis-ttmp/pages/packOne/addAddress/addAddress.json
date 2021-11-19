@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "cp-switch": "/components/cp-switch/cp-switch",
+    "cp-nav-bar": "/components/cp-nav-bar/cp-nav-bar"
+  }
+}

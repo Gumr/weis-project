@@ -1,0 +1,859 @@
+.border {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2rpx;
+  background: #e9e9e9;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+page {
+  height: 100%;
+}
+.celebrity {
+  width: 100%;
+  padding: 40rpx 0 178rpx 0;
+  position: relative;
+}
+.celebrity.active {
+  padding-bottom: 10rpx;
+}
+.celebrity .tc-title {
+  color: #333333;
+  font-size: 44rpx;
+  font-weight: 600;
+  margin: 0 0 20rpx 30rpx;
+}
+.celebrity .sub-title {
+  color: #a9a9a9;
+  font-size: 28rpx;
+  margin: 0 0 40rpx 30rpx;
+}
+.celebrity .banner {
+  width: 690rpx;
+  height: 690rpx;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10rpx;
+}
+.celebrity .desc-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 64rpx;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48rpx;
+  color: #333333;
+  font-weight: 600;
+  z-index: 100;
+}
+.celebrity .desc-title.method {
+  top: 152rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.celebrity .desc-title.method .solu {
+  color: #333333;
+  font-size: 32rpx;
+}
+.celebrity .desc-title.method .solu:nth-of-type(2) {
+  margin: 0 14rpx;
+}
+.celebrity .content {
+  background: #ffffff;
+  border-radius: 10rpx;
+  margin: -4rpx auto 0;
+  display: flex;
+  flex-direction: column;
+}
+.celebrity .content .wrap-box {
+  padding: 40rpx 0 40rpx;
+  position: relative;
+}
+.celebrity .content .wrap-box .type-box {
+  display: flex;
+  margin-bottom: 56rpx;
+}
+.celebrity .content .wrap-box .type-box .type {
+  padding: 0rpx 20rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  background: #ffc200;
+  border-radius: 20rpx 0 20rpx 0;
+  color: #ffffff;
+  font-size: 32rpx;
+}
+.celebrity .content .wrap-box .t-title {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 48rpx;
+}
+.celebrity .content .wrap-box .t-title.how {
+  margin-bottom: 40rpx;
+}
+.celebrity .content .wrap-box .t-title .advice {
+  color: #333;
+  font-size: 40rpx;
+  position: relative;
+  font-weight: 550;
+  z-index: 10;
+}
+.celebrity .content .wrap-box .t-title .way {
+  color: #a9a9a9;
+  font-size: 24rpx;
+}
+.celebrity .content .wrap-box .t-nature {
+  position: relative;
+  padding-bottom: 30rpx;
+}
+.celebrity .content .wrap-box .t-nature.line-no {
+  padding: 0;
+  position: relative;
+}
+.celebrity .content .wrap-box .t-nature.line-no .equal-icon {
+  width: 146rpx;
+  height: 140rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.celebrity .content .wrap-box .t-nature.line-no::after {
+  display: none;
+}
+.celebrity .content .wrap-box .t-nature .t-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+.celebrity .content .wrap-box .t-nature .t-row:last-of-type {
+  margin-bottom: 0;
+}
+.celebrity .content .wrap-box .t-nature .t-row .icon {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 16rpx;
+}
+.celebrity .content .wrap-box .t-nature .t-row .row-value {
+  display: flex;
+  align-items: center;
+  color: #333333;
+  font-size: 28rpx;
+}
+.celebrity .content .wrap-box .t-nature .t-row .row-value .num {
+  color: #fe5e0f;
+  margin-left: 10rpx;
+}
+.celebrity .content .wrap-box .t-nature .t-row .row-value .color {
+  margin: 0;
+}
+.celebrity .content .wrap-box .t-aim {
+  padding: 30rpx 0 0 0;
+}
+.celebrity .content .wrap-box .t-aim .t-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.celebrity .content .wrap-box .t-aim .t-row:last-of-type {
+  margin-bottom: 0;
+}
+.celebrity .content .wrap-box .t-aim .t-row .icon {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 10rpx;
+}
+.celebrity .content .wrap-box .t-aim .t-row .row-value {
+  color: #ff8825;
+  font-size: 24rpx;
+}
+.celebrity .content .wrap-box .t-aim .t-row.active .row-value {
+  color: #ffb200;
+}
+.celebrity .content .wrap-box .desc {
+  color: #333333;
+  font-size: 28rpx;
+  margin-bottom: 40rpx;
+  display: flex;
+  align-items: center;
+}
+.celebrity .content .wrap-box .desc text {
+  color: #fe5e0f;
+  font-size: 44rpx;
+  font-weight: 550;
+  margin: 0 10rpx;
+}
+.celebrity .content .wrap-box .desc.rather {
+  margin-bottom: 30rpx;
+}
+.celebrity .content .wrap-box .desc.cate {
+  margin-bottom: 0;
+}
+.celebrity .content .wrap-box .nutrition {
+  display: flex;
+  justify-content: space-between;
+}
+.celebrity .content .wrap-box .nutrition .n-box {
+  display: flex;
+  flex-direction: column;
+}
+.celebrity .content .wrap-box .nutrition .n-box .name {
+  color: #333333;
+  font-size: 28rpx;
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+.celebrity .content .wrap-box .nutrition .n-box .c-box {
+  width: 160rpx;
+  height: 160rpx;
+  margin-bottom: 30rpx;
+  position: relative;
+}
+.celebrity .content .wrap-box .nutrition .n-box .c-box .empty {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 100rpx;
+  height: 100rpx;
+  background: #f7f7f7;
+  z-index: 10;
+  border-radius: 50%;
+}
+.celebrity .content .wrap-box .nutrition .n-box .c-box image {
+  width: 100%;
+  height: 100%;
+}
+.celebrity .content .wrap-box .nutrition .n-box .percent {
+  display: flex;
+  flex-direction: column;
+}
+.celebrity .content .wrap-box .nutrition .n-box .percent .chemical {
+  color: #333333;
+  font-size: 20rpx;
+  margin-bottom: 20rpx;
+  padding-left: 15rpx;
+  position: relative;
+}
+.celebrity .content .wrap-box .nutrition .n-box .percent .chemical::before {
+  content: '';
+  width: 10rpx;
+  height: 10rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+.celebrity .content .wrap-box .nutrition .n-box .percent .chemical:nth-of-type(1)::before {
+  background: #fe5e0f;
+}
+.celebrity .content .wrap-box .nutrition .n-box .percent .chemical:nth-of-type(2)::before {
+  background: #41c48c;
+}
+.celebrity .content .wrap-box .nutrition .n-box .percent .chemical:nth-of-type(3) {
+  margin-bottom: 0;
+}
+.celebrity .content .wrap-box .nutrition .n-box .percent .chemical:nth-of-type(3)::before {
+  background: #eeeeee;
+  border: 2rpx solid #c2c2c2;
+}
+.celebrity .content .wrap-box .cate-box {
+  width: 690rpx;
+  height: 314rpx;
+  box-sizing: border-box;
+  padding: 60rpx 0 0;
+  background: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+.celebrity .content .wrap-box .cate-box image {
+  width: 503rpx;
+  height: 104rpx;
+}
+.celebrity .content .wrap-box .cate-box .num-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 40rpx;
+}
+.celebrity .content .wrap-box .cate-box .num-box .num {
+  width: 62rpx;
+  height: 32rpx;
+  border-radius: 16rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20rpx;
+}
+.celebrity .content .wrap-box .cate-box .num-box .num:nth-of-type(1) {
+  background: #1ebf89;
+  color: #ffffff;
+  margin-right: 120rpx;
+}
+.celebrity .content .wrap-box .cate-box .num-box .num:nth-of-type(2) {
+  background: #ff736a;
+  color: #ffffff;
+  margin-right: 120rpx;
+}
+.celebrity .content .wrap-box .cate-box .num-box .num:nth-of-type(3) {
+  background: #ffffff;
+  color: #333333;
+}
+.celebrity .content .wrap-box.advise {
+  width: 690rpx;
+  padding: 0 0 40rpx;
+  margin: 60rpx auto 0;
+  background: #f7f7f7;
+  border-radius: 10rpx;
+}
+.celebrity .content .wrap-box.advise .t-title {
+  width: 690rpx;
+  height: 80rpx;
+  background: #f2f2f2;
+  border-radius: 10rpx 10rpx 0rpx 0rpx;
+  box-sizing: border-box;
+  padding: 0 0 0 30rpx;
+  margin-bottom: 40rpx;
+}
+.celebrity .content .wrap-box.advise .t-title .advice {
+  font-size: 32rpx;
+}
+.celebrity .content .wrap-box.advise .title {
+  margin-bottom: 64rpx;
+}
+.celebrity .content .wrap-box.advise .t-nature {
+  display: flex;
+  padding: 0;
+}
+.celebrity .content .wrap-box.advise .t-nature .t-row {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0;
+}
+.celebrity .content .wrap-box.advise .t-nature .t-row .num {
+  color: #333333;
+  font-weight: 550;
+  font-size: 32rpx;
+  margin-bottom: 40rpx;
+  font-family: 'DIN';
+  display: flex;
+  align-items: flex-end;
+}
+.celebrity .content .wrap-box.advise .t-nature .t-row .num .unit {
+  font-size: 20rpx;
+}
+.celebrity .content .wrap-box.advise .t-nature .t-row .name {
+  color: #757575;
+  font-size: 24rpx;
+}
+.celebrity .content .wrap-box.advise .t-aim {
+  display: flex;
+  align-items: center;
+  width: 630rpx;
+  height: 144rpx;
+  box-sizing: border-box;
+  padding: 16rpx 0 0 110rpx;
+  margin: 40rpx auto 0;
+  position: relative;
+}
+.celebrity .content .wrap-box.advise .t-aim .icon {
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  left: 30rpx;
+  bottom: 34rpx;
+  z-index: 2;
+}
+.celebrity .content .wrap-box.advise .t-aim .bg-img {
+  width: 630rpx;
+  height: 144rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+.celebrity .content .wrap-box.advise .t-aim .aim-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+}
+.celebrity .content .wrap-box.advise .t-aim .aim-wrap .t-row {
+  color: #ffffff;
+  font-size: 24rpx;
+  font-weight: 550;
+}
+.celebrity .content .wrap-box.what {
+  padding: 0 0 30rpx;
+  background: #f7f7f7;
+}
+.celebrity .content .wrap-box.what .how {
+  margin-bottom: 42rpx;
+}
+.celebrity .content .wrap-box.what .desc {
+  margin-bottom: 30rpx;
+  color: #757575;
+  font-size: 26rpx;
+  padding-left: 30rpx;
+}
+.celebrity .content .wrap-box.what .desc .type-desc {
+  display: flex;
+  align-items: center;
+}
+.celebrity .content .wrap-box.what .desc.rather {
+  margin-bottom: 50rpx;
+}
+.celebrity .content .wrap-box.what .t-nature {
+  margin-bottom: 0;
+  height: 140rpx;
+  width: 630rpx;
+  background: #fff;
+  margin: 0 auto;
+}
+.celebrity .content .wrap-box.what .t-nature .equal-name {
+  width: 146rpx;
+  height: 140rpx;
+  box-sizing: border-box;
+  padding: 0 0 0 20rpx;
+  display: flex;
+  align-items: center;
+  color: #333333;
+  font-size: 28rpx;
+  font-weight: 550;
+  z-index: 10;
+}
+.celebrity .content .wrap-box.what .t-nature .icon-box {
+  width: 484rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.celebrity .content .wrap-box.what .t-nature .t-row {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  margin-right: 80rpx;
+}
+.celebrity .content .wrap-box.what .t-nature .t-row:last-of-type {
+  margin-right: 0;
+}
+.celebrity .content .wrap-box.what .t-nature .t-row .icon {
+  width: 56rpx;
+  height: 56rpx;
+  margin: 0 0 18rpx 0;
+}
+.celebrity .content .wrap-box.what .t-nature .t-row .row-value {
+  width: 100%;
+  color: #757575;
+  font-size: 22rpx;
+}
+.celebrity .content .wrap-box.ap {
+  padding: 80rpx 0;
+  background: #f7f7f7;
+}
+.celebrity .content .wrap-box.ap .t-title {
+  padding-left: 30rpx;
+}
+.celebrity .content .wrap-box.ap .nutrition {
+  padding: 0 75rpx;
+}
+.celebrity .content .wrap-box.ds {
+  padding: 80rpx 0 40rpx;
+}
+.celebrity .content .wrap-box.ds .t-title {
+  padding-left: 30rpx;
+}
+.celebrity .content .content-w {
+  background: #ffffff;
+  padding-bottom: 20rpx;
+}
+.celebrity .content .content-w .sy {
+  color: #333;
+  font-size: 32rpx;
+  font-weight: 550;
+  position: relative;
+  margin: 60rpx 0 30rpx 30rpx;
+  z-index: 1;
+  box-sizing: border-box;
+}
+.celebrity .content .content-w .s-box {
+  box-sizing: border-box;
+  padding-left: 30rpx;
+}
+.celebrity .content .content-w .s-box .swiper {
+  height: 728rpx;
+}
+.celebrity .content .content-w .s-box .swiper .i-box {
+  width: 616rpx !important;
+  position: relative;
+}
+.celebrity .content .content-w .s-box .swiper .i-box .b-box {
+  width: 586rpx;
+  height: 728rpx;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  padding: 28rpx 0 0;
+}
+.celebrity .content .content-w .s-box .swiper .i-box .b-box .name-c {
+  font-size: 38rpx;
+  font-weight: 550;
+  margin-left: 20rpx;
+}
+.celebrity .content .content-w .s-box .swiper .i-box .b-box .c-box {
+  width: 546rpx;
+  height: 584rpx;
+  background: #fff;
+  margin: 20rpx auto 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5rpx;
+}
+.celebrity .content .content-w .s-box .swiper .i-box .b-box .c-box image {
+  width: 546rpx;
+  height: 260rpx;
+  border-radius: 5rpx 5rpx 0 0;
+}
+.celebrity .content .content-w .s-box .swiper .i-box .b-box .c-box .pie-box {
+  flex: 1;
+  box-sizing: border-box;
+  padding: 30rpx 30rpx 0;
+}
+.celebrity .content .content-w .s-box .swiper .i-box .b-box .c-box .pie-box .pie {
+  display: flex;
+  align-items: center;
+}
+.celebrity .content .content-w .s-box .swiper .i-box .b-box .c-box .pie-box .pie .cp-data-pie {
+  width: 138rpx;
+  height: 138rpx;
+  margin-right: 62rpx;
+}
+.celebrity .content .content-w .s-box .swiper .i-box .b-box .c-box .pie-box .pie .element .circle {
+  display: flex;
+  align-items: center;
+  width: 286rpx;
+  margin-bottom: 22rpx;
+}
+.celebrity .content .content-w .s-box .swiper .i-box .b-box .c-box .pie-box .pie .element .circle:last-of-type {
+  margin-bottom: 0;
+}
+.celebrity .content .content-w .s-box .swiper .i-box .b-box .c-box .pie-box .pie .element .circle .c-bg {
+  width: 8rpx;
+  height: 8rpx;
+  background: #fe5e0f;
+  border-radius: 28rpx;
+  margin-right: 10rpx;
+}
+.celebrity .content .content-w .s-box .swiper .i-box .b-box .c-box .pie-box .pie .element .circle .c-bg.d {
+  background: #41c48c;
+}
+.celebrity .content .content-w .s-box .swiper .i-box .b-box .c-box .pie-box .pie .element .circle .c-bg.t {
+  background: #eeeeee;
+  border: 2rpx solid #c2c2c2;
+}
+.celebrity .content .content-w .s-box .swiper .i-box .b-box .c-box .pie-box .pie .element .circle .name {
+  color: #757575;
+  font-size: 20rpx;
+  width: 100rpx;
+}
+.celebrity .content .content-w .s-box .swiper .i-box .b-box .c-box .pie-box .pie .element .circle .ele-value {
+  flex: 1;
+  text-align: right;
+  color: #333333;
+  font-size: 20rpx;
+  font-weight: 550;
+}
+.celebrity .content .content-w .s-box .swiper .i-box .b-box .c-box .pie-box .desc {
+  color: #757575;
+  font-size: 20rpx;
+  line-height: 30rpx;
+  margin-top: 26rpx;
+}
+.celebrity .content .content-w .s-box .swiper .i-box .b-box .tip {
+  color: #de6d00;
+  font-size: 16rpx;
+  margin: 20rpx 0 0 20rpx;
+}
+.celebrity .content .content-w .s-box .swiper.more {
+  height: 918rpx;
+}
+.celebrity .content .content-w .s-box .swiper.more .b-box {
+  height: 918rpx;
+}
+.celebrity .content .content-w .s-box .swiper.more .b-box .name-c {
+  font-family: 'DIN';
+}
+.celebrity .content .content-w .s-box .swiper.more .b-box .c-box {
+  height: 774rpx;
+}
+.celebrity .content .content-w .s-box .swiper.more .b-box .c-box .pie-box {
+  padding: 20rpx 40rpx 0;
+}
+.celebrity .content .content-w .s-box .swiper.more .b-box .c-box .pie-box .pie {
+  margin-bottom: 30rpx;
+}
+.celebrity .content .content-w .s-box .swiper.more .b-box .c-box .pie-box .pie .name-cat {
+  color: #333333;
+  font-size: 24rpx;
+  font-weight: 550;
+  margin-right: 36rpx;
+}
+.celebrity .content .content-w .s-box .swiper.more .b-box .c-box .pie-box .pie .element .circle {
+  width: 194rpx;
+}
+.celebrity .content .content-w .s-box .swiper.more .b-box .c-box .pie-box .pie:last-of-type {
+  margin-bottom: 0;
+}
+.celebrity .content .content-w .hd {
+  color: #333333;
+  font-size: 20rpx;
+  text-align: center;
+  margin-top: 40rpx;
+}
+.celebrity .content .intro {
+  width: 690rpx;
+  background: #f7f7f7;
+  padding: 0 0 40rpx 0;
+  border-radius: 10rpx 10rpx 0rpx 0rpx;
+  margin: 60rpx auto 0;
+}
+.celebrity .content .intro .intro-title {
+  width: 690rpx;
+  height: 80rpx;
+  background: #f2f2f2;
+  border-radius: 10rpx 10rpx 0rpx 0rpx;
+  box-sizing: border-box;
+  padding: 0 0 0 30rpx;
+  line-height: 80rpx;
+  color: #333333;
+  font-size: 32rpx;
+  font-weight: 550;
+}
+.celebrity .content .intro .head {
+  display: flex;
+  box-sizing: border-box;
+  padding: 40rpx 0 0 30rpx;
+}
+.celebrity .content .intro .head image {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  margin-right: 30rpx;
+}
+.celebrity .content .intro .head .name-box {
+  display: flex;
+  flex-direction: column;
+}
+.celebrity .content .intro .head .name-box .name {
+  color: #333333;
+  font-size: 28rpx;
+  font-weight: 550;
+  margin-bottom: 18rpx;
+}
+.celebrity .content .intro .head .name-box .profession {
+  color: #a9a9a9;
+  font-size: 22rpx;
+  margin-bottom: 30rpx;
+}
+.celebrity .content .intro .head .name-box .profession-box .pro {
+  color: #a9a9a9;
+  font-size: 24rpx;
+  margin-bottom: 20rpx;
+  padding-left: 16rpx;
+  position: relative;
+}
+.celebrity .content .intro .head .name-box .profession-box .pro:last-of-type {
+  margin-bottom: 0;
+}
+.celebrity .content .intro .head .name-box .profession-box .pro::after {
+  display: block;
+  content: '';
+  width: 6rpx;
+  height: 6rpx;
+  border-radius: 50%;
+  background: #a9a9a9;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.celebrity .content .long1 {
+  width: 690rpx;
+  height: 497rpx;
+  margin: 60rpx auto 0;
+  display: block;
+}
+.celebrity .content .long1.long2 {
+  height: 658rpx;
+}
+.celebrity .content .long1.long3 {
+  height: 1536rpx;
+}
+.celebrity .content .long1.long4 {
+  height: 868rpx;
+}
+.celebrity .content .long1.long5 {
+  height: 720rpx;
+  margin-top: 30rpx;
+}
+.celebrity .content .jc {
+  color: #472615;
+  font-size: 32rpx;
+  font-weight: 550;
+  margin: 30rpx 0 0 30rpx;
+}
+.bot-box {
+  width: 100%;
+  height: 148rpx;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 20rpx 0 0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+.bot-box .btn {
+  width: 690rpx;
+  height: 88rpx;
+  border-radius: 44rpx;
+  text-align: center;
+  line-height: 88rpx;
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 550;
+}
+.bot-box .btn--library {
+  width: 100%;
+  background: #fff !important;
+  padding: 0 50rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bot-box .btn--library view {
+  width: 315rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 44rpx;
+  border: 1rpx solid #333333;
+  text-align: center;
+  color: #333333;
+}
+.bot-box .btn--library view.btn-r {
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+  border-radius: 44rpx;
+  color: #fff;
+  border: none;
+}
+.date-dialog {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10001;
+}
+.date-dialog .popupshow {
+  width: 670rpx;
+  padding-bottom: 44rpx;
+  background: #ffffff;
+  border-radius: 20rpx;
+  position: relative;
+}
+.date-dialog .popupshow .close {
+  position: absolute;
+  top: 39rpx;
+  right: 30rpx;
+  width: 34rpx;
+  height: 34rpx;
+}
+.date-dialog .popupshow .title {
+  width: 100%;
+  height: 112rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333333;
+  font-size: 32rpx;
+  font-weight: 550;
+  position: relative;
+}
+.date-dialog .popupshow .title::after {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2rpx;
+  background: #e9e9e9;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 0;
+}
+.date-dialog .popupshow .btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.date-dialog .popupshow .btn .an {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 590rpx;
+  height: 88rpx;
+  background: #D8D8D8;
+  border-radius: 44px;
+  font-size: 30rpx;
+  color: #ffffff;
+  font-weight: 550;
+}
+.date-dialog .popupshow .btn .an.active {
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+}
+.tip-b {
+  width: 690rpx;
+  height: 96rpx;
+  background: rgba(51, 51, 51, 0.5);
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding-left: 20rpx;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 166rpx;
+  z-index: 100;
+}
+.tip-b image {
+  width: 122rpx;
+  height: 96rpx;
+  margin-right: 32rpx;
+}
+.tip-b .title {
+  color: #ffffff;
+  font-size: 26rpx;
+}

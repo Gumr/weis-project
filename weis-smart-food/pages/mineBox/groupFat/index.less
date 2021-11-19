@@ -1,0 +1,141 @@
+page {
+  display: unset !important;
+  background: #fafafa;
+}
+// 企业减脂营------------
+.groupsFat {
+  //   margin-top: 76rpx;
+  // 内容
+  .content {
+    padding: 40rpx 30rpx 306rpx;
+    .list {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 40rpx;
+      background: #ffffff;
+      border-radius: 10rpx;
+      padding: 30rpx;
+      position: relative;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+      &__image {
+        width: 160rpx;
+        height: 160rpx;
+        border-radius: 10rpx;
+        margin-right: 30rpx;
+      }
+      &__text {
+        flex-grow: 1;
+        // 名称
+        .name {
+          font-size: 36rpx;
+          font-weight: bold;
+          color: #333333;
+          line-height: 36rpx;
+          margin: 12rpx 0 36rpx;
+        }
+        // 日期
+        .date {
+          position: relative;
+          padding-left: 18rpx;
+          font-size: 24rpx;
+          color: #333333;
+          line-height: 24rpx;
+          margin-bottom: 14rpx;
+          &::before {
+            .color();
+            background: #41c48c;
+          }
+        }
+        // 状态
+        .status {
+          position: relative;
+          padding-left: 18rpx;
+          font-size: 24rpx;
+          font-weight: bold;
+          line-height: 24rpx;
+          &::before {
+            .color();
+            background: #fe5e0f;
+          }
+        }
+      }
+      &__label {
+        position: absolute;
+        right: 0;
+        top: 44rpx;
+        width: 90rpx;
+        height: 36rpx;
+        background: #fe5e0f;
+        border-radius: 22rpx 0rpx 0rpx 22rpx;
+        font-size: 20rpx;
+        font-weight: bold;
+        color: #ffffff;
+        line-height: 36rpx;
+        text-align: center;
+      }
+    }
+  }
+  // 底部
+  //   .bottom {
+  //     width: 100%;
+  //     position: fixed;
+  //     bottom: 58rpx;
+  //     text-align: center;
+  //     &__tip {
+  //       height: 36rpx;
+  //       background: #ff8839;
+  //       border-radius: 18rpx;
+  //       padding: 0 26rpx;
+  //       position: relative;
+  //       font-size: 24rpx;
+  //       color: #ffffff;
+  //       line-height: 36rpx;
+  //       display: inline-block;
+  //     }
+  //     &__img {
+  //       width: 22rpx;
+  //       height: 8rpx;
+  //       position: absolute;
+  //       bottom: -8rpx;
+  //       left: 40%;
+  //     }
+  //     &__btn {
+  //       width: 650rpx;
+  //       height: 88rpx;
+  //       background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+  //       border-radius: 50rpx;
+  //       font-size: 36rpx;
+  //       color: #ffffff;
+  //       line-height: 88rpx;
+  //       margin-top: 18rpx;
+  //     }
+  //   }
+  // 空状态
+  .null {
+    margin-top: 164rpx;
+    text-align: center;
+    image {
+      width: 320rpx;
+      height: 240rpx;
+    }
+    view {
+      font-size: 28rpx;
+      color: #a9a9a9;
+      margin-top: 20rpx;
+    }
+  }
+}
+// 颜色圈
+.color {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+}

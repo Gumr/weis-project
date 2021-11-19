@@ -1,0 +1,21 @@
+<!--pages/packageDiscover/coach/case/case.wxml-->
+<cp-nav-bar title-text="学员案例" background="#FAFAFA"></cp-nav-bar>
+<view class="case">
+    <view class="list" wx:if="{{dataList.length > 0}}" wx:for="{{dataList}}" wx:key="key" data-index="{{index}}" bind:tap="caseDetail">
+        <view class="img">
+            <view class="img__before">
+                <image src="{{item.tciDrillBeforeImgList[0]}}" />
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/before.png" />
+            </view>
+            <view class="img__after">
+                <image src="{{item.tciDrillAfterImgList[0]}}" />
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/after.png" />
+            </view>
+        </view>
+        <view class="text">
+            <view class="text__name">{{item.tciName}}</view>
+            <view class="text__info">效果：{{item.weightLoss}}斤  时间：{{item.tciProcess}}</view>
+        </view>
+    </view>
+    <cp-null show="{{dataList.length == 0}}" imgSrc="https://prodstatic.weis1606.cn/api/smartFood/null_case.png" text="暂无学员案例"></cp-null>
+</view>

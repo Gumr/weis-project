@@ -1,0 +1,56 @@
+<!-- components/mealCalendar/mealCalendar.wxml -->
+<view class="calendar-box" style="{{style}}">
+  <slot name="header"></slot>
+  <view bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+    <view class="header">
+      <view class="img-box" bind:tap="last">
+        <image class="arrow-left" src="/images/my_next.png" />
+      </view>
+      <view class="title">
+        <view class="month">{{month}}月</view>
+        <view class="year">/{{year}}</view>
+      </view>
+      <view class="img-box" bind:tap="next">
+        <image class="arrow-right" src="/images/my_next.png" />
+      </view>
+    </view>
+    <view class="week-box">
+      <view class="week" wx:for="{{weekText}}" wx:key="index">{{item}}</view>
+    </view>
+    <view class="wrap">
+      <view
+        class="day-box {{(dateList[index-1].checked && dateList[index+1].checked && item.checked && item.week != '六' && item.week != '日') ? 'centerChecked' : (dateList[index-1].checked && !dateList[index+1].checked && item.checked && item.week != '六' && item.week != '日' ? 'rightChecked' : (!dateList[index-1].checked && item.checked && !dateList[index+1].checked && item.week != '六' && item.week != '日' ? 'normal' : (!dateList[index-1].checked && item.checked && dateList[index+1].checked && item.week != '六' && item.week != '日' ? 'leftChecked' : (dateList[index-1].checked && item.checked && item.week == '六' ? 'rightChecked' : (dateList[index+1].checked && item.checked && item.week == '日' ? 'leftChecked' : '')))))}}"
+        wx:for="{{dateList}}"
+        wx:if="{{index < showIndex}}"
+        wx:key="index"
+        data-index="{{index}}"
+        data-current="{{item.belong}}"
+        data-unable="{{item.unable}}"
+        bind:tap="select"
+      >
+        <view
+          class="day {{item.unable ? 'unable' : (item.category && item.category.length>0 ? 'dc' : '')}} {{item.checked ? 'active' : ''}}"
+        >{{ today == item.date ? '今' : item.day}}</view>
+        <!-- 已点餐 -->
+        <view class="dot" wx:if="{{!item.unable && item.category && item.category.length>0}}">
+          <view class="dotColor"></view>
+          <view class="cate-box">
+            <view class="cate" wx:for="{{item.category}}" wx:key="key" wx:for-item="items">
+              <view class="category">{{cart[items]}}</view>
+              <view class="c-line">/</view>
+            </view>
+          </view>
+        </view>
+        <!-- 引导标签 -->
+        <view class="tag" wx:if="{{tagDate && tagDate == item.date}}">{{tagText}}</view>
+      </view>
+    </view>
+    <view class="drop" wx:if="{{showBtn}}" bind:tap="drop">
+      <image
+        class="{{showIndex == dateList.length ? 'active' : ''}}"
+        src="/images/date_dropdown.png"
+      />
+    </view>
+  </view>
+  <slot name="footer"></slot>
+</view>

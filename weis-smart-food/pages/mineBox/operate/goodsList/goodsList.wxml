@@ -1,0 +1,8 @@
+<!-- pages/mineBox/operate/goodsList/goodsList.wxml -->
+<cp-nav-bar title-text="商品列表" background="#F3F4F5" color="#333333" backIconColor="black" />
+<view class="goodsList">
+    <view class="list" wx:for="{{info}}" data-id="{{item.id}}" bind:tap="operateGoods">
+        <image class="list_image" src="{{item.activityImgList[0]}}" />
+        <text class="list_name">{{item.productName}}</text>
+    </view>
+</view>

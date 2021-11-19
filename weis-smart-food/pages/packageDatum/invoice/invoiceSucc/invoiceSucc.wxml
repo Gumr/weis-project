@@ -1,0 +1,13 @@
+<!--pages/packageDatum/invoice/invoiceSucc/invoiceSucc.wxml-->
+<cp-nav-bar title-text="" background="#FFFFFF" color="#000" backIconColor="black" />
+
+<view class="succ">
+    <view class="head">
+      <image src="https://prodstatic.weis1606.cn/api/smartFood/icon_%E6%94%AF%E4%BB%98%E6%88%90%E5%8A%9F.png" />
+      <view class="status">电子发票提交成功</view>
+    </view>
+    <view class="btn-box">
+      <view class="btn" bind:tap="back">返回</view>
+      <view class="btn fail" bind:tap="check">查看开票进度</view>
+    </view>
+  </view>

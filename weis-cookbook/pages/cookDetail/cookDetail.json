@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "overlay": "/components/overlay/overlay",
+    "comment": "/components/comment/comment"
+  }
+}

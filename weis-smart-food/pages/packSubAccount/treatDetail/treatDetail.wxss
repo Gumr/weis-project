@@ -1,0 +1,93 @@
+page {
+  background: #FFFFFF;
+}
+.treat {
+  width: 100%;
+  background: #FFFFFF;
+}
+.treat .head {
+  width: 100%;
+  background: linear-gradient(135deg, #FF9722 0%, #FE5E0F 100%);
+}
+.treat .head .title {
+  color: #FFFFFF;
+  font-size: 28rpx;
+  font-weight: bold;
+  text-align: center;
+}
+.treat .head .price {
+  color: #FFFFFF;
+  font-size: 96rpx;
+  font-family: "DINCondensedC";
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40rpx;
+}
+.treat .head .price text {
+  font-size: 60rpx;
+}
+.treat .head .btn {
+  width: 256rpx;
+  height: 64rpx;
+  background: #FCCC49;
+  border-radius: 32rpx;
+  border: 2rpx solid #FFE08A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #674C00;
+  font-size: 28rpx;
+  font-weight: bold;
+  margin: 26rpx auto 0;
+}
+.treat .content {
+  width: 100%;
+  background: #FFFFFF;
+  padding-top: 36rpx;
+  margin-top: -36rpx;
+  position: relative;
+  z-index: 10;
+  border-radius: 40rpx 40rpx 0rpx 0rpx;
+}
+.treat .content .box {
+  width: 100%;
+  height: 96rpx;
+  background: #FFFFFF;
+  padding: 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.treat .content .box::after {
+  display: block;
+  content: '';
+  width: 690rpx;
+  height: 2rpx;
+  background: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scaleY(0.5);
+  bottom: 0;
+}
+.treat .content .box .name {
+  color: #666666;
+  font-size: 28rpx;
+}
+.treat .content .box .info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.treat .content .box .info .num {
+  color: #333333;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.treat .content .box .info image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: 4rpx;
+}

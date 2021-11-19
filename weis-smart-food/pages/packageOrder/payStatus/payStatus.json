@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "cp-pay-popup": "/components/cp-pay-popup/cp-pay-popup",
+    "van-count-down": "/components/vant/count-down/index",
+    "cp-confirm-dialog": "/components/cp-confirm-dialog/cp-confirm-dialog",
+    "van-loading": "/components/vant/loading/index"
+  }
+}

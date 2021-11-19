@@ -1,0 +1,173 @@
+@color1: #000000;
+@import '../../style/DINCondensedC.wxss';
+
+.login {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    left: 0;
+    top: 0;
+    z-index: 120;
+
+    .auth {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        .coupon-box {
+            width: 620rpx;
+            height: 800rpx;
+            position: relative;
+
+            .coupon {
+                width: 100%;
+                height: 100%;
+            }
+
+            .login-btn {
+                position: absolute;
+                width: 304rpx;
+                height: 94rpx;
+                left: 50%;
+                transform: translateX(-50%);
+                top: 665rpx;
+                z-index: 1
+            }
+
+            button {
+                .login-btn();
+                opacity: 0;
+                z-index: 100;
+            }
+        }
+
+        .close {
+            width: 64rpx;
+            height: 64rpx;
+            margin-top: 99rpx;
+        }
+    }
+
+    .getCoupon {
+        .c-box {
+            width: 620rpx;
+            height: 800rpx;
+            position: relative;
+            box-sizing: border-box;
+            padding-top: 211rpx;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .img {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+                z-index: -1;
+            }
+
+            .title {
+                width: 258rpx;
+                text-align: center;
+                color: #FFFFFF;
+                font-size: 28rpx;
+                margin: 0 auto 25rpx;
+            }
+            .list-box{
+                // width: 250rpx;
+                display: flex;
+                // justify-content: center;
+                .box{
+                    position: relative;
+                    width: 178rpx;
+                    height: 283rpx;
+                    box-sizing: border-box;
+                    padding-top: 30rpx;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    flex-shrink: 0;
+                    margin-right: -20rpx;
+                    // &:nth-of-type(1){
+                    //     margin-right: -20rpx;
+                    // }
+                    // &:nth-of-type(3){
+                    //     margin-left: -20rpx;
+                    // }
+                    .coupon-bg{
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        left: 0;
+                        top: 0;
+                        z-index: -1;
+                    }
+                    .c1{
+                       display: flex;
+                       align-items: flex-end;
+                       color: #D88200;
+                       font-size: 96rpx;
+                       font-family: "DINCondensedC";
+                       font-weight: 550;
+                       .unit{
+                           font-size: 30rpx;
+                           position: relative;
+                           top: -15rpx;
+                       } 
+                    }
+                    .c2{
+                        color: #D88200;
+                        font-size: 18rpx;
+                    }
+                    .c3{
+                        width: 96rpx;
+                        text-align: center;
+                        color: #D88200;
+                        font-size: 18rpx;
+                        margin-top: 31rpx;
+                    }
+                    .c4{
+                        width: 60rpx;
+                        height: 32rpx;
+                        line-height: 32rpx;
+                        background: linear-gradient(180deg, #FD9622 0%, #FD7C20 100%);
+                        box-shadow: 0rpx 0rpx 10rpx 0rpx rgba(209, 120, 33, 0.52);
+                        border-radius: 32rpx;
+                        border: 2rpx solid #FFF9EC;
+                        font-size: 28rpx;
+                        // font-family: Alibaba-PuHuiTi-B, Alibaba-PuHuiTi;
+                        font-weight: normal;
+                        color: #FFFCE6;
+                        text-align: center;
+                        position: absolute;
+                        top: 4rpx;
+                        right: 12rpx;
+                    }
+                }
+            }
+            .meal-question{
+                width: 342rpx;
+                height: 94rpx;
+                margin: 66rpx auto 0;
+            }
+            .meal-index{
+                width: 304rpx;
+                height: 94rpx;
+                margin: 66rpx auto 0;
+            }
+        }
+
+        .close {
+            width: 64rpx;
+            height: 64rpx;
+        }
+    }
+}

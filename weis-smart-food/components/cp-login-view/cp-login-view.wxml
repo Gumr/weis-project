@@ -1,0 +1,40 @@
+<!-- components/login_view.wxml -->
+
+<view class="login" wx:if="{{showLoginPopup && !isOld}}">
+    <!-- 信息授权弹窗 -->
+    <view class="auth">
+        <view class="coupon-box">
+            <image class="coupon" src="https://prodstatic.weis1606.cn/api/smartFood/newUser_redPacket.png" />
+            <image class="login-btn" bind:tap="goLogin" src="https://prodstatic.weis1606.cn/api/smartFood/btn_%E5%BC%80%E5%BF%83%E6%94%B6%E4%B8%8B.png" />
+            <!-- <button class="auth-userinfo" lang="zh_CN" open-type="getUserInfo" bindgetuserinfo="getUserInfo"></button> -->
+        </view>
+        <image class="close" bind:tap="close" src="https://prodstatic.weis1606.cn/api/smartFood/off.png" />
+    </view>
+    <!-- 手机号授权 -->
+    <!-- <view class="auth authPhone" wx:if="{{loginInfo.isAuthorized && !loginInfo.isLogin}}">
+        <image class="img" src="https://prodstatic.weis1606.cn/api/smartFood/%E7%BC%96%E7%BB%84%202.png" />
+        <view class="title">微信授权成功</view>
+        <view class="sub-title">请授权绑定你的手机号码</view>
+        <view class="btn-box">
+            <view class="btn" bind:tap="close">取消</view>
+            <button class="btn btn-auth" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">去绑定</button>
+        </view>
+    </view> -->
+    <!-- 新人券 -->
+    <!-- <view class="auth getCoupon" wx:if="{{loginInfo.isAuthorized && loginInfo.isLogin && coupon.length > 0}}">
+        <view class="c-box">
+            <image class="img" src="https://prodstatic.weis1606.cn/api/smartFood/%E7%BC%96%E7%BB%84.png" />
+            <view class="title">恭喜获得30元新人券快去点餐吧</view>
+            <view class="list-box">
+                <view class="box" wx:for="{{coupon}}">
+                    <image class="coupon-bg" src="https://prodstatic.weis1606.cn/api/smartFood/bg_coupon.png" />
+                    <view class="c1"><view class="unit">￥</view>{{item.tcuAmount}}</view>
+                    <view class="c2">满{{item.tcuRestrictAmount}}可用</view>
+                    <view class="c3">有效期至{{item.tcuEtime}}</view>
+                </view>
+            </view>
+            <image class="meal" bind:tap="close" src="https://prodstatic.weis1606.cn/api/smartFood/btn_%E5%8E%BB%E7%82%B9%E9%A4%90.png" />
+        </view>
+        <image class="close" bind:tap="close" src="https://prodstatic.weis1606.cn/api/smartFood/off.png"  />
+    </view> -->
+</view>

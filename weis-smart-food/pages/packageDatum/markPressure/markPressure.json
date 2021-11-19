@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "van-swipe-cell": "/components/vant/swipe-cell/index",
+    "van-popup": "/components/vant/popup/index",
+    "calendar": "/components/calendarPlugin/index",
+    "van-overlay": "/components/vant/overlay/index"
+  }
+}

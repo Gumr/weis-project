@@ -1,0 +1,159 @@
+<!-- pages/packageOrder/payStatus/payStatus.wxml -->
+<cp-nav-bar title-text="{{status ? '支付成功' : '支付失败'}}" color="#000" background="{{shopType == '20' ? '#F3F4F5' : qrCodeStr ? '#FA6400' : '#FFFFFF'}}" home-icon="/images/backHome.png"></cp-nav-bar>
+<view class="loading" wx:if="{{loading}}">
+  <van-loading color="#FE5E0F" vertical></van-loading>
+</view>
+<view wx:else class="pay {{shopType == '20' ? 'machine-box' :  shopType !== '20' ? 'pay-succ-box' : ''}}">
+  <!-- 失败状态 -->
+  <view class="pay-fail" wx:if="{{!status}}">
+    <view class="head">
+      <image src="https://prodstatic.weis1606.cn/api/smartFood/icon_%E6%94%AF%E4%BB%98%E5%A4%B1%E8%B4%A5.png" />
+      <view class="status">支付失败</view>
+    </view>
+    <view class="btn-box">
+      <view class="btn" bind:tap="backHome">返回</view>
+      <view class="btn fail" bind:tap="checkOrder">重新支付</view>
+    </view>
+  </view>
+  <!-- 减脂营 -->
+  <view wx:elif="{{mode === 'slimmingCamp'  && corpId != '100097'}}">
+    <view class="head" style="margin-bottom: 0;">
+      <image src="https://prodstatic.weis1606.cn/api/smartFood/icon_%E6%94%AF%E4%BB%98%E6%88%90%E5%8A%9F.png" />
+      <view class="status">报名成功</view>
+    </view>
+    <view class="text-center label-24 color-a9" style="margin: 30rpx 0;">
+      ￥{{payPrice}},已享全单{{discount}}折
+    </view>
+    <view class="text-center label-24 color-ff5959" wx:if="{{coincideList}}">*您有重复日期餐单，请处理</view>
+    <view class="wechat" bind:longpress="saveImg">
+      <view class="c">
+        <view class="title">请长按添加营长企业微信</view>
+        <image src="{{codeImg}}" />
+      </view>
+    </view>
+    <view class="btn-box">
+      <view class="btn" bind:tap="checkOrder">查看订单</view>
+    </view>
+  </view>
+  <!-- 普通成功态 -->
+  <view wx:else>
+    <!-- 今日单点，自取单，取餐码 -->
+    <view class="pay-succ" wx:if="{{qrCodeStr}}">
+      <view class="pay-succ-head">
+        <image class="icon" src="https://prodstatic.oss-cn-shenzhen.aliyuncs.com/api/smartFood/icon_pay_gou.png" />
+        <text>支付成功</text>
+      </view>
+      <view class="pay-succ-code">
+        <!-- <image class="qrcode" src="/images/icon_right.png" /> -->
+        <view class="qrcode">
+          <canvas style="width: 175px; height: 175px;" canvas-id="todayQrcode"></canvas>
+        </view>
+        <text class="code">{{takeMealCode}}</text>
+        <text class="tip">取餐码</text>
+      </view>
+      <button class="pay-succ-invite" open-type="share" bind:tap="toInviteFn">
+        <image class="icon" mode="widthFix" src="https://prodstatic.oss-cn-shenzhen.aliyuncs.com/api/smartFood/icon_pay_ivt.png" />
+        <view class="title">邀请好友助力</view>
+        <view class="tip">
+          最多可返
+          <text>{{shareprice}}</text>
+          元到维士账户余额
+        </view>
+      </button>
+    </view>
+    <!-- 再来一单优惠券 -->
+    <!-- <view class="counp" wx:if="{{showCounp && corpId != '100097' && mode !== 'multiMeal'}}">
+      <view class="couptit">恭喜你获得1张再来一单优惠券</view>
+      <view class="cutdown">
+        <text>距离失效还有</text>
+        <van-count-down use-slot time="{{ time }}" bind:change="onChange" bind:finish="finish">
+          <view class="timercut">
+            {{timeData.hours ? timeData.hours : 0 }}:{{timeData.minutes ? timeData.minutes : 00}}:{{timeData.seconds ? timeData.seconds : 00}}
+          </view>
+        </van-count-down>
+        <view class="couplist">
+          <image src="https://prodstatic.weis1606.cn/api/market/coupon_B.png" />
+          <view class="c1">
+            <view>
+              <text class="unit">￥</text>
+              {{coupon[0].tcuAmount}}
+            </view>
+          </view>
+          <view class="c2">满{{coupon[0].tcuRestrictAmount}}可用</view>
+          <view class="c3">有效期至{{coupon[0].tcuEtime}}</view>
+        </view>
+      </view>
+    </view> -->
+    <!-- 贩卖机取餐码 -->
+    <view class="machine" wx:elif="{{shopType == '20'}}">
+      <image class="img-machine" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/asci.png" />
+      <view class="code" wx:if="{{asciiOrderId}}">
+        <canvas style="width: 175px; height: 175px;" canvas-id="qrcode"></canvas>
+      </view>
+      <view class="code" wx:else>
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/code-asci.png" />
+        <view class="desc">
+          <view>≥Ö‿Ö≤</view>
+          <view>取餐当日0:00</view>
+          <view>出取餐码</view>
+        </view>
+      </view>
+    </view>
+    <view class="head" style="padding-top: 100rpx;" wx:else>
+      <image src="https://prodstatic.weis1606.cn/api/smartFood/icon_%E6%94%AF%E4%BB%98%E6%88%90%E5%8A%9F.png" />
+      <view class="status">支付成功</view>
+    </view>
+    <view class="btn-box {{shopType == '20' ? 'machine-btn' : ''}}">
+      <view class="btn" bind:tap="backHome">
+        {{corpId?'继续点餐':(shopType == '20' ? '返回' : '返回首页')}}
+      </view>
+      <view class="btn" bind:tap="checkOrder">查看订单</view>
+    </view>
+  </view>
+</view>
+<cp-pay-popup wx:if="{{!status && (!mode || mode == 'aiFat' || mode == 'multiMeal')}}" id="pay" bind:on-confirm="handlePayConfirm"></cp-pay-popup>
+<!-- 吃法返利 -->
+<view class="dialog" catchtouchmove="true" wx:if="{{showAgin  && !mode  && status && corpId != '100097' && mode !== 'multiMeal' && shopType == '10' && !qrCodeStr}}">
+  <view class="logindio">
+    <image class="stypeimg2" src="https://prodstatic.oss-cn-shenzhen.aliyuncs.com/api/smartFood/sharedislogbg.png" />
+    <image src="/images/X.png" class="closeimg" catch:tap="closeshowAgin" />
+    <view class="logintip2">
+      <text>晒健康分，领返现</text>
+      <text>\n分享健康分给好友，本餐最高可领返现</text>
+      <view class="coutPrice">
+        <text>￥</text>
+        {{shareprice}}
+      </view>
+      <text class="mint">距离活动失效还有</text>
+      <van-count-down use-slot class="control-count-down" time="{{ time2 }}" bind:change="onChange2" bind:finish="finish2">
+        <view class="count">
+          {{timeData2.hours ? timeData2.hours : 0 }}:{{timeData2.minutes ? timeData2.minutes : 00}}:{{timeData2.seconds ? timeData2.seconds : 00}}
+        </view>
+      </van-count-down>
+      <button class="shareBtn" open-type="share">分享给好友</button>
+    </view>
+  </view>
+</view>
+<cp-confirm-dialog dialog-style="border-radius:20rpx;" show="{{coincideList && corpId != '100097'}}" showCancel="{{false}}" showClose="{{true}}" confirmStyle="width: 590rpx" title="餐单有重合" confirm-text="确认退款" auto-cancel="{{true}}" bind:on-confirm="sureRefund">
+  <view class="cont">{{coincideList}}有重合，减脂营订餐瘦的更有效率哦！是否一键退款？</view>
+  <view class="tip">*退款后，费用将返回至您的支付账户</view>
+</cp-confirm-dialog>
+<!-- 文章弹窗 -->
+<cp-confirm-dialog dialog-style="width: 640rpx;border-radius:20rpx;" show="{{showArticle && status && corpId == '100097'}}" showConfirm="{{false}}" cancelStyle="width: 280rpx;flex-grow: 0;margin: 0 auto;" cancel-text="查看全文" data-draftUrl="{{articles[0].draftUrl}}" bind:on-cancel="seeArticle">
+  <view class="article">
+    <image class="article__closeimg" src="/images/X.png" catch:tap="closeArticle" />
+    <image class="article__image" src="{{articles[0].displayImg}}" />
+    <view class="article__bottom">
+      <view class="article__title">{{articles[0].title}}</view>
+      <view class="article__text">{{articles[0].draftContent}}</view>
+    </view>
+  </view>
+</cp-confirm-dialog>
+<!-- 预定明天餐 -->
+<view class="dialog" catchtouchmove="true" wx:if="{{reserveShow && !qrCodeStr}}">
+  <view class="reserve">
+    <image class="reserve_bg" src="https://prodstatic.weis1606.cn/api/smartFood/reserve_bg2.png?a=1" />
+    <image class="reserve_close" src="https://prodstatic.weis1606.cn/api/smartFood/reserve_close_left.png" catch:tap="reserveClose" />
+    <button class="reserve_btn shareBtn" bind:tap="toIndex">去预订明天餐</button>
+  </view>
+</view>

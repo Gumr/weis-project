@@ -1,0 +1,259 @@
+<!-- pages/my/my.wxml -->
+<!-- <wxs module="filters" src="../../utils/filter.wxs"></wxs> -->
+<!-- 导入模板 -->
+<!-- <import src="../../template/line.wxml" /> -->
+<!-- 嵌入模板 -->
+<!-- <template is="line"></template> -->
+<wxs module="utils">
+  // 判断是否展示业绩入口
+  function hasAcm(employeeInfos) {
+    var hasAcm = false
+    if(employeeInfos.length > 0) {
+      var empInfo = employeeInfos[0]
+      if(empInfo.tpiConsociationType != '20' && empInfo.tseRoleId != '100002' && empInfo.tseRoleId != '100003') {
+        hasAcm = true
+      }
+    }
+    return hasAcm
+  }
+  module.exports.hasAcm = hasAcm
+</wxs>
+<view class="my">
+  <view class="login-view" wx:if="{{!isLogin}}" catch:tap="login"></view>
+  <view class="head">
+    <image class="bg" mode src="{{IMG_URL + '/api/mini/my_bj_1.png'}}" />
+    <view wx:if="{{!isLogin}}" class="noLogin">
+      <view class="col-l">
+        <view class="icon">
+          <image src="{{info.userInfo && info.userInfo.headImgUrl ? info.userInfo.headImgUrl : 'https://prodstatic.weis1606.cn/api/smartFood/defaultAvatar.png'}}" />
+        </view>
+        <view class="btn">
+          {{info.userInfo && info.userInfo.uname ? info.userInfo.uname : '请登录'}}
+        </view>
+      </view>
+      <view class="arrow">
+        <image src="/images/my/list_next_white.png" />
+      </view>
+    </view>
+    <view class="login" wx:else bind:tap="switch">
+      <view class="wrap_login">
+        <view class="icon">
+          <image src="{{info.userInfo.headImgUrl}}" />
+          <image class="subIcon" wx:if="{{subToken}}" src="/images/subAccount.png" />
+          <image class="crownHead" wx:if="{{isVip}}" src="https://prodstatic.weis1606.cn/api/smartFood/crown_head.png" />
+        </view>
+        <view class="col-r">
+          <view class="nick">{{info.userInfo.uname}}</view>
+          <!-- <view class="hello" wx:if="{{info.userInfo.autograph}}">
+              {{info.userInfo.autograph}}
+          </view> -->
+        </view>
+      </view>
+      <view class="arrow switch">
+        <image src="/images/icon_switch.png" />
+        <view>切换账号</view>
+      </view>
+    </view>
+    <!-- 维士会员 -->
+    <view class="member" bind:tap="member">
+      <view class="member_l">
+        <view class="crown">
+          <image src="https://prodstatic.weis1606.cn/api/smartFood/crown.png" />
+          <text>{{vipCouponTip.title}}</text>
+        </view>
+        <view class="word">{{vipCouponTip.text}}</view>
+      </view>
+      <view class="member_r">{{vipCouponTip.btnText}}</view>
+    </view>
+    <!-- 余额 优惠券 -->
+    <view class="box">
+      <!-- <view class="amount-box" bind:tap="integral">
+          <view class="amount">{{'0'}}</view>
+          <view class="name">积分</view>
+      </view> -->
+      <view class="amount-box" bind:tap="coupon">
+        <view class="amount">
+          {{couponNum>=0 || redPacketNum>=0? couponNum + redPacketNum : '--'}}
+        </view>
+        <view class="name">优惠券＆红包</view>
+      </view>
+      <!-- <view class="amount-box" bind:tap="mealTicket">
+          <view class="amount">{{cardSize}}</view>
+          <view class="name">饭票</view>
+      </view> -->
+      <view class="amount-box" bind:tap="recharge">
+        <view class="amount">
+          <!-- {{amount.totalBalance ? filters.toFix(amount.totalBalance) : '0'}} -->
+          {{amount.totalBalance}}
+        </view>
+        <view class="name">
+          <text>余额充值</text>
+          <text wx:if="{{uncheck}}">已返现</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 我的订单 -->
+  <view class="order">
+    <view class="o-l">
+      <view class="name">我的订单</view>
+    </view>
+    <view class="o-b">
+      <view class="con" data-index="{{item.index}}" bind:tap="goOrder" wx:for="{{list}}" wx:key="key">
+        <image src="{{item.icon}}" />
+        <view class="mz">{{item.name}}</view>
+        <view class="dot" wx:if="{{item.index == '0' && unUsedOrder}}"></view>
+      </view>
+    </view>
+  </view>
+  <!-- banner -->
+  <!-- <view class="inline-center" style="margin: 0 auto 20rpx;" bind:tap="inviteTap">
+      <image class="invite-banner" src="https://prodstatic.weis1606.cn/api/mini/my_banner.png" />
+  </view> -->
+  <!-- 我的业绩 -->
+  <!-- <view class="performance" wx:if="{{info.isPartner}}">
+            <view class="box" bind:tap="myPerformance">
+                <view class="title">我的业绩</view>
+                <view class="num">{{showEye ? '￥'+info.totalIncome : '***'}}</view>
+                <view class="b-box" catch:tap="showEye">
+                    <view class="name">月累计/元</view>
+                    <image bind src="{{showEye ? '/images/my/my_eye_open.png' : '/images/my/my_eye_off.png'}}" />
+                </view>
+            </view>
+            <view class="box" bind:tap="myCode">
+                <view class="title">渠道码</view>
+                <view class="num">查看</view>
+                <view class="b-box">
+                    <view class="name">现有个数</view>
+                </view>
+            </view>
+  </view> -->
+  <!-- 我的服务 -->
+  <view class="wrap">
+    <view class="name">我的服务</view>
+    <view class="list-box">
+      <!-- 邀请有礼 -->
+      <view class="list invite" bind:tap="invite">
+        <image class="icon" src="https://prodstatic.weis1606.cn/api/smartFood/inviteNew/gift.png" />
+        <view class="name-l">邀请有礼</view>
+        <view class="tag" wx:if="{{!hideInviteBubbles}}">拉新返10元</view>
+      </view>
+      <view class="list" bind:tap="nutrientReport">
+        <image class="icon" src="/images/my/nutrient_report.png" />
+        <view class="name-l">营养报告</view>
+      </view>
+      <!-- 帮充值暂不上，保留勿删 -->
+      <view class="list" bind:tap="myHelpRecharge">
+        <image class="icon" src="/images/my/my_recharge.png" />
+        <view class="name-l">帮充值</view>
+      </view>
+      <view class="list" bind:tap="myAgenthook">
+        <image class="icon" src="/images/my/my_diet_consultant.png" />
+        <view class="name-l">精准饮食顾问</view>
+      </view>
+      <view class="list" bind:tap="myAddress">
+        <image class="icon" src="/images/my/my_address.png" />
+        <view class="name-l">地址管理</view>
+      </view>
+      <!-- 我的公司暂不上，保留勿删 -->
+      <!-- <view class="list" bind:tap="myCompany">
+                    <image class="icon" src="/images/my/my_agent_hook.png" />
+                    <view class="name-l">我的公司</view>
+                </view> -->
+      <view class="list" bind:tap="myAchievement" wx:if="{{utils.hasAcm(employeeInfo)}}">
+        <image class="icon" src="/images/my/my_achievement.png" />
+        <view class="name-l">业绩</view>
+      </view>
+      <view class="list" bind:tap="withdrawal" wx:if="{{employeeInfo.length > 0 && employeeInfo[0].tpiConsociationType == '20'}}">
+        <image class="icon" src="https://prodstatic.weis1606.cn/api/smartFood/my_withdrawal.png" />
+        <view class="name-l">收入提现</view>
+      </view>
+      <view class="list" bind:tap="myChannel" wx:if="{{hasQudao}}">
+        <image class="icon" src="/images/my/my_channel_code.png" />
+        <view class="name-l">渠道码</view>
+      </view>
+      <view class="list" bind:tap="myActive">
+        <image class="icon" src="/images/my/my_activity.png" />
+        <view class="name-l">我的活动</view>
+      </view>
+      <!-- <view class="list" bind:tap="partner" wx:if="{{!info.isPartner}}">
+          <image class="icon" src="/images/my_achievement.png" />
+          <view class="name-l">我的业绩</view>
+      </view> -->
+      <!-- <view class="list" bind:tap="allergen">
+        <image class="icon" src="/images/cell.png" />
+        <view class="name-l">口味＆过敏原</view>
+      </view> -->
+      <view class="list" bind:tap="allMeal">
+        <image class="icon" src="/images/meal_history.png" />
+        <view class="name-l">历史饭团</view>
+      </view>
+      <view class="list" bind:tap="forecast" wx:if="{{info.isInterface}}">
+        <image class="icon" src="/images/my/forecast.png" />
+        <view class="name-l">用餐预测</view>
+      </view>
+      <view class="list" bind:tap="allList" wx:if="{{info.isInterface}}">
+        <image class="icon" src="/images/list.png" />
+        <view class="name-l">菜品签收</view>
+      </view>
+      <view class="list" bind:tap="operate" wx:if="{{info.operationStt}}">
+        <image class="icon" src="/images/my/operate.png" />
+        <view class="name-l">运营页面</view>
+      </view>
+      <view class="list" bind:tap="contact">
+        <image class="icon" src="/images/my/my_service.png" />
+        <view class="name-l">联系客服</view>
+      </view>
+      <!-- <view class="list" bind:tap="proposal">
+        <image class="icon" src="/images/my/my_proposal.png" />
+        <view class="name-l">意见反馈</view>
+      </view> -->
+      <!-- <view class="list" bind:tap="about">
+        <image class="icon" src="/images/my/about.png" />
+        <view class="name-l">关于维士</view>
+      </view> -->
+      <view class="list" bind:tap="treat">
+        <image class="icon" src="/images/my/my_agent_hook2.png" />
+        <view class="name-l">请客吃饭</view>
+      </view>
+      <view class="list" bind:tap="invoice">
+        <image class="icon" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/my_invoice.png" />
+        <view class="name-l">开发票</view>
+      </view>
+      <view class="list" bind:tap="set">
+        <image class="icon" src="https://prodstatic.weis1606.cn/api/smartFood/my_set.png" />
+        <view class="name-l">设置</view>
+      </view>
+      <view class="list" bind:tap="tool" wx:if="{{toolkitRoot}}">
+        <image class="icon" src="https://prodstatic.weis1606.cn/api/smartFood/my_tool.png" />
+        <view class="name-l">拉新工具包</view>
+      </view>
+      <view class="list" bind:tap="coach">
+        <image class="icon" src="https://prodstatic.weis1606.cn/api/smartFood/my_coach.png" />
+        <view class="name-l">教练点餐专区</view>
+      </view>
+      <!-- <view class="list" bind:tap="theme">
+        <image class="icon" src="https://prodstatic.weis1606.cn/api/smartFood/circle/my_dashboard.png" />
+        <view class="name-l">换点餐仪表盘</view>
+      </view> -->
+      <!-- <navigator class="list" url="/pages/packSubAccount/orderPredict/orderPredict?type=00">
+        <image class="icon" src="/images/my/about.png" />
+        <view class="name-l">预测单</view>
+      </navigator>
+      <navigator class="list" url="/pages/packSubAccount/orderPredict/orderPredict?type=01">
+        <image class="icon" src="/images/my/about.png" />
+        <view class="name-l">对比单</view>
+      </navigator> -->
+    </view>
+  </view>
+  <!-- <view style="font-size: 22rpx;color: #A9A9A9;text-align: center;line-height: 60rpx;margin:50rpx 0">
+    Version 2.7.0
+  </view> -->
+  <!-- <view style="height: {{isIpx ? 68 + 98 : 98}}rpx;"></view> -->
+</view>
+<!-- <costom-tab-bar></costom-tab-bar> -->
+<view wx:if="{{showComponent}}">
+  <cp-login-view id="login-dialog" bind:updateSucc="updateLogin" />
+</view>
+<!-- 注册后送券 -->
+<cp-login-coupon />

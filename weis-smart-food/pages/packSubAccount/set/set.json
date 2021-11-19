@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "cp-switch": "/components/cp-switch/cp-switch"
+  }
+}

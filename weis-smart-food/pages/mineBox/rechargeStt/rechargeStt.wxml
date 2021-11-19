@@ -1,0 +1,28 @@
+<!-- pages/mineBox/rechargeStt/rechargeStt.wxml -->
+<cp-nav-bar title-text=" " backIconColor="block" />
+<view class="rechargeStt">
+  <image class="icon" src="{{status === 1 ? 'https://prodstatic.weis1606.cn/api/smartFood/icon_%E6%94%AF%E4%BB%98%E6%88%90%E5%8A%9F.png' : 'https://prodstatic.weis1606.cn/api/smartFood/icon_pay_fail.png'}}" />
+  <view class="status">{{status === 1 ? '充值成功' : '充值失败'}}</view>
+  <view class="cash" wx:if="{{status === 1}}">
+    <view class="amount">
+      <text class="amount__fh">￥</text>
+      <text class="amount__je">{{amount + discount}}</text>
+    </view>
+  </view>
+  <view class="tip" wx:if="{{status === -1 || discount > 0}}">
+    {{status === 1 ? '实付¥' + amount + '，赠送¥' + discount : '可能因为网络繁忙'}}
+  </view>
+  <view class="tips" wx:if="{{status === 1 && source == 'onlineFat'}}">
+    {{!isjoin?'你当前余额小于¥'+joinRuleBalance+'还不能加入减脂营，请继续充值':'恭喜，你当前余额大于等于¥'+ joinRuleBalance+'获得加入减脂营资格。请前去点餐正式加入减脂营'}}
+  </view>
+  <!-- 按钮 -->
+  <view class="btnBox">
+    <view class="success" wx:if="{{status === 1}}" bindtap="finish">
+      {{source == 'submit' ? '去支付订单':source =='onlineFat' && !isjoin?'继续充值' : source =='onlineFat' && isjoin?'返回减肥营':'完成'}}
+    </view>
+    <view class="fail" wx:else>
+      <view class="back" bindtap="finish">{{source == 'submit' ? '回订单页' : '返回'}}</view>
+      <view class="again" bindtap="payAgain">重新支付</view>
+    </view>
+  </view>
+</view>

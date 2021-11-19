@@ -1,0 +1,74 @@
+.border {
+  display: block;
+  content: "";
+  background: #f3f4f5;
+  position: absolute;
+  bottom: 0;
+  margin: auto;
+}
+.operate-order {
+  width: 100%;
+  padding: 16rpx 50rpx 0;
+}
+.operate-order .list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx 0;
+  position: relative;
+}
+.operate-order .list::after {
+  display: block;
+  content: "";
+  background: #f3f4f5;
+  position: absolute;
+  bottom: 0;
+  margin: auto;
+  width: 650rpx;
+  height: 2rpx;
+}
+.operate-order .list .list-l {
+  width: 160rpx;
+  height: 160rpx;
+}
+.operate-order .list .list-r {
+  width: 456rpx;
+}
+.operate-order .list .list-r view:nth-child(1) {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #000000;
+  line-height: 42rpx;
+  margin-bottom: 26rpx;
+}
+.operate-order .list .list-r view:nth-child(2) {
+  text-align: right;
+  line-height: 37rpx;
+}
+.operate-order .list .list-r view:nth-child(2) text:nth-child(1) {
+  font-size: 26rpx;
+  color: #666666;
+}
+.operate-order .list .list-r view:nth-child(2) text:nth-child(2) {
+  font-size: 26rpx;
+  color: #fa6400;
+  font-weight: bold;
+}
+.operate-order .list .list-r view:nth-child(2) text:nth-child(3) {
+  font-size: 36rpx;
+  color: #fa6400;
+  font-weight: bold;
+}
+.operate-order .null {
+  margin-top: 270rpx;
+  text-align: center;
+}
+.operate-order .null image {
+  width: 320rpx;
+  height: 240rpx;
+}
+.operate-order .null view {
+  font-size: 28rpx;
+  color: #a9a9a9;
+  line-height: 40rpx;
+}

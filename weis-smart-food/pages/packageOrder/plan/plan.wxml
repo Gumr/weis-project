@@ -1,0 +1,288 @@
+<!-- pages/plan/plan.wxml -->
+<!-- <cp-nav-bar title-text="" color="#fff" background="transparent" custom left="text" customText="{{dateList[selectIndex].month + '月' + dateList[selectIndex].day + '日'}}" home-icon="/images/backHome2.png"></cp-nav-bar> -->
+<cp-nav-bar title-text="修改吃法" />
+<view class="page-plan">
+    <!-- <view class="date-box" style="height:{{navStatusHeight * px2rpx + 167}}rpx;padding-top:{{navStatusHeight * px2rpx + 30}}rpx;">
+        <scroll-view class="wrap" show-scrollbar="{{false}}" enhanced="{{true}}" scroll-with-animation="{{true}}" scroll-into-view="{{'meal' + (selectIndex-1 >= 0 ? selectIndex -1 : 0)}}" scroll-x="{{true}}" style="width: 750rpx">
+            <view class="date {{index == selectIndex ? 'active' : ''}}" id="{{'meal' + index}}" wx:for="{{dateList}}" wx:key="index" data-index="{{index}}" bind:tap="select">
+                <view class="week-box">
+                    {{item.week}}
+                </view>
+                <view class="day">{{item.day}}</view>
+            </view>
+        </scroll-view>
+    </view> -->
+    <!-- <image class="programme_bj" style="top:{{navStatusHeight * px2rpx + 167}}rpx" src="https://prodstatic.weis1606.cn/api/smartFood/programme_bj.png" /> -->
+    <image class="programme_bj" src="https://prodstatic.weis1606.cn/api/smartFood/programme_bj.png" />
+    <view class="plan" bind:touchstart="touchstart" bind:touchend="touchend">
+        <view class="head">
+            <view class="list icon">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/set.png" />
+                <view class="name">吃法参数</view>
+            </view>
+            <view class="list">
+                <view class="name">名称</view>
+                <view class="r-row" bind:tap="editName">
+                    <view class="r-name edit-color">{{dietPlan.planName}}</view>
+                    <image wx:if="{{isModifiable}}" src="/images/arrow-color.png" />
+                </view>
+            </view>
+            <view class="list">
+                <view class="name">采用方法</view>
+                <view class="r-row">
+                    <view class="r-name">
+                        {{dietPlan.calculationMethod == '01' ? '综合比例法' : '固蛋法'}}
+                    </view>
+                </view>
+            </view>
+            <view class="list">
+                <view class="name">摄入量</view>
+                <view class="r-row" bind:tap="editIntake">
+                    <view class="r-name edit-color">{{dietPlan.totalIntake}}kcal</view>
+                    <image wx:if="{{isModifiable}}" src="/images/arrow-color.png" />
+                </view>
+            </view>
+            <view class="list">
+                <view class="name">热量差</view>
+                <view class="r-row">
+                    <view class="r-name">{{dietPlan.energyDifference}}kcal</view>
+                </view>
+            </view>
+        </view>
+        <!-- 每餐 -->
+        <view class="meals">
+            <!-- 固蛋法 -->
+            <view wx:if="{{dietPlan.calculationMethod == '02'}}">
+                <view class="box" wx:for="{{dietPlan.planDetailList}}" wx:key="key">
+                    <view class="col-t {{item.open ? 'active' : ''}}" data-index="{{index}}" bind:tap="open">
+                        <view class="head-l">
+                            <image src="{{item.category == '01' ? 'https://prodstatic.weis1606.cn/api/smartFood/egg.png' : (item.category == '02' ? 'https://prodstatic.weis1606.cn/api/smartFood/noodles.png' : item.category == '03' ? 'https://prodstatic.weis1606.cn/api/smartFood/tray.png' : 'https://prodstatic.weis1606.cn/api/smartFood/drumsticks.png')}}" />
+                            <view class="name">{{item.categoryName}}</view>
+                        </view>
+                        <!-- <image class="arrow" src="/images/icons/arrow_dropdown_gray.png" /> -->
+                    </view>
+                    <view class="title">
+                        <view class="name">类型</view>
+                        <view class="name">数值</view>
+                        <view class="name">百分比</view>
+                    </view>
+                    <view class="category">
+                        <view class="list list-1" bind:tap="editEnergy">
+                            <view class="list-val">能量</view>
+                            <view class="list-val">{{item.totalKcal}}kcal</view>
+                            <view class="list-val">
+                                <view class="percent edit-color">{{item.totalRatio}}%</view>
+                                <image wx:if="{{isModifiable}}" src="/images/arrow-color.png" />
+                            </view>
+                        </view>
+                        <view class="open {{item.open ? 'active' : ''}}">
+                            <view class="list list-2" bind:tap="editThreeCate">
+                                <view class="list-val">蛋白质/每日总蛋白</view>
+                                <view class="list-val">{{item.fixedProteinTotal}}g</view>
+                                <view class="list-val">
+                                    <view class="percent edit-color">
+                                        {{item.fixedProteinRatio}}%
+                                    </view>
+                                    <image wx:if="{{isModifiable}}" src="/images/arrow-color.png" />
+                                </view>
+                            </view>
+                            <view class="list" data-index="{{index}}" data-category="{{item.category}}" bind:tap="editOneFat">
+                                <view class="list-val">脂肪</view>
+                                <view class="list-val">{{item.fatTotal}}g</view>
+                                <view class="list-val">
+                                    <view class="percent edit-color">{{item.fatRatio}}%</view>
+                                    <image wx:if="{{isModifiable}}" src="/images/arrow-color.png" />
+                                </view>
+                            </view>
+                            <view class="list">
+                                <view class="list-val">碳水</view>
+                                <view class="list-val">{{item.carbohydrateTotal}}g</view>
+                                <view class="list-val">
+                                    <view class="percent">{{item.carbohydrateRatio}}%</view>
+                                </view>
+                            </view>
+                            <view class="list fiber">
+                                <view class="list-val">膳食纤维</view>
+                                <view class="list-val">{{item.dietaryFiber}}g</view>
+                                <view class="list-val"></view>
+                            </view>
+                            <view class="list">
+                                <view class="list-val">盐量</view>
+                                <view class="list-val">{{item.salt}}g</view>
+                                <view class="list-val"></view>
+                            </view>
+                            <view class="list">
+                                <view class="list-val">食物多样性</view>
+                                <view class="list-val">{{item.diversity}}种</view>
+                                <view class="list-val"></view>
+                            </view>
+                        </view>
+                    </view>
+                    <!-- 点餐 打卡 -->
+                    <view class="btn-box">
+                        <view class="btn {{!item.canCard ? 'disable' : ''}}" data-can="{{item.canCard}}" bind:tap="dietCard">打卡</view>
+                        <view class="btn" bind:tap="control" data-item="{{item}}">控卡</view>
+                        <!-- <view class="btn {{!item.canMeal ? 'disable' : ''}}" bind:tap="tapMeal" data-category="{{item.category}}">点餐</view> -->
+                    </view>
+                </view>
+            </view>
+            <!-- 综合法 -->
+            <view wx:else>
+                <view class="box" wx:for="{{dietPlan.planDetailList}}" wx:key="key">
+                    <view class="col-t {{item.open ? 'active' : ''}}" data-index="{{index}}" bind:tap="open">
+                        <view class="head-l">
+                            <image src="{{item.category == '01' ? 'https://prodstatic.weis1606.cn/api/smartFood/egg.png' : (item.category == '02' ? 'https://prodstatic.weis1606.cn/api/smartFood/noodles.png' : item.category == '03' ? 'https://prodstatic.weis1606.cn/api/smartFood/tray.png' : 'https://prodstatic.weis1606.cn/api/smartFood/drumsticks.png')}}" />
+                            <view class="name">{{item.categoryName}}</view>
+                        </view>
+                        <!-- <image class="arrow" src="/images/icons/arrow_dropdown_gray.png" /> -->
+                    </view>
+                    <view class="title">
+                        <view class="name">类型</view>
+                        <view class="name">数值</view>
+                        <view class="name">百分比</view>
+                    </view>
+                    <view class="category">
+                        <view class="list list-1" bind:tap="editEnergy">
+                            <view class="list-val">{{item.categoryName}}能量</view>
+                            <view class="list-val">{{item.totalKcal}}kcal</view>
+                            <view class="list-val">
+                                <view class="percent edit-color">{{item.totalRatio}}%</view>
+                                <image wx:if="{{isModifiable}}" src="/images/arrow-color.png" />
+                            </view>
+                        </view>
+                        <view class="open {{item.open ? 'active' : ''}}">
+                            <view class="list list-2" data-category="{{index}}" bind:tap="editOneCategory">
+                                <view class="list-val">碳水化合物</view>
+                                <view class="list-val">{{item.carbohydrateTotal}}g</view>
+                                <view class="list-val">
+                                    <view class="percent edit-color">
+                                        {{item.carbohydrateRatio}}%
+                                    </view>
+                                    <image wx:if="{{isModifiable}}" src="/images/arrow-color.png" />
+                                </view>
+                            </view>
+                            <view class="list" data-category="{{index}}" bind:tap="editOneCategory">
+                                <view class="list-val">蛋白质</view>
+                                <view class="list-val">{{item.proteinTotal}}g</view>
+                                <view class="list-val">
+                                    <view class="percent edit-color">{{item.proteinRatio}}%</view>
+                                    <image wx:if="{{isModifiable}}" src="/images/arrow-color.png" />
+                                </view>
+                            </view>
+                            <view class="list" data-category="{{index}}" bind:tap="editOneCategory">
+                                <view class="list-val">脂肪</view>
+                                <view class="list-val">{{item.fatTotal}}g</view>
+                                <view class="list-val">
+                                    <view class="percent edit-color">{{item.fatRatio}}%</view>
+                                    <image wx:if="{{isModifiable}}" src="/images/arrow-color.png" />
+                                </view>
+                            </view>
+                            <view class="list fiber">
+                                <view class="list-val">膳食纤维</view>
+                                <view class="list-val">{{item.dietaryFiber}}g</view>
+                                <view class="list-val"></view>
+                            </view>
+                            <view class="list">
+                                <view class="list-val">盐量</view>
+                                <view class="list-val">{{item.salt}}g</view>
+                                <view class="list-val"></view>
+                            </view>
+                            <view class="list">
+                                <view class="list-val">食物多样性</view>
+                                <view class="list-val">{{item.diversity}}种</view>
+                                <view class="list-val"></view>
+                            </view>
+                        </view>
+                    </view>
+                    <!-- 点餐 打卡 -->
+                    <view class="btn-box">
+                        <view class="btn {{!item.canCard ? 'disable' : ''}}" data-can="{{item.canCard}}" bind:tap="dietCard">打卡</view>
+                        <view class="btn" bind:tap="control" data-item="{{item}}">控卡</view>
+                        <!-- <view class="btn {{!item.canMeal ? 'disable' : ''}}" bind:tap="tapMeal" data-category="{{item.category}}">点餐</view> -->
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- 更换方案 -->
+        <view class="change" bind:tap="change">
+            <image src="/images/ico_switch.png" />
+            <view class="name">更换饮食吃法</view>
+        </view>
+        <view style="height: 48rpx;"></view>
+    </view>
+</view>
+
+<image class="customer {{isScroll ? 'active' : ''}}" bind:tap="contact" src="https://prodstatic.weis1606.cn/api/smartFood/icon_ask.png" />
+
+<!-- 修改方案弹窗 -->
+<cp-editPlan-dialog id="editPopup" show="{{showEdit}}" errTip="{{errTip}}" oneObj="{{oneObj}}" iptType="{{iptType}}" listArr="{{listArr}}" iptVal="{{iptVal}}" btnText='{{btnText}}' subTitle="{{subTitle}}" title="{{title}}" bind:update="update"></cp-editPlan-dialog>
+
+<van-popup show="{{showToPlan}}" closeable close-icon-position="top-left" close-icon="/images/icon_down.png" position="bottom" safe-area-inset-bottom="{{false}}" custom-style="border-radius:20rpx 20rpx 0 0;" z-index="1000" catch:touchmove="true" bind:close="closePlan" bind:click-overlay="closePlan">
+    <view class="pop-box">
+        <view class="box" wx:for="{{toPlanList}}" wx:key="index" data-index="{{index}}" bind:tap="toPlan">{{item}}</view>
+    </view>
+</van-popup>
+
+<cp-config-dialog discoverDialogs="{{discoverDialogs}}" />
+
+
+<!-- 控卡-调整本餐营养数据 -->
+<van-popup duration="200" catchtouchmove="true" position="bottom" show="{{showControl}}" bind:click-overlay="hidePopup" close-on-click-overlay="{{true}}" custom-style="border-radius: 40rpx 40rpx 0rpx 0rpx;" z-index="200">
+    <view class="dialog-title">
+        <text class selectable="false" space="false" decode="false">调整本餐营养数据</text>
+        <image bindtap="hidePopup" class="close-icon" src="/images/icon_down.png" />
+    </view>
+    <!-- 总能量 -->
+    <view class="ruler-box">
+        <view class="title">总能量</view>
+        <view class="box">
+            <input type="number" value="{{currentData.totalEnergy}}" data-type="01" bindblur="changeRule" />
+            <view class="unit">kcal</view>
+        </view>
+        <view class="ruler">
+            <cp-ruler id="energy" min="{{nutrient.minEnergy}}" max="{{nutrient.maxEnergy}}" value="{{currentData.totalEnergy}}" scrollType="level" data-type="01" bind:change="changeRule"></cp-ruler>
+        </view>
+    </view>
+    <!-- 蛋白质 碳水 脂肪 -->
+    <view class="wrap-nut">
+        <view class="ruler-box">
+            <view class="title">蛋白质</view>
+            <view class="box">
+                <input type="number" value="{{currentData.totalProtein}}" data-type="02" bindblur="changeRule" />
+                <view class="unit">g</view>
+            </view>
+            <view class="percent">{{currentData.protePer}}%</view>
+            <view class="ruler">
+                <cp-ruler id="protein" min="{{nutrient.minProtein}}" max="{{nutrient.maxProtein}}" value="{{currentData.totalProtein}}" scrollType="vertical" data-type="02" bind:change="changeRule"></cp-ruler>
+            </view>
+        </view>
+        <!-- 碳水 -->
+        <view class="ruler-box">
+            <view class="title">碳水</view>
+            <view class="box">
+                <input type="number" value="{{currentData.totalCarbonwater}}" data-type="03" bindblur="changeRule" />
+                <view class="unit">g</view>
+            </view>
+            <view class="percent">{{currentData.carbPer}}%</view>
+            <view class="ruler">
+                <cp-ruler id="carbonwater" min="{{nutrient.minCarbonwater}}" max="{{nutrient.maxCarbonwater}}" value="{{currentData.totalCarbonwater}}" scrollType="vertical" data-type="03" bind:change="changeRule"></cp-ruler>
+            </view>
+        </view>
+        <!-- 脂肪 -->
+        <view class="ruler-box">
+            <view class="title">脂肪</view>
+            <view class="box">
+                <input type="number" value="{{currentData.totalFat}}" data-type="04" bindblur="changeRule" />
+                <view class="unit">g</view>
+            </view>
+            <view class="percent">{{currentData.fatPer}}%</view>
+            <view class="ruler">
+                <cp-ruler id="fat" min="{{nutrient.minFat}}" max="{{nutrient.maxFat}}" value="{{currentData.totalFat}}" scrollType="vertical" data-type="04" bind:change="changeRule"></cp-ruler>
+            </view>
+        </view>
+    </view>
+    <view class="bot-rule">
+        <view class="reset" bindtap="changeRule" data-type="01" data-value="{{total.totalKcal}}" data-reset="true">重置<view class="origin"><image src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/boss-icon.png" /><view>原方案: {{total.totalKcal}}kcal</view></view></view>
+        <view class="save" catch:tap="saveData">保存</view>
+    </view>
+</van-popup>

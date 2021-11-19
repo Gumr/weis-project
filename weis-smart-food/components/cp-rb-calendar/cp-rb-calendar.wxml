@@ -1,0 +1,49 @@
+<!-- components/cp-riceball-calendar/cp-rb-calendar.wxml -->
+<wxs module="tools">
+  function getClass(day, select) {
+    var str = ''
+    if(day.selected && select.length > 0) {
+      str = select[0].timetamp === day.timetamp ? 'inrange rowstart started' : select[1] && select[1].timetamp === day.timetamp ? 'inrange rowend ended' : day.week == 0 ? 'inrange rowstart' : day.week == 6 ? 'inrange rowend' : 'inrange'
+    }
+    return str
+  }
+  module.exports.getClass = getClass
+</wxs>
+<view class="pop-canlendar" wx:if="{{show}}">
+  <view class="shadow" catchtap="closeCalendar"></view>
+  <view class="canlendar-container">
+    <view class="canlendar-tit">
+      <view class="tit-box">
+        <text>选择日期</text>
+        <text bindtap="confirmSelect">确定</text>
+      </view>
+      <!-- 星期 -->
+      <view class="weekBgView">
+        <view class="weekView {{index === 0 || index === 6 ? 'weekend' : ''}}" wx:for="{{week}}" wx:key="index">
+          {{item}}
+        </view>
+      </view>
+      <view class="now">{{current}}</view>
+      <image src="/images/icon_down.png" alt="" catchtap="closeCalendar"></image>
+    </view>
+    <scroll-view class="canlendar-box" scroll-y scroll-into-view="{{toView}}" bindscroll="scrollFn" bindscrolltolower="handleScrolltoLower">
+      <view class="placeholder"></view>
+      <view class="canlendarBgView" wx:for="{{monthsArr}}" wx:key="index" id="{{'_' + index}}">
+        <view class="canlendarTopView">
+          <view class="centerView">{{item.cur_year || "--"}} 年 {{item.cur_month || "--"}} 月</view>
+        </view>
+        <view class="dateBgView">
+          <view class="dateEmptyView" wx:for="{{item.empytGrids}}" wx:key="index_e"></view>
+          <view class="dateView {{tools.getClass(item_s, selectDates)}}" wx:for="{{item.days}}" wx:for-item="item_s" wx:for-index="index_s" wx:key="index_s" data-month-index="{{index}}" data-day-index="{{index_s}}" bindtap="selectDate">
+            <view class="datesView {{ item_s.selected ? 'selected' : '' }} {{ item_s.disabled ? 'disabled' : '' }} {{ !item_s.disabled && item_s.beforeFlag ? 'before' : '' }}">
+              {{item_s.isnow ? '今' : item_s.day}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <!-- slot 插槽 -->
+    <slot name="slot_multi"></slot>
+    <slot name="slot_sure"></slot>
+  </view>
+</view>

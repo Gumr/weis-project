@@ -1,0 +1,112 @@
+<cp-nav-bar title-text="选择子账号" color="#333333" background="#fff" backIconColor="black" />
+<view class="selechild">
+<!--选择是否过敏-->
+    <view class="selAge">
+      <view
+        wx:for="{{ergyList}}"
+        wx:key="index"
+        class="allage {{allergyIndex== index?'active':''}}"
+        data-allergyIndex="{{index}}"
+        bindtap="clickAllergy"
+      >{{item.name}}</view>
+    </view>
+    <!--无过敏-->
+    <scroll-view scroll-y="true" style="height: {{isIpx ? 1200 : 800}}rpx" wx:if="{{allergyIndex == 0}}">
+    <view  class="chilContent">
+
+     
+      <view class="selectAll" bindtap="selectAll" data-type="0">
+       <text class="agetype">2-3岁</text>
+      <image wx:if="{{allmin}}" class="select" src="/images/order_list_select.png" />
+      <image wx:else class="select" src="/images/order_list_unchecked.png" />
+      <text class="all">全选</text>
+      </view>
+
+      <view class="content {{isShow?'on':''}}">
+        <view
+          wx:for="{{subUserInfoList.subUserInfoBeans}}"
+          wx:key="index"
+          wx:for-index="day"
+          class="contentlist {{item.isOrder == 'true'?'graytxt' :''}}"
+          bindtap="selected"
+          data-tsu-sub-uid="{{item.tsuSubUid}}"
+          data-index="{{day}}"
+          data-type="0"
+        >
+          <image
+            src="{{item.checked ? '/images/order_list_select.png' : '/images/order_list_unchecked.png'}}"
+          />
+          {{item.tsuSubUname}}
+        </view>      
+    </view>
+     <view class="morechild" data-isshow="0" bind:tap="toggle"><image src="{{isShow?'/images/arrow_close.png':'/images/arrow_open.png'}}" />点击{{isShow?'收起':'展开'}}</view> 
+
+
+     
+      <view class="selectAll" bindtap="selectAll" data-type="1">
+      <view class="agetype">4-6岁</view>
+      <image wx:if="{{allmidel}}" class="select" src="/images/order_list_select.png" />
+      <image wx:else class="select" src="/images/order_list_unchecked.png" />
+      <view class="all">全选</view>
+      </view>
+
+      <view class="content {{isShow2?'on':''}}">
+        <view
+          wx:for="{{subUserInfoList.subUserInfoBeanList}}"
+          wx:key="index"
+          wx:for-index="day"
+          class="contentlist {{item.isOrder == 'true'?'graytxt' :''}}"
+          bindtap="selected"
+          data-tsu-sub-uid="{{item.tsuSubUid}}"
+          data-index="{{day}}"
+          data-type="1"
+        >
+          <image
+            src="{{item.checked ? '/images/order_list_select.png' : '/images/order_list_unchecked.png'}}"
+          />
+          {{item.tsuSubUname}}
+        </view>      
+    </view>
+     <view class="morechild" data-isshow="1" bind:tap="toggle"><image src="{{isShow2?'/images/arrow_close.png':'/images/arrow_open.png'}}" />点击{{isShow2?'收起':'展开'}}</view> 
+    </view>
+
+</scroll-view>
+    <!--过敏-->
+    <view wx:if="{{allergyIndex == 1}}" class="chilContent">
+     <view class="selectAll" bindtap="selectAll" data-type="2">
+      <image wx:if="{{allergy}}" class="select" src="/images/order_list_select.png" />
+      <image wx:else class="select" src="/images/order_list_unchecked.png" />
+      <view class="all">全选</view>
+    </view>
+    <scroll-view scroll-y="true" style="height: {{isIpx ? 1200 : 800}}rpx" wx:if="{{allergyIndex == 1}}">
+  
+      <view
+        class="selallergyList {{item.isOrder == 'true'?'graytxt' :''}}"
+        wx:for="{{subUserInfoList.infoBeans}}"
+        wx:key="index"
+        data-tsu-sub-uid="{{item.tsuSubUid}}"
+        data-index="{{index}}"
+        bindtap="selected"
+        data-type="2"
+      >
+        <view>
+          <image
+            src="{{item.checked ? '/images/order_list_select.png' : '/images/order_list_unchecked.png'}}"
+          />
+          {{item.tsuSubUname}}({{item.age}}岁)
+        </view>
+        <view class="orangeColor">
+          <span wx:for="{{item.eatingHabitStr}}" wx:key="index">{{item.name}} </span>
+        </view>
+      </view>
+      </scroll-view>
+
+    
+    
+    </view>
+
+    <view class="btnlist">
+      <button class="confirm" bindtap="tapconfirm">去点餐（已选{{selectNums}}个）</button>    
+    </view>
+   
+</view>

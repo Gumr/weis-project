@@ -1,0 +1,46 @@
+<!--pages/basic/editInformation/editInformation.wxml-->
+<nav title="编辑资料"></nav>
+<view class="infos">
+  <view class="each" bind:tap="uploadAvator">
+    <text>头像</text>
+    <view class="photos">
+      <image class="avatar" src="{{userInfo.headImgUrl || '/images/icon_avatar_default.png'}}" />
+      <image class="icon" src="/images/icon_right.png" />
+    </view>
+  </view>
+  
+  <view class="each" data-type="nickname" bindtap="editOtherInfos">
+    <text>昵称</text>
+    <view class="info">
+      <text>{{userInfo.uname}}</text>
+      <image class="icon" src="/images/icon_right.png" />
+    </view>
+  </view>
+
+  <view class="each" bind:tap="editGenders">
+    <text>性别</text>
+    <view class="info">
+      <text>{{userInfo.userProfile.sex === 1 ? '男' : '女'}}</text>
+      <image class="icon" src="/images/icon_right.png" />
+    </view>
+  </view>
+
+  <view class="each" data-type="intro" bindtap="editOtherInfos">
+    <text>个人简介</text>
+    <view class="info intro">
+      <text>{{userInfo.userInfo.autograph || '简单介绍自己，更容易获得关注哦～'}}</text>
+      <image class="icon" src="/images/icon_right.png" />
+    </view>
+  </view>
+</view>
+
+<!-- 编辑性别弹窗 -->
+<view class="pop-up {{popGender ? 'show' : ''}}" wx:if="{{popGender}}">
+  <view class="opts">
+    <view class="opt {{item.selected ? 'selected' : ''}}" wx:for="{{genders}}" wx:key="id" data-index="{{index}}" bind:tap="chooseGender">{{item.name}}</view>
+  </view>
+  <view class="confirm {{!btnStatus ? 'disabled' : ''}}" data-type = 'weight' bindtap="choosedFn">确定</view>
+</view>
+
+<overlay show="{{popGender}}" bind:hideEvent="hideOverlay"></overlay>
+

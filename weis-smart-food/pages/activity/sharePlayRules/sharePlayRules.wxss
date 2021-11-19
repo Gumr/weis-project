@@ -1,0 +1,13 @@
+/* pages/market/recommendRule/recommendRule.wxss */
+.rule-item {
+  width: 100%;
+  padding: 0 17rpx 0 37rpx;
+  display: flex;
+  text-align: left;
+  font-size: 28rpx;
+  color: #000;
+}
+
+.rule-text {
+  line-height: 42rpx;
+}

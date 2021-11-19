@@ -1,0 +1,78 @@
+<!-- components/scale/scale.wxml -->
+<view class="scale-container">
+  <view class="scroll-view-box">
+    <!-- modal 刻度尺左边的蒙层渐变 -->
+    <view class="gradient-modal modal-left" wx:if="{{modalShow}}"></view>
+    <view class="top-line"></view>
+    <scroll-view
+      class="scale-list"
+      id="scale"
+      scroll-left="{{scrollLeft}}"
+      scroll-x
+      scroll-with-animation
+      bindscroll="scrollHandler"
+    >
+      <!-- supoort left 用来补充刻度尺开始的刻度  style="margin-right: {{-(intervalWidth/2)}}rpx;"-->
+      <view class="support-box" style="direction: rtl; margin-left: {{-supportWidth}}px;">
+        <view
+          class="scale-item-wrap"
+          wx:for="{{supports}}"
+          wx:key="index"
+          style="width: {{intervalWidth}}px;"
+        >
+          <view class="inline-center">
+            <view class="scale-item" style="height: 30rpx;"></view>
+          </view>
+        </view>
+      </view>
+      <view class="int-scale-item-wrap" wx:for="{{max-min+1}}" wx:for-item="int" wx:key="index">
+        <view
+          class="scale-item-wrap"
+          wx:for="{{precisionCount}}"
+          wx:key="idx"
+          wx:for-index="idx"
+          id="scale-{{item}}"
+          style="width: {{intervalWidth}}px;"
+          wx:if="{{min + int + (idx * precision) <= max}}"
+        >
+          <view class="inline-center">
+            <view class="scale-item" style="height: {{(min + int + (idx * precision))%intervalValue == 0?'44rpx':'30rpx'}}"></view>
+          </view>
+          <!-- 刻度得数字 -->
+          <view class="scale-number inline-center" wx:if="{{(min + int + (idx * precision))%intervalValue == 0}}">{{min + int + (idx * precision)}}</view>
+        </view>
+      </view>
+      <!-- 刻度尺组件包含块 -->
+      <!-- <view
+        class="scale-item-wrap"
+        wx:for="{{scaleList}}"
+        wx:key="{{index}}"
+        id="scale-{{item}}"
+        style="width: {{intervalWidth}}rpx;"
+      >
+        <view class="inline-center">
+          <view class="scale-item" style="height: {{item % 1 === 0 ? 44 : 30 }}rpx;"></view>
+        </view>
+        <view class="scale-number inline-center" wx:if="{{item % 1 === 0}}">{{item}}</view>
+      </view>-->
+
+      <!-- supoort right 用来补充刻度尺结尾的刻度  style="margin-left: {{-(intervalWidth/2)}}rpx;"-->
+      <view class="support-box" style="margin-left: {{-supportWidth}}px;">
+        <view
+          class="scale-item-wrap {{ index === 0 ? 'first-right-scale-item' : ''}}"
+          wx:for="{{supports}}"
+          wx:key="index"
+          style="width: {{intervalWidth}}px; margin-left: {{ index === 0 ? intervalWidth/2 : ''}}px"
+        >
+          <view class="inline-center">
+            <view class="scale-item" style="height: 30rpx;"></view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <!-- modal 刻度尺右边的蒙层渐变 -->
+    <view class="gradient-modal modal-right" wx:if="{{modalShow}}"></view>
+  </view>
+  <!-- 居中标识选中的刻度 -->
+  <view class="scale-item scale-item-active" style="height:{{height * 0.8}}rpx;"></view>
+</view>

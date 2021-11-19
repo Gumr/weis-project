@@ -1,0 +1,20 @@
+<!--pages/packageDiscover/dynamic/menuList/menuList.wxml-->
+<cp-nav-bar title-text="餐单列表" background="#F3F4F5"></cp-nav-bar>
+<wxs module="filters" src="../../../../utils/filter.wxs"></wxs>
+<view class="menuList">
+    <view class="list" wx:for="{{menu}}">
+        <view class="left {{item.totalScore < 100?'addRed':''}}">{{item.totalScore}}</view>
+        <view class="right">
+            <view class="right_l">
+                <view>{{filters.toDates(item.dateTime)}} {{categoryMap[item.category]}}</view>
+                <view>营养健康分{{item.totalScore}}</view>
+            </view>
+            <view class="right_r" data-index="{{index}}" bind:tap="select">
+                <image src="{{item.checked?'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/hobby_selection.png':'/images/hobby_unselected.png'}}" />
+            </view>
+        </view>
+    </view>
+    <view class="btn">
+        <view class="close {{btnActive?'active':''}}" bind:tap="relationMenu">关联该餐单</view>
+    </view>
+</view>

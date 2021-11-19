@@ -1,0 +1,174 @@
+page {
+  background: #ffffff;
+}
+.food-detail {
+  width: 100%;
+  padding: 46rpx 0 0 0;
+}
+.food-detail .good-box {
+  width: 690rpx;
+  height: 262rpx;
+  background: linear-gradient(315deg, #21c4c0 0%, #02ddbf 100%);
+  box-shadow: 0rpx 4rpx 20rpx 0rpx rgba(33, 196, 192, 0.4);
+  margin: 0 auto 60rpx;
+  box-sizing: border-box;
+  padding: 32rpx 0 0 30rpx;
+  display: flex;
+}
+.food-detail .good-box .img-box {
+  width: 140rpx;
+  height: 140rpx;
+  background: #ffffff;
+  margin-right: 30rpx;
+}
+.food-detail .good-box .img-box image {
+  width: 100%;
+  height: 100%;
+}
+.food-detail .good-box .right-box {
+  display: flex;
+  flex-direction: column;
+}
+.food-detail .good-box .right-box view {
+  color: #ffffff;
+  font-size: 24rpx;
+}
+.food-detail .good-box .right-box .name {
+  font-size: 28rpx;
+  margin: 6rpx 0 28rpx 0;
+}
+.food-detail .good-box .right-box .specification {
+  font-size: 32rpx;
+  margin: 0 0 28rpx;
+  font-weight: 550;
+}
+.food-detail .good-box .right-box .brand {
+  margin: 0 0 30rpx;
+}
+.food-detail .good-box .right-box .num {
+  color: rgba(255, 255, 255, 0.7);
+}
+.food-detail .energy {
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  justify-content: space-between;
+}
+.food-detail .energy .val {
+  color: #333333;
+  font-size: 32rpx;
+  font-weight: 550;
+}
+.food-detail .energy .switch {
+  display: flex;
+}
+.food-detail .energy .switch .name {
+  width: 72rpx;
+  height: 40rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24rpx;
+  color: #21c4c0;
+}
+.food-detail .energy .switch .name:first-of-type {
+  border: 1rpx solid #21c4c0;
+  border-right: none;
+}
+.food-detail .energy .switch .name:last-of-type {
+  border: 1rpx solid #21c4c0;
+  border-left: none;
+}
+.food-detail .energy .switch .name.active {
+  border: none;
+  background: #21c4c0;
+  color: #ffffff;
+}
+.food-detail .percent-box {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 60rpx;
+  padding: 0 0 40rpx 0;
+  border-bottom: 20rpx solid #f8f8f8;
+}
+.food-detail .percent-box .box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.food-detail .percent-box .box .circle {
+  width: 83px;
+  height: 83px;
+  margin-bottom: 30rpx;
+  position: relative;
+}
+.food-detail .percent-box .box .circle text {
+  font-size: 28rpx;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.food-detail .percent-box .box .name {
+  color: #333333;
+  font-size: 24rpx;
+  margin-bottom: 24rpx;
+}
+.food-detail .percent-box .box .val {
+  color: #808080;
+  font-size: 28rpx;
+}
+.food-detail .taste {
+  padding: 40rpx 30rpx 0 30rpx;
+}
+.food-detail .taste .title {
+  color: #333333;
+  font-size: 32rpx;
+  margin-bottom: 30rpx;
+}
+.food-detail .taste .taste-box {
+  display: flex;
+  align-items: center;
+}
+.food-detail .taste .taste-box .tag {
+  padding: 0 22rpx;
+  height: 40rpx;
+  background: rgba(33, 196, 192, 0.1);
+  line-height: 40rpx;
+  color: #21c4c0;
+  font-size: 24rpx;
+  margin-right: 20rpx;
+}
+.food-detail .taste .taste-box .tag:last-of-type {
+  margin-right: 0;
+}
+.food-detail .bot {
+  width: 100%;
+  height: 148rpx;
+  background: #ffffff;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 20rpx 0 0;
+}
+.food-detail .bot .add {
+  width: 670rpx;
+  height: 88rpx;
+  background: #21c4c0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-size: 32rpx;
+}

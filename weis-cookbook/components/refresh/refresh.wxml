@@ -1,0 +1,13 @@
+<!--components/refresh/refresh.wxml-->
+<view style='height:{{refreshHeight}}rpx;background-color:{{backgroundColor}}' class="container">
+  <view class="success {{successed ? 'successed' : ''}}" wx:if="{{successed}}">
+    <text>刷新成功</text>
+  </view>
+
+  <!-- 下拉刷新 -->
+  <view class='scroll-msgModule scroll-refreshModule' wx:else>
+    <image class='scroll-msgModule-icon' wx:if="{{pullState !== 0}}" src="{{pullState === 1 ? '/images/arrow-down.png' : '/images/arrow-top.png' }}" />
+    <van-loading wx:if="{{pullState === 0}}" type="spinner" size="16" style="margin-right: 8rpx;"></van-loading>
+    <text class='scroll-msgModule-text'>{{pullState === 1 ? '下拉刷新' : pullState === 2 ? '释放刷新' : '正在刷新'}}</text>
+  </view>
+</view>

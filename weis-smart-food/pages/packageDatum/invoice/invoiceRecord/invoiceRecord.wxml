@@ -1,0 +1,34 @@
+<!--pages/packageDatum/invoice/invoiceRecord/invoiceRecord.wxml-->
+<cp-nav-bar title-text="开票记录" background="#F3F4F5" color="#000" backIconColor="black" />
+
+<view class="record" wx:if="{{invoiceArr && invoiceArr.length > 0}}">
+    <view class="content" wx:for="{{invoiceArr}}" wx:for-item="item1" wx:for-index="index1">
+        <view class="date">{{item1.date}}</view>
+        <view class="box">
+            <view class="record-invoice" wx:for="{{item1.list}}" wx:for-item="item2" wx:for-index="index2" bind:tap="detail" data-index1="{{index1}}" data-index2="{{index2}}">
+                <view class="list" wx:for="{{item2.recordDetails}}" wx:for-item="item3" wx:for-index="index3">
+                    <view class="left">
+                        <view class="time">{{item3.date}}</view>
+                        <view class="category">{{item3.categoryText}}</view>
+                    </view>
+                    <view class="right" wx:if="{{index3 == 0}}">
+                        <view class="total">{{item2.invoicedAmount}}元</view>
+                        <view class="status">
+                            <view>{{status[item2.tirStt]}}</view>
+                            <image src="/images/my/invalid_next.png" />
+                        </view>
+                    </view>
+                </view>
+                <view class="date-time">{{item2.createDate}}</view>
+            </view>
+        </view>
+    </view>
+    <!-- 加载中 -->
+    <view class="loading" wx:if="{{more}}">加载中...</view>
+</view>
+
+<!-- 无开票记录 -->
+<view class="empty" wx:if="{{invoiceArr && invoiceArr.length == 0}}">
+    <view class="tip-title">╮(╯▽╰)╭</view>
+    <view class="desc">暂无记录</view>
+</view>

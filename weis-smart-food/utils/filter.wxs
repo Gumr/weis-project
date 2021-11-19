@@ -1,0 +1,71 @@
+var filters = {
+  toFix: function (value) {
+    return value || value == 0 ? value.toFixed(2) : ''; //此处2为保留两位小数
+  },
+  toParseInt: function (value) {
+    return value || value == 0 ? parseInt(value) : ''; //此处取整
+  },
+  toFixOne: function (value) {
+    return value || value == 0 ? parseFloat(value).toFixed(1) : ''; //此处1为保留两位小数
+  },
+  toFixCustom: function (value, n) { //不存在小数则返回原值，存在小数则保留n位
+    return value || value == 0 ? parseFloat(value.toFixed(n)) : ''
+  },
+  split: function (value, type) {
+    return value ? value.split(type) : '';
+  },
+  toAdd: function (value, num) {
+    return value && parseInt(value) - Number(3) > 1 ? parseInt(value) - Number(3) : '';
+  },
+  toDate: function (value) {
+  
+    return value
+      ? value.substring(4, 6) + '月' + value.substring(6, 8) + '日'
+      : '';
+  },
+  toDates: function (value) {
+    return value
+      ? value.substring(0, 4) + '年' + value.substring(4, 6) + '月' + value.substring(6, 8) + '日'
+      : '';
+  },
+  toDateCustom: function (value, sign) {
+    return value
+      ? value.toString().substring(0, 4) + sign + value.toString().substring(4, 6) + sign + value.toString().substring(6, 8)
+      : value == 0?value
+      : '';
+  },
+  abs: function (value) {
+    return value ? Math.abs(value) : '';
+  },
+  addZero: function (value) {
+    var value = value.length > 1 ? value : '0' + value.toString();
+    return value
+  },
+  hasTableware: function (id, skuList) {
+    return skuList.some(function (sku) { return sku.cid === id })
+  },
+  hasTablewareObj: function (id, skuList) {
+    return skuList.filter(function (item) {return item.cid === id})[0];
+  },
+  format: function (date) {
+    var date = date.split('/');
+    return date[1] + '月' + date[2] + '日';
+  },
+};
+module.exports = {
+  toFix: filters.toFix,
+  hasTableware: filters.hasTableware,
+  toParseInt: filters.toParseInt,
+  toFixOne: filters.toFixOne,
+  toFixCustom: filters.toFixCustom,
+  split: filters.split,
+  toAdd: filters.toAdd,
+  toDate: filters.toDate,
+  toDates: filters.toDates,
+  toDateCustom: filters.toDateCustom,
+  abs: filters.abs,
+  format: filters.format,
+  addZero: filters.addZero,
+  hasTablewareObj: filters.hasTablewareObj,
+
+};

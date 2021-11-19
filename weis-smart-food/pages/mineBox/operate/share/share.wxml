@@ -1,0 +1,39 @@
+<!--pages/mineBox/operate/share/share.wxml-->
+<cp-nav-bar cutAddress="{{true}}">
+    <view class="wrap" slot="cutAddress" style="height:{{navHeight}}px">
+        <view class="type {{typeValue == item.value ? 'active' : ''}}" wx:for="{{typeList}}" bind:tap="cutType" data-value="{{item.value}}">
+            {{item.label}}
+        </view>
+    </view>
+</cp-nav-bar>
+
+<view class="operateShare">
+    <view class="share" wx:if="{{typeValue == 0 && list.activityRankDtos.length > 0}}">
+        <view class="title">已帮助{{list.activityRankDtos.length}}人</view>
+        <view class="list">
+            <view class="list-item" wx:for="{{list.activityRankDtos}}" wx:key="key">
+                <image class="list-item-img" src="{{item.headImgUrl}}" />
+                <text class="list-item-name">{{item.uname}}</text>
+                <text class="list-item-status">已帮助</text>
+            </view>
+        </view>
+    </view>
+    <view class="rank" wx:if="{{typeValue == 1 && list.activityRankDtos.length > 0}}">
+        <view class="title">排名第{{list.rankNum}}名</view>
+        <view class="list">
+            <view class="list-item" wx:for="{{list.activityRankDtos}}" wx:key="key">
+                <text class="list-item-rank">{{index + 1}}</text>
+                <image class="list-item-img" src="{{item.headImgUrl}}" />
+                <text class="list-item-name">{{item.uname}}</text>
+                <text class="list-item-num">帮助{{item.sharNum}}人</text>
+            </view>
+        </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view wx:if="{{typeValue == 0 && list.activityRankDtos.length <= 0}}" class="null">
+      <image src="https://prodstatic.weis1606.cn/api/smartFood/null-share.png" />
+      <view>你帮助的人数为0，快去分享吧</view>
+    </view>
+</view>
+

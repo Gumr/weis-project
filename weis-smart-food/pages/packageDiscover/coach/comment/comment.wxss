@@ -1,0 +1,100 @@
+.comment .horseman .discuss-box {
+  width: 690rpx;
+  background: #ffffff;
+  box-shadow: 0rpx 4rpx 24rpx -6rpx rgba(186, 186, 186, 0.3);
+  border-radius: 10rpx;
+  margin: 0 auto 48rpx;
+  box-sizing: border-box;
+  padding: 30rpx;
+}
+.comment .horseman .discuss-box .rate {
+  display: flex;
+  align-items: center;
+}
+.comment .horseman .discuss-box .rate .desc {
+  color: #333333;
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-left: 30rpx;
+}
+.comment .horseman .discuss-box .area {
+  width: 630rpx;
+  height: 400rpx;
+  background: #f3f4f5;
+  border-radius: 10rpx;
+  border: 1rpx solid #eeeeee;
+  margin: 32rpx auto 0;
+  position: relative;
+}
+.comment .horseman .discuss-box .area textarea {
+  width: 100%;
+  height: 100%;
+  background: rgba(233, 233, 233, 0.2);
+  box-sizing: border-box;
+  padding: 20rpx 0 0 20rpx;
+  color: #333333;
+  font-size: 24rpx;
+}
+.comment .horseman .discuss-box .area textarea.active {
+  color: #a9a9a9;
+}
+.comment .horseman .discuss-box .area .limit {
+  position: absolute;
+  right: 10rpx;
+  bottom: 10rpx;
+  color: #a9a9a9;
+  font-size: 20rpx;
+}
+.comment .horseman .discuss-box .img-box {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 24rpx;
+}
+.comment .horseman .discuss-box .img-box .img {
+  display: flex;
+  flex-wrap: wrap;
+}
+.comment .horseman .discuss-box .img-box .img .upload-img {
+  position: relative;
+  margin-right: 20rpx;
+}
+.comment .horseman .discuss-box .img-box .img .upload-img image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 12rpx;
+}
+.comment .horseman .discuss-box .img-box .img .upload-img .upload__close {
+  position: absolute;
+  width: 36rpx;
+  height: 36rpx;
+  right: -18rpx;
+  top: -18rpx;
+}
+.comment .horseman .discuss-box .img-box .camera {
+  width: 120rpx;
+  height: 120rpx;
+}
+.comment .bot {
+  position: fixed;
+  width: 100%;
+  height: 148rpx;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.comment .bot .submit {
+  border-radius: 44rpx;
+  width: 450rpx;
+  height: 88rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #d8d8d8;
+  color: #ffffff;
+  font-size: 36rpx;
+}
+.comment .bot .submit.active {
+  background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+}

@@ -1,0 +1,34 @@
+<!--pages/packageOrder/advise/advise.wxml-->
+<cp-nav-bar title-text="{{title}}" background="#fff" color="#333333" backIconColor="black" />
+<view class='refund'>
+	<view class='b-box'>
+		<!-- <view class='reason-title'>
+			说出你的需求和意见
+		</view> -->
+		<view class='reason-box'>
+			<textarea maxlength='500' auto-height placeholder="说出你的需求和意见" bindinput="desc"
+				placeholder-class="textarea-placeholder" value="{{text}}" />
+			<view class='limit'>{{text.length>500 ? 500 : text.length}}/500</view>
+		</view>
+	</view>
+	<view class="b-box">
+		<!-- <view class="title-b">上传图片</view> -->
+		<view class="upload-image-list">
+			<view class="upload-image-wrap pos-relative" wx:for="{{foodImage}}" wx:key="index">
+				<image class="food-image" src="{{item.image}}" />
+				<image class="delete-icon" src="/images/icons/upload_delete.png" data-index="{{index}}"
+					bindtap="deleteUploadImageTap" />
+			</view>
+			<image class="camera" src="https://prodstatic.weis1606.cn/api/smartFood/camera%202%E5%A4%87%E4%BB%BD%203.png" bindtap="uploadImageTap" />
+		</view>
+		<view class='tip'>
+			请上传有问题的页面，以便我们更快的解决这个问题
+		</view>
+	</view>
+</view>
+
+<view class='btn-box'>
+	<view class="btn {{text ? 'active' : ''}}" bindtap='submit'>
+		提交
+	</view>
+</view>

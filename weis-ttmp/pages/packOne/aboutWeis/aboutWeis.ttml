@@ -1,0 +1,29 @@
+<!-- e:\project\weis-ttmp\weis-ttmp-nlm\weis-ttmp\pages\packOne\aboutWeis\aboutWeis.ttml -->
+<cp-nav-bar title-text="关于维士" />
+
+<view class="about">
+    <image mode="widthFix" src="{{imgPrefix + 'about_bj.png'}}" />
+    <view class="img">
+        <image mode="widthFix" lazy-load="{{true}}" src="{{imgPrefix + 'about_1.png'}}" />
+        <image class="icon icon-1" src="{{imgPrefix + 'about_1_1.png'}}" />
+        <image class="icon icon-2" src="{{imgPrefix + 'about_1_1.png'}}" />
+    </view>
+    <view class="img">
+        <image mode="widthFix" lazy-load="{{true}}" src="{{imgPrefix + 'about_2.png'}}" />
+        <image class="icon icon-1" src="{{imgPrefix + 'about_1_1.png'}}" />
+        <image class="icon icon-2" src="{{imgPrefix + 'about_1_1.png'}}" />
+    </view>
+    <view class="img">
+        <image mode="widthFix" lazy-load="{{true}}" src="{{imgPrefix + 'about_3.png'}}" />
+        <image class="icon icon-1" src="{{imgPrefix + 'about_1_1.png'}}" />
+        <image class="icon icon-2" src="{{imgPrefix + 'about_1_1.png'}}" />
+    </view>
+    <view class="img">
+        <image mode="widthFix" lazy-load="{{true}}" src="{{imgPrefix + 'about_4.png'}}" />
+        <image class="icon icon-1" src="{{imgPrefix + 'about_1_1.png'}}" />
+        <image class="icon icon-2" src="{{imgPrefix + 'about_1_1.png'}}" />
+    </view>
+    <view class="img">
+        <image mode="widthFix" lazy-load="{{true}}" src="{{imgPrefix + 'about_5.png'}}" />
+    </view>
+</view>

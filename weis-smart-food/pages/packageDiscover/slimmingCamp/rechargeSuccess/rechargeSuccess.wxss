@@ -1,0 +1,48 @@
+.container {
+  width: 100%;
+  text-align: center;
+  padding-top: 55rpx;
+}
+.image {
+  width: 268rpx;
+  height: 268rpx;
+}
+.title {
+  font-size: 32rpx;
+  color: #000;
+  margin-bottom: 28rpx;
+}
+.label {
+  font-size: 24rpx;
+  color: #a9a9a9;
+}
+.label__price {
+  color: #ff5959;
+}
+.next-btn {
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  width: 240rpx;
+  height: 68rpx;
+  border-radius: 34rpx;
+  line-height: 68rpx;
+  margin: 60rpx 0 100rpx;
+}
+.tip {
+  margin: auto;
+  width: 630rpx;
+  height: 212rpx;
+  position: relative;
+}
+.tip__background {
+  width: 100%;
+  height: 100%;
+}
+.tip__label {
+  color: #d69473;
+  font-size: 26rpx;
+  position: absolute;
+  top: 93rpx;
+  left: 165rpx;
+}

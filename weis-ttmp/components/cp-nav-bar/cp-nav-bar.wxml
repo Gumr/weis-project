@@ -1,0 +1,29 @@
+
+<view class="nav" style="height: {{statusHeight + navHeight}}px;z-index:{{zIndex}};{{containerStyle}}">
+  <view class="status" style="height: {{statusHeight}}px;{{statusStyle}}"></view>
+  <view class="navbar" style="height:{{navHeight}}px;{{navBarStyle}}">
+    <!-- 返回 & 回到首页 -->
+    <view class="back-icon {{backIconColor == 'white' ? 'white' : ''}}" style="{{menuStyle}}" wx:if="{{backIconColor && pages.length > 1 && !hideHome}}">
+      <view bindtap="back">
+        <image class="{{backIconColor == 'white' ? 'white' : ''}}" src="{{backIconColor == 'white' ? imgPrefix + 'arrow-white.png' : imgPrefix + 'icon_return.png'}}"></image>
+      </view>
+      <view bindtap="home">
+        <image class="home" src="{{backIconColor == 'white' ? imgPrefix + 'backHome2.png' : imgPrefix + 'backHome.png'}}" />
+      </view>
+    </view>
+    <!-- 返回 -->
+    <view class="back-icon" wx:if="{{backIconColor && pages.length > 1 && hideHome}}" style="height:100%;" bindtap="back">
+      <image class="{{backIconColor == 'white' ? 'white' : ''}}" src="{{backIconColor == 'white' ? imgPrefix + '/images/arrow-white.png' : imgPrefix + 'icon_return.png'}}"></image>
+    </view>
+    <!-- 回到首页 -->
+    <view class="home-icon" wx:if="{{!isTabbar && pages.length == 1}}" bindtap="home">
+      <image src="{{homeIcon || backIconColor == 'white' ? homeIcon || imgPrefix + 'backHome2.png' : imgPrefix + 'backHome.png'}}"></image>
+    </view>
+    <!-- 标题 -->
+    <view class="nav-title" wx:if="{{titleText}}"> 
+       <view class="wz" style="{{titleStyle}}" bind:tap="titleTextTap">{{titleText}}</view>
+    </view>
+  </view>
+</view>
+<!-- 占位 -->
+<view class="emptyZw" style="height: {{statusHeight + navHeight}}px"></view>

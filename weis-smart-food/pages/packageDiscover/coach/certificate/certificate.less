@@ -1,0 +1,42 @@
+.border {
+  display: block;
+  content: "";
+  width: 690rpx;
+  height: 1rpx;
+  background: #333333;
+  opacity: 0.1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.certificate {
+  width: 100%;
+  padding: 20rpx 30rpx 90rpx;
+  text-align: center;
+  .list {
+    &::after {
+      position: relative;
+      .border();
+    }
+    &__img {
+      padding-top: 40rpx;
+      width: 490rpx;
+    }
+    &__name {
+      font-size: 30rpx;
+      color: #333333;
+      padding: 40rpx 0;
+    }
+  }
+  .list:nth-child(2) {
+    .list__img {
+      height: 340rpx;
+    }
+  }
+  .list:nth-child(2) {
+    .list__img {
+      height: 694rpx;
+    }
+  }
+}

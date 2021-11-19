@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "cp-calendar-date-range": "/components/cp-calendar-date-range/cp-calendar-date-range",
+    "cp-nav-bar": "/components/cp-nav-bar/cp-nav-bar"
+  }
+}

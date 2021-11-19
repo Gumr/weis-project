@@ -1,0 +1,84 @@
+{
+  "pages": [
+      "pages/index/index",
+      "pages/order/order",
+      "pages/my/my",
+      "pages/login/login"
+  ],
+  "subpackages": [
+    {
+      "root": "pages/packOne",
+      "name": "pack1",
+      "pages": [
+        "goodsDetail/goodsDetail",
+        "submit/submit",
+        "payStatus/payStatus",
+        "addressList/addressList",
+        "addAddress/addAddress",
+        "personal/personal",
+        "nickName/nickName",
+        "about/about",
+        "aboutWeis/aboutWeis",
+        "agreement/agreement",
+        "cropImg/cropImg",
+        "imgPage/imgPage",
+        "webview/webview"
+      ]
+    },
+    {
+      "root": "pages/packTwo",
+      "name": "pack2",
+      "pages": [
+        "mealList/mealList",
+        "mealInfo/mealInfo",
+        "orderInfo/orderInfo",
+        "writeOff/writeOff",
+        "writeOffInfo/writeOffInfo",
+        "writeOffResult/writeOffResult"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/index/index": {
+      "network": "all",
+      "packages": [
+        "__APP__"
+      ]
+    }
+  },
+  "window": {
+    "navigationBarTitleText": "维士小盒饭",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F3F4F5",
+    "navigationStyle": "default"
+  },
+  "tabBar": {
+    "custom": false,
+    "color": "#333333",
+    "selectedColor": "#FA6400",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/images/home.png",
+        "selectedIconPath": "/images/home_press.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "订单",
+        "iconPath": "/images/order.png",
+        "selectedIconPath": "/images/order_press.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "/images/menu.png",
+        "selectedIconPath": "/images/menu_press.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

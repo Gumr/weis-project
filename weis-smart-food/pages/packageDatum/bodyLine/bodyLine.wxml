@@ -1,0 +1,64 @@
+<!--pages/packageDatum/bodyLine/bodyLine.wxml-->
+<cp-nav-bar title-text="{{pageTitle}}" backIconColor></cp-nav-bar>
+
+<view class="tabs flex">
+  <view
+    bind:tap="tabTap"
+    class="tab {{activeTabIndex === index ? 'tab--active' : ''}}"
+    wx:for="{{tabs}}"
+    wx:key="index"
+    data-index="{{index}}"
+  >{{item.label}}</view>
+  <view class="slide-tab" style="left: {{activeTabIndex * 120}}rpx;"></view>
+</view>
+
+<view class="header flex-content-between flex-items-center" wx:if="{{type !== 'step'}}">
+  <view class="flex-items-center" bind:tap="activeQueryTap">
+    <view class="header__title">{{activeQuery.label}}</view>
+    <image class="header__icon" wx:if="{{querys.length>1}}" src="/images/icons/arrow_dropdown.png" />
+  </view>
+  <view class="header__label" wx:if="{{type === 'glu'}}">单位：mmol/L</view>
+  <view class="header__label" wx:elif="{{type === 'bp'}}">单位：mmHg</view>
+  <view class="header__label" wx:elif="{{type === 'weight'}}">单位：kg</view>
+  <view class="header__label" wx:else>单位：%</view>
+</view>
+
+<view wx:if="{{noData}}" class="chart placeholder">
+  <view>
+    <image
+      class="placeholder__image"
+      src="https://prodstatic.weis1606.cn/api/smartFood/order-empty.png"
+    />
+    <view class="placeholder__label">- 还没有{{dataLabel}}记录哦 -</view>
+  </view>
+</view>
+
+<view class="chart {{noData ? 'hidden-canvas' : ''}}">
+  <ec-canvas
+    id="chart"
+    class="{{showQuerys ? 'hidden-canvas' : ''}}"
+    bind:on-finished="chartFinished"
+  ></ec-canvas>
+  <image class="chart" wx:if="{{showQuerys}}" src="{{chartImage}}" />
+</view>
+
+<cp-bottom-popup model:show="{{showQuerys}}" use-slot show-button="{{false}}">
+  <view class="querys">
+    <view
+      class="query {{activeQuery.value === item.value ? 'query--active' : ''}} flex-content-between flex-items-center"
+      wx:for="{{querys}}"
+      wx:key="index"
+      data-index="{{index}}"
+      bind:tap="queryTap"
+    >
+      <view>{{item.label}}</view>
+      <image
+        wx:if="{{activeQuery.value === item.value}}"
+        class="query__icon"
+        src="/images/order_list_select.png"
+      />
+      <image wx:else class="query__icon" src="/images/order_list_unchecked.png" />
+    </view>
+  </view>
+</cp-bottom-popup>
+<!-- <van-popup show="{{showQuerys}}" position="bottom"></van-popup> -->

@@ -1,0 +1,19 @@
+<!--pages/datas/submitComplete/submitComplete.wxml-->
+<cp-nav-bar title-text="提交成功"></cp-nav-bar>
+<view class="gray-bottom-border"></view>
+
+<view class="image-box">
+  <image class="completed-image" src="https://prodstatic.weis1606.cn/api/smartFood/submit-completed.png" />
+  <view class="completed-label">提交成功!</view>
+</view>
+
+<view
+  class="submit-tips"
+  style="white-space: nowrap; margin-bottom: 8rpx;"
+>收到您的提交啦，36小时内请在我的外食库中查看状态。</view>
+<view class="submit-tips">审核成功后，将自动为您打卡到当餐。</view>
+
+<view class="action-footer">
+  <view class="submit-btn continue-text" bindtap="continueTap">继续添加</view>
+  <view class="submit-btn fine-text" bindtap="fineTap">好的</view>
+</view>

@@ -1,0 +1,150 @@
+<!--pages/datas/punchOut/punchOut.wxml-->
+<cp-nav-bar title-text="外食打卡"></cp-nav-bar>
+
+<view class="page-section" wx:if="{{food.stt === '11'}}">
+  <view class="fail-title">失败原因</view>
+  <view class="fail-content-box">{{ food.rejectNote }}</view>
+</view>
+
+<view class="page-section">
+  <view class="section-item-wrap">
+    <view class="section-item section-title">基本信息（*必填）</view>
+    <view class="gray-bottom-border"></view>
+  </view>
+  <view class="section-item-wrap">
+    <view class="section-item flex-jc-sbt">
+      <text>*品牌</text>
+      <input
+        class="input-align"
+        value="{{food.brand}}"
+        placeholder="如：同仁四季"
+        data-key="brand"
+        maxlength="15"
+        bindinput="handleInput"
+      />
+    </view>
+    <view class="gray-bottom-border"></view>
+  </view>
+  <view class="section-item-wrap">
+    <view class="section-item flex-jc-sbt">
+      <text>*菜品名称</text>
+      <input
+        class="input-align"
+        value="{{food.name}}"
+        placeholder="如：椰子鸡"
+        data-key="name"
+        maxlength="15"
+        bindinput="handleInput"
+      />
+    </view>
+    <view class="gray-bottom-border"></view>
+  </view>
+  <view class="section-item-wrap">
+    <view class="section-item">
+      <view>*图片上传</view>
+      <view class="upload-tips gray-text">为保证数据准确请上传单一菜品照片、商家菜单。</view>
+      <view class="upload-image-list">
+        <view class="upload-image-wrap pos-relative" wx:for="{{food.foodImage}}" wx:key="index">
+          <image class="food-image" src="{{item.image}}" />
+          <image
+            class="delete-icon"
+            src="/images/icons/upload_delete.png"
+            data-index="{{index}}"
+            bindtap="deleteUploadImageTap"
+          />
+        </view>
+        <image class="food-image" src="/images/camera.png" bindtap="uploadImageTap" />
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="gray-gap"></view>
+
+<view class="page-section">
+  <view class="section-item-wrap">
+    <view class="section-item section-title">我的打卡分量</view>
+    <view class="gray-bottom-border"></view>
+  </view>
+  <view class="section-item-wrap">
+    <view class="section-item flex-jc-sbt">
+      <text>*单位</text>
+      <view class="flex-ia-ct" bindtap="unitTap">
+        <text class="gray-text">{{currentUnit.label}}</text>
+        <image class="next-icon" src="/images/my_next.png" />
+      </view>
+    </view>
+    <view class="gray-bottom-border"></view>
+  </view>
+  <view class="section-item-wrap">
+    <view class="section-item flex-jc-sbt">
+      <text>*数量</text>
+      <input
+        class="input-align"
+        value="{{food.amount}}"
+        maxlength="10"
+        placeholder="输入数量"
+        type="number"
+        data-key="amount"
+        bindinput="handleInput"
+      />
+    </view>
+  </view>
+</view>
+
+<view class="gray-gap"></view>
+
+<view class="page-section">
+  <view class="section-item-wrap">
+    <view class="section-item section-title">口味（*必填）</view>
+    <view class="gray-bottom-border"></view>
+  </view>
+  <view class="section-item-wrap">
+    <view class="section-item">
+      <view>*油量</view>
+      <view class="step-select-wrap">
+        <StepSelect
+          active="{{food.oilLevel}}"
+          bind:on-change="handleOilCHange"
+          steps="{{oilSteps}}"
+          bar-style="background: linear-gradient(90deg,rgba(33,196,192,1),rgba(255,185,63,1),rgba(255,89,89,1));"
+        ></StepSelect>
+      </view>
+    </view>
+
+    <view class="gray-bottom-border"></view>
+  </view>
+  <view class="section-item-wrap">
+    <view class="section-item">
+      <view>*甜度</view>
+      <view class="step-select-wrap">
+        <StepSelect
+          active="{{food.sugarLevel}}"
+          bind:on-change="handleSweetnessChange"
+          steps="{{sweetnessSteps}}"
+          bar-style="background: linear-gradient(90deg,rgba(33,196,192,1),rgba(255,185,63,1),rgba(255,89,89,1));"
+        ></StepSelect>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="page-footer">
+  <view class="gray-bottom-border"></view>
+  <view class="submit-button {{ isCompleted ? 'white-text' : ''}}" bindtap="submitFoodTap">提交</view>
+</view>
+
+<van-popup show="{{showUnitPopup}}" position="bottom">
+  <view
+    class="select-item-wrap"
+    wx:for="{{unitList}}"
+    wx:key="index"
+    data-index="{{index}}"
+    bindtap="selectUnitTap"
+  >
+    <view class="select-item">{{item.label}}</view>
+    <view class="gray-bottom-border" wx:if="{{index !== unitList.length - 1}}"></view>
+  </view>
+  <view class="gray-gap"></view>
+  <view class="select-item" bindtap="cancelUnitTap">取消</view>
+</van-popup>

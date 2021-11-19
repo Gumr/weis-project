@@ -1,0 +1,35 @@
+<!--pages/orderFood/integral/integral.wxml-->
+<cp-nav-bar title-text="我的积分" backIconColor></cp-nav-bar>
+
+<view class="integral" style="margin-top:-{{navHeight}}px">
+  <view class="top-bg">
+    <image src="https://prodstatic.weis1606.cn/api/mini/integral_bj.png" />
+    <view class="val">{{member.memberScoreDto.score}}</view>
+    <view class="name">当前积分</view>
+  </view>
+  <view class="box">
+    <view class="t-box">
+      <view class="name">积分记录</view>
+      <view class="r-box" bind:tap="rule">
+        <image src="https://prodstatic.weis1606.cn/api/mini/integral_%EF%BC%9F.png" />
+        <view class="rule">积分规则</view>
+      </view>
+    </view>
+    <!-- 列表 -->
+    <view class="list-box">
+      <view class="l-wrap" wx:for="{{member.memberScoreRecordListResult}}" wx:key="key">
+        <image
+          class="icon"
+          src="{{item.tmsrDescribe == '外食打卡' || item.tmsrDescribe == '删除外食打卡' ? 'https://prodstatic.weis1606.cn/api/smartFood/task_pizza.png' : (item.tmsrDescribe == '运动打卡' ? 'https://prodstatic.weis1606.cn/api/smartFood/task_dumbbell.png' : 'https://prodstatic.weis1606.cn/api/smartFood/task_ordering.png')}}"
+        />
+        <view class="right-b">
+          <view class="l-b">
+            <view class="name">{{item.tmsrDescribe}}</view>
+            <view class="time">{{item.tmsrCtime}}</view>
+          </view>
+          <view class="jf">{{item.tmsrOptype == '01' ? '-' : ''}}{{item.tmsrOpscore}}分</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

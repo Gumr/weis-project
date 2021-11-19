@@ -1,0 +1,185 @@
+.flex {
+  display: flex;
+}
+.hidden-canvas {
+  position: fixed;
+  top: -9999px;
+}
+.grow-1 {
+  flex-grow: 1;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.flex-content-center {
+  display: flex;
+  justify-content: center;
+}
+.flex-items-center {
+  display: flex;
+  align-items: center;
+}
+.flex-center {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+.flex-content-between {
+  display: flex;
+  justify-content: space-between;
+}
+.family-din {
+  font-family: 'DINCondensedC';
+}
+.font-20 {
+  font-size: 20rpx;
+}
+.font-22 {
+  font-size: 22rpx;
+}
+.font-24 {
+  font-size: 24rpx;
+}
+.font-26 {
+  font-size: 26rpx;
+}
+.font-28 {
+  font-size: 28rpx;
+}
+.font-30 {
+  font-size: 30rpx;
+}
+.font-32 {
+  font-size: 32rpx;
+}
+.font-36 {
+  font-size: 36rpx;
+}
+.font-num {
+  font-size: 52rpx;
+}
+.font-88 {
+  font-size: 88rpx;
+}
+.font-unit {
+  font-size: 28rpx;
+}
+.font-bold {
+  font-weight: bold;
+}
+.text-center {
+  text-align: center;
+}
+.orange {
+  color: #fa6400;
+}
+.gray-33 {
+  color: #333;
+}
+.gray-a9 {
+  color: #a9a9a9;
+}
+.gray-99 {
+  color: #999999;
+}
+.navigator {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+.reset-box {
+  margin: 0;
+  padding: 0;
+}
+.circle-hidden {
+  position: fixed;
+  top: -9999px;
+}
+.charts .bar-list {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+.charts .bar-list .bar-item {
+  text-align: center;
+}
+.charts .bar-list .bar-item:last-child {
+  margin-right: 0;
+}
+.charts .bar {
+  display: inline-block;
+  width: 14rpx;
+  height: 140rpx;
+  background: #f3f4f5;
+  border-radius: 100rpx;
+  position: relative;
+  margin-bottom: 13rpx;
+}
+.charts .bar__value {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 14rpx;
+  background: #fca649;
+  border-radius: 100rpx;
+  transition: height 0.3s linear;
+}
+.charts .bar__value--max {
+  background: #fa6400;
+}
+.label-18 {
+  font-size: 18rpx;
+  color: #666;
+}
+.label-20 {
+  font-size: 20rpx;
+  color: #666;
+}
+.number-52 {
+  font-family: 'DINCondensedC';
+  font-size: 52rpx;
+}
+.number-40 {
+  font-family: 'DINCondensedC';
+  font-size: 40rpx;
+}
+.number-28 {
+  font-family: 'DINCondensedC';
+  font-size: 28rpx;
+}
+.number-22 {
+  font-family: 'DINCondensedC';
+  font-size: 26rpx;
+  color: #333333;
+}
+.energy-bar {
+  width: 100%;
+  margin-top: 50rpx;
+}
+.energy-bar .box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.energy-bar .box .name {
+  color: #666666;
+  font-size: 20rpx;
+}
+.energy-bar .box .bar-line {
+  width: 418rpx;
+  height: 14rpx;
+  background: #F3F4F5;
+  border-radius: 100rpx;
+}
+.energy-bar .box .bar-line .actual-bar {
+  height: 14rpx;
+  border-radius: 100rpx;
+  transition: width 0.3s linear;
+}
+.energy-bar .box .val {
+  color: #333333;
+  font-size: 28rpx;
+  font-weight: bold;
+  font-family: 'DINCondensedC';
+}

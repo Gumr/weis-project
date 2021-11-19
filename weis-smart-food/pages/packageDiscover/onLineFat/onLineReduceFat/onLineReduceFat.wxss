@@ -1,0 +1,146 @@
+page {
+  background: #F7F7F7;
+}
+.color {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+}
+.reduce {
+  width: 100%;
+  padding-bottom: 334rpx;
+}
+.reduce .empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 164rpx;
+}
+.reduce .empty image {
+  width: 320rpx;
+  height: 240rpx;
+}
+.reduce .empty .desc {
+  color: #A9A9A9;
+  font-size: 28rpx;
+  margin-top: 20rpx;
+}
+.reduce .box {
+  width: 100%;
+}
+.reduce .box .content {
+  padding: 40rpx 30rpx 0rpx;
+}
+.reduce .box .content .list {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40rpx;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  padding: 30rpx;
+  position: relative;
+}
+.reduce .box .content .list:last-of-type {
+  margin-bottom: 0;
+}
+.reduce .box .content .list__image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 10rpx;
+  margin-right: 30rpx;
+}
+.reduce .box .content .list__text {
+  flex-grow: 1;
+}
+.reduce .box .content .list__text .name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333333;
+  line-height: 42rpx;
+  margin: 12rpx 0 36rpx;
+  width: 400rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+.reduce .box .content .list__text .date {
+  position: relative;
+  padding-left: 18rpx;
+  font-size: 24rpx;
+  color: rgba(51, 51, 51, 0.7);
+  line-height: 24rpx;
+  margin-bottom: 14rpx;
+}
+.reduce .box .content .list__text .date::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+  background: #41C48C;
+}
+.reduce .box .content .list__text .status {
+  position: relative;
+  padding-left: 18rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+  line-height: 24rpx;
+}
+.reduce .box .content .list__text .status::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+  background: #FE5E0F;
+}
+.reduce .box .content .list__label {
+  position: absolute;
+  right: 0;
+  top: 44rpx;
+  width: 90rpx;
+  height: 36rpx;
+  background: #FE5E0F;
+  border-radius: 22rpx 0rpx 0rpx 22rpx;
+  font-size: 20rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+  line-height: 36rpx;
+  padding-left: 20rpx;
+}
+.reduce .box .tip {
+  color: rgba(51, 51, 51, 0.5);
+  font-size: 24rpx;
+  text-align: center;
+  margin-top: 50rpx;
+}
+.applyOpen {
+  width: 650rpx;
+  height: 88rpx;
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+  border-radius: 50rpx;
+  color: #FFFFFF;
+  font-size: 36rpx;
+  text-align: center;
+  line-height: 88rpx;
+  position: fixed;
+  bottom: 84rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}

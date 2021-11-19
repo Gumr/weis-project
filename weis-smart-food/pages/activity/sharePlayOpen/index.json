@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "van-count-down": "/components/vant/count-down/index",
+    "cp-radar-panel": "/components/cp-radar-panel/cp-radar-panel"
+  }
+}

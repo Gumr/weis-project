@@ -1,0 +1,50 @@
+<!-- pages/mineBox/billDetail/billDetail.wxml -->
+<!-- <nav title="账单详情" bgcolor="transparent"></nav> -->
+<cp-nav-bar title-text="账单详情" color="#FFFFFF" background="linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%)" backIconColor="white" />
+<view class="balance">
+  <view class="box">
+    <view class="box__cash">
+      <!-- <text>{{detail.tradeName}}</text> -->
+      <text>{{detail.businessDesc || '支出'}}</text>
+    </view>
+    <view class="box__detail">
+      <!-- <text>{{detail.business == '00' ? '-' : '+'}}</text> -->
+      <text>{{detail.businessType == '02' ? '-' : '+'}}</text>
+      <text>￥</text>
+      <text>{{detail.total}}</text>
+    </view>
+    <view class="box__tip" wx:if="{{rechargeType[detail.business].isDonation && detail.donation > 0}}">
+      实付¥{{detail.amount}}，赠送¥{{detail.donation}}
+    </view>
+  </view>
+  <!-- 充值操作 -->
+  <view class="operate">
+    <view class="opt">
+      <text>类型</text>
+      <!-- <text>{{detail.tradeName}}</text> -->
+      <view class="opt-txt">
+        <text>{{detail.businessType == '02' ? '-' : '+'}}</text>
+        <text>{{'¥' + detail.amount + '本金，'}}</text>
+        <text>{{detail.businessType == '02' ? '-' : '+'}}</text>
+        <text>{{'¥' + detail.donation + '赠送金'}}</text>
+      </view>
+    </view>
+    <view class="opt">
+      <text>来源</text>
+      <!-- <text>{{detail.tradeName}}</text> -->
+      <text>{{detail.businessDesc || '支出'}}</text>
+    </view>
+    <view class="opt">
+      <text>时间</text>
+      <text>{{detail.longTime}}</text>
+    </view>
+    <view class="opt">
+      <text>交易单号</text>
+      <text>{{detail.oid}}</text>
+    </view>
+    <view class="opt">
+      <text>备注</text>
+      <text>{{detail.remarks}}</text>
+    </view>
+  </view>
+</view>

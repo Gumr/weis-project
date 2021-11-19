@@ -1,0 +1,60 @@
+<!-- pages/packageDatum/invoice/invoiceDetail/invoiceDetail.wxml -->
+<cp-nav-bar title-text="发票详情" background="#F3F4F5" color="#000" backIconColor="black" />
+<view class="invoice">
+    <view class="body">
+        <view class="t-box" style="padding-top:24rpx">
+            <view class="title">发票详情</view>
+        </view>
+        <view class="info-box">
+            <view class="row">
+                <view class="name">发票类型</view>
+                <view class="ipt">电子发票</view>
+            </view>
+            <view class="row area">
+                <view class="name">发票抬头</view>
+                <view class="rise">{{invoice.tirRise}}</view>
+            </view>
+            <view class="row" wx:if="{{invoice.tirDutyNo}}">
+                <view class="name">税号</view>
+                <view class="ipt">{{invoice.tirDutyNo}}</view>
+            </view>
+            <view class="row">
+                <view class="name">发票内容</view>
+                <view class="ipt">{{invoice.tirContent}}</view>
+            </view>
+            <view class="row">
+                <view class="name">发票金额</view>
+                <view class="ipt">{{invoice.invoicedAmount}}</view>
+            </view>
+            <view class="row">
+                <view class="name">提交时间</view>
+                <view class="ipt">{{invoice.createDate}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="body">
+        <view class="t-box">
+            <view class="title">接收方式</view>
+        </view>
+        <view class="info-box">
+            <view class="row">
+                <view class="name">电子邮箱</view>
+                <view class="ipt">{{invoice.tirEmail}}</view>
+            </view>
+            <view class="row">
+                <view class="name">开票状态</view>
+                <view class="ipt">{{status[invoice.tirStt]}}</view>
+            </view>
+            <view class="row">
+                <view class="name">所含餐单</view>
+                <view class="ipt-box">
+                    <view class="ipt" bind:tap="category">{{invoice.recordDetails.length}}个</view>
+                    <image src="/images/my/invalid_next.png" />
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="btn-box">
+        <view class="btn" bind:tap="send">重新发送到邮箱</view>
+    </view>
+</view>

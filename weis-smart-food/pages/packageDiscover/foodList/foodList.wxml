@@ -1,0 +1,336 @@
+<!-- pages/datas/foodList/foodList.wxml -->
+<cp-nav-bar id="nav" title-text="{{pageTitle}}"></cp-nav-bar>
+<!-- 固定的头部 -->
+<view class="fixed-header gray-bottom-border" style="top: {{searchTop - 1}}px;">
+  <!-- search box -->
+  <view class="search-wrap">
+    <view class="serach-text-wrap">
+      <van-search
+        class="search-text"
+        use-left-icon-slot="{{true}}"
+        value="{{searchKeyword}}"
+        placeholder="请输入食品名称"
+        shape="round"
+        bind:change="handleSearchChange"
+        bind:search="handleFoodSearch"
+      >
+        <view slot="left-icon" class="search-icon-box">
+          <image class="search-icon" src="/images/address_search.png" />
+        </view>
+      </van-search>
+    </view>
+    <text hidden="{{!searching}}" class="cancel-search-text" bindtap="handleCancelFoodSearch">取消</text>
+  </view>
+  <!-- tabs-bar -->
+  <view hidden="{{searching}}" class="food-tabs">
+    <view
+      wx:for="{{tabList}}"
+      wx:key="index"
+      class="tab-text {{ activeTab === item.value ? 'active-tab' : '' }}"
+      data-type="{{item.value}}"
+      bindtap="switchTab"
+    >{{item.name}}</view>
+  </view>
+</view>
+
+<view class="food-list-container {{searching ? 'food-list-container-searching' : ''}}">
+  <view>
+    <!-- tab page -->
+    <view
+      class="tab-food {{ selectedFoodTotal > 0 ? 'padding-footer-height' : '' }}"
+      wx:if="{{!searching}}"
+    >
+      <!-- 常用 -->
+      <view hidden="{{ activeTab !== '02'}}">
+        <view
+          class="food-list-item-wrap gray-bottom-border"
+          wx:for="{{normalFoodList}}"
+          wx:for-item="food"
+          wx:key="index"
+        >
+          <view class="food-list-item" data-index="{{index}}" bindtap="addFoodTap">
+            <image class="food-image" src="{{food.thumbImageUrl}}" />
+            <view class="food-text-wrap">
+              <view class="food-name">{{food.name}}</view>
+              <view>
+                <text class="food-text food-kcal">{{food.calory}}</text>
+                <text class="food-text">kcal/{{food.weight}}g</text>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <cp-load-more loading="{{foodListLoading}}"></cp-load-more>
+      </view>
+
+      <!-- 自定义 -->
+      <view hidden="{{ activeTab !== '03' }}">
+        <view class="gray-bottom-border">
+          <view class="add-item food-list-item" bindtap="addCustomFoodTap">
+            <image class="food-upload-icon" src="/images/definition_add.png" />
+            <text>添加自定义食物</text>
+          </view>
+        </view>
+
+        <van-swipe-cell
+          wx:for="{{customFoodList}}"
+          wx:for-item="food"
+          wx:key="index"
+          left-width="{{0}}"
+          right-width="{{64}}"
+        >
+          <view class="food-list-item-wrap gray-bottom-border">
+            <view
+              class="food-list-item custome-food-item"
+              data-index="{{index}}"
+              catch:tap="addFoodTap"
+            >
+              <view class="display-flex">
+                <image class="food-image" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/default_graph.png" />
+                <view class="food-text-wrap">
+                  <view class="food-name">{{food.tdlFoodName}}</view>
+                  <view>
+                    <text class="food-text food-kcal">{{food.tdlTotalKcal}}</text>
+                    <text class="food-text">kcal/{{food.tdlTotalWeight}}g</text>
+                  </view>
+                </view>
+              </view>
+              <view
+                class="add-custome-tag"
+                catch:tap="quickAddFoodCardTap"
+                data-index="{{index}}"
+              >添加</view>
+            </view>
+          </view>
+
+          <view
+            class="food-swipe-right"
+            slot="right"
+            bindtap="deleteCustomFoodTap"
+            data-type="breakfast"
+            data-index="{{index}}"
+          >
+            <text class="food-swipe-text">删除</text>
+          </view>
+        </van-swipe-cell>
+      </view>
+
+      <!-- 上传食物 -->
+      <view hidden="{{ activeTab !== '04' }}">
+        <view class="gray-bottom-border">
+          <view class="add-item food-list-item" bindtap="uploadCustomFoodTap">
+            <image class="food-upload-icon" src="/images/punch_clock.png" />
+            <text>打卡</text>
+          </view>
+        </view>
+
+        <van-swipe-cell
+          wx:for="{{uploadFoodList}}"
+          wx:for-item="food"
+          wx:key="index"
+          left-width="{{0}}"
+          right-width="{{64}}"
+        >
+          <view class="food-list-item-wrap gray-bottom-border">
+            <view
+              class="food-list-item custome-food-item"
+              data-index="{{index}}"
+              catch:tap="addFoodTap"
+            >
+              <view class="display-flex">
+                <view class="food-image-box">
+                  <image
+                    class="food-image"
+                    src="{{ food.foodImageList[0] ? food.foodImageList[0].image : 'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/default_graph.png' }}"
+                  />
+                  <image
+                    wx:if="{{food.stt !== '12'}}"
+                    class="food-image-tag review-status-tag"
+                    src="/images/label_audit.png"
+                  />
+                  <image
+                    wx:if="{{food.stt === '11'}}"
+                    class="food-image-tag fail-status-tag"
+                    src="/images/label_audit_failure.png"
+                  />
+                </view>
+
+                <view class="food-text-wrap">
+                  <view class="food-name {{food.disabled ? 'food-disabled' : ''}}">{{food.name}}</view>
+                  <view>
+                    <text
+                      class="food-text food-kcal {{food.disabled ? 'food-disabled' : ''}}"
+                    >{{food.kcal}}</text>
+                    <text class="food-text">kcal/{{food.amount}}{{food.unitLabel}}</text>
+                  </view>
+                </view>
+              </view>
+              <image
+                class="next-icon"
+                src="/images/list_next.png"
+                wx:if="{{food.stt === '12' || food.stt === '11'}}"
+              />
+            </view>
+          </view>
+
+          <view
+            class="food-swipe-right"
+            slot="right"
+            data-type="breakfast"
+            bindtap="deleteUploadFoodTap"
+            data-index="{{index}}"
+          >
+            <text class="food-swipe-text">删除</text>
+          </view>
+        </van-swipe-cell>
+      </view>
+    </view>
+
+    <!-- search food-list -->
+    <view class="search-food {{ selectedFoodTotal > 0 ? 'padding-footer-height' : '' }}" wx:else>
+      <view class="food-list-item-wrap gray-bottom-border">
+        <view
+          class="food-list-item"
+          wx:for="{{searchFoodList}}"
+          wx:for-item="food"
+          wx:key="index"
+          data-index="{{index}}"
+          bindtap="addFoodTap"
+        >
+          <image class="food-image" src="{{food.thumbImageUrl}}" />
+          <view class="food-text-wrap">
+            <view class="food-name">{{food.name}}</view>
+            <view>
+              <text class="food-text food-kcal">{{food.calory}}</text>
+              <text class="food-text">kcal/{{food.weight}}g</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <cp-load-more loading="{{searchListLoading}}"></cp-load-more>
+    </view>
+  </view>
+
+  <!-- added-food-bar -->
+  <view class="food-select-bar" hidden="{{selectedFoodTotal <= 0}}">
+    <view>
+      <text class="add-label-wrap">
+        <text class="add-text">已添加</text>
+        <text class="add-count">{{selectedFoodTotal}}</text>
+      </text>
+      <text class="total-text-wrap">
+        <text>共计：</text>
+        <text>{{selectedFoodKcalTotal}}</text>
+        <text>kcal</text>
+      </text>
+    </view>
+    <view>
+      <view class="food-confirm-btn" bindtap="confirmFoodCardTap">确定</view>
+    </view>
+  </view>
+</view>
+
+<!-- 添加食物的弹窗 -->
+<van-popup
+  duration="200"
+  catchtouchmove="true"
+  position="bottom"
+  show="{{showAddPopup}}"
+  bind:click-overlay="hideAddPopup"
+  close-on-click-overlay="{{true}}"
+  custom-style="width: 101%;"
+>
+  <view>
+    <view class="gray-bottom-border">
+      <view class="add-food-header">
+        <text class="add-food-action-text" bindtap="hideAddPopup">取消</text>
+        <text class="add-food-title">添加食物</text>
+        <text class="add-food-action-text add-text" bindtap="addFoodCardTap">添加</text>
+      </view>
+    </view>
+
+    <view class="food-list-item-wrap food-list-item popup-foot-item">
+      <view class="display-flex">
+        <image
+          class="food-image"
+          src="{{currentFood.tdcImage || 'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/default_graph.png'}}"
+        />
+        <view class="food-text-wrap">
+          <view class="food-name">{{currentFood.tdcFoodName}}</view>
+          <view>
+            <text class="food-text food-kcal">{{currentFood.tdcTotalKcal}}</text>
+            <text
+              class="food-text"
+            >kcal/{{currentFood.tdcType === '04' ? currentFoodUnit.label : currentFood.$tdcTotalWeight + 'g' }}</text>
+          </view>
+        </view>
+      </view>
+      <image
+        hidden="{{ activeTab === '02' }}"
+        class="detail-icon"
+        data-id="{{currentFood.tdcFid}}"
+        bindtap="goDetailPage"
+        src="/images/arrow-grey.png"
+      />
+    </view>
+
+    <view>
+      <view class="food-count-bar">
+        <text
+          class="food-count-text"
+        >{{currentFood.tdcType === '04' ? currentFood.foodNum : currentFood.tdcTotalWeight}}</text>
+        <text>{{currentFoodUnit.label}}</text>
+      </view>
+      <view class="food-count-scale-wrap">
+        <scale-component
+          id="scale"
+          value="{{currentFood.tdcType === '04' ?  currentFood.foodNum : currentFood.tdcTotalWeight}}"
+          interval-width="{{30}}"
+          precision="{{scale.precision}}"
+          min="{{1}}"
+          max="{{scale.max}}"
+          bind:change="foodCountChange"
+        ></scale-component>
+      </view>
+      <view class="food-unit-bar">
+        <scroll-view scroll-into-view="{{unitIntoView}}" scroll-x>
+          <view
+            id="scroll-1"
+            wx:for="{{unitOpts}}"
+            wx:key="index"
+            class="food-unit-text {{currentFoodUnit.value === item.value ? 'food-unit-text-active' : ''}}"
+            wx:if="{{!item.show || item.show === currentFood.tdcType}}"
+            bind:tap="unitTap"
+            data-unit="{{item.value}}"
+          >{{item.label}}</view>
+          <!--           
+          <text
+            id="unit-2"
+            wx:if="{{currentFood.tdcType === '04'}}"
+            class="food-unit-text {{currentFoodUnit.value === '2' ? 'food-unit-text-active' : ''}}"
+            data-unit="2"
+          >勺</text>
+          <text
+            id="unit-3"
+            wx:if="{{currentFood.tdcType === '04'}}"
+            class="food-unit-text {{currentFoodUnit.value === '3' ? 'food-unit-text-active' : ''}}"
+            data-unit="3"
+          >筷子</text>-->
+        </scroll-view>
+      </view>
+    </view>
+
+    <view class="gray-top-border" style="margin: 0 30rpx;">
+      <view
+        class="delete-food-bar {{isFullScreen ? 'full-screen-mg-bt' : ''}}"
+        hidden="{{ activeTab === '02' }}"
+      >
+        <view class="delete-food-box" bindtap="deleteCurrentFoodTap">
+          <image class="delete-food-icon" src="/images/popup_delete.png" />
+          <text class="delete-food-text">删除这条记录</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</van-popup>

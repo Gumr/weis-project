@@ -1,0 +1,299 @@
+<!-- pages/mineBox/personal/personal.wxml -->
+<cp-nav-bar title-text="个人信息" background="#fff" color="#333333" backIconColor="#fff"/>
+<view class="person">
+  <view class="box">
+    <view class="wrap headImg">
+      <view class="col-l">头像</view>
+      <view class="col-r" bind:tap="headImg">
+        <image src="{{subToken ? info.subUserInfo.defaultAvatar : info.userInfo.headImgUrl}}"/>
+        <image wx:if="{{!subToken}}" src="/images/my/list_next.png" />
+      </view>
+    </view>
+    <view class="wrap">
+      <view class="col-l">昵称</view>
+      <view class="col-r" bind:tap="nick">
+        <view class="name">{{subToken ? info.subUserInfo.tsuSubUname : info.userInfo.uname}}</view>
+        <image src="/images/my/list_next.png" />
+      </view>
+    </view>
+    <view class="wrap" wx:if="{{!subToken}}">
+      <view class="col-l">账号</view>
+      <view class="col-r">
+        <view class="name">{{info.userInfo.phone}}</view>
+      </view>
+    </view>
+
+    <view class="wrap">
+      <view class="col-l">性别</view>
+      <view class="col-r" bind:tap="sex" wx:if="{{info.userProfile.sex}}">
+        <view class="name">{{info.userProfile.sex == '1' ? '男' : '女'}}</view>
+        <image src="/images/my/list_next.png" />
+      </view>
+      <view class="notSet" wx:else>未设置</view>
+    </view>
+  </view>
+
+  <view class="box">
+    <view class="wrap">
+      <view class="col-l">吃法</view>
+      <view class="col-r" bind:tap="target" wx:if="{{targetList[info.goalType].name || info.healthType == '32'}}">
+        <view class="name" wx:if="{{info.healthType == '32'}}">{{info.operateDesc}}</view>
+        <view class="name"wx:else>{{targetList[info.goalType].name}} {{twoLeveLlist[info.healthGoal.planningType].name}}</view>
+        <!-- <view class="name">{{info.healthDesc}}</view> -->
+        <image src="/images/my/list_next.png" />
+      </view>
+      <view class="notSet" bind:tap="target" wx:else>未设置<image src="/images/my/list_next.png" /></view>
+    </view>
+    <view class="wrap">
+      <view class="col-l">年龄</view>
+      <view class="col-r" bind:tap="age" wx:if="{{thisYear - info.userProfile.year || thisYear - info.userProfile.year == 0}}">
+        <view class="name">{{thisYear - info.userProfile.year}}岁</view>
+        <image src="/images/my/list_next.png" />
+      </view>
+      <view class="notSet" wx:else>未设置</view>
+    </view>
+    <view class="wrap">
+      <view class="col-l">身高</view>
+      <view class="col-r" bind:tap="height" wx:if="{{info.userProfile.height || info.userProfile.height == 0}}">
+        <view class="name">{{info.userProfile.height}}cm</view>
+        <image src="/images/my/list_next.png" />
+      </view>
+      <view class="notSet" wx:else>未设置</view>
+    </view>
+    <view class="wrap">
+      <view class="col-l">体重</view>
+      <view class="col-r" bind:tap="weight" wx:if="{{info.userProfile.weight || info.userProfile.weight == 0}}">
+        <view class="name">{{info.userProfile.weight}}kg</view>
+        <image src="/images/my/list_next.png" />
+      </view>
+      <view class="notSet" wx:else>未设置</view>
+    </view>
+    <view class="wrap">
+      <view class="col-l">日常活动强度</view>
+      <view class="col-r" bind:tap="active" wx:if="{{actives[info.userProfile.motion]}}">
+        <view class="name">{{actives[info.userProfile.motion]}}</view>
+        <image src="/images/my/list_next.png" />
+      </view>
+      <view class="notSet" wx:else>未设置</view>
+    </view>
+    <view class="wrap" wx:if="{{sugars[info.userProfile.bloodValue] && twoLeveLlist[info.healthGoal.planningType].name == '糖尿病'}}">
+      <view class="col-l">餐后2小时血糖值</view>
+      <view class="col-r" bind:tap="sugar" wx:if="{{sugars[info.userProfile.bloodValue]}}">
+        <view class="name">{{sugars[info.userProfile.bloodValue]}}mmol/L</view>
+        <image src="/images/my/list_next.png" />
+      </view>
+      <view class="notSet" wx:else>未设置</view>
+    </view>
+    <view class="wrap" wx:if="{{foods[info.userProfile.appetite] && twoLeveLlist[info.healthGoal.planningType].name == '糖尿病'}}">
+      <view class="col-l">午餐吃几碗主食</view>
+      <view class="col-r" bind:tap="food" wx:if="{{foods[info.userProfile.appetite]}}">
+        <view class="name">{{foods[info.userProfile.appetite]}}</view>
+        <image src="/images/my/list_next.png" />
+      </view>
+      <view class="notSet" wx:else>未设置</view>
+    </view>
+    <view class="wrap" wx:if="{{pregnants[info.userProfile.pregnancyCycle] && (twoLeveLlist[info.healthGoal.planningType].name == '妊娠糖尿病' || targetList[info.goalType].planningType == '25')}}">
+      <view class="col-l">你的怀孕周期</view>
+      <view class="col-r" bind:tap="pregnant" wx:if="{{pregnants[info.userProfile.pregnancyCycle]}}">
+        <view class="name">{{pregnants[info.userProfile.pregnancyCycle]}}</view>
+        <image src="/images/my/list_next.png" />
+      </view>
+      <view class="notSet" wx:else>未设置</view>
+    </view>
+    <view class="wrap" wx:if="{{kidneys[info.userProfile.nephroticCycle] && twoLeveLlist[info.healthGoal.planningType].name == '慢性肾病'}}">
+      <view class="col-l">你的肾病是第几期</view>
+      <view class="col-r" bind:tap="kidney" wx:if="{{kidneys[info.userProfile.nephroticCycle]}}">
+        <view class="name">{{kidneys[info.userProfile.nephroticCycle]}}</view>
+        <image src="/images/my/list_next.png" />
+      </view>
+      <view class="notSet" wx:else>未设置</view>
+    </view>
+    <!-- 过敏原 -->
+    <view class="wrap" bind:tap="allergen">
+      <view class="col-l">口味＆过敏原</view>
+      <view class="col-r">
+        <view class="name allergen">{{allergenText}}</view>
+        <image src="/images/my/list_next.png" />
+      </view>
+    </view>
+    <!-- 所属校区tgcaName -->
+    <view class="wrap" wx:if="{{tgcaName}}">
+      <view class="col-l">所属校区</view>
+      <view class="col-r">
+        <view class="name">{{tgcaName}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="box" wx:if="{{subToken}}" style="border-top: 20rpx solid #F6F6F6">
+    <view class="wrap" bind:tap="share">
+      <view class="col-l">共享账号</view>
+      <view class="col-r">
+        <image src="/images/my/list_next.png" />
+      </view>
+    </view>
+  </view>
+  <!-- 删除子账号 -->
+  <view class="box delete" wx:if="{{subToken && info.subUserInfo.tsuUid == uid}}" style="border-top: 20rpx solid #F6F6F6">
+    <view class="wrap" bind:tap="delete">
+      <view class="col-l">删除该子账号</view>
+    </view>
+  </view>
+</view>
+
+<!-- -------选择下边框------- -->
+
+<!-- 性别 -->
+<van-popup position="bottom" round show="{{showSex}}" bind:click-overlay="hideSex" close-on-click-overlay="{{true}}" custom-style="border-radius: 40rpx 40rpx 0rpx 0rpx;">
+  <view class="sexShadow">
+    <view class="header">
+      <image class="close" src="/images/icon_down.png" bind:tap="hideSex" />
+      <view class="title">选择性别</view>
+    </view>
+    <view class="wrap">
+      <view class="list" wx:for="{{sexList}}" wx:key="key" data-index="{{index}}" bind:tap="sexChange">
+        <image src="{{sexIndex == index ? item.imgSelected : item.img}}" />
+        <view class="sex {{sexIndex == index ? 'active' : ''}}">{{item.name}}士</view>
+      </view>
+    </view>
+    <view class="scale-btn" bindtap="sexConfirm">确定</view>
+  </view>
+</van-popup>
+
+<!-- 吃法 -->
+<!-- <cp-bottom-popup title="设置吃法" showCustom="{{true}}" show="{{showTarget}}" val="{{targetValue}}" data="{{targets}}" bind:on-change="targetChange" bind:on-confirm="targetConfirm"></cp-bottom-popup> -->
+<cp-bottom-popup 
+  show="{{showTarget}}"
+  title="{{targetTitle}}" 
+  showCustom
+  closeCustom 
+  close-img="{{closeImg}}"
+  confirm-text="{{confirmText}}"
+  use-slot
+  val="{{targetValue}}" 
+  data="{{targets}}" 
+
+  bind:on-confirm="targetConfirm"
+  bind:on-close="targetClose">
+  <view class="targetWrap">
+    <view class="list" wx:if="{{step == '1'}}">
+      <picker-view
+        indicator-style="height: 40px;line-height: 40px"
+        indicator-class="active"
+        style="width: 100%; height: 360rpx;"
+        value="{{targetValue}}"
+        bindchange="targetChange"
+      >
+        <!-- 列1-滚动值 -->
+        <picker-view-column class="val">
+          <view
+            class="{{targetValue[0] == index ? 'selected' : ''}}"
+            wx:for="{{targets}}"
+            wx:key="key"
+            style="height: 40px;line-height: 40px;font-size: 36rpx;"
+          >{{item}}</view>
+        </picker-view-column>
+      </picker-view>
+    </view>
+    <view class="list" wx:if="{{step == '2-1'}}">
+      <picker-view
+        indicator-style="height: 40px;line-height: 40px"
+        indicator-class="active"
+        style="width: 100%; height: 360rpx;"
+        value="{{chronicValue}}"
+        bindchange="targetChange"
+      >
+        <!-- 列1-滚动值 -->
+        <picker-view-column class="val">
+          <view
+            class="{{chronicValue[0] == index ? 'selected' : ''}}"
+            wx:for="{{chronics}}"
+            wx:key="key"
+            style="height: 40px;line-height: 40px;font-size: 36rpx;"
+          >{{item}}</view>
+        </picker-view-column>
+      </picker-view>
+    </view>
+    <view class="list" wx:if="{{step == '2-2'}}">
+      <picker-view
+        indicator-style="height: 40px;line-height: 40px"
+        indicator-class="active"
+        style="width: 100%; height: 360rpx;"
+        value="{{liveValue}}"
+        bindchange="targetChange"
+      >
+        <!-- 列1-滚动值 -->
+        <picker-view-column class="val">
+          <view
+            class="{{liveValue[0] == index ? 'selected' : ''}}"
+            wx:for="{{lives}}"
+            wx:key="key"
+            style="height: 40px;line-height: 40px;font-size: 36rpx;"
+          >{{item}}</view>
+        </picker-view-column>
+      </picker-view>
+    </view>
+  </view>
+</cp-bottom-popup>
+
+<!-- 确定修改吃法 -->
+<cp-confirm-dialog class="dialog" show="{{targetDialog}}" title="提示" bind:on-confirm="targetConfirmDialog">
+  <view class="dialog-label">
+    <view>修改吃法后，“饮食吃法”、“发现”、“数据”和“饮食顾问”可能会做相应改变。</view>
+
+    <view>确定修改吃法吗？</view>
+  </view>
+</cp-confirm-dialog>
+
+<!-- 控糖算法升级(血糖值&主食 || 你的怀孕周期) -->
+<cp-control-sugar from="{{from}}" title="{{from=='sugar' ? '控糖算法升级' : '提示'}}" show="{{sugarDialog}}" showClose bind:on-confirm="sugarConfirmDialog" bind:on-cancel="sugarCancelDialog"></cp-control-sugar>
+
+<!-- 出生年月(年龄) -->
+<!-- <cp-bottom-popup title="设置年龄" show="{{showAge}}" val="{{ageValue}}" data="{{ages}}" dw="岁" bind:on-change="ageChange" bind:on-confirm="ageConfirm"></cp-bottom-popup> -->
+<cp-bottom-popup title="设置年龄" show="{{showAge}}" use-slot confirm-disabled="{{!age && age != 0}}" confirmStyle="width: 450rpx;" customStylePopup="bottom:{{keyboardHeight}}rpx" bind:on-confirm="ageConfirm" bind:on-close="ageClose">
+  <view class="age">
+    <input maxlength="2" type="number" value="{{age}}" placeholder="0" placeholder-style="color: #E8E8E8;" bindinput="ageChange"  bindtap="bindfocus" bindfocus="bindfocus" bindblur="bindblur" />
+    <text>岁</text>
+  </view>
+</cp-bottom-popup>
+
+<!-- 身高 -->
+<!-- <cp-bottom-popup title="设置身高" show="{{showHeight}}" val="{{heightValue}}" data="{{heights}}" dw="cm" bind:on-change="heightChange" bind:on-confirm="heightConfirm"></cp-bottom-popup> -->
+<cp-bottom-popup title="设置身高" show="{{showHeight}}" use-slot confirm-disabled="{{!height && height != 0}}" showCustom confirmStyle="width: 450rpx;" customStylePopup="bottom:{{keyboardHeight}}rpx" bind:on-confirm="heightConfirm" bind:on-close="heightClose">
+  <view class="age">
+    <input maxlength="3" type="number" value="{{height}}" placeholder="0" placeholder-style="color: #E8E8E8;" bindinput="heightChange" bindtap="bindfocus" bindfocus="bindfocus" bindblur="bindblur"/>
+    <text>cm</text>
+  </view>
+</cp-bottom-popup>
+
+<!-- 体重 -->
+<!-- <cp-bottom-popup title="设置体重" show="{{showWeight}}" val="{{weightValue}}" data="{{weights}}" dw="kg" bind:on-change="weightChange" bind:on-confirm="weightConfirm"></cp-bottom-popup> -->
+<cp-bottom-popup title="设置体重" show="{{showWeight}}" use-slot confirm-disabled="{{!weight && weight != 0}}" showCustom confirmStyle="width: 450rpx;" customStylePopup="bottom:{{keyboardHeight}}rpx" bind:on-confirm="weightConfirm" bind:on-close="weightClose">
+  <view class="age">
+    <input maxlength="5" type="digit" value="{{weight}}" placeholder="0" placeholder-style="color: #E8E8E8;" bindinput="weightChange" bindtap="bindfocus" bindfocus="bindfocus" bindblur="bindblur"/>
+    <text>kg</text>
+  </view>
+</cp-bottom-popup>
+
+<!-- 日常活动消耗 -->
+<cp-bottom-popup title="设置日常活动强度" show="{{showActive}}" val="{{activeValue}}" data="{{actives}}" bind:on-change="activeChange" bind:on-confirm="activeConfirm"></cp-bottom-popup>
+
+<!-- 餐后2小时血糖值 -->
+<cp-bottom-popup title="餐后2小时血糖值" show="{{showSugar}}" val="{{sugarValue}}" data="{{sugars}}" dw="mmol/L" bind:on-confirm="sugarConfirm" dwStyleCustom="width: 200rpx;left: 44%;"></cp-bottom-popup>
+
+<!-- 午餐吃几碗主食 -->
+<cp-bottom-popup title="午餐吃几碗主食" show="{{showFood}}" val="{{foodValue}}" data="{{foods}}" bind:on-confirm="foodConfirm"></cp-bottom-popup>
+
+<!-- 你的怀孕周期 -->
+<cp-bottom-popup title="你的怀孕周期" show="{{showPregnant}}" val="{{pregnantValue}}" data="{{pregnants}}" bind:on-confirm="pregnantConfirm"></cp-bottom-popup>
+
+<!-- 你的肾病是第几期 -->
+<cp-bottom-popup title="你的肾病是第几期" show="{{showKidney}}" val="{{kidneyValue}}" data="{{kidneys}}" bind:on-confirm="kidneyConfirm"></cp-bottom-popup>
+
+<!-- <dialog id="dialog" title="{{'确定修改'}}" confirmText="{{'修改'}}" cancelText="{{'再想想'}}" content="{{'修改当前信息，将停止正在进行的饮食方案，'}}" bind:cancel="hideHeight" bind:confirm="confirm"></dialog> -->
+
+<!-- 删除子账号 -->
+<cp-confirm-dialog class="dialog" show="{{delete}}" confirmText="确定" bind:on-confirm="sureDelete">
+  <view class="dialog-label">
+    <view class="deleteTip">确定删除该子账号吗？</view>
+  </view>
+</cp-confirm-dialog>

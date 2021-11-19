@@ -1,0 +1,8 @@
+<!--components/dialog/dialog.wxml-->
+<cover-view class="dialog" wx:if="{{dialogFlag}}">
+  <cover-view class="tips">{{tip}}</cover-view>
+  <cover-view class="options">
+    <cover-view class="opt" bind:tap="cancelEvent">{{cancelText}}</cover-view>
+    <cover-view class="opt confirm" bind:tap="confirmEvent">{{confirmText}}</cover-view>
+  </cover-view>
+</cover-view>

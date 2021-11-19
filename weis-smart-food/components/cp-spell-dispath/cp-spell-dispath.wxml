@@ -1,0 +1,15 @@
+<!-- components/cp-spell-dispath/cp-spell-dispath.wxml -->
+<van-popup show="{{show}}" position="bottom" custom-style="border-radius:20rpx 20rpx 0rpx 0rpx;" bind:click-overlay="close">
+    <view class="spell">
+        <view class="spell-header">选择配送方式</view>
+        <view class="box">
+            <view class="list {{shipType == item.shipType ? 'active' : ''}} {{disableShipType == item.shipType ? 'disable' : ''}}" wx:for="{{delivery}}" data-ship-type="{{item.shipType}}" bind:tap="select">
+                <image src="{{disableShipType == item.shipType ? item.disable : item.icon}}" />
+                <view class="title">{{item.text}}</view>
+                <view class="subText" wx:if="{{item.subText}}">{{item.subText}}</view>
+                <image class="icon" src="/images/icons/select-spell.png" wx:if="{{shipType == item.shipType}}" />
+            </view>
+        </view>
+        <image class="close" bind:tap="close" src="/images/icon_down.png" />
+    </view>
+</van-popup>

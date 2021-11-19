@@ -1,0 +1,191 @@
+page {
+  width: 100%;
+}
+.predict {
+  width: 100%;
+  background: #F7F7F7;
+}
+.predict .notForecast {
+  color: #333333;
+  font-size: 28rpx;
+  line-height: 52rpx;
+  padding: 24rpx;
+}
+.predict .date-title {
+  width: 235rpx;
+  height: 36rpx;
+  background: #FCDBCA;
+  border-radius: 18rpx;
+  text-align: center;
+  line-height: 36rpx;
+  color: #FE5E0F;
+  font-size: 24rpx;
+  font-weight: bold;
+  margin: 40rpx 0 0 24rpx;
+}
+.predict .box .title {
+  width: fit-content;
+  padding: 40rpx 0 0 0;
+  color: #333333;
+  font-size: 32rpx;
+  position: relative;
+  margin: 0 0 30rpx 24rpx;
+  z-index: 10;
+  font-weight: bold;
+  word-wrap: break-word;
+}
+.predict .box .title::after {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 16rpx;
+  background: rgba(254, 94, 15, 0.5);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+}
+.predict .box .table {
+  display: flex;
+}
+.predict .box .table .col {
+  width: 184rpx;
+}
+.predict .box .table .col .name {
+  width: 100%;
+  height: 110rpx;
+  background: #DDDDDD;
+  text-align: center;
+  line-height: 110rpx;
+  color: #333333;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.predict .box .table .col:nth-of-type(1) .col-box .year {
+  width: 184rpx;
+  height: 160rpx;
+  background: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  color: #000000;
+  font-size: 28rpx;
+  padding: 0 24rpx;
+}
+.predict .box .table .col:nth-of-type(1) .col-box .year.ellipsis {
+  display: -webkit-box;
+  /**对象作为伸缩盒子模型展示**/
+  -webkit-box-orient: vertical;
+  /**设置或检索伸缩盒子对象的子元素的排列方式**/
+  -webkit-line-clamp: 4;
+  /**显示的行数**/
+  overflow: hidden;
+  /**隐藏超出的内容**/
+}
+.predict .box .table .col:nth-of-type(2) {
+  width: 150rpx;
+}
+.predict .box .table .col:nth-of-type(2) .name {
+  background: #C6C6C6;
+  border-left: 2rpx solid #FF861A;
+}
+.predict .box .table .col:nth-of-type(2) .col-box .year {
+  width: 100%;
+  height: 160rpx;
+  background: #EAEAEA;
+  text-align: center;
+  line-height: 160rpx;
+  color: #333333;
+  font-size: 30rpx;
+  font-weight: bold;
+  border-left: 2rpx solid #FCCC49;
+}
+.predict .box .table .col:nth-of-type(2) .col-box .year:nth-of-type(even) {
+  background: #E5E5E5;
+}
+.predict .box .table .col:nth-of-type(2) .col-box .year.flex-center {
+  line-height: normal;
+}
+.predict .box .table .col:nth-of-type(2).yc {
+  width: 284rpx;
+}
+.predict .box .table .col:nth-of-type(2).yc .col-box .year {
+  background: #fff;
+  color: #999999;
+}
+.predict .box .table .col:nth-of-type(2).yc .col-box .year:nth-of-type(even) {
+  background: #F2F2F2;
+}
+.predict .box .table .col:nth-of-type(3) {
+  flex: 1;
+}
+.predict .box .table .col:nth-of-type(3) scroll-view {
+  white-space: nowrap;
+}
+.predict .box .table .col:nth-of-type(3) scroll-view .col-num {
+  display: inline-block;
+}
+.predict .box .table .col:nth-of-type(3) scroll-view .col-num .date-box {
+  background: #DDDDDD;
+  display: flex;
+}
+.predict .box .table .col:nth-of-type(3) scroll-view .col-num .date-box .date {
+  width: 104rpx;
+  height: 110rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.predict .box .table .col:nth-of-type(3) scroll-view .col-num .date-box .date .day {
+  color: rgba(51, 51, 51, 0.6);
+  font-size: 20rpx;
+  font-weight: bold;
+  margin-bottom: 4rpx;
+}
+.predict .box .table .col:nth-of-type(3) scroll-view .col-num .date-box .date .week {
+  color: #333333;
+  font-size: 28rpx;
+  font-weight: bold;
+  line-height: 40rpx;
+}
+.predict .box .table .col:nth-of-type(3) scroll-view .col-num .col-box .year-phase {
+  display: flex;
+  background: #fff;
+}
+.predict .box .table .col:nth-of-type(3) scroll-view .col-num .col-box .year-phase .num {
+  width: 104rpx;
+  height: 160rpx;
+  text-align: center;
+  line-height: 160rpx;
+  color: #999999;
+  font-size: 30rpx;
+  font-weight: bold;
+  border-right: 2rpx solid #E8E8E8;
+}
+.predict .box .table .col:nth-of-type(3) scroll-view .col-num .col-box .year-phase .num:last-of-type {
+  border-right: none;
+}
+.predict .box .table .col:nth-of-type(3) scroll-view .col-num .col-box .year-phase:nth-of-type(even) {
+  background: #F2F2F2;
+}
+.predict .box .table .col:nth-of-type(3).xd .col-box .year {
+  width: 100%;
+  height: 160rpx;
+  background: #fff;
+  text-align: center;
+  line-height: 160rpx;
+  color: #333333;
+  font-size: 30rpx;
+  font-weight: bold;
+  border-left: 2rpx solid #E8E8E8;
+  color: #999999;
+}
+.predict .box .table .col:nth-of-type(3).xd .col-box .year:nth-of-type(even) {
+  background: #F2F2F2;
+}
+.empty {
+  margin-top: 54rpx;
+  color: #fe5e0f;
+}

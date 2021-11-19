@@ -1,0 +1,20 @@
+<!-- semicircle-process/semicircle-process.wxml -->
+<canvas class="circle__canvas" canvas-id="canvas" id="canvas" style="width: {{dia}}rpx; height: {{dia}}rpx;"></canvas>
+<view class="circle" style="width: {{dia}}rpx; height: {{dia}}rpx;">
+  <image class="circle__image" style="width: {{dia}}rpx; height: {{dia}}rpx;" src="{{image}}" />
+  <view class="circle_small" style="left:{{px}};top:{{py}};border-color:{{percent >= 100 ? lineColor.overLight : lineColor.light}}" wx:if="{{percent > 0 && (px || py)}}">
+    {{percent}}
+    <view class="unit">%</view>
+  </view>
+  <view>
+    <view class="circle__title" style="font-size: {{fontSize.title}}rpx;">{{title}}</view>
+    <view style="margin: {{margin}}rpx 0;">
+      <text class="circle__value" style="font-size: {{fontSize.value}}rpx;">{{value}}</text>
+      <text class="circle__unit" style="font-size: {{fontSize.unit}}rpx;">克</text>
+    </view>
+    <view class="circle__label">
+      <text style="font-size: {{fontSize.title}}rpx;">{{total}}</text>
+      <text style="font-size: {{fontSize.label}}rpx;">克</text>
+    </view>
+  </view>
+</view>

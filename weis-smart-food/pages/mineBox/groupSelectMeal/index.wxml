@@ -1,0 +1,753 @@
+<!-- pages/index/index.wxml -->
+<cp-nav-bar
+  icontext="{{hpname}}"
+  color="#FFFFFFFF"
+  background="transparent"
+  backIconColor="white"
+  lefticon="{{type=='userAdd'?true:false}}"
+  righticon="{{type=='userAdd'?true:false}}"
+  bind:tapcustom="tapcustom"
+></cp-nav-bar>
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
+<!-- 点餐 -->
+<view class="menu" wx:if="{{hideLoad}}">
+  <view class="box" style="margin-top:-{{navStatusHeight}}px">
+    <!-- 日历 -->
+    <view
+      class="meal-box {{theme}}"
+      style="height:{{navStatusHeight * px2rpx + 100}}rpx;padding-top:{{navStatusHeight * px2rpx + 18}}rpx"
+    >
+      <scroll-view
+        class="meal"
+        show-scrollbar="{{false}}"
+        enhanced="{{true}}"
+        scroll-with-animation="{{true}}"
+        scroll-into-view="{{'meal' + (mealIndex-1 >= 0 ? mealIndex -1 : 0)}}"
+        scroll-x="{{true}}"
+        style="width: 750rpx"
+      >
+        <view
+          class="date {{index == mealIndex ? 'active' : ''}}"
+          id="{{'meal' + index}}"
+          wx:for="{{list}}"
+          wx:key="index"
+          data-index="{{index}}"
+          bind:tap="select"
+        >
+          <view class="week-box">
+            <view class="week">{{item.month}}</view>
+            <view class="month">月</view>
+          </view>
+          <view class="day">{{item.day}}</view>
+          <view class="meal-name">{{mealText[item.categoryType]}}</view>
+          <view class="icon" data-index="{{index}}" wx:if="{{item.isCreateOrder > 0}}">
+            <image
+              src="{{index == mealIndex ? '/images/order-isSelect.png' : '/images/order-unSelect.png'}}"
+            />
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <!-- 已注册 -->
+    <view class="semicircle {{theme}}" wx:if="{{isLogin}}">
+      <view class="plan">
+          <view class="icon">{{subToken ? '子账号' : '主账号'}}</view>
+          <view class="plan-box" bind:tap="adjust">
+              <view class="plan-name">{{total.dietPlan.planName}}</view>
+              <image wx:if="{{tgeRole=='01'  }}" src="{{theme == 'pillars' ? 'https://prodstatic.weis1606.cn/api/smartFood/circle/grey.png' : '/images/arrow-grey.png'}}"/>
+          </view>
+      </view>
+      <!-- 仪表盘 -->
+      <view class="pan">
+          <cp-meal-pie dialData="{{dialData}}" theme="{{theme}}" mode="image" bind:toHealth="toHealth" />
+      </view>
+    </view>
+    <!-- 未注册 -->
+    <cp-login-status login-info="{{loginInfo}}" bind:loginClick="loginClick" />
+  </view>
+  <!-- 点餐 -->
+  <view class="kind" wx:if="{{nameList.length>0}}" style="height: {{scrollHeight}}rpx">
+    <view class="sort">
+      <scroll-view
+        class="wrap"
+        scroll-y="true"
+        style="height:{{total.piece ? scrollHeight : scrollHeight}}rpx"
+      >
+        <!-- 标签筛选 -->
+        <view class="tag-filter" bind:tap="tapTag">
+          <image src="/images/filter.png" />
+          <view class="trace">筛选</view>
+          <view class="tag-num {{tagNum > 9 ? 'active' : ''}}" wx:if="{{tagNum}}">{{tagNum}}</view>
+        </view>
+        <view
+          class="name {{leftIndex== index ? 'active' : ''}}"
+          wx:for="{{nameList}}"
+          wx:key="key"
+          data-index="{{index}}"
+          bind:tap="selectKind"
+        >
+          <text>{{item.skuCatalog}}</text>
+        </view>
+      </scroll-view>
+    </view>
+    <view
+      class="goods"
+      wx:if="{{nameList[leftIndex].detailList && nameList[leftIndex].detailList.length>0}}"
+    >
+      <scroll-view
+        class="wrap"
+        scroll-y="true"
+        scroll-into-view="{{intoIndex}}"
+        scroll-with-animation="{{true}}"
+        style="height:{{total.piece ? scrollHeight-170 : scrollHeight-20}}rpx"
+        data-scroll="true"
+        bindscroll="scroll"
+      >
+        <view class="selChildtips" wx:if="{{selchild}}" bindtap="editChildtipd">
+          选择子账号({{subuidsList.length }})
+          <image src="/images/arrow-color.png" />
+        </view>
+        <view
+          class="wrap-box"
+          id="{{'scroll_' + wrapIndex}}"
+          wx:for="{{nameList}}"
+          wx:key="key"
+          wx:for-index="wrapIndex"
+        >
+          <view class="kind-name">{{item.skuCatalog}}</view>
+          <!-- 单品 -->
+          <view class="list-box" wx:if="{{!item.detailList[0].type}}">
+            <view
+              class="list {{(item.checkStock && item.stock<=0) ? 'active' : ''}}"
+              wx:for="{{nameList[wrapIndex].detailList}}"
+              wx:key="key"
+              wx:for-index="index"
+              wx:for-item="item"
+            >
+              <view class="top">
+                <view class="left">
+                  <view
+                    class="area"
+                    data-combo="{{item.type == '01' ? '01' : '00'}}"
+                    data-cid="{{item.cid}}"
+                    data-group-combo-id="{{item.groupComboId}}"
+                    data-id="{{item.id}}"
+                    data-forbid="{{!item.energy && !item.protein && !item.fat && !item.carbonwater ? true : false}}"
+                    bind:tap="goodsDetail"
+                  ></view>
+                  <view class="l-img-box">
+                    <view class="tag yellow" wx:if="{{item.skuTitle}}">{{item.skuTitle}}</view>
+                    <image class="l-img" lazy-load="{{true}}" src="{{item.primaryImgUrl}}" />
+                    <view class="nosku" wx:if="{{(item.checkStock && item.stock<=0)}}">
+                      <view class="sq">已售罄</view>
+                    </view>
+                    <view class="nosku" wx:elif="{{item.noDiscount == '01'}}">
+                        <view class="sq" style="color: #FFE59D">不参与折扣</view>
+                    </view>
+                  </view>
+                  <view class="c">
+                    <view class="name">{{item.skuname}}</view>
+                    <view class="tabu" wx:if="{{item.dietLabelList.length>0}}">
+                      <view
+                        class="tag {{diet.type == '02' ? 'gm' : 'ph'}}"
+                        wx:for="{{item.dietLabelList}}"
+                        wx:key="key"
+                        wx:for-item="diet"
+                      >{{diet.name}}</view>
+                    </view>
+                    <view
+                      class="hot-box dp"
+                      wx:if="{{item.energy || item.protein || item.fat || item.carbonwater}}"
+                    >
+                      <view class="hot" wx:if="{{item.energy}}">
+                        能量{{item.energy}}kcal
+                        <view class="hot-line">/</view>
+                      </view>
+                      <view class="hot" wx:if="{{item.protein}}">
+                        蛋白质{{item.protein}}g
+                        <view class="hot-line">/</view>
+                      </view>
+                      <view class="hot" wx:if="{{item.fat}}">
+                        脂肪{{item.fat}}g
+                        <view class="hot-line">/</view>
+                      </view>
+                      <view class="hot" wx:if="{{item.carbonwater}}">碳水{{item.carbonwater}}g</view>
+                    </view>
+                    <view class="price">
+                      <!-- 现价 -->
+                      <view class="cost">
+                        ¥
+                        <view
+                          class="acturePrice"
+                        >{{item.ifNewUser && item.ifNewUser == 1 ? item.newUserPrice : item.price}}</view>
+                      </view>
+                      <!-- 原价 -->
+                      <view
+                        class="origin"
+                        wx:if="{{(item.ifNewUser && item.ifNewUser == 1) || (item.normalPrice && item.normalPrice>item.price)}}"
+                      >¥{{item.ifNewUser && item.ifNewUser == 1 ? item.price : item.normalPrice}}</view>
+                      <view class="net">/{{item.quality + item.unit}}</view>
+                      <!-- 增减 -->
+                      <view class="right">
+                        <view
+                          class="dot"
+                          hover-class="color"
+                          hover-stay-time="200"
+                          data-combo="{{item.type == '01' ? '01' : '00'}}"
+                          data-group-combo-id="{{item.groupComboId}}"
+                          data-cid="{{item.cid}}"
+                          data-wrapindex="{{wrapIndex}}"
+                          data-index="{{index}}"
+                          data-type="reduce"
+                          bind:tap="add"
+                          wx:if="{{item.num>=1}}"
+                        >
+                          <image class="reduce" src="/images/reduce.png" />
+                        </view>
+                        <view class="num" wx:if="{{item.num>=1}}">
+                          <input
+                            type="number"
+                            bindinput="iptNumber"
+                            disabled="{{selectNums==0&& tgcType=='00' && tgeRole=='00'? false: true}}"
+                            data-combo="{{item.type == '01' ? '01' : '00'}}"
+                            data-group-combo-id="{{item.groupComboId}}"
+                            data-cid="{{item.cid}}"
+                            data-wrapindex="{{wrapIndex}}"
+                            data-index="{{index}}"
+                            bindblur="blurIpfFn"
+                            data-type="number"
+                            data-lastnum="{{item.num}}"
+                            value="{{item.num * (selectNums==0?1:selectNums)}}"
+                          />
+                        </view>
+                        <view class="dot already" wx:if="{{(item.checkStock && item.stock<=0)}}">已售罄</view>
+                        <view
+                          class="dot"
+                          wx:else
+                          hover-class="color"
+                          hover-stay-time="200"
+                          data-combo="{{item.type == '01' ? '01' : '00'}}"
+                          data-group-combo-id="{{item.groupComboId}}"
+                          data-cid="{{item.cid}}"
+                          data-wrapindex="{{wrapIndex}}"
+                          data-index="{{index}}"
+                          data-type="add"
+                          bind:tap="add"
+                        >
+                          <image class="add" src="/images/add.png" />
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="extra">
+                <block wx:if="{{item.ifNewUser && item.ifNewUser == 1}}">
+                  <text>新人</text>
+                  <text>限购价</text>
+                  <text>限1份</text>
+                </block>
+                <text
+                  wx:if="{{(item.checkStock && item.stock<=3 && item.stock>0)}}"
+                >仅剩{{item.stock}}份</text>
+              </view>
+            </view>
+          </view>
+          <!-- 套餐 -->
+          <view class="list-box" wx:if="{{item.detailList[0].type == '01'}}">
+            <view
+              class="list"
+              wx:for="{{nameList[wrapIndex].detailList}}"
+              wx:key="key"
+              wx:for-index="index"
+              wx:for-item="item"
+            >
+              <view class="top">
+                <view class="left">
+                  <view
+                    class="area"
+                    data-combo="{{item.type == '01' ? '01' : '00'}}"
+                    data-comboid="{{item.comboId}}"
+                    data-group-combo-id="{{item.groupComboId}}"
+                    data-id="{{item.id}}"
+                    data-cid="{{item.cid}}"
+                    bind:tap="goodsDetail"
+                  ></view>
+                  <view class="l-img-box">
+                    <view class="tag-img" wx:if="{{item.skuTitle}}">{{item.skuTitle}}</view>
+                    <image class="l-img" lazy-load="{{true}}" src="{{item.primaryImgUrl}}" />
+                  </view>
+                  <view class="c">
+                    <view class="name">{{item.name}}</view>
+                    <view class="tabu" wx:if="{{item.dietaryIntakes.length>0}}">
+                      <view
+                        class="tag {{diet.type == '02' ? 'gm' : 'ph'}}"
+                        wx:for="{{item.dietaryIntakes}}"
+                        wx:key="key"
+                        wx:for-item="diet"
+                      >{{diet.name}}</view>
+                    </view>
+                    <view class="hot-box">
+                      <view class="hot">能量{{item.energy}}kcal</view>
+                      <view class="h-line">/</view>
+                      <view class="difference">
+                        <view class="name-d">差值</view>
+                        <view
+                          class="dif {{item.energy - total.totalEnergy > 0 ? 'addColor' : 'reduceColor'}}"
+                        >
+                          <text wx:if="{{item.energy - total.totalEnergy > 0}}">+</text>
+                          {{filters.toParseInt(item.energy - total.totalEnergy)}}kcal
+                        </view>
+                      </view>
+                    </view>
+                    <view class="price">
+                      <view class="cost">
+                        ¥
+                        <view class="acturePrice">{{item.price}}</view>
+                      </view>
+                      <view class="net c-box">
+                        <view class="line-c"></view>
+                        <view class="circle" wx:if="{{item.fatNum}}">{{item.fatNum}}</view>
+                        <view class="circle circle2" wx:if="{{item.proteinNum}}">{{item.proteinNum}}</view>
+                        <view
+                          class="circle circle3"
+                          wx:if="{{item.carbonwaterNum}}"
+                        >{{item.carbonwaterNum}}</view>
+                      </view>
+                      <!--普通套餐增减 -->
+                      <view class="right" wx:if="{{item.groupComboId == 0}}">
+                        <view
+                          class="select"
+                          wx:if="{{item.num>=1&&item.groupComboId == 0}}"
+                          hover-class="color"
+                          hover-stay-time="200"
+                          data-combo="{{item.type == '01' ? '01' : '00'}}"
+                          data-comboid="{{item.comboId}}"
+                          data-cid="{{item.cid}}"
+                          data-group-combo-id="{{item.groupComboId}}"
+                          data-wrapindex="{{wrapIndex}}"
+                          data-index="{{index}}"
+                          data-type="add"
+                          bind:tap="add"
+                        >已选</view>
+                        <view
+                          class="dot"
+                          wx:else
+                          hover-class="color"
+                          hover-stay-time="200"
+                          data-combo="{{item.type == '01' ? '01' : '00'}}"
+                          data-comboid="{{item.comboId}}"
+                          data-cid="{{item.cid}}"
+                          data-group-combo-id="{{item.groupComboId}}"
+                          data-wrapindex="{{wrapIndex}}"
+                          data-index="{{index}}"
+                          data-type="add"
+                          bind:tap="add"
+                        >
+                          <image class="add" src="/images/add.png" />
+                        </view>
+                      </view>
+                      <!-- 企业套餐增减 -->
+                      <view class="right" wx:if="{{item.groupComboId>0}}">
+                        <view
+                          class="dot"
+                          hover-class="color"
+                          hover-stay-time="200"
+                          data-combo="{{item.type == '01'  ? '01' : '00'}}"
+                          data-cid="{{item.cid}}"
+                          data-wrapindex="{{wrapIndex}}"
+                          data-index="{{index}}"
+                          data-group-combo-id="{{item.groupComboId}}"
+                          data-type="reduce"
+                          bind:tap="add"
+                          wx:if="{{item.num>=1}}"
+                        >
+                          <image class="reduce" src="/images/reduce.png" />
+                        </view>
+                        <input
+                          wx:if="{{item.num>=1}}"
+                          type="number"
+                          bindinput="iptNumber"
+                          bindblur="blurIpfFn"
+                          disabled="{{selectNums==0 && tgcType=='00' && tgeRole=='00' ?false: true}}"
+                          data-combo="{{item.type == '01' ? '01' : '00'}}"
+                          data-group-combo-id="{{item.groupComboId}}"
+                          data-cid="{{item.cid}}"
+                          data-wrapindex="{{wrapIndex}}"
+                          data-index="{{index}}"
+                          data-type="number"
+                          data-lastnum="{{item.num}}"
+                          value="{{item.num * (selectNums==0?1:selectNums)}}"
+                        />
+                        <view class="dot already" wx:if="{{item.sellOut || item.stock<=0}}">已售罄</view>
+                        <view
+                          class="dot"
+                          wx:else
+                          data-nums="{{item.num}}"
+                          hover-class="color"
+                          hover-stay-time="200"
+                          data-combo="{{item.type == '01' ? '01' : '00'}}"
+                          data-comboid="{{item.comboId}}"
+                          data-cid="{{item.cid}}"
+                          data-group-combo-id="{{item.groupComboId}}"
+                          data-wrapindex="{{wrapIndex}}"
+                          data-index="{{index}}"
+                          data-type="add"
+                          bind:tap="add"
+                        >
+                          <image class="add" src="/images/add.png" />
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+            </view>
+        </view>
+                  </view>
+                </view>
+      </scroll-view>
+    </view>
+    <view class="goods blank" style="height:100%" wx:else>
+      <view class="no_empty">
+        <image src="/images/blank_case_ai.png" />
+        <text class="desc">打烊啦~下次再来</text>
+        <text class="time">营业时间：07:00-19:30</text>
+      </view>
+    </view>
+  </view>
+  <view class="bot" wx:if="{{total.piece}}" bind:tap="editCart">
+    <view class="cart" id="cart">
+      <image
+        src="https://prodstatic.weis1606.cn/api/smartFood/%E7%BB%84%E4%BB%B6%EF%BC%8Ficon%EF%BC%8F%E8%B4%AD%E7%89%A9%E8%BD%A6.png"
+      />
+      <view
+        class="allNum {{scale ? 'active' : ''}} {{total.piece > 9 ? 'fang' : ''}} {{total.piece > 99 ? 'square' : ''}}"
+        wx:if="{{total.piece>0}}"
+      >{{total.piece * (selectNums==0?1:selectNums)}}</view>
+    </view>
+    <view class="allPrice">
+      <view class="price-t">
+        <!-- 现价 -->
+        <view class="acturePrice">
+          <text>¥</text>
+          {{total.totalPrice>0 ? total.totalPrice * (selectNums==0?1:selectNums) : 0}}
+        </view>
+        <view class="origin" wx:if="{{total.discount > 0}}">¥{{total.totalOriginalPrice}}</view>
+      </view>
+      <!-- 折扣 -->
+      <text class="discount" wx:if="{{total.discount > 0}}">已优惠{{total.discount}}元</text>
+    </view>
+    <!-- tgcaDistributionType 02 普通配送 -->
+    <view
+      class="spell"
+      wx:if="{{total.dateList.length == 1 && total.dateList[0].category.length == 1 && groupCorp.corpAddress.tgcaDistributionType == '02' && tgcType != '00'}}"
+    >
+      <view class="alone" catch:tap="buy">单独买</view>
+      <view class="spell-buy" catch:tap="spell">
+        <view>拼单买</view>
+        <view>免配送费</view>
+      </view>
+    </view>
+    <view class="btn" catch:tap="buy" wx:else>去结算</view>
+  </view>
+</view>
+<!-- loading -->
+<view class="loading" wx:else>
+  <van-loading size="20" text-size="12" color="#FE5E0F" type="circular" vertical></van-loading>
+</view>
+<!-- 购物车弹窗 -->
+<view class="cartPoup" wx:if="{{showCart}}" catch:touchmove="true">
+  <view class="closePopup" bind:tap="hideCart"></view>
+  <view class="shopcart {{showCart ? 'active' : ''}}" wx:if="{{showCart}}">
+    <view class="wrap-date">
+      <image class="down" bind:tap="hideCart" src="/images/icon_down.png" />
+      <view class="title">购物车</view>
+      <view class="clear-box" bind:tap="clear" data-type="tip">
+        <image src="/images/clear.png" />
+        <view class="close clear">清空</view>
+      </view>
+    </view>
+    <view class="spell-tip">一次性购买一餐才可使用拼单免配送费</view>
+    <view class="skuList">
+      <scroll-view class="scroll" scroll-y="{{true}}">
+        <view
+          class="list"
+          wx:key="index1"
+          wx:for="{{allCart}}"
+          wx:for-item="item1"
+          wx:for-index="index1"
+        >
+          <view
+            class="heat-box"
+            wx:for="{{item1.categoryCart}}"
+            wx:key="key"
+            wx:for-item="item2"
+            wx:for-index="index2"
+          >
+            <view
+              class="cateroy"
+            >{{item1.dateTime}} {{cart[item2.category]}} {{item2.list[0].heatingPointIdName}}</view>
+            <view class="wrap">
+              <view
+                class="goods-wrap"
+                wx:key="key"
+                wx:if="{{item3.num}}"
+                wx:for="{{item2.list}}"
+                wx:for-item="item3"
+                wx:for-index="index3"
+              >
+                <view class="l-img-box">
+                  <image class="img" src="{{item3.primaryImgUrl}}" />
+                </view>
+                <view class="goods-right">
+                  <view class="name">{{item3.skuname}}</view>
+                  <!-- <view class="tag-wrap">
+                                        <view class="tag {{item.type == '02' ? 'gm' : 'ph'}}" wx:key="key" wx:for="{{item3.dietLabelList}}">
+                                            {{item.name}}
+                                        </view>
+                  </view>-->
+                  <view class="energy">热量{{item3.energy}}kcal</view>
+                  <view class="param">
+                    <view class="price">
+                      <view class="unit">￥</view>
+                      {{item3.ifNewUser == 1 ? item3.newUserPrice : item3.price}}
+                    </view>
+                    <!-- <view class="calculate">/{{item3.quality}}g</view> -->
+                  </view>
+                  <!-- 商品增减 -->
+                  <view class="operate">
+                    <image
+                      class="reduce"
+                      data-cid="{{item3.cid}}"
+                      data-group-combo-id="{{item3.groupComboId}}"
+                      data-category="{{item2.category}}"
+                      data-index1="{{index1}}"
+                      data-index2="{{index2}}"
+                      data-index3="{{index3}}"
+                      data-type="reduce"
+                      data-combo="{{item3.type == '01'  ? '01' : '00'}}"
+                      bind:tap="edit"
+                      src="/images/reduce.png"
+                    />
+                    <view class="num">{{item3.num *( selectNums==0?1:selectNums)}}</view>
+                    <image
+                      class="add"
+                      data-cid="{{item3.cid}}"
+                      data-group-combo-id="{{item3.groupComboId}}"
+                      data-category="{{item2.category}}"
+                      data-index1="{{index1}}"
+                      data-index2="{{index2}}"
+                      data-index3="{{index3}}"
+                      data-type="add"
+                      data-combo="{{item3.type == '01'  ? '01' : '00'}}"
+                      bind:tap="edit"
+                      src="/images/add.png"
+                    />
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+<!-- 筛选标签 -->
+<view class="filter-shadow" wx:if="{{showFilter}}">
+  <view class="empty" bind:tap="tapTag"></view>
+  <view class="filter-box">
+    <view class="title">筛选标签</view>
+    <image class="close" bind:tap="tapTag" src="/images/icon_down.png" />
+    <view class="tag-box">
+      <view class="tag-wrap" wx:for="{{labelsTag}}" wx:key="key" wx:for-index="index1">
+        <view class="name">{{item.name}}</view>
+        <view class="list-box">
+          <view
+            class="list {{item.checked ? 'active' : ''}}"
+            wx:for="{{item.list}}"
+            wx:for-index="index2"
+            data-index1="{{index1}}"
+            data-index2="{{index2}}"
+            bind:tap="selectTag"
+          >{{item.name}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="b-box">
+      <view class="btn {{selectAct ? 'select' : ''}}" bind:tap="reset">重置</view>
+      <view class="btn {{selectAct ? 'active' : ''}}" bind:tap="sureTag">确定</view>
+    </view>
+  </view>
+</view>
+<!-- 加热点列表 -->
+<!-- style="height: calc(100% - {{navStatusHeight}}px);" -->
+<view class="hpidShadow" wx:if="{{showHpid}}">
+  <view class="empty" style="width:100%" bind:tap="closeHpid"></view>
+  <view class="hpid-box">
+    <!-- 地图 -->
+    <view class="map">
+      <cover-view class="close" bind:tap="closeHpid">
+        <cover-image src="/images/icon_down.png"></cover-image>
+      </cover-view>
+      <map
+        id="map"
+        show-location="{{true}}"
+        longitude="{{centerLon}}"
+        latitude="{{centerLat}}"
+        scale="13"
+        polygons="{{polygon}}"
+        markers="{{markers}}"
+        bindmarkertap="markertap"
+        bindcallouttap="callouttap"
+        style="width: 100%;"
+      />
+    </view>
+    <!-- 地址列表 -->
+    <view class="address">
+      <scroll-view class scroll-y="true" scroll-with-animation="true" style="height:646rpx">
+        <view
+          class="a-box {{index == selectActiveIndex ? 'active' : ''}}"
+          id="view_{{index}}"
+          wx:for="{{hpidList}}"
+          wx:key="key"
+          data-index="{{index}}"
+          bind:tap="selectHpid"
+        >
+          <view class="box-l" data-index="{{index}}" bind:tap="polygon">
+            <view class="title">
+              <view class="name">{{item.hpName}}</view>
+              <view
+                class="can {{item.selfTaking == 2 ? 'active' : ''}}"
+                wx:if="{{item.selfTaking != 2}}"
+              >可配送</view>
+              <view
+                class="can {{item.selfTaking == 0 ? 'active' : ''}}"
+                wx:if="{{item.selfTaking != 0}}"
+              >可自取</view>
+            </view>
+            <view class="box-c">
+              <image src="/images/home_address.png" />
+              <view
+                class="distance"
+              >距离您{{item.shipDistance < 1000 ? item.shipDistance + 'm' : item.shipDistance/1000 + 'km'}}</view>
+            </view>
+            <view class="info">{{item.address}}</view>
+            <view class="time">营业时间：{{item.stime ? item.stime + '-' + item.etime : '暂无'}}</view>
+          </view>
+          <view class="box-r {{index == selectActiveIndex ? 'active' : ''}}">
+            <view class="xd" data-index="{{index}}" catch:tap="selectStore">选择</view>
+            <view class="icon-b">
+              <image
+                catch:tap="phone"
+                data-phone="{{item.phone}}"
+                src="{{index == selectActiveIndex ? '/images/store_iphone_select.png' : '/images/store_iphone.png'}}"
+              />
+              <image
+                catch:tap="goMap"
+                data-name="{{item.hpName}}"
+                data-address="{{item.address}}"
+                data-lat="{{item.hpLat}}"
+                data-lon="{{item.hpLng}}"
+                src="{{index == selectActiveIndex ? '/images/store_navigation_select.png' : '/images/store_navigation.png'}}"
+              />
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+<view wx:if="{{showComponent}}">
+  <cp-login-view id="login-dialog" bind:updateSucc="updateLogin" />
+</view>
+<!-- 清除购物车 -->
+<cp-confirm-dialog
+  id="dialog"
+  show="{{clearCartTip}}"
+  title="确定清空购物车吗？"
+  bind:on-cancel="cancelTap"
+  bind:on-confirm="clear"
+></cp-confirm-dialog>
+<!--选择子账号
+<cp-confirm-dialog
+  show="{{showChild}}"
+  showCancel="{{false}}"
+  confirmText="去点餐"
+  bind:on-confirm="confirmTap"
+>
+  <view class="selectChild">
+    <view class="headtitle">
+      <image src="/images/logistics_popup_off.png" bindtap="closeclearCart" />
+      选择子账号（{{selectNums}}/{{subUserInfoList.infoBeans.length + subUserInfoList.subUserInfoBeanList.length +subUserInfoList.subUserInfoBeans.length }}）
+    </view>
+  
+    <view class="selAllergy">
+      <view
+        wx:for="{{allergy}}"
+        wx:key="index"
+        class="allergy {{allergyIndex== index?'selactive':''}}"
+        data-allergy-index="{{index}}"
+        bindtap="clickAllergy"
+      >{{item.name}}</view>
+    </view>
+
+  
+    <view class="selAge" wx:if="{{allergyIndex == 0}}">
+      <view
+        wx:for="{{ageList}}"
+        wx:key="index"
+        class="allage {{ageIndex== index?'active':''}}"
+        data-age-index="{{index}}"
+        bindtap="clickAge"
+      >{{item.name}}</view>
+    </view>
+
+    <view class="selectAll" bindtap="selectAll" wx:if="{{allergyIndex == 0}}">
+      <image wx:if="{{all}}" class="select" src="/images/order_list_select.png" />
+      <image wx:else class="select" src="/images/order_list_unchecked.png" />
+      <view class="all">全选</view>
+    </view>
+
+    <scroll-view scroll-y="true" style="height: 691rpx;" wx:if="{{allergyIndex == 0}}">
+      <view class="content">
+        <view
+          wx:for="{{allergyIndex == 0 && ageIndex == 0 ? subUserInfoList.subUserInfoBeans:subUserInfoList.subUserInfoBeanList}}"
+          wx:key="index"
+          wx:for-index="day"
+          class="contentlist {{item.isOrder == 'true'?'graytxt' :''}}"
+          bindtap="selected"
+          data-tsu-sub-uid="{{item.tsuSubUid}}"
+          data-index="{{day}}"
+        >
+          <image
+            src="{{item.checked ? '/images/order_list_select.png' : '/images/order_list_unchecked.png'}}"
+          />
+          {{item.tsuSubUname}}
+        </view>
+      </view>
+    </scroll-view>
+
+    <scroll-view scroll-y="true" style="height: 691rpx;" wx:if="{{allergyIndex == 1}}">
+      <view
+        class="selallergyList {{item.isOrder == 'true'?'graytxt' :''}}"
+        wx:for="{{subUserInfoList.infoBeans}}"
+        wx:key="index"
+        data-tsu-sub-uid="{{item.tsuSubUid}}"
+        data-index="{{index}}"
+        bindtap="selected"
+      >
+        <view>
+          <image
+            src="{{item.checked ? '/images/order_list_select.png' : '/images/order_list_unchecked.png'}}"
+          />
+          {{item.tsuSubUname}}({{item.age}}岁)
+        </view>
+        <view class="orangeColor">
+          <span wx:for="{{item.eatingHabitStr}}" wx:key="index">{{item.name}}</span>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</cp-confirm-dialog>
+-->

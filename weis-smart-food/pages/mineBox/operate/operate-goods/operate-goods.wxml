@@ -1,0 +1,66 @@
+<!--pages/mineBox/operate/operate-goods/operate-goods.wxml-->
+<cp-nav-bar title-text="{{info.activityInfo.productName}}" background="#fff" color="#333333" backIconColor="#fff" />
+<view class="operate-goods">
+    <!-- banner -->
+    <view class="banner">
+        <swiper indicator-dots="{{indicatorDots}}" bindchange="handleChange" circular autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{activeColor}}">
+            <block wx:for="{{info.activityInfo.activityImgList}}" wx:key="key">
+                <swiper-item>
+                    <image bind:tap="preview" src="{{item}}" class="slide-image" />
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="dots" wx:if="{{info.activityInfo.activityImgList.length > 1}}">
+            <block wx:for="{{info.activityInfo.activityImgList}}" wx:key="key">
+                <view class="dot {{index == currentIndex ? 'active' : ''}}"></view>
+            </block>
+        </view>
+    </view>
+    <!-- 商品价格&名称 -->
+    <view class="goods">
+        <!-- 价格 -->
+        <view class="price">
+            <!-- 现价 -->
+            <text>￥</text>
+            <text>{{info.activityInfo.salePrice}}</text>
+            <!-- 原价 -->
+            <text>￥{{info.activityInfo.normalPrice}}</text>
+        </view>
+        <!-- 名称 -->
+        <view class="name">{{info.activityInfo.productName}}</view>
+    </view>
+    <!-- 我的分享和排名 -->
+    <view class="myShare" bind:tap="allShare">
+        <view class="title">
+            <view>我的分享和排名</view>
+            <view>查看全部<image src="/images/list_next.png"/></view>
+        </view>
+        <view class="content">
+            <view class="content-item">
+                <view>已帮助</view>
+                <view>
+                    {{info.mutualNum}}<text>人</text>
+                </view>
+            </view>
+            <view class="content-item">
+                <view>排名</view>
+                <view>{{info.rankNum}}</view>
+            </view>
+        </view>
+    </view>
+    <!-- 商品详情 -->
+    <view class="goodsDetail">
+        <view class="title">商品详情</view>
+        <text class="content">{{info.activityInfo.detailedInfo}}</text>
+    </view>
+</view>
+
+<!-- 底部-分享 -->
+<view class="bottom">
+    <view class="share">
+        <image src="/images/operate_share.png" />
+        <view>分享</view>
+        <button open-type="share" data-from="operate-goods" data-shareModel="{{shareModel}}"></button>
+    </view>
+    <view class="buy" bind:tap="pay">立即购买</view>
+</view>

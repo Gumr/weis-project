@@ -1,0 +1,46 @@
+<!-- pages/record/markSugar/markSugar.wxml -->
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
+<cp-nav-bar
+  title-text="今日记步"
+  backIconColor="white"
+  titleStyle="color: #fff;"
+  background="transparent"
+></cp-nav-bar>
+<view class="background"></view>
+<cp-refresh-view id="refresh-view" backgroundColor="#F8F8F8" bind:onRefresh="onPullDownRefresh"></cp-refresh-view>
+<view
+  class="record"
+  bindtouchstart="handletouchstart"
+  bindtouchmove="handletouchmove"
+  bindtouchend="handletouchend"
+  bindtouchcancel="handletouchcancel"
+>
+  <view class="head">
+    <view class="circle">
+      <view class="v">
+        <text class="circle__value">{{steps[0] ? steps[0].step : 0 }}</text>
+        <text class="circle__unit">步</text>
+      </view>
+    </view>
+  </view>
+  <!-- 历史 -->
+  <view class="his-record">
+    <view class="head-box">
+      <view class="title">历史步数</view>
+      <view class="r-b" bind:tap="chartTap">
+        <image src="/images/icons/line_chart.png" />
+        <view class="his-name">曲线</view>
+      </view>
+    </view>
+    <view class="list-box">
+      <view wx:if="{{!showWhite}}">
+        <view class="list" wx:for="{{steps}}" wx:key="index">
+          <view class="time">{{item.$date}}</view>
+          <view class="v-box">{{item.step}} 步</view>
+        </view>
+      </view>
+      <!-- 空 -->
+      <view class="white" wx:if="{{showWhite}}">- 还没有记步记录哦 -</view>
+    </view>
+  </view>
+</view>

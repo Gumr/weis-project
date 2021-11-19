@@ -1,0 +1,268 @@
+page {
+  display: unset !important;
+  background: #fafafa;
+}
+// 员工验证
+.userCheck {
+  position: relative;
+  overflow: hidden;
+  // 用户提示
+  .usertips {
+    text-align: center;
+    font-size: 24rpx;
+    color: #808080;
+    line-height: 24rpx;
+    margin: 22rpx 0 40rpx;
+    text {
+      display: inline-block;
+      width: 96rpx;
+      height: 24rpx;
+      border-radius: 12rpx;
+      border: 1rpx solid #979797;
+      font-size: 16rpx;
+      color: #808080;
+      line-height: 24rpx;
+    }
+  }
+  // 输入框
+  .inputUser {
+    display: flex;
+    margin: 0 75rpx;
+    padding-bottom: 20rpx;
+    font-size: 36rpx;
+    color: #000000;
+    line-height: 50rpx;
+    border-bottom: 1rpx solid #e8e8e8;
+    input {
+      padding-left: 56rpx;
+      width: 78%;
+      font-weight: bold;
+    }
+    &--name {
+      margin-bottom: 50rpx;
+    }
+    &--code {
+      margin-bottom: 60rpx;
+    }
+  }
+  // 错误提示
+  .errortips {
+    font-size: 24rpx;
+    color: #fa6400;
+    position: absolute;
+    left: 200rpx;
+    bottom: 18rpx;
+  }
+}
+// 企业点餐------------
+.groupsMeal {
+  // margin-top: 76rpx;
+  padding-top: 40rpx;
+  .mr {
+    margin-top: 80rpx;
+  }
+  .mealtitle {
+    font-size: 37rpx;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.85);
+    margin-left: 30rpx;
+    text {
+      font-size: 22rpx;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #a9a9a9;
+      margin-left: 12rpx;
+    }
+  }
+  .nowgroup {
+    display: flex;
+    flex-wrap: wrap;
+    image {
+      width: 335rpx;
+      height: 144rpx;
+      margin-top: 30rpx;
+      margin-left: 30rpx;
+      border: 1rpx solid #fe5e0f;
+      border-radius: 20rpx;
+    }
+  }
+  .joinimg {
+    // display: flex;
+    // box-sizing: border-box;
+    // flex-wrap: wrap;
+    margin: 30rpx auto 0;
+    margin-left: 30rpx;
+    padding-bottom: 286rpx;
+
+    .w-100 {
+      width: 335rpx;
+      height: 144rpx;
+      margin-right: 20rpx;
+      margin-bottom: 30rpx;
+    }
+    .more {
+      width: 335rpx;
+      height: 144rpx;
+      background: rgba(247, 247, 247, 1);
+      border-radius: 20rpx;
+      text-align: center;
+      font-size: 28rpx;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: rgba(169, 169, 169, 1);
+      line-height: 144rpx;
+    }
+  }
+  .groupsbtn {
+    width: 100%;
+    text-align: center;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(169, 169, 169, 1);
+
+    bottom: 58rpx;
+    position: fixed;
+    .alreadyDay {
+      min-width: 150rpx;
+      height: 28rpx;
+      background: #ff8839ff;
+      box-shadow: 0rpx 2rpx 24rpx -6rpx rgba(186, 186, 186, 0.3);
+      display: flex;
+      border-radius: 14rpx;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 20rpx;
+      color: #ffffffff;
+      font-size: 20rpx;
+      font-weight: 550;
+      padding-left: 20rpx;
+      padding-right: 20rpx;
+      left: 210rpx;
+    }
+    .alreadyDay::after {
+      display: block;
+      content: '';
+      width: 0rpx;
+      height: 0rpx;
+      border-right: 22rpx solid transparent;
+      // border-left: 12rpx solid transparent;
+      border-top: 12rpx solid #c9580cff;
+      position: absolute;
+      right: 0;
+      left: 0;
+      bottom: -10rpx;
+      margin: auto;
+    }
+
+    button {
+      width: 650rpx;
+      height: 88rpx;
+      background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+      border-radius: 50rpx;
+      font-size: 36rpx;
+      color: #ffffff;
+      line-height: 88rpx;
+      margin-top: 0rpx;
+    }
+  }
+}
+.selectMeals {
+  width: 750rpx;
+  background: rgba(255, 255, 255, 1);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .meals {
+    width: 375rpx;
+    text-align: center;
+    margin-top: 80rpx;
+    border-right: 1rpx solid #eeeeeeff;
+    height: 270rpx;
+
+    image {
+      width: 170rpx;
+      height: 170rpx;
+    }
+    .Mealtit {
+      font-size: 32rpx;
+      font-family: PingFangSC-Medium, PingFang SC;
+      font-weight: bold;
+      color: rgba(0, 0, 0, 0.85);
+      margin-top: 18rpx;
+      margin-bottom: 12rpx;
+    }
+    .Mealtips {
+      font-size: 22rpx;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: rgba(102, 102, 102, 1);
+    }
+  }
+  button {
+    width: 420rpx;
+    height: 88rpx;
+    background: rgba(232, 232, 232, 1);
+    border-radius: 44rpx;
+    font-size: 32rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    margin-top: 159rpx;
+    margin-bottom: 20rpx;
+  }
+}
+/* 搜索框样式 */
+.search {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 690rpx;
+  height: 80rpx;
+  background: #e5e5e6;
+  margin-top: 40rpx;
+  border-radius: 40rpx;
+  margin-left: 36rpx;
+  margin-right: 36rpx;
+  padding-left: 20rpx;
+  .mr {
+    width: 36rpx;
+    height: 36rpx;
+    border-right: 1rpx solid #ccccccff;
+    padding-right: 10rpx;
+    position: absolute;
+    right: 100rpx;
+    margin: unset;
+  }
+
+  .sericon {
+    width: 48rpx;
+    height: 48rpx;
+    margin-right: 10rpx;
+  }
+  input {
+    font-size: 30rpx;
+    width: 82%;
+  }
+}
+.no {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  image {
+    width: 320rpx;
+    height: 243rpx;
+  }
+  .desc {
+    text-align: center;
+    color: #a9a9a9;
+    font-size: 30rpx;
+    margin-top: 20rpx;
+  }
+}

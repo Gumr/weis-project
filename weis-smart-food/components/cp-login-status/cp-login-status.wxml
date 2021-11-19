@@ -1,0 +1,34 @@
+<!-- components/cp-login-status/cp-login-status.wxml -->
+<view class="login-status {{updateStyle ? 'updateStyle' : ''}}">
+    <!-- 老用户从旧小程序进入 未登录 -->
+    <view class="info-box" wx:if="{{1==0}}">
+        <view class="i-centr">
+            <image class="icon" src="https://prodstatic.weis1606.cn/api/smartFood/login_remind2.png" />
+            <view class="i-r">
+                <view class="login-title">请登录</view>
+                <view class="tip">登录后您之前的饮食方案会立即同步</view>
+            </view>
+        </view>
+    </view>
+    <!-- 完善用户信息 -->
+    <view class="info-box" wx:if="{{loginInfo.isAuthorized && loginInfo.isLogin && !loginInfo.isPerProfile}}" bind:tap="loginClick">
+        <view class="i-centr">
+            <image class="icon info" src="https://prodstatic.weis1606.cn/api/smartFood/question_remind2.png" />
+            <view class="i-r perfect">
+                <view class="login-title">制定数字饮食方案</view>
+                <view class="tip">*四步即可获得你的专属数字饮食方案</view>
+            </view>
+        </view>
+    </view>
+    <!-- 新用户 -->
+    <view class="info-box" wx:if="{{!loginInfo.isAuthorized || !loginInfo.isLogin}}" bind:tap="loginClick">
+        <view class="i-centr">
+            <image class="icon" src="https://prodstatic.weis1606.cn/api/smartFood/login_remind.png" />
+            <view class="i-r new">
+                <view class="login-title">请登录</view>
+                <view class="tip">新用户登录后获得80元新人礼包和新人专享优惠</view>
+                <!-- <view class="rule">*仅限未在维士所有小程序注册过的新用户</view> -->
+            </view>
+        </view>
+    </view>
+</view>

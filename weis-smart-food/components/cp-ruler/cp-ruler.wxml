@@ -1,0 +1,51 @@
+<!-- components/cp-ruler/cp-ruler.wxml -->
+<view class="ruler">
+    <!-- 左右滑动 -->
+    <view class="ruler-box" style="width: {{scrollWidth}}rpx" wx:if="{{scrollType == 'level'}}">
+        <scroll-view class="ruler-list" id="ruler" scroll-left="{{scrollLeft}}" scroll-x scroll-with-animation="{{true}}" enhanced="{{true}}" bindscroll="scrollHandler" binddragstart="start" bindtouchstart="start">
+            <!-- 左侧空白填补区域 -->
+            <view class="empty" style="width: {{scrollWidth/2}}rpx"></view>
+            <!-- 滚动区域 -->
+            <view class="box {{index == max-min ? 'last' : ''}}" wx:for="{{max-min+1}}">
+                <view class="lattice {{index+min>0 ? ((index+min) % 10 == 0 ? 'ten' : ((index+min) % 5 == 0 ? 'five' : '')) : ''}}"></view>
+                <view class="num" wx:if="{{(index+min) % 10 == 0}}">{{index+min}}</view>
+                <view class="lattice bot {{index+min>0 ? ((index+min) % 10 == 0 ? 'ten' : ((index+min) % 5 == 0 ? 'five' : '')) : ''}}"></view>
+            </view>
+            <!-- 右侧空白滚动区域 -->
+            <view class="empty" style="width: {{scrollWidth/2}}rpx"></view>
+        </scroll-view>
+         <!-- 标尺 -->
+        <view class="ruler-line">
+            <view class="triangle">
+                
+            </view>
+            <view class="triangle">
+
+            </view>
+        </view>
+    </view>
+    <!-- 上下滑动 -->
+    <view class="ruler-box vertical" style="height: {{scrollHeight}}rpx" wx:if="{{scrollType == 'vertical'}}">
+        <scroll-view class="ruler-list" id="ruler" scroll-top="{{scrollLeft}}" scroll-y="{{true}}" scroll-with-animation="{{true}}" enhanced="{{true}}" bindscroll="scrollHandler" binddragstart="start" bindtouchstart="start">
+            <!-- 左侧空白填补区域 -->
+            <view class="empty" style="height: {{scrollHeight/2}}rpx"></view>
+            <!-- 滚动区域 -->
+            <view class="box {{index == max-min ? 'last' : ''}}" wx:for="{{max-min+1}}">
+                <view class="lattice {{index+min>0 ? ((index+min) % 10 == 0 ? 'ten' : ((index+min) % 5 == 0 ? 'five' : '')) : ''}}"></view>
+                <view class="num" wx:if="{{(index+min) % 10 == 0}}">{{index+min}}</view>
+                <view class="lattice bot {{index+min>0 ? ((index+min) % 10 == 0 ? 'ten' : ((index+min) % 5 == 0 ? 'five' : '')) : ''}}"></view>
+            </view>
+            <!-- 右侧空白滚动区域 -->
+            <view class="empty" style="height: {{scrollHeight/2}}rpx"></view>
+        </scroll-view>
+         <!-- 标尺 -->
+        <view class="ruler-line">
+            <view class="triangle">
+                
+            </view>
+            <view class="triangle">
+
+            </view>
+        </view>
+    </view>
+</view>

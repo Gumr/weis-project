@@ -1,0 +1,43 @@
+<!--pages/packageDiscover/eatMethodDetail/eatMethodDetail.wxml-->
+<cp-nav-bar title-text="{{playData.name}}" backIconColor="black"></cp-nav-bar>
+
+<view class="page-container" wx:if="{{loaded}}">
+  <view class="encicle">
+    <view class="recom">推荐摄入能量：{{playList.calorie}}kcal</view>
+    <view class="echart-box">
+      <view class="echart">
+        <ec-canvas id="play" ec="{{ ec }}"></ec-canvas>
+        <cover-view class="cover"></cover-view>
+      </view>
+      <view class="kind-box">
+        <view class="box-a">
+          <view class="box-color"></view>
+          <view class="box-name">蛋白质</view>
+          <view class="box-percent">{{playList.protein}}%</view>
+          <view class="box-value">{{playList.proteinWeight}}g</view>
+        </view>
+        <view class="box-a">
+          <view class="box-color"></view>
+          <view class="box-name">脂肪</view>
+          <view class="box-percent">{{playList.fat}}%</view>
+          <view class="box-value">{{playList.fatWeight}}g</view>
+        </view>
+        <view class="box-a">
+          <view class="box-color"></view>
+          <view class="box-name">碳水化合物</view>
+          <view class="box-percent">{{playList.carbohydrate}}%</view>
+          <view class="box-value">{{playList.carbohydrateWeight}}g</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view
+    class="intits"
+  >{{playList.desc || '数搭营养师教你两步搭：定好总能量、分配三大营养素。保证蛋白质的摄入，就是在保护身体的重要器官；脂肪是储能好帮手；碳水是最主要的能源物质，再低碳也不能忽略哦。'}}</view>
+</view>
+<cp-bottom-button model:button-height="{{buttonHeight}}" title="用它点餐" bind:on-tap="buttonTap"></cp-bottom-button>
+<cp-loading show bind:on-end="loadingEnd">
+  <view>{{title}}吃法已生成，</view>
+  <view>开始点菜吧！</view>
+</cp-loading>

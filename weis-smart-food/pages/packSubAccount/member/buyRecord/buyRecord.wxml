@@ -1,0 +1,13 @@
+<!--pages/packSubAccount/buyRecord/buyRecord.wxml-->
+<cp-nav-bar title-text="购买记录" color="#000000" backIconColor="black"/>
+<wxs module="filters" src="../../../../utils/filter.wxs"></wxs>
+<view class="buyRecord">
+    <view class="list" wx:if="{{record.length != 0}}" wx:for="{{record}}" wx:key="key">
+        <view class="info">
+            <view>{{item.tvprDescribe}}</view>
+            <view>{{filters.toDateCustom(item.tvprDate, '.')}}</view>
+        </view>
+        <view class="price">¥{{item.tvprPaymentAmount}}</view>
+    </view>
+    <cp-null show="{{record.length == 0}}" imgSrc="https://prodstatic.weis1606.cn/api/smartFood/crown_blank.png" text="你还未开通过维士会员"></cp-null>
+</view>

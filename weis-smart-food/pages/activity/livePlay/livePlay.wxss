@@ -1,0 +1,20 @@
+.live {
+  width: 750rpx;
+  height: 1624rpx;
+}
+.live image {
+  width: 100%;
+  height: 100%;
+}
+.live .btn {
+  position: fixed;
+  width: 528rpx;
+  height: 101rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 88rpx;
+}
+.live .btn image {
+  width: 100%;
+  height: 100%;
+}

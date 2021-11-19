@@ -1,0 +1,31 @@
+<!--components/stepSelect/stepSelect.wxml-->
+<view class="step-wrap pos-relative">
+  <view class="display-flex">
+    <view
+      wx:for="{{steps}}"
+      wx:key="index"
+      class="step-dot-item {{index === steps.length - 1 ? 'last-dot-item' : ''}}"
+    >
+      <view class="step-dot-box" data-value="{{item.value}}" bindtap="stepTap">
+        <view
+          class="step-dot"
+          style="background-color: {{index <= activeIndex ? item.color : '#a9a9a9'}};"
+        ></view>
+        <view
+          class="step-label"
+          data-value="{{item.value}}"
+          catchtap="stepTap"
+          style="color: {{activeIndex === index && index === steps.length - 1 ? item.color : '#a9a9a9'}};"
+        >{{item.label}}</view>
+      </view>
+      <view
+        class="step-bar-item {{index < activeIndex ? 'show-step-bar-item' : ''}}"
+        data-index="{{index}}"
+        catchtap="stepBarTap"
+        wx:if="{{index !== steps.length - 1}}"
+      ></view>
+    </view>
+  </view>
+
+  <view class="step-bar display-flex" style="width: calc(100% - 20rpx); {{barStyle}}"></view>
+</view>

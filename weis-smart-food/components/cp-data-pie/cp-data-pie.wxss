@@ -1,0 +1,4 @@
+.outside {
+  position: fixed;
+  top: -9999px;
+}

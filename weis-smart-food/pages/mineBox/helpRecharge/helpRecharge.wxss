@@ -1,0 +1,172 @@
+.recharge {
+  width: 100%;
+}
+.recharge .top {
+  width: 100%;
+  background: linear-gradient(135deg, #FF9722 0%, #FE5E0F 100%);
+}
+.recharge .top .name {
+  padding: 0 0 0 56rpx;
+  color: #ffffff;
+  font-size: 28rpx;
+}
+.recharge .top .ipt {
+  width: 690rpx;
+  height: 100rpx;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  margin: 32rpx auto 0;
+}
+.recharge .top .ipt input {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0 0 0 26rpx;
+  color: #333333;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+.recharge .top .ipt .input-placeholder {
+  color: #a9a9a9;
+  font-size: 32rpx;
+  font-weight: normal;
+}
+.recharge .top .tip {
+  color: #ffffff;
+  font-size: 28rpx;
+  padding-left: 56rpx;
+  margin-top: 10rpx;
+}
+.recharge .bot-b {
+  background: #ffffff;
+  padding-top: 60rpx;
+  border-radius: 40rpx 40rpx 0 0;
+  margin-top: -90rpx;
+}
+.recharge .bot-b .name {
+  color: #333333;
+  font-size: 28rpx;
+  padding-left: 56rpx;
+}
+.recharge .bot-b .recharge-box {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 55rpx;
+}
+.recharge .bot-b .recharge-box .box {
+  width: 310rpx;
+  height: 160rpx;
+  background: #FAFAFA;
+  border-radius: 10rpx;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rpx;
+  align-items: center;
+  padding-top: 58rpx;
+  color: #333333;
+}
+.recharge .bot-b .recharge-box .box.active {
+  padding-top: 44rpx;
+}
+.recharge .bot-b .recharge-box .box:nth-of-type(odd) {
+  margin-right: 20rpx;
+}
+.recharge .bot-b .recharge-box .box .total {
+  font-size: 40rpx;
+  font-weight: bold;
+}
+.recharge .bot-b .recharge-box .box .donate {
+  font-size: 20rpx;
+  margin-top: 3rpx;
+}
+.recharge .bot-b .recharge-box .box.select {
+  background: linear-gradient(135deg, #FF9722 0%, #FE5E0F 100%);
+  color: #ffffff;
+}
+.recharge .agree {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 20rpx;
+}
+.recharge .agree .xy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.recharge .agree .xy image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 15rpx;
+}
+.recharge .agree .xy .title {
+  font-size: 24rpx;
+  color: #666666;
+}
+.recharge .agree .xy .title.color {
+  color: #fa6400;
+  margin-left: 15rpx;
+}
+.recharge .agree .btn {
+  width: 650rpx;
+  height: 88rpx;
+  background: #D8D8D8;
+  border-radius: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-size: 36rpx;
+  margin: 40rpx auto 70rpx;
+}
+.recharge .agree .btn.active {
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+}
+.recharge .agree .record {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.recharge .agree .record .r {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 28rpx;
+}
+.recharge .agree .record image {
+  width: 32rpx;
+  height: 32rpx;
+}
+.c-dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 35rpx;
+}
+.c-dialog .title-c {
+  color: #666666;
+  font-size: 28rpx;
+}
+.c-dialog .phone {
+  color: #333333;
+  font-size: 40rpx;
+  font-weight: bold;
+  margin: 16rpx auto 3rpx;
+}
+.c-dialog .name {
+  color: #666666;
+  font-size: 28rpx;
+}
+.dialog .title {
+  min-width: 580rpx;
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  line-height: 44rpx;
+  padding: 60rpx 20rpx 40rpx;
+}
+.dialog .title .txt {
+  padding-left: 10rpx;
+}
+.dialog .title .txt:last-of-type {
+  margin-top: 30rpx;
+}

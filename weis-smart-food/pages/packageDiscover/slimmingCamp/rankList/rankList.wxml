@@ -1,0 +1,37 @@
+<!--pages/marketing/slimmingCamp/rankList/rankList.wxml-->
+
+<cp-nav-bar title-text="排行榜" backIconColor></cp-nav-bar>
+
+<view class="integral" style="margin-top:-{{navHeight}}px">
+  <view class="top-bg">
+    <image src="https://prodstatic.weis1606.cn/api/activity/ranking_list_bj.png" />
+    <view class="val">排行榜</view>
+    <text class="name">*如结营时，确认订单少于10单，将失去\n竞争排行榜的机会。</text>
+  </view>
+  <view class="box">
+    <view class="t-box">
+      <view class="r-box">
+        <view class="rank">排名</view>
+        <view class="rule">昵称</view>
+      </view>
+      <view class="name">积分</view>
+    </view>
+    <!-- 列表 -->
+    <view class="list-box">
+      <view class="l-wrap" wx:for="{{rankRecordList}}" wx:key="key">
+        <view class="w-l">
+          <view class="head">
+            <image
+              wx:if="{{index == 0 || index == 1 || index == 2}}"
+              src="{{'https://prodstatic.weis1606.cn/api/mini/ranking_medal_' + (index+1) + '.png'}}"
+            />
+            <view class="num" wx:else>{{index+1}}</view>
+          </view>
+          <image class="icon" src="{{item.headImgUrl}}" />
+          <view class="name">{{item.uname}}</view>
+        </view>
+        <view class="score">{{item.scoreRecord}}分</view>
+      </view>
+    </view>
+  </view>
+</view>

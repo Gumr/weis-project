@@ -1,0 +1,52 @@
+<!-- pages/packSubAccount/withdrawal/withdrawal/withdrawal.wxml -->
+<cp-nav-bar title-text="收入提现" color="#000" background="#F3F4F5"></cp-nav-bar>
+<view class="withdrawal">
+    <view class="boxBg totalPrice" bind:tap="myAchievement">
+        <view class="title">总收入(元)</view>
+        <view class="price">
+            <text class="price_con">{{totalIncome}}</text>
+            <image class="price_img" src="https://prodstatic.weis1606.cn/api/smartFood/money_next.png" />
+        </view>
+    </view>
+    <view class="boxBg withdrawn">
+        <view class="end" bind:tap="detail">
+            <view class="title">已提现(元)</view>
+            <view class="price">
+                <text class="price_con">{{completePay}}</text>
+                <image class="price_img" src="https://prodstatic.weis1606.cn/api/smartFood/money_next.png" />
+            </view>
+        </view>
+         <view class="can">
+            <view class="title">
+                <text class="title_con">剩余可提现(元)</text>
+                <image class="title_img" src="https://prodstatic.weis1606.cn/api/smartFood/money_doubt.png" bind:tap="tipInfo" />
+            </view>
+            <view class="price">
+                <text class="price_con">{{effectivePay}}</text>
+                <view class="price_btn" bind:tap="withdrawal">立即提现</view>
+            </view>
+        </view>
+    </view>
+</view>
+
+
+<!-- 签约-弹窗 -->
+<cp-confirm-dialog class="dialog" show="{{contractShow}}" confirmText="签约" showCancel="{{false}}" confirmDisabled="{{!xy}}" bind:on-confirm="sure" dialogStyle="width: 640rpx;height: 1200rpx;padding: 0 40rpx;">
+    <scroll-view scroll-y="true" style="height: 1000rpx">
+        <view class="contract">
+            <rich-text nodes="{{contractHtml}}"></rich-text>
+            <view class="xy" bind:tap="xy">
+                <image wx:if="{{xy}}" src="/images/order_list_select.png" />
+                <image wx:else src="/images/order_list_unchecked.png" />
+                <view class="xy_cont">我已阅读以上内容并同意签约</view>
+            </view>
+        </view>
+    </scroll-view>
+</cp-confirm-dialog>
+
+<!-- 提示信息-弹窗 -->
+<cp-confirm-dialog class="dialog" show="{{tipInfoShow}}" title=" " confirmText="关闭" showCancel="{{false}}" bind:on-confirm="tipInfoSure" dialogStyle="width: 640rpx;padding: 0 40rpx;" confirmStyle="flex-grow: inherit;margin: 0 auto;">
+    <view class="tipInfo">
+        可提现 = 已确认收入 - 已提现收入 - 提现中收入
+    </view>
+</cp-confirm-dialog>

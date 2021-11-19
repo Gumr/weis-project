@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-circle": "/components/vant/circle/index",
+    "cp-week-calendar": "/components/cp-week-calendar/cp-week-calendar",
+    "cp-data-circle-bar": "/components/cp-data-circle-bar/cp-data-circle-bar"
+  }
+}

@@ -1,0 +1,50 @@
+.dialog-title {
+  text-align: center;
+  color: #333;
+  font-size: 32rpx;
+  margin: 78rpx 40rpx 40rpx;
+  position: relative;
+  font-weight: bold;
+}
+.dialog-title .close-icon {
+  width: 34rpx;
+  height: 34rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.dialog-footer {
+  padding: 40rpx 40rpx;
+  font-size: 32rpx;
+  display: flex;
+}
+.cancel-btn {
+  font-size: 32rpx;
+  flex-grow: 1;
+  flex-shrink: 0;
+  text-align: center;
+  padding: 14rpx 0;
+  margin-right: 40rpx;
+  border: 2rpx solid #FA6400;
+  box-shadow: 0rpx 2rpx 24rpx 0rpx rgba(102, 102, 102, 0.15);
+  background-color: #fff;
+  color: #FA6400;
+  width: 260rpx;
+  border-radius: 44rpx;
+}
+.confirm-btn {
+  font-size: 32rpx;
+  flex-grow: 1;
+  flex-shrink: 0;
+  text-align: center;
+  padding: 14rpx 0;
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+  box-shadow: 0rpx 2rpx 24rpx 0rpx rgba(102, 102, 102, 0.15);
+  border-radius: 44rpx;
+  color: #fff;
+  width: 260rpx;
+}
+.confirm-btn--disabled {
+  background: #a9a9a9;
+  box-shadow: 0rpx 6rpx 14rpx 0rpx rgba(169, 169, 169, 0.5);
+}

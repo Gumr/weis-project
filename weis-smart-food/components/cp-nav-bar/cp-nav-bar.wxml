@@ -1,0 +1,139 @@
+<cover-view class="nav" style="height: {{status + navHeight}}px;z-index:{{zIndex}}" wx:if="{{native}}">
+  <cover-image class="nav" wx:if="{{navBgImg}}" src="{{navBgImg}}" style="width:100%;height: {{status + navHeight}}px;z-index:-1;"/>
+  <cover-view class="status" style="height: {{status}}px;{{containerStyle}};{{statusStyle}}"></cover-view>
+  <cover-view class="navbar" style="height:{{navHeight}}px;{{containerStyle}};{{navBarStyle}}">
+    <!-- 返回 -->
+    <cover-view class="back-icon" wx:if="{{backIconColor && pages.length > 1}}" style="height:100%;" bindtap="back">
+      <cover-image class="{{backIconColor == 'white' ? 'white' : ''}}" src="{{backIconColor == 'white' ? '/images/arrow-white.png' : '/images/icon_return.png'}}"></cover-image>
+    </cover-view>
+    <!-- 回到首页 -->
+    <cover-view class="home-icon" wx:if="{{!isTabbar && pages.length == 1}}" bindtap="home">
+      <cover-image src="{{homeIcon || '/images/backHome.png'}}"></cover-image>
+    </cover-view>
+    <!-- 日期标题 -->
+    <cover-view class="nav-title date" wx:if="{{mode === 'date'}}">
+      <cover-image class="arrow__icon {{disabledYesterday ? 'hidden' : ''}}" data-disabled="{{disabledYesterday}}" bind:tap="yesterdayTap" src="{{dateIconColorObj.iconColor == '#fff' ? '/images/icons/triangle_arrow_left.png' : '/images/triangle_left_grey.png'}}"></cover-image>
+      <cover-view class="date-title" bind:tap="titleTap" style="{{dateIconStyle}}">
+        {{dateTitle}}
+      </cover-view>
+      <cover-image class="arrow__icon reverse {{disabledTomorrow ? 'hidden' : ''}}" data-disabled="{{disabledTomorrow}}" bind:tap="tomorrowTap" src="{{dateIconColorObj.iconColor == '#fff' ? '/images/icons/triangle_arrow_left.png' : '/images/triangle_left_grey.png'}}"></cover-image>
+    </cover-view>
+    <!-- 星期标题 -->
+    <cover-view class="nav-title date" wx:if="{{mode === 'week'}}" style="width: 50%;">
+      <cover-image class="arrow__icon {{disabledPrev ? 'hidden' : ''}}" data-disabled="{{disabledPrev}}" bind:tap="prevTap" src="{{dateIconColorObj.iconColor == '#fff' ? '/images/icons/triangle_arrow_left.png' : '/images/triangle_left_grey.png'}}"></cover-image>
+      <cover-view class="date-title" style="{{dateIconStyle}}" style="width: 62%;font-size: 22rpx;background: none;">
+        {{weekTitle}}
+      </cover-view>
+      <cover-image class="arrow__icon reverse {{disabledNext ? 'hidden' : ''}}" data-disabled="{{disabledNext}}" bind:tap="nextTap" src="{{dateIconColorObj.iconColor == '#fff' ? '/images/icons/triangle_arrow_left.png' : '/images/triangle_left_grey.png'}}"></cover-image>
+    </cover-view>
+    <!-- 标题 -->
+    <cover-view class="nav-title" wx:if="{{titleText}}">
+      <cover-view class="wz" style="{{textStyle}};{{titleStyle}};" bind:tap="titleTextTap">{{titleText}}</cover-view>
+    </cover-view>
+    <!-- 用户头像&名 -->
+    <cover-view class="nav-title user" wx:if="{{userInfo}}">
+      <cover-image class="avatar" src=""></cover-image>
+      <cover-view class="wz">{{userInfo.uname}}</cover-view>
+    </cover-view>
+    <!-- 业绩分类 -->
+    <cover-view class="nav-title achievement" wx:if="{{achievement}}" bind:tap="characterTap">
+      <cover-view class="wz">{{achievement}}</cover-view>
+    </cover-view>
+    <!-- 左上角自定义 -->
+    <cover-view class="custom" wx:if="{{custom}}">
+      <cover-view wx:if="{{left === 'setting'}}" class="setting-left" style="{{navSettingColor == 'white' ? 'border: 1rpx solid #FFFFFF;background: rgba(255, 255, 255, 0.2);' : ''}}" bind:tap="tapcustom">
+        <cover-image class="setting-left__icon" src="{{navSettingColor == 'white' ? '/images/icons/nav_setting-white.png' : '/images/icons/nav_setting.png'}}" />
+        <cover-view class="setting-left__label" style="{{navSettingColor == 'white' ? 'color: #fff' : ''}}">设置</cover-view>
+      </cover-view>
+      <cover-view class="c-l" bind:tap="tapcustom" wx:else>
+        <cover-view class="login">{{customText}}</cover-view>
+        <cover-image src="/images/arrow-white.png"></cover-image>
+      </cover-view>
+    </cover-view>
+  </cover-view>
+</cover-view>
+<view class="nav" style="height: {{status + navHeight}}px;z-index:{{zIndex}};{{containerStyle}}" wx:else>
+  <image class="nav" wx:if="{{navBgImg}}" src="{{navBgImg}}" style="width:100%;height: {{status + navHeight}}px;z-index:-1;"/>
+  <view class="status" style="height: {{status}}px;{{statusStyle}}"></view>
+  <view class="navbar" style="height:{{navHeight}}px;{{navBarStyle}}">
+    <!-- 返回 -->
+    <view class="back-icon {{backIconColor == 'white' ? 'white' : ''}}" style="{{menuStyle}}" wx:if="{{backIconColor && pages.length > 1 && !hideHome}}">
+      <view bindtap="back">
+        <image class="{{backIconColor == 'white' ? 'white' : ''}}" src="{{backIconColor == 'white' ? '/images/arrow-white.png' : '/images/icon_return.png'}}"></image>
+      </view>
+      <view bindtap="home">
+        <image class="home" src="{{backIconColor == 'white' ? '/images/backHome2.png' : '/images/backHome.png'}}" />
+      </view>
+    </view>
+    <!-- 没有回到首页 返回 -->
+    <view class="back-icon" wx:if="{{backIconColor && pages.length > 1 && hideHome}}" style="height:100%;" bindtap="back">
+      <image class="{{backIconColor == 'white' ? 'white' : ''}}" src="{{backIconColor == 'white' ? '/images/arrow-white.png' : '/images/icon_return.png'}}"></image>
+    </view>
+    <!-- 回到首页 -->
+    <view class="home-icon" wx:if="{{!isTabbar && pages.length == 1}}" bindtap="home">
+      <image src="{{homeIcon || backIconColor == 'white' ? homeIcon || '/images/backHome2.png' : '/images/backHome.png'}}"></image>
+    </view>
+    <!-- 日期标题 -->
+    <view class="nav-title date" wx:if="{{mode === 'date'}}">
+      <image class="arrow__icon {{disabledYesterday ? 'hidden' : ''}}" data-disabled="{{disabledYesterday}}" bind:tap="yesterdayTap" src="{{dateIconColorObj.iconColor == '#fff' ? '/images/icons/triangle_arrow_left.png' : '/images/triangle_left_grey.png'}}"></image>
+      <view class="date-title" bind:tap="titleTap" style="{{dateIconStyle}}">{{dateTitle}}</view>
+      <image class="arrow__icon reverse {{disabledTomorrow ? 'hidden' : ''}}" data-disabled="{{disabledTomorrow}}" bind:tap="tomorrowTap" src="{{dateIconColorObj.iconColor == '#fff' ? '/images/icons/triangle_arrow_left.png' : '/images/triangle_left_grey.png'}}"></image>
+    </view>
+    <!-- 星期标题 -->
+    <view class="nav-title date" wx:if="{{mode === 'week'}}" style="width: 50%;">
+      <image class="arrow__icon {{disabledPrev ? 'hidden' : ''}}" data-disabled="{{disabledPrev}}" bind:tap="prevTap" src="{{dateIconColorObj.iconColor == '#fff' ? '/images/icons/triangle_arrow_left.png' : '/images/triangle_left_grey.png'}}"></image>
+      <view class="date-title" style="{{dateIconStyle}}" style="width: 62%;font-size: 22rpx;background: none;">
+        {{weekTitle}}
+      </view>
+      <image class="arrow__icon reverse {{disabledNext ? 'hidden' : ''}}" data-disabled="{{disabledNext}}" bind:tap="nextTap" src="{{dateIconColorObj.iconColor == '#fff' ? '/images/icons/triangle_arrow_left.png' : '/images/triangle_left_grey.png'}}"></image>
+    </view>
+    <!-- 标题 -->
+    <view class="nav-title" wx:if="{{titleText}}"> 
+       <view class="wz" style="{{textStyle}};{{titleStyle}};" bind:tap="titleTextTap">{{titleText}}</view>
+    </view>
+    <!-- 头像标题 -->
+    <view class="nav-title {{lefticon?'imagetitle':''}}" wx:if="{{lefticon}}" bind:tap="tapcustom">     
+       <view class="wz" style="{{textStyle}};{{titleStyle}};"> <image class="lefticon" src="/images/cut-icon-back.png"  wx:if="{{lefticon == 'true'}}"/>{{icontext}}</view><image class="righticon" src="/images/arrow-white.png" wx:if="{{righticon == 'true'}}"></image>      
+    </view>
+    <!-- 用户头像&名 -->
+    <view class="nav-title user" wx:if="{{userInfo}}">
+      <image class="avatar" src="{{userInfo.headImgUrl}}" />
+      <view class="wz">{{userInfo.uname}}</view>
+    </view>
+    <!-- 业绩分类 -->
+    <view class="nav-title achievement" wx:if="{{achievement}}" bind:tap="characterTap">
+      <view class="wz">{{achievement}}</view>
+    </view>
+    <!-- 左上角自定义 -->
+    <view class="custom" wx:if="{{custom}}" style="{{customStyle}}">
+      <view wx:if="{{left === 'setting'}}" class="setting-left" style="{{navSettingColor == 'white' ? 'border: 1rpx solid #FFFFFF;background: rgba(255, 255, 255, 0.2);' : ''}}" bind:tap="tapcustom">
+        <image class="setting-left__icon" src="{{navSettingColor == 'white' ? '/images/icons/nav_setting-white.png' : '/images/icons/nav_setting.png'}}" />
+        <view class="setting-left__label" style="{{navSettingColor == 'white' ? 'color: #fff' : ''}}">设置</view>
+      </view>
+      <view wx:elif="{{left === 'text'}}" class="custom-title">{{customText}}</view>
+      <view wx:elif="{{left === 'icon'}}" class="custom-icon" bind:tap="tapcustom">
+        <image class="custom-icon_icon" src="{{lefticonUrl}}"/>
+        <view class="custom-icon_tip" wx:if="{{lefticonTip}}"></view>
+      </view>
+      <view wx:else>
+          <view class="c-l {{theme}}" bind:tap="tapcustom">
+            <image class="cut-back" src="{{theme && theme == 'pillars' ? '/images/cut-icon.png' : '/images/cut-icon-back.png'}}" />
+            <view class="login">{{customText}}</view>
+            <image class="{{theme && theme == 'pillars' ? 'black' : ''}}" src="{{theme && theme == 'pillars' ? '/images/back-black.png' : '/images/arrow-white.png'}}"></image>
+          </view>
+          <view class="hpName" wx:if="{{hpName}}">{{hpName}}</view>
+      </view>
+      <!-- <view class="c-l {{theme}}" bind:tap="tapcustom" wx:else>
+        <image class="cut-back" src="{{theme && theme == 'pillars' ? '/images/cut-icon.png' : '/images/cut-icon-back.png'}}" />
+        <view class="login">{{customText}}</view>
+        <image class="{{theme && theme == 'pillars' ? 'black' : ''}}" src="{{theme && theme == 'pillars' ? '/images/back-black.png' : '/images/arrow-white.png'}}"></image>
+      </view> -->
+    </view>
+    <!-- 选择地址自定义 -->
+    <view class="selectAddress" wx:if="{{cutAddress}}">
+      <slot name="cutAddress"></slot>
+    </view>
+  </view>
+</view>
+<!-- 占位 -->
+<view class="emptyZw" style="height: {{status + navHeight}}px"></view>

@@ -1,0 +1,27 @@
+<!-- pages/mineBox/helpRecord/helpRecord.wxml -->
+<cp-nav-bar title-text="帮充值记录" color="#000000" background="#fff" backIconColor="black" />
+<view class="detail">
+    <!-- 列表内容 -->
+    <view class="list">
+        <view class="each" wx:for="{{cardPurchaseRecords}}" wx:key="index" data-index="{{index}}" bind:tap="tapDetail">
+            <image src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/news_ticket.png" />
+            <view class="content">
+                <view class="main">
+                    <view class="main__left">
+                        <text class="main__txt">{{item.targetPhone}} {{item.targetName}}</text>
+                        <view>{{item.utime}}</view>
+                    </view>
+                    <view class="main__right">
+                        <text class="active">+￥{{item.total}}</text>
+                        <view wx:if="{{item.payDonation > 0}}">实付¥{{item.cardPrice}}，赠送¥{{item.payDonation}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 空 -->
+    <view wx:if="{{cardPurchaseRecords.length <= 0}}" class="null">
+    <image src="https://prodstatic.weis1606.cn/api/smartFood/order-empty.png" />
+    <view>还没有帮充值记录</view>
+  </view>
+</view>

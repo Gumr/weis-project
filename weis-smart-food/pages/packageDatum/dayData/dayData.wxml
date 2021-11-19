@@ -1,0 +1,313 @@
+<!-- pages/datas/dayData/dayData.wxml -->
+<cp-nav-bar title-text="摄入与消耗数据" backIconColor></cp-nav-bar>
+<view class="cladar" style="top:{{navStatusHeight}}px">
+  <cp-week-calendar id="weekCalendar" dayData="true" bind:mytitle="current" bind:mydata="mydata"></cp-week-calendar>
+</view>
+<view class="everyday">
+  <!-- 全天摄入 -->
+  <view class="small-box" style="padding: 0;">
+    <view class="category-union" bind:tap="check">
+      <view class="title" style="margin-bottom: 40rpx;">
+        <view class="title-left">
+          <view class="t-sub">全天摄入</view>
+          <view class="category-list">
+            <view class="category" wx:for="{{categorys}}" wx:key="index">
+              <text>{{item.label}}</text>
+              <image
+                class="category__icon"
+                wx:if="{{item.selected}}"
+                src="/images/icons/icon_select.png"
+              />
+              <image class="category__icon" wx:else src="/images/icons/icon_unselect.png" />
+            </view>
+          </view>
+        </view>
+      </view>
+      <cp-data-circle-bar circle-data="{{circleData}}" bar-data="{{barData}}"></cp-data-circle-bar>
+    </view>
+    <view class="unions-card {{showUnions ? 'dark-background' : ''}};">
+      <view
+        class="category-unions"
+        style="height: {{showUnions ? 430 * categoryDataUnions.length : 0}}rpx;"
+      >
+        <view
+          class="category-union category-union--dark"
+          wx:for="{{categoryDataUnions}}"
+          wx:key="index"
+        >
+          <view class="category-union__title">{{item.label}}</view>
+          <view class="category-union__chart">
+            <cp-data-circle-bar
+              mode="dark"
+              circle-data="{{item.circleData}}"
+              bar-data="{{item.barData}}"
+            ></cp-data-circle-bar>
+          </view>
+          <view class="category-union__line" wx:if="{{index !== categoryDataUnions.length-1}}"></view>
+        </view>
+      </view>
+      <view
+        wx:if="{{categoryDataUnions.length > 0}}"
+        class="category-union__more {{showUnions ? 'dark-background' : ''}}"
+        catch:tap="unionsTap"
+      >
+        <image
+          wx:if="{{!showUnions}}"
+          class="category-union__icon"
+          src="/images/icons/arrow_dropdown_gray.png"
+        />
+        <image wx:else class="category-union__icon" src="/images/icons/arrow_top_gray.png" />
+      </view>
+    </view>
+  </view>
+  <!-- 饮食摄入 -->
+  <!-- <view class="small-box">
+    <view class="title">
+      <view class="title-left" bind:tap="check">
+        <view class="t-sub">饮食摄入</view>
+        <view class="tag">查看详情</view>
+      </view>
+    </view>
+    <view class="name">实际能量\计划能量</view>
+    <view class="data">
+      <view class="act">{{calorie.aIntake}}</view>
+      <view class="plan">
+        <view class="p-data">/{{calorie.pIntake}}</view>
+        <view class="unit">kcal</view>
+      </view>
+    </view>
+    <view class="progress">
+      <progress
+        active-mode="forwards"
+        duration="10"
+        border-radius="6"
+        active-color="#FE5E0F"
+        background-color="#EEEEEE"
+        active="{{true}}"
+        percent="{{calorie.intakePercent}}"
+        stroke-width="5"
+      />
+    </view>
+    <view class="per">营养素比例</view>
+    <view class="per-wrap">
+      <view class="per-box">
+        <view class="per-name">蛋白质：碳水：脂肪</view>
+        <view
+          class="per-value"
+        >{{nutritionData.aProteinRate}}：{{nutritionData.aCorbonRate}}：{{nutritionData.aFatRate}}</view>
+      </view>
+      <view class="per-box">
+        <view class="per-name">计划蛋白质：碳水：脂肪</view>
+        <view
+          class="per-value color"
+        >{{nutritionData.pProteinRate}}：{{nutritionData.pCorbonRate}}：{{nutritionData.pFatRate}}</view>
+      </view>
+    </view>
+  </view>-->
+  <!-- 消耗 -->
+  <view class="small-box xh">
+    <view class="title">
+      <view class="title-left">
+        <view class="t-sub">全天消耗</view>
+      </view>
+    </view>
+    <view class="name all-xh">总消耗</view>
+    <view class="plan-xh" style="margin-bottom: 40rpx;">
+      <view class="p-data">{{calorie.aConsumption}}</view>
+      <view class="unit">kcal</view>
+    </view>
+    <view class="y-box">
+      <view class="xh-box">
+        <view class="name-xh">运动消耗</view>
+        <view class="plan-xh color">
+          <view class="p-data">{{calorie.aSport}}</view>
+          <view class="unit">kcal</view>
+        </view>
+      </view>
+      <view class="xh-box">
+        <view class="name-xh">日常消耗</view>
+        <view class="plan-xh color">
+          <view class="p-data">{{calorie.uDaily}}</view>
+          <view class="unit">kcal</view>
+        </view>
+      </view>
+      <view class="xh-box">
+        <view class="name-xh">基础代谢</view>
+        <view class="plan-xh color">
+          <view class="p-data">{{calorie.uBasic}}</view>
+          <view class="unit">kcal</view>
+        </view>
+      </view>
+      <view class="xh-box">
+        <view class="name-xh">食物热效应</view>
+        <view class="plan-xh color right">
+          <view class="p-data">{{calorie._heatEffect}}</view>
+          <view class="unit">kcal</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 能量差 -->
+  <view class="small-box nlc">
+    <view class="title">
+      <view class="title-left">
+        <view class="t-sub">全天能量差</view>
+      </view>
+    </view>
+    <view class="data-box" style="margin-top: 32rpx">
+      <view>
+        <view class="name" style="margin-top: 0">实际\计划能量差</view>
+        <view class="data">
+          <view class="act" style="color: #41C48C">{{calorie.aDiff}}</view>
+          <view class="plan">
+            <view class="p-data">/{{calorie.pDiff}}</view>
+            <view class="unit">kcal</view>
+          </view>
+        </view>
+      </view>
+      <view class="circle">
+        <van-circle
+          layer-color="#F0F0F0"
+          value="{{calorie.percent}}"
+          size="{{circleSize}}"
+          color="#41c48c"
+          mode="image"
+        />
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 弹窗 -->
+<view
+  class="shadow"
+  wx:if="{{showIntake || showEnergy || showConsume}}"
+  bind:tap="hide"
+  style="padding-top: {{navStatusHeight}}px"
+  catchtouchmove="true"
+>
+  <!-- 摄入分享 -->
+  <view class="share-box" wx:if="{{showIntake}}">
+    <view class="c-box">
+      <image class="img" src="https://prodstatic.weis1606.cn/api/mini/data_share_ai_1.png" />
+      <view class="c-b line-color">
+        <view class="name">饮食摄入</view>
+        <view class="value">{{calorie.aIntake}}kcal</view>
+      </view>
+      <view class="c-b" style="margin-top: 44rpx">
+        <view
+          class="name"
+          style="font-weight: normal"
+        >比计划摄入{{calorie.aIntake - calorie.pIntake > 0 ? '多' : '少'}}了</view>
+        <view class="value">{{calorie.intakeDif}}kcal</view>
+      </view>
+      <view class="c-b line-color w" style="margin-top: 44rpx">
+        <view class="name">营养元素比例</view>
+        <view
+          class="value"
+        >{{nutritionData.aProteinRate}}：{{nutritionData.aCorbonRate}}：{{nutritionData.aFatRate}}</view>
+      </view>
+      <view class="grey">
+        不要再喝啤酒了~
+        <image src="https://prodstatic.weis1606.cn/api/mini/data_share_ai_symbol.png" />
+      </view>
+    </view>
+    <view class="b-box">
+      <view class="l-box">
+        <view class="date-b">
+          <image src="https://prodstatic.weis1606.cn/api/mini/data_share_time_bj.png" />
+          <view class="year">{{year}}</view>
+          <view class="month">{{month}}/{{day}}</view>
+        </view>
+        <view class="ce-box">
+          <view class="name">维士健身饮食</view>
+          <view class="sb">识别二维码一起来分享</view>
+        </view>
+      </view>
+      <image class="code" src="{{code}}" />
+    </view>
+    <view class="btn" data-status="intake" catch:tap="save">保存分享</view>
+  </view>
+  <!-- 能量差分享 -->
+  <view class="share-box" wx:if="{{showEnergy}}" style="height: 973rpx">
+    <view class="c-box" style="height: 655rpx">
+      <image class="img" src="https://prodstatic.weis1606.cn/api/mini/data_share_ai_3.png" />
+      <view class="c-b line-color c">
+        <view class="name">凭自己努力得到</view>
+        <view class="value">{{calorie.aDiff}}kcal能量差</view>
+      </view>
+      <view class="grey">
+        话多的人总是要胖的～
+        <image src="https://prodstatic.weis1606.cn/api/mini/data_share_ai_symbol.png" />
+      </view>
+    </view>
+    <view class="b-box">
+      <view class="l-box">
+        <view class="date-b">
+          <image src="https://prodstatic.weis1606.cn/api/mini/data_share_time_bj.png" />
+          <view class="year">{{year}}</view>
+          <view class="month">{{month}}/{{day}}</view>
+        </view>
+        <view class="ce-box">
+          <view class="name">维士健身饮食</view>
+          <view class="sb">识别二维码一起来分享</view>
+        </view>
+      </view>
+      <image class="code" src="{{code}}" />
+    </view>
+    <view class="btn" data-status="energy" catch:tap="save">保存分享</view>
+  </view>
+  <!-- 消耗 -->
+  <view class="share-box" wx:if="{{showConsume}}" style="height: 1205rpx">
+    <view class="c-box" style="height: 887rpx">
+      <image class="img" src="https://prodstatic.weis1606.cn/api/mini/data_share_ai_2.png" />
+      <view class="c-b line-color">
+        <view class="name">消耗了</view>
+        <view class="value">{{calorie.aConsumption}}kcal</view>
+      </view>
+      <view class="consu fir">
+        <view class="consu-box">
+          <view class="name">运动消耗</view>
+          <view class="val">{{calorie.aSport}}kcal</view>
+        </view>
+        <view class="consu-box">
+          <view class="name">日常消耗</view>
+          <view class="val">{{calorie.uDaily}}kcal</view>
+        </view>
+      </view>
+      <view class="consu">
+        <view class="consu-box">
+          <view class="name">基础代谢</view>
+          <view class="val">{{calorie.uBasic}}kcal</view>
+        </view>
+        <view class="consu-box">
+          <view class="name">食物热效应</view>
+          <view class="val">{{calorie._heatEffect}}kcal</view>
+        </view>
+      </view>
+      <view class="grey">
+        心动是不能燃脂的~
+        <image src="https://prodstatic.weis1606.cn/api/mini/data_share_ai_symbol.png" />
+      </view>
+    </view>
+    <view class="b-box">
+      <view class="l-box">
+        <view class="date-b">
+          <image src="https://prodstatic.weis1606.cn/api/mini/data_share_time_bj.png" />
+          <view class="year">{{year}}</view>
+          <view class="month">{{month}}/{{day}}</view>
+        </view>
+        <view class="ce-box">
+          <view class="name">维士健身饮食</view>
+          <view class="sb">识别二维码一起来分享</view>
+        </view>
+      </view>
+      <image class="code" src="{{code}}" />
+    </view>
+    <view class="btn" data-status="consume" catch:tap="save">保存分享</view>
+  </view>
+</view>
+
+<canvas
+  canvas-id="sign"
+  class="sign {{status == 'intake' ? 'intake' : (status == 'energy' ? 'energy' : 'consume')}}"
+></canvas>

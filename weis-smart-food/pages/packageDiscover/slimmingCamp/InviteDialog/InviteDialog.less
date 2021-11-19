@@ -1,0 +1,67 @@
+@import '../../../../style/common.less';
+
+.hide {
+  .hidden-canvas();
+}
+
+.share-poster {
+  width: 636rpx;
+  height: 969rpx;
+}
+
+.share-tag {
+  color: #333;
+  padding: 14rpx 26rpx;
+  position: absolute;
+  top: 252rpx;
+  left: 74rpx;
+  background: #ffbb41;
+  border-radius: 28px;
+  border: 2rpx solid #670e00;
+}
+
+.share-close {
+  width: 44rpx;
+  height: 44rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.share-btns {
+  margin-top: 30rpx;
+  .flex-items-center();
+  .share-btn {
+    .flex-items-center();
+    justify-content: center;
+    width: 308rpx;
+    height: 88rpx;
+    border: 4rpx solid #670e00;
+    box-sizing: border-box;
+    border-radius: 54rpx;
+    font-size: 36rpx;
+    &__left {
+      background: #ffbb41;
+      color: #670e00;
+    }
+    &__right {
+      margin-left: 20rpx;
+      background: #ff5443;
+      color: #fffaf4;
+    }
+  }
+}
+
+.share-qrcode {
+  position: absolute;
+  top: 720rpx;
+  left: 415rpx;
+  border: 11rpx solid #ff5443;
+  overflow: hidden;
+  border-radius: 320rpx;
+  &__image {
+    width: 160rpx;
+    height: 160rpx;
+    border-radius: 320rpx;
+  }
+}

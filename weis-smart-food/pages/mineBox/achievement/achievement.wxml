@@ -1,0 +1,60 @@
+<!-- pages/mineBox/achievement/achievement.wxml -->
+<!-- <popup-picker title="设置查看年月" show="{{showPicker}}" datas="{{dates}}" unit="{{unit}}" bindchange="selDate"></popup-picker> -->
+<cp-nav-bar achievement="{{achievement}}" title-text="{{navtitle}}" color="#FFFFFF" background="linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%)" backIconColor="white" bind:character-tap="characterTap" />
+<cp-bottom-popup title="切换角色" show="{{showCharacter}}" val="{{character}}" data="{{character}}" zIndex="1000" bind:on-confirm="roleConfirm"></cp-bottom-popup>
+<cp-bottom-popup title="设置查看年月" show="{{showPicker}}" val="{{dateValue}}" data="{{years}}" dw="年" data2="{{months}}" dw2="月" zIndex="1000" bind:on-confirm="dateConfirm"></cp-bottom-popup>
+<view class="container">
+  <!-- 头部 -->
+  <view class="header">
+    <view class="header_date" bindtap="selectDate">
+      <text>{{year}}年{{month}}月</text>
+      <image class="icon" src="/images/my/icon_down_2.png" />
+    </view>
+    <view class="header_amount">
+      <view class="header_amount__col" wx:for="{{profitCols}}" wx:key="index">
+        <view>{{item.name}}</view>
+        <view>
+          <text class="unit" wx:if="{{item.name !== '餐单'}}">¥</text>
+          <text>{{item.value}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 内容 -->
+  <view class="content">
+    <!-- tab -->
+    <view class="content_tab">
+      <view class="content_tab_sub" wx:for="{{cols}}" wx:key="index">{{item}}</view>
+      <!-- <view class="content_tab_sub {{selectTab == 0 ? 'active' : ''}}" data-index="0" bindtap="switchTab">
+        点餐
+      </view>
+      <view class="content_tab_sub {{selectTab == 1 ? 'active' : ''}}" data-index="1" bindtap="switchTab">
+        充值
+      </view> -->
+    </view>
+    <!-- 列表 -->
+    <view wx:if="{{profitList.length > 0}}" class="content_d">
+      <!-- <view class="content_d_t">
+        <text>{{selectTab == 0 ? '已签收': '已充值'}}</text>
+        <text>¥{{totalcount}}</text>
+        <view class="line"></view>
+      </view> -->
+      <view class="content_d_l" data-index="{{index}}" bindtap="goAchieveDetail" wx:for="{{profitList}}" wx:key="index">
+        <view class="content_d_l_l">
+          <text>{{item.date}}</text>
+          <text wx:if="{{employeeInfo[0].tseRoleId != 100006}}">{{item.orderQuantity}}餐</text>
+          <text>￥{{item.achievement}}</text>
+          <text>￥{{item.income}}</text>
+        </view>
+        <view class="content_d_l_r">
+          <image class="icon" src="/images/my/btn_back.png" />
+        </view>
+      </view>
+    </view>
+    <!-- 空状态 -->
+    <view wx:else class="null">
+      <image src="/images/my/null_achieve.png" />
+      <view>没有业绩</view>
+    </view>
+  </view>
+</view>

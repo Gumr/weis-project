@@ -1,0 +1,21 @@
+<!--pages/login/login.wxml-->
+<cp-nav-bar title-text="" ></cp-nav-bar>
+
+<view class="login">
+    <image src="https://prodstatic.weis1606.cn/api/smartFood/%E7%BC%96%E7%BB%84%E5%A4%87%E4%BB%BD%202.png" />
+    <button bind:tap="getUserProfile" wx:if="{{!loginInfo.isAuthorized}}">快速登录</button>
+    <button class="btn" wx:else bind:tap="close">快速登录</button>
+
+    <!-- 授权手机号 -->
+    <view class="popup" wx:if="{{loginInfo.isAuthorized && !loginInfo.isLogin && showPhonePopup}}">
+        <view class="authPhone">
+        <image class="img" src="https://prodstatic.weis1606.cn/api/smartFood/%E7%BC%96%E7%BB%84%202.png" />
+        <view class="title">微信授权成功</view>
+        <view class="sub-title">请授权绑定你的手机号码</view>
+        <view class="btn-box">
+            <view class="btn" bind:tap="close">取消</view>
+            <button class="btn btn-auth" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">去绑定</button>
+        </view>
+    </view>
+    </view>
+</view>

@@ -1,0 +1,35 @@
+<!--pages/contact/contact.wxml-->
+<cp-nav-bar title-text="联系客服" />
+
+<view class="contact">
+    <button class="list" open-type="contact" session-from="nickName={{info.userInfo.uname}}|avatarUrl={{info.userInfo.headImgUrl}}|ysf.config={{ysf.config}}">
+        <view class="name">联系客服</view>
+        <view class="col-r">
+            <image src="/images/list_next.png" />
+        </view>
+    </button>
+    <!-- <navigator url="plugin://myPlugin/chat">
+  联系客服
+    </navigator> -->
+    <view class="list" bind:tap="showPhone">
+        <view class="name">客服电话</view>
+        <view class="col-r">
+            <view class="num">400 668 1606</view>
+            <image src="/images/telephone.png" />
+        </view>
+    </view>
+    <button class="list" bind:tap="proposal">
+        <view class="name">留言反馈</view>
+        <view class="col-r">
+            <image src="/images/list_next.png" />
+        </view>
+    </button>
+</view>
+
+<text class="time">客服上班时间：周一到周五 9:30-18:00\n其他时间不能及时回复或接听，请用留言反馈功能</text>
+
+<cp-confirm-dialog show="{{showPhone}}" title="拨打客服电话" confirm-text="拨打" bind:on-confirm="phone">
+  <view class="dialog-label">
+    400 668 1606
+  </view>
+</cp-confirm-dialog>

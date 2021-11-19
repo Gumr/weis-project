@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "van-count-down": "/components/vant/count-down/index",
+    "fixed-button": "/components/cp-bottom-button/cp-bottom-button",
+    "confirm-dialog": "/components/cp-confirm-dialog/cp-confirm-dialog",
+    "vant-popup": "/components/vant/popup/index",
+    "invite-dialog": "../InviteDialog/InviteDialog"
+  }
+}

@@ -1,0 +1,175 @@
+<!-- pages/market/openBox/index.wxml -->
+<cp-nav-bar title-text="召唤锦鲤"></cp-nav-bar>
+
+<view wx:if="{{isLogin === true}}">
+  <!-- 自己 未被领取 -->
+  <view wx:if="{{iuInvitedUid == uid && activityBoxList && activityBoxList.length == 0}}">
+    <view class="topbg">
+      <image class="bg" src="https://prodstatic.weis1606.cn/api/market/headbox.png" />
+    </view>
+    <view class="headtips">
+      <image src="https://prodstatic.weis1606.cn/api/market/boxtype.png" />
+    </view>
+    <view class="topshare">
+      <button open-type="share" hover-class="button-hover" class="sharebtn2" data-type="boxGift">
+        <image class="sharebox2" src="https://prodstatic.weis1606.cn/api/market/shareboxbtn.png" />
+      </button>
+    </view>
+  </view>
+  <!-- 自己 已被领取 -->
+  <view wx:if="{{iuInvitedUid == uid && activityBoxList && activityBoxList.length > 0}}">
+    <view class="topbg">
+      <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/headBox-1.png" />
+      <view class="shareuserimg">
+        <view class="headimg">
+          <view class="" wx:for="{{activityBoxList}}">
+            <image src="{{item.headImgUrl}}" />
+          </view>
+        </view>
+        <image class="lofinimg" src="{{activityBoxList[0].tlsAmount=='30'?'https://prodstatic.weis1606.cn/api/smartFood/flipCard/opentag.png':activityBoxList[0].tlsAmount=='8'?'https://prodstatic.weis1606.cn/api/smartFood/flipCard/opentag1.png':activityBoxList[0].tlsAmount=='5'?'https://prodstatic.weis1606.cn/api/smartFood/flipCard/opentag2.png':activityBoxList[0].tlsAmount=='3'?'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/opentag4.png':'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/opentag3.png'}}" />
+      </view>
+      <view class="get">两人各获得</view>
+      <view class="couplist">
+        <image src="https://prodstatic.weis1606.cn/api/market/boxcoupbg.png" bindtap="touse" class="usercoupbg" />
+        <view class="coupma" bindtap="touse">
+          <view>
+            <text>¥</text>{{activityBoxList[0].tlsAmount}}
+          </view>
+          <view>
+            <text>现金券\n</text>
+            <text>有效期3天</text>
+          </view>
+        </view>
+      </view>
+      <view class="wrap">
+        <view class="boxtypelist">
+          <image src="https://prodstatic.weis1606.cn/api/market/noctips.png" />
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 他人链接 未被领取 领取 -->
+  <view wx:if="{{iuInvitedUid != uid && activityBoxList && activityBoxList.length > 0 && (activityBoxList[0].tlsUid == uid || activityBoxList[1].tlsUid == uid)}}">
+    <view class="topbg">
+      <image class="bg" src="{{activityBoxList[0].tlsUid == iuInvitedUid || activityBoxList[1].tlsUid == iuInvitedUid ? 'https://prodstatic.weis1606.cn/api/smartFood/headBox-2.png' : 'https://prodstatic.weis1606.cn/api/smartFood/headBox-1.png'}}" />
+      <view class="shareuserimg">
+        <view class="headimg">
+          <view class="" wx:for="{{activityBoxList}}">
+            <image src="{{item.headImgUrl}}" />
+          </view>
+        </view>
+        <image class="lofinimg" src="{{activityBoxList[0].tlsAmount=='30'?'https://prodstatic.weis1606.cn/api/smartFood/flipCard/opentag.png':activityBoxList[0].tlsAmount=='8'?'https://prodstatic.weis1606.cn/api/smartFood/flipCard/opentag1.png':activityBoxList[0].tlsAmount=='5'?'https://prodstatic.weis1606.cn/api/smartFood/flipCard/opentag2.png':activityBoxList[0].tlsAmount=='3'?'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/opentag4.png':'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/opentag3.png'}}" />
+      </view>
+      <view class="get">两人各获得</view>
+      <view class="couplist">
+        <image src="https://prodstatic.weis1606.cn/api/market/boxcoupbg.png" bindtap="touse" class="usercoupbg" />
+        <view class="coupma" bindtap="touse">
+          <view>
+            <text>¥</text>{{activityBoxList[0].tlsAmount}}
+          </view>
+          <view>
+            <text>现金券\n</text>
+            <text>有效期3天</text>
+          </view>
+        </view>
+      </view>
+      <view class="wrap">
+        <view class="boxtypelist">
+          <image src="https://prodstatic.weis1606.cn/api/market/noctips.png" />
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 他人链接 已被领取 -->
+  <view wx:if="{{iuInvitedUid != uid && activityBoxList && activityBoxList.length > 0 && activityBoxList[0].tlsUid != uid && activityBoxList[1].tlsUid != uid}}">
+    <view class="topbg">
+      <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/headBox-3.png" />
+      <view class="shareuserimg">
+        <view class="headimg">
+          <view class="" wx:for="{{activityBoxList}}">
+            <image src="{{item.headImgUrl}}" />
+          </view>
+        </view>
+        <image class="lofinimg" src="{{activityBoxList[0].tlsAmount=='30'?'https://prodstatic.weis1606.cn/api/smartFood/flipCard/opentag.png':activityBoxList[0].tlsAmount=='8'?'https://prodstatic.weis1606.cn/api/smartFood/flipCard/opentag1.png':activityBoxList[0].tlsAmount=='5'?'https://prodstatic.weis1606.cn/api/smartFood/flipCard/opentag2.png':activityBoxList[0].tlsAmount=='3'?'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/opentag4.png':'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/opentag3.png'}}" />
+      </view>
+      <view class="get">两人各获得</view>
+      <view class="couplist">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/boxcoupbg-1.png" class="usercoupbg" />
+        <view class="coupma">
+          <view>
+            <text>¥</text>{{activityBoxList[0].tlsAmount}}
+          </view>
+          <view>
+            <text>现金券\n</text>
+            <text>有效期3天</text>
+          </view>
+        </view>
+      </view>
+      <view class="wrap">
+        <view class="boxtypelist">
+          <image src="https://prodstatic.weis1606.cn/api/market/noctips.png" />
+        </view>
+      </view>
+    </view>
+    <button open-type="share" hover-class="button-hover" class="yet" data-type="boxGift">
+      <image class="sharebox2" src="https://prodstatic.weis1606.cn/api/market/shareboxbtn.png" />
+    </button>
+  </view>
+</view>
+<view wx:if="{{isLogin === false}}">
+  <view class="topbg">
+    <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/headBox-4.png" />
+    <view class="shareuserimg">
+      <view class="headimg">
+        <view class="" wx:for="{{2}}">
+          <image src="{{index == 0 ? shareimg : ''}}" />
+        </view>
+      </view>
+      <view class="login" bind:tap="logiuser">立即登录</view>
+    </view>
+    <view class="couplist">
+      <image src="https://prodstatic.weis1606.cn/api/market/boxcoupbg.png" bindtap="logiuser" class="usercoupbg" />
+      <view class="coupma" bindtap="logiuser">
+        <view>
+          <text>¥</text>?
+        </view>
+        <view>
+          <text>现金券\n</text>
+          <text>有效期3天</text>
+        </view>
+      </view>
+    </view>
+    <view class="wrap">
+      <view class="boxtypelist">
+        <image src="https://prodstatic.weis1606.cn/api/market/noctips.png" />
+      </view>
+    </view>
+  </view>
+</view>
+<!--  -->
+<view wx:if="{{isLogin === false || (isLogin === true && activityBoxList)}}">
+  <view>
+    <image class="bg2" src="https://prodstatic.weis1606.cn/api/smartFood/openboxContent.png" />
+  </view>
+  <view class="rules">
+    <view class="riles-tit">活动说明</view>
+    <view class="mr10">
+      <view class="num">1</view>
+      <view>每个用户每天只有1次领券机会；</view>
+    </view>
+    <view class="mr10">
+      <view class="num">2</view>
+      <view>发出的链接会在每天24:00失效，次日可以重新发起；</view>
+    </view>
+    <view class="mr10">
+      <view class="num">3</view>
+      <view>发起人将会和点击的好友获得同等金额的现金券。现金券3天内有效。</view>
+    </view>
+    <view class="mt10">*活动最终解释权归维士智慧健康管理公司所有。</view>
+  </view>
+</view>
+<button open-type="share" bindtap="logiuser" class="sharebtn" data-type="boxGift" wx:if="{{showsharebox && iuInvitedUid == uid && activityBoxList && activityBoxList.length == 0}}" hover-class="button-hover2">
+  <image class="sharebox" src="https://prodstatic.weis1606.cn/api/market/bottombtn.png" />
+</button>
+<!-- 登录注册"" -->
+<cp-login-view id="login-dialog"></cp-login-view>

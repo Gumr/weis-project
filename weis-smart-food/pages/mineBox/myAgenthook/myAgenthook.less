@@ -1,0 +1,299 @@
+page {
+    background: rgba(246, 246, 246, 1);
+}
+
+.border {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 2rpx;
+    background: #e9e9e9;
+    transform: scaleY(0.5);
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.hook{
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    padding: 0 30rpx 53rpx;
+    &::after{
+        .border();
+        top: 0;
+    }
+    .my{
+        // width:690rpx;
+        // height:348rpx;
+        background:rgba(255,255,255,1);
+        box-shadow:0rpx 4rpx 20rpx 0rpx rgba(164,180,183,0.2);
+        border-radius:10rpx;
+        padding: 30rpx 30rpx 30rpx;
+        margin: 40rpx auto 0;
+        .title{
+            font-weight: 550;
+            color: #333333;
+            font-size: 28rpx;
+            margin-bottom: 40rpx;
+        }
+        // 历史客户经理
+        &.history{
+            height:initial;
+            background:rgba(255,255,255,1);
+            border-radius:10rpx;
+            // padding: 30rpx 35rpx 60rpx 30rpx;
+            padding: 30rpx 0 30rpx 30rpx;
+            .title{
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 10rpx;
+                // text:nth-child(1) {
+                //     font-weight: 550;
+                //     color: #333333;
+                //     font-size: 28rpx;
+                // }
+                text:nth-child(2) {
+                    font-weight: 400;
+                    color: #FE5E0F;
+                    font-size: 24rpx;
+                    padding-right: 30rpx;
+                }
+            }
+            .history-box{
+                .box{
+                    // margin-bottom: 60rpx;
+                    padding: 30rpx 30rpx 30rpx 0;
+                    padding-bottom: 0;
+                    &.active{
+                        margin-bottom: 0;
+                    }
+                }
+                .delete {
+                    width: 100%;
+                    height: 100%;
+                    background: #FE5E0F;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text {  
+                        font-size: 24rpx;
+                        color: #FFFFFF;
+                    }
+                }
+            }
+        }
+        .box{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-sizing: border-box;
+            .left{
+                flex: 1;
+                display: flex;
+                align-items: center;
+                .head{
+                    width: 140rpx;
+                    height: 140rpx;
+                    border-radius: 50%;
+                    margin-right: 20rpx;
+                    
+                    border: 2rpx solid #BABABA4D;
+                }
+                .minhead{
+                    width: 120rpx!important;
+                    height: 120rpx!important;
+                }
+                .c-box{
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    .name{
+                        color: #333333;
+                        font-size: 28rpx;
+                        margin-bottom: 14rpx;
+                        font-weight: 550;
+                    }
+                    .like{
+                        color: #808080;
+                        font-size: 24rpx;
+                    }
+                }
+            }
+            .arrow{
+                width: 38rpx;
+                height: 38rpx;
+            }
+
+            .add{
+                width: 96rpx;
+                height: 96rpx;
+            }
+        }
+        .target{
+            width: 630rpx;
+            // height: 52rpx;
+            background:#FFF1D9FF;
+            border-radius: 0px 32rpx 32rpx 25rpx;
+            margin-top: 30rpx;                       
+            font-size: 22rpx;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #DF8D00;
+            line-height: 52rpx;
+            padding-left: 20rpx;
+        }
+        .van-swipe-cell__right{
+            width:98rpx;
+            height:156rpx;
+            background:rgba(255,89,89,1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            font-size: 24rpx;
+        }
+    }
+    .record{
+        // width: 690rpx;
+        padding: 30rpx 30rpx 0;
+        background: #ffffff;
+        box-shadow:0rpx 4rpx 20rpx 0rpx rgba(164,180,183,0.2);
+        border-radius:10rpx;
+        margin: 40rpx auto 0;
+        .title{
+            color: #333333;
+            font-size: 28rpx;
+            font-weight: 550;
+        }
+        .no{
+            padding: 40rpx 0 30rpx 0;
+            color: #808080;
+            font-size: 24rpx;
+        }
+        .replace{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 40rpx 5rpx 40rpx 0;
+            position: relative;
+            &::after{
+                .border();
+                width: 630rpx;
+                bottom: 0;
+                left: 0;
+                right: initial;
+            }
+            .l-box{
+                display: flex;
+                align-items: center;
+                .name{
+                    color: #333333;
+                    font-size: 28rpx;
+                    margin-right: 10rpx;
+                }
+                .have{
+                    width: 86rpx;
+                    height: 28rpx;
+                }
+            }
+            .r-box{
+                display: flex;
+                align-items: center;
+                .popupview {
+                    width: 28rpx;
+                    height: 28rpx;
+                    background: linear-gradient(135deg, #FF9722 0%, #FE5E0F 100%);
+                    border-radius: 0px 100rpx 100rpx 100rpx;                                       
+                    font-size: 22rpx;
+                    font-family: PingFangSC-Regular, PingFang SC;
+                    font-weight: 400;
+                    color: #FFFFFF;
+                    text-align: center;
+                }
+                .lose{
+                    color: #808080;
+                    font-size: 26rpx;
+                }
+                image{
+                    width: 38rpx;
+                    height: 38rpx;
+                    margin-left: 7rpx;
+                }
+            }
+        }
+        .record-box{
+            box-sizing: border-box;
+            padding: 40rpx 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            .date{
+                color: #333333;
+                font-size: 28rpx;
+                margin-bottom: 24rpx;
+            }
+            .solution{
+                color: #808080;
+                font-size: 24rpx;
+            }
+        }
+    }
+}
+// 弹框
+.counselor-dialog-box {
+    padding: 0 40rpx;
+    // 头部-头像
+    .header {
+        display: flex;
+        align-items: center;
+        .img{
+            width: 96rpx;
+            height: 96rpx;
+            border-radius: 50%;
+            margin-right: 20rpx;
+        }
+        .name{
+            color: #333333;
+            font-size: 28rpx;
+            font-weight: 550;
+            line-height: 28rpx;
+        }
+    }
+    // 中部-文字内容
+    .content {
+        margin: 44rpx 0 52rpx 4rpx;
+        font-size: 28rpx;
+        color: #A9A9A9;
+        font-weight: 400;
+        text:nth-child(1) {
+            line-height: 44rpx;
+            display: inline-block;
+            margin-bottom: 30rpx;
+        }
+        text:nth-child(2) {
+            line-height: 28px;
+            display: inline-block;
+        }
+    }
+    // 尾部-不再提示
+    .footer { 
+        .footer-box {
+            display: flex;
+            align-items: center;
+            .img {
+                width: 28rpx;
+                height: 28rpx;
+                margin-right: 10rpx;
+            }
+            .word {
+                font-size: 24rpx;
+                color: #333333;
+                line-height: 24rpx;
+            }
+        }
+    }
+}

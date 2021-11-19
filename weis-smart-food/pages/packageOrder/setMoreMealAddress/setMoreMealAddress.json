@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "cp-heatPoint-dialog": "/components/cp-heatPoint-dialog/cp-heatPoint-dialog"
+  }
+}

@@ -1,0 +1,43 @@
+<!--pages/addAddress/addAddress.wxml-->
+<cp-nav-bar title-text="{{title}}" preventBack="{{true}}" bind:back="back" background="#FFFFFF"></cp-nav-bar>
+
+<view class="add">
+    <view class="wrap">
+        <view class="list first">
+            <view class="name">收货地址</view>
+            <view bind:tap="select" class="choose {{!address ? 'vertical' : ''}}">{{address || '点击选择'}}</view>
+            <image src="{{imgPrefix}}arrow.png" />
+        </view>
+        <view class="list">
+            <view class="name">门牌号</view>
+            <input type="text" bindinput="tuaHouseNum" value="{{tuaHouseNum}}" adjust-position="{{true}}" placeholder="例：8号楼808室" placeholder-class="vertical" />
+        </view>
+        <view class="list">
+            <view class="name">联系人</view>
+            <input type="text" bindinput="tuaName" maxlength="10" value="{{tuaName}}" adjust-position="{{true}}" placeholder="请填写收货人的姓名" placeholder-class="vertical" />
+        </view>
+        <view class="list">
+            <view class="name">手机号</view>
+            <input type="text" bindinput="tuaPhone" value="{{tuaPhone}}" maxlength="11" placeholder="请填写收货手机号码" placeholder-class="vertical" />
+        </view>
+        <view class="list">
+            <view class="name">标签</view>
+            <view class="tag">
+                <view class="kind {{(item.index == tagIndex && tagIndex !== '') ? 'active' : ''}}" wx:for="{{tagList}}" wx:key="key" data-index="{{item.index}}" data-name="{{item.name}}" bind:tap="tag">{{item.name}}</view>
+            </view>
+        </view>
+        <view class="list default-list">
+            <view class="name">设置默认地址</view>
+            <view class="default">
+                <cp-switch bind:on-change="change" value="{{defaultAddr == '1' ? true : false}}" /> 
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- 保存 -->
+<view wx:if="{{type == 'edit'}}" class="edit">
+    <view class="bc {{btnSelect ? 'active' : ''}}" bind:tap="save">保存地址</view>
+    <view class="delete" bind:tap="delete">删除</view>
+</view>
+<view wx:else class="save {{btnSelect ? 'active' : ''}}" bind:tap="save">保存地址</view>

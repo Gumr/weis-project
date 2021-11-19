@@ -1,0 +1,11 @@
+<!--pages/mineBox/spellList/spellList.wxml-->
+<cp-nav-bar title-text="拼友列表" background="#FFFFFF"/>
+<view class="spellGroupList">
+    <view class="list" wx:for="{{list}}">
+        <view class="head">
+            <image src="{{item.headImgUrl}}" />
+            <view class="spell-main" wx:if="{{index == 0}}">拼主</view>
+        </view>
+        <view class="nick">{{item.uname}}</view>
+    </view>
+</view>

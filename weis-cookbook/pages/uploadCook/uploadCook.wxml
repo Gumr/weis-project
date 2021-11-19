@@ -1,0 +1,173 @@
+<!--pages/uploadCook/uploadCook.wxml-->
+<page-meta scroll-top="{{pageMetaScrollTop}}"></page-meta>
+
+<nav customBackEvent bind:handleBackEvent="backEvent" backIcon="close" title="创建菜谱"></nav>
+<view class="container" wx:if="{{!uploadStatus}}">
+  <view class="cook-cover">
+    <image wx:if="{{cookCover.trCoverImageUrl && !videoPath}}" src="{{cookCover.trCoverImageUrl}}" mode="widthFix" alt="" />
+    <video class="video" id="video" wx:if="{{videoPath}}" src="{{videoPath}}"></video>
+    <view wx:elif="{{!cookCover.trCoverImageUrl && !videoPath}}" class="default" bindtap="popupCover">
+      <block class="initial">
+        <image mode="widthFix" src="/images/add.png" />
+        <text>请上传5分钟内的视频或诱人的成品图</text>
+      </block>
+      <!-- 上传进度 -->
+      <div class="process" wx:if="{{imgUploadType !== 0 && imgUploadType !== 2}}">
+        <div class="tip">{{imgUploadType === 1 ? '上传中...' :  imgUploadType === -1 ? '上传失败' : '上传完成'}}</div>
+        <div class="percentage" v-if="uploadType === 1">{{percentage}}%</div>
+      </div>
+      <!-- <van-loading wx:elif="{{cookCover.uploading === 1}}" size="45" class="loading" color="#FB892D" /> -->
+    </view>
+    <!-- 删除按钮 -->
+    <view class="delete-btn" wx:if="{{videoPath || cookCover.trCoverImageUrl}}" bind:tap="deleteCover">
+      <image class="icon" src="/images/icon_delete_upload.png" />
+    </view>
+    <!-- 换封面 -->
+    <view class="change-btn" wx:if="{{videoPath}}" bind:tap="changeCover">
+      <image class="icon" src="/images/icon_video_change.png" />
+    </view>
+  </view>
+  <view class="cook-detail">
+    <input class="dishname" type="text" placeholder="填写菜名" value="{{cookName}}" bindinput="inputCookName" />
+    <view class="category">
+      <text>这是</text>
+      <!-- 菜别 - 荤菜or素菜 -->
+      <view class="tabs">
+        <view class="each {{sort === item.id ? 'selected' : ''}}" wx:for="{{category}}" wx:key="id" data-index="{{index}}" bindtap="selectCategory">{{item.name}}</view>
+      </view>
+    </view>
+    <textarea name="story" maxlength="200" auto-height="{{true}}" placeholder="写下菜品背后的故事吧" bindinput="inputStory" value="{{cookStory}}" />
+    <!-- 用料 -->
+    <view class="materials">
+      <view class="title">
+        <image src="/images/icon_title.png" />
+        <view class="label">用料</view>
+      </view>
+      <view class="tabs">
+        <view class="each" wx:for="{{quickConfig}}" wx:key="id" data-index="{{index}}" bindtap="quickAddOneMaterial">
+          {{item.name}}
+        </view>
+      </view>
+      <view class="values">
+        <view class="wrap" style="height: {{isSorting ? sortBoxHeight + 'px' : 'auto'}}">
+          <view class="eachValue item {{isSorting ? 'sorting' : ''}}" style="transform: translateY({{ !isSorting ? 0 : sortTarget === index ? materials_tranY + 'px' : item.tranY}})" wx:for="{{materials}}" wx:key="index">
+            <input type="text" class="name" placeholder="食材：如鸡蛋" value="{{item.seasoning}}" data-index="{{index}}" data-type="seasoning" bindinput="inputMaterial" />
+            <input type="text" class="num" placeholder="用量：如1个" value="{{item.consumption}}" data-index="{{index}}" data-type="consumption" bindinput="inputMaterial" />
+            <view class="imgBox" data-index="{{index}}" bindtap="deleteOneMaterial">
+              <image wx:if="{{!isSorting}}" src="/images/icon_delete.png" />
+              <image wx:elif="{{isSorting}}" class="icon" src="/images/icon_sort_each.png" data-type="01" data-index="{{index}}" data-key="{{item.sortKey}}" bind:touchstart="touchstart" catch:touchmove="touchmove" bind:touchend="touchend"/>
+            </view>
+          </view>
+        </view>
+        <view class="operate">
+          <view class="add" bindtap="addOneMaterial">
+            <image src="/images/icon_add.png" />
+            <view class="label">添加一行</view>
+          </view>
+          <view class="sort" data-type="01" bind:tap="toggleSortable">
+            <image src="{{isSorting ? '/images/icon_sort_finish.png' : '/images/icon_sort.png'}}" />
+            <view class="label {{isSorting ? 'sorting' : ''}}">{{isSorting ? '完成排序' : '调整顺序'}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 做法 -->
+    <view class="method">
+      <view class="title">
+        <image src="/images/icon_title.png" />
+        <view class="label">做法</view>
+      </view>
+      <view class="steps">
+        <view class="wrap" style="height: {{isStepSorting ? sortBoxHeight_steps + 'px' : 'auto'}}">
+          <view class="step item {{isStepSorting ? 'sorting' : ''}}" style="transform: translateY({{ !isStepSorting ? 0 : sortTarget === index ? steps_tranY + 'px' : item.tranY}});z-index: {{sortTarget === index ? 9999 : 1}}" wx:for="{{steps}}" wx:key="index">
+            <view class="section_sort">
+              <view class="label">
+                <view class="txt">步骤{{index + 1}}</view>
+                <view class="imgBox" data-index="{{index}}" bindtap="deleteOneStep">
+                  <image wx:if="{{!isStepSorting}}" src="/images/icon_delete.png" />
+                  <image wx:elif="{{isStepSorting}}" class="icon" src="/images/icon_sort_each.png"  data-type="02" data-index="{{index}}" data-key="{{item.sortKey}}" bind:touchstart="touchstart" catch:touchmove="touchmove" bind:touchend="touchend" />
+                </view>
+              </view>
+              <view class="img" data-index="{{index}}" bindtap="chooseStepImg">
+                <view class="stepImgBox" wx:if="{{item.stepImageUrl}}">
+                  <image mode="widthFix" src="{{item.stepImageUrl}}" alt="请上传步骤图" />
+                </view>
+                <view wx:else class="default">
+                  <block class="initial">
+                    <image mode="widthFix" src="/images/add.png" />
+                    <text>请上传步骤图</text>
+                  </block>
+                  <!-- 上传进度 -->
+                  <div class="process" wx:if="{{item.imgUploadType !== 0 && item.imgUploadType !== 2}}">
+                    <div class="tip">{{item.imgUploadType === 1 ? '上传中...' :  item.imgUploadType === -1 ? '上传失败' : '上传完成'}}</div>
+                    <div class="percentage" v-if="uploadType === 1">{{percentage}}%</div>
+                  </div>
+                  <!-- <van-loading wx:elif="{{item.uploading === 1}}" size="45" class="loading" color="#FB892D" /> -->
+                </view>
+              </view>
+            </view>
+            <textarea wx:if="{{!isStepSorting}}" type="text" maxlength="500" class="desc" auto-height="{{true}}" placeholder="添加步骤说明" value="{{item.description}}" data-index="{{index}}" bindinput="inputStepDesc" />
+          </view>
+        </view>
+        <view class="operate">
+          <view class="add" bindtap="addOneStep">
+            <image src="/images/icon_add.png" />
+            <view class="label">添加一步</view>
+          </view>
+          <view class="sort" data-type="02" bind:tap="toggleSortable">
+            <image src="{{isStepSorting ? '/images/icon_sort_finish.png' : '/images/icon_sort.png'}}" />
+            <view class="label {{isStepSorting ? 'sorting' : ''}}">{{isStepSorting ? '完成排序' : '调整顺序'}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="tips">
+      <view class="title">
+        <image src="/images/icon_title.png" />
+        <view class="label">小贴士</view>
+      </view>
+      <textarea name="tips" auto-height="{{true}}" placeholder="这道菜还有哪些需要注意的要点呢？" bindinput="inputTips" value="{{tips}}" />
+    </view>
+  </view>
+  <bottomBtn class="uploadbtn" text="上传菜谱" isDisabled="{{hasNull}}" isFixed="{{false}}" binduploadEvent="uploadCook"></bottomBtn>
+</view>
+
+<!-- 上传状态 -->
+<view class="uploadStatus" style="top: {{navBarHeight}}px" wx:else>
+  <!-- 正在上传 -->
+  <view class="uploading" wx:if="{{uploadStatus === '00'}}">
+    <van-loading size="45" class="loading" color="#FB892D" />
+    <view class="title">提交中…</view>
+    <view class="tip">请稍等，正在上传和敏感词汇筛查…</view>
+  </view>
+  <!-- 上传状态 -->
+  <view class="status" wx:else>
+    <image src="{{uploadStatus === '01' ? '/images/icon_success.png' : uploadStatus === '02' ? '/images/icon_warning.png' : '/images/icon_fail.png' }}" />
+    <view class="title">{{uploadStatus === '01' ? '提交成功' : uploadStatus === '02' ? '有违禁词' : '提交失败' }}</view>
+    <view class="tip">{{uploadStatusText}} </view>
+    <view class="uploadStatus_btn" bindtap="handleStatus">{{uploadStatus === '01' ? '查看菜谱' : uploadStatus === '02' ? '立即修改' : '重新上传'}}</view>
+  </view>
+</view>
+
+
+<dialog tip="确定退出编辑菜谱吗？" dialogFlag="{{quitFlag}}" confirmText="退出" bind:cancelEvent="cancelEvent" bind:confirmEvent="quitEvent"></dialog>
+
+<dialog tip="{{dialogType === 1 ? '确定删除该视频吗？' : '确定删除该图片吗？'}}" dialogFlag="{{deleteFlag}}" confirmText="删除" bind:cancelEvent="cancelEvent" bind:confirmEvent="confirmDeleteCover"></dialog>
+
+<cover-view class="popup_operate {{popupCoverFlag ? 'show' : ''}}" style="bottom: {{!isFullScreen ? '-30rpx' : 0}}" wx:if="{{popupCoverFlag}}">
+  <cover-view class="options">
+    <cover-view class="opt" bindtap="uploadVideo">
+      <cover-image class="img" src="/images/icon_video.png"></cover-image>
+      <cover-view class="txt">上传视频</cover-view>
+    </cover-view>
+    <cover-view class="opt confirm" bindtap="chooseCookCover">
+      <cover-image class="img" src="/images/icon_img.png"></cover-image>
+      <cover-view  class="txt">上传图片</cover-view>
+    </cover-view>
+  </cover-view>
+  <cover-view class="cancel" scroll-top="0" bind:tap="cancelEvent">
+    取消
+  </cover-view>
+</cover-view>
+
+<overlay show="{{quitFlag || popupCoverFlag || deleteFlag}}"></overlay>

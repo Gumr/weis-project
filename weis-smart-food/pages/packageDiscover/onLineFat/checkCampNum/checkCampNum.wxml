@@ -1,0 +1,17 @@
+<!--pages/packageDiscover/onLineFat/checkCampNum/checkCampNum.wxml-->
+<cp-nav-bar title-text="已报名" home-icon="/images/backHome.png" />
+
+<view class="box" wx:if="{{userList && userList.length > 0}}">
+    <view class="list" wx:for="{{userList}}">
+        <image src="{{item.userImg}}" />
+        <view class="wrap">
+            <view class="name">{{item.nickName}}</view>
+            <view class="date">{{item.stime}}</view>
+        </view>
+    </view>
+</view>
+
+<view class="null" wx:if="{{userList && userList.length == 0}}">
+    <image src="https://prodstatic.weis1606.cn/api/smartFood/emp.png" />
+    <text>暂无用户报名</text>
+  </view>

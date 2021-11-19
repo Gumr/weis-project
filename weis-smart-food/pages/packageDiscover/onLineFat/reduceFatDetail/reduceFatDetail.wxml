@@ -1,0 +1,301 @@
+<!-- pages/packageDiscover/onLineFat/reduceFatDetail/reduceFatDetail.wxml -->
+<import src="/templates/rank-item/rank-item"></import>
+<wxs module="filters" src="../../../../utils/filter.wxs"></wxs>
+<cp-nav-bar title-text="{{obj.camp.campName}}" home-icon="/images/backHome.png"  />
+<view class="reduceFat">
+  <view class="banner">
+   
+    <image mode="widthFix" wx:if="{{obj.activity.type == '01' }}" src="{{obj.camp.tacApplyPoster || 'https://prodstatic.weis1606.cn/api/smartFood/reduce_fat_kv.png'}}" />
+  <image mode="widthFix" wx:else src="{{obj.activity.activityImgUrl || 'https://prodstatic.weis1606.cn/api/smartFood/reduce_fat_kv.png'}}" />
+ 
+ </view>
+  <view class="info-box">
+    <view class="info">
+      <!-- 活动信息 -->
+      <view class="activityInfo">
+        <!-- <view class="title-wrap">
+          <view class="title">活动信息</view>
+        </view> -->
+        <view class="wrap">
+          <view class="title">开营/结营日期</view>
+          <view class="boldtext">{{obj.activity.startTime}}-{{obj.activity.endTime}}</view>
+        </view>
+        <view class="wrap" wx:if="{{remainDay && obj.activity.type == '02'}}" >
+          <view class="title">当前状态</view>
+          <view class="status" >
+            还有{{remainDay}}天结束
+          </view>
+          <!--
+          <view class="status" wx:else>{{onLineCampStatus[obj.activity.type]}}</view>
+          -->
+        </view>
+        <view class="wrap">
+          <view class="title">营长</view>
+          <view class="status status-box" bindtap="toGroupLeader">
+            <view class="battalion">
+              <image src="{{obj.leaderImg?obj.leaderImg:obj.campPrincipalInfo.leaderImg}}" />
+              <view class="name">
+                {{obj.leaderName?obj.leaderName:obj.campPrincipalInfo.tpiName}}
+              </view>
+            </view>
+            <image class="arrow" src="/images/enterprise_next.png" />
+          </view>
+        </view>
+        <view class="wrap" wx:if="{{obj.camp.tacGroupQrcode && obj.camp.tacGroupQrcode!='null' && obj.ifJoin}}">
+          <view class="title">加微信群</view>
+          <view class="status status-box" bindtap="showQrcode">
+            <view class="battalion">
+              <image class src="/images/joincode.png" />
+            </view>
+            <image class="arrow" src="/images/enterprise_next.png" />
+          </view>
+        </view>
+        <view class="wrap" wx:if="{{obj.campDiscount}}">
+          <view class="title">营折扣</view>
+          <view class="status">{{obj.campDiscount == 1?'不打折':obj.campDiscount*10+'折'}}</view>
+        </view>
+        <view class="wrap" bindtap="checkNum" wx:if="{{obj.activity.type == '01'}}">
+          <view class="title">已报名</view>
+          <view class="status status-box">
+            <view class="battalion">
+              <view class="name boldtext">{{obj.camp.presentAmountLimit}}人</view>
+            </view>
+            <image class="arrow" src="/images/enterprise_next.png" />
+          </view>
+        </view>
+        <view class="wrap" wx:if="{{obj.activity.type != '01'}}">
+          <view class="title">活动规则</view>
+          <view class="status status-box" bindtap="toRules">
+            <view class="battalion">
+              <view class="name boldtext">查看详情</view>
+            </view>
+            <image class="arrow" src="/images/enterprise_next.png" />
+          </view>
+        </view>
+        <!-- " -->
+        <view class="wrap" wx:if="{{(obj.campPrincipalInfo.tpiUid == uid || obj.counselorId == uid)  && obj.activity.type == '02' }}">
+          <view class="title">我的收入</view>
+          <view class="status status-box" bindtap="toMoney">
+            <view class="battalion">
+              <view class="name boldtext">¥{{totalIncome.incomeTotal || 0}}</view>
+            </view>
+            <image class="arrow" src="/images/enterprise_next.png" />
+          </view>
+        </view>
+      </view>
+      <!-- 规则 
+      <view class="activityInfo" style="margin-top: 60rpx" wx:if="{{obj.activity.type == '01'}}">
+        <view class="title-wrap">
+          <view class="title">活动规则</view>
+        </view>
+        <view class="rule" wx:if="{{obj.activity.rule}}">
+          <image mode="widthFix" src="{{obj.activity.rule}}" />
+        </view>
+        <view class="rule" wx:else>
+          <image mode="widthFix" src="https://prodstatic.weis1606.cn/api/smartFood/rules.png" />
+          <text class="smdis">5折优惠</text>
+          <text class="ladis">7折优惠</text>
+          <text class="dedis">8折优惠</text>
+        </view>
+      </view>
+      -->
+      <!-- 点赞 -->
+      <view class="like" wx:if="{{inviteUid && inviteUid != uid && type=='shareFriends' && obj.activity.type == '02' }}">
+        <image class="tags" src="https://prodstatic.weis1606.cn/api/smartFood/fabulous_bubble.png" />
+        <view class="like-box">
+          <view class="like-l">
+            <view class="rank-like">{{inviteObj.rankings}}</view>
+            <image src="{{inviteObj.headUrl}}" />
+            <view class="name">{{inviteObj.uname}}</view>
+          </view>
+          <view class="like-r">
+            <view class="score">{{inviteObj.$value}}</view>
+            <image bind:tap="like" src="{{result ? 'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/content_fabulous_press_1.png' : 'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/content_fabulous_1.png'}}" />
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 成功报名 -->
+    <view class="info" style="margin-top: 30rpx;padding: 0 0 15rpx 0;" wx:if="{{obj.activity.type == '01' && obj.ifJoin}}">
+      <view class="tag">你已成功报名，减脂营将于{{obj.activity.sDate}}正式开营</view>
+      <view class="desc">
+        你是减脂营{{times-1 == 0 ?'新':'老'}}用户，减脂营期间点餐享受
+        <view class="red boldtext" wx:if="{{!obj.campDiscount}}">
+          {{times-1 == 0?'5':times-1 == 1?'7':'8'}}折优惠
+        </view>
+        <view class="red boldtext" wx:else>{{obj.campDiscount == 1?0:obj.campDiscount*10}}折优惠</view>
+      </view>
+      <!-- <view class="activityInfo" style="margin-top: 60rpx">
+            <view class="title-wrap">
+                <view class="title">邀新规则</view>
+            </view>
+            <text class="rule-invite">
+                邀请1位新用户入营，减脂营期间享受9折优惠\n邀请2位新用户入营，减脂营期间享受8折优惠\n邀请3位新用户入营，减脂营期间享受7折优惠\n邀请4位新用户入营，减脂营期间享受6折优惠\n邀请5位新用户入营，减脂营期间享受5折优惠
+            </text>
+    </view> -->
+    </view>
+    <view class="info" style="margin-top: 30rpx" wx:if="{{rankList.length > 0}}">
+      <!-- 今日得分 进行中 && myRank -->
+      <view class="today" wx:if="{{obj.activity.type == '02' && myRank}}">
+        <view class="t-l">
+          <view class="title">今日得分</view>
+          <view class="box">
+            <view class="val">
+              {{(filters.toParseInt(scoreObj.todayCardSocre) || 0) + (filters.toParseInt(scoreObj.todayOrderSocre) || 0) +(filters.toParseInt(scoreObj.todayLikeSocre) || 0)}}
+            </view>
+            <view class="sym">分</view>
+          </view>
+          <view class="meal showLine" style="margin-top: 40rpx" bind:tap="toFriends">
+            <view class="col">
+              <view class="title">点赞积分</view>
+              <image src="/images/arrow-grey.png" />
+            </view>
+            <view class="fen">
+              <view class="val">{{scoreObj.todayLikeSocre || 0}}</view>
+              <view class="sym">分</view>
+            </view>
+          </view>
+        </view>
+        <view class="t-r">
+          <view class="meal showLine" bind:tap="order">
+            <view class="col">
+              <view class="title">今日点餐</view>
+              <image src="/images/arrow-grey.png" />
+            </view>
+            <view class="tip" wx:if="{{scoreObj.ratio != 1}}">点餐享{{scoreObj.ratio * 10}}折优惠</view>
+            <view class="fen">
+              <view class="val">{{scoreObj.todayOrderSocre || 0}}</view>
+              <view class="sym">分</view>
+            </view>
+          </view>
+          <view class="meal" style="margin-top: 40rpx" bind:tap="card">
+            <view class="col">
+              <view class="title">饮食＆运动打卡</view>
+              <image src="/images/arrow-grey.png" />
+            </view>
+            <view class="fen">
+              <view class="val">{{scoreObj.todayCardSocre || 0}}</view>
+              <view class="sym">分</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 我的得分 结束 && myRank -->
+      <view class="today my" style="height: {{scoreObj.money ? 265 : 213}}rpx" wx:if="{{obj.activity.type == '03' && myRank}}">
+        <view class="t-l">
+          <view class="title">我的得分</view>
+          <view class="box">
+            <view class="val">{{myRank.rankScore}}</view>
+            <view class="sym">分</view>
+          </view>
+        </view>
+        <view class="t-r">
+          <view class="meal">
+            <view class="col">
+              <view class="title">我的排名</view>
+            </view>
+            <view class="fen">
+              <view class="sym">第</view>
+              <view class="val">{{myRank.rankings}}</view>
+              <view class="sym">名</view>
+            </view>
+            <view class="get" wx:if="{{scoreObj.money}}">获{{scoreObj.money}}元奖金</view>
+          </view>
+        </view>
+      </view>
+      <!-- 个人排名 -->
+      <view class="rank-list" wx:if="{{rankList.length > 0 && obj.activity.type != '01'}}">
+        <view class="title-wrap">
+          <view class="title">个人排名</view>
+        </view>
+        <view class="my-rank" bind:tap="myRankClick" wx:if="{{myRank}}">
+          <template is="rank-item" data="{{...myRank}}"></template>
+        </view>
+        <view class="rank-list__item" wx:for="{{rankList}}" wx:key="index">
+          <template is="rank-item" data="{{...item}}"></template>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 报名该减脂营 -->
+<view class="bot" wx:if="{{obj.activity.type == '01' && !obj.ifJoin}}">
+  <view class="btn-l" bind:tap="exit">
+    <image src="/images/enterprise_share_black.png" />
+    <view class="invite">邀请入营</view>
+    <!-- <button open-type="share"></button> -->
+  </view>
+  <view class="signUp" bind:tap="sign">报名该减脂营</view>
+</view>
+<view class="bot" wx:if="{{obj.activity.type == '01' && obj.ifJoin}}">
+  <view class="btn-l" style="padding-left: 22rpx" bind:tap="exit">
+    <image src="/images/more_black.png" />
+    <view class="invite">更多</view>
+  </view>
+  <view class="signUp">
+    邀请好友入营，获10元
+    <button open-type="share"></button>
+  </view>
+  <!-- <button class="signUp" open-type="share">邀请好友入营</button> -->
+</view>
+<!-- 充值 -->
+<view class="shadow" wx:if="{{showRecharge}}">
+  <view class="recharge {{showRecharge ? 'active' : ''}}">
+    <view class="title">
+      <text>当前余额</text>
+      <image bind:tap="sign" src="/images/icon_down.png" />
+    </view>
+    <view class="val-box">
+      <view class="val">{{balance}}</view>
+      <view class="sym">元</view>
+    </view>
+    <view class="desc">余额需要大于等于¥{{ruleBean.joinRuleBalance}}才能参加减脂营享受优惠哦，请立即充值</view>
+    <view class="recharge-btn" bind:tap="toBlance">立即充值</view>
+  </view>
+  <view class="hide" bind:tap="closeshowRecharge"></view>
+</view>
+<!-- 退出减脂营 -->
+<!-- <view class="shadow" wx:if="{{showExit}}">
+    <view class="exit {{showExit ? 'active' : ''}}">
+        <view class="exit-fat" bind:tap="exitTap">退出减脂营</view>
+        <view class="cancel" bind:tap="exit">取消</view>
+    </view>
+    <view class="hide" bind:tap="exit"></view>
+</view> -->
+<!-- 提示重复参加弹窗 -->
+<cp-confirm-dialog model:show="{{tipDialog}}" show-cancel="{{false}}" confirm-text="知道了" auto-confirm="{{true}}">
+  <view class="tip-label">每个用户同一时间只能参加一个减脂营，你已参加其他减脂营</view>
+</cp-confirm-dialog>
+<!-- 套餐取消提示 -->
+<cp-confirm-dialog show="{{exitDialog}}" cancel-text="取消" confirm-text="查看套餐" bind:on-cancel="cancelExit" bind:on-confirm="confirmExit">
+  <view class="dialog-content">你已经订了减脂营套餐，把减脂营套餐全部取消后，你会自动退出减脂营。</view>
+</cp-confirm-dialog>
+<!-- 分享 -->
+<vant-popup show="{{showExit}}" position="bottom" custom-style="border-radius: 40rpx 40rpx 0rpx 0rpx;" bind:click-overlay="exit">
+  <view class="share">
+    <view class="share-box">
+      <view class="box" bind:tap="exit">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/share_wechat.png" />
+        <view class="text">微信好友</view>
+        <button open-type="share"></button>
+      </view>
+      <view class="box" bind:tap="saveShareTap">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/share_moments.png" />
+        <view class="text">朋友圈</view>
+      </view>
+    </view>
+    <view class="cancel" bind:tap="exit">取消</view>
+  </view>
+</vant-popup>
+<!-- 群二维码 -->
+<vant-popup show="{{joinCode}}" custom-style="border-radius: 40rpx ;background: transparent;">
+  <view class="joinpopup">
+    <view class="joincode">
+      <image src="{{obj.camp.tacGroupQrcode}}" class="qrcode" bindtap="priveimg" />
+      <view>长按保存二维码，扫描二维码入群</view>
+    </view>
+    <image class="closeimg" src="https://prodstatic.weis1606.cn/api/smartFood/qr_off.png" bindtap="showQrcode" />
+  </view>
+</vant-popup>
+<!-- 海报 -->
+<canvas class="hide" canvas-id="share" style="width: 750rpx; height: 1624rpx;"></canvas>

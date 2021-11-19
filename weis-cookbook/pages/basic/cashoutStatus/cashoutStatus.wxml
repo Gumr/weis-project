@@ -1,0 +1,9 @@
+<!--pages/basic/cashoutStatus/cashoutStatus.wxml-->
+<nav></nav>
+<!-- 提现状态 -->
+<view class="status">
+  <image src="/images/icon_cashout_s.png" />
+  <view class="title">{{'提现失败' }}</view>
+  <view class="tip">{{'请稍等，正在转到你的微信零钱账户…'}} </view>
+  <view class="uploadStatus_btn" bindtap="handleStatus">{{uploadStatus === '01' ? '首页' : uploadStatus === '02' ? '立即修改' : '返回'}}</view>
+</view>

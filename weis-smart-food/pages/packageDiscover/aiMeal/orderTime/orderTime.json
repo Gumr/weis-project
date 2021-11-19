@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "cp-meal-calendar": "/components/cp-meal-calendar/cp-meal-calendar"
+  }
+}

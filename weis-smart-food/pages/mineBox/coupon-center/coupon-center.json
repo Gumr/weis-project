@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "cp-refresh-view": "/components/cp-refresh-view/refresh-view",
+    "cp-null": "/components/cp-null/cp-null"
+  }
+}

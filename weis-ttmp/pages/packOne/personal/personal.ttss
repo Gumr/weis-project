@@ -1,0 +1,72 @@
+.border {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1rpx;
+  background: #f6f6f6;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.personal {
+  width: 100%;
+  position: relative;
+  background: #f3f4f5;
+}
+.personal .box {
+  box-sizing: border-box;
+  padding: 0 40rpx 0 35rpx;
+  background: #ffffff;
+}
+.personal .box .wrap {
+  width: 100%;
+  height: 112rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.personal .box .wrap::after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1rpx;
+  background: #f6f6f6;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 0;
+}
+.personal .box .wrap .col-l {
+  font-size: 28rpx;
+  color: #000000;
+}
+.personal .box .wrap .col-r {
+  display: flex;
+  align-items: center;
+}
+.personal .box .wrap .col-r .name {
+  font-size: 28rpx;
+  color: #000000;
+}
+.personal .box .wrap .col-r image {
+  width: 22rpx;
+  height: 22rpx;
+  margin-left: 6rpx;
+}
+.personal .box .wrap .notSet {
+  font-size: 28rpx;
+  color: #000000;
+}
+.personal .box .headImg {
+  height: 180rpx;
+}
+.personal .box .headImg .col-r image:nth-child(1) {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+}

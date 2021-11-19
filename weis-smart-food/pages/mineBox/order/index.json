@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "cp-semicircle-process": "/components/cp-semicircle-process/cp-semicircle-process",
+    "cp-login-status": "/components/cp-login-status/cp-login-status",
+    "van-loading": "/components/vant/loading/index",
+    "cp-confirm-dialog": "/components/cp-confirm-dialog/cp-confirm-dialog",
+    "van-popup": "/components/vant/popup/index",
+    "van-count-down": "/components/vant/count-down/index",
+    "cp-control-sugar": "/components/cp-control-sugar/cp-control-sugar"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "cp-meal-calendar": "/components/cp-meal-calendar/cp-meal-calendar",
+    "van-popup": "/components/vant/popup/index",
+    "cp-confirm-dialog": "/components/cp-confirm-dialog/cp-confirm-dialog"
+  }
+}

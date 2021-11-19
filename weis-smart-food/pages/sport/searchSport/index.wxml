@@ -1,0 +1,121 @@
+<!--pages/sport/searchSport/index.wxml-->
+<cp-nav-bar title-text="动作库" background="#fff" color="#333333" backIconColor="#fff"/>
+<!--pages/searchSport/index.wxml-->
+<view class="pageauto">
+  <view class="search">
+    <icon type="search" size="18" color="rgba(168,168,168,1);" class="sericon" />
+    <input
+      type="text"
+      placeholder="请输入动作名称"
+      bindinput="search"
+      focus="true"
+      value="{{searchName}}"
+      bindconfirm="search"
+    />
+    <!--wx:if="{{showdelete}}"  -->
+    <text class="mr" bindtap="deletename">取消</text>
+  </view>
+
+  <!--搜索动作库-->
+  <view class="fff">
+    <view wx:for="{{historySport}}" wx:key="index" wx:if="{{historySport.length>0 &&showlist}}">
+      <view class="demo-row" bindtap="choseSport" data-sport="{{item}}" data-index="{{index}}">
+        <i-col span="12" class="demo-col">
+          <span class="{{item.choosed ?'blue':''}}">{{item.tmrSport}}</span>
+        </i-col>
+        <i-col span="12" class="choimg">
+          <image
+            src="{{item.choosed ?'/images/action_add_press.png' : '/images/action_add.png' }}"
+            class="imgcho"
+          />
+        </i-col>
+      </view>
+    </view>
+  </view>
+  <view class="action-no" wx:if="{{historySport.length<=0&&showlist? true : false}}">
+    <image src="https://prodstatic.weis1606.cn/api/smartFood/order-empty.png" alt />
+    <span>没有找到相关动作...</span>
+  </view>
+  <view class="popup" wx:if="{{popupFlag}}">
+    <p>确定清空历史记录吗？</p>
+    <view class="pop-btn exit" bindtap="cancelPopupFlag">取消</view>
+    <view class="pop-btn cancel" bindtap="delHistory">清空</view>
+  </view>
+  <!-- 添加每组动作 -->
+  <view class="cate-box" wx:if="{{replaceFlag}}">
+    <view class="action-replace">
+      <view class="replace-tit">
+        <span>{{choseName}}</span>
+      </view>
+      <view class="replace-detail">
+        <view wx:for="{{paramType}}" wx:key="index">
+          <view class="detail-type" wx:if="{{item == '1'}}">
+            <input
+              type="text"
+              cursor-spacing="174"
+              class="fnt"
+              bindinput="bindkg"
+              value="{{selectkg}}"
+            />
+            kg
+          </view>
+          <view class="detail-type" wx:if="{{item == '2'}}">
+            <input
+              type="number"
+              cursor-spacing="110"
+              class="fnt"
+              bindinput="bindNums"
+              value="{{selectNums}}"
+            />
+            次
+          </view>
+          <view class="detail-type" wx:if="{{item == '3'}}">
+            <input
+              class="fnt"
+              type="number"
+              cursor-spacing="110"
+              bindinput="bindMin"
+              value="{{selectMin}}"
+            />
+            分钟
+          </view>
+          <view class="detail-type" wx:if="{{item == '4'}}">
+            <input
+              class="fnt"
+              type="number"
+              cursor-spacing="195"
+              bindinput="bindSlope"
+              value="{{selectSlope}}"
+            />
+            坡度
+          </view>
+          <view class="detail-type" wx:if="{{item == '5'}}">
+            <input
+              class="fnt"
+              type="text"
+              cursor-spacing="174"
+              bindinput="bindSpeed"
+              value="{{selectSpeed}}"
+            />
+            速度
+          </view>
+          <view class="detail-type" wx:if="{{item == '6'}}">
+            <input
+              class="fnt"
+              type="number"
+              auto-focus
+              cursor-spacing="110"
+              bindinput="bindSec"
+              value="{{selectSec}}"
+            />
+            秒
+          </view>
+        </view>
+      </view>
+      <view class="btns">
+        <view bindtap="close" class="cancel">取消</view>
+        <view bindtap="addGroupCofm" class="sure">打卡</view>
+      </view>
+    </view>
+  </view>
+</view>

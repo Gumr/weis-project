@@ -1,0 +1,111 @@
+<!-- pages/packageDiscover/riceBall/riceBallList/riceBallList.wxml -->
+<wxs module="utils">
+  function whatLevel(ownRiceBall, selfInfo) {
+    var discount = 10
+    var level = ''
+    var score = +ownRiceBall.score
+    var isChief = ownRiceBall.trrChiefUid == selfInfo.uid
+    if(score < 400) {
+      level = '青铜'
+      discount = isChief ? 8.5 : 9
+    }
+    if(400 <= score && score < 800) {
+      level = '白银'
+      discount = isChief ? 8 : 8.5
+    }
+    if(800 <= score && score < 1200) {
+      level = '黄金'
+      discount = isChief ? 7.5 : 8
+    }
+    if(1200 <= score && score < 1600) {
+      level = '钻石'
+      discount = isChief ? 7 : 7.5
+    }
+    if(score >= 1600) {
+      level = '王者'
+      discount = isChief ? 6.5 : 7
+    }
+
+    return {
+      level,
+      discount
+    }
+  }
+  function whatText(ownRiceBall, selfInfo) {
+    return ownRiceBall.trrStt === '02' ? whatLevel(ownRiceBall, selfInfo).level + '饭团，享受' + whatLevel(ownRiceBall, selfInfo).discount + '折，已省' + ownRiceBall.totalPrice + '元' : '已报名' + ownRiceBall.totalNum + '人，' + ownRiceBall.trrActivityBTime + '开团'
+  }
+  module.exports.whatText = whatText
+</wxs>
+<cp-nav-bar title-text="" background="#FFCB52" />
+<view class="container">
+  <view class="header">
+    <image class="icon" src="{{preImg + '/meal_details_picture.png'}}" />
+  </view>
+  <view class="content ct">
+    <view class="ct-top">
+      <view class="ct-add" wx:if="{{!hasOwnRiceBall || (hasOwnRiceBall && (ownRiceBall.trrStt === '09' || ownRiceBall.trrStt === '08' || ownRiceBall.trrStt === '04'))}}" data-id="{{ownRiceBall.trrId}}" bind:tap="establishFn">
+        <image class="icon-add" src="{{preImg + '/icon-bz.png'}}"></image>
+        <view class="text">
+          <view class="tit">创建折扣饭团</view>
+          <text>创建我的折扣饭团，团长享受更高折扣</text>
+        </view>
+      </view>
+      <!-- 已加入饭团 -->
+      <view class="ct-joined list-each" data-id="{{ownRiceBall.trrId}}" bind:tap="detailFn" wx:else>
+        <image class="icon icon-joined" src="{{preImg + '/icon_rb_joined.png'}}" />
+        <view class="ct-joined-n list-each-l">
+          <image class="icon" src="{{ownRiceBall.trrUrl}}" />
+        </view>
+        <view class="ct-joined-a list-each-c">
+          <view class="each-name">{{ownRiceBall.trrName}}</view>
+          <text>{{utils.whatText(ownRiceBall, selfInfo)}}</text>
+        </view>
+        <view class="ct-joined-t list-each-r">
+          <image class="icon" src="{{preImg + '/icon-pt-next.png'}}" />
+        </view>
+      </view>
+      <view class="ct-top-tip" wx:if="{{ownRiceBall.trrStt === '08'}}">
+        <text>你参加的饭团未满5人，开团失败，请去参加新饭团</text>
+        <!-- <text>请去参加新饭团</text> -->
+        <!-- <image class="icon" src="/images/icon_right.png" /> -->
+      </view>
+      <view class="ct-top-tip" wx:if="{{ownRiceBall.trrStt === '09'}}" data-id="{{ownRiceBall.trrId}}" bind:tap="detailFn">
+        <text>你参加的饭团已结束，</text>
+        <text>查看饭团结果</text>
+        <image class="icon" src="/images/icon_right.png" />
+      </view>
+      <view class="ct-top-tip" wx:if="{{ownRiceBall.trrStt === '04'}}">
+        <text>你参加的饭团已被团长解散，请去参加新饭团</text>
+        <!-- <text>请去参加新饭团</text> -->
+        <!-- <image class="icon" src="/images/icon_right.png" /> -->
+      </view>
+    </view>
+    <view class="ct-body">
+      <view class="ct-body-tit">饭团报名中，招团员一起享受折扣</view>
+      <scroll-view class="ct-body-list" wx:if="{{riceBallList.length > 0}}" scroll-y="{{true}}">
+        <view class="list-each" wx:for="{{riceBallList}}" data-id="{{item.trrId}}" bind:tap="detailFn">
+          <view class="list-each-l">
+            <image class="icon" src="{{item.trrUrl}}" />
+          </view>
+          <view class="list-each-c">
+            <view class="each-name">
+              {{item.trrName}}
+              <image class="icon icon-full" wx:if="{{item.totalNum >= 50}}" src="{{preImg + '/icon_rb_full.png'}}" />
+            </view>
+            <text>已报名{{item.totalNum}}人，{{item.trrActivityBTime}}开团</text>
+          </view>
+          <view class="list-each-r">
+            <image class="icon" src="{{preImg + '/enterprise_next.png'}}" />
+          </view>
+        </view>
+      </scroll-view>
+      <!-- 空状态 -->
+      <view class="null" wx:else>
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/emp.png" />
+        <text>暂时没有报名中的饭团</text>
+        <text>快去创建一个吧</text>
+        <!-- <button bindtap="tocreate">去看看</button> -->
+      </view>
+    </view>
+  </view>
+</view>

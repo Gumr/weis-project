@@ -1,0 +1,17 @@
+<!--pages/mine/fans/fans.wxml-->
+<nav title="我的粉丝"></nav>
+<view class="fans" wx:if="{{fansList.length > 0}}">
+  <view class="each" wx:for="{{fansList}}" wx:key="{{item.tflUid}}">
+    <view class="human">
+      <image src="{{item.headImgUrl}}" />
+      <h4>{{item.uname}}</h4>
+    </view>
+    <view class="status {{item.tflState === 2 ? 'followed' : ''}}" data-uid="{{item.tflFansUid}}" data-status="{{item.tflState}}" bindtap="updateFollow">{{item.tflState === 1 ? '+关注' : '已关注' }}</view>
+  </view>
+</view>
+
+<!-- 没有结果 -->
+<view class="fans-no" wx:else>
+  <image src="/images/icon_fans_null.png" />
+  <view>还没有粉丝哦～</view>
+</view>

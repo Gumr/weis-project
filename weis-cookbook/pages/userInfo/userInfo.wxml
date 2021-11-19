@@ -1,0 +1,65 @@
+<!--pages/userInfo/userInfo.wxml-->
+<wxs module="filters" src="../../utils/wxs/filters.wxs"></wxs>
+<cover-view class="userInfo">
+  <cover-image class="bg" mode="widthFix" src="/images/user_bg.png" />
+  <cover-view class="user">
+    <cover-view class="feature">
+      <cover-image class="avatar" src="{{userInfo.headImgUrl || '/images/icon_avatar_default.png'}}" />
+      <cover-image class="icon" wx:if="{{userInfo.isCook}}" src="/images/icon_V.png"></cover-image>
+      <cover-view class="infos" scroll-top="0">
+        <cover-view class="name">{{ userInfo.uname }}</cover-view>
+        <cover-image class="gender" src="{{userInfo.userProfile.sex === 1 ? '/images/icon_man.png' : '/images/icon_woman.png'}}"></cover-image>
+      </cover-view>
+    </cover-view>
+  </cover-view>
+  <cover-view class="introduction" wx:if="{{userInfo.userInfo.autograph}}" catch:tap="toIntroduction">{{userInfo.userInfo.autograph}}</cover-view>
+  <cover-view class="otherInfo">
+    <cover-view class="attention" bindtap="toFollows">
+      <cover-view class="label">关注</cover-view>
+      <cover-view class="num">{{followNum}}</cover-view>
+    </cover-view>
+    <cover-view class="fans" bindtap="toFans">
+      <cover-view class="label">粉丝</cover-view>
+      <cover-view class="num">{{fans}}</cover-view>
+    </cover-view>
+    <cover-view class="status {{follow ? 'follow' : ''}} {{_self ? 'self' : ''}}" wx:if="{{follow != null}}" bindtap="updateFollow">{{!follow ? '+关注' : '已关注'}}</cover-view>
+  </cover-view>
+</cover-view>
+<nav hasBg="{{false}}"></nav>
+<view class="container" style="padding-bottom: 180rpx;">
+  <!-- 菜品列表\投票列表\收藏列表 -->
+  <view class="list">
+    <scroll-view class="waterfall" wx:if="{{ cookList.length > 0}}">
+      <view class="box">
+        <view class="column" id="{{index % 2 === 0 ? 'waterfall_left' : 'waterfall_right'}}" wx:for="{{cookList}}" wx:key="index">
+          <view class="good" wx:for="{{item}}" wx:for-item="subItem" wx:for-index="subIndex" wx:key="subIndex" data-index="{{index}}" data-subindex="{{subIndex}}" data-id="{{subItem.trId}}" bindtap="toCookDetail">
+            <image class="status" mode="heightFix" wx:if="{{subItem.trAuditResult=== '05' && !isCook}}" src="{{filters.handleTopLeftIcon(subItem.trAuditResult)}}" />
+            <view class="imgBox">
+              <image class="goodimg" mode="{{335 * (subItem.trCoverImageHeight / subItem.trCoverImageWide) < 300 || 335 * (subItem.trCoverImageHeight / subItem.trCoverImageWide) > 500 ? 'heightFix' : 'widthFix'}}"
+            style="height: {{335 * (subItem.trCoverImageHeight / subItem.trCoverImageWide) < 300 ? '300rpx' : 335 * (subItem.trCoverImageHeight / subItem.trCoverImageWide) > 500 ? '500rpx' : '100%'}}" src="{{subItem.trCoverImageUrl}}" />
+            </view>
+            <view class="name">{{subItem.trName}}</view>
+            <view class="author">
+              <view class="human">
+                <view class="imgbox">
+                  <image src="{{subItem.headImgUrl}}" />
+                  <image class="icon" wx:if="{{subItem.cook}}" src="/images/icon_V_sm.png" />
+                </view>
+                <text>{{subItem.uname}}</text>
+              </view>
+              <view class="operate" wx:if="{{subItem.trAuditResult === '05'}}" data-status="{{subItem.vote}}" data-id="{{subItem.trId}}" data-index="{{index}}" data-subindex="{{subIndex}}" catchtap="voteRecipes">
+                <image src="{{subItem.vote ? '/images/icon_vote.png' : '/images/icon_vote2.png'}}" />
+                <text>{{subItem.trVoteNumber}}人投票</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="cook-no" wx:else>
+      <image src="/images/icon_no.png" />
+      <view>还没有内容</view>
+    </view>
+  </view>
+</view>
+ 

@@ -1,0 +1,90 @@
+<!-- pages/packageDiscover/vote/vote.wxml -->
+<cp-nav-bar title-text="{{from == 'ht' ? '往期投票' : '菜品投票'}}" background="transparent"></cp-nav-bar>
+<cp-null wx:if="{{from != 'ht'}}" show="{{voteSkuList.length == 0}}" imgSrc="{{preImg + '/vote_null.png'}}" text="现在没有投票活动">
+  <view class="cp-null-slot" style="padding-top: 20rpx;">
+    <text>去看看以前的投票吧</text>
+    <view class="btn" bind:tap="goHistoryFn">
+      <image class="icon" mode="widthFix" src="{{preImg + '/vote_null_btn.png'}}" />
+    </view>
+  </view>
+</cp-null>
+<view class="container" wx:if="{{voteSkuList.length > 0}}">
+  <view class="vote-head {{from == 'ht' ? 'vote-head-ht' : ''}}">
+    <image class="head-bg" src="{{preImg + '/vote01.png'}}" />
+    <view class="date {{from == 'ht' ? 'date-ht' : ''}}">
+      投票日期：{{voteInfo.beginTime}}-{{voteInfo.endTime}}
+    </view>
+    <view class="title">
+      <view class="txt">{{voteInfo.voteName}}</view>
+    </view>
+    <view class="rules" wx:if="{{from != 'ht'}}">
+      <image class="icon bg" mode="widthFix" src="{{preImg + '/vote02.png'}}" />
+      <view class="rules-tit">投票规则：</view>
+      <view class="rules-per">
+        <view class="serial">1</view>
+        <text>每期投票活动中，每人可以给三个菜品投票</text>
+      </view>
+      <view class="rules-per">
+        <view class="serial">2</view>
+        <text>可以邀请好友投票，好友也是每期活动可投三票</text>
+      </view>
+      <view class="rules-per">
+        <view class="serial">3</view>
+        <text>根据投票结果我们会在前几名中选2-4个菜上架售卖（由于我们要严格控制菜品结构，菜品成本，食材安全，不能保证一定能让投票前几名菜品上架售卖，请谅解）</text>
+      </view>
+      <view class="rules-per">
+        <view class="serial">4</view>
+        <text>每期的投票结果在往期投票中查看</text>
+      </view>
+    </view>
+    <!-- 往期投票 -->
+    <view class="history" wx:if="{{from != 'ht'}}" bind:tap="goHistoryFn">往期投票</view>
+  </view>
+  <view class="vote-content" style="padding-bottom: {{from != 'ht' ? 200 : 0}}rpx;">
+    <view class="content-tabs">
+      <view class="tabs-per">排名</view>
+      <view class="tabs-per">菜品</view>
+      <view class="tabs-per">投票</view>
+    </view>
+    <view class="content-list">
+      <!-- 菜品列表 -->
+      <view class="list-per" wx:for="{{voteSkuList}}" data-index="{{index}}" bind:tap="goDetailFn">
+        <view class="list-box">
+          <view class="list-l">
+            <image class="icon" wx:if="{{index < 3}}" src="{{preImg + '/vote_pm_' + (index + 1) + '.png'}}" />
+            <text>{{index + 1}}</text>
+          </view>
+          <view class="list-c">
+            <view class="list-c-l">
+              <image class="icon" src="{{item.skuImgBeanList[0].imgUrl}}" />
+              <view class="sz" wx:if="{{item.skuStt == 60}}">已上架</view>
+            </view>
+            <view class="list-c-r">
+              <view class="name">{{item.skuName}}</view>
+              <view class="kcal">{{item.skuEnergy}}kacl</view>
+              <view class="tags">
+                <view class="tag" wx:for="{{item.skuTagList}}" wx:for-index="labelIndex" wx:for-item="labelItem" wx:if="{{labelItem.type == '12' || labelItem.type == '14'}}">
+                  {{labelItem.name}}
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="list-r" data-index="{{index}}" catchtap="doVoteFn">
+            <image class="icon" src="{{preImg + (item.voteStatus && from != 'ht' ? '/vote_y.png' : '/vote_n.png')}}" />
+            <view class="num {{item.voteStatus && from != 'ht' ? 'active' : ''}}">
+              {{item.voteNum}}
+            </view>
+          </view>
+        </view>
+        <!-- 成功复活菜品-预计上架日期 -->
+        <view class="list-per-date" wx:if="{{item.skuStt == 50 && item.skuSaleTime}}">
+          预计{{item.skuSaleTime}}上架售卖
+        </view>
+      </view>
+    </view>
+    <text class="null">到底啦~</text>
+  </view>
+  <button class="btn" open-type="{{isLogin ? 'share' : 'null'}}" hover-class="btn-hover" wx:if="{{from != 'ht'}}">
+    <image class="icon" mode="widthFix" src="{{preImg + '/vote_btn.png'}}" />
+  </button>
+</view>

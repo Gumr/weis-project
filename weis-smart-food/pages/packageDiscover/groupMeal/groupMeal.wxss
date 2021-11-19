@@ -1,0 +1,118 @@
+page {
+  background: #f3f4f5;
+}
+.compony .incor {
+  width: 690rpx;
+  background: #ffffff;
+  border-radius: 10rpx;
+  margin: 0 auto 20rpx;
+  padding: 30rpx;
+  position: relative;
+}
+.compony .incor .title_bg {
+  width: 690rpx;
+  height: 102rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.compony .incor .title {
+  color: #333333;
+  font-size: 32rpx;
+  font-weight: bold;
+  position: relative;
+  margin-bottom: 10rpx;
+  display: flex;
+  align-items: center;
+}
+.compony .incor .title image {
+  width: 32rpx;
+  height: 32rpx;
+  padding-right: 8rpx;
+}
+.compony .incor .title .num {
+  font-size: 22rpx;
+  margin-left: 10rpx;
+}
+.compony .incor .ipt-box {
+  width: 630rpx;
+  height: 80rpx;
+  background: rgba(246, 246, 246, 0.72);
+  border-radius: 40rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 30rpx 0 40rpx;
+  margin: 20rpx auto 0;
+}
+.compony .incor .ipt-box input {
+  flex: 1;
+  height: 100%;
+}
+.compony .incor .ipt-box image {
+  width: 44rpx;
+  height: 44rpx;
+}
+.compony .incor .incor-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+.compony .incor .incor-box image {
+  width: 307rpx;
+  height: 134rpx;
+  border-radius: 20rpx;
+  margin-right: 10rpx;
+  border: 2rpx solid #f6f6f6;
+  margin-top: 28rpx;
+}
+.compony .incor .incor-box image:nth-of-type(2n) {
+  margin-right: 0;
+}
+.userCheck {
+  position: relative;
+  overflow: hidden;
+}
+.userCheck .usertips {
+  text-align: center;
+  font-size: 24rpx;
+  color: #808080;
+  line-height: 24rpx;
+  margin: 22rpx 0 40rpx;
+}
+.userCheck .usertips text {
+  display: inline-block;
+  width: 96rpx;
+  height: 24rpx;
+  border-radius: 12rpx;
+  border: 1rpx solid #979797;
+  font-size: 16rpx;
+  color: #808080;
+  line-height: 24rpx;
+}
+.userCheck .inputUser {
+  display: flex;
+  margin: 0 75rpx;
+  padding-bottom: 20rpx;
+  font-size: 36rpx;
+  color: #000000;
+  line-height: 50rpx;
+  border-bottom: 1rpx solid #e8e8e8;
+}
+.userCheck .inputUser input {
+  padding-left: 56rpx;
+  width: 78%;
+  font-weight: bold;
+}
+.userCheck .inputUser--name {
+  margin-bottom: 50rpx;
+}
+.userCheck .inputUser--code {
+  margin-bottom: 60rpx;
+}
+.userCheck .errortips {
+  font-size: 24rpx;
+  color: #fa6400;
+  position: absolute;
+  left: 200rpx;
+  bottom: 18rpx;
+}

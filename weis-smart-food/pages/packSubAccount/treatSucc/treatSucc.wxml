@@ -1,0 +1,15 @@
+<!--pages/packSubAccount/treatSucc/treatSucc.wxml-->
+<cp-nav-bar title-text="" background="#fff" backIconColor="black" />
+
+
+<view class="status">
+    <!-- 成功 -->
+    <view class="box">
+        <image src="{{status ? 'https://prodstatic.weis1606.cn/api/smartFood/icon_%E6%94%AF%E4%BB%98%E6%88%90%E5%8A%9F.png' : 'https://prodstatic.weis1606.cn/api/smartFood/icon_%E6%94%AF%E4%BB%98%E5%A4%B1%E8%B4%A5.png'}}" />
+        <view class="title">{{status ? '支付成功' : '支付失败'}}</view>
+        <button open-type="{{status ? 'share' : ''}}" bind:tap="rePay">{{status ? '发给好友' : '重新支付'}}</button>
+    </view>
+</view>
+
+<!-- 选择支付方式 -->
+<cp-pay-popup id="pay" source="treat" bind:on-confirm="wxPay"></cp-pay-popup>

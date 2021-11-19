@@ -1,0 +1,41 @@
+<!--pages/preLeaderboard/preLeaderboard.wxml-->
+<nav title="历届榜单"></nav>
+<view class="tabs">
+  <view class="tab" wx:for="{{activityList}}" wx:key="taId" data-index="{{index}}" bindtap="switchTab">
+    <view class="tabname">第{{item.cycle}}期</view>
+    <view class="line" hidden="{{nowTab !== index}}"></view>
+  </view>
+</view>
+<view class="list" wx:if="{{ranklist.length > 0}}">
+  <view class="each" wx:for="{{ranklist}}" wx:key="index" data-id="{{item.trId}}" data-index="{{index}}" bindtap="toCookDetail">
+    <view class="box">
+      <view class="series">
+        <image src="{{index === 0 ? '/images/icon_one.png' : index === 1 ? '/images/icon_two.png' : '/images/icon_three.png'}}" wx:if="{{index === 0 || index === 1 || index === 2}}" />
+        <text wx:else>{{index + 1}}</text>
+      </view>
+      <view class="cook">
+        <view class="imgbox">
+          <image mode="{{subItem.trCoverImageWide < subItem.trCoverImageHeight ? 'widthFix' : 'heightFix'}}" src="{{item.trCoverImageUrl}}" style="{{item.trCoverImageWide < item.trCoverImageHeight ? 'width: 140rpx;' : 'height: 140rpx;'}}" src="{{item.trCoverImageUrl}}" />
+          <!-- 状态角标 -->
+          <image class="icon" wx:if="{{item.trAuditResult === '07' || item.trAuditResult === '08'}}" src="{{item.trAuditResult === '07' ? '/images/icon_yfing3.png' : '/images/icon_up2.png'}}" />
+        </view>
+        <view class="name">{{item.trName}}</view>
+      </view>
+    </view>
+    <view class="vote" data-status="{{item.vote}}" data-id="{{item.trId}}" data-index="{{index}}" catchtap="voteRecipes">
+      <image src="/images/icon_vote3.png" />
+      <text>{{item.trVoteNumber}}人投票</text>
+    </view>
+  </view>
+</view>
+
+<!-- 没有结果 -->
+<view class="cook-no" wx:if="{{ranklist.length === 0}}">
+  <image src="/images/icon_history_null.png" />
+  <view>暂时没有榜单～</view>
+</view>
+
+<!-- 加载中 -->
+<view class="loading" wx:if="{{ranklist === null}}">
+  <van-loading type="spinner" size="24px" vertical></van-loading>
+</view>

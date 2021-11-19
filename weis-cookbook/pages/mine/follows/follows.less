@@ -1,0 +1,63 @@
+.fans {
+  padding: 16rpx 30rpx 0;
+  box-sizing: border-box;
+  .each {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 36rpx;
+    .human {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      image {
+        width: 140rpx;
+        height: 140rpx;
+        border-radius: 50%;
+        margin-right: 40rpx;
+      }
+      h4 {
+        font-size:32rpx;
+        font-family:PingFangSC-Medium,PingFang SC;
+        font-weight:500;
+        color:rgba(51,51,51,1);
+        line-height:45rpx;
+      }
+    }
+    .status {
+      width:128rpx;
+      height:44rpx;
+      line-height:44rpx;
+      border-radius:23rpx;
+      border:2rpx solid rgba(230,184,56,1);
+      text-align: center;
+      font-size:26rpx;
+      font-family:PingFangSC-Regular,PingFang SC;
+      font-weight:400;
+      color:rgba(230,184,56,1);
+      &.followed {
+        background:rgba(224,224,224,1);
+        border: none;
+        color: #999999;
+      }
+    }
+  }
+}
+
+.fans-no {
+  width: 100%;
+  text-align: center;
+  margin-top: 104rpx;
+  image {
+    width: 300rpx;
+    height: 300rpx;
+    margin-bottom: 22rpx;
+  }
+  view {
+    font-size:28rpx;
+    font-family:PingFangSC-Regular,PingFang SC;
+    font-weight:400;
+    color:rgba(153,153,153,1);
+    line-height:40rpx;
+  }
+}

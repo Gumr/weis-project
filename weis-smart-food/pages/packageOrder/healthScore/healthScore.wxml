@@ -1,0 +1,78 @@
+<!-- pages/packageOrder/healthScore/healthScore.wxml -->
+<cp-nav-bar title-text="" background="transparent" color="black" />
+<view class="healthScore" style="margin-top:-{{statusHeight}}px;padding-top:{{statusHeight}}px">
+  <image class="overview-bg" style="height: 156rpx" mode="widthFix" src="https://prodstatic.weis1606.cn/api/smartFood/BG-top.png" />
+  <image class="overview-bg" style="top: 156rpx" mode="widthFix" src="https://prodstatic.weis1606.cn/api/smartFood/BG-health.png" />
+  <!-- 健康分总览 -->
+  <view class="healthScore-overview">
+    <view>
+      <view class="overview-info">
+        <view class="overview-info-man">
+          <image src="{{humanInfoWithScore.headImgUrl || 'https://prodstatic.weis1606.cn/api/smartFood/defaultAvatar.png'}}" />
+          <text>{{humanInfoWithScore.uname}}</text>
+        </view>
+        <!-- <view class="overview-info-meal">{{scoreForms.dateText}} {{scoreForms.categoryText}}</view> -->
+      </view>
+      <view class="overview-score">
+        <view class="overview-score-fen">
+          {{scoreForms.totalScore >= 95 ? '猴赛雷！我的本餐搭配成绩' : '我的本餐搭配成绩'}}
+        </view>
+        <view class="overview-score-tip">超过了{{scoreForms.overRankPart}}%的吃货</view>
+      </view>
+    </view>
+    <!-- <view class="score">{{scoreForms.totalScore}}</view> -->
+  </view>
+  <view class="heal-score">
+    <cp-radar-panel score="{{score}}" tip="{{true}}" areaColor="rgba(255,255,255,0.56)" title="{{scoreForms.totalScore}}" bind:on-finished="finished" bind:on-tip="showDialog" mode="{{mode}}" />
+  </view>
+  <!-- 套餐仪表盘 -->
+   <view class="pan" wx:if="{{showPan}}">
+      <cp-meal-pie dialData="{{dialData}}" theme="pillars" mode="image" page="score" hideScore="{{true}}" />
+  </view>
+  <view class="share-btn" wx:if="{{isShareBtn}}" bind:tap="shareScore">分享本餐得分</view>
+  <view class="share-tip" wx:if="{{isShareBtn}}" bind:tap="sure">
+    <view>分享给新用户，TA下单后，你获10元返到余额中</view>
+    <image src="https://prodstatic.weis1606.cn/api/smartFood/tag-icon.png" />
+  </view>
+  <!-- <image class="bot" src="https://prodstatic.weis1606.cn/api/smartFood/score-2.png" /> -->
+</view>
+<!-- 分享弹窗 -->
+<van-popup class="share-drawer" show="{{drawerVisible}}" custom-style="border-radius: 20rpx 20rpx 0px 0px" position="bottom" bind:click-overlay="cancelShareTap">
+  <view class="share-icon-box">
+    <button open-type="share" style="margin: 0;" hover-class="button-hover2">
+      <view class="share-icon-item" bindtap="shareFriendTap">
+        <image class="share-icon" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/share_icon_wechat.png" />
+        <view class="share-label">微信好友</view>
+      </view>
+    </button>
+    <view class="share-icon-item" bindtap="sharePosterTap">
+      <image class="share-icon" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/share_icon_pyq.png" />
+      <view class="share-label mer">朋友圈</view>
+    </view>
+  </view>
+  <view class="share-cancel-btn" bindtap="cancelShareTap">取消</view>
+</van-popup>
+<!-- 点击感叹弹窗 -->
+<van-popup class="dialog" show="{{isShowDialog}}" custom-style="border-radius: 20rpx;width: 640rpx;padding: 0 40rpx 64rpx;" position="center">
+  <view class="dialog-tit-box">
+    <view class="iconbox" bind:tap="closeDialog">
+      <image class="icon" src="/images/logistics_popup_off.png" />
+    </view>
+    <view class="dialog-tit">{{dialogTit}}</view>
+  </view>
+  <text class="dialog-text">{{dialogText[dialogTit]}}</text>
+</van-popup>
+<!-- 海报 -->
+<painter customActionStyle="{{customActionStyle}}" palette="{{paintPallette}}" bind:imgOK="onImgOK" bind:touchEnd="touchEnd" action="{{action}}" widthPixels="1000" />
+<view class="share-box" wx:if="{{showImg}}">
+  <view class="shadow" bind:tap="hideShare"></view>
+  <image bind:longpress="longPressFn" class="img" mode="widthFix" src="{{image}}" />
+</view>
+<!-- 邀请说明 -->
+<van-popup class="dialog" show="{{showTip}}" custom-style="border-radius: 20rpx;width: 640rpx;padding: 0 40rpx 64rpx;" position="center">
+  <view class="dialog-tit-box">
+    <view class="dialog-tit">分享说明</view>
+  </view>
+  <text class="dialog-text" style="color:#999999;font-size:28rpx;line-height: 40rpx;font-weight: normal;">你分享该页面后，若有新用户通过你分享的链接或图片上的小程序码注册，并且下一单且签收。你能获得10元，订单签收时返现到你的维士余额账户中。</text>
+  <view class="sure" bind:tap="sure">确定</view>
+</van-popup>

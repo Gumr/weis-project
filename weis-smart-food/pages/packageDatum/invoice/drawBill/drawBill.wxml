@@ -1,0 +1,105 @@
+<!-- pages/packageDatum/invoice/drawBill/drawBill.wxml -->
+<wxs module="filters">
+  module.exports.category = function(category) {
+    var units = {
+        '01': '早餐',
+        '02': '午餐',
+        '03': '晚餐',
+        '04': '加餐',
+    }
+    return units[category]
+  }
+  module.exports.pay = function(param) {
+    var units = {
+        'balance': '余额支付',
+        'wechat': '微信支付'
+    }
+    return units[param]
+  }
+</wxs>
+<cp-nav-bar title-text="开发票" background="#F3F4F5" color="#000" backIconColor="black" />
+<view class="invoice">
+    <view class="tip fix" style="top:{{navStatusHeight}}px">
+        <view class="fix-l" bind:tap="tip">
+            <image src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/tip.png" />
+            <view class="title">用维士账户余额支付，只有本金可开票</view>
+            <image src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/arrow.png" />
+        </view>
+        <view class="record" bind:tap="record">开票记录</view>
+    </view>
+    <view class="tip"></view>
+    <view class="list-box" wx:if="{{invoiceArr && invoiceArr.length > 0}}">
+        <view class="list" wx:for="{{invoiceArr}}" wx:for-index="index1">
+            <view class="date">{{item.date}}</view>
+            <view class="box">
+                <view class="category" wx:for="{{item.list}}" wx:for-index="index2" data-date-index="{{index1}}" data-index="{{index2}}" bind:tap="select">
+                    <image src="{{item.invoiced || item.invoicedAmount == 0 ? 'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/icon-disable.png' : (item.selected ? '/images/order_list_select.png' : '/images/order_list_unchecked.png')}}" />
+                    <view class="info">
+                        <view class="title">
+                            <view class="time">{{item.orderStr}}  {{filters.category(item.orderCategory)}}<view wx:if="{{item.invoiced}}" class="isok">已开票</view></view>
+                        </view>
+                        <view class="total">
+                            {{filters.pay(item.payWay)}}{{item.payAmount}}元，可开票金额
+                            <view class="price">{{item.invoicedAmount}}</view>
+                            元
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- 加载中 -->
+        <view class="loading" wx:if="{{more}}">加载中...</view>
+    </view>
+    <!-- 无账单 -->
+    <view class="empty" wx:if="{{invoiceArr && invoiceArr.length == 0}}">
+        <view class="tip-title">╮(╯▽╰)╭</view>
+        <view class="desc">没有可以开票的餐单</view>
+    </view>
+</view>
+
+<view class="bot">
+    <view class="info">
+        可开票金额<view class="price">{{totalPrice || 0}}</view>元
+        <view class="tip-limit" wx:if="{{totalPrice > 0 && totalPrice < 50}}">单次开票金额至少50元</view>
+    </view>
+    <view class="btn {{totalPrice && totalPrice >= 50 ? 'active' : ''}}" bind:tap="goInvoice">去开票（{{selectArr && selectArr.length || 0}}）</view>
+</view>
+
+<view class="shadow" wx:if="{{showDialog}}">
+    <view class="dialog {{showDialog ? 'active' : ''}}" style="top: {{navStatusHeight}}px">
+        <view class="title">开票提示</view>
+        <view class="row">
+            <view class="num">1.</view>
+            <view class="row-r">
+                <view class="text">充值不可开票，只有已确认收货的餐单可开票</view>
+            </view>
+        </view>
+        <view class="row">
+            <view class="num">2.</view>
+            <view class="row-r">
+                <view class="text">微信支付的餐单可按除配送费外100%实付金额开票</view>
+            </view>
+        </view>
+        <view class="row">
+            <view class="num">3.</view>
+            <view class="row-r">
+                <view class="text">余额支付的餐单，只有出配送费外实付金额的本金部分可开票，赠送金部分不可开票</view>
+            </view>
+        </view>
+        <view class="row">
+            <view class="num">4.</view>
+            <view class="row-r">
+                <view class="name">哪些是本金？</view>
+                <view class="text">充值时实际支付金额为本金</view>
+            </view>
+        </view>
+        <view class="row">
+            <view class="num">5.</view>
+            <view class="row-r">
+                <view class="name">哪些是赠送金？</view>
+                <view class="text">充值时赠送金额为赠送金（如从1000送100，100元为赠送金）；翻牌返现的返现金额为赠送金；邀请有礼的10元奖励为赠送金；各种活动赠送充值的金额为赠送金等</view>
+            </view>
+        </view>
+        <view class="btn" bind:tap="tip">好的，知道了</view>
+    </view>
+</view>

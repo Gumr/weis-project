@@ -1,0 +1,12 @@
+<view class="van-circle">
+  <image wx:if="{{mode === 'image'}}" style="{{ style }}" src="{{image}}" />
+  <canvas
+    class="van-circle__canvas {{mode === 'image' ? 'outside' : ''}}"
+    style="{{ style }}"
+    canvas-id="van-circle"
+  ></canvas>
+  <view wx:if="{{ !text }}" class="van-circle__text" style="{{textStyle}}">
+    <slot></slot>
+  </view>
+  <cover-view wx:else class="van-circle__text" style="{{textStyle}}">{{ text }}</cover-view>
+</view>

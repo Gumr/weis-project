@@ -1,0 +1,8 @@
+<!-- e:\project\weis-ttmp\weis-ttmp-nlm\weis-ttmp\pages\packOne\nickName\nickName\nickName.ttml -->
+<cp-nav-bar title-text="设置昵称" />
+<view class="nick">
+    <view class="box">
+        <input type="text" maxlength="10" placeholder-class="input-placeholder" value="{{nickName}}" focus bindfocus="focusNick" bindblur="blurNick" bindinput="changeNick"/>
+    </view>
+    <view class="btn {{nickName ? 'active' : ''}}" style="bottom:{{btnBottom + 20}}px" bind:tap="save">确定</view>
+</view>

@@ -1,0 +1,10 @@
+<!-- 标签切换 -->
+<view class="tabs">
+  <view
+    bind:tap="tabChange"
+    class="tab font-28 {{currentTab === item.value ? 'tab__active' : ''}}"
+    wx:for="{{data}}"
+    wx:key="index"
+    data-value="{{item.value}}"
+  >{{item.label}}</view>
+</view>

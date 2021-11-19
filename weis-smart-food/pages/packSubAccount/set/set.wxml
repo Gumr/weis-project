@@ -1,0 +1,28 @@
+<!-- pages/packSubAccount/set/set.wxml -->
+<cp-nav-bar title-text="设置" background="#F3F4F5" color="#000" backIconColor="black" />
+<view class="contact">
+    <button class="list">
+        <view class="name">不要点餐提醒更换菜品</view>
+        <view class="btn-switch">
+            <cp-switch value="{{hideTip}}"  bind:on-change="switchChange"></cp-switch>
+        </view>
+    </button>
+    <button class="list" bind:tap="proposal">
+        <view class="name">口味&过敏原设置</view>
+        <view class="col-r">
+            <image src="/images/list_next.png" />
+        </view>
+    </button>
+    <button class="list" bind:tap="advise">
+        <view class="name">意见反馈</view>
+        <view class="col-r">
+            <image src="/images/list_next.png" />
+        </view>
+    </button>
+    <button class="list" bind:tap="about">
+        <view class="name">关于维士</view>
+        <view class="col-r">
+            <image src="/images/list_next.png" />
+        </view>
+    </button>
+</view>

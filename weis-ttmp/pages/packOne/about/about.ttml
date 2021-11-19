@@ -1,0 +1,23 @@
+<!-- e:\project\weis-ttmp\weis-ttmp-nlm\weis-ttmp\pages\packOne\about\about\about.ttml -->
+<cp-nav-bar title-text="关于维士" />
+<view class="about">
+    <view class="top">
+        <image src="{{imgPrefix + 'about_logo.png'}}" />
+        <view class="name">维士小盒饭</view>
+        <view class="version">Version 1.0.0</view>
+    </view>
+    <view class="contact">
+        <view class="list" bind:tap="about">
+            <view class="name">维士介绍</view>
+            <view class="col-r">
+                <image src="{{imgPrefix + 'arrow.png'}}" />
+            </view>
+        </view>
+        <view class="list" bind:tap="xy">
+            <view class="name">维士用户协议</view>
+            <view class="col-r">
+                <image src="{{imgPrefix + 'arrow.png'}}" />
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,74 @@
+<!-- pages/predefine/showCateList/showCateList.wxml -->
+<cp-nav-bar title-text="{{showAllList.date}}" color="#000" background="#FFFFFF"></cp-nav-bar>
+<!-- 健康分总览 -->
+<view class="healthScore-overview" bind:tap="toHealthScore" wx:if="{{!mode}}">
+  <image class="overview-bg" mode="widthFix" src="https://prodstatic.oss-cn-shenzhen.aliyuncs.com/api/smartFood/health-score-bg.png">
+    <image mode="widthFix" src="https://prodstatic.oss-cn-shenzhen.aliyuncs.com/api/smartFood/health-score-bg-sub.png" />
+  </image>
+  <view class="overview-info">
+    <view class="overview-info-man">
+      <image src="{{subInfo.defaultAvatar || userInfo.headImgUrl}}" />
+      <text>{{subInfo.tsuSubUname || userInfo.uname}}</text>
+    </view>
+    <view class="overview-info-meal">{{date}} {{category}}</view>
+  </view>
+  <view class="overview-score">
+    <view class="overview-score-fen">
+      <text>{{healthScore}}</text>
+      <text>分</text>
+    </view>
+    <view class="overview-score-tip">已超越{{overRankPart}}%的用户</view>
+  </view>
+</view>
+<view class="box" wx:if="{{mode === 'ai'}}">
+  <view class="list" wx:for="{{showAllList.cateList}}">
+    <view class="category">{{item._date}} {{categoryStatus[item.category]}}</view>
+    <view class="skuList" wx:for="{{item.$dietOrderDetails}}" wx:for-item="items">
+      <view class="sku-l">
+        <view class="img">
+          <image src="{{items.skuImgUrl}}" />
+        </view>
+        <view class="info-box">
+          <view class="name">{{items.skuname}}</view>
+          <view class="tag-s">
+            <view class="small" wx:for="{{items.dietLabelList}}" wx:if="{{index <= 2}}">
+              {{item.desc}}
+            </view>
+          </view>
+          <view class="price">
+            <view class="symbol">￥</view>
+            <view class="money">{{items.price}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="num">x{{items.num}}</view>
+    </view>
+  </view>
+</view>
+<view class="box" wx:else>
+  <view class="list" wx:for="{{showAllList.cateList}}">
+    <view class="category">{{categoryStatus[item.category]}}</view>
+    <view class="skuList" wx:for="{{item.detailMapList}}" wx:for-item="items">
+      <view class="sku-l">
+        <view class="img {{items.dataStt && !hidePrice ? 'active' : ''}}">
+          <image src="{{items.primaryImgUrl}}" />
+          <view class="shadow" wx:if="{{items.dataStt && !hidePrice}}">
+            <view class="tag">已售罄</view>
+          </view>
+        </view>
+        <view class="info-box">
+          <view class="name">{{items.skuName || items.name}}</view>
+          <view class="tag-s">
+            <view class="small" wx:for="{{items.dietLabelList}}">{{item.desc}}</view>
+          </view>
+          <view class="price {{items.dataStt ? 'active' : ''}}" wx:if="{{!hidePrice}}">
+            <view class="symbol">￥</view>
+            <view class="money">{{items.price}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="num" wx:if="{{!items.dataStt || hidePrice}}">x{{items.num}}</view>
+      <view class="num" wx:else>已售罄</view>
+    </view>
+  </view>
+</view>

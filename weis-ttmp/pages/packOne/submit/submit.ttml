@@ -1,0 +1,45 @@
+<!-- e:\project\weis-ttmp\weis-ttmp-nlm\weis-ttmp\pages\packOne\submit\submit\submit.ttml -->
+<cp-nav-bar title-text="提交订单" />
+<view class="submit">
+    <!-- 头部 -->
+    <view class="header">
+        <!-- 信息 -->
+        <view class="info">
+            <image class="info_l" src="{{mealDetail.tdp_cover_img[0]}}" />
+           <view class="info_r">
+                <view class="name">{{mealDetail.tdp_name}}</view>
+                <view class="price">
+                    <view class="price_now">¥<text>{{mealDetail.tdp_sale_price}}</text></view>
+                    <view class="price_origin">¥{{mealDetail.tdp_combo_price}}</view>
+                </view>
+           </view>
+        </view>
+        <!-- 描述 -->
+        <view class="desc">
+            <view class="list">
+                <image class="list_img" src="{{imgPrefix}}selectGd.png" />
+                <view class="list_word">核销期限：30天</view>
+            </view>
+            <view class="list">
+                <image class="list_img" src="{{imgPrefix}}selectGd.png" />
+                <view class="list_word">未核销无条件退款</view>
+            </view>
+        </view>
+    </view>
+    <!-- 支付方式 -->
+    <view class="payMethod">
+        <view class="payMethod_l">支付方式</view>
+        <view class="payMethod_r">
+            <image src="{{imgPrefix}}WeChat.png" />
+            微信支付
+        </view>
+    </view>
+    <!-- 底部 -->
+    <view class="footer">
+        <view class="price">
+            <view class="price_now">¥<text>{{mealDetail.tdp_sale_price}}</text></view>
+            <view class="price_origin">¥{{mealDetail.tdp_combo_price}}</view>
+        </view>
+        <view class="buy" bindtap="submit">提交订单</view>
+    </view>
+</view>

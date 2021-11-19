@@ -1,0 +1,319 @@
+<!-- pages/solution/tenMeal/placeOrder/placeOrder.wxml -->
+<cp-nav-bar title-text="提交订单" backIconColor></cp-nav-bar>
+<wxs module="filters" src="../../../../utils/filter.wxs"></wxs>
+<view class="submit">
+  <view class="wrap">
+    <view class="list_wrap" wx:if="{{!loading}}">
+      <view class="hot-wrap-list">
+        <view class="box" wx:for="{{orders}}" wx:key="orderIndex" wx:for-index="orderIndex">
+          <view class="head">
+            <view class="name name-bold">{{item._date}} {{item.hpidName}}</view>
+          </view>
+          <view class="category-box">
+            <view class="type-box">
+              <view class="ps-type">
+                <view
+                  class="type {{psItem.selfTaking == item.distributionMode ? 'active'+psItem.selfTaking : ''}}"
+                  data-index="{{orderIndex}}"
+                  data-taking="{{psItem.selfTaking}}"
+                  bind:tap="changePs"
+                  wx:for="{{deliveryType}}"
+                  wx:for-index="psIndex"
+                  wx:key="key"
+                  wx:for-item="psItem"
+                >
+                  <view class="type-name">{{psItem.name}}</view>
+                  <image
+                    class="{{item.distributionMode == 1 ? 'active' : ''}}"
+                    wx:if="{{psItem.selfTaking == item.distributionMode}}"
+                    src="{{item.distributionMode == 0 ? '/images/ps.png' : '/images/zq.png'}}"
+                  />
+                </view>
+              </view>
+              <!-- 配送 -->
+              <view class="ps" wx:if="{{item.distributionMode == 0}}">
+                <view class="time modetype" data-index="{{orderIndex}}">
+                  <view class="time-l">
+                    <image src="/images/package.png" />
+                    <view class="name">配送方式</view>
+                  </view>
+                  <view class="time-r">
+                    <view class="mode {{item.tpscShipWithCold === '00' ? 'red' : 'blue'}}">
+                      <view class="mode-name">{{item._dispatchTag}}</view>
+                    </view>
+                  </view>
+                </view>
+                <view
+                  class="address"
+                  data-index="{{orderIndex}}"
+                  data-type="hot"
+                  bind:tap="changeAddress"
+                >
+                  <view class="left">
+                    <image class="icon" src="/images/order_list_address.png" />
+                    <view class="c">
+                      <view
+                        wx:if="{{item.receivingAddress}}"
+                        class="location"
+                      >{{item.receivingAddress}}</view>
+                      <view wx:else class="location" style="margin-bottom: 0;">请添加地址</view>
+                      <view class="info">
+                        <view class="name">{{item.consignee}}</view>
+                        <view class="phone">{{item.contactNumber}}</view>
+                      </view>
+                    </view>
+                  </view>
+                  <view class="arrow">
+                    <image src="/images/list_next.png" />
+                  </view>
+                </view>
+                <!-- 取餐时间 -->
+                <view
+                  class="time no-line"
+                  data-index="{{orderIndex}}"
+                  data-disabled="{{!item.timeChangeable}}"
+                  bind:tap="changeTime"
+                >
+                  <view class="time-l">
+                    <image src="/images/order_list_time.png" />
+                    <view class="name">送达时间</view>
+                  </view>
+                  <view class="time-r">
+                    <view class="get">{{item.mealTakingTime}}</view>
+                    <image wx:if="{{item.timeChangeable}}" src="/images/list_next.png" />
+                  </view>
+                </view>
+              </view>
+              <!-- 自取 -->
+              <view class="ps" wx:else>
+                <view class="time modetype" data-index="{{orderIndex}}">
+                  <view class="time-l">
+                    <image src="/images/package.png" />
+                    <view class="name">配送方式</view>
+                  </view>
+                  <view class="time-r">
+                    <view class="mode {{item.tpscShipWithCold === '00' ? 'red' : 'blue'}}">
+                      <view class="mode-name">{{item._dispatchTag}}</view>
+                    </view>
+                    <!-- <image src="/images/my_next.png" /> -->
+                  </view>
+                </view>
+                <view class="time" data-index="{{orderIndex}}" bind:tap="changeTime">
+                  <view class="time-l">
+                    <image src="/images/order_list_time.png" />
+                    <view class="name">取餐时间</view>
+                  </view>
+                  <view class="time-r">
+                    <view class="get">{{item.mealTakingTime}}</view>
+                    <image src="/images/list_next.png" />
+                  </view>
+                </view>
+                <view class="address">
+                  <view class="left">
+                    <image class="icon" src="/images/order_list_address.png" />
+                    <view class="c">
+                      <view
+                        class="location"
+                      >{{item.heatingPoint.name}}：{{item.heatingPoint.shopAddress}}</view>
+                    </view>
+                  </view>
+                </view>
+                <view class="time">
+                  <view class="time-l">
+                    <image src="/images/iphone.png" />
+                    <view class="name">联系方式</view>
+                  </view>
+                  <view class="time-r time-zq">
+                    <view class="num">{{item.heatingPoint.shopTel}}</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="main-goods">
+            <view
+              class="main-goods__item"
+              wx:for="{{item.list}}"
+              wx:for-item="meal"
+              wx:for-index="mealIndex"
+              wx:key="index"
+            >
+              <view class="goods-date">{{meal._date}} {{meal._categoryText}}</view>
+              <view class="good-box">
+                <scroll-view class="good-scroll" scroll-x="{{true}}" style="width: 480rpx;">
+                  <view
+                    class="good"
+                    wx:for="{{meal.$dietOrderDetails}}"
+                    wx:for-item="sku"
+                    wx:key="key"
+                  >
+                    <image class="icon" src="{{sku.skuImgUrl}}" />
+                    <view class="name">{{sku.skuname}}</view>
+                  </view>
+                </scroll-view>
+                <view class="good-price-box">
+                  <view
+                    class="good-price-box__box"
+                    data-index="{{orderIndex}}"
+                    bind:tap="viewGoodsTap"
+                  >
+                    <view class="good-price">
+                      <view class="good-price__price">￥{{meal.orderPrice}}</view>
+                      <view class="good-price__count">共{{meal.$dietOrderDetails.length}}件</view>
+                    </view>
+                    <image class="good-price-icon" src="/images/list_next.png" />
+                  </view>
+                </view>
+              </view>
+              <view class="tableware">
+                <view class="tableware__title">环保餐具</view>
+                <view class="tableware__list">
+                  <view
+                    class="tableware__item"
+                    wx:for="{{tablewareList}}"
+                    wx:key="index"
+                    data-order-index="{{orderIndex}}"
+                    data-meal-index="{{mealIndex}}"
+                    data-cid="{{item.cid}}"
+                    data-checked="{{filters.hasTableware(item.cid, meal.dietOrderDetails)}}"
+                    bind:tap="tablewareTap"
+                  >
+                    <image
+                      wx:if="{{filters.hasTableware(item.cid, meal.dietOrderDetails)}}"
+                      class="tableware__icon"
+                      src="/images/order_list_select.png"
+                    />
+                    <image wx:else class="tableware__icon" src="/images/order_list_unchecked.png" />
+                    <view class="tableware__name">{{item.skuname}}</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="recharge-bar" bind:tap="rechargeTap">
+        <image
+          class="left-img"
+          src="https://prodstatic.weis1606.cn/api/smartFood/tag_%E6%8A%98.png"
+        />
+        <view class="recharge-bar-l">
+          <view class="recharge-bar-d" wx:for="{{rechargeCardList}}" wx:key="key">
+            充值{{item.cardModelBean.amount}} 送
+            <text>{{item.$present}}</text>
+          </view>
+        </view>
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/btn_%E5%85%85%E5%80%BC.png" />
+      </view>
+      <view class="total-box">
+        <view class="total-item">
+          <view>套餐合计</view>
+          <view>¥{{totalPriceSum}}</view>
+        </view>
+        <view class="total-item">
+          <view class="delivery-label">
+            <view>环保餐具</view>
+          </view>
+          <view>
+            <view class="delivery-price">¥{{tablewarePrice}}</view>
+            <view class="delivery-subsidy">共{{tablewareSum}}套</view>
+          </view>
+        </view>
+        <view class="total-item" wx:if="{{advanceRewards && advanceRewards > 0}}">
+          <view>预订奖励金</view>
+          <view style="color: #FE5E0F;">-¥{{advanceRewards}}</view>
+        </view>
+        <view class="total-item" wx:if="{{totalPackageFee != 0}}">
+          <view>冷鲜保温袋{{totalPackageNum}}个</view>
+          <view>¥{{totalPackageFee}}</view>
+        </view>
+        <view class="total-item">
+          <view>折扣</view>
+          <view>-¥{{currDiscount}}</view>
+        </view>
+        <!-- 卡券 -->
+        <view class="total-item" wx:if="{{fromPage == 'coachMeal' || fromPage == 'moreMeal'}}" bind:tap="toCoupon">
+          <view>优惠券</view>
+          <view class="coupon">
+              <view class="num color" wx:if="{{coupon}}">{{'-￥' + coupon.tcuAmount}}</view>
+              <view class="num {{useCouponNum ? 'color' : ''}}" wx:else>
+                {{useCouponNum ? useCouponNum+'张可用' : '暂无可用'}}
+              </view>
+              <image class="arrow" src="/images/my_next.png" />
+          </view>
+        </view>
+        <view class="total-item">
+          <view class="delivery-label">
+            <view>配送费</view>
+            <view class="delivery-tag">顺丰专送</view>
+          </view>
+          <view>
+            <!-- 字段更改 -->
+            <!-- <view class="delivery-price">¥{{filters.toFix(shipDeliveryFee - discountsDeliveryFee)}}</view> -->
+            <view class="delivery-price">¥{{filters.toFix(shipDeliveryFee)}}</view>
+            <view class="delivery-subsidy">商家补贴：{{discountsDeliveryFee}}元</view>
+          </view>
+        </view>
+        <view class="total-item">
+          <view>实际付款</view>
+          <!-- 字段更改 -->
+          <!-- <view style="color: #FE5E0F;">¥{{actualPrice}}</view> -->
+          <view style="color: #FE5E0F;">¥{{actualPriceSum}}</view>
+        </view>
+      </view>
+      <view class="white" style="height:200rpx"></view>
+    </view>
+    <view class="loading" wx:else>
+      <van-loading size="20" text-size="12" color="#FF5959" type="spinner" vertical>加载中...</van-loading>
+    </view>
+  </view>
+</view>
+<view class="btn-box">
+  <view class="submit-btn-box">
+    <view class="submit-price">
+      <view class="price-1">
+        <text style="font-size: 24rpx;">￥</text>
+        <!-- 字段更改 -->
+        <!-- <text style="font-size: 36rpx;">{{totalPrice}}</text> -->
+        <text style="font-size: 36rpx;">{{actualPriceSum}}</text>
+      </view>
+      <view
+        wx:if="{{rechargeCard}}"
+        class="price-2"
+      >含饭票￥{{rechargeCard.totalAmount}}，支付后余额扣除￥{{actualPrice}}</view>
+      <!-- 字段更改 -->
+      <!-- <view wx:else class="price-2">已优惠￥{{discounts}}</view> -->
+      <view wx:else class="price-2">已优惠￥{{currTotalDiscount}}</view>
+    </view>
+    <view class="btn" bind:tap="submit">去支付</view>
+  </view>
+</view>
+<view class="getTime" wx:if="{{showMealTakingTime}}" catchtouchmove="true">
+  <view class="wrap {{showMealTakingTime ? 'active' : ''}}">
+    <view class="head">
+      <view class="col-l" bind:tap="cancelTime">取消</view>
+      <view class="name">{{timeSelectTitle}}</view>
+      <view class="sure" bind:tap="sureTime">确定</view>
+    </view>
+    <scroll-view scroll-y="{{true}}" style="height:288rpx" class="box">
+      <view
+        class="time"
+        wx:for="{{timeList}}"
+        wx:key="key"
+        bind:tap="selectTime"
+        data-time="{{item}}"
+      >
+        <view class="txt {{shortTime == item ? 'active' : ''}}">{{item}}</view>
+        <image wx:if="{{shortTime == item}}" src="/images/order_list_select.png" />
+      </view>
+    </scroll-view>
+  </view>
+  <view class="empty" bind:tap="cancelTime"></view>
+</view>
+<cp-pay-popup
+  show="{{showPay}}"
+  balance-support="{{payConfig.balanceSupport}}"
+  protocol="{{payConfig.protocol}}"
+  bind:on-confirm="payConfirm"
+  id="pay"
+></cp-pay-popup>

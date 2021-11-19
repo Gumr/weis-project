@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "cp-bottom-popup": "/components/cp-bottom-popup/cp-bottom-popup",
+    "cp-null": "/components/cp-null/cp-null"
+  }
+}

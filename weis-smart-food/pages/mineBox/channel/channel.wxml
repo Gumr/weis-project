@@ -1,0 +1,82 @@
+<!-- pages/mineBox/channel/channel.wxml -->
+<cp-nav-bar title-text="我的渠道码" background="#F3F4F5" color="#000000" backIconColor="black" />
+<view class="container" wx:if="{{roleId != '100002'}}">
+  <view class="channel-add" bindtap="showCreateFn">
+    <image class="icon" src="/images/my/icon-channel_add.png" />
+    <text>生成新渠道码</text>
+  </view>
+  <view class="channel-has">
+    <view class="channel-has_title">
+      <text>我的渠道码</text>
+      <text>(现有{{channelCodes.length}}个)</text>
+      <image src="/images/scan_code.png" bind:tap="scanCode" />
+    </view>
+    <view class="channel-has_each" wx:for="{{channelCodes}}" wx:key="index">
+      <view class="info-box">
+        <view class="name">{{item.name}}</view>
+        <view class="time">生成时间：{{item.ctime}}</view>
+      </view>
+      <view class="channel-has_each_r">
+        <view data-index="{{index}}" bindtap="showCodeFn">
+          <image src="/images/my/icon-channel_code.png" />
+          <view>渠道码</view>
+        </view>
+        <view data-name="{{item.name}}" data-id="{{item.code}}" bindtap="goCustomerFn">
+          <image class="icon" src="/images/my/icon-channel_cus.png" />
+          <view>客户</view>
+        </view>
+      </view>
+    </view>
+    <!-- 无渠道码 -->
+    <view class="no" wx:if="{{channelCodes.length == 0}}">
+      <image src="https://prodstatic.weis1606.cn/api/smartFood/%E7%BC%96%E7%BB%84%2010%E5%A4%87%E4%BB%BD.png" />
+      <view class="channelCode">无渠道码</view>
+    </view>
+  </view>
+</view>
+<!-- 内部2B拓展经理 -->
+<view class="container container-100002">
+  <image class="icon" data-type="tz" bind:tap="previewImg" src="{{qrCodeUrl}}" />
+</view>
+<!-- 生成渠道码 -->
+<van-popup show="{{showCreate}}" round close-on-click-overlay bind:close="hideModal" position="bottom">
+  <view class="popup-create">
+    <view class="popup-tit">
+      <image class="icon" src="/images/icon_down.png" bindtap="hideModal" />
+      <text>{{editType === 'create' ? '请输入渠道码名称' : '修改渠道码名称'}}</text>
+    </view>
+    <view class="ipt-box">
+      <input type="text" focus="{{focus}}" adjust-position="{{true}}" cursor-spacing="{{120}}" placeholder="最多12个字" maxlength="12" value="{{channel}}" bindinput="inputFn" />
+      <view class="icon-box" wx:if="{{channel.length > 0}}" bindtap="clear">
+        <image class="icon" src="/images/my/closein.png" />
+      </view>
+    </view>
+    <view class="popup-btn {{channel.length === 0 ? 'disabled' : ''}}" bind:tap="generateFn">
+      {{editType === 'create' ? '生成' : '保存'}}
+    </view>
+  </view>
+</van-popup>
+<!-- 渠道码详情 -->
+<van-popup show="{{showCode}}" round close-on-click-overlay bind:close="hideModal" position="bottom">
+  <view class="popup-detail">
+    <view class="popup-tit">
+      <image class="icon" src="/images/icon_down.png" bindtap="hideModal" />
+      <text>渠道码详情</text>
+    </view>
+    <view class="content">
+      <image class="code" src="{{channelCodes[editIndex].url}}" />
+      <view class="name-box" bindtap="editChannelCode">
+        <text>{{channelCodes[editIndex].name}}</text>
+        <image class="icon" src="/images/my/icon-channel_edit.png" />
+      </view>
+    </view>
+    <view class="popup-btn" bind:tap="previewImg">点击后，长按发送</view>
+  </view>
+</van-popup>
+<!-- 二维码详情 -->
+<cp-confirm-dialog show="{{showDialog}}" title="该二维码/渠道码内信息" confirmStyle="width: 560rpx;height: 72rpx" showCancel="{{false}}" bind:on-confirm="hide">
+  <view class="info" wx:if="{{info.qrcodeName}}">二维码/渠道码名称：{{info.qrcodeName}}</view>
+  <view class="info" style="margin-bottom: 0">
+    所属饮食顾问：{{info.counselorName}}  {{info.counselorPhone}}
+  </view>
+</cp-confirm-dialog>

@@ -1,0 +1,41 @@
+.dialog {
+  width:600rpx;
+  height:390rpx;
+  background:rgba(255,255,255,1);
+  border-radius:20rpx;
+  margin: 0 auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  .tips {
+    margin: 114rpx 0;
+    text-align: center;
+  }
+  .options {
+    padding: 0 36rpx;
+    box-sizing: border-box;
+    margin-bottom: 48rpx;
+    .flex();
+    justify-content: space-between;
+    .opt {
+      width:254rpx;
+      height:72rpx;
+      line-height:72rpx;
+      background:rgba(224,224,224,1);
+      border-radius:6rpx;
+      text-align: center;
+      &.confirm {
+        background:rgba(250,100,0,1);
+        color: #fff;
+      }
+    }
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}

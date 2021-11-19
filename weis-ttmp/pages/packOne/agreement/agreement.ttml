@@ -1,0 +1,5 @@
+<!-- e:\project\weis-ttmp\weis-ttmp-nlm\weis-ttmp\pages\packOne\agreement\agreement.ttml -->
+<cp-nav-bar title-text="{{title}}" />
+<view class="agreement" style="padding: 0 45rpx;">
+     <rich-text nodes="{{htmlSnip}}"></rich-text>
+</view>

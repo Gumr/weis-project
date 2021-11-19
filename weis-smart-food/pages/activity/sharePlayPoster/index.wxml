@@ -1,0 +1,35 @@
+<!--pages/market/sharePlayPoster/index.wxml-->
+<cp-nav-bar  title-text="分享海报"  home-icon="/images/backHome.png" background="transparent" backIconColor="black" ></cp-nav-bar>
+<view class="myPoster">
+  <image class="newposterbg"src="https://prodstatic.weis1606.cn/api/sodo/newposterbgs.png" />
+  <view class="cardInfo">
+     <image src="{{cardList.playBase.cImgUrl}}" />
+     <view class="carddre"><view>{{cardList.playBase.cbannerTitle}}</view><view> {{cardList.playBase.cdescription}}</view></view>
+     <view class="playdata">
+     <view><view>能量</view><view>{{planData.tpdTotalKcal}}千卡</view></view>
+     <view><view>蛋白质</view><view>{{calculationMethod == '01'?planData.tpdProteinTotal: planData.tpdFixedProteinTotal}}克</view></view>
+     <view><view>碳水</view><view>{{planData.tpdCarbohydrateTotal}}克</view></view>
+     <view><view>脂肪</view><view>{{planData.tpdFatTotal}}克</view></view>
+     </view>
+     <view class="eatplay">
+      <view class="pos">
+        <image src="{{cardList.playBase.cbackImgUrl}}" />
+        <view class="alreadyDay">
+         {{uname}}最近的吃法
+        </view>
+         <view class="banneryiy">
+            <view>{{cardList.playBase.cbannerTitle}}</view>
+            <view>{{cardList.playBase.cbannerDescription}}</view>
+         </view>
+        <image class="qrcode" src="{{QrCodePromiser}}" />
+      </view>
+     </view>
+  </view>
+  <view
+    class="share-btn"
+    bindtap="saveShareTap"
+  >保存海报立即分享</view>
+ 
+</view>
+<canvas class="canvas" canvas-id="canvas"></canvas>
+

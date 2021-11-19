@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "cp-editPlan-dialog": "/components/cp-editPlan-dialog/cp-editPlan-dialog",
+    "cp-confirm-dialog": "/components/cp-confirm-dialog/cp-confirm-dialog"
+  }
+}

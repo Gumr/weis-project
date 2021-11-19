@@ -1,0 +1,119 @@
+<!--pages/mineBox/forecast/forecast/forecast.wxml-->
+<cp-nav-bar
+  week="{{week}}"
+  mode="week"
+  backIconColor="white"
+  background="linear-gradient(180deg, #FF9F00 0%, #FF8500 100%)"
+  hideHome="true"
+  bind:week-change="headTap"
+></cp-nav-bar>
+
+<view class="forecast">
+  <view class="tip">长按可编辑的数字，可将该数字覆盖本周所有日期</view>
+  <view class="content">
+    <!-- 左侧-名称 -->
+    <view class="name">
+      <view class="header" bind:tap="setWeek">
+        <image class="header_image" src="/images/set.png" />
+        <view class="header_word">{{nameBeans.title}}</view>
+      </view>
+      <view class="column">
+        <view wx:for="{{nameBeans.value}}">{{item}}</view>
+      </view>
+    </view>
+
+    <scroll-view scroll-x="{{true}}" style="width:566rpx;white-space: nowrap;font-size: 0;overflow: hidden;">
+      <!-- 中间-数值 -->
+      <view class="num" wx:for="{{listBeans}}" style="vertical-align: top">
+        <view class="header">
+          <view class="header_day">{{item.day}}</view>
+          <view class="header_week">{{item.weeks}}</view>
+        </view>
+        <view class="column">
+          <view wx:for="{{item.messageBeanList}}" wx:for-item="item1" wx:for-index="index1" data-index1="{{index1}}" data-tgfstt="{{item1.tgfStt}}" data-tgfdnum="{{item1.tgfdNum}}" bindlongpress="longpress">
+            <input
+              wx:if="{{item1.tgfdMealId}}"
+              class="{{item1.tgfStt == '10'?'disabled':''}}"
+              disabled="{{item1.tgfStt == '10'}}"
+              type="number"
+              value="{{item1.tgfdNum}}"
+              data-index="{{index}}"
+              data-index1="{{index1}}"
+              bindinput="inputChange"
+            />
+            <text wx:else>无</text>
+          </view>
+        </view>
+      </view>
+      <!-- 右侧-总计 -->
+      <view class="total" style="vertical-align: top">
+        <view class="header">
+          <view class="header_word">{{totalBeans.title}}</view>
+        </view>
+        <view class="column">
+          <view wx:for="{{totalBeans.value}}">{{item}}</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 1：提交  2：提交修改  3：本周未提交  4：已提交，不可修改数据 -->
+  <view class="bottom">
+    <view class="tips" wx:if="{{btnStatus == 2}}">已提交，在12：00前可修改两日后的预测数据</view>
+    <view class="btn">
+      <view
+        class="submit"
+        wx:if="{{btnStatus == 1 || btnStatus == 2}}"
+        bind:tap="submit"
+      >{{btnStatus == 1?'提交':'提交修改'}}</view>
+      <view
+        class="submit disable"
+        wx:if="{{btnStatus == 3 || btnStatus == 4}}"
+      >{{btnStatus == 3?'本周未提交':'已提交，不可修改数据'}}</view>
+    </view>
+  </view>
+</view>
+
+<!-- 设置显示周几的数据-弹窗 -->
+<cp-confirm-dialog
+  model:show="{{setWeekShow}}"
+  showClose
+  leftClose
+  showCancel="{{false}}"
+  title="设置本周显示日期"
+  confirmText="确定"
+  titleStyle="margin: 34rpx 40rpx 44rpx"
+  confirmStyle="width: 450rpx;margin: 0 55rpx"
+  bind:on-confirm="setWeekConfirm"
+>
+  <view class="setWeek">
+    <view
+      class="list"
+      wx:for="{{setWeek}}"
+      wx:key="key"
+      data-index="{{index}}"
+      bind:tap="setWeekChange"
+    >
+      <image
+        class="icon"
+        src="{{item.checked?'/images/week_select.png':'/images/week_unselect.png'}}"
+      />
+      <view class="name">{{item.name}}</view>
+    </view>
+  </view>
+</cp-confirm-dialog>
+
+<!-- 日期批量修改-弹窗 -->
+<cp-confirm-dialog
+  model:show="{{dateModifyShow}}"
+  showClose
+  leftClose
+  showCancel="{{false}}"
+  title=" "
+  confirmText="确定"
+  titleStyle="margin: 34rpx 40rpx 44rpx"
+  confirmStyle="width: 450rpx;margin: 0 55rpx"
+  bind:on-confirm="dateModifyConfirm"
+>
+  <view class="dateModify">{{dateModifyText}}</view>
+</cp-confirm-dialog>

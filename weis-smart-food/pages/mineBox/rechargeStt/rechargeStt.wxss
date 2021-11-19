@@ -1,0 +1,82 @@
+.rechargeStt {
+  width: 100%;
+  padding-top: 86rpx;
+  text-align: center;
+}
+.rechargeStt .icon {
+  width: 180rpx;
+  height: 180rpx;
+  margin-bottom: 32rpx;
+}
+.rechargeStt .status {
+  font-size: 40rpx;
+  font-weight: 550;
+  color: #333333;
+  line-height: 56rpx;
+  margin-bottom: 20rpx;
+}
+.rechargeStt .cash {
+  margin-bottom: 5rpx;
+}
+.rechargeStt .cash .amount {
+  font-family: "DINCondensedC";
+  color: #333333;
+  font-weight: bold;
+}
+.rechargeStt .cash .amount .amount__fh {
+  font-size: 50rpx;
+}
+.rechargeStt .cash .amount .amount__je {
+  font-size: 96rpx;
+}
+.rechargeStt .tip {
+  font-size: 28rpx;
+  color: #666666;
+  line-height: 40rpx;
+}
+.rechargeStt .tips {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #666666;
+  margin-top: 60rpx;
+  width: 590rpx;
+  margin-left: 80rpx;
+}
+.rechargeStt .btnBox {
+  margin-top: 100rpx;
+}
+.rechargeStt .btnBox .success {
+  width: 420rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+  border-radius: 50rpx;
+  font-size: 36rpx;
+  color: #ffffff;
+  text-align: center;
+  margin: 0 auto;
+}
+.rechargeStt .btnBox .fail {
+  padding: 0 85rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.rechargeStt .btnBox .fail view {
+  width: 280rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  text-align: center;
+}
+.rechargeStt .btnBox .fail view.back {
+  border: 2rpx solid #fa6400;
+  color: #fa6400;
+}
+.rechargeStt .btnBox .fail view.again {
+  background: linear-gradient(135deg, #ff9722 0%, #fe5e0f 100%);
+  color: #ffffff;
+}

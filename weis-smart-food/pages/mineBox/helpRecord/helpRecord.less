@@ -1,0 +1,99 @@
+.border {
+    display: block;
+    content: "";
+    width: 100%;
+    height: 1rpx;
+    background: #000000;
+    opacity: 0.1;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  .detail {
+    width: 100%;
+    // 列表内容
+    .list {
+      padding: 16rpx 30rpx 0;
+      .each {
+        height: 124rpx;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        // 图标
+        image {
+          width: 56rpx;
+          height: 56rpx;
+          margin-right: 24rpx;
+        }
+  
+        // 内容
+        .content {
+          position: relative;
+          display: flex;
+          align-items: center;
+          width: 610rpx;
+          height: 124rpx;
+          &::after {
+            .border();
+            bottom: 0;
+          }
+          .main {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            .main__left {
+              text {
+                font-size: 26rpx;
+                font-weight: bold;
+                color: #333333;
+                line-height: 26rpx;
+                margin-bottom: 10rpx;
+                display: block;
+              }
+              view {
+                font-size: 20rpx;
+                color: #a9a9a9;
+                line-height: 20rpx;
+              }
+            }
+            .main__right {
+              text-align: right;
+              text {
+                font-size: 30rpx;
+                font-family: "DINCondensedC";
+                font-weight: bold;
+                color: #333333;
+                line-height: 30rpx;
+                margin-bottom: 10rpx;
+                display: block;
+              }
+              view {
+                font-size: 20rpx;
+                color: #a9a9a9;
+                line-height: 20rpx;
+              }
+              .active {
+                color: #fe5e0f;
+              }
+            }
+          }
+        }
+      }
+    }
+    // 空状态
+    .null {
+      margin-top: 232rpx;
+      text-align: center;
+      image {
+        width: 320rpx;
+        height: 240rpx;
+        margin-bottom: 40rpx;
+      }
+      view {
+        font-size: 30rpx;
+        color: #d3d3d3;
+      }
+    }
+  }
+  

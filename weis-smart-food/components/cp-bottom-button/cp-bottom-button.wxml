@@ -1,0 +1,12 @@
+<!--components/fixed-button/fixed-button.wxml-->
+<view
+  class="fixed-button"
+  style="z-index: {{zIndex}}; background-color: {{backgroundColor}}; padding-bottom: {{isIpx ? 84 : 30}}rpx; {{customStyle}}"
+>
+  <slot wx:if="{{useSlot}}"></slot>
+  <view
+    wx:else
+    catch:tap="buttonTap"
+    class="button {{disabled ? 'button--disabled' : ''}} {{radius ? 'button--radius' : ''}}"
+  >{{title}}</view>
+</view>

@@ -1,0 +1,300 @@
+page {
+  background: #fafafa;
+}
+.borderRight {
+  display: block;
+  content: "";
+  width: 1rpx;
+  height: 32rpx;
+  background: #d8d8d8;
+  position: absolute;
+  right: -40rpx;
+  margin: auto;
+}
+.borderBottom {
+  display: block;
+  content: "";
+  width: 690rpx;
+  height: 1rpx;
+  background: #333333;
+  opacity: 0.1;
+  position: absolute;
+  left: 0;
+  margin: auto;
+}
+.flex {
+  display: flex;
+}
+.flex-items-center {
+  display: flex;
+  align-items: center;
+}
+.flex-content-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.coachDetail {
+  width: 100%;
+  padding-bottom: 156rpx;
+}
+.coachDetail .navBarBg {
+  width: 100%;
+  height: 750rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+.coachDetail .header {
+  background: linear-gradient(180deg, rgba(250, 250, 250, 0) 0%, #fafafa 100%);
+  padding: 72rpx 30rpx 50rpx;
+  margin-top: 24rpx;
+}
+.coachDetail .header .personal {
+  background: #ffffff;
+  box-shadow: 0rpx 4rpx 24rpx -6rpx rgba(186, 186, 186, 0.3);
+  border-radius: 10rpx;
+  padding: 46rpx 44rpx 67rpx;
+  height: 348rpx;
+}
+.coachDetail .header .personal .top .headImg {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.coachDetail .header .personal .top .info {
+  margin-left: 30rpx;
+}
+.coachDetail .header .personal .top .info__name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 24rpx;
+}
+.coachDetail .header .personal .top .info__label {
+  font-size: 24rpx;
+  color: #333333;
+  margin-bottom: 20rpx;
+  max-width: 452rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.coachDetail .header .personal .top .info__rate .desc {
+  font-size: 24rpx;
+  font-family: "DIN";
+  font-weight: bold;
+  color: #fa6400;
+  margin-left: 10rpx;
+}
+.coachDetail .header .personal .bottom {
+  margin-top: 80rpx;
+}
+.coachDetail .header .personal .bottom .list {
+  position: relative;
+}
+.coachDetail .header .personal .bottom .list:not(:last-child)::after {
+  display: block;
+  content: "";
+  width: 1rpx;
+  height: 32rpx;
+  background: #d8d8d8;
+  position: absolute;
+  right: -40rpx;
+  margin: auto;
+}
+.coachDetail .header .personal .bottom .list__icon {
+  width: 36rpx;
+  height: 36rpx;
+}
+.coachDetail .header .personal .bottom .list__name {
+  font-size: 24rpx;
+  color: #333333;
+  margin-left: 10rpx;
+}
+.coachDetail .content {
+  padding: 0 30rpx;
+}
+.coachDetail .content .box {
+  margin-bottom: 60rpx;
+}
+.coachDetail .content .box .title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 30rpx;
+}
+.coachDetail .content .box .text {
+  font-size: 26rpx;
+  color: #333333;
+  line-height: 52rpx;
+}
+.coachDetail .content .box .addressList .list {
+  background: #ffffff;
+  box-shadow: 0rpx 4rpx 24rpx -6rpx rgba(186, 186, 186, 0.3);
+  border-radius: 10rpx;
+  padding: 30rpx;
+}
+.coachDetail .content .box .addressList .list:not(:last-child) {
+  margin-bottom: 30rpx;
+}
+.coachDetail .content .box .addressList .list .name {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 20rpx;
+}
+.coachDetail .content .box .addressList .list .addr__img {
+  width: 20rpx;
+  height: 24rpx;
+  margin-top: 12rpx;
+}
+.coachDetail .content .box .addressList .list .addr__text {
+  margin-left: 10rpx;
+  width: 550rpx;
+  font-size: 26rpx;
+  color: #333333;
+  line-height: 52rpx;
+}
+.coachDetail .content .box .addressList .list .addr__next {
+  width: 24rpx;
+  height: 24rpx;
+  margin-left: 20rpx;
+}
+.coachDetail .content .box .courseList .list {
+  background: #ffffff;
+  box-shadow: 0rpx 4rpx 24rpx -6rpx rgba(186, 186, 186, 0.3);
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+.coachDetail .content .box .courseList .list__image {
+  width: 335rpx;
+  height: 335rpx;
+}
+.coachDetail .content .box .courseList .list__name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333333;
+  line-height: 28rpx;
+  margin: 20rpx 20rpx 16rpx;
+  max-width: 335rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.coachDetail .content .box .courseList .list__price {
+  font-size: 20rpx;
+  font-weight: bold;
+  color: #fa6400;
+  line-height: 28rpx;
+  margin: 0 20rpx 20rpx;
+}
+.coachDetail .content .box .courseList .list__price text {
+  font-size: 28rpx;
+}
+.coachDetail .content .box .titleTwo__title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+}
+.coachDetail .content .box .titleTwo__comment {
+  width: 132rpx;
+  height: 38rpx;
+  background: #fa6400;
+  border-radius: 20rpx;
+  font-size: 20rpx;
+  color: #ffffff;
+  line-height: 38rpx;
+  text-align: center;
+}
+.coachDetail .content .box .commentList .list {
+  position: relative;
+}
+.coachDetail .content .box .commentList .list::after {
+  display: block;
+  content: "";
+  width: 690rpx;
+  height: 1rpx;
+  background: #333333;
+  opacity: 0.1;
+  position: absolute;
+  left: 0;
+  margin: auto;
+}
+.coachDetail .content .box .commentList .list .head {
+  padding-top: 30rpx;
+}
+.coachDetail .content .box .commentList .list .head__image {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+}
+.coachDetail .content .box .commentList .list .head__name {
+  width: 450rpx;
+  margin-left: 16rpx;
+  color: #333333;
+}
+.coachDetail .content .box .commentList .list .head__name view:nth-child(1) {
+  font-size: 26rpx;
+  font-weight: bold;
+}
+.coachDetail .content .box .commentList .list .head__name view:nth-child(2) {
+  font-size: 24rpx;
+}
+.coachDetail .content .box .commentList .list .text {
+  font-size: 26rpx;
+  color: #333333;
+  line-height: 52rpx;
+  padding: 30rpx 0 20rpx;
+}
+.coachDetail .content .box .commentList .list .img {
+  padding-bottom: 30rpx;
+}
+.coachDetail .content .box .commentList .list .img image {
+  width: 165rpx;
+  height: 165rpx;
+  border-radius: 10rpx;
+}
+.coachDetail .content .box .commentList .list .img image:not(:last-child) {
+  margin-right: 10rpx;
+}
+.coachDetail .content .box .commentList .list .delete {
+  font-size: 22rpx;
+  color: #fa6400;
+  text-align: right;
+  padding-bottom: 30rpx;
+}
+.coachDetail .content .box .commentList .list .delete image {
+  width: 24rpx;
+  height: 24rpx;
+}
+.coachDetail .tail {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  width: 100%;
+  padding: 10rpx 50rpx 58rpx;
+}
+.coachDetail .tail__weChat {
+  width: 315rpx;
+  height: 88rpx;
+  border-radius: 44rpx;
+  border: 1rpx solid #333333;
+  text-align: center;
+  font-size: 36rpx;
+  color: #333333;
+  line-height: 88rpx;
+}
+.coachDetail .tail__contact {
+  width: 315rpx;
+  height: 88rpx;
+  background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+  border-radius: 44rpx;
+  text-align: center;
+  font-size: 36rpx;
+  color: #ffffff;
+  line-height: 88rpx;
+}

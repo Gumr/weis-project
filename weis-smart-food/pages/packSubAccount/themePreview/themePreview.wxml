@@ -1,0 +1,7 @@
+<!--pages/packSubAccount/themePreview/themePreview.wxml-->
+<cp-nav-bar title-text="{{info.title}}" background="#fff" color="#000000" backIconColor="black" />
+
+<view class="theme">
+    <image src="{{info.img}}" />
+    <view class="btn" bind:tap="application">设置为当前表盘</view>
+</view>

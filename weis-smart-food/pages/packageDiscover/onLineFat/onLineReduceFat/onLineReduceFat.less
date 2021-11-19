@@ -1,0 +1,150 @@
+page {
+    background: #F7F7F7;
+}
+
+// 颜色圈
+.color {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8rpx;
+    height: 8rpx;
+    border-radius: 50%;
+  }
+
+.reduce {
+    width: 100%;
+    padding-bottom: 334rpx;
+    .empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 164rpx;
+
+        image {
+            width: 320rpx;
+            height: 240rpx;
+        }
+
+        .desc {
+            color: #A9A9A9;
+            font-size: 28rpx;
+            margin-top: 20rpx;
+        }
+    }
+
+    .box {
+        width: 100%;
+        .content {
+            padding: 40rpx 30rpx 0rpx;
+
+            .list {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 40rpx;
+                background: #FFFFFF;
+                border-radius: 10rpx;
+                padding: 30rpx;
+                position: relative;
+
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+
+                &__image {
+                    width: 160rpx;
+                    height: 160rpx;
+                    border-radius: 10rpx;
+                    margin-right: 30rpx;
+                }
+
+                &__text {
+                    flex-grow: 1;
+
+                    // 名称
+                    .name {
+                        font-size: 36rpx;
+                        font-weight: bold;
+                        color: #333333;
+                        line-height: 42rpx;
+                        margin: 12rpx 0 36rpx;
+                        width: 400rpx;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 1;
+                        overflow: hidden;
+                    }
+
+                    // 日期
+                    .date {
+                        position: relative;
+                        padding-left: 18rpx;
+                        font-size: 24rpx;
+                        color: rgba(51, 51, 51, 0.7);
+                        line-height: 24rpx;
+                        margin-bottom: 14rpx;
+
+                        &::before {
+                            .color();
+                            background: #41C48C;
+                        }
+                    }
+
+                    // 状态
+                    .status {
+                        position: relative;
+                        padding-left: 18rpx;
+                        font-size: 24rpx;
+                        font-weight: bold;
+                        line-height: 24rpx;
+
+                        &::before {
+                            .color();
+                            background: #FE5E0F;
+                        }
+                    }
+                }
+
+                &__label {
+                    position: absolute;
+                    right: 0;
+                    top: 44rpx;
+                    width: 90rpx;
+                    height: 36rpx;
+                    background: #FE5E0F;
+                    border-radius: 22rpx 0rpx 0rpx 22rpx;
+                    font-size: 20rpx;
+                    font-weight: bold;
+                    color: #FFFFFF;
+                    line-height: 36rpx;
+                    padding-left: 20rpx;
+                }
+            }
+        }
+        .tip{
+            color: rgba(51, 51, 51, 0.5);
+            font-size: 24rpx;
+            text-align: center;
+            margin-top: 50rpx;
+        }
+    }
+}
+
+.applyOpen {
+    width: 650rpx;
+    height: 88rpx;
+    background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+    border-radius: 50rpx;
+    color: #FFFFFF;
+    font-size: 36rpx;
+    text-align: center;
+    line-height: 88rpx;
+    position: fixed;
+    bottom: 84rpx;
+    left: 50%;
+    transform: translateX(-50%);
+}

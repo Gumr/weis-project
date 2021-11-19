@@ -1,0 +1,834 @@
+page {
+  background: #f3f4f5;
+}
+.border {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 2rpx;
+  background: #333333;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  bottom: 50%;
+  margin: auto;
+}
+.member {
+  width: 100%;
+  //   padding-bottom: 300rpx;
+  .navBarBg {
+    width: 100%;
+    height: 302rpx;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  // 未开通 && 过期------------------------------
+  .boxOne {
+    padding: 50rpx 30rpx 300rpx;
+    .tip {
+      font-size: 34rpx;
+      font-weight: bold;
+      color: #333333;
+      text-align: center;
+      padding-bottom: 42rpx;
+      text {
+        color: #fa6400;
+      }
+    }
+    // 公共-盒子颜色
+    .boxBg {
+      background: #ffffff;
+      box-shadow: 0rpx 4rpx 24rpx -6rpx rgba(186, 186, 186, 0.3);
+      border-radius: 20rpx;
+      margin-bottom: 30rpx;
+      padding: 0 30rpx;
+    }
+    // 公共-盒子头部
+    .header {
+      display: flex;
+      padding: 30rpx 0 26rpx;
+      margin-left: -40rpx;
+      .tag {
+        position: relative;
+        width: 104rpx;
+        height: 60rpx;
+        image {
+          width: 104rpx;
+          height: 60rpx;
+        }
+        text {
+          position: absolute;
+          left: 8px;
+          top: 3px;
+          font-size: 26rpx;
+          font-weight: bold;
+          color: #82502d;
+        }
+      }
+      .title {
+        font-size: 32rpx;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.85);
+        margin-left: 20rpx;
+        text {
+          color: #fa6400;
+        }
+      }
+    }
+    // 特权1-优惠券
+    .coupon {
+      padding-bottom: 10rpx;
+      .content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .list {
+          position: relative;
+          width: 196rpx;
+          height: 110rpx;
+          margin-bottom: 20rpx;
+          .bg {
+            width: 196rpx;
+            height: 110rpx;
+          }
+          .con {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 196rpx;
+            height: 110rpx;
+            padding: 14rpx 0 16rpx;
+            text-align: center;
+            &_price {
+              font-size: 24rpx;
+              font-weight: bold;
+              color: #fa6400;
+              // line-height: 110rpx;
+              line-height: 24rpx;
+              text {
+                font-size: 52rpx;
+                line-height: 52rpx;
+              }
+            }
+            &_threshold {
+              font-size: 20rpx;
+              color: #7d573d;
+              margin-top: 8rpx;
+            }
+          }
+        }
+      }
+    }
+    // 特权2-加量包
+    .add {
+      padding-bottom: 38rpx;
+      .content {
+        display: flex;
+        .list {
+          .card {
+            position: relative;
+            width: 232rpx;
+            height: 176rpx;
+            margin-right: 20rpx;
+            .bg {
+              width: 232rpx;
+              height: 176rpx;
+            }
+            .con {
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 232rpx;
+              height: 176rpx;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 52rpx 0 70rpx;
+              &_price,
+              &_num {
+                font-size: 24rpx;
+                font-weight: bold;
+                color: #fa6400;
+                line-height: 24rpx;
+                text {
+                  font-size: 52rpx;
+                  line-height: 52rpx;
+                }
+              }
+              &_operator {
+                font-size: 24rpx;
+                font-weight: bold;
+                color: #fb9148;
+                line-height: 24rpx;
+                padding: 0 10rpx;
+              }
+            }
+          }
+          .price {
+            display: flex;
+            align-items: center;
+            margin: 26rpx 0 24rpx;
+            &_now {
+              font-size: 22rpx;
+              font-weight: bold;
+              color: #333333;
+              line-height: 22rpx;
+              text {
+                font-size: 36rpx;
+                font-weight: bold;
+                color: #333333;
+                line-height: 36rpx;
+              }
+            }
+            &_origin {
+              // color: #333333;
+              color: rgba(51,51,51, 0.5);
+              font-size: 22rpx;
+              margin-left: 10rpx;
+              position: relative;
+              &::after {
+                .border();
+              }
+            }
+          }
+          .buy {
+            width: 108rpx;
+            height: 38rpx;
+            background: rgba(250, 100, 0, 0.06);
+            border-radius: 20rpx;
+            font-size: 22rpx;
+            font-weight: bold;
+            color: #fa6400;
+            line-height: 38rpx;
+            text-align: center;
+          }
+        }
+      }
+    }
+    // 特权3-会员标识
+    .sign {
+      .content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 54rpx 0 80rpx;
+        image {
+          width: 120rpx;
+          height: 120rpx;
+          margin-right: 20rpx;
+        }
+        view {
+          font-size: 28rpx;
+          color: rgba(0, 0, 0, 0.85);
+        }
+      }
+    }
+    // 底部
+    .bottom {
+      width: 100%;
+      background: #ffffff;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      text-align: center;
+      padding: 0 50rpx;
+      &_btn {
+        position: relative;
+        width: 650rpx;
+        height: 88rpx;
+        background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+        border-radius: 44rpx;
+        text-align: center;
+        font-size: 36rpx;
+        color: #ffffff;
+        line-height: 88rpx;
+        margin-top: 10rpx;
+        text:nth-child(1) {
+          font-size: 24rpx;
+        }
+        text:nth-child(2) {
+          font-weight: bold;
+          margin-right: 10rpx;
+        }
+        image {
+          width: 310rpx;
+          height: 75rpx;
+          position: absolute;
+          right: 0;
+          top: -24rpx;
+        }
+      }
+      &_record {
+        margin: 30rpx 0 58rpx;
+        text {
+          font-size: 28rpx;
+          color: #999999;
+        }
+        image {
+          width: 24rpx;
+          height: 24rpx;
+        }
+      }
+    }
+  }
+
+  // 开通 && 券用完------------------------------
+  .boxTwo {
+    padding: 50rpx 30rpx 190rpx;
+    .tip {
+      font-size: 34rpx;
+      font-weight: bold;
+      color: #333333;
+      text-align: center;
+      padding-bottom: 42rpx;
+      text {
+        color: #fa6400;
+      }
+    }
+    // 公共-盒子颜色
+    .boxBg {
+      background: #ffffff;
+      box-shadow: 0rpx 4rpx 24rpx -6rpx rgba(186, 186, 186, 0.3);
+      border-radius: 20rpx;
+      margin-bottom: 30rpx;
+      padding: 0 30rpx;
+    }
+    // 公共-盒子头部
+    .header {
+      padding: 30rpx 0 26rpx;
+      .title {
+        font-size: 32rpx;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.85);
+        text {
+          color: #fa6400;
+        }
+      }
+    }
+    // 特权1-优惠券
+    .coupon {
+      padding-bottom: 10rpx;
+      .header {
+        display: flex;
+        justify-content: space-between;
+        .renew {
+          width: 136rpx;
+          height: 46rpx;
+          line-height: 46rpx;
+          background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+          border-radius: 23rpx;
+          font-size: 24rpx;
+          font-weight: bold;
+          color: #ffffff;
+          text-align: center;
+        }
+      }
+      .content {
+        display: flex;
+        .list {
+          position: relative;
+          width: 170rpx;
+          height: 220rpx;
+          margin-right: 20rpx;
+          // 已使用
+          &.haveUsed {
+            .con {
+              color: #666666;
+              &_price {
+                color: #666666;
+              }
+              &_threshold {
+                color: #666666;
+              }
+              &_use {
+                color: #666666;
+                border: none;
+              }
+            }
+          }
+          .bg {
+            width: 170rpx;
+            height: 220rpx;
+          }
+          .con {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 170rpx;
+            height: 220rpx;
+            padding: 20rpx 0 30rpx;
+            text-align: center;
+            &_price {
+              font-size: 24rpx;
+              font-weight: bold;
+              color: #fa6400;
+              // line-height: 110rpx;
+              line-height: 24rpx;
+              text {
+                font-size: 52rpx;
+                line-height: 52rpx;
+              }
+            }
+            &_threshold {
+              font-size: 20rpx;
+              color: #7d573d;
+              margin-top: 8rpx;
+            }
+            &_use {
+              width: 120rpx;
+              height: 38rpx;
+              line-height: 36rpx;
+              border-radius: 20rpx;
+              border: 2rpx solid rgba(125, 87, 61, 0.5);
+              font-size: 20rpx;
+              font-weight: bold;
+              color: #7d573d;
+              // margin: 30rpx auto 0;
+              margin: 60rpx auto 0;
+            }
+          }
+        }
+      }
+      .remark {
+        font-size: 24rpx;
+        color: #7d573d;
+        margin: 30rpx 0 20rpx;
+        &.list {
+          margin-top: 0;
+        }
+      }
+    }
+    // 特权2-加量包
+    .add {
+      padding-bottom: 38rpx;
+      .header {
+        display: flex;
+        .addTip {
+          padding: 0 20rpx;
+          height: 44rpx;
+          line-height: 44rpx;
+          background: rgba(250, 100, 0, 0.1);
+          border-radius: 22rpx;
+          display: flex;
+          align-items: center;
+          margin-left: 10rpx;
+          image {
+            width: 24rpx;
+            height: 24rpx;
+            margin-right: 8rpx;
+          }
+          text {
+            font-size: 24rpx;
+            color: #7d573d;
+          }
+        }
+      }
+      .content {
+        // display: flex;
+        .list {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: 60rpx;
+          .card {
+            position: relative;
+            width: 232rpx;
+            height: 176rpx;
+            margin-right: 20rpx;
+            .bg {
+              width: 232rpx;
+              height: 176rpx;
+            }
+            .con {
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 232rpx;
+              height: 176rpx;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 52rpx 0 70rpx;
+              &_price,
+              &_num {
+                font-size: 24rpx;
+                font-weight: bold;
+                color: #fa6400;
+                line-height: 24rpx;
+                text {
+                  font-size: 52rpx;
+                  line-height: 52rpx;
+                }
+              }
+              &_operator {
+                font-size: 24rpx;
+                font-weight: bold;
+                color: #fb9148;
+                line-height: 24rpx;
+                padding: 0 10rpx;
+              }
+            }
+          }
+          .info {
+            width: 230rpx;
+            .name {
+              font-size: 36rpx;
+              font-weight: bold;
+              color: #333333;
+            }
+            .price {
+              display: flex;
+              align-items: center;
+              margin: 26rpx 0 24rpx;
+              &_now {
+                font-size: 22rpx;
+                font-weight: bold;
+                color: #fa6400;
+                line-height: 22rpx;
+                text {
+                  font-size: 36rpx;
+                  font-weight: bold;
+                  color: #fa6400;
+                  line-height: 36rpx;
+                }
+              }
+              &_origin {
+                // color: #333333;
+                color: rgba(51,51,51, 0.5);
+                font-size: 22rpx;
+                margin-left: 10rpx;
+                position: relative;
+                &::after {
+                  .border();
+                }
+              }
+            }
+          }
+
+          .buy {
+            // width: 136px;
+            height: 46rpx;
+            line-height: 46rpx;
+            background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+            border-radius: 23rpx;
+            padding: 0 24rpx;
+
+            font-size: 24rpx;
+            font-weight: bold;
+            color: #ffffff;
+            &.haveUsed {
+              background: linear-gradient(90deg, #ededed 0%, #d4d4d4 100%);
+              color: #666666;
+            }
+          }
+        }
+      }
+    }
+    // 特权3-会员标识
+    // .sign {
+    //   .content {
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
+    //     padding: 54rpx 0 80rpx;
+    //     image {
+    //       width: 120rpx;
+    //       height: 120rpx;
+    //       margin-right: 20rpx;
+    //     }
+    //     view {
+    //       font-size: 28rpx;
+    //       color: rgba(0, 0, 0, 0.85);
+    //     }
+    //   }
+    // }
+    // 底部
+    .bottom {
+      width: 100%;
+      background: #ffffff;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      text-align: center;
+      padding: 0 50rpx;
+      // &_btn {
+      //   position: relative;
+      //   width: 650rpx;
+      //   height: 88rpx;
+      //   background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+      //   border-radius: 44rpx;
+      //   text-align: center;
+      //   font-size: 36rpx;
+      //   color: #ffffff;
+      //   line-height: 88rpx;
+      //   margin-top: 10rpx;
+      //   text:nth-child(1) {
+      //     font-size: 24rpx;
+      //   }
+      //   text:nth-child(2) {
+      //     font-weight: bold;
+      //     margin-right: 10rpx;
+      //   }
+      //   image {
+      //     width: 204rpx;
+      //     height: 75rpx;
+      //     position: absolute;
+      //     right: 0;
+      //     top: -24rpx;
+      //   }
+      // }
+      &_record {
+        margin: 30rpx 0 58rpx;
+        text {
+          font-size: 28rpx;
+          color: #999999;
+        }
+        image {
+          width: 24rpx;
+          height: 24rpx;
+        }
+      }
+    }
+  }
+}
+
+// 公共样式-弹窗------------------------------
+.popup {
+  .price {
+    background: #f9f9f9;
+    border-radius: 20rpx;
+    padding: 40rpx 30rpx 46rpx;
+    .priceList {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      view:nth-child(1) {
+        font-size: 28rpx;
+        color: #000000;
+      }
+    }
+    &_origin {
+      view:nth-child(2) {
+        font-size: 28rpx;
+        font-weight: bold;
+        color: #000000;
+      }
+    }
+    &_discount {
+      margin: 40rpx 0 46rpx;
+      view:nth-child(2) {
+        font-size: 28rpx;
+        font-weight: bold;
+        color: #fa6400;
+      }
+    }
+    &_now {
+      view:nth-child(2) {
+        font-size: 24rpx;
+        font-weight: bold;
+        color: #000000;
+        text {
+          font-size: 40rpx;
+        }
+      }
+    }
+  }
+  .buy {
+    overflow: hidden;
+    width: 680rpx;
+    height: 88rpx;
+    background: #393636;
+    box-shadow: 0rpx 9rpx 30rpx -6rpx rgba(102, 102, 102, 0.5);
+    border-radius: 44rpx;
+    padding-left: 48rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 46rpx 0;
+    .money {
+      display: flex;
+      align-items: center;
+      &_now {
+        font-size: 24rpx;
+        font-weight: bold;
+        color: #ffffff;
+        line-height: 24rpx;
+        text {
+          font-size: 44rpx;
+          line-height: 40rpx;
+        }
+      }
+      &_discount {
+        font-size: 20rpx;
+        color: #999999;
+        margin-left: 10rpx;
+      }
+    }
+
+    .btn {
+      width: 182rpx;
+      height: 88rpx;
+      line-height: 88rpx;
+      background: linear-gradient(135deg, #fb892d 0%, #fe5e0f 100%);
+      box-shadow: 0rpx 2rpx 24rpx 0rpx rgba(102, 102, 102, 0.15);
+      font-size: 30rpx;
+      font-weight: bold;
+      color: #ffffff;
+      text-align: center;
+    }
+  }
+}
+// 续费会员购买-弹窗------------------------------
+.renewPopup {
+  padding: 0 40rpx;
+  .card {
+    position: relative;
+    width: 670rpx;
+    height: 343rpx;
+    margin: 46rpx 0 10rpx;
+    .bg {
+      width: 670rpx;
+      height: 343rpx;
+    }
+    .con {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 670rpx;
+      height: 343rpx;
+      padding: 0 24rpx;
+      &_date {
+        font-size: 24rpx;
+        color: #fa6400;
+        margin: 80rpx 0 40rpx;
+        text-align: center;
+      }
+      &_list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        // 公共名称样式
+        .name {
+          font-size: 24rpx;
+          color: #907d59;
+          margin: 24rpx 0 30rpx;
+        }
+        // 特权1-优惠券
+        .coupon {
+          text-align: center;
+          &_box {
+            position: relative;
+            width: 186rpx;
+            height: 120rpx;
+            .bg {
+              width: 186rpx;
+              height: 120rpx;
+            }
+            .ct {
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 186rpx;
+              height: 120rpx;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 28rpx;
+              font-weight: bold;
+              color: #7d573d;
+            }
+          }
+        }
+        // 特权2-加量包
+        .add {
+          text-align: center;
+          &_box {
+            width: 176rpx;
+            height: 120rpx;
+            .bg {
+              width: 176rpx;
+              height: 120rpx;
+            }
+          }
+        }
+        // 特权3-标志
+        .sign {
+          text-align: center;
+          &_box {
+            width: 196rpx;
+            height: 120rpx;
+            .bg {
+              width: 196rpx;
+              height: 120rpx;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// 加量包购买-弹窗------------------------------
+.addBuyPopup {
+  padding: 0 40rpx;
+  .list {
+    display: flex;
+    align-items: center;
+    margin: 46rpx 0 10rpx;
+    padding: 40rpx 30rpx;
+    background: #f9f9f9;
+    border-radius: 20rpx;
+    .card {
+      position: relative;
+      width: 232rpx;
+      height: 176rpx;
+      margin-right: 20rpx;
+      .bg {
+        width: 232rpx;
+        height: 176rpx;
+      }
+      .con {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 232rpx;
+        height: 176rpx;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 52rpx 0 70rpx;
+        &_price,
+        &_num {
+          font-size: 24rpx;
+          font-weight: bold;
+          color: #fa6400;
+          line-height: 24rpx;
+          text {
+            font-size: 52rpx;
+            line-height: 52rpx;
+          }
+        }
+        &_operator {
+          font-size: 24rpx;
+          font-weight: bold;
+          color: #fb9148;
+          line-height: 24rpx;
+          padding: 0 10rpx;
+        }
+      }
+    }
+    .info {
+      // width: 230rpx;
+      .name {
+        font-size: 36rpx;
+        font-weight: bold;
+        color: #333333;
+      }
+      .remark {
+        font-size: 24rpx;
+        color: #fa6400;
+      }
+    }
+  }
+}

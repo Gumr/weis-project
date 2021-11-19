@@ -1,0 +1,147 @@
+<!-- pages/mineBox/fatDetail/fatDetail.wxml -->
+<cp-nav-bar title-text="{{detail.tclwName}}" background="#fff" backIconColor="black" mode="home" />
+<view class="fatDetail" style="padding-bottom: {{buttonHeight}}px;">
+  <view class="banner" bind:tap="toRule">
+    <image class="bg" src="{{detail.tclwCoverImg}}" />
+    <view class="intro">大赛简介</view>
+  </view>
+  <!-- 页面 -->
+  <view class="page">
+    <!-- 内容 -->
+    <view class="content">
+      <view class="rule">
+        <view class="rule__title title">活动规则</view>
+        <view class="rule__list">
+          <view class="section-label">活动日期</view>
+          <view>{{detail.startDate}}-{{detail.endDate}}</view>
+        </view>
+        <view class="rule__list">
+          <view class="section-label">当前状态</view>
+          <view style="color: #FE5E0F;">{{detail.$status}}</view>
+        </view>
+        <view class="rule__list">
+          <view class="section-label">活动规则</view>
+          <view bind:tap="activeRule">
+            <text>查看详情</text>
+            <image src="/images/enterprise_next.png" />
+          </view>
+        </view>
+      </view>
+      <view class="introduce">
+        <view class="introduce__title title">减脂大赛介绍</view>
+        <view class="introduce__list text">{{detail.tclwDescribe}}</view>
+        <view class="introduce__list unit">
+          <view class="section-label">活动分队</view>
+          <view class="team-list">
+            <view class="team-box" wx:for="{{detail.groupList}}" bind:tap="showMember" data-index="{{index}}">
+              <view>{{item.tclwgName}}</view>
+              <view>({{item.peopleNum}})人</view>
+            </view>
+          </view>
+          <!-- <view>{{detail.groupLabel}}</view> -->
+        </view>
+        <view class="introduce__list signUp">
+          <view wx:if="{{detail.ifJoin}}" class="label">你的初始体重</view>
+          <view wx:if="{{detail.ifJoin}}" class="weight">{{weight}}斤</view>
+          <view class="box" wx:if="{{detail.ifJoin && detail.stt === '01'}}">
+            你已报名{{group.tclwgName}}队，待HR确认后{{detail.gameDate}}正式开营
+          </view>
+          <view class="box" wx:if="{{detail.stt === '02'}}">本减脂大赛将于{{detail.gameDate}}正式开赛</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<cp-login-coupon />
+<cp-bottom-button use-slot background-color="#fe5e0f" model:button-height="{{buttonHeight}}">
+  <!-- 底部 -->
+  <view class="bottom" wx:if="{{detail.ifJoin}}" style="justify-content: space-between">
+    <image class="icon-more" src="https://prodstatic.weis1606.cn/api/smartFood/icon_more.png" bind:tap="toggleMoreTap" />
+    <button class="reset-box" hover-class="none" bind:tap="invite">
+      <view class="btn">邀请好友加入</view>
+    </button>
+  </view>
+  
+  <view class="bottom" wx:elif="{{detail.stt === '01'}}" style="justify-content: space-between">
+    <view class="invite" bind:tap="invite">
+      <image src="/images/enterprise_share.png" />
+      <view class="desc">邀请入营</view>
+      <!-- <button open-type="share"></button> -->
+    </view>
+    <button class="reset-box" hover-class="none" bind:tap="signUp">
+      <view class="btn">报名{{detail.tclwName}}</view>
+    </button>
+  </view>
+</cp-bottom-button>
+<!-- 提示重复参加弹窗 -->
+<cp-confirm-dialog model:show="{{tipDialog}}" show-cancel="{{false}}" confirm-text="知道了" auto-confirm="{{true}}">
+  <view class="tip-label">每个用户同一时间只能参加一个减脂营，你已参加其他减脂营～</view>
+</cp-confirm-dialog>
+<!-- 退出减脂大赛弹窗 -->
+<cp-confirm-dialog model:show="{{exitDialog}}" auto-confirm="{{true}}" bind:on-confirm="sureExit">
+  <view class="exit-label">确定退出减脂大赛？</view>
+</cp-confirm-dialog>
+<!-- 底部退出减脂营弹窗 -->
+<vant-popup show="{{morePopup}}" position="bottom" custom-style="border-radius: 40rpx 40rpx 0rpx 0rpx;">
+  <view class="more-box">
+    <view class="more-option" hover-class="more-option--active" bind:tap="exit">退出减脂营</view>
+    <view class="more-option" hover-class="more-option--active" bind:tap="toggleMoreTap">取消</view>
+  </view>
+</vant-popup>
+<!-- 报名-弹窗 -->
+<cp-bottom-popup model:show="{{showUnit}}" use-slot showCustom closeCustom confirm-disabled="{{confirmDisabled}}" confirmStyle="width: 450rpx;" title="{{title}}" close-img="{{closeImg}}" confirm-text="{{confirmText}}" bind:on-confirm="onConfirm" bind:on-close="onClose">
+  <view class="signUpPopup">
+    <view class="unit" wx:if="{{step == 1}}">
+      <view class="tip">提示：只有该公司员工可以参加该减脂营，报名名单将会给该公司HR核对。</view>
+      <scroll-view scroll-y="{{true}}" class="wrap">
+        <view class="list {{unitSelect === index ? 'active' : ''}}" wx:for="{{detail.groupList}}" wx:key="key" data-step="{{step}}" data-index="{{index}}" data-id="{{item.tclwgId}}" bind:tap="unitSelect">
+          <view class="name">{{item.tclwgName}}</view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="weight" wx:if="{{step == 2}}">
+      <view class="tip">该体重将作为你参加减脂大赛的初始体重，一旦输入后不可修改，请慎重填写</view>
+      <view class="wrap">
+        <input maxlength="6" value="{{weight}}" data-step="{{step}}" bindinput="weightChange" />
+        <text>斤</text>
+      </view>
+    </view>
+  </view>
+</cp-bottom-popup>
+
+
+<view class="shadow" wx:if="{{userList.length > 0}}">
+  <view class="empty" catchtouchmove="true"></view>
+  <view class="dialog">
+    <image class="close" bind:tap="close" src="/images/icon_close.png" />
+    <view class="title">{{showGroup.tclwgName}}（{{showGroup.peopleNum}}人）</view>
+    <view class="box">
+      <view class="box-wrap" wx:for="{{userList}}" wx:key="index">
+        <image class="header" src="{{item.img}}" />
+        <view class="name">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 分享 -->
+<vant-popup show="{{showShare}}" position="bottom" custom-style="border-radius: 40rpx 40rpx 0rpx 0rpx;" bind:click-overlay="cancel">
+  <view class="share">
+    <view class="share-box">
+      <view class="box" bind:tap="cancel">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/share_wechat.png" />
+        <view class="text">微信好友</view>
+        <button open-type="share"></button>
+      </view>
+      <view class="box" bind:tap="saveShareTap">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/share_moments.png" />
+        <view class="text">朋友圈</view>
+      </view>
+    </view>
+    <view class="cancel" bind:tap="cancel">取消</view>
+  </view>
+</vant-popup>
+
+<!-- 海报 -->
+<canvas class="hide" canvas-id="share" style="width: 750rpx; height: 1624rpx;"></canvas>
+

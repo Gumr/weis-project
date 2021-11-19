@@ -1,0 +1,85 @@
+@import './style/common.wxss';
+
+page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'PingFangSC-Regular','PingFangSC';
+  font-size: 28rpx;
+}
+
+view,
+text {
+  box-sizing: border-box;
+}
+
+.flat-btn {
+  background: linear-gradient(180deg, rgba(255, 151, 34, 1) 0%, rgba(254, 94, 15, 1) 100%);
+}
+
+.shadow-btn {
+  background: linear-gradient(180deg, rgba(255, 151, 34, 1) 0%, rgba(254, 94, 15, 1) 100%);
+  box-shadow: 0rpx 6rpx 14rpx 0rpx rgba(254, 94, 15, 0.5);
+}
+
+.disabled-btn {
+  background: #a9a9a9;
+  /* box-shadow: 0rpx 6rpx 14rpx 0rpx rgba(169, 169, 169, 0.5); */
+}
+
+.shadow-btn-f {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 151, 34, 1) 0%,
+    rgba(254, 94, 15, 1) 100%
+  ) !important;
+  box-shadow: 0rpx 6rpx 14rpx 0rpx rgba(254, 94, 15, 0.5);
+}
+
+.button--primary {
+  background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%) !important;
+  color: #fff;
+  border-radius: 44rpx;
+}
+
+.button--disabled {
+  background-color: #d8d8d8 !important;
+  color: #6d7278;
+  border-radius: 44rpx;
+}
+
+.tag-img {
+  padding: 0 8rpx;
+  height: 28rpx;
+  background: linear-gradient(270deg, rgba(255, 70, 0, 1) 0%, rgba(255, 172, 101, 1) 100%);
+  border-radius: 0rpx 0rpx 0rpx 10rpx;
+  line-height: 26rpx;
+  color: #fff;
+  font-size: 18rpx;
+  font-weight: 550;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.tag-img.yellow {
+  background: linear-gradient(90deg, rgba(254, 210, 97, 1) 0%, rgba(255, 179, 0, 1) 100%);
+  color: #333333;
+}
+
+.tag-img.right {
+  border-radius: 10rpx 0rpx 0rpx 0rpx;
+  top: initial;
+  bottom: 0;
+}
+
+button {
+  border: 0;
+  background: none;
+  border-radius: 0;
+}
+
+button::after {
+  border: none;
+}

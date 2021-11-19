@@ -1,0 +1,42 @@
+.article {
+  width: 100%;
+  padding: 40rpx;
+}
+.article .content .list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+.article .content .list .ellipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.article .content .list .img {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 10rpx;
+}
+.article .content .list .info {
+  width: 496rpx;
+}
+.article .content .list .info .name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 20rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+}
+.article .content .list .info .desc {
+  font-size: 24rpx;
+  color: #adadad;
+  line-height: 33rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+}

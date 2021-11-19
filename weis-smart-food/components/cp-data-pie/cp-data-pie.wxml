@@ -1,0 +1,10 @@
+<!--components/data-pie/data-pie.wxml-->
+<view class="data-pie" style="{{customStyle}}">
+  <image style="width:100%;height:100%" wx:if="{{mode === 'image'}}" src="{{image}}" />
+  <ec-canvas
+    class="{{mode === 'image' ? 'outside' : ''}}"
+    id="chart"
+    ec="{{ec}}"
+    style="{{customStyle}}"
+  ></ec-canvas>
+</view>

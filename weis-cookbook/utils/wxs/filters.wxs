@@ -1,0 +1,39 @@
+function handleTopLeftIcon(status) {
+  var url = ''
+  if(status === '00') url = '' // 违规 
+  else if(status === '01') url = '/images/icon_result_pending.png' // 待审核
+  else if(status === '02' || status === '04') url = '/images/icon_result_review.png'// 审核中
+  else if(status === '03') url = '/images/icon_result_fail.png' // 未通过审核 
+  else if(status === '05') url = '/images/icon_result_voting3.png' // 投票中 
+  else if(status === '07') url = '/images/icon_yfing2.png' //研发中  
+  else if(status === '08') url = '/images/icon_up2.png' // 已上架
+  return url
+}
+
+function handleDetailIcon(status) {
+  var url = ''
+  if(status === '00') url = '/images/icon_result_violation2.png'
+  else if(status === '01') url = '/images/icon_result_pending2.png' // 待审核
+  else if(status === '02' || status === '04') url = '/images/icon_result_review2.png' // 审核中
+  else if(status === '03') url = '/images/icon_result_fail2.png' // 未审核通过
+  else if(status === '05') url = '/images/icon_result_voting2.png' // 投票中 
+  else if(status === '07') url = '/images/icon_yfing.png' //研发中  
+  else if(status === '08') url = '/images/icon_up.png' // 已上架
+  return url
+}
+
+function str2Num(string) {
+  return Number(string)
+}
+
+function parseintNum(num) {
+  num = +num
+  return Number(num)
+}
+
+module.exports = {
+  handleTopLeftIcon: handleTopLeftIcon,
+  handleDetailIcon: handleDetailIcon,
+  str2Num: str2Num,
+  parseintNum: parseintNum
+}

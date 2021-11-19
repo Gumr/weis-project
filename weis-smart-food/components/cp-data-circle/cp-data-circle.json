@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "van-circle": "/components/vant/circle/index",
+    "van-progress": "/components/vant/progress/index"
+  }
+}

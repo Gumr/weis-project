@@ -1,0 +1,120 @@
+page {
+  background: #f3f4f5;
+}
+.border {
+  display: block;
+  content: "";
+  width: 690rpx;
+  height: 1px;
+  background: #000000;
+  opacity: 0.1;
+  position: absolute;
+  left: 30rpx;
+  bottom: 0;
+  margin: auto;
+}
+.detail {
+  width: 100%;
+}
+.detail .tabs {
+  z-index: 2;
+  position: fixed;
+  left: 0;
+  height: 76rpx;
+  width: 100%;
+  display: flex;
+  margin: 27rpx 0 40rpx;
+}
+.detail .tabs .tab {
+  flex-grow: 1;
+  font-size: 30rpx;
+  color: rgba(0, 0, 0, 0.6);
+  position: relative;
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+}
+.detail .tabs .tab__active {
+  color: #000000;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.detail .tabs .tab__active::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 6rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50rpx;
+  height: 10rpx;
+  background: #fa6400;
+  border-radius: 5rpx;
+}
+.detail .date {
+  position: fixed;
+  left: 0;
+  margin: 0 30rpx 30rpx;
+}
+.detail .date text {
+  font-size: 28rpx;
+  color: #333333;
+  margin-right: 6rpx;
+}
+.detail .date image {
+  width: 26rpx;
+  height: 16rpx;
+}
+.detail .content {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 40rpx 40rpx 0rpx 0rpx;
+}
+.detail .content .list {
+  padding: 40rpx 30rpx;
+  position: relative;
+}
+.detail .content .list::after {
+  display: block;
+  content: "";
+  width: 690rpx;
+  height: 1px;
+  background: #000000;
+  opacity: 0.1;
+  position: absolute;
+  left: 30rpx;
+  bottom: 0;
+  margin: auto;
+}
+.detail .content .list .listTop {
+  display: flex;
+  justify-content: space-between;
+}
+.detail .content .list .listTop_l view {
+  font-size: 24rpx;
+  color: rgba(51, 51, 51, 0.5);
+  margin-bottom: 20rpx;
+}
+.detail .content .list .listTop_l view:nth-child(1) {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 40rpx;
+}
+.detail .content .list .listTop_l view:last-child {
+  margin-bottom: 0;
+}
+.detail .content .list .listBottom {
+  background: rgba(254, 94, 15, 0.05);
+  border-radius: 10rpx;
+  padding: 30rpx 20rpx;
+  margin-top: 20rpx;
+}
+.detail .content .list .listBottom view {
+  font-size: 24rpx;
+  color: #fa6400;
+}
+.detail .content .list .listBottom view:nth-child(1) {
+  font-weight: bold;
+  margin-bottom: 24rpx;
+}

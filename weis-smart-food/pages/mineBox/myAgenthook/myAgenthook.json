@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "van-swipe-cell": "/components/vant/swipe-cell/index",
+    "confirm-dialog": "/components/cp-confirm-dialog/cp-confirm-dialog"
+  }
+}

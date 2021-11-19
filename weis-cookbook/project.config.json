@@ -1,0 +1,207 @@
+{
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": false,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": false,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": []
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.13.0",
+  "appid": "wx377c0bd71eab151f",
+  "projectname": "weis-cookbook",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "scripts": {},
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "plugin": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "current": -1,
+      "list": []
+    },
+    "gamePlugin": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": -1,
+      "list": [
+        {
+          "id": -1,
+          "name": "pages/cookDetail/cookDetail",
+          "pathName": "pages/cookDetail/cookDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/mine/login/login",
+          "pathName": "pages/mine/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/leaderboard/leaderboard",
+          "pathName": "pages/leaderboard/leaderboard",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/mine/fans/fans",
+          "pathName": "pages/mine/fans/fans",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/userInfo/userInfo",
+          "pathName": "pages/userInfo/userInfo",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/preLeaderboard/preLeaderboard",
+          "pathName": "pages/preLeaderboard/preLeaderboard",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/test/test",
+          "pathName": "pages/test/test",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/basic/editInformation/editInformation",
+          "pathName": "pages/basic/editInformation/editInformation",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/basic/infos/infos",
+          "pathName": "pages/basic/infos/infos",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/userCenter/userCenter",
+          "pathName": "pages/userCenter/userCenter",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/basic/infos/infos",
+          "pathName": "pages/basic/infos/infos",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/mine/income/income",
+          "pathName": "pages/mine/income/income",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/basic/cashoutStatus/cashoutStatus",
+          "pathName": "pages/basic/cashoutStatus/cashoutStatus",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/basic/editInfos/editInfos",
+          "pathName": "pages/basic/editInfos/editInfos",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/test/test",
+          "pathName": "pages/test/test",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/uploadCook/uploadCook",
+          "pathName": "pages/uploadCook/uploadCook",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/basic/changeCover/changeCover",
+          "pathName": "pages/basic/changeCover/changeCover",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/basic/bannerView/bannerView",
+          "pathName": "pages/basic/bannerView/bannerView",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/basic/bannerView/bannerView",
+          "pathName": "pages/basic/bannerView/bannerView",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

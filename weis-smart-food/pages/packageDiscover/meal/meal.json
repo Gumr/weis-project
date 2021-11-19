@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "van-circle": "/components/vant/circle/index",
+    "van-swipe-cell": "/components/vant/swipe-cell/index",
+    "van-popup": "/components/vant/popup/index",
+    "scale-component": "/components/cp-scale/cp-scale",
+    "data-pie": "/components/cp-data-pie/cp-data-pie"
+  }
+}

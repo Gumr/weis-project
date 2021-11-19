@@ -1,0 +1,322 @@
+page {
+  background: #F3F4F5;
+}
+.account {
+  width: 100%;
+  background: #F3F4F5;
+}
+.account .main {
+  padding: 0 50rpx;
+  background: #ffffff;
+}
+.account .main .main_account {
+  padding: 20rpx 0 10rpx 0;
+  color: #999999;
+  font-size: 28rpx;
+}
+.account .main .info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22rpx 0;
+}
+.account .main .info .info_left {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.account .main .info .info_left .icon {
+  width: 70rpx;
+  height: 24rpx;
+  position: absolute;
+  left: 70rpx;
+  top: 116rpx;
+}
+.account .main .info .info_left .head {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+}
+.account .main .info .info_left .name {
+  color: #333333;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-left: 39rpx;
+}
+.account .main .info .status {
+  width: 110rpx;
+  height: 38rpx;
+  background: #FFFFFF;
+  border-radius: 19rpx;
+  border: 2rpx solid #A9A9A9;
+  text-align: center;
+  line-height: 34rpx;
+  color: #A9A9A9;
+  font-size: 24rpx;
+}
+.account .main .info .status.active {
+  width: 132rpx;
+  border: 2rpx solid #FA6400;
+  color: #FA6400;
+}
+.account .main.sub {
+  margin-top: 10rpx;
+}
+.account .main.sub .status {
+  width: 110rpx;
+  height: 38rpx;
+  background: #FFFFFF;
+  border-radius: 19rpx;
+  border: 2rpx solid #A9A9A9;
+  color: #A9A9A9;
+}
+.account .main.sub .status.active {
+  width: 132rpx;
+  border: 2rpx solid #FA6400;
+  color: #FA6400;
+}
+.account .tip {
+  color: #666666;
+  font-size: 24rpx;
+  text-align: center;
+  padding: 30rpx 0;
+}
+.account .account-box {
+  margin-top: 10rpx;
+}
+.account .account-box .tab {
+  background: #E8E8E8;
+  width: 100%;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+}
+.account .account-box .tab .box {
+  width: 345rpx;
+  height: 100%;
+  background: #ffffff;
+}
+.account .account-box .tab .box .name {
+  height: 100%;
+  background: #E8E8E8;
+  border-radius: 0 0 0 30rpx;
+  text-align: center;
+  line-height: 88rpx;
+  font-size: 28rpx;
+  color: #666666;
+}
+.account .account-box .tab .box.active {
+  flex: 1;
+  background: #E8E8E8;
+}
+.account .account-box .tab .box.active .name {
+  background: #ffffff;
+  border-radius: 0 30rpx 0 0;
+  color: #333333;
+  font-weight: bold;
+  position: relative;
+}
+.account .account-box .tab .box.active .name::after {
+  display: block;
+  content: '';
+  width: 85rpx;
+  height: 6rpx;
+  background: #FA6400;
+  border-radius: 3rpx;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}
+.account .account-box .tab .box.active1 .name {
+  border-radius: 30rpx 0 0 0;
+}
+.account .account-box .tab .box.normal0 .name {
+  border-radius: 0 0 30rpx 0;
+}
+.account .account-box .private {
+  padding: 0 50rpx;
+  background: #ffffff;
+}
+.account .account-box .private .info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22rpx 0;
+}
+.account .account-box .private .info .info_left {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.account .account-box .private .info .info_left .icon {
+  width: 70rpx;
+  height: 24rpx;
+  position: absolute;
+  left: 70rpx;
+  top: 116rpx;
+}
+.account .account-box .private .info .info_left .head {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+}
+.account .account-box .private .info .info_left .name {
+  color: #333333;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-left: 39rpx;
+}
+.account .account-box .private .info .status {
+  width: 110rpx;
+  height: 38rpx;
+  background: #FFFFFF;
+  border-radius: 19rpx;
+  border: 2rpx solid #A9A9A9;
+  text-align: center;
+  line-height: 34rpx;
+  color: #A9A9A9;
+  font-size: 24rpx;
+}
+.account .account-box .private .info .status.active {
+  width: 132rpx;
+  border: 2rpx solid #FA6400;
+  color: #FA6400;
+}
+.account .account-box .enterpriseAccount {
+  background: #ffffff;
+}
+.account .account-box .enterpriseAccount .subList {
+  background: #FCFCFD;
+  padding: 0 50rpx;
+  height: 0;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+.account .account-box .enterpriseAccount .info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22rpx 0;
+  position: relative;
+}
+.account .account-box .enterpriseAccount .info.add {
+  padding: 22rpx 50rpx;
+}
+.account .account-box .enterpriseAccount .info::after {
+  display: block;
+  content: '';
+  width: 750rpx;
+  height: 2rpx;
+  transform: scaleY(0.5);
+  background: #f6f6f6;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}
+.account .account-box .enterpriseAccount .info .info_left {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.account .account-box .enterpriseAccount .info .info_left .icon {
+  width: 70rpx;
+  height: 24rpx;
+  position: absolute;
+  left: 70rpx;
+  top: 116rpx;
+}
+.account .account-box .enterpriseAccount .info .info_left .head {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+}
+.account .account-box .enterpriseAccount .info .info_left .name {
+  color: #333333;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-left: 39rpx;
+}
+.account .account-box .enterpriseAccount .info .info_left.campus-col .c {
+  display: flex;
+  flex-direction: column;
+  margin-left: 39rpx;
+}
+.account .account-box .enterpriseAccount .info .info_left.campus-col .c .name {
+  margin-left: 0;
+}
+.account .account-box .enterpriseAccount .info .info_left.campus-col .c .xq {
+  color: #A9A9A9;
+  font-size: 24rpx;
+  margin-top: 4rpx;
+}
+.account .account-box .enterpriseAccount .info .status {
+  width: 110rpx;
+  height: 38rpx;
+  background: #FFFFFF;
+  border-radius: 19rpx;
+  border: 2rpx solid #A9A9A9;
+  text-align: center;
+  line-height: 34rpx;
+  color: #A9A9A9;
+  font-size: 24rpx;
+}
+.account .account-box .enterpriseAccount .info .status.active {
+  width: 132rpx;
+  border: 2rpx solid #FA6400;
+  color: #FA6400;
+}
+.account .account-box .enterpriseAccount .list {
+  position: relative;
+}
+.account .account-box .enterpriseAccount .list::after {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2rpx;
+  transform: scaleY(0.5);
+  background: #f6f6f6;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.account .account-box .enterpriseAccount .campus-box {
+  width: 100%;
+  height: 184rpx;
+  background: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50rpx;
+}
+.account .account-box .enterpriseAccount .campus-box .name {
+  color: #333333;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.account .account-box .enterpriseAccount .campus-box .wrap {
+  display: flex;
+  align-items: center;
+}
+.account .account-box .enterpriseAccount .campus-box .wrap .num {
+  color: #A9A9A9;
+  font-size: 24rpx;
+  margin-right: 8rpx;
+}
+.account .account-box .enterpriseAccount .campus-box .wrap image {
+  width: 38rpx;
+  height: 38rpx;
+}
+.dialog-label {
+  margin: 0 48rpx;
+  font-size: 28rpx;
+  color: #666666;
+  line-height: 40rpx;
+}
+.dialog-label view {
+  text-align: center;
+}
+.dialog-label view:nth-child(2) {
+  margin-top: 40rpx;
+}

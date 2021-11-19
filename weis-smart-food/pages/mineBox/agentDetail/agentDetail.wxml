@@ -1,0 +1,90 @@
+<!-- pages/mineBox/agentDetail/agentDetail.wxml -->
+<!-- <navBar title-text="客户经理详情" background="rgba(0, 0, 0, 0.2)" color="#fff" back-icon="/images/return_white.png" /> -->
+<!-- 头部导航 -->
+<!-- <view class="head" style="height:{{navStatusHeight}}px;padding-top:{{statusBarHeight}}px" wx:if="{{!showBlack}}">
+    <view class="title">{{planType == '04' ? '营养师详情' : '客户经理详情'}}</view>
+    <view class="nav-img" style="height:{{navStatusHeight-statusBarHeight}}px;top:{{statusBarHeight}}px" catch:tap="back">
+        <image src="/images/return_white.png" />
+    </view>
+</view>
+<view class="head black" style="height:{{navStatusHeight}}px;padding-top:{{statusBarHeight}}px" wx:else>
+    <view class="title">{{planType == '04' ? '营养师详情' : '客户经理详情'}}</view>
+    <view class="nav-img" style="height:{{navStatusHeight-statusBarHeight}}px;top:{{statusBarHeight}}px" catch:tap="back">
+        <image src="/images/back.png" />
+    </view>
+</view> -->
+<cp-nav-bar background="transparent" title-text="{{planType == '04' ? '饮食顾问详情' : '饮食顾问详情'}}"></cp-nav-bar>
+<view class="agent {{counselorApplication.bindState == '01' ? 'active' : ''}}" style="margin-top:-{{navStatusHeight}}px">
+    <view class='head-box'>
+        <view class='box-1'>
+            <image src="{{IMG_URL + '/api/mini/agent.png'}}" />
+        </view>
+        <view class='box-2'>
+            <view class='avatar-box'>
+                <image src="{{counselorApplication.counselorIcon}}" />
+            </view>
+            <view class='name'>{{campPrincipalInfo?campPrincipalInfo.tpiName:counselorApplication.counselorName}}</view>
+        </view>
+    </view>
+    <view class='content'>
+        <view class='content-box'>
+            <view class='cont'>
+                <view class="detailco" bindtap="copyCode" data-code="{{campPrincipalInfo.tacpWechat ||counselorApplication.wxNumber}}">
+                    <text>微信号：{{(campPrincipalInfo?campPrincipalInfo.tpiWxNumber:counselorApplication.wxNumber) ||'无'}}</text>
+                    <button wx:if="{{campPrincipalInfo.tpiWxNumber || counselorApplication.wxNumber}}">复制</button>
+                </view>
+                <view class="detailco" bindtap="call" data-number="{{campPrincipalInfo.tpiPhone || counselorApplication.counselorPhone}}">
+                    <text>手机号：{{(campPrincipalInfo?campPrincipalInfo.tpiPhone:counselorApplication.counselorPhone)||'无'}}</text>
+                    <button wx:if="{{campPrincipalInfo.tpiPhone || counselorApplication.counselorPhone}}">拨打</button>
+                </view>
+            </view>
+        </view>
+        <view class='content-box'>
+            <view class='title'>个人介绍</view>
+            <view class='cont'>
+                {{(campPrincipalInfo ? campPrincipalInfo.tpiIntroduce : counselorApplication.introduce) ||'暂无个人介绍'}}
+            </view>
+        </view>
+        <view class='content-box'>
+            <view class='title'>专业证书</view>
+            <view class='cont'>         
+            <view class="imgcontant" wx:if="{{campPrincipalInfo?campPrincipalInfo.tpiQualificationImageUrl.length>0:counselorApplication.qualificationImageUrl.length>0}}">
+                <view wx:for="{{ campPrincipalInfo?campPrincipalInfo.tpiQualificationImageUrl:counselorApplication.qualificationImageUrl }}" wx:key="index" class="pdimg">
+                 <image  mode="aspectFill" src="{{item.imageUrl}}"  data-urls="{{ campPrincipalInfo?campPrincipalInfo.tpiQualificationImageUrl:counselorApplication.qualificationImageUrl }}" data-url="{{ item.imageUrl }}" bindtap="showBigImg"  alt />
+                </view>
+            </view>
+            <view  wx:else>暂无上传专业证书</view>
+            </view>
+        </view>
+
+
+        <view class='content-box'>
+            <view class='title'>照片</view>
+            <view class='cont'>
+            <view class="imgcontant" wx:if="{{campPrincipalInfo?campPrincipalInfo.tpiCoachImageUrl:counselorApplication.coachImageUrl.length>0}}">
+             <view wx:for="{{campPrincipalInfo?campPrincipalInfo.tpiCoachImageUrl:counselorApplication.coachImageUrl }}" wx:key="index" class="pdimg">
+                <image  mode="aspectFill" src="{{ item.imageUrl}}"  data-urls="{{ campPrincipalInfo?campPrincipalInfo.tpiCoachImageUrl: counselorApplication.coachImageUrl }}" data-url="{{ item.imageUrl }}" bindtap="showBigImg"  alt />
+            </view>
+            </view>
+             <text  wx:else> 暂无上传照片</text>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="add" wx:if="{{from != 'check' && counselorApplication.bindState == '01'}}">
+    <view class="replace" bind:tap="change">{{planType == '04' ? '更换饮食顾问' : '更换饮食顾问'}}</view>
+</view>
+<!-- 二维码弹窗 -->
+<view class="popup" catch:touchmove="true" wx:if="{{showCode}}" bind:tap="showCode">
+    <view class="card" bind:longpress="save" catch:tap="forbiden">
+        <image class="bj" src="{{IMG_URL + '/api/mini/qr_bj.png?a=1'}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+        <view class="content" hover-class="none" hover-stop-propagation="false">
+            <view class="t-box">
+                <image class="head-img" src="{{counselorApplication.counselorIcon}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+                <view class="name">{{counselorApplication.counselorName}}</view>
+            </view>
+            <image class="code-box" src="{{counselorApplication.wxQrcode}}"></image>
+            <view class="press">长按扫码添加客户经理</view>
+        </view>
+    </view>
+</view>

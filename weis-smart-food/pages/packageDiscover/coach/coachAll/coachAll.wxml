@@ -1,0 +1,14 @@
+<!--pages/packageDiscover/coach/coachAll/coachAll.wxml-->
+<cp-nav-bar title-text="全部教练" background="#FFFFFF"></cp-nav-bar>
+<view class="coachAll">
+    <view class="coachList">
+        <view class="list" wx:for="{{coach}}" wx:key="index" data-index="{{index}}" bind:tap="coachTap">
+            <image class="list__image" src="{{item.headImageUrl}}" />
+            <view class="list__text">
+                <view class="name">{{item.uname}}</view>
+                <view class="label">{{item.domain}}</view>
+            </view>
+            <view class="list__star" wx:if="{{item.star}}">{{item.star}}</view>
+        </view>
+    </view>
+</view>

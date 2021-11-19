@@ -1,0 +1,120 @@
+<!-- /Users/weis/Desktop/miniprogram/weis-ttmp/pages/order/mealInfo/mealInfo.ttml -->
+
+<sjs module="utils">
+  function weekStr(v){ 
+    switch(v){
+      case 0: return '周一';
+      case 1: return '周二';
+      case 2: return '周三';
+      case 3: return '周四';
+      case 4: return '周五';
+      case 5: return '周六';
+      default : return '周日';
+    } 
+  } 
+   module.exports = { weekStr: weekStr}
+</sjs>
+<cp-nav-bar title-text="餐单详情" preventBack="{{true}}" bind:back="back" background="#F3F4F5"></cp-nav-bar>
+
+<view tt:if="{{info}}" class="meal">
+  <view class="status">
+    <!-- 配送状态 -->
+    <view class="text">{{orderSttText}}</view>
+    <image src="http://prodstatic.weis1606.cn/api/ttmpFood/order/order_arrow.png" />
+  </view>
+  <view class="delivery-box">
+    <view class="title">配送信息</view>
+    <view class="delivery-row" style="align-items: start;">
+      <view class="key">收货地址</view>
+      <view class="address">
+        <!-- 收货地址 -->
+        <view class="value">{{info.receivingAddress}}</view>
+        <!-- <view class="value">深圳市南山区粤海街道深圳市南山区粤海街道深圳市南山区粤海街道深圳市南山区粤海街道</view> -->
+        <!-- 收件人 电话号码 -->
+        <view class="value">{{info.consignee}} {{info.contactNumber}}</view>
+      </view>
+    </view>
+    <view class="delivery-row">
+      <view class="key">联系商家</view>
+      <!-- 商家号码 -->
+      <view class="value" bindtap="call" data-phone="{{heatingPoint.shopTel}}">{{heatingPoint.shopTel}}</view>
+      <image bindtap="call" data-phone="13800138000" mode="aspectFit" src="http://prodstatic.weis1606.cn/api/ttmpFood/order/order_tel.png" />
+    </view>
+    <view class="delivery-row">
+      <view class="key">送达时间</view>
+      <!-- 配送时间 -->
+      <view class="value">{{info.expectTime}}</view>
+    </view>
+  </view>
+
+  <view class="box">
+    <!-- 日期餐别 -->
+    <view class="title margin-b-40">{{info.expectDate[4]+info.expectDate[5]}}月{{info.expectDate[6]+info.expectDate[7]}}日 {{utils.weekStr(week)}}{{category}}</view>
+    <!-- 菜品列表 -->
+    <view class="list" tt:for="{{skuList}}" tt:for-item="item" tt:for-index="index">
+      <image mode="aspectFill" src="{{item.primaryImgUrl}}" />
+      <view class="sku-column">
+        <!-- 菜品名称 -->
+        <view class="name">{{item.skuname}}</view>
+        <!-- 菜品数据 -->
+        <view class="data">热量{{item.energy}}kcal/蛋白质{{item.protein}}g/碳水{{item.carbonwater}}g/脂肪{{item.fat}}g</view>
+      </view>
+      <!-- 菜品数量 -->
+      <view class="count">x{{item.num}}</view>
+    </view>
+    <!-- 横线 -->
+    <view class="line margin-t-8"></view>
+    <view class="data-box">
+      <!-- 餐单数据 -->
+      <view class="energy-box">
+        <view class="value-row">
+          <view class="value">{{foodData.energy}}</view>
+          <view class="unit">kcal</view>
+        </view>
+        <view class="text">热量</view>
+      </view>
+      <view class="data-column">
+        <view class="data-row">
+          <view class="key">蛋白质</view>
+          <view class="value">{{foodData.proteinWeight}}g</view>
+        </view>
+        <view class="data-row">
+          <view class="key">碳水</view>
+          <view class="value">{{foodData.carbonWeight}}g</view>
+        </view>
+        <view class="data-row">
+          <view class="key">脂肪</view>
+          <view class="value">{{foodData.fatWeight}}g</view>
+        </view>
+        <view class="data-row">
+          <view class="key">膳食纤维</view>
+          <view class="value">{{foodData.totalFiber}}g</view>
+        </view>
+        <view class="data-row">
+          <view class="key">盐量</view>
+          <view class="value">{{foodData.saltWeight}}g</view>
+        </view>
+        <view class="data-row">
+          <view class="key">食物多样性</view>
+          <view class="value">{{foodData.totalDiversity}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="box">
+    <!-- 餐单信息 -->
+    <view class="title margin-b-30">餐单信息</view>
+    <view class="line"></view>
+    <view class="info-row">
+      <view class="key">餐单编号</view>
+      <!-- 餐单编号 -->
+      <view class="value" bindtap="copy" data-number="{{orderId}}">{{orderId}}</view>
+      <image src="/images/copy.png" bindtap="copy" data-number="{{orderId}}" />
+    </view>
+    <view class="info-row">
+      <view class="key">核销时间</view>
+      <!-- 核销餐单时间 -->
+      <view class="value">{{ctime[0]+ctime[1]+ctime[2]+ctime[3]}}-{{ctime[4]+ctime[5]}}-{{ctime[6]+ctime[7]}} {{ctime[8]+ctime[9]}}:{{ctime[10]+ctime[11]}}:{{ctime[12]+ctime[13]}}</view>
+    </view>
+  </view>
+</view>

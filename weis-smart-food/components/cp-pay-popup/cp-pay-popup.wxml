@@ -1,0 +1,37 @@
+<!-- components/pay-popup/pay-popup.wxml -->
+<van-popup show="{{show}}" position="bottom" custom-style="border-radius:20rpx 20rpx 0rpx 0rpx;" bind:click-overlay="handleClickOverlay">
+  <view class="pay-header">支付方式</view>
+  <view class="tip" wx:if="{{totalNum > 1}}">
+    <view class="c-l">
+      <image src="/images/tx.png" />
+      <view class="num">{{totalNum}}个订单一起支付</view>
+    </view>
+    <view class="price">￥{{totalPrice}}</view>
+  </view>
+  <view class="pay-main">
+    <view wx:for="{{payList}}" wx:key="index" class="pay-item {{item.disabled ? 'disabled' : ''}}" data-disabled="{{item.disabled}}" data-value="{{item.value}}" data-type="{{item.type}}" bindtap="payItemTap">
+      <view class="pay-text {{item.disabled ? 'disabled' : ''}}">
+        <image class="pay-icon" src="{{item.icon}}" />
+        <view class="text">
+          <text>{{item.text}}</text>
+          <text style="font-weight: normal;" wx:if="{{item.type === 'balance'}}">
+            <text wx:if="{{balanceSupport}}">（￥{{balance}} <text wx:if="{{!balance}}">余额不足</text>）</text>
+            <text wx:else>（不支持付款）</text>
+          </text>
+        </view>
+      </view>
+      <image wx:if="{{item.value === selected.value}}" class="select-icon" src="/images/icon-pay.png" />
+      <view class="recharge" bind:tap="recharge" wx:if="{{item.disabled}}">充值</view>
+    </view>
+    <view class="flex-items-center pay-protocol" wx:if="{{protocol}}" catch:tap="protocolTap">
+      <image wx:if="{{protocolChecked}}" class="pay-check-icon" src="/images/icon-pay.png" />
+      <image wx:else class="pay-check-icon" src="/images/order_list_unchecked.png" />
+      <text style="margin-left: 10rpx;" class="pay-label pay-label__normal">我同意</text>
+      <text class="pay-label pay-label__active" catch:tap="viewProtocolTap">《维士健康(付费)会员协议》</text>
+    </view>
+    <view class="pay-btn {{(protocol && !protocolChecked) ? 'disabled-btn' : ''}}" bind:tap="payTap" style="margin-bottom: {{isIpx ? 90 : 54}}rpx;">
+      <view class="status">{{_paying ? '支付中' : '立即支付'}}</view>
+      <van-loading wx:if="{{_paying}}" color="#fff" custom-class="ing" size="24px" type="spinner" />
+    </view>
+  </view>
+</van-popup>

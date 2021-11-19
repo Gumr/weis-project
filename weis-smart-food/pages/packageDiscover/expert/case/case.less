@@ -1,0 +1,44 @@
+page {
+  background: #fafafa;
+}
+.case {
+  width: 100%;
+  padding: 30rpx;
+  .list {
+    padding: 30rpx 20rpx;
+    background: #ffffff;
+    box-shadow: 0rpx 4rpx 24rpx -6rpx rgba(186, 186, 186, 0.3);
+    border-radius: 10rpx;
+    margin-bottom: 30rpx;
+    .img {
+      display: flex;
+      justify-content: space-between;
+      &__before,
+      &__after {
+        position: relative;
+        image:nth-child(1) {
+          width: 320rpx;
+          height: 320rpx;
+        }
+        image:nth-child(2) {
+          width: 106rpx;
+          height: 30rpx;
+          position: absolute;
+          left: 0;
+          top: -10rpx;
+        }
+      }
+    }
+    .text {
+      color: #333333;
+      &__name {
+        font-size: 32rpx;
+        font-weight: bold;
+        padding: 30rpx 0 20rpx;
+      }
+      &__info {
+        font-size: 24rpx;
+      }
+    }
+  }
+}

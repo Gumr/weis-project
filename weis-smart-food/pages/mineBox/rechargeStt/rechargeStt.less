@@ -1,0 +1,92 @@
+.rechargeStt {
+  width: 100%;
+  padding-top: 86rpx;
+  text-align: center;
+  // 图片
+  .icon {
+    width: 180rpx;
+    height: 180rpx;
+    margin-bottom: 32rpx;
+  }
+  // 充值状态
+  .status {
+    font-size: 40rpx;
+    font-weight: 550;
+    color: #333333;
+    line-height: 56rpx;
+    margin-bottom: 20rpx;
+  }
+  // 充值金额
+  .cash {
+    // margin: 5rpx 0;
+    margin-bottom: 5rpx;
+    .amount {
+      font-family: "DINCondensedC";
+      color: #333333;
+      font-weight: bold;
+      .amount__fh {
+        font-size: 50rpx;
+        // line-height: 60rpx;
+      }
+      .amount__je {
+        font-size: 96rpx;
+        // line-height: 60rpx;
+      }
+    }
+  }
+  // 实付，赠送/提示
+  .tip {
+    font-size: 28rpx;
+    color: #666666;
+    line-height: 40rpx;
+  }
+  .tips{
+    font-size: 28rpx;
+font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
+color: #666666;
+margin-top: 60rpx;
+width: 590rpx;
+margin-left: 80rpx;
+
+  }
+
+  // 按钮
+  .btnBox {
+    margin-top: 100rpx;
+    .success {
+      width: 420rpx;
+      height: 88rpx;
+      line-height: 88rpx;
+      background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+      border-radius: 50rpx;
+      font-size: 36rpx;
+      color: #ffffff;
+      text-align: center;
+      margin: 0 auto;
+    }
+    .fail {
+      padding: 0 85rpx;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      view {
+        width: 280rpx;
+        height: 88rpx;
+        line-height: 88rpx;
+        border-radius: 44rpx;
+        font-size: 32rpx;
+        text-align: center;
+      }
+      view.back {
+        border: 2rpx solid #fa6400;
+        color: #fa6400;
+      }
+      view.again {
+        background: linear-gradient(135deg, #ff9722 0%, #fe5e0f 100%);
+        color: #ffffff;
+      }
+    }
+  }
+}

@@ -1,0 +1,121 @@
+@text-color: #a0674a;
+
+.background {
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  // height: 1624rpx;
+}
+
+.container {
+  width: 100%;
+  padding: 30rpx 30rpx;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-content-center {
+  .flex();
+  justify-content: center;
+}
+
+.report {
+  position: relative;
+  background: #fff;
+  padding: 50rpx 40rpx 68rpx;
+  // height: 1350rpx;
+  &__border {
+    width: 670rpx;
+    // height: 1330rpx;
+    position: absolute;
+    top: 10rpx;
+    left: 10rpx;
+  }
+  &__title {
+    width: 482rpx;
+    height: 52rpx;
+  }
+  &__avatar {
+    margin-top: 60rpx;
+    width: 156rpx;
+    height: 156rpx;
+    position: relative;
+    border: 8rpx solid linear-gradient(180deg, #ff7c00 0%, #ffbc00 100%);
+    border-radius: 78rpx;
+  }
+  &__avatar-image {
+    position: absolute;
+    z-index: 1;
+    border-radius: 70rpx;
+    width: 140rpx;
+    height: 140rpx;
+    left: 8rpx;
+    top: 8rpx;
+  }
+  &__avatar-background {
+    background: linear-gradient(180deg, #ff7c00 0%, #ffbc00 100%);
+    border-radius: 78rpx;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  &__crown {
+    width: 75rpx;
+    height: 71rpx;
+    z-index: 1;
+    position: absolute;
+    top: -37rpx;
+    right: -38rpx;
+  }
+  &__name {
+    text-align: center;
+    font-size: 32rpx;
+    color: @text-color;
+    margin: 22rpx 0 24rpx;
+  }
+  &__slogan {
+    width: 610rpx;
+    height: 116rpx;
+  }
+  &__chart {
+    width: 610rpx;
+    height: 488rpx;
+  }
+  &__label {
+    font-size: 24rpx;
+    color: @text-color;
+    margin: 50rpx 0 34rpx;
+  }
+  &__footer {
+    .flex();
+    // margin-top: 44rpx;
+    align-items: center;
+    justify-content: space-between;
+    height: 146rpx;
+    background: #fff9f7;
+    padding: 4rpx 20rpx;
+  }
+  &__medal-title {
+    font-size: 28rpx;
+    color: @text-color;
+    margin-bottom: 20rpx;
+  }
+  &__medal-label {
+    color: #d69473;
+    font-size: 26rpx;
+  }
+  &__medal-price {
+    display: inline-block;
+    background: #fe5e0f;
+    border-radius: 4rpx;
+    padding: 0 6rpx;
+    font-size: 26rpx;
+    color: #fff;
+  }
+  &__medal {
+    width: 138rpx;
+    height: 138rpx;
+  }
+}

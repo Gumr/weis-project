@@ -1,0 +1,122 @@
+.container {
+    display       : flex;
+    flex-direction: column;
+    padding       : 0 20rpx;
+    width         : 690rpx;
+    // height        : 740rpx;
+
+    .header {
+        display        : flex;
+        align-items    : center;
+        flex-direction : row;
+        justify-content: center;
+        height         : 84rpx;
+        width          : 100%;
+
+
+
+        image {
+            width     : 84rpx;
+            height    : 84rpx;
+            padding   : 17rpx;
+            box-sizing: border-box;
+        }
+
+
+        .month {
+            width      : 98rpx;
+            font-size  : 32rpx;
+            font-weight: 500;
+            color      : rgba(0, 0, 0, 0.85);
+            text-align : right;
+        }
+
+        .year {
+            width    : 98rpx;
+            font-size: 24rpx;
+            color    : rgba(0, 0, 0, 0.85);
+        }
+    }
+
+    .week {
+        display        : flex;
+        justify-content: space-around;
+        height         : 70rpx;
+
+        .text {
+            font-size  : 28rpx;
+            color      : rgba(0, 0, 0, 0.85);
+            font-weight: 500;
+        }
+    }
+
+    .line {
+        height    : 2rpx;
+        background: rgba(0, 0, 0, 0.05);
+        transform : scaleY(0.5);
+        margin    : 0 25rpx;
+    }
+
+    swiper {
+        width : 100%;
+        // height: 100%;
+
+        .item {
+            width         : 100%;
+            flex-direction: column;
+
+            .week {
+                height        : 96rpx;
+                width         : 100%;
+                padding       : 12rpx 0;
+                // flex-direction: row;
+                display       : flex;
+                justify-content: start;
+
+                .date-box {
+                    width      : 93rpx;
+                    height       : 72rpx;
+                    align-items: center;
+                    display    : flex;
+                    position   : relative;
+
+                    .bg-active {
+                        width     : 47rpx;
+                        height       : 72rpx;
+                        background: #FE5E0F;
+                        border-radius: initial;
+                        box-shadow: none;
+                    }
+
+                    .bg-none {
+                        width     : 47rpx;
+                        height       : 72rpx;
+                        background: transparent;
+                        border-radius: initial;
+                        box-shadow: none;
+                    }
+
+                    .date {
+                        width        : 72rpx;
+                        height       : 72rpx;
+                        position     : absolute;
+                        align-items  : center;
+                        display      : flex;
+                        left         : 50%-36rpx;
+                        z-index      : 2;
+                        background   : #FE5E0F;
+                        border-radius: 36rpx;
+
+                        .text {
+                            width      : 72rpx;
+                            font-size  : 28rpx;
+                            color      : rgba(0, 0, 0, 0.85);
+                            font-weight: 500;
+                            text-align : center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

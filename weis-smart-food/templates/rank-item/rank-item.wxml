@@ -1,0 +1,22 @@
+<template name="rank-item">
+  <view class="rank-item">
+    <view class="flex-items-center rank-item__rank">
+      <image
+        class="rank-item__medal"
+        wx:if="{{rankings >= 1 && rankings <= 3}}"
+        src="https://prodstatic.weis1606.cn/api/smartFood/ranking_{{rankings}}.png"
+      />
+      <view wx:else class="rank-item__num">{{rankings}}</view>
+      <view class="avatar-box">
+        <image wx:if="{{headUrl}}" class="rank-item__avatar" src="{{headUrl}}" />
+        <view class="rank-item__leader" wx:if="{{isLeader}}">队长</view>
+      </view>
+      <view class="rank-item__nickname">{{uname}}</view>
+    </view>
+    <view class="flex-items-center">
+      <view class="rank-item__value">{{$value}}</view>
+      <view class="rank-item__value" wx:if="{{rankPart}}" style="margin-left: 50rpx">{{rankPart}}</view>
+      <image class="rank-item__next" wx:if="{{next}}" src="/images/my_next.png" />
+    </view>
+  </view>
+</template>

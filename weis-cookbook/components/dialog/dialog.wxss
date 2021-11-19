@@ -1,0 +1,42 @@
+.dialog {
+  width: 600rpx;
+  height: 390rpx;
+  background: #ffffff;
+  border-radius: 20rpx;
+  margin: 0 auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+.dialog .tips {
+  margin: 114rpx 0;
+  text-align: center;
+}
+.dialog .options {
+  padding: 0 36rpx;
+  box-sizing: border-box;
+  margin-bottom: 48rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-between;
+}
+.dialog .options .opt {
+  width: 254rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  background: #e0e0e0;
+  border-radius: 6rpx;
+  text-align: center;
+}
+.dialog .options .opt.confirm {
+  background: #fa6400;
+  color: #fff;
+}
+.flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}

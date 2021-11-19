@@ -1,0 +1,101 @@
+
+
+.integral{
+    .top-bg{
+        width: 750rpx;
+        height: 510rpx;
+        background: linear-gradient(270deg, #006560 0%, #00817B 100%);
+        position: relative;
+        box-sizing: border-box;
+        padding: 220rpx 0 0 40rpx;
+        image{
+            width: 391rpx;
+            height: 356rpx;
+            position: absolute;
+            right: 0;
+            top: 177rpx;
+            // z-index: -1;
+        }
+        .val{
+            color: rgba(255, 255, 255, 1);
+            font-size: 76rpx;
+            font-weight: 550;
+            margin-bottom: 24rpx;
+        }
+        .name{
+            color:rgba(255, 255, 255, 0.7);
+            font-size: 22rpx;
+            line-height: 36rpx;
+        }
+    }
+    .box{
+        background: #ffffff;
+        border-radius: 40rpx 40rpx 0rpx 0rpx;
+        margin-top: -58rpx;
+        position: relative;
+        z-index: 10;
+        .t-box{
+            padding: 50rpx 30rpx 40rpx;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(169, 169, 169, 1);
+            font-size: 28rpx;
+            .r-box{
+                display: flex;
+                align-items: center;
+                .rank{
+                    margin-right: 132rpx;
+                }
+            }
+        }
+        .list-box{
+            box-sizing: border-box;
+            padding: 0 30rpx;
+            .l-wrap{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 60rpx;
+                .w-l{
+                    display: flex;
+                    align-items: center;
+                    .head{
+                        width: 58rpx;
+                        height: 58rpx;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-right: 30rpx;
+                        image{
+                            width: 58rpx;
+                            height: 58rpx;
+                        }
+                        .num{
+                            color: rgba(169, 169, 169, 1);
+                            font-size: 42rpx;
+                            font-weight: 550;
+                            font-family: "DIN";
+                        }
+                    }
+                    .icon{
+                        width: 88rpx;
+                        height: 88rpx;
+                        margin-right: 20rpx;
+                        border-radius: 50%;
+                    }
+                    .name{
+                        color: rgba(51, 51, 51, 1);
+                        font-size: 26rpx;
+                        font-weight: 550;
+                    }
+                }
+                .score{
+                    color: rgba(254, 94, 15, 1);
+                    font-size: 28rpx;
+                    font-weight: 550;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "van-loading": "/components/vant/loading/index",
+    "van-circle": "/components/vant/circle/index",
+    "data-pie": "/components/cp-data-pie/cp-data-pie",
+    "cp-pay-popup": "/components/cp-pay-popup/cp-pay-popup",
+    "cp-bottom-popup": "/components/cp-bottom-popup/cp-bottom-popup",
+    "vant-popup": "/components/vant/popup/index",
+    "cp-refresh-view": "/components/cp-refresh-view/refresh-view"
+  }
+}

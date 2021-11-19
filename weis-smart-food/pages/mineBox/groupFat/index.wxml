@@ -1,0 +1,29 @@
+<!--pages/mineBox/groupFat/index.wxml-->
+<cp-nav-bar title-text="企业减脂PK赛" color="#333333" background="#fff" backIconColor="black" />
+<!-- 企业减脂营 -->
+<view class="groupsFat">
+  <view class="content" wx:if="{{fatList.length != 0}}">
+    <view class="list" wx:for="{{fatList}}" data-index="{{index}}" bind:tap="fatDetail">
+      <image class="list__image" src="{{item.tclwCoverImg}}" mode="aspectFill" />
+      <view class="list__text">
+        <view class="name">{{item.tclwName}}</view>
+        <view class="date">{{item.startDate}} ~ {{item.endDate}}</view>
+        <view
+          class="status"
+          style="{{item.stt == '05'?'color: #333333':'color: #FE5E0F;'}}"
+        >{{item.$status}}</view>
+      </view>
+      <view class="list__label" wx:if="{{item.ifJoin && item.stt != '04'}}">已加入</view>
+    </view>
+  </view>
+  <!-- 空状态 -->
+  <view wx:if="{{fatList.length <= 0}}" class="null">
+    <image src="https://prodstatic.weis1606.cn/api/smartFood/emp.png" />
+    <view>暂无减脂营</view>
+  </view>
+  <!-- 底部 -->
+  <!-- <view class="bottom">
+        <view class="bottom__tip">发起企业减脂营，参与成员点餐享5折优惠<image class="bottom__img" src="/images/triangle.png"></image></view>
+        <button class="bottom__btn" bindtap="goApplyFat">我也要申请企业减脂营</button>
+  </view>-->
+</view>

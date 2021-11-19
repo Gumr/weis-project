@@ -1,0 +1,62 @@
+/* component/refresh/refresh.wxss */
+
+.container {
+  width: 750rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  color: #999;
+  /* background-color: #eee; */
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  transition: all .3s;
+}
+.scroll-msgModule {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.scroll-msgModule-icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.scroll-msgModule-text {
+  font-size: 26rpx;
+}
+
+.success {
+  height: 30px;
+  line-height: 30px;
+  position: absolute;
+  top: 0rpx;
+  left: 0;
+  width: 100%;
+  vertical-align: middle;
+  font-size: 24rpx;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0);
+  z-index: 0;
+}
+.successed {
+  color: #fff;
+  background:linear-gradient(315deg,rgba(251,137,45,.85) 0%,rgba(252,204,73,.85) 100%);
+  z-index: 1;
+  animation: scaling .1s forwards;
+}
+@keyframes scaling {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scaleX(0.5);
+    opacity: .5;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}

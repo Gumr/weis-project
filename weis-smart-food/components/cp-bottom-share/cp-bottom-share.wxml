@@ -1,0 +1,14 @@
+<!-- components/cp-bottom-share/cp-bottom-share.wxml -->
+<!-- 分享-底部弹窗 -->
+<cp-bottom-popup model:show="{{show}}" use-slot show-button="{{false}}">
+  <view class="popupShare">
+    <button class="box" open-type="share" style="margin: 0;" hover-class="none" bindtap="wechat">
+      <image src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/share_icon_wechat.png" />
+      <view>微信好友</view>
+    </button>
+    <view class="box" bindtap="poster">
+      <image src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/share_icon_image.png" />
+      <view>保存海报分享</view>
+    </view>
+  </view>
+</cp-bottom-popup>

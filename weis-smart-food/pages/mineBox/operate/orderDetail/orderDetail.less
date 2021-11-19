@@ -1,0 +1,101 @@
+.border {
+  display: block;
+  content: "";
+  background: #f3f4f5;
+  position: absolute;
+  bottom: 0;
+  margin: auto;
+}
+.operateOrderDetail {
+  width: 750rpx;
+  padding: 16rpx 50rpx 0;
+  // 列表内容
+  .list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30rpx 0;
+    position: relative;
+    &::after {
+      .border();
+      width: 650rpx;
+      height: 2rpx;
+    }
+    .list-l {
+      width: 160rpx;
+      height: 160rpx;
+    }
+    .list-r {
+      width: 456rpx;
+      view:nth-child(1) {
+        font-size: 30rpx;
+        font-weight: bold;
+        color: #000000;
+        line-height: 42rpx;
+        margin-bottom: 26rpx;
+      }
+      view:nth-child(2) {
+        text-align: right;
+        line-height: 37rpx;
+        text:nth-child(1) {
+          font-size: 26rpx;
+          color: #666666;
+        }
+        text:nth-child(2) {
+          font-size: 26rpx;
+          color: #fa6400;
+          font-weight: bold;
+        }
+        text:nth-child(3) {
+          font-size: 36rpx;
+          color: #fa6400;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  // 联系
+  .contact {
+    height: 98rpx;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 24rpx 0 36rpx;
+    position: relative;
+    &::after {
+      .border();
+      width: 750rpx;
+      height: 12rpx;
+    }
+    view:nth-child(1) {
+      padding: 0 26rpx;
+      height: 50rpx;
+      background: #ffffff;
+      border-radius: 25rpx;
+      border: 2rpx solid #fa6400;
+      font-size: 24rpx;
+      color: #fa6400;
+      line-height: 50rpx;
+    }
+    view:nth-child(2) {
+      padding: 0 26rpx;
+      height: 50rpx;
+      background: #ffffff;
+      border-radius: 25rpx;
+      border: 2rpx solid #fa6400;
+      font-size: 24rpx;
+      color: #fa6400;
+      line-height: 50rpx;
+      margin-left: 20rpx;
+    }
+  }
+  // 订单信息
+  .info {
+    padding-top: 28rpx;
+    view {
+      font-size: 28rpx;
+      color: #666666;
+      line-height: 64rpx;
+    }
+  }
+}

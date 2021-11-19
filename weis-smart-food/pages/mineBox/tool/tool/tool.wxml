@@ -1,0 +1,10 @@
+<!--pages/mineBox/tool/tool/tool.wxml-->
+<cp-nav-bar title-text="拉新工具包" background="#F6F6F6" color="#000000"/>
+<view class="tool">
+    <view class="content">
+        <view class="list" wx:for="{{toolList}}" bind:tap="detail">
+            <image class="list_img" src="{{item.img}}" />
+            <view class="list_title">{{item.name}}</view>
+        </view>
+    </view>
+</view>

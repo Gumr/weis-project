@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "cp-bottom-button": "/components/cp-bottom-button/cp-bottom-button",
+    "van-popup": "/components/vant/popup/index",
+    "invite-dialog": "../InviteDialog/InviteDialog"
+  }
+}

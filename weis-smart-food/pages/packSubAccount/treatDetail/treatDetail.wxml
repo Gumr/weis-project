@@ -1,0 +1,55 @@
+<!--pages/packSubAccount/treatDetail/treatDetail.wxml-->
+<cp-nav-bar title-text="" background="transparent" color="#fff" backIconColor="white" />
+
+<view class="treat">
+    <view class="head" style="height:{{(info.stayBalance > 0 && !info.order_finish_stt ? 402 : 312) + navStatusHeight*px2rpx}}rpx;margin-top:-{{navStatusHeight}}px;padding-top:{{56+navStatusHeight*px2rpx}}rpx;">
+        <view class="title">总金额</view>
+        <view class="price"><text>￥</text>{{info.totalAmount}}</view>
+        <button open-type="share" wx:if="{{info.stayBalance > 0 && !info.order_finish_stt}}" class="btn">发给好友</button>
+    </view>
+    <view class="content">
+        <view class="box" bind:tap="toList">
+            <view class="name">领取人数</view>
+            <view class="info">
+                <view class="num">{{info.userReceiveSum}}人</view>
+                <image class="arrow" src="/images/my_next.png" />
+            </view>
+        </view>
+        <view class="box">
+            <view class="name">请客人数</view>
+            <view class="info">
+                <view class="num">{{info.inviteNum}}人</view>
+            </view>
+        </view>
+        <view class="box">
+            <view class="name">每人金额</view>
+            <view class="info">
+                <view class="num">{{info.preAmount}}元</view>
+            </view>
+        </view>
+        <view class="box">
+            <view class="name">剩余金额</view>
+            <view class="info">
+                <view class="num">{{info.stayBalance}}元<text wx:if="{{info.stayBalance > 0 && info.order_finish_stt}}">（已退还至余额)</text></view>
+            </view>
+        </view>
+        <view class="box">
+            <view class="name">返还金额</view>
+            <view class="info">
+                <view class="num">{{info.backBalance}}元<text wx:if="{{info.backBalance > 0 && info.order_finish_stt}}">（已返还至余额)</text></view>
+            </view>
+        </view>
+        <view class="box">
+            <view class="name">时间</view>
+            <view class="info">
+                <view class="num">{{info.ctime}}</view>
+            </view>
+        </view>
+        <view class="box">
+            <view class="name">支付方式</view>
+            <view class="info">
+                <view class="num">{{info.payWay == 'balance' ? '余额支付' : '微信支付'}}</view>
+            </view>
+        </view>
+    </view>
+</view>

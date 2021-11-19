@@ -1,0 +1,243 @@
+.flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+page {
+  height: 100%;
+  background: url("https://prodstatic.oss-cn-shenzhen.aliyuncs.com/api/smartFood/signin/recovery_ai_red@2x.png") no-repeat;
+  background-size: cover;
+}
+.signIn {
+  width: 100%;
+}
+.signIn .redPacket .sign-in-header {
+  text-align: center;
+  margin: 100rpx 0 64rpx;
+}
+.signIn .redPacket .sign-in-header image {
+  width: 583rpx;
+  height: 160rpx;
+}
+.signIn .redPacket .sign-in-current {
+  width: 710rpx;
+  height: 700rpx;
+  border-radius: 20rpx;
+  text-align: center;
+}
+.signIn .redPacket .sign-in-current .current-tit {
+  font-size: 36rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 550;
+  color: #333333;
+}
+.signIn .redPacket .sign-in-current .current-tit.opened {
+  color: #8f5620;
+}
+.signIn .redPacket .sign-in-current .current-hb {
+  width: 527rpx;
+  margin: 44rpx auto 0;
+  position: relative;
+  text-align: center;
+  z-index: 10;
+}
+.signIn .redPacket .sign-in-current .current-hb-bg {
+  width: 100%;
+  height: 708rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.signIn .redPacket .sign-in-current .current-hb-open {
+  width: 220rpx;
+  height: 220rpx;
+  margin: 220rpx auto 0;
+  position: inherit;
+}
+.signIn .redPacket .sign-in-current .current-hb-opened {
+  position: relative;
+  height: 700rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+.signIn .redPacket .sign-in-current .current-hb-opened .opened-part.part-1 {
+  width: 527rpx;
+}
+.signIn .redPacket .sign-in-current .current-hb-opened .opened-part.part-1.opened {
+  animation: part1Act 0s forwards;
+}
+.signIn .redPacket .sign-in-current .current-hb-opened .opened-part.part-1.opening {
+  animation: part1Act 0.5s forwards;
+}
+.signIn .redPacket .sign-in-current .current-hb-opened .opened-part.part-1 image {
+  width: 100%;
+}
+.signIn .redPacket .sign-in-current .current-hb-opened .opened-part.part-2 {
+  width: 453rpx;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, 250rpx);
+  animation: part2Act 0.5s 0.5s forwards;
+}
+.signIn .redPacket .sign-in-current .current-hb-opened .opened-part.part-2 .amount {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 110rpx;
+  transform: translateX(-50%);
+}
+.signIn .redPacket .sign-in-current .current-hb-opened .opened-part.part-2 .amount text {
+  font-size: 120rpx;
+  font-weight: 550;
+  color: #8f5620;
+}
+.signIn .redPacket .sign-in-current .current-hb-opened .opened-part.part-2 .amount text:last-of-type {
+  font-size: 44rpx;
+  font-weight: 500;
+}
+.signIn .redPacket .sign-in-current .current-hb-opened .opened-part.part-2 image {
+  width: 100%;
+}
+.signIn .redPacket .sign-in-current .current-hb-opened .opened-part.part-3 {
+  width: 555rpx;
+  position: relative;
+  transform: translateY(-140);
+}
+.signIn .redPacket .sign-in-current .current-hb-opened .opened-part.part-3.opened {
+  animation: part3Act 0s forwards;
+}
+.signIn .redPacket .sign-in-current .current-hb-opened .opened-part.part-3.opening {
+  animation: part3Act 0.5s forwards;
+}
+.signIn .redPacket .sign-in-current .current-hb-opened .opened-part.part-3 image {
+  width: 100%;
+}
+.signIn .redPacket .sign-in-current .current-hb-opened .opened-part.part-3 .check {
+  position: absolute;
+  left: 40%;
+  bottom: 218rpx;
+  font-size: 26rpx;
+  color: #fad3a8;
+  line-height: 26rpx;
+}
+.signIn .redPacket .sign-in-current .current-hb-opened .opened-part.part-3 .check image {
+  width: 24rpx;
+  height: 24rpx;
+}
+.signIn .redPacket .sign-in-current .current-hb-opened .opened-part.part-3 .text {
+  width: 390rpx;
+  height: 82rpx;
+  line-height: 82rpx;
+  background: linear-gradient(90deg, #fff6e7 0%, #fad3a8 100%);
+  border-radius: 41rpx;
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #8f5620;
+  position: absolute;
+  left: 50%;
+  bottom: 100rpx;
+  transform: translateX(-50%);
+}
+.signIn .redPacket .sign-in-return {
+  width: 450rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 40rpx;
+  border: 2rpx solid #fa6400;
+  font-size: 32rpx;
+  color: #fa6400;
+  text-align: center;
+  margin: 80rpx auto 215rpx;
+}
+.signIn .fail {
+  width: 100%;
+  height: 100%;
+  padding-top: 90rpx;
+}
+.signIn .fail .head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 160rpx;
+}
+.signIn .fail .head image {
+  width: 180rpx;
+  height: 180rpx;
+  margin-bottom: 34rpx;
+}
+.signIn .fail .head .status {
+  color: #000000;
+  font-size: 40rpx;
+  font-weight: 550;
+  text-align: center;
+}
+.signIn .fail .btn-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signIn .fail .btn-box .btn {
+  width: 280rpx;
+  height: 88rpx;
+  border-radius: 44rpx;
+  border: 2rpx solid #fa6400;
+  text-align: center;
+  line-height: 88rpx;
+  color: #fa6400;
+  font-size: 32rpx;
+}
+.signIn .fail .btn-box .btn:first-of-type {
+  margin-right: 20rpx;
+}
+.signIn .fail .btn-box .btn.reset {
+  background: linear-gradient(135deg, #ff9722 0%, #fe5e0f 100%);
+  color: #fff;
+}
+@keyframes part1Act {
+  from {
+    transform: translateY(-160rpx);
+  }
+  to {
+    transform: translateY(0rpx);
+  }
+}
+@keyframes part2Act {
+  from {
+    transform: translate(-50%, 250rpx);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+@keyframes part3Act {
+  from {
+    transform: translateY(160rpx);
+  }
+  to {
+    transform: translateY(-140rpx);
+  }
+}
+@keyframes dayTipAct {
+  0% {
+    transform: translateX(-50%) scale(1);
+  }
+  25% {
+    transform: translateX(-50%) scale(0.9);
+  }
+  50% {
+    transform: translateX(-50%) scale(1);
+  }
+  75% {
+    transform: translateX(-50%) scale(0.8);
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+  }
+}

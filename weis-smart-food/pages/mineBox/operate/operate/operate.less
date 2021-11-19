@@ -1,0 +1,33 @@
+.operate {
+  width: 750rpx;
+  padding-bottom: 156rpx;
+}
+
+// 底部-选项
+.tabBar {
+  width: 750rpx;
+  display: flex;
+  justify-content: space-around;
+  padding: 10rpx 30rpx 40rpx;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  z-index: 10;
+  background: #ffffff;
+  .tabBar-item {
+    text-align: center;
+    image {
+      width: 72rpx;
+      height: 72rpx;
+    }
+    view {
+      font-size: 20rpx;
+      font-weight: bold;
+      color: #2a1818;
+    }
+    .active {
+      color: #fa6400;
+    }
+  }
+}

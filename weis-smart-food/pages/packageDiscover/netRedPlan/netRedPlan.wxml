@@ -1,0 +1,257 @@
+<!-- pages/solution/netRedPlan/netRedPlan.wxml -->
+<cp-nav-bar title-text="{{detail.case.tcTitle}}" backIconColor="black" home-icon="/images/backHome.png"></cp-nav-bar>
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
+<!-- 帕梅拉吃法 -->
+<view class="pml" wx:if="{{type == '01'}}">
+  <image lazy-load="{{true}}" style="width:750rpx;height:3623rpx" src="https://prodstatic.weis1606.cn/api/mini/pml-bg.png" />
+</view>
+<view class="celebrity {{check ? 'active' : ''}}" wx:else>
+  <view class="tc-title">{{detail.case.tcTitle}}</view>
+  <view class="sub-title">
+    {{aimstatus[detail.case.tcTarget].name}}-{{tcComputingMethod[detail.case.tcTrialWay]}}
+  </view>
+  <view class="banner">
+    <image src="{{detail.case.tcImgUrl}}" style="width:100%;height:100%;border-radius:10rpx" />
+  </view>
+  <!-- 内容 -->
+  <view class="content">
+    <view class="wrap-box advise">
+      <view class="t-title">
+        <view class="advice">建议属性</view>
+      </view>
+      <view class="t-nature">
+        <view class="t-row">
+          <view class="num">{{sex[detail.case.tcSex].name}}</view>
+          <view class="name">性别</view>
+        </view>
+        <view class="t-row">
+          <view class="num" wx:if="{{!detail.case.tcBmiSta && !detail.case.tcBmiEnd}}">--</view>
+          <view class="num" wx:else>{{detail.case.tcBmiSta}}-{{detail.case.tcBmiEnd}}</view>
+          <view class="name">BMI</view>
+        </view>
+        <view class="t-row">
+          <view class="num" wx:if="{{!detail.case.tcBodyfatSta && !detail.case.tcBodyfatEnd}}">
+            --
+          </view>
+          <view class="num" wx:else>
+            {{detail.case.tcBodyfatSta}}-{{detail.case.tcBodyfatEnd}}
+            <view class="unit">%</view>
+          </view>
+          <view class="name">体脂率</view>
+        </view>
+      </view>
+      <view class="t-aim" wx:if="{{(detail.bmi || detail.fataRate) && ((detail.case.tcBmiSta && detail.case.tcBmiEnd) || (detail.case.tcBodyfatSta && detail.case.tcBodyfatEnd))}}">
+        <image class="bg-img" src="{{(detail.bmi && detail.bmi >= detail.case.tcBmiSta && detail.bmi <= detail.case.tcBmiEnd) || (detail.fataRate && detail.fataRate >= detail.case.tcBodyfatSta && detail.fataRate <= detail.case.tcBodyfatEnd) ? 'https://prodstatic.weis1606.cn/api/mini/details_bubble_green.png' : 'https://prodstatic.weis1606.cn/api/mini/details_bubble_orange.png'}}" />
+        <image class="icon" src="{{(detail.bmi && detail.bmi >= detail.case.tcBmiSta && detail.bmi <= detail.case.tcBmiEnd) || (detail.fataRate && detail.fataRate >= detail.case.tcBodyfatSta && detail.fataRate <= detail.case.tcBodyfatEnd) ? 'https://prodstatic.weis1606.cn/api/mini/template_reduction_hook_new.png' : 'https://prodstatic.weis1606.cn/api/mini/template_reduction_circular_new.png'}}" />
+        <view class="aim-wrap">
+          <view class="t-row" wx:if="{{detail.bmi && detail.bmi >= detail.case.tcBmiSta && detail.bmi <= detail.case.tcBmiEnd}}">
+            满足你的BMI {{detail.bmi}}
+          </view>
+          <view class="t-row active" wx:if="{{detail.bmi && (detail.bmi < detail.case.tcBmiSta || detail.bmi > detail.case.tcBmiEnd)}}">
+            你的BMI {{detail.bmi}}
+          </view>
+          <view class="t-row" wx:if="{{detail.fataRate && detail.fataRate >= detail.case.tcBodyfatSta && detail.fataRate <= detail.case.tcBodyfatEnd}}">
+            满足你的体脂率 {{detail.fataRate}}%
+          </view>
+          <view class="t-row active" wx:if="{{detail.fataRate && (detail.fataRate < detail.case.tcBodyfatSta || detail.fataRate > detail.case.tcBodyfatEnd)}}">
+            你的体脂率 {{detail.fataRate}}%
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="wrap-box advise what">
+      <view class="t-title how">
+        <view class="advice green">{{aimstatus[detail.case.tcTarget].title}}</view>
+        <!-- <view class="way">{{tcComputingMethod[detail.case.tcTrialWay]}}</view> -->
+      </view>
+      <view class="desc">
+        执行周期
+        <text>{{detail.case.tcPeriod}}</text>
+        天
+      </view>
+      <view class="desc">
+        <view class="type-desc" wx:if="{{detail.case.tcTarget == '01'}}">
+          {{detail.case.tcPeriod}}天只靠吃饭燃烧
+          <text>{{filters.abs(detail.energyDifference)}}</text>
+          kcal
+        </view>
+        <view class="type-desc" wx:if="{{detail.case.tcTarget == '02'}}">
+          {{detail.case.tcPeriod}}天可以增重
+          <text>{{filters.abs(detail.energyDifference)}}</text>
+          kcal
+        </view>
+        <view class="type-desc" wx:if="{{detail.case.tcTarget == '03'}}">
+          {{detail.case.tcPeriod}}天认真吃饭，保持完美体型
+        </view>
+      </view>
+      <view class="desc" wx:if="{{detail.case.tcTarget == '01'}}">
+        相当于减去
+        <text>{{detail.weight}}</text>
+        kg脂肪
+      </view>
+      <view class="desc" wx:if="{{detail.case.tcTarget == '02'}}">
+        相当于增加
+        <text>{{detail.weight}}</text>
+        kg体重
+      </view>
+      <!-- <view class="desc rather">相当于：</view> -->
+      <view class="t-nature line-no" wx:if="{{detail.case.caseLabelList.length>0}}">
+        <image class="equal-icon" src="https://prodstatic.weis1606.cn/api/mini/details_bubble_gray.png" />
+        <view class="equal-name">等同于</view>
+        <view class="icon-box">
+          <view class="t-row" wx:for="{{detail.case.caseLabelList}}" wx:key="key">
+            <image src="{{item.tclImgUrl}}" class="icon" />
+            <view class="row-value">{{item.tclName}}{{item.num}}{{item.tclUnit}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="content-w" wx:if="{{detail.case.tcPlanType == '00'}}">
+      <view class="sy">饮食安排</view>
+      <view class="s-box">
+        <swiper class="swiper">
+          <block>
+            <swiper-item class="i-box" wx:for="{{detail.case.keyArr}}" wx:key="key">
+              <view class="b-box" style="background:{{colorArr[index].bg}}">
+                <view class="name-c" style="color:{{colorArr[index].color}}">
+                  {{categoryObj[item]}}
+                </view>
+                <view class="c-box">
+                  <image src="{{colorArr[index].img}}" />
+                  <view class="pie-box" style="border-top: 1px solid {{colorArr[index].bg}}">
+                    <view class="pie">
+                      <view class="cp-data-pie">
+                        <cp-data-pie mode="image" delay="{{400}}" custom-style="width: 138rpx;height: 138rpx;" data="{{detail.case.eachMealMap[item].pieData}}"></cp-data-pie>
+                      </view>
+                      <view class="element">
+                        <view class="circle">
+                          <view class="c-bg z"></view>
+                          <view class="name">脂肪</view>
+                          <view class="ele-value">{{detail.case.eachMealMap[item].fat}}%</view>
+                        </view>
+                        <view class="circle">
+                          <view class="c-bg d"></view>
+                          <view class="name">蛋白质</view>
+                          <view class="ele-value">{{detail.case.eachMealMap[item].protein}}%</view>
+                        </view>
+                        <view class="circle">
+                          <view class="c-bg t"></view>
+                          <view class="name">碳水化合物</view>
+                          <view class="ele-value">
+                            {{detail.case.eachMealMap[item].carbohydrate}}%
+                          </view>
+                        </view>
+                      </view>
+                    </view>
+                    <view class="desc">{{detail.case.eachMealMap[item].proverb}}</view>
+                  </view>
+                </view>
+                <view class="tip" style="color:{{colorArr[index].color}}">
+                  *图片仅供参考，且仅为一餐示例，每餐根据算法推荐食物不同。
+                </view>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+      <view class="hd">👈向左滑动查看更多</view>
+    </view>
+    <!-- 每天不同 -->
+    <view class="content-w" wx:else>
+      <view class="sy">饮食安排</view>
+      <view class="s-box">
+        <swiper class="swiper more">
+          <block>
+            <swiper-item class="i-box" wx:for="{{detail.caseList}}" wx:key="key" wx:if="{{index < 7}}">
+              <view class="b-box" style="background:{{colorArr[index].bg}}">
+                <view class="name-c" style="color:{{colorArr[index].color}}">
+                  DAY {{filters.addZero(index+1)}}
+                </view>
+                <view class="c-box">
+                  <image src="{{colorArr[index].img}}" />
+                  <view class="pie-box" style="border-top: 1px solid {{colorArr[index].bg}}">
+                    <view class="pie" wx:for="{{item.keyArr}}" wx:key="key" wx:for-item="category">
+                      <view class="name-cat">{{categoryObj[category]}}</view>
+                      <view class="cp-data-pie">
+                        <cp-data-pie mode="image" delay="{{400}}" custom-style="width: 138rpx;height: 138rpx;" data="{{item.eachMealMap[category].pieData}}"></cp-data-pie>
+                      </view>
+                      <view class="element">
+                        <view class="circle">
+                          <view class="c-bg z"></view>
+                          <view class="name">脂肪</view>
+                          <view class="ele-value">{{item.eachMealMap[category].fat}}%</view>
+                        </view>
+                        <view class="circle">
+                          <view class="c-bg d"></view>
+                          <view class="name">蛋白质</view>
+                          <view class="ele-value">{{item.eachMealMap[category].protein}}%</view>
+                        </view>
+                        <view class="circle">
+                          <view class="c-bg t"></view>
+                          <view class="name">碳水化合物</view>
+                          <view class="ele-value">
+                            {{item.eachMealMap[category].carbohydrate}}%
+                          </view>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+                <view class="tip" style="color:{{colorArr[index].color}}">
+                  *图片仅供参考，且仅为一餐示例，每餐根据算法推荐食物不同。
+                </view>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+      <view class="hd">👈向左滑动查看{{detail.caseList.length > 7 ? 7 : detail.caseList.length}}天</view>
+    </view>
+    <image class="long1" src="https://prodstatic.weis1606.cn/api/mini/exclusive.png" />
+    <image class="long1 long2" src="https://prodstatic.weis1606.cn/api/mini/cook.png" />
+    <!-- 简介 -->
+    <view class="intro">
+      <view class="intro-title">营养师介绍</view>
+      <view class="head">
+        <image src="{{detail.case.dietician.tcdImgUrl}}" />
+        <view class="name-box">
+          <view class="name">{{detail.case.dietician.tcdName}}</view>
+          <view class="profession">{{detail.case.dietician.tcdTitle}}</view>
+          <view class="profession-box">
+            <view class="pro" wx:for="{{detail.case.dietician.tcdIntroduce}}" wx:key="key">
+              {{item}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <image class="long1 long3" src="https://prodstatic.weis1606.cn/api/mini/implement.png" />
+    <image class="long1 long4" src="https://prodstatic.weis1606.cn/api/mini/make.png" />
+    <view class="jc">我们一直坚持</view>
+    <image class="long1 long5" src="https://prodstatic.weis1606.cn/api/mini/insist_chart.png" />
+    <!-- <image class="long" src="{{detail.longPhoto}}" /> -->
+  </view>
+</view>
+<view class="bot-box" hidden="{{check}}">
+  <view wx:if="{{showReserve}}" class="btn button--primary" bind:tap="reverseTap">预约入营</view>
+  <view wx:else class="btn button--primary btn--library">
+    <view class="btn-l" bind:tap="use">使用吃法</view>
+    <view class="btn-r" bind:tap="goMultiMeal">立即点餐</view>
+  </view>
+</view>
+<view class="date-dialog" catch:touchmove="true" wx:if="{{showMultiSelect}}">
+  <view class="popupshow" wx:if="{{showMultiSelect}}" catch:touchmove="true">
+    <view class="title">选择执行时间</view>
+    <multiSelect-calendar id="multiSelect" calendarConfig="{{calendarConfig}}" bind:onSwipe="onSwipe" bind:onTapDay="onTapDay" bind:afterTapDay="afterTapDay" bind:whenChangeMonth="whenChangeMonth" bind:afterCalendarRender="afterCalendarRender"></multiSelect-calendar>
+    <view class="btn">
+      <view class="sure an {{canClick ? 'active' : ''}}" bind:tap="sureSelect">使用吃法即刻订餐</view>
+    </view>
+    <image class="close" src="/images/logistics_popup_off.png" bind:tap="cancelSelect" />
+  </view>
+</view>
+<!-- <cp-rb-calendar id="calendar" show="{{showMultiSelect}}" bind:select="selectDate" bind:close="closeFn" /> -->
+<!-- 使用吃法订餐，完成入营最后一步。 -->
+<view class="tip-b" wx:if="{{showReserve}}">
+  <image src="https://prodstatic.weis1606.cn/api/activity/tips_ip_icon.png" />
+  <view class="title">使用吃法订餐，完成入营最后一步。</view>
+</view>

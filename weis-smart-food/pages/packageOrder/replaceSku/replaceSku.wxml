@@ -1,0 +1,6 @@
+<!--pages/packageOrder/replaceSku/replaceSku.wxml-->
+<cp-nav-bar title-text="换单品" background="#F3F4F5"></cp-nav-bar>
+
+<view class="meal">
+    <cp-change-sku resultList="{{resultList}}" scrollHeight="{{scrollHeight}}" totalNum="{{totalNum || 0}}" countPrice="{{countPrice || 0}}" bind:tapAdd="tapAdd" bind:change="confirmChangeFn" />
+</view>

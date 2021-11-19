@@ -1,0 +1,23 @@
+<template name="eat-card">
+  <view
+    class="eat-card"
+    data-name="{{name}}"
+    data-code="{{code}}"
+    data-index="{{index}}"
+    bindtap="eatCardTap"
+  >
+    <image src="{{backImgUrl}}" />
+    <view class="eatMeal">
+      <view class="etit">
+        {{name}}
+        <!-- <image src="/images/tag_hot.png" /> -->
+        <image wx:if="{{new}}" src="/images/tag_new.png" />
+      </view>
+      <text class="online">{{title}}</text>
+      <view class="onlinetext">
+        <image class="onlinetext__icon" src="/images/icons/programme_hook.png" />
+        <view>{{selectTotalCount}}人正在吃</view>
+      </view>
+    </view>
+  </view>
+</template>

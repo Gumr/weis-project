@@ -1,0 +1,17 @@
+<!--pages/basic/changeCover/changeCover.wxml-->
+<nav title="换封面"></nav>
+<image class="cover" mode="heightFix" src="{{selectedImg}}" />
+<view class="sprite" hover-class="none" hover-stop-propagation="false">
+  <view class="imgs">
+    <image style="width: calc({{1 / videoFrameImg.length * 100}})" wx:for="{{videoFrameImg}}" wx:key="index" src="{{item}}" />
+    <view class="overlay"></view>
+  </view>
+  <!-- 拖动显示位置 -->
+  <view class="position" style="left: {{tranx > 0 ? tranx + 'px' : '30rpx'}}" bind:touchstart="touchstart" catch:touchmove="touchmove" bind:touchend="touchend">
+    <image class="icon" src="{{videoFrameImg[currentindex]}}" />
+  </view>
+</view>
+<view class="operate" style="bottom:{{isFullScreen ? '64rpx' : '40rpx'}}">
+  <view class="cancel" bind:tap="cancel">取消</view>
+  <view class="sure" bind:tap="selectCover">选择</view>
+</view>

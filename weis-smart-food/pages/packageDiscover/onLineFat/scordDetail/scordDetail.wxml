@@ -1,0 +1,13 @@
+<!-- pages/packageDiscover/onLineFat/scordDetail/scordDetail.wxml -->
+<cp-nav-bar title-text="积分详情" />
+<view class="box" wx:if="{{groupScoreList.length > 0}}">
+    <view class="list" wx:for="{{groupScoreList}}" wx:key="index">
+        <view class="date">{{item.scoreTime}}</view>
+        <view class="score">{{item.scoreValue}}分</view>
+    </view>
+</view>
+
+<view wx:else class="null">
+    <image src="https://prodstatic.weis1606.cn/api/smartFood/emp.png" />
+    <view>暂无积分</view>
+</view>

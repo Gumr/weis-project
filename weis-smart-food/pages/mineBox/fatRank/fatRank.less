@@ -1,0 +1,428 @@
+@import '../../../templates/rank-item/rank-item.less';
+
+.border {
+  display: block;
+  content: '';
+  width: 570rpx;
+  height: 1rpx;
+  background: #333333;
+  opacity: 0.1;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.fatDetail {
+  width: 100%;
+  height: 100%;
+  background: #fe5e0f;
+  .banner{
+    position: relative;
+  }
+  // 背景图片
+  .bg {
+    width: 100%;
+    height: 550rpx;
+    display: block;
+    border-bottom: 1rpx solid #fe5e0f;
+  }
+  .intro{
+    width: 144rpx;
+    height: 44rpx;
+    border-radius: 25rpx;
+    border: 2rpx solid #FFFFFF;
+    text-align: center;
+    line-height: 40rpx;
+    color: #FFFFFF;
+    font-size: 24rpx;
+    position: absolute;
+    left: 30rpx;
+    bottom: 30rpx;
+  }
+  // 页面
+  .page {
+    background: #fe5e0f;
+    padding: 0 30rpx;
+    // 内容
+    .content {
+      padding: 40rpx 30rpx;
+      background: #ffffff;
+      border-radius: 14rpx;
+      // 公共标题
+      .title {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 52rpx;
+        background: #ffe600;
+        border-radius: 0rpx 100rpx 100rpx 0rpx;
+        font-size: 28rpx;
+        font-weight: bold;
+        color: #333333;
+        line-height: 52rpx;
+        text-align: center;
+      }
+      // 活动规则
+      .rule {
+        background: #f9f9f9;
+        border-radius: 10rpx;
+        position: relative;
+        padding: 62rpx 30rpx 0;
+        margin-bottom: 60rpx;
+
+        &__title {
+          padding: 0 58rpx 0 30rpx;
+        }
+        &__list {
+          position: relative;
+          padding: 30rpx 0;
+          view:nth-child(1) {
+            font-size: 24rpx;
+            color: #333333;
+            padding-bottom: 24rpx;
+          }
+          view:nth-child(2) {
+            font-size: 28rpx;
+            font-weight: bold;
+            color: #333333;
+          }
+
+          .arrow{
+            display: flex;
+            justify-content: space-between;
+            image {
+              width: 28rpx;
+              height: 28rpx;
+            }
+          }
+
+          &:not(:last-child)::after {
+            .border();
+          }
+        }
+      }
+      // 减脂营介绍
+      .introduce {
+        overflow: hidden;
+        background: #f9f9f9;
+        border-radius: 10rpx;
+        position: relative;
+        &__title {
+          padding: 0 30rpx;
+        }
+        &__list {
+          position: relative;
+          padding: 30rpx 0;
+
+          &:not(:last-child)::after {
+            .border();
+          }
+          // 文字
+          &.text {
+            font-size: 28rpx;
+            color: #333333;
+            line-height: 52rpx;
+          }
+          // 分队
+          &.unit {
+            view:nth-child(1) {
+              font-size: 26rpx;
+              color: #333333;
+              padding-bottom: 24rpx;
+            }
+            view:nth-child(2) {
+              font-size: 28rpx;
+              font-weight: bold;
+              color: #fe5e0f;
+            }
+          }
+          // 报名
+          &.signUp {
+            view:nth-child(1) {
+              font-size: 26rpx;
+              color: #333333;
+              padding-bottom: 24rpx;
+            }
+            view:nth-child(2) {
+              font-size: 28rpx;
+              font-weight: bold;
+              color: #fe5e0f;
+            }
+            view:nth-child(3) {
+              background: #ffe600;
+              border-radius: 0rpx 60rpx 60rpx 60rpx;
+              padding: 20rpx 30rpx;
+              font-size: 28rpx;
+              color: #333333;
+              margin-top: 40rpx;
+            }
+          }
+        }
+      }
+    }
+    // 底部
+  }
+}
+.bottom {
+  // padding: 40rpx 0 58rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .share {
+    font-size: 24rpx;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    image {
+      width: 52rpx;
+      height: 52rpx;
+    }
+  }
+  .btn {
+    width: 554rpx;
+    height: 88rpx;
+    background: #ffe600;
+    border-radius: 50rpx;
+    font-size: 36rpx;
+    color: #000000;
+    line-height: 88rpx;
+    text-align: center;
+  }
+}
+
+.rank-tabs {
+  padding-top: 40rpx;
+  margin-bottom: 38rpx;
+  .rank-tab {
+    width: 200rpx;
+    height: 52rpx;
+    justify-content: center;
+    color: #333;
+    box-sizing: border-box;
+    border: 1px solid #979797;
+    &:first-child {
+      border-right: none;
+
+      border-radius: 10rpx 0rpx 0rpx 10rpx;
+    }
+    &:last-child {
+      border-left: none;
+      border-radius: 0rpx 10rpx 10rpx 0rpx;
+    }
+    &--active {
+      font-weight: bold;
+      background: #ffe600;
+      border: none;
+    }
+  }
+}
+
+.type-tabs {
+  justify-content: space-around;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.1);
+  .type-tab {
+    padding: 22rpx 0;
+    color: rgba(51, 51, 51, 0.5);
+  }
+  .type-tab--active {
+    color: rgba(51, 51, 51, 1);
+    position: relative;
+    &::after {
+      content: '';
+      display: block;
+      width: 24rpx;
+      height: 6rpx;
+      position: absolute;
+      background: #fe5e0f;
+      border-radius: 4px;
+      bottom: 10rpx;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.rank-list {
+  padding: 10rpx 30rpx 0;
+  &__item {
+    margin: 40rpx 0 60rpx;
+  }
+}
+.my-rank {
+  padding: 50rpx 0 40rpx;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.1);
+}
+// 报名-弹窗
+.signUpPopup {
+  padding: 48rpx 40rpx 0;
+  // 提示-公共
+  .tip {
+    font-size: 26rpx;
+    color: #333333;
+    text-align: center;
+  }
+  // 选择分队
+  .unit {
+    .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 60rpx 0 92rpx;
+      .list {
+        width: 210rpx;
+        height: 150rpx;
+        background: #f2f3f4;
+        border-radius: 10rpx;
+        opacity: 0.82;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #333333;
+        .name {
+          font-size: 32rpx;
+          font-weight: bold;
+        }
+        &.active {
+          background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+          color: #ffffff;
+        }
+      }
+    }
+  }
+  // 选择体重
+  .weight {
+    .wrap {
+      text-align: center;
+      padding: 40rpx 0 92rpx;
+      input {
+        height: 140rpx;
+        font-size: 120rpx;
+        font-family: 'DIN';
+        font-weight: bold;
+        color: #333333;
+        margin-bottom: 10rpx;
+      }
+      text {
+        font-size: 28rpx;
+        color: #666666;
+      }
+    }
+  }
+}
+
+.like{
+  width: 630rpx;
+  height: 285rpx;
+  background: #F9F9F9;
+  border-radius: 10rpx;
+  padding: 40rpx;
+  margin-bottom: 60rpx;
+  .tag{
+    width: 424rpx;
+    height: 87rpx;
+    display: block;
+    margin: 0 auto 50rpx;
+  }
+  .like-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .like-l{
+      display: flex;
+      align-items: center;
+      .rank-like{
+        color: #A9A9A9;
+        font-size: 42rpx;
+        font-weight: bold;
+      }
+      image{
+        width: 68rpx;
+        height: 68rpx;
+        border-radius: 50%;
+        margin: 0 20rpx 0 40rpx;
+      }
+      .name{
+        color: #333333;
+        font-size: 26rpx;
+        font-weight: bold;
+      }
+    }
+    .like-r{
+      display: flex;
+      align-items: center;
+      .score{
+        color: #FE5E0F;
+        font-size: 26rpx;
+        font-weight: bold;
+      }
+      image{
+        width: 54rpx;
+        height: 54rpx;
+        margin-left: 30rpx;
+      }
+    }
+  }
+}
+
+.share{
+  width: 100%;
+  .share-box{
+    display: flex;
+    justify-content: center;
+    padding: 60rpx 0;
+    position: relative;
+    .box{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      button{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        opacity: 0;
+      }
+      &:first-of-type{
+        margin-right: 255rpx;
+      }
+      image{
+        width: 120rpx;
+        height: 120rpx;
+        margin-bottom: 30rpx;
+      }
+      .text{
+        color: rgba(51, 51, 51, 1);
+        font-size: 28rpx;
+      }
+    }
+    &::after{
+      display: block1;
+      content: '';
+      width: 100%;
+      height: 2rpx;
+      background: rgba(51, 51, 51, 0.1);
+      transform: scaleY(0.5);
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+  }
+  .cancel{
+    width: 100%;
+    text-align: center;
+    padding: 40rpx 0 40rpx;
+    color: rgba(51, 51, 51, 1);
+    font-size: 32rpx;
+  }
+}
+
+@import '../../../style/common.less';
+
+.hide {
+  .hidden-canvas();
+}

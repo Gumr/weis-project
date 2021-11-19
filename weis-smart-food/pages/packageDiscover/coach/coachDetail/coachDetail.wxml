@@ -1,0 +1,104 @@
+<!--pages/packageDiscover/coach/coachDetail/coachDetail.wxml-->
+<cp-nav-bar title-text="" background="transparent"></cp-nav-bar>
+<view class="coachDetail">
+    <image class="navBarBg" src="{{coach.headImageUrl}}" style="top:-{{navStatusHeight * px2rpx}}rpx" />
+    <!-- 头部-头像信息 -->
+    <view class="header">
+        <view class="personal">
+            <view class="top flex-items-center">
+                <image class="headImg" src="{{coach.headImageUrl}}" bind:tap="previewImage" />
+                <view class="info">
+                    <view class="info__name">{{coach.uname}}</view>
+                    <view class="info__label">{{coach.domain}}</view>
+                    <view class="info__rate flex" wx:if="{{coach.star}}">
+                        <van-rate gutter="{{'4rpx'}}" size="{{'24rpx'}}" value="{{coach.star || 0}}" color="#FA6400" void-color="#DCDCDC" void-icon="star" bind:change="evaluate" />
+                        <view class="desc">{{coach.star}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="bottom flex-content-between">
+                <view class="list flex-items-center" wx:for="{{personalDetail}}" wx:key="key" data-sort="{{item.sort}}" bind:tap="personalDetail">
+                    <image class="list__icon" src="{{item.iconUrl}}" />
+                    <view class="list__name">{{item.name}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 中部-内容 -->
+    <view class="content">
+        <view class="box">
+            <view class="title">自我介绍</view>
+            <view class="text">{{coach.introduce}}</view>
+        </view>
+        <view class="box">
+            <view class="title">擅长领域</view>
+            <view class="text">{{coach.field}}</view>
+        </view>
+        <view class="box">
+            <view class="title">服务地址</view>
+            <view class="addressList">
+                <view class="list" wx:for="{{coach.coachAddressList}}" data-name="{{item.tcaName}}" data-address="{{item.tcaAddresList}}{{item.tcaAddresDetails}}" data-lat="{{item.tcaLat}}" data-lon="{{item.tcaLng}}" bind:tap="goMap">
+                    <view class="name">{{item.tcaName}}</view>
+                    <view class="addr flex">
+                        <image class="addr__img" src="https://prodstatic.weis1606.cn/api/smartFood/address_orange.png" />
+                        <view class="flex-content-between">
+                            <view class="addr__text">{{item.tcaAddresList}}{{item.tcaAddresDetails}}</view>
+                            <image class="addr__next" src="/images/my_next.png" />
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="box">
+            <view class="title">所授课程</view>
+            <scroll-view scroll-x="{{true}}" style="width:690rpx">
+                <view class="courseList flex">
+                    <view class="list" wx:for="{{coach.coachCourseList}}" wx:key="index" data-item="{{item}}" bind:tap="courseDetail">
+                        <image class="list__image" src="{{item.tccCoverList[0]}}" />
+                        <view class="list__name ellipsis">{{item.tccName}}</view>
+                        <view class="list__price">¥<text>{{item.tccPrice}}</text>/节</view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+        <view class="box">
+            <view class="titleTwo flex-content-between">
+                <view class="titleTwo__title">会员评价<text wx:if="{{coach.commentDTOList.length > 0}}">({{coach.commentDTOList.length}}条)</text></view>
+                <view class="titleTwo__comment" bind:tap="comment">评价该教练</view>
+            </view>
+            <view class="commentList">
+                <view class="list" wx:if="{{coach.commentDTOList.length > 0}}" wx:for="{{coach.commentDTOList}}">
+                    <view class="head flex-content-between">
+                        <image class="head__image" src="{{item.headImageUrl}}" />
+                        <view class="head__name">
+                            <view>{{item.uname}}</view>
+                            <view>{{item.ctime}}</view>
+                        </view>
+                        <view class="head__rate">
+                            <van-rate gutter="{{'4rpx'}}" size="{{'24rpx'}}" value="{{item.star || 0}}" color="#FA6400" void-color="#DCDCDC" void-icon="star" bind:change="evaluate" />
+                        </view>
+                    </view>
+                    <view class="text">{{item.comment}}</view>
+                    <view class="img" wx:if="{{item.imageUrlList[0]}}" wx:key="key">
+                        <image wx:for="{{item.imageUrlList}}" wx:for-item="item1" src="{{item1}}" data-url="{{item1}}" data-urllist="{{item.imageUrlList}}" bind:tap="previewImage2"/>
+                    </view>
+                    <view class="delete" wx:if="{{item.operate}}" data-id="{{item.id}}" data-uid="{{item.uid}}" bindtap="delete">
+                        删除
+                        <image src="https://prodstatic.weis1606.cn/api/smartFood/delete_orange.png" />
+                    </view>
+                </view>
+                <cp-null show="{{coach.commentDTOList.length == 0}}" imgSrc="https://prodstatic.weis1606.cn/api/smartFood/null_comment.png" text="暂无评论"></cp-null>
+            </view>
+        </view>
+    </view>
+
+    <!-- 底部-按钮 -->
+    <view class="tail flex-content-between">
+        <view class="tail__weChat" bindtap="copyCode">复制教练微信</view>
+        <view class="tail__contact" bindtap="call">联系教练</view>
+    </view>
+</view>
+
+<!-- 弹窗 -->
+<cp-confirm-dialog show="{{showDelete}}" title="确定删除该条评论吗？" confirmText="删除" bind:on-confirm="sureDelete"></cp-confirm-dialog>
+<cp-confirm-dialog show="{{showCall}}" title="{{coach.phone}}" confirmText="拨打" bind:on-confirm="sureCall"></cp-confirm-dialog>

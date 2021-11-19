@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "multiSelect-calendar": "/components/calendarPlugin/index",
+    "weekCalendar": "/components/cp-week-calendar/cp-week-calendar",
+    "cp-confirm-dialog": "/components/cp-confirm-dialog/cp-confirm-dialog"
+  }
+}

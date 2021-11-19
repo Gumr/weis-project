@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/userInfo/userInfo",
+    "pages/userCenter/userCenter",
+    "pages/createCook/createCook",
+    "pages/uploadCook/uploadCook",
+    "pages/searchCook/searchCook",
+    "pages/cookDetail/cookDetail",
+    "pages/leaderboard/leaderboard",
+    "pages/preLeaderboard/preLeaderboard",
+    "pages/uploadStatus/uploadStatus",
+    "pages/mine/login/login",
+    "pages/mine/income/income",
+    "pages/mine/fans/fans",
+    "pages/mine/follows/follows",
+    "pages/basic/cashout/cashout",
+    "pages/basic/infos/infos",
+    "pages/basic/cropImg/cropImg",
+    "pages/basic/editInfos/editInfos",
+    "pages/basic/uploadVideo/uploadVideo",
+    "pages/basic/changeCover/changeCover",
+    "pages/basic/cashoutStatus/cashoutStatus",
+    "pages/basic/bannerView/bannerView",
+    "components/nav/nav"
+  ],
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/userCenter/userCenter",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {
+    "nav": "/components/nav/nav",
+    "overlay": "/components/overlay/overlay",
+    "bottomBtn": "/components/bottomBtn/bottomBtn"
+  },
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "networkTimeout": {
+    "request": 20000
+  },
+  "sitemapLocation": "sitemap.json"
+}

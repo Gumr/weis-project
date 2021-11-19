@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "cp-heatPoint-dialog": "/components/cp-heatPoint-dialog/cp-heatPoint-dialog",
+    "cp-meal-calendar": "/components/cp-meal-calendar/cp-meal-calendar",
+    "cp-bottom-buttom": "/components/cp-bottom-button/cp-bottom-button"
+  }
+}

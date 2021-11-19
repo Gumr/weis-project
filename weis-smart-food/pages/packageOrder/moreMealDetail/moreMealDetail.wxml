@@ -1,0 +1,109 @@
+<!-- pages/packageOrder/moreMealDetail/moreMealDetail.wxml -->
+<cp-nav-bar title-text="" color="#000" title="多餐详情" />
+<wxs module="filters">
+  module.exports.format = function(num, unit = 2) {
+    var val = num.toFixed(unit);
+    return val
+  }
+</wxs>
+<view class="moreMeal">
+    <view class="banner">
+        <image mode="aspectFill" src="{{dataInfo.tmfcImage}}" />
+    </view>
+    <view class="info">
+        <view class="title">
+            {{dataInfo.tmfcName}}：{{dataInfo.tmfcDayNum}}天{{dataInfo.tmfcDayNum * dataInfo.tmfcMealNum}}餐
+        </view>
+        <view class="award">
+            可享受{{dataInfo.tmfcDiscount * 10}}折优惠+最高{{filters.format(3*dataInfo.tmfcDayNum*dataInfo.tmfcMealNum,0)}}元预订奖励
+        </view>
+        <view class="desc">{{dataInfo.tmfcIntroduce}}</view>
+    </view>
+    <!-- 每日套餐菜品 -->
+    <view class="meal" wx:if="{{dataObj}}">
+        <view class="name">
+            每日套餐菜品
+            <view class="showDate" bind:tap="update">
+                选择日期
+                <image src="/images/my_next.png" />
+            </view>
+        </view>
+        <!-- 日期 -->
+        <scroll-view class="date-box" scroll-x="{{true}}">
+            <view class="box {{index == selectIndex ? 'active' : ''}}" data-index="{{index}}" bind:tap="select" wx:for="{{dataObj.skuList}}">
+                {{item.date}}
+            </view>
+        </scroll-view>
+        <!-- 菜品 -->
+        <view class="meal-box">
+            <view class="meal-info" wx:for="{{dataObj.skuList[selectIndex].list}}">
+                <view class="circle">
+                    <cp-data-circle circleData="{{item.circleData}}" />
+                </view>
+                <scroll-view scroll-x="{{true}}">
+                    <view class="sku" wx:for="{{item.list.getCategoryList}}">
+                        <image src="{{item.primaryImgUrl}}" />
+                        <view class="sku-name">{{item.skuname || item.name}}</view>
+                    </view>
+                </scroll-view>
+                <view class="bot-info">
+                    <view class="btn">
+                        <view bind:tap="changeMeal" data-cate-index="{{index}}" data-category="{{item.categoryType}}" data-type='01'>
+                            换套餐
+                        </view>
+                        <view bind:tap="changeMeal" data-cate-index="{{index}}" data-category="{{item.categoryType}}" data-type='00'>
+                            换单品
+                        </view>
+                    </view>
+                    <view class="price-info">
+                        <view class="num">共{{item.num}}个菜品</view>
+                        <view class="price">
+                            <text>￥</text>
+                            {{item.list.discountPrice}}
+                        </view>
+                        <del>￥{{item.list.tatolPrice}}</del>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="empty-meal" wx:else>
+        <van-loading color="#FE5E0F" size="20" text-size="12" type="circular" vertical>
+            加载中...
+        </van-loading>
+    </view>
+</view>
+<view class="bot" wx:if="{{dataObj}}">
+    <view class="allPrice">
+        <view class="price-t">
+            <!-- 现价 -->
+            <view class="acturePrice">
+                <text>¥</text>
+                {{dataObj.countPrice}}
+            </view>
+            <view class="origin">¥{{dataObj.totalAmount}}</view>
+        </view>
+        <!-- 折扣 -->
+        <text class="discount">
+            折扣已减{{filters.format(dataObj.totalAmount - dataObj.countPrice,2)}}元
+        </text>
+    </view>
+    <view class="btn" catch:tap="buy">已选好菜品</view>
+</view>
+<van-popup show="{{showDate}}" custom-style="border-radius: 20rpx;">
+    <cp-meal-calendar selectable="{{true}}" value-type="string" disableDate="{{disableDate}}" id="calendar" style="width: 650rpx;" bind:select="handleCalendarSelect" maxDay="{{dataInfo.tmfcDayNum}}" multiply expand complete="{{false}}">
+        <view class="head" slot="header">
+            <view class="close" bind:tap="closeFn">
+                <image class="icon" src="/images/logistics_popup_off.png" />
+            </view>
+            请选择
+            <text>{{dataInfo.tmfcDayNum}}天</text>
+            日期，以便为你搭配合适套餐
+        </view>
+        <view class="sure" slot="footer">
+            <view class="name {{dateList.length == dataInfo.tmfcDayNum ? 'active' : ''}}" bind:tap="sure">
+                确定
+            </view>
+        </view>
+    </cp-meal-calendar>
+</van-popup>

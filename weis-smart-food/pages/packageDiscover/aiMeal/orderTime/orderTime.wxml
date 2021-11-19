@@ -1,0 +1,55 @@
+<!--pages/solution/aiMeal/orderTime/orderTime.wxml-->
+<cp-nav-bar title-text="点餐时间" backIconColor></cp-nav-bar>
+<view class="page-main" style="padding-bottom: {{isIpx ? 128 + 68 : 128}}rpx">
+  <view class="warning" wx:if="{{!fromPage}}">*AI减脂方案周期为{{cycle}}天，每7天将根据您的体重变化调整未来饮食计划，请先预定7天的方案餐食。</view>
+  <view class="warning" wx:else>*七天开启瘦身第一步，边吃边瘦无负担</view>
+  <view class="section-1">
+    <view class="section-title">点餐时间</view>
+    <cp-meal-calendar
+      selectable="{{false}}"
+      value-type="string"
+      disableDate="{{disableDate}}"
+      id="calendar"
+      bind:select="handleCalendarSelect"
+      multiply
+      expand
+      complete
+    >
+      <view class="week" bind:tap="week" slot="footer">
+        <image
+          src="{{deliverWeek ? '/images/square_choice_press.png' : '/images/square_choice.png'}}"
+        />
+        <view class="name">周末不配送</view>
+      </view>
+    </cp-meal-calendar>
+  </view>
+  <view class="section-2">
+    <view class="section-title">餐别</view>
+    <view class="item" wx:if="{{!fromPage}}">
+      <image class="check-icon" src="/images/order_list_select.png" />
+      <view>一日三餐</view>
+    </view>
+    <view class="meal-box" wx:else>
+      <view
+        class="meal {{item.checked ?'active' : ''}}"
+        wx:for="{{mealList}}"
+        wx:key="index"
+        data-disabled="{{fromPage === 'ai'}}"
+        data-index="{{index}}"
+        bind:tap="selectMeal"
+      >
+        <view class="name">{{item.name}}</view>
+        <view class="title">{{item.title}}</view>
+        <image class="correct" wx:if="{{item.checked}}" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/date_select.png" />
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="page-footer" style="padding-bottom: {{isIpx ? 88 : 20}}rpx">
+  <view
+    class="btn button--primary {{btnDisabled ? 'disabled-btn' : ''}}"
+    data-disabled="{{btnDisabled}}"
+    bindtap="orderTap"
+  >去点餐</view>
+</view>

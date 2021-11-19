@@ -1,0 +1,141 @@
+page {
+  background-color: #F6F6F6;
+}
+.AddressList {
+  margin-top: 40rpx;
+}
+.AddressList .titlenumber {
+  font-size: 28rpx;
+  color: #333333;
+  margin-bottom: 24rpx;
+  margin-left: 4rpx;
+}
+.AddressList .selectAdd {
+  width: 690rpx;
+  height: 187rpx;
+  background: #ffffff;
+  border-radius: 10rpx;
+  padding-top: 44rpx;
+  display: flex;
+  margin-bottom: 20rpx;
+}
+.AddressList .flexname {
+  display: flex;
+}
+.AddressList .addname {
+  width: 541rpx;
+}
+.AddressList .addname image {
+  width: 80rpx;
+  height: 80rpx;
+  margin-left: 30rpx;
+}
+.AddressList .addname .noright {
+  border-right: unset!important;
+}
+.AddressList .addname .titfont {
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: #000000;
+  padding-left: 30rpx;
+}
+.AddressList .addname .titfont view {
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #666666;
+  margin-top: 19rpx;
+  line-height: 1.4;
+  padding-right: 10rpx;
+}
+.AddressList .adddistance {
+  text-align: center;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #666666;
+  width: 174rpx;
+  line-height: 1.6;
+}
+.AddressList .adddistance .orprent {
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: #FA6400;
+}
+.selectMeals {
+  width: 750rpx;
+  background: #ffffff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.selectMeals .meals {
+  width: 375rpx;
+  text-align: center;
+  margin-top: 80rpx;
+  border-right: 1rpx solid #EEEEEEFF;
+  height: 270rpx;
+}
+.selectMeals .meals image {
+  width: 170rpx;
+  height: 170rpx;
+}
+.selectMeals .meals .Mealtit {
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.85);
+  margin-top: 18rpx;
+  margin-bottom: 12rpx;
+}
+.selectMeals .meals .Mealtips {
+  font-size: 22rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #666666;
+}
+.selectMeals button {
+  width: 420rpx;
+  height: 88rpx;
+  background: #e8e8e8;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #ffffff;
+  margin-top: 159rpx;
+  margin-bottom: 20rpx;
+}
+.search {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 690rpx;
+  height: 56rpx;
+  background: #E5E5E6FF;
+  border-radius: 28rpx;
+  padding-left: 24rpx;
+  padding-right: 8rpx;
+  margin-top: 32rpx;
+}
+.search .sericon {
+  width: 48rpx;
+  height: 48rpx;
+}
+.null {
+  margin-top: 123rpx;
+  text-align: center;
+}
+.null image {
+  width: 320rpx;
+  height: 240rpx;
+}
+.null view {
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #A9A9A9;
+}

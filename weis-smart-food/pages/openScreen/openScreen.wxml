@@ -1,0 +1,8 @@
+<!--pages/openScreen/openScreen.wxml-->
+<view class="open">
+    <image mode="widthFix" src="{{img}}" />
+</view>
+
+<view class="progress-box" wx:if="{{showPro}}">
+  <progress percent="100" color="#FF781F" active stroke-width="2" duration="{{time/100}}" />
+</view>

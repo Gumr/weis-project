@@ -1,0 +1,51 @@
+<!-- e:\project\weis-ttmp\weis-ttmp-nlm\weis-ttmp\pages\packOne\personal\personal\personal.ttml -->
+<cp-nav-bar title-text="个人信息" />
+<view class="personal">
+  <view class="box">
+    <view class="wrap headImg">
+      <view class="col-l">头像</view>
+      <view class="col-r" bind:tap="headImg">
+        <image src="{{userInfo.headImgUrl}}" />
+        <image src="{{imgPrefix + 'arrow.png'}}" />
+      </view>
+    </view>
+    <view class="wrap">
+      <view class="col-l">昵称</view>
+      <view class="col-r" bind:tap="nick">
+        <view class="name">{{userInfo.uname}}</view>
+        <image src="{{imgPrefix + 'arrow.png'}}" />
+      </view>
+    </view>
+    <view class="wrap">
+      <view class="col-l">账号</view>
+      <view class="col-r">
+        <view class="name">{{userInfo.phone}}</view>
+      </view>
+    </view>
+
+    <!-- <view class="wrap">
+      <view class="col-l">性别</view>
+      <view class="col-r" bind:tap="sex" wx:if="{{userInfo.sex}}">
+        <view class="name">{{userInfo.sex == '1' ? '男' : '女'}}</view>
+        <image src="{{imgPrefix + 'arrow.png'}}" />
+      </view>
+      <view class="notSet" wx:else>未设置</view>
+    </view> -->
+
+    <picker
+      bindchange="sex"
+      value="{{userInfo.userProfile.sex - 1}}"
+      range="{{sexList}}"
+      range-key="name"
+    >
+       <view class="wrap">
+        <view class="col-l">性别</view>
+        <view class="col-r" bind:tap="sex" wx:if="{{userInfo.userProfile.sex}}">
+          <view class="name">{{sexList[userInfo.userProfile.sex - 1].name}}</view>
+          <image src="{{imgPrefix + 'arrow.png'}}" />
+        </view>
+        <view class="notSet" wx:else>未设置</view>
+      </view>
+    </picker>
+  </view>
+</view>

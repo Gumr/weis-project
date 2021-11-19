@@ -1,0 +1,13 @@
+.null {
+  margin: 160rpx 0 300rpx;
+  text-align: center;
+}
+.null image {
+  width: 320rpx;
+  height: 240rpx;
+  margin-bottom: 20rpx;
+}
+.null view {
+  font-size: 28rpx;
+  color: #a9a9a9;
+}

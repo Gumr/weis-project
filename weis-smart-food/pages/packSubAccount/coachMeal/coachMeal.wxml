@@ -1,0 +1,115 @@
+<!--pages/packSubAccount/coachMeal/coachMeal.wxml-->
+<cp-nav-bar title-text="点餐设置" background="#F3F4F5" color="#000"/>
+
+<view class="coach">
+    <view class="head {{showKcal ? 'active' : ''}}">
+        <view class="title">请选择你要帮助点餐的账号，将会推荐和该账号匹配的套餐</view>
+        <view class="info" bind:tap="switch">
+            <view class="icon">
+                <image src="{{subInfo && subInfo.defaultAvatar || info.headImgUrl}}" />
+                <view class="name">{{subInfo && subInfo.tsuSubUname || info.uname}}</view>
+            </view>
+            <image class="arrow" src="/images/my_next.png" />
+        </view>
+        <!-- kcal -->
+        <view class="kcal" bind:tap="tapKcal">
+            <view class="val">{{defCoachCombo && defCoachCombo.tgccName || '暂无套餐'}}</view>
+            <image class="{{showKcal ? 'active' : ''}}" src="/images/my_next.png" />
+        </view>
+        <!-- 选择卡路里 -->
+        <view class="select" style="height: {{showKcal ? coachComboList.length * 66 + 42 : 0}}rpx">
+            <view class="list" wx:for="{{coachComboList}}" data-index="{{index}}" bind:tap="selectCom">
+                <view class="val">{{item.tgccName}}</view>
+                <image wx:if="{{item.tgccId == defCoachCombo.tgccId}}" src="/images/order_list_select.png" />
+            </view>
+        </view>
+    </view>
+    <!-- 配送方式 -->
+    <view class="distribution">
+        <view class="name">
+            配送方式
+        </view>
+        <view class="box">
+            <view class="list">
+                <view class="title">冷热配送</view>
+                <view class="square">
+                    <view class="select {{form.shipWithCold == item.value ? 'active' : ''}}" wx:for="{{shipWithColdList}}" data-index="{{index}}" bind:tap="select">{{item.text}}</view>
+                </view>
+            </view>
+            <view class="list">
+                <view class="title">配送频率</view>
+                <view class="square">
+                    <view class="select  {{form.shipTimes == item.value ? 'active' : ''}}" wx:for="{{shipTimesList}}">{{item.text}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 日历 -->
+    <view class="cal">
+        <view class="title">点餐日期</view>
+        <cp-meal-calendar selectable="{{true}}" value-type="string" disableDate="{{disableDate}}" id="calendar" bind:select="handleCalendarSelect" multiply expand complete />
+    </view>
+    <!-- 选择餐别 -->
+    <view class="cal">
+        <view class="title">选择餐别</view>
+        <view class="meal-box">
+            <view class="tab">
+                <view class="box {{index == mealIndex ? 'active' : ''}}" wx:for="{{mealList}}" data-index="{{index}}" bind:tap="tapMeal">
+                    <image src="{{item.selected ? '/images/order_list_select.png' : '/images/order_list_unchecked.png'}}" data-index="{{index}}" catch:tap="selectMeal" />
+                    <view class="name">{{item.name}}</view>
+                </view>
+            </view>
+            <view class="wrap" wx:if="{{mealList[mealIndex]['selected']}}">
+                <!-- 地址 -->
+                <view class="address" bind:tap="selectAdd">
+                    <view class="left">
+                        <image src="/images/order_list_address.png" />
+                        <view class="info" wx:if="{{mealList[mealIndex]['address']}}">
+                            <view class="address-name">{{mealList[mealIndex]['address'].detail}}</view>
+                            <view class="phone">{{mealList[mealIndex]['address'].name}} {{mealList[mealIndex]['address'].phone}}</view>
+                        </view>
+                        <view class="info" wx:else>
+                            <view class="address-name add">请添加送达地址</view>
+                        </view>
+                    </view>
+                    <image src="/images/my_next.png" />
+                </view>
+                <!-- 时间 -->
+                <view class="address time" bind:tap="editTime">
+                    <view class="left">
+                        <image src="/images/order_list_address.png" />
+                        <view class="info">
+                            <view class="address-name">送达时间</view>
+                        </view>
+                    </view>
+                    <view class="right">
+                        <view class="time-val">{{mealList[mealIndex]['time'] || '请先添加送达地址'}}</view>
+                        <image src="/images/my_next.png" />
+                    </view>
+                </view>
+            </view>
+            <view class="empty" wx:else>
+                <view class="select" bind:tap="selectMeal">选择该餐别</view>
+            </view>
+        </view>
+    </view>
+    <view class="btn {{defCoachCombo.tgccId && dateList.length > 0 && categoryIsOk ? 'active' : ''}}" bind:tap="tapSelectMeal">去选套餐</view>
+</view>
+
+<!-- 取餐时间 -->
+<view class="getTime" wx:if="{{showGetTime}}" catchtouchmove="true">
+  <view class="wrap timePicker {{showGetTime ? 'active' : ''}}">
+    <view class="head select-head">
+      <view class="name">预计到达时间</view>
+    </view>
+    <picker-view style="width: 568rpx; height: 400rpx;margin: 0 auto;" value="{{shortTime}}" bindchange="selectTime" bindpickstart="bindpickstart" bindpickend="bindpickend">
+      <picker-view-column>
+        <view wx:for="{{selfTakingTimes}}" wx:key="key" style="text-align:center;line-height:80rpx;color: rgba(0,0,0,0.6);font-size:36rpx" class="{{shortTime[0] == index ? 'pickerCol' : ''}}">
+          {{item}}
+        </view>
+      </picker-view-column>
+    </picker-view>
+    <view class="sure-btn {{canSure ? 'active' : ''}}" bind:tap="sureTime">确定</view>
+  </view>
+  <view class="empty" bind:tap="cancelTime"></view>
+</view>

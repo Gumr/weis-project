@@ -1,0 +1,304 @@
+<!-- pages/solution/historyDetail/historyDetail.wxml -->
+<!-- 引入过滤器 -->
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
+<cp-nav-bar title-text="方案详情" backIconColor="black"></cp-nav-bar>
+
+<view class="scheme" hover-class="none" hover-stop-propagation="false" bindtouchmove="handletouchmove">
+  <!-- 方案名称 -->
+  <view class="solution-name">吃法名称：{{dietPlan.planName}}</view>
+  <view class="date-list">
+    <view class="t-wrap">
+      <view class="name">记录（使用过{{timeList.length}}次）</view>
+      <!-- <view class="look" bind:tap="check">查看</view> -->
+    </view>
+    <view class="list">
+      <scroll-view scroll-y="{{true}}" scroll-into-view="{{intoView}}" scroll-with-animation="{{true}}" style="height:{{timeList.length>3 ? '164rpx' : ''}}">
+        <view class="date {{selectIndex == index ? 'active' : ''}}" bind:tap="tab" id="scroll-{{index}}" wx:for="{{timeList}}" wx:key="key" data-index="{{index}}" data-id="{{item.id}}">
+          {{item.time}}
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="cladar {{cladarFixed ? 'active' : ''}}" style="top:{{cladarFixed ? navStatusHeight : 0}}px" wx:if="{{apply}}">
+    <weekCalendar id="weekCalendar" backToToday="{{false}}" exist-date="{{existDate}}" date-current="{{defaultValue ? defaultValue : ''}}" bindmydata="mydata" bindmytitle="mytitle"></weekCalendar>
+  </view>
+  <view class="cladar fixed" wx:if="{{cladarFixed}}"></view>
+  <!-- 存在方案 方案详情 -->
+  <view class="precept" wx:if="{{dietPlan.id}}" bindtap="precept">
+    <view class="plan">
+      <view class="head">
+        <view class="title">方案详情</view>
+        <view class="tab">
+          <view class="tag {{tabIndex == index ? 'active' : ''}}" wx:if="{{tabIndex == index}}" wx:for="{{tabList}}" wx:key="key" data-index="{{index}}">
+            {{item.name}}
+          </view>
+        </view>
+      </view>
+      <!-- 每餐 -->
+      <view class="meals" wx:if="{{tabIndex == 0}}">
+        <view class="wrap-t-box">
+          <!-- 当日方案参数设置 -->
+          <view class="box cs">
+            <view class="col-t">
+              <view class="col-l">
+                <image src="/images/parameter_set.png" />
+                <view class="name">当日方案参数设置</view>
+              </view>
+            </view>
+            <view class="shrink show">
+              <view class="list">
+                <view class="list-l">应摄入</view>
+                <view class="list-r">
+                  <view class="percent" style="color:#333333">{{dietPlan.totalIntake}}kcal</view>
+                </view>
+              </view>
+              <view class="list">
+                <view class="list-l">计划运动消耗</view>
+                <view class="list-r">
+                  <view class="percent">{{dietPlan.sportsConsume}}g</view>
+                  <!-- <image src="/images/square_next.png" /> -->
+                </view>
+              </view>
+              <view class="list">
+                <view class="list-l">食物热效应</view>
+                <view class="list-r">
+                  <view class="percent" style="color:#333333">
+                    {{dietPlan.totalThermalEffect}}kcal
+                  </view>
+                </view>
+              </view>
+              <view class="list">
+                <view class="list-l">计划能量差</view>
+                <view class="list-r">
+                  <view class="percent">{{dietPlan.energyDifference}}kcal</view>
+                  <!-- <image src="/images/square_next.png" /> -->
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- 早餐 -->
+        <view class="box category" wx:for="{{dataList}}" wx:key="key">
+          <view class="col-t {{item.checked ? 'active' : ''}}" data-index="{{index}}" bind:tap="shrink">
+            <view class="col-l">
+              <image src="{{categoryKind[item.category] ? categoryKind[item.category].src : '/images/scheme_snack.png'}}" />
+              <view class="name">
+                {{categoryKind[item.category] ? categoryKind[item.category].name : '加餐'+filters.toAdd(item.category)}}
+              </view>
+              <view class="order" wx:if="{{item.planOrder}}">已下单</view>
+            </view>
+            <view class="arrow">
+              <image src="/images/scheme_open.png" />
+            </view>
+          </view>
+          <view class="list title">
+            <view class="list-l">类型</view>
+            <view class="list-c">方案数值</view>
+            <view class="list-r">
+              <view class="percent">{{item.planOrder ? '差值' : '百分比'}}</view>
+            </view>
+          </view>
+          <view class="list" data-index="{{index}}">
+            <view class="list-l">当餐总能量</view>
+            <view class="list-c">{{item.totalKcal}}kcal</view>
+            <view class="list-r">
+              <view class="percent" wx:if="{{!item.planOrder}}">{{item.totalRatio}}%</view>
+              <view class="percent {{item.energyDvalue>0 ? 'add' : 'reduce'}}" wx:else>
+                {{item.energyDvalue}}kcal
+              </view>
+              <!-- <image data-index="{{index}}" src="/images/square_next.png" /> -->
+            </view>
+          </view>
+          <view class="shrink {{item.checked ? 'active' : ''}}">
+            <view class="list" data-index="{{index}}">
+              <view class="list-l">蛋白质</view>
+              <view class="list-c">{{item.proteinTotal}}g</view>
+              <view class="list-r">
+                <view class="percent yellow" wx:if="{{!item.planOrder}}">
+                  {{item.proteinRatio}}%
+                </view>
+                <view class="percent {{item.proteinDvalue>0 ? 'add' : 'reduce yellow'}}" wx:else>
+                  {{item.proteinDvalue}}g
+                </view>
+                <!-- <image src="/images/square_next.png" /> -->
+              </view>
+            </view>
+            <view class="list" data-index="{{index}}">
+              <view class="list-l">脂肪</view>
+              <view class="list-c">{{item.fatTotal}}g</view>
+              <view class="list-r">
+                <view class="percent yellow" wx:if="{{!item.planOrder}}">{{item.fatRatio}}%</view>
+                <view class="percent {{item.fatDvalue>0 ? 'add' : 'reduce yellow'}}" wx:else>
+                  {{item.fatDvalue}}g
+                </view>
+                <!-- <image src="/images/yellow_arrow.png" /> -->
+              </view>
+            </view>
+            <view class="list" data-index="{{index}}">
+              <view class="list-l">碳水化合物</view>
+              <view class="list-c">{{item.carbohydrateTotal}}g</view>
+              <view class="list-r">
+                <view class="percent yellow" wx:if="{{!item.planOrder}}">
+                  {{item.carbohydrateRatio}}%
+                </view>
+                <view class="percent {{item.carbonWaterDvalue>0 ? 'add' : 'reduce yellow'}}" wx:else>
+                  {{item.carbonWaterDvalue}}g
+                </view>
+                <!-- <image src="/images/square_next.png" /> -->
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 固定蛋白法 -->
+      <view class="meals gd" wx:if="{{tabIndex == 1}}">
+        <!-- <view class="box" wx:if="{{dietPlan.planningType}}">
+            <view class="col-t">
+              <view class="col-l">
+                <image src="/images/target.png" />
+                <view class="name">
+                  我的目标「{{aimstatus[dietPlan.planningType]}}」
+                </view>
+              </view>
+            </view>
+          </view> -->
+        <view class="wrap-t-box">
+          <!-- 当日方案参数设置 -->
+          <view class="box cs">
+            <view class="col-t">
+              <view class="col-l">
+                <image src="/images/parameter_set.png" />
+                <view class="name">当日方案参数设置</view>
+              </view>
+            </view>
+            <view class="shrink show">
+              <view class="list">
+                <view class="list-l">应摄入</view>
+                <view class="list-r">
+                  <view class="percent" style="color:#333333">{{dietPlan.totalIntake}}kcal</view>
+                </view>
+              </view>
+              <view class="list" data-type="6">
+                <view class="list-l">计划运动消耗</view>
+                <view class="list-r">
+                  <view class="percent">{{dietPlan.sportsConsume}}g</view>
+                  <!-- <image src="/images/square_next.png" /> -->
+                </view>
+              </view>
+              <view class="list">
+                <view class="list-l">食物热效应</view>
+                <view class="list-r">
+                  <view class="percent" style="color:#333333">
+                    {{dietPlan.totalThermalEffect}}kcal
+                  </view>
+                </view>
+              </view>
+              <view class="list" data-type="5">
+                <view class="list-l">计划能量差</view>
+                <view class="list-r">
+                  <view class="percent">{{dietPlan.energyDifference}}kcal</view>
+                  <!-- <image src="/images/square_next.png" /> -->
+                </view>
+              </view>
+            </view>
+          </view>
+          <!-- 蛋白质总量 -->
+          <view class="top">
+            <view class="name">蛋白质总量</view>
+            <view class="col-c">{{dataList[0].energyTotal}}g</view>
+            <view class="col-r" data-type="1">
+              <view class="num">
+                {{dataList[0].energyRatio}}g
+                <text>(单位体重g/kg)</text>
+              </view>
+              <!-- <image src="/images/square_next.png" /> -->
+            </view>
+          </view>
+        </view>
+        <!-- 早餐 -->
+        <view class="box category" wx:for="{{dataList}}" wx:key="key">
+          <view class="col-t {{item.checked ? 'active' : ''}}" data-index="{{index}}" bind:tap="shrink">
+            <view class="col-l">
+              <image src="{{categoryKind[item.category] ? categoryKind[item.category].src : '/images/scheme_snack.png'}}" />
+              <view class="name">
+                {{categoryKind[item.category] ? categoryKind[item.category].name : '加餐'+filters.toAdd(item.category)}}
+              </view>
+              <view class="order" wx:if="{{item.planOrder}}">已下单</view>
+            </view>
+            <view class="arrow">
+              <image src="/images/scheme_open.png" />
+            </view>
+          </view>
+          <view class="list title">
+            <view class="list-l">类型</view>
+            <view class="list-c">方案数值</view>
+            <view class="list-r">
+              <view class="percent">{{item.planOrder ? '差值' : '百分比'}}</view>
+            </view>
+          </view>
+          <view class="list">
+            <view class="list-l">蛋白量/每日总蛋白</view>
+            <view class="list-c">{{item.fixedProteinTotal}}g</view>
+            <view class="list-r" data-type="2" data-index="{{index}}">
+              <view class="percent" wx:if="{{!item.planOrder}}">{{item.fixedProteinRatio}}%</view>
+              <view class="percent {{item.proteinDvalue>0 ? 'add' : 'reduce'}}" wx:else>
+                {{item.proteinDvalue}}g
+              </view>
+              <!-- <image src="/images/square_next.png" /> -->
+            </view>
+          </view>
+          <view class="list">
+            <view class="list-l">当餐总能量</view>
+            <view class="list-c">{{item.totalKcal}}kcal</view>
+            <view class="list-r" data-index="{{index}}">
+              <view class="percent" wx:if="{{!item.planOrder}}">{{item.totalRatio}}%</view>
+              <view class="percent {{item.energyDvalue>0 ? 'add' : 'reduce'}}" wx:else>
+                {{item.energyDvalue}}kcal
+              </view>
+              <!-- <image src="/images/square_next.png" /> -->
+            </view>
+          </view>
+          <view class="shrink {{item.checked ? 'active' : ''}}">
+            <view class="list">
+              <view class="list-l">脂肪</view>
+              <view class="list-r" data-type="4" data-index="{{index}}">
+                <view class="percent yellow" wx:if="{{!item.planOrder}}">{{item.fatRatio}}%</view>
+                <view class="percent {{item.fatDvalue>0 ? 'add' : 'reduce yellow'}}" wx:else>
+                  {{item.fatDvalue}}g
+                </view>
+                <!-- <image src="/images/yellow_arrow.png" /> -->
+              </view>
+            </view>
+            <view class="list">
+              <view class="list-l">碳水化合物</view>
+              <view class="list-r">
+                <view class="percent color" wx:if="{{!item.planOrder}}">
+                  {{item.carbohydrateRatio}}%
+                </view>
+                <view class="percent color {{item.carbonWaterDvalue>0 ? 'add' : 'reduce'}}" wx:else>
+                  {{item.carbonWaterDvalue}}g
+                </view>
+                <!-- <image src="/images/square_next.png" /> -->
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- 午餐 -->
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 立即激活 -->
+<view class="activate">
+  <view class="btn" bind:tap="use">立即使用</view>
+</view>
+
+
+<view class="popupshow {{ showMultiSelect ? 'active' : ''}}" style="top: {{navStatusHeight}}px;" catch:touchmove="true">
+    <multiSelect-calendar id="multiSelect" calendarConfig="{{calendarConfig}}" bind:onSwipe="onSwipe" bind:onTapDay="onTapDay" bind:afterTapDay="afterTapDay" bind:whenChangeMonth="whenChangeMonth" bind:afterCalendarRender="afterCalendarRender" bind:sure="sureSelect"></multiSelect-calendar>
+</view>
+
+<view class="mask" catch:touchmove="true" wx:if="{{showMultiSelect}}" bindtap="cancelSelect"></view>
+
+
+<cp-confirm-dialog id="dialog" show="{{showCover}}" title="该日期已有方案，是否覆盖当前方案？" bind:on-cancel="cancelPlan" bind:on-confirm="confirmPlan"></cp-confirm-dialog>

@@ -1,0 +1,35 @@
+<!--pages/market/recommendRule/recommendRule.wxml-->
+<cp-nav-bar title-text="活动详情"></cp-nav-bar>
+<view class="rule-item" style="margin-top: 97rpx;">
+  <view class="rule-text">1.</view>
+  <view class="rule-text">下单成功后可立即分享首餐的吃法邀请好友翻牌；
+</view>
+</view>
+<view class="rule-item">
+  <view class="rule-text">2.</view>
+  <view class="rule-text">同一次支付多单的情况下，可到【我的订单】中分享每一次的订单吃法；</view>
+</view>
+<view class="rule-item">
+  <view class="rule-text">3.</view>
+  <view class="rule-text">好友翻牌后，好友可领取随机优惠券，分享者可以获得随机返现金；</view>
+</view>
+<view class="rule-item">
+  <view class="rule-text">4.</view>
+  <view class="rule-text"> 累计最高可获得该笔订单实付金额的返现金，如有退款将扣除相应返现金；</view>
+</view>
+<view class="rule-item">
+  <view class="rule-text">5.</view>
+  <view class="rule-text">每次翻牌活动在订单支付成功后24小时内有效，过期失效，期间的返现金将定时返还到维士余额中，不可提现；</view>
+</view>
+<view class="rule-item">
+  <view class="rule-text">6.</view>
+  <view class="rule-text">返现金将在订单已签收且该订单分享链接失效后，每日00点转入个人账户，可直接消费；</view>
+</view>
+<view class="rule-item">
+  <view class="rule-text">7.</view>
+  <view class="rule-text">每位用户每天可以助力3位不同用户，同一天不可重复助力同一位用户；</view>
+</view>
+<view class="rule-item">
+  <view class="rule-text"></view>
+  <view class="rule-text">*活动最终解释权归维士智慧健康管理有限公司所有。</view>
+</view>

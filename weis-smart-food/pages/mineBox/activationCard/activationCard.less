@@ -1,0 +1,130 @@
+ // 激活实体卡
+ .exchange {
+   .tip-title{
+     color: rgba(102, 102, 102, 1);
+     font-size: 24rpx;
+     text-align: center;
+     margin-top: 10rpx;
+   }
+    .exchange-code {
+      display: flex;
+      align-items: center;
+      margin: 40rpx auto 0;
+
+      image {
+        width: 80rpx;
+        height: 80rpx;
+        margin-right: 24rpx;
+      }
+
+      input {
+        width: 586rpx;
+        height: 80rpx;
+        background: #E3E5E6;
+        border-radius: 40rpx;
+        box-sizing: border-box;
+        padding: 0 0 0 36rpx;
+        color: rgba(51, 51, 51, 1);
+        font-size: 28rpx;
+      }
+      .input-placeholder{
+        color: rgba(169, 169, 169, 1);
+        font-size: 28rpx;
+      }
+    }
+
+    .error {
+      width: 690rpx;
+      margin: 24rpx auto 0;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      padding-left: 140rpx;
+
+      image {
+        width: 26rpx;
+        height: 26rpx;
+        margin-right: 10rpx;
+      }
+
+      .tip {
+        color: #fe5e0f;
+        font-size: 24rpx;
+      }
+
+      &.active {
+        animation: shake 0.3s linear forwards;
+      }
+
+      @keyframes shake {
+        0%,
+        100% {
+          -webkit-transform: translateX(0);
+        }
+
+        10%,
+        30%,
+        50%,
+        70%,
+        90% {
+          -webkit-transform: translateX(-5rpx);
+        }
+
+        20%,
+        40%,
+        80% {
+          -webkit-transform: translateX(5rpx);
+        }
+      }
+    }
+    .bot-box {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 80rpx;
+      margin: 0 auto;
+
+      .next {
+        width: 670rpx;
+        height: 88rpx;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 32rpx;
+        color: #fff;
+        font-weight: 550;
+        margin: 30rpx auto 0;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 151, 34, 1) 0%,
+          rgba(254, 94, 15, 1) 100%
+        );
+        box-shadow: 0rpx 6rpx 14rpx 0rpx rgba(254, 94, 15, 0.5);
+        border-radius: 44rpx;
+      }
+      .disabled-btn {
+        background: rgba(169, 169, 169, 1);
+        box-shadow: 0rpx 6rpx 14rpx 0rpx rgba(169, 169, 169, 0.5);
+      }
+      .xy {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        image {
+          width: 30rpx;
+          height: 30rpx;
+          margin-right: 10rpx;
+        }
+
+        .xy_cont {
+          color: #333333;
+          font-size: 24rpx;
+
+          text {
+            color: rgba(254, 94, 15, 1);
+          }
+        }
+      }
+    }
+  }

@@ -1,0 +1,20 @@
+<!--pages/basic/cashout/cashout.wxml-->
+<nav title="提现"></nav>
+<view class="cashout">
+  <image class="bg" src="/images/icon_cashout_bg2.png" />
+  <view class="content">
+    <view class="title">提现到微信零钱</view>
+    <view class="wrap">
+      <view class="iptbox">
+        <image class="icon" src="/images/icon_cash.png" />
+        <input type="digit" />
+      </view>
+      <view class="tips">
+        <image class="icon" src="/images/icon_warning2.png" />
+        <text>提现金额不可超过余额</text>
+      </view>
+    </view>
+    <view class="remain">余额25.68元</view>
+    <view class="btn" bind:tap="cashout">确定</view>
+  </view>
+</view>

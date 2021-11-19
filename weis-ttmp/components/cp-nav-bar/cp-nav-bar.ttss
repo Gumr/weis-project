@@ -1,0 +1,92 @@
+.nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  margin: auto;
+  z-index: 100;
+}
+.navbar {
+  position: relative;
+}
+.back-icon {
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  display: flex;
+  align-items: center;
+  left: 16px;
+}
+.back-icon view {
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+.back-icon view:nth-of-type(1) {
+  position: relative;
+  padding-left: 10rpx;
+}
+.back-icon view:nth-of-type(1)::after {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 2rpx;
+  height: 40rpx;
+  background: rgba(233, 233, 233, 0.7);
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.back-icon view:nth-of-type(2) {
+  justify-content: center;
+}
+.back-icon image {
+  width: 44rpx;
+  height: 44rpx;
+}
+.back-icon image.white {
+  transform: rotate(180deg);
+}
+.back-icon .home {
+  width: 56rpx;
+  height: 56rpx;
+}
+.home-icon {
+  width: 75rpx;
+  height: 100%;
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  display: flex;
+  align-items: center;
+  left: 16px;
+}
+.home-icon image {
+  width: 56rpx;
+  height: 56rpx;
+  margin: auto;
+  border: 1rpx solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+.nav-title {
+  width: 45%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  font-weight: 500;
+}
+.nav-title .wz {
+  font-size: 36rpx;
+  height: 100%;
+  line-height: 1.2;
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-line-clamp: 1;
+}

@@ -1,0 +1,13 @@
+/**app.ttss**/
+page{
+    width: 100%;
+    height: 100%;
+    font-family: 'PingFangSC-Regular','PingFangSC';
+    font-size: 28rpx;
+    background: #FFFFFF;
+}
+
+view,
+text {
+    box-sizing: border-box;
+}

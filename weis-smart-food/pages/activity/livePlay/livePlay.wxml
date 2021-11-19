@@ -1,0 +1,8 @@
+<!--pages/orderFood/livePlay/livePlay.wxml-->
+<navBar title-text=" " back-icon="/images/return_white.png" background="transparent" ></navBar>
+<view class="live" style="margin-top:-{{navHeight}}px">
+    <image src="https://prodstatic.weis1606.cn/api/mini/live_details_bj.png" />
+    <view class="btn" bind:tap="livePlay">
+        <image src="https://prodstatic.weis1606.cn/api/mini/live_button.png" />
+    </view>
+</view>

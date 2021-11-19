@@ -1,0 +1,22 @@
+/* components/bottomBtn/bottomBtn.wxss */
+.bottomBtn .btn {
+  width:670rpx;
+  height:88rpx;
+  line-height:88rpx;
+  text-align: center;
+  border-radius:44rpx;
+  color: #FFFFFF;
+  font-size:32rpx;
+  font-family:PingFangSC-Medium,PingFang SC;
+  font-weight:500;
+  background:linear-gradient(315deg,rgba(251,137,45,1) 0%,rgba(252,204,73,1) 100%);
+  position: fixed;
+  bottom: 80rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+.bottomBtn .btn.disabled {
+  color: #A9A9A9;
+  background:rgba(232,232,232,1);
+}

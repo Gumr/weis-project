@@ -1,0 +1,123 @@
+.score {
+  width: 100%;
+  padding: 10rpx 0rpx 0rpx;
+}
+.score .box .list .row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40rpx;
+  position: relative;
+}
+.score .box .list .row .date {
+  color: #333333;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.score .box .list .row .score-box {
+  display: flex;
+  align-items: center;
+}
+.score .box .list .row .score-box .score-val {
+  font-size: 30rpx;
+}
+.score .box .list .row .score-box .center-box {
+  width: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 55rpx;
+}
+.score .box .list .row .score-box .center-box image {
+  width: 32rpx;
+  height: 32rpx;
+}
+.score .box .list .row .score-box .center-box .num {
+  color: #FE5E0F;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.score .box .list .row .score-box .arr {
+  width: 20rpx;
+  height: 20rpx;
+  margin-left: 10rpx;
+}
+.score .box .list .row .score-box .arr.active {
+  animation: sca 200ms ease forwards;
+}
+@keyframes sca {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+.score .box .list .row::after {
+  display: block;
+  content: '';
+  width: 670rpx;
+  height: 2rpx;
+  background: rgba(51, 51, 51, 0.1);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scaleY(0.5);
+  bottom: 0;
+}
+.score .box .list .small-box {
+  background: #f9f9f9;
+  padding: 0 70rpx 0 40rpx;
+  height: 0;
+  overflow: hidden;
+}
+.score .box .list .small-box.active {
+  animation: anima 200ms ease forwards;
+}
+@keyframes anima {
+  from {
+    height: 0;
+  }
+  to {
+    height: initial;
+    padding: 40rpx 70rpx 40rpx 40rpx;
+  }
+}
+.score .box .list .small-box .box-list {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 62rpx;
+}
+.score .box .list .small-box .box-list:last-of-type {
+  margin-bottom: 0;
+}
+.score .box .list .small-box .box-list .l-box {
+  display: flex;
+  align-items: center;
+}
+.score .box .list .small-box .box-list .l-box image {
+  width: 52rpx;
+  height: 52rpx;
+  margin-right: 16rpx;
+  border-radius: 50%;
+}
+.score .box .list .small-box .box-list .l-box .name {
+  color: #6D7278;
+  font-size: 26rpx;
+}
+.score .box .list .small-box .box-list .r-box {
+  display: flex;
+  align-items: center;
+}
+.score .box .list .small-box .box-list .r-box image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 29rpx;
+}
+.score .box .list .small-box .box-list .r-box .val {
+  color: #333333;
+  font-size: 28rpx;
+  font-weight: bold;
+}

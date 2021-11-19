@@ -1,0 +1,54 @@
+<!--pages/packageDiscover/discoverList/discoverList.wxml-->
+<cp-nav-bar title-text="控糖探索" backIconColor></cp-nav-bar>
+<view class="container">
+  <view class="tabs flex-content-between flex-items-center">
+    <view
+      class="tab {{item.value === activeDiabetesTab ? 'tab--active' : ''}}"
+      wx:for="{{diabetesTabs}}"
+      wx:key="index"
+      bind:tap="diabetesTabTap"
+      data-index="{{index}}"
+    >{{item.label}}</view>
+  </view>
+  <view class="list" hidden="{{activeDiabetesTab !== 0}}">
+    <view class="video" wx:for="{{videos}}" wx:key="index" wx:for-item="video">
+      <video
+        id="{{'video_' + index}}"
+        class="video__el"
+        title="{{video.draftContent}}"
+        controls="{{video.$controls}}"
+        show-center-play-btn="{{false}}"
+        src="{{video.draftUrl}}"
+        bindplay="handleVideoPlay"
+      />
+      <view class="video-cover" wx:if="{{!video.$controls}}">
+        <image class="video-cover-image" src="{{video.displayImg}}" />
+        <image
+          data-id="{{'video_' + index}}"
+          data-index="{{index}}"
+          bind:tap="videoPlayTap"
+          class="video__play"
+          src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/find_play.png"
+        />
+        <view class="video__footer">
+          <view class="video__title">{{video.draftContent}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="list" hidden="{{activeDiabetesTab !== 1}}">
+    <view
+      class="article"
+      wx:for="{{articles}}"
+      wx:key="index"
+      data-index="{{index}}"
+      bind:tap="articleTap"
+    >
+      <image class="article__image" src="{{item.displayImg}}" />
+      <view class="article__left">
+        <view class="article__title">{{item.title}}</view>
+        <view class="article__tip">{{item.views}}查看 {{item.date}}</view>
+      </view>
+    </view>
+  </view>
+</view>

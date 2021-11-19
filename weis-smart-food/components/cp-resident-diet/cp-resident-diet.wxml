@@ -1,0 +1,31 @@
+<!-- components/cp-resident-diet/cp-resident-diet.wxml -->
+<!-- 中国居民-弹窗 -->
+<cp-confirm-dialog show="{{show}}" showClose leftClose showCancel="{{false}}" showConfirm="{{false}}" dialogStyle="width: 650rpx;height: 1140rpx">
+    <view class="close" bindtap="cancelTap">
+        <image src="/images/resident_diet_off.png" />
+    </view>
+    <scroll-view scroll-y="true" style="height: 1140rpx">
+        <view class="residentDiet">
+            <image class="info" src="https://prodstatic.weis1606.cn/api/smartFood/residentDiet.png" />
+            <view class="tip">
+                你的年龄为
+                <text>{{param.age}}岁</text>
+                ，运动强度为
+                <text>{{param.activityName}}</text>
+                ，根据中国居民膳食指南，你每日摄入数据为：
+            </view>
+            <view class="intake">
+                <view class="list" wx:for="{{intake}}">
+                    <view>{{item.name}}</view>
+                    <view>
+                        {{item.value}}
+                        <text>{{item.dw}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="describe">
+                中国居民普通健康吃法以《中国居民膳食营养素参考摄入量》 [2017版]作为指导，推荐摄入量（RNI）作为营养素摄入参考标准，遵循少油少盐少糖，七八分饱，均衡营养的健康饮食原则。能满足不同性别、年龄及生理状况群体中绝大多数人每天（97％～98％）对能量、蛋白质、脂肪、碳水化合物的需要。
+            </view>
+        </view>
+    </scroll-view>
+</cp-confirm-dialog>

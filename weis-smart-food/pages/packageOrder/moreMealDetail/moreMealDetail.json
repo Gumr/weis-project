@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "cp-data-circle": "/components/cp-data-circle/cp-data-circle",
+    "cp-meal-calendar": "/components/cp-meal-calendar/cp-meal-calendar",
+    "van-popup": "/components/vant/popup/index",
+    "van-loading": "/components/vant/loading/index"
+  }
+}

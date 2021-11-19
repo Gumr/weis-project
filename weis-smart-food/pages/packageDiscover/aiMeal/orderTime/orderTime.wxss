@@ -1,0 +1,109 @@
+.page-main {
+  padding: 0 30rpx;
+}
+.warning {
+  padding: 20rpx 30rpx;
+  background: rgba(254, 94, 15, 0.1);
+  font-size: 24rpx;
+  line-height: 40rpx;
+  color: #FF7448;
+  width: 100%;
+  margin-top: 30rpx;
+}
+.section-title {
+  font-size: 32rpx;
+  color: #333;
+  padding: 30rpx 0 20rpx;
+  font-weight: bold;
+}
+.week {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin-top: 47rpx;
+  padding: 0 30rpx;
+}
+.week image {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 10rpx;
+}
+.week .name {
+  color: #333333;
+  font-size: 24rpx;
+}
+.section-2 .item {
+  padding: 40rpx 30rpx;
+  display: flex;
+  align-items: center;
+  font-size: #333;
+  color: #333;
+  box-shadow: 0rpx 4rpx 20rpx 0rpx rgba(164, 180, 183, 0.2);
+  border-radius: 20rpx;
+}
+.section-2 .meal-box {
+  display: flex;
+  box-sizing: border-box;
+  margin: 0 auto 30rpx;
+  justify-content: space-between;
+}
+.section-2 .meal-box .meal {
+  width: 218rpx;
+  height: 154rpx;
+  background: #ffffff;
+  box-shadow: 0rpx 4rpx 20rpx 0rpx rgba(164, 180, 183, 0.2);
+  box-sizing: border-box;
+  border-radius: 24rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 0 0;
+  position: relative;
+}
+.section-2 .meal-box .meal .name {
+  color: #333333;
+  font-size: 32rpx;
+  font-weight: 550;
+  line-height: 32rpx;
+}
+.section-2 .meal-box .meal .title {
+  color: #a9a9a9;
+  font-size: 22rpx;
+  line-height: 22rpx;
+  margin: 20rpx 0 0;
+}
+.section-2 .meal-box .meal .meal-img {
+  width: 198rpx;
+  height: 240rpx;
+  margin-top: 26rpx;
+}
+.section-2 .meal-box .meal .correct {
+  width: 60rpx;
+  height: 40rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.section-2 .meal-box .meal.active {
+  border: 2rpx solid #fe5e0f;
+}
+.section-2 .check-icon {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 30rpx;
+}
+.page-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20rpx 30rpx;
+  background: #fff;
+}
+.page-footer .btn {
+  padding: 29rpx 0;
+  color: #fff;
+  font-size: 30rpx;
+  text-align: center;
+  border-radius: 44rpx;
+}

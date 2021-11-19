@@ -1,0 +1,201 @@
+<!--pages/sport/sportList/sportList.wxml-->
+<cp-nav-bar title-text="动作库" background="#fff" color="#333333" backIconColor="#fff"/>
+<view class="sportList">
+  <!--搜索-->
+  <view class="searchBox" bindtap="toSearch">
+    <view class="search">
+      <icon type="search" size="18" color="rgba(168,168,168,1);" class="sericon" />
+      <input type="text" placeholder="请输入动作名称" disabled="true" />
+    </view>
+  </view>
+  <!--tab动作类型分类-->
+  <view>
+    <view class="top-nav">
+      <view id="0" bindtap="changeStatus" class="top-btn {{ status ==0? 'top-hoverd-btn':''}}">
+        <text>无氧</text>
+      </view>
+      <view id="1" bindtap="changeStatus" class="top-btn {{status ==1? 'top-hoverd-btn':''}}">
+        <text>有氧</text>
+      </view>
+      <view id="2" bindtap="changeStatus" class="top-btn {{status ==2? 'top-hoverd-btn':''}}">
+        <text>小工具</text>
+      </view>
+      <view id="3" bindtap="changeStatus" class="top-btn {{status ==3? 'top-hoverd-btn':''}}">
+        <text>自重训练</text>
+      </view>
+      <view id="4" bindtap="changeStatus" class="top-btn">
+        <text>自定义</text>
+      </view>
+    </view>
+  </view>
+  <!-- 竖向tab动作部位分类 -->
+  <view class="mr50" style="height:{{scrollHeight + 'px'}}">
+    <view id="container">
+      <view class="contHead">
+        <view>
+          <scroll-view scroll-y="true" style="height:{{scrollHeight + 'px'}}">
+            <li
+              wx:for="{{sportTypeList}}"
+              wx:key="index"
+              bindtap="tab"
+              class="{{active == index? 'show':''}}"
+              data-index="{{index}}"
+              data-id="{{item.tmrPositionName}}"
+            >
+              <text class="{{active == index? 'bd':''}}"></text>
+              <text>{{item.tmrPositionName}}</text>
+            </li>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+    <!--部位对应动作-->
+    <view class="itemsList">
+      <scroll-view scroll-y="true" style="height:{{scrollHeight + 'px'}}">
+        <view>
+          <view>
+            <view wx:for="{{sportInfoList}}" wx:key="index2">
+              <i-row
+                i-class="demo-row"
+                data-sport="{{item}}"
+                data-index="{{index}}"
+                bindtap="choseSport"
+                class="itemclass"
+                wx:if="{{item.tmrPositionName == tmrPositionName}}"
+              >
+                <i-col class="i-colw">
+                  <text class="{{item.choosed ?'blue':''}}">{{item.tmrSport}}</text>
+                </i-col>
+                <i-col i-class="choimg">
+                  <image
+                    src="{{item.choosed ?'/images/action_add_press.png' : '/images/action_add.png' }}"
+                    class="imgcho"
+                  />
+                </i-col>
+              </i-row>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <!-- 添加每组动作 -->
+  <view class="cate-box" wx:if="{{replaceFlag}}">
+    <input type="number" value disabled="true" />
+    <view class="action-replace">
+      <view class="replace-tit">
+        <text>{{choseName}}</text>
+      </view>
+      <view class="replace-detail">
+        <view wx:for="{{paramType}}" wx:key="index">
+          <view class="detail-type" wx:if="{{item == '1'}}">
+            <input
+              type="text"
+              cursor-spacing="174"
+              class="fnt"
+              bindinput="bindkg"
+              value="{{selectkg}}"
+              auto-focus
+            />
+            kg
+          </view>
+          <view class="detail-type" wx:if="{{item == '2'}}">
+            <input
+              type="number"
+              cursor-spacing="110"
+              class="fnt"
+              bindinput="bindNums"
+              value="{{selectNums}}"
+            />
+            次
+          </view>
+          <view class="detail-type" wx:if="{{item == '3'}}">
+            <input
+              class="fnt"
+              cursor-spacing="110"
+              bindinput="bindMin"
+              value="{{selectMin}}"
+              auto-focus
+              type="number"
+            />
+            分钟
+          </view>
+          <view class="detail-type" wx:if="{{item == '4'}}">
+            <input
+              class="fnt"
+              type="number"
+              cursor-spacing="195"
+              bindinput="bindSlope"
+              value="{{selectSlope}}"
+              auto-focus
+            />
+            坡度
+          </view>
+          <view class="detail-type" wx:if="{{item == '5'}}">
+            <input
+              class="fnt"
+              type="text"
+              cursor-spacing="174"
+              bindinput="bindSpeed"
+              value="{{selectSpeed}}"
+            />
+            速度
+          </view>
+          <view class="detail-type" wx:if="{{item == '6'}}">
+            <input
+              class="fnt"
+              auto-focus
+              cursor-spacing="110"
+              bindinput="bindSec"
+              value="{{selectSec}}"
+              type="number"
+            />
+            秒
+          </view>
+        </view>
+      </view>
+
+      <view class="btns">
+        <view bindtap="close" class="cancel">取消</view>
+        <view bindtap="addGroupCofm" class="sure">打卡</view>
+      </view>
+    </view>
+  </view>
+  <view class="bag" bindtap="toindex" wx:if="{{selectArr.length>=1}}">
+    <p class="addsport">
+      已打卡
+      <text>{{selectArr.length}}</text>
+    </p>
+    <button class="nextto" bind:tap="nextto">完成</button>
+  </view>
+  <!-- 添加自定义动作 -->
+<view class="cate-box" wx:if="{{usercard}}">
+  <view class="action-replace">
+    <view class="replace-tit">
+      <text>自定义动作</text>
+    </view>
+    <view class="replace-detail">
+      <view class="detail-type">
+        <input
+          type="text"
+          cursor-spacing="174"
+          class="boldinput"
+          bindinput="bindname"
+          auto-focus
+          placeholder="请输入动作名称"
+        />
+      </view>
+      <view class="detail-type">
+        <input type="text" cursor-spacing="174" class="fnt" bindinput="bindkal" placeholder="请输入热量" />
+        kcal
+      </view>
+    </view>
+
+    <view class="btns">
+      <view bindtap="cancel" class="cancel">取消</view>
+      <view bindtap="useraddGroupCofm" class="sure">打卡</view>
+    </view>
+  </view>
+</view>
+
+</view>

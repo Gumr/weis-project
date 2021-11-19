@@ -1,0 +1,423 @@
+<!-- pages/solution/dayPlan/dayPlan.wxml -->
+<!-- 引入过滤器 -->
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
+<cp-nav-bar title-text="自定义吃法" backIconColor="black" zIndex="{{showTime ? 10002 : 100}}" background="#F3F4F5"></cp-nav-bar>
+<!-- 饮食方案 -->
+<view class="plan">
+    <!-- 头部 -->
+   <view class="head">
+        <view class="name" bind:tap="editName">
+            <view class="name-l">吃法名称</view>
+            <view class="name-r">
+                <view class="percent">{{dietPlan.planName}}</view>
+                <image src="/images/arrow-color.png" />
+            </view>
+        </view>
+        <view class="type">
+            <view class="title">吃法类型</view>
+            <view class="tab">
+                <view class="tag {{tabIndex == index ? 'active' : ''}}" wx:for="{{tabList}}" wx:key="key" bind:tap="tab" data-index="{{index}}">
+                    {{item.name}}
+                </view>
+            </view>
+        </view>
+   </view>
+    <!-- 综合比例法-每餐 -->
+    <view class="meals" wx:if="{{tabIndex == 0}}">
+        <!-- 方案参数设置 -->
+        <view class="box">
+            <view class="col-t">
+                <view class="col-l">
+                    <image src="{{imgPrefix + 'parameter_set.png'}}" />
+                    <view class="name">吃法参数</view>
+                </view>
+            </view>
+            <view class="shrink show">
+                <view class="list" bind:tap="fixed" data-type="7" data-value="{{dietPlan.totalIntake}}">
+                    <view class="list-l">全天摄入热量</view>
+                    <view class="list-r">
+                        <view class="percent">{{dietPlan.totalIntake}}kcal</view>
+                        <image src="/images/arrow-color.png" />
+                    </view>
+                </view>
+                <!-- <view class="list" data-type="6">
+                    <view class="list-l">计划运动消耗</view>
+                    <view class="list-r">
+                        <view class="percent" style="color:#333333">
+                            {{dietPlan.sportsConsume}}kcal
+                        </view>
+                    </view>
+                </view>
+                <view class="list">
+                    <view class="list-l">食物热效应</view>
+                    <view class="list-r">
+                        <view class="percent" style="color:#333333">
+                            {{dietPlan.totalThermalEffect}}kcal
+                        </view>
+                    </view>
+                </view>
+                <view class="list">
+                    <view class="list-l">能量差</view>
+                    <view class="list-r">
+                        <view class="percent" style="color:#333333">
+                            {{dietPlan.energyDifference}}kcal
+                        </view>
+                    </view>
+                </view> -->
+            </view>
+        </view>
+        <!-- 早餐 -->
+        <view class="box" wx:for="{{dataList}}" wx:key="key">
+            <view class="col-t active" data-index="{{index}}" bind:tap="shrink">
+                <view class="col-l">
+                    <image src="{{categoryKind[item.category] ? categoryKind[item.category].src : '/images/scheme_snack.png'}}" />
+                    <view class="name">
+                        {{categoryKind[item.category] ? categoryKind[item.category].name : '加餐'+filters.toAdd(item.category)}}
+                    </view>
+                </view>
+                <view class="addc_del" wx:if="{{index > 2}}" data-index="{{index}}" bind:tap="preDeleteFn">
+                    <image src="{{imgPrefix + 'addc_del.png'}}" />
+                </view>
+                <!-- <view class="arrow">
+                    <image src="/images/scheme_open.png" />
+                </view> -->
+            </view>
+            <view class="list title">
+                <view class="list-l">类型</view>
+                <view class="list-c">吃法数值</view>
+                <view class="list-r">
+                    <view class="percent">百分比</view>
+                </view>
+            </view>
+            <view class="list">
+                <view class="list-l">当餐摄入热量</view>
+                <view class="list-c">{{item.totalKcal}}kcal</view>
+                <view class="list-r" data-index="{{index}}" bind:tap="heat">
+                    <view class="percent">{{item.totalRatio}}%</view>
+                    <image src="/images/arrow-color.png" />
+                </view>
+            </view>
+            <view class="shrink active {{index > 3 ? 'higher' : ''}}">
+                <view class="list" bind:tap="edit" data-index="{{index}}">
+                    <view class="list-l">蛋白质</view>
+                    <view class="list-r">
+                        <view class="percent yellow">{{item.proteinRatio}}%</view>
+                        <image src="/images/arrow-color.png" />
+                    </view>
+                </view>
+                <view class="list" bind:tap="edit" data-index="{{index}}">
+                    <view class="list-l">脂肪</view>
+                    <view class="list-r">
+                        <view class="percent yellow">{{item.fatRatio}}%</view>
+                        <image src="/images/arrow-color.png" />
+                    </view>
+                </view>
+                <view class="list {{index > 3 ? 'bd1' : ''}}" bind:tap="edit" data-index="{{index}}">
+                    <view class="list-l">碳水</view>
+                    <view class="list-r">
+                        <view class="percent yellow">{{item.carbohydrateRatio}}%</view>
+                        <image src="/images/arrow-color.png" />
+                    </view>
+                </view>
+                <!-- <view class="meal-delete" wx:if="{{index > 3}}" data-index="{{index}}" bind:tap="preDeleteFn">
+                    删除该餐别
+                </view> -->
+                <!-- 推荐sku -->
+                <!-- <view class="recom">
+                    <view class="name">
+                        {{item.totalKcal}}kcal{{categoryKind[item.category] ? categoryKind[item.category].name : '加餐'}}供参考
+                    </view>
+                    <view class="sc">
+                        <scroll-view scroll-x="{{true}}" class="wrap_list">
+                            <view class="img_box" wx:for="{{item.customProgramme}}" wx:key="key" wx:for-item="recom">
+                                <image src="{{recom.primaryImgUrl}}" />
+                                <view class="bot_shadow">
+                                    <view class="mz">{{recom.skuname}}</view>
+                                    <view class="num" wx:if="{{recom.energy>0}}">
+                                        {{recom.energy}}kcal
+                                    </view>
+                                </view>
+                            </view>
+                        </scroll-view>
+                    </view>
+                </view> -->
+            </view>
+        </view>
+        <!-- 加餐 -->
+        <view class="addc" wx:if="{{dataList.length < 6}}" bind:tap="add">
+            <view class="add-l">
+                <image src="/images/scheme_snack.png" />
+                <view class="name">加餐</view>
+            </view>
+            <view class="append">
+                <image src="/images/square_add.png" />
+            </view>
+        </view>
+    </view>
+    <!-- 固定蛋白法 -->
+    <view class="meals gd" wx:if="{{tabIndex == 1}}">
+        <!-- 方案参数设置 -->
+        <view class="box">
+            <view class="col-t">
+                <view class="col-l">
+                    <image src="{{imgPrefix + 'parameter_set.png'}}" />
+                    <view class="name">吃法参数</view>
+                </view>
+            </view>
+            <view class="shrink show">
+                <view class="list" bind:tap="fixed" data-type="7" data-value="{{dietPlan.totalIntake}}">
+                    <view class="list-l">全天摄入热量</view>
+                    <view class="list-r">
+                        <view class="percent">{{dietPlan.totalIntake}}kcal</view>
+                        <image src="/images/arrow-color.png" />
+                    </view>
+                </view>
+                <view class="list" bind:tap="fixed" data-type="1" data-value="{{filters.toFixOne(dataList[0].energyRatio)}}">
+                    <view class="list-l">单位体重摄入蛋白</view>
+                    <view class="list-r">
+                        <view class="percent">{{filters.toFixOne(dataList[0].energyRatio)}}g/kg</view>
+                        <image src="/images/arrow-color.png" />
+                    </view>
+                </view>
+                <view class="list">
+                    <view class="list-l">全天蛋白摄入总量</view>
+                    <view class="list-r">
+                        <view class="percent" style="color:#333333">
+                            {{dataList[0].energyTotal}}g
+                        </view>
+                    </view>
+                </view>
+                <!-- <view class="list" data-type="6">
+                    <view class="list-l">计划运动消耗</view>
+                    <view class="list-r">
+                        <view class="percent" style="color:#333333">
+                            {{dietPlan.sportsConsume}}kcal
+                        </view>
+                    </view>
+                </view>
+                <view class="list">
+                    <view class="list-l">食物热效应</view>
+                    <view class="list-r">
+                        <view class="percent" style="color:#333333">
+                            {{dietPlan.totalThermalEffect}}kcal
+                        </view>
+                    </view>
+                </view>
+                <view class="list">
+                    <view class="list-l">能量差</view>
+                    <view class="list-r">
+                        <view class="percent" style="color:#333333">
+                            {{dietPlan.energyDifference}}kcal
+                        </view>
+                    </view>
+                </view> -->
+            </view>
+            <!-- 蛋白质总量 -->
+            <!-- <view class="top">
+                <view class="name">蛋白质总量</view>
+                <view class="col-c">{{dataList[0].energyTotal}}g</view>
+                <view class="col-r" bind:tap="fixed" data-type="1">
+                    <view class="num">
+                        {{filters.toFixOne(dataList[0].energyRatio)}}g
+                        <text>(单位体重g/kg)</text>
+                    </view>
+                    <image src="/images/arrow-color.png" />
+                </view>
+            </view> -->
+        </view>
+        <!-- 早餐 -->
+        <view class="box" wx:for="{{dataList}}" wx:key="key">
+            <view class="col-t active" data-index="{{index}}" bind:tap="shrink">
+                <view class="col-l">
+                    <image src="{{categoryKind[item.category] ? categoryKind[item.category].src : '/images/scheme_snack.png'}}" />
+                    <view class="name">
+                        {{categoryKind[item.category] ? categoryKind[item.category].name : '加餐'+filters.toAdd(item.category)}}
+                    </view>
+                </view>
+                <view class="addc_del" wx:if="{{index > 2}}" data-index="{{index}}" bind:tap="preDeleteFn">
+                    <image src="{{imgPrefix + 'addc_del.png'}}" />
+                </view>
+                <!-- <view class="arrow">
+                    <image src="/images/scheme_open.png" />
+                </view> -->
+            </view>
+            <view class="list title">
+                <view class="list-l">类型</view>
+                <view class="list-c">吃法数值</view>
+                <view class="list-r">
+                    <view class="percent">百分比</view>
+                </view>
+            </view>
+            <view class="list">
+                <view class="list-l">当餐摄入热量</view>
+                <view class="list-c">{{item.totalKcal}}kcal</view>
+                <view class="list-r" bind:tap="heat" data-type="3" data-index="{{index}}">
+                    <view class="percent">{{item.totalRatio}}%</view>
+                    <image src="/images/arrow-color.png" />
+                </view>
+            </view>
+            <view class="list">
+                <view class="list-l">单餐蛋白/全天蛋白总量</view>
+                <view class="list-c">{{item.fixedProteinTotal}}g</view>
+                <view class="list-r" bind:tap="heatFixed" data-type="2" data-index="{{index}}">
+                    <view class="percent">{{item.fixedProteinRatio}}%</view>
+                    <image src="/images/arrow-color.png" />
+                </view>
+            </view>
+            
+            <view class="shrink active {{index > 3 ? 'higher' : ''}}">
+                <view class="list">
+                    <view class="list-l">脂肪</view>
+                    <view class="list-r" bind:tap="fixed" data-type="4" data-index="{{index}}" data-value="{{item.fatRatio}}">
+                        <view class="percent yellow">{{item.fatRatio}}%</view>
+                        <image src="/images/arrow-color.png" />
+                    </view>
+                </view>
+                <view class="list {{index > 3 ? 'bd1' : ''}}">
+                    <view class="list-l">碳水</view>
+                    <view class="list-r">
+                        <view class="percent color">{{item.carbohydrateRatio}}%</view>
+                        <!-- <image src="/images/arrow-color.png" /> -->
+                    </view>
+                </view>
+                <!-- <view class="meal-delete" wx:if="{{index > 3}}" data-index="{{index}}" bind:tap="preDeleteFn">删除该餐别</view> -->
+                <!-- 推荐sku -->
+                <!-- <view class="recom">
+                    <view class="name">
+                        {{item.totalKcal}}kcal{{categoryKind[item.category] ? categoryKind[item.category].name : '加餐'}}供参考
+                    </view>
+                    <view class="sc">
+                        <scroll-view scroll-x="{{true}}" class="wrap_list">
+                            <view class="img_box" wx:for="{{item.customProgramme}}" wx:key="key" wx:for-item="recom">
+                                <image src="{{recom.primaryImgUrl}}" />
+                                <view class="bot_shadow">
+                                    <view class="mz">{{recom.skuname}}</view>
+                                    <view class="num" wx:if="{{recom.energy>0}}">
+                                        {{recom.energy}}kcal
+                                    </view>
+                                </view>
+                            </view>
+                        </scroll-view>
+                    </view>
+                </view> -->
+            </view>
+        </view>
+        <!-- 加餐 -->
+        <view class="addc" bind:tap="add">
+            <view class="add-l">
+                <image src="/images/scheme_snack.png" />
+                <view class="name">加餐</view>
+            </view>
+            <view class="append">
+                <image src="/images/square_add.png" />
+            </view>
+        </view>
+    </view>
+</view>
+<!-- 使用方案 -->
+<view class="bot">
+    <view class="btn" bind:tap="use">生成吃法</view>
+</view>
+<cp-Input-box show="{{fixedProtein}}" placeholder="{{placeholder}}" symbol="{{symbol}}" type="{{title == '能量差' || title == '计划运动消耗' ? 'number' : 'digit'}}" title="{{title}}" unit="{{unit}}" value="{{value}}" bindinput="inputFixed" bindcancel="cancelFixed" bindsure="sureFixed" bindsymbol="symbol" />
+<view class="para {{warn ? 'active' : ''}}" catchtouchmove="true" wx:if="{{showPara}}">
+    <view class="empty" bind:tap="para"></view>
+    <view class="goal" style="bottom:{{keyboardheight}}px">
+        <view class="title">{{categoryKind[category] ? categoryKind[category].name : '加餐'+filters.toAdd(category)}}三大营养素比例</view>
+        <view class="tip">三大营养素比例之和需要等于100%</view>
+        <view class="wrap_box uniq">
+            <view class="box">
+                <view class="name">蛋白质</view>
+                <input type="number" hold-keyboard="{{true}}" auto-focus="{{false}}" value="{{shortD}}" placeholder="请输入" data-index="0" bindinput="goal" bind:tap="keyboardheight" bindfocus="keyboardheight" bindblur="bindblur" adjust-position="{{false}}" placeholder-class="ph-color" />
+                <view class="unit">%</view>
+            </view>
+            <view class="box">
+                <view class="name">脂肪</view>
+                <input type="number" hold-keyboard="{{true}}" value="{{shortZ}}" placeholder="请输入" data-index="2" bindinput="goal" bind:tap="keyboardheight" bindfocus="keyboardheight" bindblur="bindblur" adjust-position="{{false}}" placeholder-class="ph-color" />
+                <view class="unit">%</view>
+            </view>
+            <view class="box">
+                <view class="name">碳水</view>
+                <input type="number" hold-keyboard="{{true}}" value="{{shortT}}" placeholder="请输入" data-index="1" bindinput="goal" bind:tap="keyboardheight" bindfocus="keyboardheight" bindblur="bindblur" adjust-position="{{false}}" placeholder-class="ph-color" />
+                <view class="unit">%</view>
+            </view>
+        </view>
+        <view class="warn" wx:if="{{warn}}">
+            <!-- <image src="/images/explain_tagging_red.png" /> -->
+            三大营养素比例之和不等于100%
+        </view>
+        <view class="btn">
+            <!-- <view class="qx" bind:tap="para">取消</view> -->
+            <view class="sure {{shortGoal ? 'active' : ''}}" data-type="goal" bind:tap="editPara">
+                确定
+            </view>
+        </view>
+        <image class="close" bind:tap="para" src="/images/icon_down.png" />
+    </view>
+</view>
+<!-- 当餐摄入热量-修改 -->
+<view class="para {{warnEnergy ? 'active' : ''}}" catchtouchmove="true" wx:if="{{showParaEnergy}}">
+    <view class="empty" bind:tap="paraEnergy"></view>
+    <view class="goal" style="bottom:{{keyboardheight}}px">
+        <view class="title">每餐热量/全天摄入热量</view>
+        <view class="tip">热量比例之和需要等于100%</view>
+        <scroll-view scroll-y="{{true}}" class="wrap_box {{dataList.length == 3 ? 'uniq' : ''}}">
+            <view class="box" wx:for="{{dataList}}" wx:key="key" data-index="{{index}}">
+                <view class="name">
+                    {{item.category == '01' ? '早餐' : (item.category == '02' ? '午餐' : (item.category == '03' ? '晚餐' : '加餐'+ filters.toAdd(item.category)))}}
+                </view>
+                <input type="number" data-index="{{index}}" hold-keyboard="{{true}}" auto-focus="{{false}}" value="{{item.totalRatio}}" placeholder="请输入" bindinput="goalEnergy" bind:tap="keyboardheight" bindfocus="keyboardheight" bindblur="bindblur" adjust-position="{{false}}" placeholder-class="ph-color" />
+                <view class="unit">%</view>
+            </view>
+        </scroll-view>
+        <view class="warn" wx:if="{{warnEnergy}}">
+            <!-- <image src="/images/explain_tagging_red.png" /> -->
+            热量比例之和不等于100%
+        </view>
+        <view class="btn">
+            <!-- <view class="qx" bind:tap="paraEnergy">取消</view> -->
+            <view class="sure {{shortGoalEnergy ? 'active' : ''}}" data-type="goal" bind:tap="editParaEnergy">
+                确定
+            </view>
+        </view>
+        <image class="close" bind:tap="paraEnergy" src="/images/icon_down.png" />
+    </view>
+</view>
+<!-- 固蛋法 每餐蛋白/全天蛋白总量-修改 -->
+<view class="para {{warnFixed ? 'active' : ''}}" catchtouchmove="true" wx:if="{{showParaFixed}}">
+    <view class="empty" bind:tap="paraFixed"></view>
+    <view class="goal" style="bottom:{{keyboardheight}}px">
+        <view class="title">每餐蛋白/全天蛋白总量</view>
+        <view class="tip">蛋白质比例之和需要等于100%</view>
+        <scroll-view scroll-y="{{true}}" class="wrap_box {{dataList.length == 3 ? 'uniq' : ''}}">
+            <view class="box" wx:for="{{dataList}}" wx:key="key" data-index="{{index}}">
+                <view class="name">
+                    {{item.category == '01' ? '早餐' : (item.category == '02' ? '午餐' : (item.category == '03' ? '晚餐' : '加餐'+ filters.toAdd(item.category)))}}蛋白量
+                </view>
+                <input type="number" data-index="{{index}}" hold-keyboard="{{true}}" auto-focus="{{false}}" value="{{item.fixedProteinRatio}}" placeholder="请输入" bindinput="goalFixed" bind:tap="keyboardheight" bindfocus="keyboardheight" bindblur="bindblur" adjust-position="{{false}}" placeholder-class="ph-color" />
+                <view class="unit">%</view>
+            </view>
+        </scroll-view>
+        <view class="warn" wx:if="{{warnFixed}}">
+            <!-- <image src="/images/explain_tagging_red.png" /> -->
+            蛋白质比例之和不等于100%
+        </view>
+        <view class="btn">
+            <!-- <view class="qx" bind:tap="paraFixed">取消</view> -->
+            <view class="sure {{shortGoalFixed ? 'active' : ''}}" data-type="goal" bind:tap="editParaFixed">
+                确定
+            </view>
+        </view>
+        <image class="close" bind:tap="paraFixed" src="/images/icon_down.png" />
+    </view>
+</view>
+<!-- <view class="popupshow {{ showTime ? 'active' : ''}}" style="top: {{navStatusHeight}}px;">
+    <multiSelect-calendar id="multiSelect" calendarConfig="{{calendarConfig}}" bind:onSwipe="onSwipe" bind:onTapDay="onTapDay" bind:afterTapDay="afterTapDay" bind:whenChangeMonth="whenChangeMonth" bind:afterCalendarRender="afterCalendarRender" bind:sure="sureTime"></multiSelect-calendar>
+</view> -->
+<view class="mask" wx:if="{{showTime}}" bindtap="cancelTime"></view>
+<!-- 删除该餐别 -->
+<cp-confirm-dialog show="{{deleteFlag}}" cancel-text="取消" confirm-text="确定" auto-confirm="{{true}}" bind:on-confirm="deleteAddedFn">
+    <view class="cp-confirm-dialog__title">确定要删除该餐别吗？</view>
+</cp-confirm-dialog>
+
+<!-- 编辑方案 -->
+<cp-editPlan-dialog id="editPopup" show="{{showEdit}}" errTip="{{errTip}}" oneObj="{{oneObj}}" iptType="{{iptType}}" listArr="{{listArr}}" iptVal="{{iptVal}}" btnText='{{btnText}}' subTitle="{{subTitle}}" title="{{title}}" bind:update="update"></cp-editPlan-dialog>

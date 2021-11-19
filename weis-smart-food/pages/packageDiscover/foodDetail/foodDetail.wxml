@@ -1,0 +1,58 @@
+<!--pages/datas/foodDetail/foodDetail.wxml-->
+<cp-nav-bar title-text="食物详情"></cp-nav-bar>
+
+<view class="food-detail">
+  <!-- 商品 -->
+  <view class="good-box">
+    <view class="img-box">
+      <image src="{{food.thumbImageUrl}}" />
+    </view>
+    <view class="right-box">
+      <view class="name">{{food.name}}</view>
+      <view class="specification">{{food.calory}}kcal/{{food.weight}}g</view>
+      <view class="brand" wx:if="{{food.brand}}">品牌：{{food.brand}}</view>
+      <view class="num">{{useNums}}人打卡使用该菜品</view>
+    </view>
+  </view>
+  <!-- 能量 -->
+  <view class="energy">
+    <view class="val">能量：{{food.calory}}kcal</view>
+    <view class="switch">
+      <view
+        class="name {{switchIndex == index ? 'active' : ''}}"
+        data-index="{{index}}"
+        bind:tap="switch"
+        wx:for="{{switch}}"
+      >{{item.name}}</view>
+    </view>
+  </view>
+  <!-- 占比 -->
+  <view class="percent-box">
+    <view class="box" wx:for="{{circle}}" wx:key="index">
+      <view class="circle">
+        <text style="color:{{item.color}}">{{item.value}}%</text>
+        <van-circle
+          value="{{ item.value }}"
+          size="83"
+          color="{{item.color}}"
+          layer-color="{{item.layerColor}}"
+          stroke-width="5"
+          clockwise="{{ false }}"
+        />
+      </view>
+      <view class="name">{{item.name}}</view>
+      <view class="val">{{item.weight}}g</view>
+    </view>
+  </view>
+  <!-- 口味 -->
+  <view class="taste">
+    <view class="title">口味</view>
+    <view class="taste-box">
+      <view class="tag" wx:for="{{relishList}}" wx:key="index">{{item}}</view>
+    </view>
+  </view>
+  <!-- 添加 -->
+  <view class="bot">
+    <view class="add" bindtap="btnTap">{{status === '0' ? '添加' : '修改'}}</view>
+  </view>
+</view>

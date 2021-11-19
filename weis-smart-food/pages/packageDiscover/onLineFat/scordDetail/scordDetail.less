@@ -1,0 +1,50 @@
+.box {
+    width: 100%;
+    padding: 15rpx 40rpx 0;
+
+    .list {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 40rpx 0;
+        font-weight: bold;
+        position: relative;
+
+        &::after {
+            display: block;
+            content: '';
+            width: 100%;
+            height: 2rpx;
+            transform: scaleY(0.5);
+            background: rgba(51, 51, 51, 0.1);
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+
+        .date {
+            color: rgba(51, 51, 51, 1);
+            font-size: 28rpx;
+        }
+
+        .score {
+            color: rgba(254, 94, 15, 1);
+            font-size: 30rpx;
+        }
+    }
+}
+
+.null {
+    margin-top: 164rpx;
+    text-align: center;
+    image {
+      width: 320rpx;
+      height: 240rpx;
+    }
+    view {
+      font-size: 28rpx;
+      color: #a9a9a9;
+      margin-top: 20rpx;
+    }
+  }

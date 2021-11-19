@@ -1,0 +1,62 @@
+<!-- pages/packageOrder/setMealModify/setMealModify.wxml -->
+<cp-nav-bar title-text="修改套餐" background="#FA6400" color="#FFFFFF" backIconColor="#fff" />
+<view class="setMealModify">
+    <view class="header">
+        <image class="header_bg" src="https://prodstatic.weis1606.cn/api/smartFood/setMealModify_bg.png" />
+        <view class="header_con">
+            <view class="list">
+                <view class="label">总能量</view>
+                <view class="value">
+                    {{totalEnergy}}
+                    <text>kcal</text>
+                </view>
+            </view>
+            <view class="list">
+                <view class="label">营养健康分</view>
+                <view class="value">
+                    {{totalScore}}
+                    <text>分</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="content">
+        <view class="list-box">
+            <view class="list" wx:for="{{list.recommendList[0].setMealDateils}}" wx:key="key" data-id="{{item.id}}" bind:tap="skuDetail">
+                <image class="delete" src="/images/icons/upload_delete.png" data-index="{{index}}" bind:tap="delete"/>
+                <view class="l-img-box">
+                    <view class="tag-img" wx:if="{{item.skuTitle}}">{{item.skuTitle}}</view>
+                    <image src="{{item.primaryImgUrl}}" />
+                </view>
+                <view class="r-box">
+                    <view class="name {{item.className == 'P' ? 'red' : (item.className == 'C' ? 'white' : 'green')}}">
+                        {{item.name}} {{item.energy}}kcal
+                    </view>
+                    <view class="num">{{item.num}}份 {{item.quality}}{{item.unit}}</view>
+                    <view class="hot-box" wx:if="{{item.protein || item.fat || item.carbonwater}}">
+                        <view class="hot" wx:if="{{item.protein}}">
+                            蛋白质{{item.protein}}g
+                            <text class="hot-line">/</text>
+                        </view>
+                        <view class="hot" wx:if="{{item.fat}}">
+                            脂肪{{item.fat}}g
+                            <text class="hot-line">/</text>
+                        </view>
+                        <view class="hot" wx:if="{{item.carbonwater}}">
+                            碳水{{item.carbonwater}}g
+                        </view>
+                    </view>
+                    <!-- <view class="pack">{{item.dosing}}</view> -->
+                </view>
+                <!-- <image class="arrow" src="/images/my_next.png" /> -->
+            </view>
+        </view>
+    </view>
+    <view class="add" bind:tap="addSku">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/add.png" />
+        <view>点击添加菜品</view>
+    </view>
+    <view class="footer {{list.recommendList[0].setMealDateils.length > 0 ? 'active' : ''}}" bind:tap="submit">
+        修改完成，立即保存
+    </view>
+</view>

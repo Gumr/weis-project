@@ -1,0 +1,25 @@
+<!--pages/mineBox/aboutWeis/aboutWeis.wxml-->
+<cp-nav-bar title-text="关于维士" color="#000000" background="#fff" backIconColor="black" />
+
+
+<view class="about">
+    <image mode="widthFix" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/about_bj.png" />
+    <view class="img">
+        <image mode="widthFix" lazy-load="{{true}}" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/about_1.png" />
+        <image class="icon icon-1" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/about_1_1.png" />
+        <image class="icon icon-2" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/about_1_1.png" />
+    </view>
+    <view class="img">
+        <image mode="widthFix" lazy-load="{{true}}" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/about_2.png" />
+        <image class="icon icon-1" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/about_1_1.png" />
+        <image class="icon icon-2" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/about_1_1.png" />
+    </view>
+    <view class="img">
+        <image mode="widthFix" lazy-load="{{true}}" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/about_3.png" />
+        <image class="icon icon-1" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/about_1_1.png" />
+        <image class="icon icon-2" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/about_1_1.png" />
+    </view>
+    <view class="img">
+        <image mode="widthFix" lazy-load="{{true}}" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/about_4.png" />
+    </view>
+</view>

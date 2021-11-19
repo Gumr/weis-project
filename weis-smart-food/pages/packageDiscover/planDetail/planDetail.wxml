@@ -1,0 +1,385 @@
+<!-- pages/solution/scheme/scheme.wxml -->
+<!-- 引入过滤器 -->
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
+<!-- <view class="shadow" catch:touchmove="true" hidden="{{!showCalendar || !apply}}" style="padding-top:{{navStatusHeight}}px">
+  <multiSelect-calendar calendarConfig="{{calendarConfig}}" bind:afterCalendarRender="afterCalendarRender" bind:afterTapDay="afterTapDay" bind:backToday="backToday" />
+  <view class="close" bind:tap="tapTitle"></view>
+</view> -->
+<cp-nav-bar title-text="我的方案" background="#fff"></cp-nav-bar>
+<view class="scheme" hidden="{{!hideLoad}}">
+  <!-- <view class="fix-header" style="top:{{navStatusHeight}}px" wx:if="{{!showCalendar}}">
+    <view class="ai-box" wx:if="{{showAiBar}}">
+      <view class="ai-box__item" wx:if="{{aiPlanState.startStt === 0}}">
+        <view class="ai-box__cont" wx:if="{{!aiPlanState.isOrdered}}">
+          <view style="flex-grow: 1;">
+            <view class="ai-text">
+              <view class="ai-bold">{{aiPlanState._planDate}}{{aiPlanState._planName}}即将开始</view>
+              <view class="ai-tip">开启AI减脂第一餐</view>
+            </view>
+          </view>
+          <view class="ai-btn button--primary" bind:tap="aiOrderTap">去订餐</view>
+        </view>
+        <view class="ai-box__cont" wx:else>
+          <view class="ai-text">
+            <view class="ai-bold">{{aiPlanState._planDate}}{{aiPlanState._planName}}即将开始</view>
+            <view class="ai-tip">查看瘦身餐单</view>
+          </view>
+          <view class="ai-btn button--primary" bind:tap="viewAiOrderTap">查看</view>
+        </view>
+      </view>
+      <view class="ai-box__item" wx:else>
+        <view class="ai-box__cont" wx:if="{{aiPlanState.next === 2}}">
+          <view class="ai-text">
+            <view class="ai-bold">即将开启第{{aiPlanState._stageNo}}阶段智能方案，请提前订餐</view>
+            <view class="ai-tip">要记录体重智能调整饮食方案哦～</view>
+          </view>
+          <view class="ai-btn button--primary" bind:tap="aiOrderTap">去订餐</view>
+        </view>
+        <view class="ai-box__cont" wx:elif="{{aiPlanState.repair || !aiPlanState.isOrdered}}">
+          <view class="ai-text">
+            <view class="ai-bold">Hello,您已开启AI智能计划第{{aiPlanState.beginDays}}天</view>
+            <view class="ai-tip">开启AI减脂第一餐</view>
+          </view>
+          <view class="ai-btn button--primary" bind:tap="aiOrderTap">去订餐</view>
+        </view>
+      </view>
+    </view>
+    <view class="ai-box" wx:if="{{showPlanBar}}">
+      <view class="ai-box__cont" wx:if="{{!aiPlanState.isOrdered}}">
+        <view style="flex-grow: 1;">
+          <view class="ai-text">
+            <view class="ai-bold">即将开始{{aimstatus[dietPlan.planningType]}}方案下一阶段，请提前订餐</view>
+            <view class="ai-tip">照着方案吃，一定会瘦的！</view>
+          </view>
+        </view>
+        <view class="ai-btn button--primary" bind:tap="goOrder">去订餐</view>
+      </view>
+    </view>
+    <view class="showTab">
+      <view class="list list{{index}} {{showIndex == index ? 'active' : ''}}" wx:for="{{showList}}" wx:key="key" data-index="{{index}}" bind:tap="tabShow">
+        <view class="name">{{item.name}}</view>
+        <view class="c-line" wx:if="{{showIndex == index}}"></view>
+      </view>
+    </view>
+  </view> -->
+  <view class="precept" bindtap="precept">
+    <view class="plan">
+      <view class="head">
+        <view class="list">
+          <view class="name">方案名称</view>
+          <view class="r-row" bind:tap="editName">
+            <view class="r-name edit-color">{{dietPlan.planName}}</view>
+            <image src="/images/arrow-color.png" />
+          </view>
+        </view>
+        <view class="list">
+          <view class="name">方案周期</view>
+          <view class="r-row">
+            <view class="r-name">{{dietPlan.continue}}天</view>
+          </view>
+        </view>
+        <view class="list b1">
+          <view class="name">方案采用方法</view>
+          <view class="r-row" bind:tap="editMethod">
+            <view class="r-name edit-color">
+              {{dietPlan.calculationMethod == '01' ? '综合比例法' : '固蛋法'}}
+            </view>
+            <image src="/images/arrow-color.png" />
+          </view>
+        </view>
+        <view class="list del" bind:tap="delete">
+          <view class="name">删除方案</view>
+          <view class="r-row">
+            <image class="icon" src="/images/popup_delete_orange.png" />
+          </view>
+        </view>
+        <!-- <view class="title">方案详情</view>
+        <view class="tab">
+          <view class="tag {{tabIndex == index ? 'active' : ''}}" wx:if="{{tabIndex == index}}" wx:for="{{tabList}}" wx:key="key" data-index="{{index}}">
+            {{item.name}}
+          </view>
+          <image wx:if="{{dietPlan.quoteId || !dietPlan.dateEtime}}" src="/images/square_next.png" />
+        </view> -->
+      </view>
+      <view class="meals">
+        <!-- 方案参数设置 -->
+        <view class="box">
+          <view class="col-t">
+            <image src="/images/parameter_set.png" />
+            <view class="name">方案参数</view>
+          </view>
+          <view class="shrink">
+            <view class="list" bind:tap="fixed" data-type="7">
+              <view class="list-l">摄入量</view>
+              <view class="list-r">
+                <view class="percent edit-color">{{dietPlan.totalIntake}}kcal</view>
+                <image src="/images/arrow-color.png" />
+              </view>
+            </view>
+            <view class="list">
+              <view class="list-l">食物热</view>
+              <view class="list-r">
+                <view class="percent">{{dietPlan.totalThermalEffect}}kcal</view>
+              </view>
+            </view>
+            <view class="list">
+              <view class="list-l">热量差</view>
+              <view class="list-r">
+                <view class="percent">{{dietPlan.energyDifference}}kcal</view>
+              </view>
+            </view>
+          </view>
+          <!-- 固蛋法 -->
+          <view class="shrink fixP" wx:if="{{dietPlan.calculationMethod == '02'}}">
+            <view class="list" bind:tap="fixed" data-type="1">
+              <view class="list-l">单位体重所需蛋白质</view>
+              <view class="list-r">
+                <view class="percent edit-color">
+                  {{dietPlan.planDetailList[0].energyRatio}}g/kg
+                </view>
+                <image src="/images/arrow-color.png" />
+              </view>
+            </view>
+            <view class="list">
+              <view class="list-l">蛋白质总量</view>
+              <view class="list-r">
+                <view class="percent">{{dietPlan.planDetailList[0].energyTotal}}g</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- 固蛋法 -->
+        <view wx:if="{{dietPlan.calculationMethod == '02'}}">
+          <view class="box" wx:for="{{dietPlan.planDetailList}}" wx:key="key">
+            <view class="col-t">
+              <image src="/images/parameter_set.png" />
+              <view class="name">{{categoryKind[item.category].name}}</view>
+            </view>
+            <view class="title">
+              <view class="name">类型</view>
+              <view class="name">数值</view>
+              <view class="name">百分比</view>
+            </view>
+            <view class="category">
+              <view class="list" bind:tap="editAll" data-type="3" data-index="{{index}}">
+                <view class="list-val">{{categoryKind[item.category].name}}能量</view>
+                <view class="list-val">{{item.totalKcal}}kcal</view>
+                <view class="list-val">
+                  <view class="percent edit-color">{{item.totalRatio}}%</view>
+                  <image src="/images/arrow-color.png" />
+                </view>
+              </view>
+              <view class="list" bind:tap="heatFixed" data-type="2" data-index="{{index}}">
+                <view class="list-val">蛋白质/每日总蛋白</view>
+                <view class="list-val">{{item.fixedProteinTotal}}g</view>
+                <view class="list-val">
+                  <view class="percent edit-color">{{item.fixedProteinRatio}}%</view>
+                  <image src="/images/arrow-color.png" />
+                </view>
+              </view>
+              <view class="list" bind:tap="fixed" data-type="4" data-index="{{index}}">
+                <view class="list-val">脂肪</view>
+                <view class="list-val">{{item.fatTotal}}g</view>
+                <view class="list-val">
+                  <view class="percent edit-color">{{item.fatRatio}}%</view>
+                  <image src="/images/arrow-color.png" />
+                </view>
+              </view>
+              <view class="list">
+                <view class="list-val">碳水化合物</view>
+                <view class="list-val">{{item.carbohydrateTotal}}g</view>
+                <view class="list-val">
+                  <view class="percent">{{item.carbohydrateRatio}}%</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- 综合法 -->
+        <view wx:else>
+          <view class="box" wx:for="{{dietPlan.planDetailList}}" wx:key="key">
+            <view class="col-t">
+              <image src="{{item.category == '01' ? '/images/icon-b.png' : (item.category == '02' ? '/images/icon-d.png' : '/images/icon-l.png')}}" />
+              <view class="name">{{categoryKind[item.category].name}}</view>
+            </view>
+            <view class="title">
+              <view class="name">类型</view>
+              <view class="name">数值</view>
+              <view class="name">百分比</view>
+            </view>
+            <view class="category">
+              <view class="list" bind:tap="editAll" data-index="{{index}}">
+                <view class="list-val">{{categoryKind[item.category].name}}能量</view>
+                <view class="list-val">{{item.totalKcal}}kcal</view>
+                <view class="list-val">
+                  <view class="percent edit-color">{{item.totalRatio}}%</view>
+                  <image src="/images/arrow-color.png" />
+                </view>
+              </view>
+              <view class="list" bind:tap="edit" data-index="{{index}}">
+                <view class="list-val">碳水化合物</view>
+                <view class="list-val">{{item.carbohydrateTotal}}g</view>
+                <view class="list-val">
+                  <view class="percent edit-color">{{item.carbohydrateRatio}}%</view>
+                  <image src="/images/arrow-color.png" />
+                </view>
+              </view>
+              <view class="list" bind:tap="edit" data-index="{{index}}">
+                <view class="list-val">蛋白质</view>
+                <view class="list-val">{{item.proteinTotal}}g</view>
+                <view class="list-val">
+                  <view class="percent edit-color">{{item.proteinRatio}}%</view>
+                  <image src="/images/arrow-color.png" />
+                </view>
+              </view>
+              <view class="list" bind:tap="edit" data-index="{{index}}">
+                <view class="list-val">脂肪</view>
+                <view class="list-val">{{item.fatTotal}}g</view>
+                <view class="list-val">
+                  <view class="percent edit-color">{{item.fatRatio}}%</view>
+                  <image src="/images/arrow-color.png" />
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="loading" hidden="{{hideLoad}}">
+  <van-loading size="20" text-size="12" color="#FE5E0F" type="circular" vertical></van-loading>
+</view>
+<!-- 方案采用方法 -->
+<cp-bottom-popup title="方案采用方法" show="{{showMethod}}" val="{{methodValue}}" data="{{methods}}" bind:on-change="methodChange" bind:on-confirm="methodConfirm"></cp-bottom-popup>
+<!-- 方案名 -->
+<cp-Input-box show="{{nameFlag}}" placeholder="请输入" title="修改吃法名称" unit="" value="{{tempName}}" height="400" bindinput="inputName" bindcancel="hideDialog" bindsure="sureName" />
+<!-- 能量差 -->
+<cp-Input-box show="{{energyDifference}}" placeholder="请输入" type="number" title="能量差" unit="kcal" value="" height="400" bindinput="inputEnergy" bindcancel="hideDialog" bindsure="sureEnergy" />
+<!-- 总热量占比 -->
+<cp-Input-box show="{{heat}}" placeholder="比例" type="text" title="当餐总能量" unit="%" value="" height="400" bindinput="input" bindcancel="hideDialog" bindsure="sure" />
+<!-- 固蛋法 -->
+<cp-Input-box show="{{fixedProtein}}" placeholder="{{placeholder}}" symbol="{{symbol}}" type="{{title == '能量差' || title == '计划运动消耗' ? 'number' : 'digit'}}" title="{{title}}" unit="{{unit}}" value="" bindinput="inputFixed" bindcancel="cancelFixed" bindsure="sureFixed" bindsymbol="symbol" />
+<view class="para {{warn ? 'active' : ''}}" catchtouchmove="true" wx:if="{{showPara}}">
+  <view class="empty" bind:tap="para"></view>
+  <view class="goal" style="bottom:{{keyboardheight}}px">
+    <view class="head">
+      <image src="/images/icon_down.png" bind:tap="hideDialog" />
+      <view class="title">蛋白质/脂肪/碳水化合物</view>
+    </view>
+    <view class="subtitle">宏量元素综合应等于100%</view>
+    <view class="wrap_box nutrient">
+      <view class="n-box">
+        <view class="name">蛋白质</view>
+        <view class="n-ipt">
+          <input type="number" value="{{shortD}}" style="margin-left:{{shortD > 10 ? 10 : (shortD > 0 ? 4 : -12) }}rpx" auto-focus="{{true}}" data-index="0" bindinput="goal" bindkeyboardheightchange="keyboardheight" bindblur="bindblur" hold-keyboard="{{true}}" adjust-position="{{false}}" placeholder-class="ph-color" />
+          <view class="unit">%</view>
+        </view>
+      </view>
+      <view class="n-box">
+        <view class="name">脂肪</view>
+        <view class="n-ipt">
+          <input type="number" value="{{shortZ}}" style="margin-left:{{shortZ > 10 ? 10 : (shortZ > 0 ? 4 : -12) }}rpx" data-index="2" bindinput="goal" bindkeyboardheightchange="keyboardheight" bindblur="bindblur" hold-keyboard="{{true}}" adjust-position="{{false}}" placeholder-class="ph-color" />
+          <view class="unit">%</view>
+        </view>
+      </view>
+      <view class="n-box">
+        <view class="name">碳水化合物</view>
+        <view class="n-ipt">
+          <input type="number" value="{{shortT}}" style="margin-left:{{shortT > 10 ? 10 : (shortT > 0 ? 4 : -12) }}rpx" data-index="1" bindinput="goal" bindkeyboardheightchange="keyboardheight" bindblur="bindblur" hold-keyboard="{{true}}" adjust-position="{{false}}" placeholder-class="ph-color" />
+          <view class="unit">%</view>
+        </view>
+      </view>
+    </view>
+    <view class="tip" wx:if="{{warn}}">
+      <!-- <image src="/images/explain_tagging_red.png" /> -->
+      三项之和需等于100%
+    </view>
+    <view class="btn">
+      <!-- <view class="qx" bind:tap="para">取消</view> -->
+      <view class="sure {{shortGoal ? 'active' : ''}}" data-type="goal" bind:tap="editPara">
+        确定
+      </view>
+    </view>
+    <!-- <image class="close" bind:tap="para" src="/images/icon_down.png" /> -->
+  </view>
+</view>
+<!-- 当餐总能量修改 -->
+<view class="para {{warnEnergy ? 'active' : ''}}" catchtouchmove="true" wx:if="{{showParaEnergy}}">
+  <view class="empty" bind:tap="paraEnergy"></view>
+  <view class="goal" style="bottom:{{keyboardheight}}px">
+    <view class="head">
+      <image src="/images/icon_down.png" bind:tap="hideDialog" />
+      <view class="title">当日总能量</view>
+    </view>
+    <view class="subtitle">注意：当日总能量比例之和需等于100%</view>
+    <view class="wrap_box nutrient {{dataList.length == 3 ? 'uniq' : ''}}">
+      <view class="n-box" wx:for="{{dataList}}" wx:key="key" data-index="{{index}}">
+        <view class="name">
+          {{item.category == '01' ? '早餐' : (item.category == '02' ? '午餐' : (item.category == '03' ? '晚餐' : ('加餐'+ (index-2))))}}总能量
+        </view>
+        <view class="n-ipt">
+          <input type="number" data-index="{{index}}" hold-keyboard="{{false}}" auto-focus="{{index == 0 ? true : false}}" value="{{item.totalRatio}}" placeholder="请输入" bindinput="goalEnergy" bindkeyboardheightchange="keyboardheight" bindblur="bindblur" hold-keyboard="{{true}}" adjust-position="{{false}}" placeholder-class="ph-color" />
+          <view class="unit">%</view>
+        </view>
+      </view>
+    </view>
+    <view class="tip" wx:if="{{warnEnergy}}">
+      <!-- <image src="/images/explain_tagging_red.png" /> -->
+      当日之和需等于100%
+    </view>
+    <view class="btn">
+      <!-- <view class="qx" bind:tap="paraEnergy">取消</view> -->
+      <view class="sure {{shortGoalEnergy ? 'active' : ''}}" data-type="goal" bind:tap="editParaEnergy">
+        确定
+      </view>
+    </view>
+    <!-- <image class="close" bind:tap="paraEnergy" src="/images/icon_down.png" /> -->
+  </view>
+</view>
+<!-- 固蛋法 蛋白量/每日总蛋白修改 -->
+<view class="para {{warnFixed ? 'active' : ''}}" catchtouchmove="true" wx:if="{{showParaFixed}}">
+  <view class="empty" bind:tap="paraFixed"></view>
+  <view class="goal" style="bottom:{{keyboardheight}}px">
+    <view class="head">
+      <image src="/images/icon_down.png" bind:tap="hideDialog" />
+      <view class="title">当日总蛋白</view>
+    </view>
+    <view class="subtitle">注意：当日总蛋白比例之和需等于100%</view>
+    <view class="wrap_box nutrient {{dataList.length == 3 ? 'uniq' : ''}}">
+      <view class="n-box" wx:for="{{dataList}}" wx:key="key" data-index="{{index}}">
+        <view class="name">
+          {{item.category == '01' ? '早餐' : (item.category == '02' ? '午餐' : (item.category == '03' ? '晚餐' : ('加餐'+ (index-2))))}}蛋白量
+        </view>
+        <view class="n-ipt">
+          <input type="number" data-index="{{index}}" hold-keyboard="{{false}}" auto-focus="{{index == 0 ? true : false}}" value="{{item.fixedProteinRatio}}" placeholder="请输入" bindinput="goalFixed" bindkeyboardheightchange="keyboardheight" bindblur="bindblur" adjust-position="{{false}}" placeholder-class="ph-color" />
+          <view class="unit">%</view>
+        </view>
+      </view>
+    </view>
+    <view class="tip" wx:if="{{warnFixed}}">
+      <!-- <image src="/images/explain_tagging_red.png" /> -->
+      当日之和需等于100%
+    </view>
+    <view class="btn">
+      <!-- <view class="qx" bind:tap="paraFixed">取消</view> -->
+      <view class="sure {{shortGoalFixed ? 'active' : ''}}" data-type="goal" bind:tap="editParaFixed">
+        确定
+      </view>
+    </view>
+    <!-- <image class="close" bind:tap="paraFixed" src="/images/icon_down.png" /> -->
+  </view>
+</view>
+<view class="bot-box">
+  <view class="btn button--primary btn--library">
+    <view class="btn-l" bind:tap="use">使用方案</view>
+    <view class="btn-r" bind:tap="goMultiMeal">立即点餐</view>
+  </view>
+</view>
+<cp-confirm-dialog show="{{deleteFlag}}" id="dialog" title="{{title}}" confirmText="{{confirmText}}" cancelText="{{cancelText}}" content="{{content}}" bind:on-cancel="cancel" bind:on-confirm="confirm"></cp-confirm-dialog>
+<!-- 弹窗日历 -->
+<view class="popupshow {{ showMultiSelect ? 'active' : ''}}" style="top: {{navStatusHeight}}px;" catch:touchmove="true">
+  <multiSelect-calendar id="multiSelect" calendarConfig="{{calendarConfig}}" bind:onTapDay="onTapDay" bind:afterTapDay="afterTapDay" bind:whenChangeMonth="whenChangeMonth" bind:afterCalendarRender="afterCalendarRender" bind:sure="sureSelect"></multiSelect-calendar>
+</view>
+<view class="mask" catch:touchmove="true" wx:if="{{showMultiSelect}}" bindtap="cancelSelect"></view>
+<cp-confirm-dialog id="dialog" show="{{showCover}}" title="该日期已有方案，是否覆盖当前方案？" bind:on-cancel="cancelPlan" bind:on-confirm="confirmPlan"></cp-confirm-dialog>

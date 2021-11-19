@@ -1,0 +1,31 @@
+<!--pages/packSubAccount/sharedAccount/sharedAccount.wxml-->
+<cp-nav-bar title-text="共享账号" background="#F3F4F5" color="#333333" backIconColor="black" />
+
+<view class="share">
+    <view class="title">以下用户能和你一起共享该子账号的饮食方案、身体数据、摄入数据和相关订单</view>
+    <view class="main">
+        <view class="subList">
+            <view class="info" wx:for="{{ubShareInfoList}}" wx:key="index">
+                <view class="info_left">
+                    <image class="head" src="{{item.defaultAvatar}}" />
+                    <view class="name">{{item.uname}}</view>
+                </view>
+                <view class="status" catch:tap="stopShare" data-index="{{index}}">{{tsuUid == uid ? '停止共享' : '停止被共享'}}</view>
+            </view>
+        </view>
+        <button open-type="share" class="info" bind:tap="add" wx:if="{{tsuUid == uid}}">
+            <view class="info_left">
+                <image class="head" src="https://prodstatic.weis1606.cn/api/smartFood/add_grey.png" />
+                <view class="name">添加共享账号</view>
+            </view>
+        </button>
+    </view>
+</view>
+
+<cp-confirm-dialog class="dialog" show="{{showDialog}}" title="提示" bind:on-confirm="confirmStop">
+  <view class="dialog-label">
+    <view>{{tsuUid == uid ? '停止共享后该用户' : '停止被共享后'}}查看不了该子账号的【饮食方案】、【身体数据】、【摄入数据】和【相关订单】。</view>
+
+    <view>确定停止{{tsuUid == uid ? '' : '被'}}共享该子账号？</view>
+  </view>
+</cp-confirm-dialog>

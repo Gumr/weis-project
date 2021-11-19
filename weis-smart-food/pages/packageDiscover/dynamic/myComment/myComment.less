@@ -1,0 +1,139 @@
+.border {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1rpx;
+  background: #333333;
+  opacity: 0.1;
+  //   transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+// 饭圈动态
+.dynamic {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 10rpx;
+  padding: 0 30rpx 30rpx;
+  .content {
+    .list {
+      margin-top: 40rpx;
+      position: relative;
+      &::after {
+        .border();
+      }
+      .head {
+        display: flex;
+        align-items: center;
+        .headImg {
+          width: 72rpx;
+          height: 72rpx;
+          border-radius: 50%;
+          margin-right: 14rpx;
+        }
+        .headInfo {
+          view:nth-child(1) {
+            font-size: 24rpx;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 10rpx;
+          }
+          view:nth-child(2) {
+            font-size: 20rpx;
+            color: #adadad;
+          }
+        }
+      }
+      .words {
+        font-size: 28rpx;
+        color: #333333;
+        line-height: 38rpx;
+        margin: 30rpx 0;
+        view {
+          display: inline;
+          word-break: break-all;
+        }
+        .wordsUrl {
+          color: #2440B3;
+          .urlIcon {
+            width: 28rpx;
+            height: 28rpx;
+          }
+        }
+      }
+      .img {
+        image {
+          width: 203rpx;
+          height: 203rpx;
+          border-radius: 10rpx;
+          margin: 0 10rpx 5rpx 0;
+          &:nth-of-type(3n) {
+            margin-right: 0;
+          }
+        }
+      }
+      .menu {
+        height: 96rpx;
+        background: #f6f6f6;
+        border-radius: 10rpx;
+        display: flex;
+        align-items: center;
+        margin: 24rpx 0;
+        view:nth-child(1) {
+          width: 108rpx;
+          background: #d1fffc;
+          border-radius: 10rpx 0rpx 0rpx 10rpx;
+          font-size: 68rpx;
+          font-family: "DINCondensedC";
+          font-weight: bold;
+          color: #18c5c1;
+          line-height: 96rpx;
+          text-align: center;
+          margin-right: 20rpx;
+          &.addRed {
+            background: linear-gradient(180deg, #fff3eb 0%, #ffdac1 100%);
+            color: #fa6400;
+          }
+        }
+        view:nth-child(2) {
+          width: 630rpx;
+          background: #f6f6f6;
+          //   border-radius: 10rpx;
+
+          font-size: 28rpx;
+          color: #adadad;
+        }
+      }
+      .operate {
+        padding-bottom: 30rpx;
+        display: flex;
+        justify-content: space-between;
+        &_icon {
+          display: flex;
+          view {
+            margin-right: 28rpx;
+            display: flex;
+            align-items: center;
+            image {
+              width: 36rpx;
+              height: 36rpx;
+              margin-right: 12rpx;
+            }
+            view {
+              font-size: 20rpx;
+              color: #adadad;
+            }
+          }
+        }
+        &_delete {
+          image {
+            width: 36rpx;
+            height: 36rpx;
+          }
+        }
+      }
+    }
+  }
+}

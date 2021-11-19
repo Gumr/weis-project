@@ -1,0 +1,254 @@
+<!--pages/datum/datum.wxml-->
+<cp-nav-bar
+  title-text="数据"
+  left="setting"
+  custom
+  background="transparent"
+  navBgImg="https://prodstatic.weis1606.cn/api/smartFood/navBgImg_top.png"
+  color="#fff"
+  navSettingColor="white"
+  bind:tapcustom="navSettingTap"
+></cp-nav-bar>
+<view class="page-container">
+  <view class="content" wx:if="{{hasSetting}}">
+    <image class="navBarBg" src="https://prodstatic.weis1606.cn/api/smartFood/navBgImg_bottom.png" style="top:{{navStatusHeight * px2rpx}}rpx" />
+    <view class="card" wx:if="{{userConfig['01']}}" bind:tap="eatDataTap">
+      <view class="header">
+        <view class="leftCon">
+          <image class="header_img" src="https://prodstatic.weis1606.cn/api/smartFood/data_diet.png" />
+          <view class="flex">
+            <view class="title">今日摄入</view>
+            <view class="category-list">
+              <view class="category" wx:for="{{categorys}}" wx:key="index">
+                <text>{{item.label}}</text>
+                <image
+                  class="category__icon"
+                  wx:if="{{item.selected}}"
+                  src="/images/icons/icon_select.png"
+                />
+                <image class="category__icon" wx:else src="/images/icons/icon_unselect.png" />
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="btn" catch:tap="mealTap">饮食打卡</view>
+      </view>
+      <view style="margin-top: 42rpx">
+        <cp-data-circle-bar circle-data="{{circleData}}" bar-data="{{barData}}"></cp-data-circle-bar>
+      </view>
+    </view>
+    <view class="card" wx:if="{{userConfig['02']}}" bind:tap="eatDataTap">
+      <view class="header">
+        <view class="leftCon">
+          <image class="header_img" src="https://prodstatic.weis1606.cn/api/smartFood/data_consume.png" />
+          <view class="flex">
+            <view class="title">今日消耗</view>
+            <view class="unit">(单位：kcal)</view>
+          </view>
+        </view>
+        <view class="btn" catch:tap="mealTap">运动打卡</view>
+      </view>
+      <view class="card__content">
+        <view>
+          <view class="card__label">总消耗</view>
+          <view>
+            <text class="family-din orange font-num">{{calorie.aConsumption}}</text>
+            <text class="family-din orange font-unit">kcal</text>
+          </view>
+        </view>
+        <view class="flex-content-between" style="margin-top: 50rpx;">
+          <view>
+            <view class="card__label">运动消耗</view>
+            <view>
+              <text class="family-din gray-33 font-num">{{calorie.aSport}}</text>
+              <!-- <text class="family-din gray-33 font-unit">kcal</text> -->
+            </view>
+          </view>
+          <view>
+            <view class="card__label">日常消耗</view>
+            <view>
+              <text class="family-din gray-33 font-num">{{calorie.uDaily}}</text>
+              <!-- <text class="family-din gray-33 font-unit">kcal</text> -->
+            </view>
+          </view>
+          <view>
+            <view class="card__label">基础代谢</view>
+            <view>
+              <text class="family-din gray-33 font-num">{{calorie.uBasic}}</text>
+              <!-- <text class="family-din gray-33 font-unit">kcal</text> -->
+            </view>
+          </view>
+          <view>
+            <view class="card__label">食物热效应</view>
+            <view>
+              <text class="family-din gray-33 font-num">{{calorie._heatEffect}}</text>
+              <!-- <text class="family-din gray-33 font-unit">kcal</text> -->
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- <view class="card__content">
+        <view class="flex-items-center">
+          <view>
+            <view class="card__label" style="margin-right: 100rpx;">实际摄入</view>
+            <view>
+              <text class="number-52">{{todayData.aIntake}}</text>
+              <text class="number-28">kcal</text>
+            </view>
+          </view>
+          <view>
+            <view class="card__label">计划摄入</view>
+            <view>
+              <text class="number-52">{{todayData.pIntake}}</text>
+              <text class="number-28">kcal</text>
+            </view>
+          </view>
+        </view>
+      </view>-->
+    </view>
+    <view class="card" wx:if="{{userConfig['03']}}" bind:tap="recordWeightTap">
+      <view class="header">
+        <view class="leftCon">
+          <image class="header_img" src="https://prodstatic.weis1606.cn/api/smartFood/data_weight.png" />
+          <view class="flex">
+            <view class="title">体重</view>
+            <view class="unit">(单位：kg)</view>
+          </view>
+        </view>
+        <view class="flex-items-center">
+          <text class="font-24 gray-99">记录体重</text>
+          <image class="next-icon" src="/images/arrow-grey.png" />
+        </view>
+      </view>
+      <view class="card__content" wx:if="{{hasWeight}}">
+        <view class="flex-items-center">
+          <view wx:if="{{weight.today}}">
+            <view class="card__label" style="margin-right: 64rpx;">今日体重</view>
+            <view>
+              <text class="number-52">{{weight.today.$weight}}</text>
+              <!-- <text class="number-28">kg</text> -->
+            </view>
+          </view>
+          <view wx:if="{{weight.latest}}">
+            <view class="card__label" style="margin-right: 52rpx;">上次体重（{{weight.latest.$date}}）</view>
+            <view>
+              <text class="number-52">{{weight.latest.$weight}}</text>
+              <!-- <text class="number-28">kg</text> -->
+            </view>
+          </view>
+          <view wx:if="{{weight.diff}}">
+            <view class="card__label">体重变化</view>
+            <view>
+              <text class="number-52" wx:if="{{weight.diff > 0}}">+</text>
+              <text class="number-52">{{weight.diff}}</text>
+              <image class="number_icon" wx:if="{{weight.diff != 0}}" src="{{weight.diff > 0?'/images/weight_rise.png':'/images/weight_loss.png'}}" />
+              <!-- <text class="number-28">kg</text> -->
+            </view>
+          </view>
+        </view>
+      </view>
+      <view wx:else class="placeholder">- 还没有体重记录 -</view>
+    </view>
+    <view class="card" wx:if="{{userConfig['04']}}" bind:tap="recordGLUTap">
+      <view class="header">
+        <view class="leftCon">
+          <image class="header_img" src="https://prodstatic.weis1606.cn/api/smartFood/data_bloodSugar.png" />
+          <view class="flex">
+            <view class="title">血糖</view>
+            <view class="unit">(单位：mmol/L)</view>
+          </view>
+        </view>
+        <view class="flex-items-center">
+          <text class="font-24 gray-99">记录血糖</text>
+          <image class="next-icon" src="/images/arrow-grey.png" />
+        </view>
+      </view>
+      <view wx:if="{{GLUList.length > 0}}" class="card__content">
+        <scroll-view scroll-x>
+          <view class="bp-list">
+            <view class="bp" wx:for="{{GLUList}}" wx:key="index">
+              <view class="card__label" style="margin-right: 112rpx;">{{item.label}}</view>
+              <view>
+                <text class="number-52">{{item.value}}</text>
+                <!-- <text class="number-28">mmol/L</text> -->
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+      <view wx:else class="placeholder">- 还没有血糖记录 -</view>
+    </view>
+    <view class="card" wx:if="{{userConfig['05']}}" bind:tap="recordBPTap">
+      <view class="header">
+        <view class="leftCon">
+          <image class="header_img" src="https://prodstatic.weis1606.cn/api/smartFood/data_bloodPressure.png" />
+          <view class="flex">
+            <view class="title">血压</view>
+            <view class="unit">(单位：mmHg)</view>
+          </view>
+        </view>
+        <view class="flex-items-center">
+          <text class="font-24 gray-99">记录血压</text>
+          <image class="next-icon" src="/images/arrow-grey.png" />
+        </view>
+      </view>
+      <view wx:if="{{BPList.length > 0}}" class="card__content">
+        <scroll-view scroll-x>
+          <view class="bp-list">
+            <view class="bp" wx:for="{{BPList}}" wx:key="index">
+              <view class="card__label" style="margin-right: 112rpx;">{{item.label}}</view>
+              <view>
+                <text class="number-52">{{item.high}}/{{item.less}}</text>
+                <!-- <text class="number-28">mmHg</text> -->
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+      <view wx:else class="placeholder">- 还没有血压记录 -</view>
+    </view>
+    <view class="card" wx:if="{{userConfig['06']}}" bind:tap="stepTap">
+      <view class="header">
+        <view class="leftCon">
+          <image class="header_img" src="https://prodstatic.weis1606.cn/api/smartFood/data_step.png" />
+          <view class="flex">
+            <view class="title">记步</view>
+          </view>
+        </view>
+        <view class="flex-items-center">
+          <text class="font-24 gray-99">历史记步</text>
+          <image class="next-icon" src="/images/arrow-grey.png" />
+        </view>
+      </view>
+      <view class="card__content">
+        <view class="steps">
+          <view class="card__label" style="margin-right: 17rpx;">今天已走</view>
+          <view>
+            <text class="number-52">{{step}}</text>
+            <text class="number-28">步</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="tip">- 更多数据请在设置中打开 -</view>
+  </view>
+  <view class="not-setting" wx:else>
+    <image class="not-setting__image" src="https://prodstatic.weis1606.cn/api/smartFood/no_setting.png" />
+    <view class="not-setting__label">- 请到设置中打开数据入口 -</view>
+  </view>
+</view>
+
+<view wx:if="{{!(loginInfo.isAuthorized && loginInfo.isLogin)}}">
+  <cp-login-view id="login-dialog" bind:updateSucc="updateLogin"></cp-login-view>
+</view>
+
+<view
+  class="login-view"
+  wx:if="{{!(loginInfo.isAuthorized && loginInfo.isLogin && loginInfo.isPerProfile)}}"
+  catch:tap="login"
+></view>
+
+<!-- 注册后送券 -->
+<cp-login-coupon />
+
+<cp-config-dialog discoverDialogs="{{discoverDialogs}}" bind:on-tap="configShowTap" bind:on-close="closeConfig" bind:on-noTip="noTipChange" />

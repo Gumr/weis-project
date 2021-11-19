@@ -1,0 +1,89 @@
+<!-- components/nav/nav.wxml -->
+<!-- 占位栏 -->
+<view class="placeholder-bar" style="height: {{ !hasBg ? 0 : navBarHeight }}px"></view>
+<cover-view class="comp-navbar" wx:if="{{navtype}}">
+  <!-- 状态栏 -->
+  <cover-view class="nav-statusbar {{!hasBg ? 'transparent' : ''}}" style="height: {{statusBarHeight}}px"></cover-view>
+  <!-- 标题栏 -->
+  <cover-view class="nav-titlebar {{!hasBg ? 'transparent' : ''}}" style="height: {{ titleBarHeight }}px">
+    <!-- 标题 -->
+    <cover-view class="bar-title  {{ model == 'android' ? 'android' : '' }}" style="color: {{ titleColor }}">{{title}}</cover-view>
+    <!-- 其它配置项 -->
+    <cover-view class="bar-options {{ model == 'android' ? 'android' : '' }}">
+      <!-- 返回按钮 -->
+      <cover-view wx:if="{{showBack}}" class="opt opt-back" bindtap="backEvent">
+        <cover-image class="back-image {{backIcon === 'close' ? 'back-close' : ''}}" src="{{backIcon === 'close' ? '/images/icon_close.png' : titleColor === 'white'? '/images/goback_w.png' : '/images/goback.png'}}"></cover-image>
+      </cover-view>
+      <!-- 返回首页按钮 -->
+      <!-- 返回首页 -->
+      <cover-view wx:if="{{showBackHome}}" class="opt opt-home" bindtap="backHome">
+        <cover-image class="back-image" src="/images/icon_home.png"></cover-image>
+      </cover-view>
+      <!-- 根据业务需求自定义内容 -->
+      <!-- 查找菜谱 -->
+      <cover-view class="opt opt-search" wx:if="{{showSearch}}">
+        <cover-view class="cover-input" bindtap="goSearchCook">
+          <cover-view class="text">{{inputInfo}}</cover-view>
+        </cover-view>
+        <cover-image class="searchImg" src="/images/icon_search.png" />
+      </cover-view>
+      <!-- 关注用户 -->
+      <cover-view class="opt opt-attention" wx:if="{{humanInfo.uname}}">
+        <cover-view class="userbox" bindtap="toUserInfo">
+          <cover-view class="imgbox">
+            <cover-image class="attention-img" src="{{humanInfo.headImgUrl}}"></cover-image>
+            <cover-image class="icon" wx:if="{{humanInfo.cook}}" src="/images/icon_V_sm.png" />
+          </cover-view>
+          <cover-view class="user">{{humanInfo.uname}}</cover-view>
+        </cover-view>
+        <cover-view class="operate {{!humanInfo.follow ? '' : 'follow'}} {{humanInfo.uname === userInfo.uname ? 'disabled' : ''}}" bind:tap="followEvent">{{!humanInfo.follow ? '+关注' : '已关注'}}</cover-view>
+      </cover-view>
+    </cover-view>
+  </cover-view>
+</cover-view>
+
+<view class="container" hover-class="none" hover-stop-propagation="false" wx:else>
+  <view class="comp-navbar">
+    <!-- 状态栏 -->
+    <view class="nav-statusbar {{!hasBg ? 'transparent' : ''}}" style="height: {{statusBarHeight}}px"></view>
+    <!-- 标题栏 -->
+    <view class="nav-titlebar {{!hasBg ? 'transparent' : ''}}" style="height: {{ titleBarHeight }}px">
+      <!-- 标题 -->
+      <view class="bar-title  {{ model == 'android' ? 'android' : '' }}" style="color: {{ titleColor }}">{{title}}</view>
+
+      <!-- 其它配置项 -->
+      <view class="bar-options {{ model == 'android' ? 'android' : '' }}">
+        <!-- 返回按钮 -->
+        <view wx:if="{{showBack}}" class="opt opt-back" bindtap="backEvent">
+          <image class="back-image {{backIcon === 'close' ? 'back-close' : ''}}" src="{{backIcon === 'close' ? '/images/icon_close.png' : titleColor === 'white'? '/images/goback_w.png' : '/images/goback.png'}}"></image>
+        </view>
+        <!-- 返回首页按钮 -->
+        <!-- 返回首页 -->
+        <view wx:if="{{showBackHome}}" class="opt opt-home" bindtap="backHome">
+          <image class="back-image" src="/images/icon_home.png"></image>
+        </view>
+
+        <!-- 根据业务需求自定义内容 -->
+        <!-- 查找菜谱 -->
+        <view class="opt opt-search" wx:if="{{showSearch}}">
+          <view class="cover-input" bindtap="goSearchCook">
+            <view class="text">{{inputInfo}}</view>
+          </view>
+          <image class="searchImg" src="/images/icon_search.png" />
+        </view>
+        <!-- 关注用户 -->
+        <view class="opt opt-attention" wx:if="{{humanInfo.uname}}">
+          <view class="userbox" bindtap="toUserInfo">
+            <view class="imgbox">
+              <image class="attention-img" src="{{humanInfo.headImgUrl}}"></image>
+              <image class="icon" wx:if="{{humanInfo.cook}}" src="/images/icon_V_sm.png" />
+            </view>
+            <view class="user">{{humanInfo.uname}}</view>
+          </view>
+          <view class="operate {{!humanInfo.follow ? '' : 'follow'}} {{humanInfo.uname === userInfo.uname ? 'disabled' : ''}}" bind:tap="followEvent">{{!humanInfo.follow ? '+关注' : '已关注'}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "cp-data-pie": "/components/cp-data-pie/cp-data-pie"
+  }
+}

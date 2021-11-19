@@ -1,0 +1,16 @@
+<!--components/cp-switch/cp-switch.wxml-->
+<view class="switch {{status ? 'switch--open' : ''}}" bind:tap="toggle">
+  <view class="switch__toggle {{status ? 'switch__toggle--open' : ''}} switch__dot">
+    <van-loading
+      size="{{loadingSize}}"
+      wx:if="{{loading}}"
+      color="{{status ? '#fa6400' : '#969799'}}"
+      custom-class="switch__icon"
+    />
+    <image
+      wx:else
+      class="switch__toggle switch__icon hidden {{status ? 'visible' : ''}}"
+      src="./switch_open.png"
+    />
+  </view>
+</view>

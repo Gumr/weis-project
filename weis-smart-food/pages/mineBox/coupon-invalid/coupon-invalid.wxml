@@ -1,0 +1,77 @@
+<!-- pages/mineBox/coupon/coupon.wxml -->
+<cp-nav-bar title-text="{{typeValue == 0?'失效券':'失效红包'}}" hideHome background="#F3F4F5" color="#333333" backIconColor="#fff"/>
+<!-- 失效券 -->
+<view class="coupon" wx:if="{{typeValue == 0}}">
+    <view class="coupon-box" wx:if="{{couponUserVos.length>0}}">
+        <view class="list" wx:for="{{couponUserVos}}" wx:key="key">
+            <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/coupon-invial.png" />
+            <!-- <view class="c-t">
+                <view class="c-left">
+                    <view class="symbol">￥</view>
+                    <view class="amount">{{item.tcuAmount}}</view>
+                </view>
+                <view class="c-right">
+                    <view class="rule">满{{item.tcuRestrictAmount}}可用</view>
+                    <view class="date">有效期至{{item.eTime}}</view>
+                    <view class="userule" data-index="{{index}}">使用规则<image src="/images/my/list_next.png" /></view>
+                </view>
+                <image class="seal" src="https://prodstatic.weis1606.cn/api/smartFood/%E7%BC%96%E7%BB%84%204.png" />
+            </view> -->
+            <view class="c-t">
+                <view class="c-left">
+                    <!-- <view class="money">
+                        <view class="symbol">￥</view>
+                        <view class="amount">{{item.tcuAmount}}</view>
+                    </view> -->
+                    <view class="amount">￥<text>{{item.tcuAmount}}</text></view>
+                    <view class="limit">满{{item.tcuRestrictAmount}}可用</view>
+                </view>
+                <view class="c-right">
+                    <view class="name">{{item.tcuName}}</view>
+                    <view class="bot-box">
+                        <view class="date">有效期至{{item.eTime}}</view>
+                        <view class="userule" data-index="{{index}}" catch:tap="use">使用规则<image src="/images/my/list_next.png" /></view>
+                    </view>
+                </view>
+                <image class="seal" src="https://prodstatic.weis1606.cn/api/smartFood/%E7%BC%96%E7%BB%84%204.png" />
+            </view>
+        </view>
+    </view>
+    <view class="no" wx:if="{{couponUserVos && couponUserVos.length == 0}}">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/blank_case_ai.png" />
+        <view class="desc">暂无失效券</view>
+    </view>
+    
+    <!-- 这是底线 -->
+    <view class="over" wx:if="{{couponUserVos.length>0}}">- 只显示三个月内失效优惠券 -</view>
+</view>
+
+<!-- 失效红包 -->
+<view class="redPacket" wx:if="{{typeValue == 1}}">
+    <view class="redPacket-box" wx:if="{{redPacketList.length>0}}">
+        <view class="list" wx:for="{{redPacketList}}" wx:key="key">
+            <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/red_list_packing_prohibit.png" />
+            <view class="c-t">
+                <view class="c-left">
+                    <view class="amount">￥<text>{{item.amount}}</text></view>
+                    <view class="limit">满{{item.restrictAmount}}可用</view>
+                </view>
+                <view class="c-right">
+                    <view class="name">{{item.rpName}}</view>
+                    <view class="bot-box">
+                        <view class="date">有效期至{{item.eTime}}</view>
+                        <view class="userule" data-index="{{index}}" catch:tap="use">使用规则<image src="https://prodstatic.weis1606.cn/api/smartFood/scheme_open_white@2x.png" /></view>
+                    </view>
+                </view>
+                <image class="seal" src="https://prodstatic.weis1606.cn/api/smartFood/red_over@2x.png" />
+            </view>
+        </view>
+    </view>
+    <view class="no" wx:if="{{redPacketList && redPacketList.length == 0}}">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/blank_case_ai.png" />
+        <view class="desc">暂无失效红包</view>
+    </view>
+    
+    <!-- 这是底线 -->
+    <view class="over" wx:if="{{redPacketList.length>0}}">- 只显示三个月内失效红包 -</view>
+</view>

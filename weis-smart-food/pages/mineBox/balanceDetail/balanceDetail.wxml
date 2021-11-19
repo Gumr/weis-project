@@ -1,0 +1,67 @@
+<!-- pages/mineBox/balanceDetail/balanceDetail.wxml -->
+<!-- <import src="../../../template/loadMore.wxml" /> -->
+<cp-nav-bar title-text="余额明细" color="#000000" background="linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);" backIconColor="black" />
+<view class="detail">
+  <view class="category">
+    <view class="per">
+      <view class="per-tip" data-type="01" bind:tap="clickFn">
+        <text>本金</text>
+        <image class="icon" src="/images/icon_ye_gt.png" />
+      </view>
+      <view class="per-count">
+        <text class="unit">¥</text>
+        <text class="val">{{totalRecharge}}</text>
+      </view>
+    </view>
+    <view class="per">
+      <view class="per-tip" data-type="02" bind:tap="clickFn">
+        <text>赠送金</text>
+        <image class="icon" src="/images/icon_ye_gt.png" />
+      </view>
+      <view class="per-count">
+        <text class="unit">¥</text>
+        <text class="val">{{totalDonation}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 列表内容 -->
+  <view class="list" wx:if="{{queryCapitalFlows.length > 0}}">
+    <view class="each" wx:for="{{queryCapitalFlows}}" wx:key="index" data-index="{{index}}" bindtap="goBillDetail">
+      <image src="{{rechargeType[item.business].img || '/images/my/news_meal.png'}}" />
+      <view class="content">
+        <view class="main">
+          <view class="main__left">
+            <text class="main__txt">{{item.businessDesc || '支出'}}</text>
+            <view>{{item.date}} {{item.time}}</view>
+          </view>
+          <view class="main__right">
+            <text class="{{rechargeType[item.business].isDonation ? 'active' : ''}}">
+              {{item.businessType == '02' ? '-' : '+'}}￥{{item.total}}
+            </text>
+            <!-- <view wx:if="{{rechargeType[item.business].isDonation && item.donation > 0}}">
+              实付¥{{item.amount}}，赠送¥{{item.donation}}
+            </view> -->
+          </view>
+        </view>
+        <!-- <view class="tip">
+          <text>{{item.date}}</text>
+          <text>实付¥3000，赠送¥450</text>
+        </view> -->
+      </view>
+    </view>
+  </view>
+  <!-- 空状态 -->
+  <view wx:if="{{queryCapitalFlows.length <= 0}}" class="null">
+    <image src="https://prodstatic.weis1606.cn/api/smartFood/order-empty.png" />
+    <view>还没有余额明细</view>
+  </view>
+  <!-- <template is="loadmore" wx:if="{{ loadmoreFlag }}"></template> -->
+</view>
+<!-- 本金/赠送金提示 -->
+<van-popup show="{{showPopup}}" position="top" custom-style="border-radius:0rpx 0rpx 20rpx 20rpx;" bind:click-overlay="clickFn" z-index="99">
+  <view class="dialog-tip" style="padding-top:{{navStatusHeight * px2rpx}}rpx;">
+    <view class="tip-que">{{cateObj[whichCate].que}}</view>
+    <view class="tip-answer">{{cateObj[whichCate].answer}}</view>
+  </view>
+  <view class="dialog-know" bind:tap="clickFn">好的，知道了</view>
+</van-popup>

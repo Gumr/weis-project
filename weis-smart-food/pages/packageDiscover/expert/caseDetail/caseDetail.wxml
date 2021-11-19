@@ -1,0 +1,27 @@
+<!--pages/packageDiscover/coach/caseDetail/caseDetail.wxml-->
+<cp-nav-bar title-text="案例详情" background="#FAFAFA"></cp-nav-bar>
+<view class="caseDetail">
+    <view class="header boxBg flex">
+        <view class="left">
+            <view>时间</view>
+            <view>{{detail.tciProcess}}</view>
+        </view>
+        <view class="right">
+            <view>效果</view>
+            <view>{{detail.weightLoss}}斤</view>
+            <view>{{detail.tciDrillBefore}}斤→{{detail.tciDrillAfter}}斤</view>
+        </view>
+    </view>
+    <view class="before boxBg">
+        <view class="before__title">训练前，体重{{detail.tciDrillBefore}}斤</view>
+        <view class="before__img flex">
+            <image wx:for="{{detail.tciDrillBeforeImgList}}" src="{{item}}"  data-url="{{item}}" data-urllist="{{detail.tciDrillBeforeImgList}}" bind:tap="previewImage"/>
+        </view>
+    </view>
+    <view class="after boxBg">
+        <view class="after__title">训练后，体重{{detail.tciDrillAfter}}斤</view>
+        <view class="after__img flex">
+            <image wx:for="{{detail.tciDrillAfterImgList}}" src="{{item}}" data-url="{{item}}" data-urllist="{{detail.tciDrillAfterImgList}}" bind:tap="previewImage"/>
+        </view>
+    </view>
+</view>

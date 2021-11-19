@@ -1,0 +1,32 @@
+<!--pages/mineBox/joinUs/index.wxml-->
+<cp-nav-bar title-text="企业团餐" color="#333333" background="#F27041FF" backIconColor="black" />
+<view class="pages0">
+  <image class="w-1002" src="https://prodstatic.weis1606.cn/api/market/company.png" />
+  <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/stbg.png" />
+  <view class="joinuscom">
+  <image src="https://prodstatic.weis1606.cn/api/smartFood/comyit.png"/>
+  <view class="joinimg">
+  <image class="w-100"  wx:for="{{Allcompany}}" wx:key="index" src="{{item.tgcLogoImg}}" mode="aspectFill" />
+  </view>
+  </view>
+  <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/stbg.png" />
+  <view class="joinuscom mr20">
+  <view class="copycode"> 
+    <view>感兴趣的话就加团餐卫士的微信吧！</view>
+      微信号（13926059073）
+      <text class="copybtn" bind:tap="copyWechat">复制 </text>
+    </view>
+    
+    <image
+      class="qrcode"
+      src="https://prodstatic.weis1606.cn/api/activity/userqrcode2.png"
+      bindtap="previewImage"
+      data-src="https://prodstatic.weis1606.cn/api/activity/userqrcode2.png"
+    />
+    <view class="tips">点击扫码添加</view>
+
+  </view>
+    
+
+  </view>
+

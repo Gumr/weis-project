@@ -1,0 +1,14 @@
+<!-- pages/mineBox/operate/operate/operate.wxml -->
+<!-- 页面 -->
+<view class="operate">
+    <operate-goods wx:if="{{tabBarValue == 0}}" id="goods"></operate-goods>
+    <operate-order wx:if="{{tabBarValue == 1}}" ></operate-order>
+</view>
+
+<!-- 底部-选项 -->
+<view class="tabBar">
+    <view class="tabBar-item" wx:for="{{tabBar}}" wx:key="key" data-value="{{item.value}}" bind:tap="tabBar">
+        <image src="{{tabBarValue == item.value ? item.iconSelect : item.icon}}" />
+        <view class="{{tabBarValue == item.value ?'active':''}}">{{item.text}}</view>
+    </view>
+</view>

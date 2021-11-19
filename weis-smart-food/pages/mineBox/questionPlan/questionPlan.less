@@ -1,0 +1,669 @@
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+  display: none;
+}
+
+.info {
+  width: 100%;
+  padding: 0 50rpx;
+  box-sizing: border-box;
+
+  // 出生年月&身高体重
+  .birth {
+    padding-top: 100rpx;
+    .title {
+      color: #333333;
+      font-size: 48rpx;
+      font-weight: bold;
+      margin: 0 0 20rpx;
+      // margin: 100rpx 0 20rpx;
+      text:nth-of-type(2) {
+        font-size: 24rpx;
+        font-weight: 400;
+        color: #000000;
+        margin-left: 14rpx;
+      }
+    }
+
+    .tip {
+      font-size: 24rpx;
+      color: #666666;
+      // margin-bottom: 218rpx;
+      // margin: 24rpx 0 0rpx 0rpx;
+    }
+
+    // 性别
+    .wrapSex {
+      padding: 50rpx 0 52rpx;
+      display: flex;
+      justify-content: space-around;
+      .list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        image {
+          width: 225rpx;
+          height: 225rpx;
+        }
+        .sex {
+          font-size: 36rpx;
+          color: #666666;
+          margin-top: 16rpx;
+          &.active {
+            font-weight: bold;
+            color: #FA6400;
+          }
+        }
+      }
+    }
+    // 年龄&身高&体重（输入框）
+    .year {
+      // width: 690rpx;
+      height: 80rpx;
+      background: #E3E5E6;
+      border-radius: 40rpx;
+      display: flex;
+      align-items: center;
+      margin: 50rpx auto 0;
+
+      .year-ipt {
+          height: 100%;
+          flex: 1;
+          padding-left: 40rpx;
+          color: #333333;
+          font-size: 28rpx;
+      }
+
+      .sympol {
+          padding: 0 40rpx;
+          color: #333333;
+          font-size: 28rpx;
+      }
+    }
+  }
+
+  // 目标&日常活动强度
+  .activity {
+    padding-top: 100rpx;
+    .title {
+      color: #333333;
+      font-size: 48rpx;
+      font-weight: bold;
+      margin: 0 0 20rpx;
+      // margin: 100rpx 0 20rpx;
+      text:nth-of-type(2) {
+        font-size: 24rpx;
+        font-weight: 400;
+        color: #000000;
+        margin-left: 14rpx;
+      }
+    }
+
+    .tip {
+      font-size: 24rpx;
+      color: #666666;
+    }
+
+    .wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 650rpx;
+      margin: 0 auto;
+      border-radius: 10rpx;
+      margin-top: 87rpx;
+      .list {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 28rpx 0 29rpx 35rpx;
+        position: relative;
+        background: #f2f3f4;
+        margin-bottom: 20rpx;
+        border-radius: 10rpx;
+
+        &:last-of-type::after {
+          display: none;
+        }
+
+        .name {
+          font-size: 36rpx;
+          font-weight: bold;
+          color: #333333;
+          margin-bottom: 4rpx;
+        }
+
+        .detail {
+          font-size: 20rpx;
+          color: #666666;
+        }
+
+        &.active {
+          position: relative;
+          background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+          view {
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+
+   // 块-样式
+   .block {
+    // padding-top: 100rpx;
+    .title {
+      color: #333333;
+      font-size: 48rpx;
+      font-weight: bold;
+      margin: 0 0 20rpx;
+      // margin: 100rpx 0 20rpx;
+      text:nth-of-type(2) {
+        font-size: 24rpx;
+        font-weight: 400;
+        color: #000000;
+        margin-left: 14rpx;
+      }
+    }
+
+    .tip {
+      font-size: 24rpx;
+      color: #666666;
+    }
+
+    .wrap {
+      display: flex;
+      // flex-direction: column;
+      // align-items: center;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 650rpx;
+      margin: 0 auto;
+      border-radius: 10rpx;
+      margin-top: 87rpx;
+      .list {
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: center;
+        // align-items: center;
+        // width: 100%;
+        width: 48%;
+        height: 150rpx;
+        box-sizing: border-box;
+        // padding: 28rpx 0 29rpx 35rpx;
+        // padding: 0 70rpx;
+        position: relative;
+        background: #f2f3f4;
+        margin-bottom: 20rpx;
+        border-radius: 10rpx;
+        // text-align: center;
+        // padding-top: 28rpx;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &:last-of-type::after {
+          display: none;
+        }
+        .text {
+          padding-left: 30rpx;
+        }
+        .name {
+          // font-size: 36rpx;
+          font-size: 32rpx;
+          font-weight: bold;
+          color: #333333;
+          margin-bottom: 4rpx;
+        }
+
+        .detail {
+          font-size: 20rpx;
+          color: #666666;
+          max-width: 230rpx; 
+          overflow:hidden; //超出的文本隐藏
+          text-overflow:ellipsis; //溢出用省略号显示
+          white-space:nowrap; //溢出不换行
+        }
+        .conne {
+          height: 100%;
+          width: 48rpx;
+          background: #E7E8E9;
+          opacity: 0.5;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-shrink: 0;
+          image {
+            width: 32rpx;
+            height: 32rpx;
+          }
+        }
+        
+        &.active {
+          position: relative;
+          background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+          .name {
+            color: #ffffff;
+          }
+          .detail {
+            color: #ffffff;
+          }
+          .conne {
+            background: #E9590F;
+          }
+        }
+      }
+    }
+    // .wrap {
+    //   display: flex;
+    //   // flex-direction: column;
+    //   // align-items: center;
+    //   flex-wrap: wrap;
+    //   justify-content: space-between;
+    //   width: 650rpx;
+    //   margin: 0 auto;
+    //   border-radius: 10rpx;
+    //   margin-top: 87rpx;
+    //   .list {
+    //     display: flex;
+    //     // flex-direction: column;
+    //     justify-content: center;
+    //     align-items: center;
+    //     // width: 100%;
+    //     width: 48%;
+    //     height: 150rpx;
+    //     box-sizing: border-box;
+    //     // padding: 28rpx 0 29rpx 35rpx;
+    //     padding: 0 70rpx;
+    //     position: relative;
+    //     background: #f2f3f4;
+    //     margin-bottom: 20rpx;
+    //     border-radius: 10rpx;
+
+    //     &:last-of-type::after {
+    //       display: none;
+    //     }
+
+    //     .name {
+    //       // font-size: 36rpx;
+    //       font-size: 32rpx;
+    //       font-weight: bold;
+    //       color: #333333;
+    //       // margin-bottom: 4rpx;
+    //     }
+
+    //     // .detail {
+    //     //   font-size: 20rpx;
+    //     //   color: #666666;
+    //     // }
+
+    //     &.active {
+    //       position: relative;
+    //       background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+    //       view {
+    //         color: #ffffff;
+    //       }
+    //       text {
+    //         color: #ffffff;
+    //       }
+    //     }
+    //   }
+    // }
+    // 小标题
+    .titleSmall {
+      font-size: 28rpx;
+      color: #333333;
+    }
+    // 中国居民健康饮食
+    // .healthyDiet {
+    //   height: 140rpx;
+    //   background: #F2F3F4;
+    //   border-radius: 10rpx;
+    //   text-align: center;
+    //   // padding: 29rpx 0;
+    //   margin-bottom: 48rpx;
+    //   margin-top: 30rpx;
+    //   display: flex;
+    //   justify-content: space-between;
+    //   align-items: center;
+    //   .text {
+    //     // display: flex;
+    //     // align-items: center;
+    //     // justify-content: center;
+    //     // margin-bottom: 4rpx;
+    //     padding-left: 32rpx;
+    //     text-align: left;
+    //   }
+    //   .name {
+    //     font-size: 36rpx;
+    //     font-weight: bold;
+    //     color: #333333;
+    //     // margin-right: 8rpx;
+    //     margin-bottom: 4rpx;
+    //   }
+    //   .detail {
+    //     font-size: 20rpx;
+    //     color: #666666;
+    //   }
+    //   .conne {
+    //     height: 100%;
+    //     width: 80rpx;
+    //     background: #E7E8E9;
+    //     opacity: 0.5;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     image {
+    //       width: 32rpx;
+    //       height: 32rpx;
+    //     }
+    //   }
+    //   &.active {
+    //     position: relative;
+    //     background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+    //     .name {
+    //       color: #ffffff;
+    //     }
+    //     .detail {
+    //       color: #ffffff;
+    //     }
+    //     .conne {
+    //       background: #E9590F;
+    //     }
+    //   }
+    // }
+    // 自定义吃法
+    // .eatCustom {
+    //   background: #F2F3F4;
+    //   border-radius: 10rpx;
+    //   display: flex;
+    //   padding: 34rpx 160rpx;
+    //   justify-content: space-between;
+    //   line-height: 64rpx;
+    //   margin-top: 30rpx;
+    //   image {
+    //     width: 64rpx;
+    //     height: 64rpx;
+    //   }
+    //   &.active {
+    //     position: relative;
+    //     background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+    //     view {
+    //       color: #ffffff;
+    //     }
+    //   }
+    // }
+    // 备注
+    // .remarks {
+    //   font-size: 20rpx;
+    //   color: #666666;
+    //   line-height: 28rpx;
+    //   margin: 24rpx 0;
+    // }
+  }
+  // 选择吃法
+  .eat {
+    .wrap {
+      .list {
+        width: 100%;
+        .text {
+          width: 562rpx;
+          .detail {
+            max-width: 562rpx!important;
+          }
+        }
+        .conne {  
+          width: 80rpx;
+        }
+      }
+    }
+    .intro{
+      width: 650rpx;
+      height: 364rpx;
+      background: #FAFAFA;
+      border-radius: 10rpx;
+      margin: 0 auto;
+      transform: translateY(-74rpx);
+      padding: 0rpx 32rpx 0;
+      position: relative;
+      z-index: -1;
+      .title{
+        color: #666666;
+        font-size: 28rpx;
+        font-weight: bold;
+        margin-bottom: 16rpx;
+        padding-top: 56rpx;
+      }
+      view{
+        color: #666666;
+        font-size: 24rpx;
+        line-height: 33rpx;
+        &:nth-of-type(2){
+          margin-bottom: 24rpx;
+        }
+      }
+      &.active{
+        overflow: hidden;
+        height: 0;
+        transform: translateY(0rpx);
+        transition: all 0.3s linear;
+        padding: 0;
+      }
+    }
+    .more{
+      width: 650rpx;
+      height: 96rpx;
+      background: #FAFAFA;
+      border-radius: 10rpx;
+      border: 2rpx solid #ECEDEE;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999999;
+      font-size: 28rpx;
+      margin: -54rpx auto 0;
+      image{
+        width: 32rpx;
+        height: 32rpx;
+        transform: rotate(90deg);
+        margin-left: 8rpx;
+      }
+    }
+  }
+
+  // 血糖值&主食
+  .sugar {
+    padding-top: 100rpx;
+    .title {
+      color: #333333;
+      font-size: 48rpx;
+      font-weight: bold;
+      margin: 0 0 20rpx;
+      // margin: 100rpx 0 20rpx;
+      text:nth-of-type(2) {
+        font-size: 24rpx;
+        font-weight: 400;
+        color: #000000;
+        margin-left: 14rpx;
+      }
+    }
+
+    .tip {
+      font-size: 24rpx;
+      color: #666666;
+    }
+
+    .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 650rpx;
+      margin: 0 auto;
+      margin-top: 60rpx;
+      .list {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        box-sizing: border-box;
+        position: relative;
+        background: #f2f3f4;
+        border-radius: 10rpx;
+        margin-right: 20rpx;
+        height: 180rpx;
+        text-align: center;
+        &:last-of-type {
+          margin-right: 0;
+        }
+
+        .name {
+          font-size: 36rpx;
+          font-weight: bold;
+          color: #333333;
+          margin-bottom: 4rpx;
+        }
+
+        .detail {
+          font-size: 24rpx;
+          color: #333333;
+        }
+
+        &.active {
+          position: relative;
+          background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+          view {
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+  // 底部按钮
+  .overBtn {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    .next {
+      width: 650rpx;
+      height: 88rpx;
+      background: #D8D8D8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 36rpx;
+      color: #ffffff;
+      margin: auto;
+      border-radius: 50rpx;
+      margin-bottom: 65rpx;
+      
+      &.active {
+        color: #FFFFFF;
+        background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+      }
+
+      // &.change {
+      //   bottom: 178rpx;
+      // }
+    }
+    // 协议
+    .xy {
+      width: 568rpx;
+      // margin: 110rpx auto 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // position: fixed;
+      // left: 0;
+      // right: 0;
+      // bottom: 184rpx;
+      margin: auto;
+      margin-bottom: 30rpx;
+      image {
+        width: 38rpx;
+        height: 38rpx;
+        margin-right: 8rpx;
+      }
+
+      .xy_cont {
+        font-size: 24rpx;
+        color: #333333;
+        text {
+          color: #FA6400;
+        }
+      }
+    }
+  }
+  
+  // // 下一步
+  // .next {
+  //   width: 650rpx;
+  //   height: 88rpx;
+  //   background: #D8D8D8;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   font-size: 36rpx;
+  //   color: #ffffff;
+  //   position: fixed;
+  //   left: 0;
+  //   right: 0;
+  //   bottom: 65rpx;
+  //   margin: auto;
+  //   border-radius: 50rpx;
+
+  //   &.active {
+  //     color: #FFFFFF;
+  //     background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+  //   }
+
+  //   // &.change {
+  //   //   bottom: 178rpx;
+  //   // }
+  // }
+  // // 协议
+  // .xy {
+  //   width: 568rpx;
+  //   // margin: 110rpx auto 0;
+  //   display: flex;
+  //   align-items: center;
+  //   position: fixed;
+  //   left: 0;
+  //   right: 0;
+  //   bottom: 184rpx;
+  //   margin: auto;
+
+  //   image {
+  //     width: 38rpx;
+  //     height: 38rpx;
+  //     margin-right: 8rpx;
+  //   }
+
+  //   .xy_cont {
+  //     font-size: 24rpx;
+  //     color: #333333;
+  //     text {
+  //       color: #FA6400;
+  //     }
+  //   }
+  // }
+}
+// 目标、慢病、住院 的吃法介绍-弹窗
+.conneTip {
+  padding: 0 40rpx 64rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #999999;
+  line-height: 40rpx;
+}
+
+.eatDesc {
+  font-size: 24rpx;
+  color: #ADADAD;
+  margin: 30rpx 0;
+  text-align: center;
+}

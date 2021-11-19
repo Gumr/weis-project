@@ -1,0 +1,44 @@
+<!--pages/marketing/slimmingCamp/bodyForm/bodyForm.wxml-->
+<cp-nav-bar title-text="订个小目标" backIconColor></cp-nav-bar>
+<view class="container" style="padding-bottom: {{buttonHeight}}px;">
+  <view class="title">14天时间，科学吃瘦可甩掉2kg脂肪，配合运动见效更显著！</view>
+  <view class="input">
+    <text class="input__label">当前体重</text>
+    <view class="flex-items-center">
+      <input
+        class="input__el"
+        maxlength="5"
+        value="{{weight}}"
+        type="text"
+        data-key="weight"
+        bindinput="weightInput"
+      />
+      <text class="input__unit">kg</text>
+    </view>
+  </view>
+  <view class="input">
+    <text class="input__label">目标体重</text>
+    <view class="flex-items-center">
+      <input
+        class="input__el"
+        maxlength="5"
+        value="{{targetWeight}}"
+        type="text"
+        data-key="targetWeight"
+        bindinput="weightInput"
+      />
+      <text class="input__unit">kg</text>
+    </view>
+  </view>
+  <view class="tip__warning" wx:if="{{targetWeightMode === 1}}">*请确认目标体重小于当前体重才是减肥！</view>
+  <view class="tip__warning" wx:if="{{targetWeightMode === 2}}">*目标体重要小于当前体重</view>
+  <view class="tip__warning" wx:if="{{targetWeightMode === 3}}">*目标超负荷，请重新输入</view>
+  <view class="tip">系统将依据您制定的小目标生成最贴合您的专属饮食方案。（目标差值最大不能超过5kg，否则身体无法负荷哦！）</view>
+</view>
+
+<fixed-button
+  title="确认"
+  disabled="{{buttonDisabled}}"
+  bind:on-height="buttonHeight"
+  bind:on-tap="buttonTap"
+></fixed-button>

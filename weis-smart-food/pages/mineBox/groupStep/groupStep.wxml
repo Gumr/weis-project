@@ -1,0 +1,6 @@
+<!--pages/mineBox/groupStep/groupStep.wxml-->
+<cp-nav-bar title-text=" " color="#333" background="#fff" backIconColor="black" />
+<view class="intr">
+  <image src="https://prodstatic.weis1606.cn/api/sodo/ss.jpg" />
+</view>
+

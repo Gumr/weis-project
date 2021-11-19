@@ -1,0 +1,257 @@
+page {
+  background: #f3f4f5;
+}
+.coupon-center {
+  width: 100%;
+  padding-top: 20rpx;
+}
+.coupon-center .slideshow {
+  width: 680rpx;
+  height: 180rpx;
+  position: relative;
+  margin: 0 auto 40rpx;
+}
+.coupon-center .slideshow__image {
+  width: 680rpx;
+  height: 180rpx;
+  border-radius: 10rpx;
+}
+.coupon-center .tab {
+  width: 100%;
+  padding-left: 35rpx;
+  margin-bottom: 20rpx;
+}
+.coupon-center .tab .scroll-box {
+  height: 100rpx;
+  display: flex;
+  white-space: nowrap;
+}
+.coupon-center .tab .scroll-box .box {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  color: #747474;
+}
+.coupon-center .tab .scroll-box .box.overRow {
+  margin-right: 40rpx;
+}
+.coupon-center .tab .scroll-box .box.active {
+  color: #FA6400;
+}
+.coupon-center .tab .scroll-box .box.active .status {
+  width: 128rpx;
+  height: 38rpx;
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+  border-radius: 19rpx;
+  text-align: center;
+  line-height: 38rpx;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+.coupon-center .tab .scroll-box .box .time {
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+  font-family: 'DINCondensedC';
+}
+.coupon-center .tab .scroll-box .box .status {
+  width: 128rpx;
+  height: 38rpx;
+  text-align: center;
+  line-height: 38rpx;
+  font-size: 22rpx;
+}
+.coupon-center .flex {
+  display: flex;
+}
+.coupon-center .flex-items-center {
+  display: flex;
+  align-items: center;
+}
+.coupon-center .ellipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.coupon-center .tip {
+  background: rgba(250, 100, 0, 0.1);
+  padding: 18rpx 0;
+  text-align: center;
+}
+.coupon-center .tip_not {
+  margin-bottom: 20rpx;
+  font-size: 24rpx;
+  color: #fa6400;
+}
+.coupon-center .tip_time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.coupon-center .tip_time image {
+  width: 44rpx;
+  height: 32rpx;
+  margin-right: 20rpx;
+}
+.coupon-center .tip_time view {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #fa6400;
+}
+.coupon-center .content {
+  padding: 0 34rpx;
+}
+.coupon-center .content .list {
+  position: relative;
+  margin-top: 28rpx;
+}
+.coupon-center .content .list .bg {
+  width: 100%;
+  height: 192rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+.coupon-center .content .list .info {
+  height: 192rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.coupon-center .content .list .info .left {
+  text-align: center;
+}
+.coupon-center .content .list .info .left_price {
+  font-size: 36rpx;
+  font-family: "DINCondensedC";
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 72rpx;
+  margin-top: 30rpx;
+}
+.coupon-center .content .list .info .left_price text {
+  font-size: 120rpx;
+}
+.coupon-center .content .list .info .left_threshold {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #ffffff;
+}
+.coupon-center .startNot .info .center {
+  width: 270rpx;
+  height: 100%;
+  padding: 30rpx 0 20rpx;
+}
+.coupon-center .startNot .info .center_name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #000000;
+  height: 80rpx;
+}
+.coupon-center .startNot .info .center_time {
+  font-size: 22rpx;
+  color: #a9a9a9;
+}
+.coupon-center .startNot .info .right {
+  height: 100%;
+}
+.coupon-center .startNot .info .right_btn {
+  width: 122rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  border-radius: 22rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+  margin-top: 26rpx;
+  text-align: center;
+}
+.coupon-center .startNot .info .right .use {
+  color: #fa6400;
+  border: 2rpx solid #ff9b59;
+}
+.coupon-center .start .info .center {
+  width: 270rpx;
+}
+.coupon-center .start .info .center_name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #000000;
+  min-height: 60rpx;
+  max-height: 80rpx;
+  margin-bottom: 20rpx;
+}
+.coupon-center .start .info .center_progress {
+  position: relative;
+  height: 12rpx;
+  background: #f3f4f5;
+  border-radius: 8rpx;
+  border: 1rpx solid #e8e8e8;
+}
+.coupon-center .start .info .center_progress text {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #fa6400;
+  border-radius: 8rpx;
+}
+.coupon-center .start .info .center_date {
+  font-size: 22rpx;
+  color: #a9a9a9;
+}
+.coupon-center .start .info .center_rule {
+  font-size: 22rpx;
+  color: #a9a9a9;
+  margin-top: 10rpx;
+  display: flex;
+  align-items: center;
+}
+.coupon-center .start .info .center_rule image {
+  width: 20rpx;
+  height: 20rpx;
+  margin-left: 8rpx;
+}
+.coupon-center .start .info .right {
+  height: 100%;
+}
+.coupon-center .start .info .right_btn {
+  width: 122rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  border-radius: 22rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+  margin-top: 26rpx;
+  text-align: center;
+  margin-bottom: 42rpx;
+}
+.coupon-center .start .info .right .use {
+  color: #fa6400;
+  border: 2rpx solid #ff9b59;
+}
+.coupon-center .start .info .right .receive {
+  color: #ffffff;
+  border: 2rpx solid #ff9b59;
+  background: #fa6400;
+}
+.coupon-center .start .info .right .over {
+  border: 2rpx solid #a9a9a9;
+  color: #a9a9a9;
+}
+.coupon-center .start .info .right_num {
+  font-size: 22rpx;
+  font-weight: bold;
+  color: #333333;
+}
+.coupon-center .start .info .right .numOver {
+  color: #a9a9a9;
+}
+.coupon-center .start .info .right_img {
+  width: 132rpx;
+  height: 88rpx;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "multiSelect-calendar": "/components/calendarPlugin/index",
+    "cp-editPlan-dialog": "/components/cp-editPlan-dialog/cp-editPlan-dialog",
+    "cp-confirm-dialog": "/components/cp-confirm-dialog/cp-confirm-dialog",
+    "cp-Input-box": "/components/cp-Input-box/cp-Input-box",
+    "cp-bottom-popup": "/components/cp-bottom-popup/cp-bottom-popup"
+  }
+}

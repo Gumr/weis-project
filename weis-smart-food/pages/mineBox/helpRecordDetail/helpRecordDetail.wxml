@@ -1,0 +1,37 @@
+<!-- pages/mineBox/helpRecordDetail/helpRecordDetail.wxml -->
+<cp-nav-bar title-text="帮充值详情" color="#FFFFFF" background="linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%)" backIconColor="white" />
+<view class="balance">
+    <view class="box">
+        <view class="box__detail">
+            <text>+</text>
+            <text>￥</text>
+            <text>{{detail.total}}</text>
+        </view>
+        <view class="box__tip" wx:if="{{detail.payDonation != '0'}}">
+            实付¥{{detail.actualPrice}}，赠送¥{{detail.payDonation}}
+        </view>
+    </view>
+    <!-- 充值操作 -->
+    <view class="operate">
+        <view class="opt">
+            <text>对方手机号</text>
+            <text>{{detail.targetPhone}}</text>
+        </view>
+         <view class="opt">
+            <text>对方昵称</text>
+            <text>{{detail.targetName}}</text>
+        </view>
+        <view class="opt">
+            <text>时间</text>
+            <text>{{detail.utime}}</text>
+        </view>
+        <view class="opt">
+            <text>交易单号</text>
+            <text>{{detail.orderId}}</text>
+        </view>
+        <view class="opt">
+            <text>备注</text>
+            <text>{{detail.remarks}}</text>
+        </view>
+    </view>
+</view>

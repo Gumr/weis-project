@@ -1,0 +1,219 @@
+<!-- pages/packageOrder/orderList/orderList.wxml -->
+<cp-nav-bar title-text="{{ShowQrcode ? '' : '我的订单'}}" home-icon="/images/backHome.png" color="rgba(0, 0, 0, 0.85)" background="{{ShowQrcode ? 'transparent' : 'rgba(243, 244, 245, 1)'}}" preventBack="true" bind:back="back"></cp-nav-bar>
+<view class="order" bindtouchstart="handletouchstart" bindtouchmove="handletouchmove" bindtouchend="handletouchend" bindtouchcancel="handletouchcancel">
+    <view class="tab-box" style="top: {{navStatusHeight}}px">
+        <scroll-view scroll-x="{{true}}" style="width: {{tsuSubUid || filterList.length == 0 ? '750rpx' : '611rpx'}}">
+            <view class="tab {{tabIndex == index ? 'active' : ''}} {{filterList.length > 0 && index == tabList.length -1 ? 'rightnone' : ''}}" wx:for="{{tabList}}" wx:key="index" data-index="{{index}}" data-stt="{{item.stt}}" bind:tap="tabClick">
+                {{item.name}}
+            </view>
+        </scroll-view>
+        <!-- 筛选订单 -->
+        <view class="filter" wx:if="{{filterList.length > 0}}" bind:tap="filterAccount">
+            <view class="name">{{filterList[filterIndex].name}}</view>
+            <image src="/images/arrow-grey.png" />
+        </view>
+        <!-- 子账户 -->
+        <!-- <view class="filter" wx:if="{{subInfo.tsuSubUname}}">
+            <view class="name">{{subInfo.tsuSubUname}}</view>
+        </view> -->
+    </view>
+    <cp-refresh-view id="refresh-view" backgroundColor="#F8F8F8" bind:onRefresh="onPullDownRefresh"></cp-refresh-view>
+    <!-- 套餐 -->
+    <view class="tc" hidden="{{tabIndex != 3 || fatPackOrderList.length == 0 || tsuSubUid}}">
+        <view class="ten-day-item" wx:for="{{fatPackOrderList}}" wx:key="key" data-title="{{item.packName}}" data-fat-pack-id="{{item.fatPackId}}" bind:tap="fatPackOrderTap">
+            <view class="title-date">{{item._sDate}}-{{item._eDate}}</view>
+            <view class="wrap">
+                <view class="ten-day-title">
+                    <view class="title-text">{{item.packName}}</view>
+                    <view class="status">已付款</view>
+                </view>
+                <view class="ten-day-cont">
+                    <image class="cont-image" src="{{item.packImg}}" />
+                    <view class="cont-text">
+                        <view class="cont-price">￥{{item.fatPackPrice}}</view>
+                        <view class="cont-count">共{{item.countNum}}餐</view>
+                    </view>
+                </view>
+            </view>
+            <!-- <view class="ten-day-footer">
+                <view class="btn shadow-btn-f">查看订单</view>
+            </view> -->
+        </view>
+    </view>
+    <!-- 正常订单 -->
+    <view class="list-box" wx:if="{{orderTransferMap.length > 0}}">
+        <!-- 配送单 -->
+        <view class="list" wx:for="{{orderTransferMap}}" wx:key="index" wx:for-item="item1" wx:for-index="index1">
+            <view class="date">
+                <view class="date-text">{{item1.dateText}}</view>
+                <view class="type-text {{item1.shipWithCold == '01' ? 'cold' : ''}}">
+                    {{item1.psText}}
+                </view>
+            </view>
+            <!-- 餐别 -->
+            <view class="cate-box" bind:tap="orderDetail" data-id="{{item1.shipOid}}" data-code="{{item1.mergeTeam.code}}" data-index="{{index1}}">
+                <view class="break" wx:for="{{item1.dietOrderResult}}" wx:key="index" wx:for-item="item2">
+                    <view class="title">
+                        <view class="name">{{categoryStatus[item2.category]}}</view>
+                        <view class="status">{{item2.orderSttText}}</view>
+                    </view>
+                    <view class="goods">
+                        <scroll-view scroll-x="{{true}}" class="img_box">
+                            <view class="box" wx:for="{{item2.dietOrderDetailList}}" wx:key="key" wx:for-item="item3">
+                                <image src="{{item3.skuImgUrl}}" />
+                                <view class="small">{{item3.skuname}}</view>
+                            </view>
+                            <view class="box" style="margin: 0;"></view>
+                        </scroll-view>
+                        <view class="goods-price">
+                            <view class="total">
+                                <view class="price">￥{{item2.totalPrice}}</view>
+                                <view class="num">共{{item2.num}}件</view>
+                            </view>
+                            <image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAACsCAMAAADllnb2AAAAVFBMVEX///////////////////////////////////////////////////////////////////////////////////////////////////////////////+UMeA9AAAAG3RSTlMGEh4fKzdDRFBcaGl1gY2Zmqayvr/L1+Pk8Pwh/C9RAAAA8ElEQVR42u3UQQrAIAwEwMT//zkFFesHCg3MEhRvQZbJyJF7rit+nTHPmtMmIxpmLb3rUPejQz3eVIel63xuNqn26XRGk26spfMuRfXpdPRqCKc5zWlOc5rTnOY0pznNaU5zmtOc5jSnOc1pTnOa05zmNKc5zWlOc5rTnOY0pznNaU5zmtOc5jSnOc1pTnOa05zmNKc5zWlOc5rTnOY0pznNaU5zmtOc5jSnOc1pTnOa05zmNKc5zWlOc5rTnOY0pznNaU5zmtOc5jSnOc1pTnOa05zmNKc5zWlOc5rTnOY0pznNaU5zmtOc5jSnOf1hHkC61nIZUJuDAAAAAElFTkSuQmCC" />
+                        </view>
+                    </view>
+                    <!-- <view class="circle">
+                        <view class="box-circle {{item2.stringMap.nutritionHealthScore < 60 ? 'red' : ''}}" data-oid="{{item2.dietOrderDetailList[0].oid}}" data-index="{{index}}" catch:tap="toHealthScore">
+                            <view class="score">{{item2.stringMap.nutritionHealthScore}}</view>
+                            <view class="kind">
+                                <view>营养健康分</view>
+                                <image src="/images/arrow-grey.png" />
+                            </view>
+                        </view>
+                        <view class="kind-box">
+                            <view class="box-a">
+                                <view class="box-color"></view>
+                                <view class="box-name">蛋白质</view>
+                                <view class="box-value">{{item2.stringMap.proteinWeight}}g</view>
+                            </view>
+                            <view class="box-a">
+                                <view class="box-color"></view>
+                                <view class="box-name">脂肪</view>
+                                <view class="box-value">{{item2.stringMap.fatWeight}}g</view>
+                            </view>
+                            <view class="box-a">
+                                <view class="box-color"></view>
+                                <view class="box-name">碳水化合物</view>
+                                <view class="box-value">{{item2.stringMap.carbonWeight}}g</view>
+                            </view>
+                            <view class="box-a">
+                                <view class="box-color"></view>
+                                <view class="box-name">膳食纤维</view>
+                                <view class="box-value">{{item2.stringMap.totalFiber}}g</view>
+                            </view>
+                            <view class="box-a">
+                                <view class="box-color"></view>
+                                <view class="box-name">盐量</view>
+                                <view class="box-value">{{item2.stringMap.saltWeight}}g</view>
+                            </view>
+                            <view class="box-a">
+                                <view class="box-color"></view>
+                                <view class="box-name">食物多样性</view>
+                                <view class="box-value">{{item2.stringMap.totalDiversity}}种</view>
+                            </view>
+                            <view class="box-a">
+                                <view class="box-color"></view>
+                                <view class="box-name">能量</view>
+                                <view class="box-value">{{item2.stringMap.energy}}kcal</view>
+                            </view>
+                        </view>
+                    </view> -->
+                    <!-- 支付 -->
+                    <view class="b-b {{item1.mergeTeam && !item1.mergeTeam.dietOrderMerge.spellOrderStatus ? 'spellEnd' : ''}}" wx:if="{{item1.uid == uid && (index == item1.dietOrderResult.length-1) && (item1.orderStt != '03')}}">
+                        <!-- 拼单结束 -->
+                        <view class="end" wx:if="{{item1.mergeTeam && !item1.mergeTeam.dietOrderMerge.spellOrderStatus}}">
+                            拼单结束
+                        </view>
+                        <view class="pay" wx:if="{{item1.orderStt == '00'}}" data-id="{{item1.shipOid}}" data-index="{{index1}}" data-soid="{{item1.soid}}" catch:tap="pay">
+                            去支付
+                        </view>
+                        <view class="btn-sure">
+                            <view class="pay" wx:if="{{item1.orderStt == '10' && (!item1.mergeTeam || (item1.mergeTeam && item1.mergeTeam.dietOrderMerge.uid == uid))}}" data-id="{{item1.shipOid}}" data-index="{{index1}}" catch:tap="sure">
+                                {{item1.distributionMode == 0 ? '确认收货' : '确认领取'}}
+                            </view>
+                            <!-- 分享返利 -->
+                            <image wx:if="{{!item2.stringMap.isDisabled && item1.orderStt != '00'  && item1.orderStt != '03' && (item1.activityType == '00' || item1.activityType == '06') && (!item1.mergeTeam || !item1.mergeTeam.dietOrderMerge.spellOrderStatus)}}" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/sharebtn.png" data-soid="{{item2.dietOrderDetailList[0].oid}}" catchtap="toShare" />
+                        </view>
+                        <!-- 拼单 -->
+                        <view class="spell" wx:if="{{item1.mergeTeam && item1.mergeTeam.dietOrderMerge.spellOrderStatus && item1.orderStt != '00' && item1.mergeTeam.dietOrderMerge.orderMode == '00'}}"> 
+                            <view class="tip">
+                                拼单中，{{item1.mergeTeam.num}}人拼单已省
+                                <view class="color">
+                                    ¥{{item1.mergeTeam.saveFrenght}}
+                                </view>
+                            </view>
+                            <!-- <button open-type="share" catch:tap="shareView" data-type="spell" data-index="{{index1}}">邀请好友拼单</button> -->
+                            <image wx:if="{{!item2.stringMap.isDisabled && item1.orderStt != '00'  && item1.orderStt != '03' && item1.activityType == '00'}}" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/sharebtn.png" data-soid="{{item2.dietOrderDetailList[0].oid}}" catchtap="toShare" />
+                        </view>
+
+                        <!-- 拼组 -->
+                        <view class="spell" wx:if="{{item1.mergeTeam && item1.mergeTeam.dietOrderMerge.spellOrderStatus && item1.orderStt != '00' && item1.mergeTeam.dietOrderMerge.orderMode == '01'}}"> 
+                            <view class="tip {{item1.distributionMode == 1 ? 'hidden' : ''}}">
+                                拼单中，{{item1.mergeTeam.num}}人拼单{{item1.mergeTeam.num > 1?'可享受':'无折扣'}}
+                                <view class="color" wx:if="{{item1.mergeTeam.num > 1}}">
+                                    {{item1.mergeTeam.dietOrderMerge.discount}}折
+                                </view>
+                            </view>
+                            <!-- <button open-type="share" catch:tap="shareView" data-type="spell" data-index="{{index1}}" data-ordermode="{{item1.mergeTeam.dietOrderMerge.orderMode}}">邀好友拼单</button> -->
+                            <image wx:if="{{!item2.stringMap.isDisabled && item1.orderStt != '00'  && item1.orderStt != '03' && item1.activityType == '00'}}" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/sharebtn.png" data-soid="{{item2.dietOrderDetailList[0].oid}}" catchtap="toShare" />
+                        </view> 
+                        <!-- 取餐码 -->
+                        <view class="takeMealCode" wx:if="{{item1.distributionMode == 1}}" data-disabled="{{item1.orderStt === '14' || !item1.isToday || !item2.stringMap.takeMealCode}}" data-date="{{item1.date}}" data-shop-type="{{item2.stringMap.shopType}}" data-ascii-order-id="{{item2.stringMap.asciiOrderId}}" data-take-meal-code="{{item2.stringMap.takeMealCode}}" catch:tap="takeMealCodeTap">
+                            <image class="take-code__icon" src="{{item1.orderStt === '14' || !item1.isToday ? 'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/QR-code-disable.png' : 'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/QR-code.png' }}" />
+                            <view class="take-code {{item1.orderStt === '14' || !item1.isToday ? 'take-code__disabled' : ''}}">
+                                取餐码
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 空白页 -->
+    <view class="ept" wx:if="{{orderTransferMap.length == 0 && ((tabIndex != 3 ) || (tabIndex == 3 && fatPackOrderList.length == 0))}}">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/order-empty.png" />
+        <view class="desc">这里空空如也～</view>
+    </view>
+</view>
+<!-- 选择支付方式 -->
+<cp-pay-popup id="pay" bind:on-confirm="wxPay" totalNum="{{payOrderList.length}}"></cp-pay-popup>
+<!-- <cp-bottom-popup title="筛选订单" show="{{showFilter}}" val="{{filterVal}}" data="{{filterList}}" bind:on-change="filterChange" bind:on-confirm="filterConfirm"></cp-bottom-popup> -->
+<vant-popup show="{{showFilter}}" position="bottom" custom-style="border-radius: 30rpx 30rpx 0 0;" bind:click-overlay="filterAccount">
+    <view class="times">
+        <view class="time__title">
+            <view>筛选订单</view>
+            <image bind:tap="filterAccount" src="/images/icon_down.png" />
+        </view>
+        <picker-view indicator-class="indicator" indicator-style="color:#FA6400!important" style="width: 568rpx; height: 400rpx; margin: auto;" value="{{filterVal}}" bindchange="filterChange" bindpickstart="bindpickstart" bindpickend="bindpickend">
+            <picker-view-column>
+                <view class="list {{filterVal[0] == index ? 'select' : ''}}" style="text-align: center; line-height: 88rpx;" wx:for="{{filterList}}" wx:key="key">
+                    {{item.name}}
+                </view>
+            </picker-view-column>
+        </picker-view>
+        <view class="time__btn {{canSure ? 'button--primary' : ''}}" bind:tap="filterConfirm">
+            确定
+        </view>
+    </view>
+</vant-popup>
+
+<view class="code-wrap" hidden="{{!ShowQrcode}}" catch:tap="closeQrcode" catchtouchmove="true">
+  <!-- 贩卖机 -->
+  <view class="code-bg machine-box" wx:if="{{shopType == '20'}}">
+    <image class="machine-code" src="https://prodstatic.weis1606.cn/api/smartFood/takeMeal-code.png" />
+    <view class="text1">{{takeMealCode}}</view>
+    <view class="text3">
+      <canvas style="width: 173px; height: 173px;" canvas-id="qrcode"></canvas>
+    </view>
+    <text class="text4">把该码对着取餐扫码口扫描\n取餐后60分钟内，可用该码打开微波炉加热</text>
+  </view>
+  <view class="code-bg" wx:else>
+    <view class="text1">{{takeMealCode}}</view>
+    <view class="text2">取餐码</view>
+    <view class="text3">
+      <canvas style="width: 173px; height: 173px;" canvas-id="qrcode"></canvas>
+      <view class="name">精准饮食，按数吃饭</view>
+    </view>
+  </view>
+</view>

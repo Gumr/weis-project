@@ -1,0 +1,192 @@
+.forecast {
+  width: 100%;
+  .tip {
+    background: #ff8400;
+    font-size: 24rpx;
+    color: #b74900;
+    padding: 16rpx 0;
+    text-align: center;
+  }
+  .content {
+    display: flex;
+    // 左侧-名称
+    .name {
+      width: 184rpx;
+      .header {
+        height: 110rpx;
+        border-right: 1rpx solid #ff861a;
+        background: #e56400;
+        display: flex;
+        align-items: center;
+        &_image {
+          width: 38rpx;
+          height: 38rpx;
+          padding-left: 46rpx;
+        }
+        &_word {
+          font-size: 28rpx;
+          font-weight: bold;
+          color: #ffffff;
+        }
+      }
+      .column {
+        view {
+          height: 160rpx;
+          text-align: center;
+          border-right: 1rpx solid #fccc49;
+          font-size: 28rpx;
+          color: #000000;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        view:last-child {
+          border-bottom: 1rpx solid #e8e8e8;
+        }
+      }
+    }
+    // 中间-数值
+    .num {
+      width: 104rpx;
+      display: inline-block;
+      .header {
+        height: 110rpx;
+        background: #e56400;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        &_day {
+          font-size: 20rpx;
+          font-weight: bold;
+          color: rgba(255, 255, 255, 0.6);
+          padding-bottom: 4rpx;
+        }
+        &_week {
+          font-size: 28rpx;
+          font-weight: bold;
+          color: #ffffff;
+        }
+      }
+      .column {
+        view {
+          height: 160rpx;
+          line-height: 160rpx;
+          text-align: center;
+          border-right: 1rpx solid #e8e8e8;
+          border-bottom: 1rpx solid #e8e8e8;
+          display: flex;
+          align-items: center;
+          input {
+            line-height: 160rpx;
+            font-size: 30rpx;
+            font-weight: bold;
+            color: #fa6400;
+          }
+          text {
+            width: 100%;
+            font-size: 30rpx;
+            font-weight: bold;
+            color: #999999;
+          }
+          .disabled {
+            color: #999999;
+          }
+        }
+        view:nth-child(even) {
+          background: #f2f2f2;
+        }
+      }
+    }
+    // 右侧-总计
+    .total {
+      width: 184rpx;
+      display: inline-block;
+      .header {
+        height: 110rpx;
+        background: #cd5500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &_word {
+          font-size: 28rpx;
+          font-weight: bold;
+          color: #ffffff;
+        }
+      }
+      .column {
+        view {
+          height: 160rpx;
+          line-height: 160rpx;
+          text-align: center;
+          border-right: 1rpx solid #fccc49;
+          font-size: 30rpx;
+          font-weight: bold;
+          color: #333333;
+        }
+        view:nth-child(odd) {
+          background: rgba(0, 0, 0, 0.05);
+        }
+        view:nth-child(even) {
+          background: #e5e5e5;
+        }
+      }
+    }
+  }
+
+  .bottom {
+    margin-top: 132rpx;
+    text-align: center;
+    .tips {
+      font-size: 24rpx;
+      color: #999999;
+    }
+    .btn {
+      display: flex;
+      justify-content: center;
+      .submit {
+        margin: 20rpx 0 36rpx;
+        width: 450rpx;
+        height: 88rpx;
+        background: linear-gradient(135deg, #fb892d 0%, #fe5e0f 100%);
+        border-radius: 44rpx;
+        font-size: 32rpx;
+        font-weight: bold;
+        color: #ffffff;
+        line-height: 88rpx;
+      }
+      .disable {
+        background: #d8d8d8;
+        color: #666666;
+      }
+    }
+  }
+}
+
+// 设置显示周几的数据-弹窗
+.setWeek {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 30rpx 40rpx 0;
+  .list {
+    display: flex;
+    width: 25%;
+    margin-bottom: 50rpx;
+    .icon {
+      width: 38rpx;
+      height: 38rpx;
+    }
+    .name {
+      font-size: 28rpx;
+      color: rgba(0, 0, 0, 0.85);
+    }
+  }
+}
+// 日期批量修改-弹窗
+.dateModify {
+  padding: 50rpx 110rpx 30rpx;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+}

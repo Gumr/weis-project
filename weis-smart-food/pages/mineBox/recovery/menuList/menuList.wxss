@@ -1,0 +1,130 @@
+page {
+  background: #46b769;
+}
+.border {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1rpx;
+  background: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: 0;
+}
+.menuList {
+  width: 100%;
+}
+.menuList .headerBg {
+  width: 100%;
+  height: 494rpx;
+  float: left;
+}
+.menuList .box {
+  padding: 0 30rpx;
+}
+.menuList .box .header {
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 40rpx 30rpx;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+.menuList .box .header_word {
+  font-size: 26rpx;
+  line-height: 44rpx;
+}
+.menuList .box .header_word text:nth-child(1) {
+  color: #333333;
+}
+.menuList .box .header_word text:nth-child(2) {
+  color: #fa6400;
+  font-weight: bold;
+}
+.menuList .box .header_img {
+  width: 84rpx;
+  height: 96rpx;
+  margin-left: 30rpx;
+  flex-shrink: 0;
+}
+.menuList .box .content {
+  background: #ffffff;
+  border-radius: 20rpx;
+}
+.menuList .box .content .title {
+  background: #e8e8e8;
+  border-radius: 20rpx 20rpx 0rpx 0rpx;
+  height: 86rpx;
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #333333;
+  display: flex;
+  align-items: center;
+  padding: 0 30rpx;
+}
+.menuList .box .content .title view:nth-child(1) {
+  margin-right: 198rpx;
+}
+.menuList .box .content .listBox {
+  padding: 0 30rpx;
+}
+.menuList .box .content .listBox .list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 108rpx;
+  position: relative;
+}
+.menuList .box .content .listBox .list:not(:last-child)::after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1rpx;
+  background: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: 0;
+}
+.menuList .box .content .listBox .list_l {
+  font-size: 26rpx;
+  color: #000000;
+}
+.menuList .box .content .listBox .list_m {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: rgba(0, 0, 0, 0.5);
+}
+.menuList .box .content .listBox .list_r {
+  width: 108rpx;
+  height: 44rpx;
+  border-radius: 8rpx;
+  border: 1rpx solid #FA6400;
+  font-size: 22rpx;
+  color: #FA6400;
+  line-height: 44rpx;
+  text-align: center;
+}
+.menuList .box .content .login {
+  width: 390rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+  border-radius: 44rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  margin: 150rpx auto;
+}
+.menuList .box .footer {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 30rpx 0 46rpx;
+  text-align: center;
+}
+.recoveryDialog {
+  padding: 0 40rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+  line-height: 44rpx;
+}

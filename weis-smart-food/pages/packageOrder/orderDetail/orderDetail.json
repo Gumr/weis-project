@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "cp-refresh-view": "/components/cp-refresh-view/refresh-view",
+    "cp-data-pie": "/components/cp-data-pie/cp-data-pie",
+    "cp-confirm-dialog": "/components/cp-confirm-dialog/cp-confirm-dialog",
+    "cp-pay-popup": "/components/cp-pay-popup/cp-pay-popup",
+    "vant-count-down": "/components/vant/count-down/index",
+    "vant-popup": "/components/vant/popup/index"
+  }
+}

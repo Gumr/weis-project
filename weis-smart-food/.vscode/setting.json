@@ -1,0 +1,19 @@
+{
+  "minapp-vscode.wxmlFormatter": "prettyHtml",
+  "minapp-vscode.disableAutoConfig": true,
+  "minapp-vscode.prettier": {
+    "useTabs": false,
+    "tabWidth": 2,
+    "printWidth": 100,
+    "singleQuote": false
+  },
+  "minapp-vscode.prettyHtml": {
+    "useTabs": false,
+    "tabWidth": 2,
+    "printWidth": 100,
+    "singleQuote": false,
+    "usePrettier": true,
+    "wrapAttributes": false,
+    "sortAttributes": false
+  }
+}

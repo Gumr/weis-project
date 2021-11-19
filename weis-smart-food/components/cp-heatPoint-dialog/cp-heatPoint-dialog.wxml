@@ -1,0 +1,37 @@
+<!-- components/heatPoint-dialog/heatPoint-dialog.wxml -->
+<view class="cutHpid" wx:if="{{show}}" catch:touchmove="true">
+  <view class="empty" bind:tap="close"></view>
+  <view class="cate-wrap-box {{show ? 'active' : ''}}">
+    <image class="close" bind:tap="close" src="/images/icon_down.png" />
+    <view class="title">选择店面</view>
+    <scroll-view scroll-y="{{true}}" style="height:752rpx" class="store">
+      <!-- 仅配送时不能选中 -->
+      <view class="storeList {{selectHpid == item.id ? 'active' : (item.selfTaking == 0 && self ? 'unable' : '')}}" wx:for="{{heatList}}" wx:key="key" data-index="{{index}}" bind:tap="select">
+        <view class="store-l">
+          <view class="store-t">
+            <view class="name">{{item.name}}</view>
+            <view class="type" wx:if="{{item.selfTaking != 0}}">可自取</view>
+            <view class="type" wx:if="{{item.selfTaking != 2}}">可配送</view>
+            <!-- <view class="type unable" wx:else>不可自取</view> -->
+          </view>
+          <view class="store-b">
+            <image src="/images/store_address.png" />
+            <view class="distance">
+              距离您{{item.distance < 1000 ? item.distance + 'm' : item.distance/1000 + 'km'}}
+            </view>
+          </view>
+          <view class="address">地址：{{item.address}}</view>
+          <view class="time">营业时间：{{item.stime ? item.stime + '-' + item.etime : '暂无'}}</view>
+        </view>
+        <view class="store-r {{selectHpid == item.id ? 'active' : ''}}">
+          <view class="select">选择</view>
+          <view class="icon-b">
+            <image catch:tap="phone" data-phone="{{item.phone}}" src="{{selectHpid == item.id ? '/images/store_iphone_select.png' : '/images/store_iphone.png'}}" />
+            <image catch:tap="goMap" data-name="{{item.hpName}}" data-address="{{item.address}}" data-lat="{{item.hpLat}}" data-lon="{{item.hpLng}}" src="{{selectHpid == item.id ? '/images/store_navigation_select.png' : '/images/store_navigation.png'}}" />
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <!-- <image class="close" bind:tap="close" src="/images/logistics_popup_off.png" /> -->
+  </view>
+</view>

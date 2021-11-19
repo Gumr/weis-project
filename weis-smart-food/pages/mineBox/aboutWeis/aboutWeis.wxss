@@ -1,0 +1,31 @@
+.about {
+  width: 100%;
+  background: #0b328c;
+  padding-bottom: 50rpx;
+}
+.about image {
+  width: 750rpx;
+}
+.about .img {
+  width: 690rpx;
+  margin: 0 auto;
+  margin-bottom: 20rpx;
+  position: relative;
+}
+.about .img image {
+  display: block;
+  width: 690rpx;
+}
+.about .img .icon {
+  width: 11rpx;
+  height: 64rpx;
+  position: absolute;
+  bottom: -43rpx;
+  z-index: 100;
+}
+.about .img .icon.icon-1 {
+  left: 30rpx;
+}
+.about .img .icon.icon-2 {
+  right: 30rpx;
+}

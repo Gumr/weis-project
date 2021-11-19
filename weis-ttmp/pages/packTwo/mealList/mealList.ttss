@@ -1,0 +1,165 @@
+.meal {
+  height: 100%;
+  background: #F3F4F5;
+}
+.meal .tab {
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  background: #F3F4F5;
+}
+.meal .tab.fix {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+.meal .tab .name {
+  width: 33%;
+  text-align: center;
+  height: 100%;
+  line-height: 90rpx;
+  font-size: 30rpx;
+  color: rgba(0, 0, 0, 0.6);
+}
+.meal .tab .name.active {
+  color: #000000;
+  font-weight: bold;
+  position: relative;
+}
+.meal .tab .name.active::after {
+  display: block;
+  content: '';
+  width: 50rpx;
+  height: 10rpx;
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+  border-radius: 5rpx;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 7rpx;
+}
+.meal .no-meal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.meal .no-meal image {
+  display: block;
+  width: 254rpx;
+  height: 254rpx;
+  margin-bottom: 48rpx;
+  margin-top: 185rpx;
+}
+.meal .no-meal .text {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: black;
+}
+.meal .list {
+  margin-top: 90rpx;
+}
+.meal .list .item {
+  flex-direction: column;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+}
+.meal .list .item .date {
+  display: flex;
+  background: #E5E5E5;
+  border-radius: 16rpx;
+  height: 32rpx;
+  padding-left: 18rpx;
+  padding-right: 18rpx;
+  justify-content: center;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  display: inline-block;
+  align-items: center;
+  text-align: center;
+  color: #000;
+  font-size: 24rpx;
+}
+.meal .list .item .box {
+  margin-bottom: 20rpx;
+  padding: 0 30rpx;
+  background: #FFFFFF;
+  box-shadow: 0rpx 4rpx 24rpx -6rpx rgba(186, 186, 186, 0.3);
+  border-radius: 10rpx;
+}
+.meal .list .item .box .top {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 84rpx;
+}
+.meal .list .item .box .top::after {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2rpx;
+  background: rgba(0, 0, 0, 0.05);
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.meal .list .item .box .top .category {
+  font-size: 28rpx;
+  color: black;
+}
+.meal .list .item .box .top .status {
+  font-size: 28rpx;
+  font-weight: 600;
+}
+.meal .list .item .box .content {
+  position: relative;
+  display: flex;
+  margin-top: 30rpx;
+  padding-bottom: 40rpx;
+}
+.meal .list .item .box .content .scroll {
+  width: 100%;
+  white-space: nowrap;
+}
+.meal .list .item .box .content .scroll .item {
+  width: 140rpx;
+  display: inline-block;
+  margin: 0 20rpx 0 0;
+}
+.meal .list .item .box .content .scroll .item image {
+  display: block;
+  width: 140rpx;
+  height: 140rpx;
+}
+.meal .list .item .box .content .scroll .item .text {
+  margin-top: 12rpx;
+  font-size: 20rpx;
+  color: #333333;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 140rpx;
+}
+.meal .list .item .box .content .count {
+  display: flex;
+  width: 140rpx;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, #FFFFFF 30%, #FFFFFF);
+  z-index: 2;
+  position: absolute;
+  padding-bottom: 32rpx;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.meal .list .item .box .content .count .text {
+  display: flex;
+  font-size: 20rpx;
+  color: #808080;
+  margin-right: 0;
+  margin-left: auto;
+}

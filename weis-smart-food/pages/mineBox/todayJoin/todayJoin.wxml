@@ -1,0 +1,52 @@
+<!--pages/mineBox/todayJoin/todayJoin.wxml-->
+<cp-nav-bar title-text="今日参与"></cp-nav-bar>
+<view class="page-container">
+  <view class="flex-items-center">
+    <image class="icon" src="/images/icons/tableware.png" />
+    <view class="item-right flex-content-between flex-items-center" bind:tap="orderTap">
+      <view class="flex-items-center">
+        <view class="label font-bold">每日订餐</view>
+        <view class="tag">减脂营期间点餐5折</view>
+      </view>
+      <view class="flex-items-center">
+        <view class="score font-bold">{{map['03']}}分</view>
+        <image class="icon-next" src="/images/my_next.png" />
+      </view>
+    </view>
+  </view>
+  <view class="flex-items-center">
+    <image class="icon" src="/images/icons/bread.png" />
+    <view class="item-right flex-content-between flex-items-center" bind:tap="cardTap">
+      <view class="flex-items-center">
+        <view class="label font-bold">饮食打卡</view>
+      </view>
+      <view class="flex-items-center">
+        <view class="score font-bold">{{map['02']}}分</view>
+        <image class="icon-next" src="/images/my_next.png" />
+      </view>
+    </view>
+  </view>
+  <view class="flex-items-center">
+    <image class="icon" src="/images/icons/shoes.png" />
+    <view class="item-right flex-content-between flex-items-center" bind:tap="cardTap">
+      <view class="flex-items-center">
+        <view class="label font-bold">运动打卡</view>
+      </view>
+      <view class="flex-items-center">
+        <view class="score font-bold">{{map['01']}}分</view>
+        <image class="icon-next" src="/images/my_next.png" />
+      </view>
+    </view>
+  </view>
+  <view class="flex-items-center">
+    <image class="icon" src="/images/icons/applets.png" />
+    <view class="item-right flex-content-between flex-items-center" bind:tap="navigateTao">
+      <view class="flex-items-center">
+        <view class="label font-bold">登录小程序</view>
+      </view>
+      <view class="flex-items-center">
+        <view class="score font-bold">{{map['00']}}分</view>
+      </view>
+    </view>
+  </view>
+</view>

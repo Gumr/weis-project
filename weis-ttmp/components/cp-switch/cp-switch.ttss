@@ -1,0 +1,41 @@
+.switch {
+  display: inline-block;
+  width: 100rpx;
+  height: 40rpx;
+  border-radius: 24rpx;
+  background-color: #dedede;
+  transition: background-color 0.3s;
+  position: relative;
+}
+.switch--open {
+  background-color: #fa6400;
+}
+.switch__toggle {
+  position: absolute;
+  width: 32rpx;
+  height: 32rpx;
+  left: 4rpx;
+  top: 4rpx;
+  transition: left 0.3s;
+}
+.switch__toggle--open {
+  left: 64rpx;
+}
+.switch__icon {
+  position: absolute;
+  width: 28rpx;
+  height: 28rpx;
+  left: 2rpx;
+  top: 2rpx;
+  transition: opacity 0.3s;
+}
+.switch__dot {
+  background: #fff;
+  border-radius: 24rpx;
+}
+.hidden {
+  opacity: 0;
+}
+.visible {
+  opacity: 1;
+}

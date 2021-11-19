@@ -1,0 +1,23 @@
+<!--pages/packSubAccount/about/about.wxml-->
+<cp-nav-bar title-text="关于维士" background="#FFFFFF" color="#000" backIconColor="black" />
+<view class="about">
+    <view class="top">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/weis-icon.png" />
+        <view class="name">维士小盒饭</view>
+        <view class="version">Version 2.14.0</view>
+    </view>
+    <view class="contact">
+        <button class="list" bind:tap="about">
+            <view class="name">维士介绍</view>
+            <view class="col-r">
+                <image src="/images/icon_right.png" />
+            </view>
+        </button>
+        <button class="list" bind:tap="xy">
+            <view class="name">维士用户协议</view>
+            <view class="col-r">
+                <image src="/images/icon_right.png" />
+            </view>
+        </button>
+    </view>
+</view>

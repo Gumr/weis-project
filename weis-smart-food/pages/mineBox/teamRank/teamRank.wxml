@@ -1,0 +1,88 @@
+<!--pages/mineBox/myRank/myRank.wxml-->
+<import src="../../../templates/rank-item/rank-item"></import>
+
+<cp-nav-bar
+  title-text="{{$typeLabel === '迈开腿' ? '团队效果' : '团队积分'}}"
+  background="transparent"
+  backIconColor="white"
+  color="white"
+/>
+<image class="background" src="https://prodstatic.weis1606.cn/api/smartFood/ranking_bj.png" />
+<view class="page-container">
+  <!-- 管住嘴 -->
+  <view class="header flex-items-center" wx:if="{{$typeLabel === '管住嘴'}}">
+    <view class="header-item text-center">
+      <view class="label-score">{{value}}</view>
+      <view class="label">总积分</view>
+    </view>
+    <view class="header-item text-center">
+      <view class="label-score">{{rank}}</view>
+      <view class="label">团队排名</view>
+    </view>
+  </view>
+  <!-- 迈开腿 -->
+  <!-- <view class="header" wx:if="{{$typeLabel === '迈开腿'}}">
+    <view class="header-item text-center">
+      <view class="label-score">{{value}}</view>
+      <view class="label">总积分</view>
+    </view>
+    <view class="header-item text-center">
+      <view class="label-score">{{rank}}</view>
+      <view class="label">团队排名</view>
+    </view>
+  </view> -->
+  <!-- 热情参与 -->
+  <view class="header" wx:if="{{$typeLabel === '热情参与'}}">
+    <view class="header-item text-center">
+      <view class="label-score">{{value}}</view>
+      <view class="label">总积分</view>
+    </view>
+    <view class="header-item text-center">
+      <view class="label-score">{{rank}}</view>
+      <view class="label">团队排名</view>
+    </view>
+  </view>
+  <!-- 减脂效果 -->
+  <view class="header" wx:if="{{$typeLabel === '迈开腿'}}">
+    <view class="header-item text-center">
+      <view class="label-score">{{value}}</view>
+      <view class="label">总减重(斤)</view>
+    </view>
+    <view class="header-item text-center">
+      <view class="label-score">{{rankPart}}</view>
+      <view class="label">体重下降比例(%)</view>
+    </view>
+    <view class="header-item text-center">
+      <view class="label-score">{{rank}}</view>
+      <view class="label">团队排名</view>
+    </view>
+  </view>
+  <view class="content">
+    <view class="content-item flex-content-between">
+      <view class="font-28 gray-33">团队名称</view>
+      <view class="font-32 font-bold gray-33">{{groupName}}</view>
+    </view>
+    <view class="content-item flex-content-between" bind:tap="counselorTap">
+      <view class="font-28 gray-33">减脂顾问</view>
+      <view class="flex-items-center">
+        <image class="icon-avatar" src="{{counselorApplication.counselorIcon}}" />
+        <view class="font-32 font-bold gray-33">{{counselorApplication.counselorName}}</view>
+        <image class="icon-next" src="/images/my_next.png" />
+      </view>
+    </view>
+    <view class="gray-bar"></view>
+    <view class="rank-lsit">
+      <view
+        class="rank-list__item"
+        wx:if="{{myTeam}}"
+        style="border-bottom: 2rpx solid rgba(51, 51, 51, .1)"
+      >
+        <template is="rank-item" data="{{...myTeam}}"></template>
+      </view>
+      <view class="rank-list__item" wx:for="{{rankList}}" wx:key="index">
+        <template is="rank-item" data="{{...item}}"></template>
+      </view>
+    </view>
+  </view>
+</view>
+

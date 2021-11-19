@@ -1,0 +1,42 @@
+<view class="charts" style="color: {{mode === 'light' ? '#333' : '#fff'}}">
+  <!-- <view class="circle">
+    <image style="width: 202rpx; height: 202rpx;" wx:if="{{imageUrl}}" src="{{imageUrl}}" />
+    <canvas
+      class="{{imageUrl ? 'circle-hidden' : ''}}"
+      canvas-id="circle"
+      style="width: 202rpx; height: 202rpx;"
+    ></canvas>
+    <view class="circle__content">
+      <view class="label-18" style="{{mode === 'dark' ? 'color: #a9a9a9;' : ''}}">实际/计划</view>
+      <view class="circle__value">
+        <text class="number-40">{{circleData[0]}}</text>
+        <text class="number-28">/ {{circleData[1]}}</text>
+      </view>
+      <view class="label-20" style="{{mode === 'dark' ? 'color: #a9a9a9;' : ''}}">kcal</view>
+    </view>
+  </view> -->
+  <view class="bar-list">
+    <view class="bar-item" wx:for="{{bars}}" wx:key="index">
+      <view class="bar" style="background-color: {{mode === 'light' ? '#F3F4F5' : '#474747'}}">
+        <view
+          class="bar__value"
+          style="height: {{item.height}}rpx; background: {{(item.percent >= 100 && !item.lessRed) || (item.percent < 100 && item.lessRed) ? '#FA6400' : '#FCA649'}};"
+        ></view>
+      </view>
+      <view>
+        <view class="label-18" style="{{mode === 'dark' ? 'color: #a9a9a9;' : ''}}">{{item.label}}</view>
+        <view class="number-22" style="margin-top: 7rpx;color: {{mode == 'light' ? '#333333' : '#FFFFFF'}}">{{item.data[0]}}/{{item.data[1]}}<text wx:if="{{item.label != '食物多样性'}}">g</text></view>
+      </view>
+    </view>
+  </view>
+  <!-- 总能量 -->
+  <view class="energy-bar" wx:if="{{energyBar}}">
+    <view class="box">
+      <view class="name">{{energyBar.label}}</view>
+      <view class="bar-line">
+        <view class="actual-bar" style="width: {{energyBar.width || 0}}rpx; background: {{energyBar.percent >= 100 ? '#FA6400' : '#FCA649'}}"></view>
+      </view>
+      <view class="val" style="color: {{mode == 'light' ? '#333333' : '#FFFFFF'}}">{{energyBar.value}}/{{energyBar.total}}</view>
+    </view>
+  </view>
+</view>

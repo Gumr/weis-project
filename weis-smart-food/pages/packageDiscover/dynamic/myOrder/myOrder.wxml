@@ -1,0 +1,54 @@
+<!--pages/packageDiscover/dynamic/myOrder/myOrder.wxml-->
+<cp-nav-bar title-text="我赞过"></cp-nav-bar>
+<wxs module="filters" src="../../../../utils/filter.wxs"></wxs>
+<!-- 饭圈动态 -->
+<view class="dynamic">
+    <view class="content" wx:if="{{dynamic.length > 0}}">
+        <view class="list" wx:for="{{dynamic}}" data-index="{{index}}" bind:tap="dynamicDetail">
+            <view class="head">
+                <image class="headImg" src="{{item.headImgUrl}}"></image>
+                <view class="headInfo">
+                    <view>{{item.uname}}</view>
+                    <view>{{item.tbdCtimeFilter}}</view>
+                </view>
+            </view>
+            <!-- <view class="words">{{item.tbdDynamicText}}</view> -->
+            <view class="words">
+                <!-- <text wx:for="{{item.tbdDynamicTextArr}}" style="{{item.isUrl ? 'color: #2440B3' : ''}}" data-item="{{item}}" bind:tap="linkTap">{{item.text}}</text> -->
+                <block wx:for="{{item.tbdDynamicTextArr}}" wx:for-item="item1">
+                    <view wx:if="{{item1.isUrl}}" class="wordsUrl" data-item1="{{item1}}" bind:tap="linkTap">
+                        <image class="urlIcon" src="https://prodstatic.weis1606.cn/api/smartFood/link_icon@2x.png" />
+                        点击链接
+                    </view>
+                    <view wx:else class="wordsText">{{item1.text}}</view>
+                </block>
+            </view>
+            <view class="img">
+                <image wx:for="{{item.picturesArr}}" mode="aspectFill" wx:for-item="item1" src="{{item1}}" />
+            </view>
+            <view class="menu" wx:if="{{item.nutritionHealthScoreForm}}">
+                <view class="{{item.nutritionHealthScoreForm.totalScore < 100?'addRed':''}}">{{item.nutritionHealthScoreForm.totalScore}}</view>
+                <view>{{filters.toDates(item.nutritionHealthScoreForm.dateTime)}}{{categoryMap[item.nutritionHealthScoreForm.category]}}营养健康分{{item.nutritionHealthScoreForm.totalScore}}</view>
+            </view>
+            <view class="operate">
+                <view class="operate_icon">
+                    <view>
+                        <image src="https://prodstatic.weis1606.cn/api/smartFood/{{item.likeStatus?'icon_find_like_press@2x':'icon_find_like@2x'}}.png" data-likestatus="{{item.likeStatus}}" data-tbdid="{{item.tbdId}}"  catch:tap="order"/>
+                        <view>{{item.tbdLikeSum}}</view>
+                    </view>
+                    <view>
+                        <image src="https://prodstatic.weis1606.cn/api/smartFood/icon_find_new@2x.png" />
+                        <view>{{item.tbdCommentSum}}</view>
+                    </view>
+                </view>
+                <view class="operate_delete" data-tbdid="{{item.tbdId}}" catch:tap="delete" wx:if="{{item.myDynamic}}">
+                    <image src="https://prodstatic.weis1606.cn/api/smartFood/icon_find_delete_orange@2x.png" />
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 空状态 -->
+    <cp-null show="{{dynamic.length == 0}}" imgStyle="width:300rpx;height: 226rpx;margin-bottom: 40rpx;" imgSrc="https://prodstatic.weis1606.cn/api/smartFood/ai_blank_like@2x.png" text="没有赞过"></cp-null>
+</view>
+
+<cp-confirm-dialog show="{{showDelete}}" title="确定删除该动态吗？" bind:on-confirm="sureDelete"></cp-confirm-dialog>

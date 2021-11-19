@@ -1,0 +1,20 @@
+.popupShare {
+  display: flex;
+  justify-content: space-between;
+  padding: 84rpx 132rpx 134rpx;
+}
+.popupShare .box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.popupShare .box image {
+  width: 128rpx;
+  height: 128rpx;
+  margin-bottom: 16rpx;
+}
+.popupShare .box view {
+  font-size: 28rpx;
+  color: #333333;
+  line-height: 40rpx;
+}

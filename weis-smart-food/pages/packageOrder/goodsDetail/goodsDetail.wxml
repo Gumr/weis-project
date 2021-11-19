@@ -1,0 +1,634 @@
+<!-- pages/packageOrder/goodsDetail/goodsDetail.wxml -->
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
+<cp-nav-bar title-text="{{combo == '01' ? '套餐详情' : '菜品详情'}}" background="#fff" color="#333333" backIconColor="#fff" />
+<view class="detail {{type ? 'active' : ''}}" wx:if="{{combo == '00'}}">
+  <!-- swiper -->
+  <view class="banner">
+    <swiper indicator-dots="{{indicatorDots}}" bindchange="handleChange" circular autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{activeColor}}">
+      <block wx:for="{{imgUrls}}" wx:key="key">
+        <swiper-item>
+          <view class="tag yellow rightTop" wx:if="{{list.skuInfo[0].skuTitle}}">
+            {{list.skuInfo[0].skuTitle}}
+          </view>
+          <image wx:if="{{ageType == '01'}}" class="children" src="https://prodstatic.weis1606.cn/api/smartFood/toddler_label_1.png" />
+          <image bind:tap="preview" src="{{item}}" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="dots" wx:if="{{imgUrls.length > 1}}">
+      <block wx:for="{{imgUrls}}" wx:key="key">
+        <view class="dot {{index == currentIndex ? 'active' : ''}}"></view>
+      </block>
+    </view>
+  </view>
+  <!-- 商品名 -->
+  <view class="wrap_box">
+    <view class="box {{from == 'vote' ? 'box-vote' : ''}}">
+      <image class="vote-pm" wx:if="{{from == 'vote'}}" src="{{preImg + '/vote_d_no' + skuInfo.skuRank + '.png'}}" />
+      <view class="col-t">
+        <view class="name">{{list.skuInfo[0].skuname}}</view>
+        <!-- 首页查看 -->
+        <view class="btn-share" wx:if="{{!type}}">
+          <button class="share {{list.favouritesStt ? 'favor' : ''}}" bind:tap="favor" hover-class="none">
+            <image src="{{!list.favouritesStt ? 'https://prodstatic.weis1606.cn/api/smartFood/favorite.png' : 'https://prodstatic.weis1606.cn/api/smartFood/favorited.png'}}" />
+            <view>最爱</view>
+          </button>
+          <!-- <button class="share" open-type="share" hover-class="none">
+            <image src="/images/goods_share.png" />
+            <view>分享</view>
+          </button> -->
+        </view>
+        <!-- 菜品投票页查看 -->
+        <view class="vote-icon" wx:if="{{from === 'vote'}}" bind:tap="doVoteFn">
+          <image class="icon" src="{{preImg + (skuInfo.voteStatus ? '/vote_y.png' : '/vote_n.png')}}" />
+        </view>
+      </view>
+      <view class="monthly-sale" wx:if="{{from != 'vote'}}">
+        月售{{list.skuInfo[0].sale30DaysSum}}份
+      </view>
+      <view class="col-b" wx:if="{{from != 'discover' && from != 'vote'}}">
+        <view class="col-l">
+          <!-- 现价 -->
+          <view class="t1">
+            <text>￥</text>
+            {{list.skuInfo[0].ifNewUser && list.skuInfo[0].ifNewUser == 1 ? list.skuInfo[0].newUserPrice : list.skuInfo[0].price}}
+          </view>
+          <!-- 原价 -->
+          <view class="t1-1" wx:if="{{list.skuInfo[0].ifNewUser && list.skuInfo[0].ifNewUser == 1}}">
+            ￥{{list.skuInfo[0].price}}
+          </view>
+          <view class="t2">/{{list.skuInfo[0].quality}}{{list.skuInfo[0].unit}}</view>
+          <view class="t3" wx:if="{{checkStock && list.skuInfo[0].stock<=3 && list.skuInfo[0].stock>0}}">
+            仅剩{{list.skuInfo[0].stock}}份
+          </view>
+        </view>
+        <view class="col-r" wx:if="{{!type && !goodsShare}}">
+          <image class="reduce" src="/images/reduce.png" wx:if="{{list.skuInfo[0].num>0}}" data-cid="{{list.skuInfo[0].cid}}" bind:tap="reduce" />
+          <view class="num" wx:if="{{list.skuInfo[0].num>0}}">{{list.skuInfo[0].num}}</view>
+          <view class="already" wx:if="{{checkStock && list.skuInfo[0].stock<=0}}">已售罄</view>
+          <view class="add-cart" wx:elif="{{list.skuInfo[0].num == 0}}" data-cid="{{list.skuInfo[0].cid}}" bind:tap="add">
+            加入购物车
+          </view>
+          <image class="add" wx:else src="/images/add.png" data-cid="{{list.skuInfo[0].cid}}" bind:tap="add" />
+        </view>
+      </view>
+      <!-- 菜品投票页查看 -->
+      <view class="col-b-vote" wx:if="{{from == 'vote'}}">
+        <view class="col-l-60" wx:if="{{skuInfo.skuStt == '60'}}">
+          <image class="icon" mode="widthFix" src="{{preImg + '/vote_d_sell.png'}}" />
+          <view class="txt">已上架售卖</view>
+        </view>
+        <view class="col-l-50" wx:if="{{skuInfo.skuStt == '50'}}">
+          预计{{skuInfo.skuSaleTime}}上架售卖
+        </view>
+        <view class="null" wx:else></view>
+        <view class="col-r {{skuInfo.voteStatus ? 'active' : ''}}">{{skuInfo.voteNum}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 双11充值引导 -->
+  <!-- <view class="recharge-bar" wx:if="{{from != 'discover'}}">
+    <view class="recharge-bar__content" bind:tap="rechargeTap">
+      <image class="recharge-bar__base" src="https://prodstatic.weis1606.cn/api/smartFood/detail_recharge_bar.png" />
+      <view class="recharge-bar__label" wx:if="{{isDoubleEleven}}">
+        <text>双11 | 充值{{rechargeCardList[0].cardModelBean.amount}}送</text>
+        <text class="recharge-bar__active">{{rechargeCardList[0].$present}}</text>
+        <text>,{{rechargeCardList[1].cardModelBean.amount}}送</text>
+        <text class="recharge-bar__active">{{rechargeCardList[1].$present}}</text>
+      </view>
+      <view class="recharge-bar__label" wx:else>
+        <text>充值{{rechargeCardList[0].cardModelBean.amount}}送</text>
+        <text class="recharge-bar__active">{{rechargeCardList[0].$present}}</text>
+      </view>
+    </view>
+  </view> -->
+  <!-- 厨师有话说 -->
+  <view class="intro master-intro" wx:if="{{from != 'discover' && list.master}}">
+    <!-- <view class="title">商品详情</view>
+    <text class="content" decode="true">{{list.skuInfo[0].introduce}}</text> -->
+    <view class="title">名厨有话说</view>
+    <view class="content">
+      <view class="content-l">
+        <image class="icon" src="{{list.master.imgUrl}}" />
+      </view>
+      <view class="content-r" bind:tap="cookerIntroFn">
+        <view class="content-cooker">
+          <view class="cooker-l">
+            <view class="cooker-l-name">{{list.master.name}}</view>
+            <view class="cooker-l-name-e"></view>
+          </view>
+          <image class="icon cooker-r" src="/images/icon_right.png" />
+        </view>
+        <view class="content-saying">{{list.masterComment.comment}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 大师造 -->
+  <!-- <view class="intro master-intro" wx:if="{{list.masterComment && list.masterComment.comment && from != 'discover'}}">
+    <view class="title">研发灵感</view>
+    <view class="content">{{list.masterComment.comment}}</view>
+  </view> -->
+  <!-- 食材介绍图片 -->
+  <!-- <view class="intro-img" wx:elif="{{list.skuInfo[0].introduceImg}}">
+    <image mode="widthFix" src="{{list.skuInfo[0].introduceImg}}" />
+  </view> -->
+  <!-- 食材看得见 -->
+  <view class="intro master-intro" wx:if="{{from != 'discover' && list.skuInfo[0].dosing}}">
+    <view class="title">食材看得见</view>
+    <text class="content" decode="true">{{list.skuInfo[0].dosing}}</text>
+  </view>
+  <!-- 营养看得见 -->
+  <view class="nutrient-desc">
+    <view class="title">营养看得见</view>
+    <view class="ele border-line">
+      <view class="name">能量</view>
+      <view class="val">{{list.skuInfo[0].energy}}kcal</view>
+    </view>
+    <view class="ele-box">
+      <view class="ele">
+        <view class="name">蛋白质</view>
+        <view class="val">{{list.skuInfo[0].protein}}g</view>
+      </view>
+      <view class="ele">
+        <view class="name">膳食纤维</view>
+        <view class="val">{{list.skuInfo[0].fiber}}g</view>
+      </view>
+    </view>
+    <view class="ele-box">
+      <view class="ele">
+        <view class="name">碳水</view>
+        <view class="val">{{list.skuInfo[0].carbonwater}}g</view>
+      </view>
+      <view class="ele">
+        <view class="name">盐量</view>
+        <view class="val">{{list.skuInfo[0].salt || list.skuInfo[0].totalSalt || 0}}g</view>
+      </view>
+    </view>
+    <view class="ele-box border-line">
+      <view class="ele">
+        <view class="name">脂肪</view>
+        <view class="val">{{list.skuInfo[0].fat}}g</view>
+      </view>
+      <view class="ele">
+        <view class="name">食物多样</view>
+        <view class="val">{{list.foodTypeNum}}种</view>
+      </view>
+    </view>
+    <view class="nutrient" wx:if="{{list.skuInfo[0].flavor.length>0}}">
+      <view class="title-c">
+        <view class="title">口味</view>
+      </view>
+      <view class="info-box">
+        <view class="tag" wx:for="{{list.skuInfo[0].flavor}}" wx:key="key">{{item.name}}</view>
+      </view>
+    </view>
+    <view class="nutrient" wx:if="{{list.skuInfo[0].dietLabelList.length>0}}">
+      <view class="title-c">
+        <view class="title">过敏原</view>
+      </view>
+      <view class="info-box">
+        <view class="tag" wx:for="{{list.skuInfo[0].dietLabelList}}" wx:key="key">
+          {{item.name}}
+        </view>
+      </view>
+    </view>
+    <view class="nutrient" wx:if="{{list.skuInfo[0].other.length>0}}">
+      <view class="title-c">
+        <view class="title">其他标签</view>
+      </view>
+      <view class="info-box">
+        <view class="tag other" wx:for="{{list.skuInfo[0].other}}" wx:key="key">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 展开查看更多 -->
+  <view class="checkMore" bind:tap="check" wx:if="{{!more}}">
+    <view class="desc">点击查看更多商品说明</view>
+    <image src="/images/my_next.png" />
+  </view>
+  <view wx:if="{{more}}" style="padding-bottom: 30rpx;">
+    <image wx:if="{{list.master}}" class="make" mode="widthFix" style="width:690rpx;margin: 60rpx auto 0" src="https://prodstatic.weis1606.cn/api/smartFood/cook%202%E5%A4%87%E4%BB%BD.png" />
+    <image class="make" mode="widthFix" style="width:750rpx;margin: 0 auto" src="https://prodstatic.weis1606.cn/api/smartFood/detail-1.png" />
+    <image class="make" mode="widthFix" style="width:750rpx;margin: 0 auto" src="https://prodstatic.weis1606.cn/api/smartFood/detail-2.png?a=1" />
+    <image class="make" wx:if="{{from != 'vote'}}" mode="widthFix" style="width:750rpx;margin: 0 auto" src="https://prodstatic.weis1606.cn/api/smartFood/detail-3.png" />
+  </view>
+</view>
+<!-- 套餐 -->
+<view class="detail {{type ? 'active' : ''}}" wx:if="{{combo == '01'}}">
+  <!-- 商品名 -->
+  <view class="moremeal">
+    <image class="m-bg" src="https://prodstatic.weis1606.cn/api/smartFood/meal-bg.png" />
+    <view class="name">{{list.recommendList[0].name}}</view>
+    <view class="col-b">
+      <view class="col-l tcc">
+        <view class="t1">
+          <text>￥</text>
+          {{list.recommendList[0].price}}
+        </view>
+        <!-- 原价 -->
+        <del class="origin" wx:if="{{list.recommendList[0].originalPrice && list.recommendList[0].originalPrice > list.recommendList[0].price}}">
+          ￥{{list.recommendList[0].originalPrice}}
+        </del>
+      </view>
+      <view class="col-r" wx:if="{{!goodsShare}}">
+        <view class="select-meal" hover-class="color" hover-stay-time="200" wx:if="{{list.recommendList[0].num>=1}}" data-cid="{{list.recommendList[0].id}}" bind:tap="add">
+          已加购
+        </view>
+        <view class="add" wx:if="{{!list.recommendList[0].sellOut && (!list.recommendList[0].num || list.recommendList[0].num<1)}}" data-cid="{{list.recommendList[0].id}}" bind:tap="add">
+          加入购物车
+        </view>
+      </view>
+    </view>
+    <!-- 营养素 -->
+    <view class="nut" bind:tap="toHealth">
+      <view class="score">
+        <view class="val">{{list.recommendList[0].score}}</view>
+        <view class="desc">营养健康分</view>
+      </view>
+      <view class="info-nut">
+        <view class="box-row">
+          <view>
+            <view class="name-nut">热量</view>
+            <view class="kcal">{{list.recommendList[0].energy}}kcal</view>
+          </view>
+          <view>
+            <view class="name-nut">份量</view>
+            <view class="kcal">{{list.recommendList[0].allQuality}}g</view>
+          </view>
+        </view>
+        <view class="box-row">
+          <view>
+            <view class="name-nut">蛋白质</view>
+            <view class="kcal">{{list.recommendList[0].protein}}g</view>
+          </view>
+          <view>
+            <view class="name-nut">膳食纤维</view>
+            <view class="kcal">{{list.recommendList[0].fiber}}g</view>
+          </view>
+        </view>
+        <view class="box-row">
+          <view>
+            <view class="name-nut">碳水</view>
+            <view class="kcal">{{list.recommendList[0].carbonwater}}g</view>
+          </view>
+          <view>
+            <view class="name-nut">盐量</view>
+            <view class="kcal">{{list.recommendList[0].totalSalt}}g</view>
+          </view>
+        </view>
+        <view class="box-row">
+          <view>
+            <view class="name-nut">脂肪</view>
+            <view class="kcal">{{list.recommendList[0].fat}}g</view>
+          </view>
+          <view>
+            <view class="name-nut">食物多样</view>
+            <view class="kcal">{{list.recommendList[0].diversity}}种</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="wrap_box">
+    <view class="box">
+      <view class="col-t">
+        <view class="name">{{list.recommendList[0].name}}</view>
+      </view>
+      <view class="col-b">
+        <view class="col-l tcc">
+          <view class="t1">
+            <text>￥</text>
+            {{list.recommendList[0].price}}
+          </view>
+          <del class="origin" wx:if="{{list.recommendList[0].originalPrice && list.recommendList[0].originalPrice > list.recommendList[0].price}}">￥{{list.recommendList[0].originalPrice}}</del>
+        </view>
+        <view class="col-r" wx:if="{{!type && !goodsShare}}">
+          <view class="select" hover-class="color" hover-stay-time="200" wx:if="{{list.recommendList[0].num>=1}}" data-cid="{{list.recommendList[0].id}}" bind:tap="add">
+            已选
+          </view>
+          <image class="add" wx:if="{{!list.recommendList[0].sellOut && (!list.recommendList[0].num || list.recommendList[0].num<1)}}" src="/images/add.png" data-cid="{{list.recommendList[0].id}}" bind:tap="add" />
+        </view>
+      </view>
+    </view>
+  </view> -->
+  <!-- 仪表盘 -->
+  <!-- <view class="pan">
+      <image class="bg-icon" src="https://prodstatic.weis1606.cn/api/smartFood/new-meal.png?a=1" />
+      <cp-meal-pie dialData="{{dialData}}" theme="pillars" mode="image" page="index" bind:toHealth="toHealth" />
+  </view> -->
+  <!-- 充值引导 -->
+  <!-- <view class="recharge-bar {{combo == '01' ? 'combo' : ''}}">
+    <view class="recharge-bar__content" bind:tap="rechargeTap">
+      <image class="recharge-bar__base" src="https://prodstatic.weis1606.cn/api/smartFood/detail_recharge_bar.png" />
+      <view class="recharge-bar__label" wx:if="{{isDoubleEleven}}">
+        <text>双11 | 充值{{rechargeCardList[0].cardModelBean.amount}}送</text>
+        <text class="recharge-bar__active">{{rechargeCardList[0].$present}}</text>
+        <text>,{{rechargeCardList[1].cardModelBean.amount}}送</text>
+        <text class="recharge-bar__active">{{rechargeCardList[1].$present}}</text>
+      </view>
+      <view class="recharge-bar__label" wx:else>
+        <text>充值{{rechargeCardList[0].cardModelBean.amount}}送</text>
+        <text class="recharge-bar__active">{{rechargeCardList[0].$present}}</text>
+      </view>
+    </view>
+  </view> -->
+  <!-- 营养小贴士 -->
+  <!-- <view class="intro master-intro nutrient-tips" wx:if="{{list.recommendList[0].remark}}">
+    <view class="title">营养小贴士</view>
+    <view class="content">{{list.recommendList[0].remark}}</view>
+  </view> -->
+  <!-- 过敏原 -->
+  <view class="intro dietaryIntakes" wx:if="{{list.recommendList[0].dietaryIntakes.length > 0}}">
+    <view class="title">过敏原</view>
+    <view class="box" wx:for="{{list.recommendList[0].dietaryIntakes}}" wx:key="key">
+      {{item.name}}
+    </view>
+  </view>
+  <!-- 套餐营养简介 -->
+  <view class="intro setMealDesc" wx:if="{{list.recommendList[0].planSetMealDesc}}">
+    <view class="title">套餐营养简介</view>
+    <text class="box">{{list.recommendList[0].planSetMealDesc}}</text>
+  </view>
+  <!-- 套餐 -->
+  <view class="intro meal-info">
+    <view class="title">
+      <text>套餐内容</text>
+      <text bind:tap="setMealModify">修改套餐</text>
+    </view>
+    <view class="list-box">
+      <view class="list" wx:for="{{list.recommendList[0].setMealDateils}}" wx:key="key" data-id="{{item.id}}" bind:tap="skuDetail">
+        <view class="l-img-box">
+          <view class="tag-img" wx:if="{{item.skuTitle}}">{{item.skuTitle}}</view>
+          <image src="{{item.primaryImgUrl}}" />
+        </view>
+        <view class="r-box">
+          <view class="name {{item.className == 'P' ? 'red' : (item.className == 'C' ? 'white' : 'green')}}">
+            {{item.name}} {{item.energy}}kcal
+          </view>
+          <view class="num">{{item.num}}份 {{item.quality}}{{item.unit}}</view>
+          <view class="hot-box" wx:if="{{item.protein || item.fat || item.carbonwater}}">
+            <view class="hot" wx:if="{{item.protein}}">
+              蛋白质{{item.protein}}g
+              <text class="hot-line">/</text>
+            </view>
+            <view class="hot" wx:if="{{item.fat}}">
+              脂肪{{item.fat}}g
+              <text class="hot-line">/</text>
+            </view>
+            <view class="hot" wx:if="{{item.carbonwater}}">碳水{{item.carbonwater}}g</view>
+          </view>
+          <!-- <view class="pack">{{item.dosing}}</view> -->
+        </view>
+        <image class="arrow" src="/images/my_next.png" />
+      </view>
+    </view>
+  </view>
+  <!-- 营养检测报告书 -->
+  <!-- <view class="report">
+    <image mode="widthFix" class="head-img" src="{{IMG_URL + '/api/mini/report_ai.png'}}" />
+    <view class="c-c">
+      <view class="title-box">
+        <view class="title1">营养检测报告书</view>
+        <view class="title2">每一口数据，都清清楚楚</view>
+      </view>
+      <view class="nutrient-box">
+        <view class="nutrient">
+          <view class="title-c">
+            <view class="title">营养素</view>
+          </view>
+          <view class="chemical">
+            <view class="info-chemical">
+              <view class="t-img">
+                <image src="{{IMG_URL + '/api/mini/food_details_heat.png'}}" />
+                <view class="name">热量</view>
+              </view>
+              <view class="b-name">{{list.recommendList[0].energy}}kcal</view>
+            </view>
+            <view class="info-chemical">
+              <view class="t-img">
+                <image src="{{IMG_URL + '/api/mini/food_details_carbohydrates.png'}}" />
+                <view class="name">碳水</view>
+              </view>
+              <view class="b-name">{{list.recommendList[0].carbonwater}}g</view>
+            </view>
+            <view class="info-chemical">
+              <view class="t-img">
+                <image src="{{IMG_URL + '/api/mini/food_details_protein.png'}}" />
+                <view class="name">蛋白质</view>
+              </view>
+              <view class="b-name">{{list.recommendList[0].protein}}g</view>
+            </view>
+            <view class="info-chemical">
+              <view class="t-img">
+                <image src="{{IMG_URL + '/api/mini/food_details_fat.png'}}" />
+                <view class="name">脂肪</view>
+              </view>
+              <view class="b-name">{{list.recommendList[0].fat}}g</view>
+            </view>
+            <view class="info-chemical salt" wx:if="{{list.recommendList[0].salt || list.recommendList[0].totalSalt}}">
+              <view class="t-img">
+                <image src="https://prodstatic.weis1606.cn/api/mini/salt_content.png" />
+                <view class="name">盐量</view>
+              </view>
+              <view class="b-name">
+                {{list.recommendList[0].salt || list.recommendList[0].totalSalt}}g
+              </view>
+            </view>
+          </view>
+          <view class="chemical" style="margin-top:66rpx">
+            <view class="info-chemical">
+              <view class="t-img">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/circle/food_details_fat2.png" />
+                <view class="name">膳食纤维</view>
+              </view>
+              <view class="b-name">{{list.recommendList[0].fiber}}g</view>
+            </view>
+            <view class="info-chemical">
+              <view class="t-img">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/circle/food_details_fat.png" />
+                <view class="name">食物多样性</view>
+              </view>
+              <view class="b-name">{{list.recommendList[0].diversity}}种</view>
+            </view>
+          </view>
+        </view>
+        <view class="nutrient" wx:if="{{list.recommendList[0].flavor.length>0}}">
+          <view class="title-c">
+            <view class="title">口味</view>
+          </view>
+          <view class="info-box">
+            <view class="tag" wx:for="{{list.recommendList[0].flavor}}" wx:key="key">
+              {{item.name}}
+            </view>
+          </view>
+        </view>
+        <view class="nutrient" wx:if="{{list.recommendList[0].dietaryIntakes.length>0}}">
+          <view class="title-c">
+            <view class="title">过敏原</view>
+          </view>
+          <view class="info-box">
+            <view class="tag" wx:for="{{list.recommendList[0].dietaryIntakes}}" wx:key="key">
+              {{item.name}}
+            </view>
+          </view>
+        </view>
+        <view class="nutrient" wx:if="{{list.recommendList[0].other.length>0}}">
+          <view class="title-c">
+            <view class="title">其他标签</view>
+          </view>
+          <view class="info-box">
+            <view class="tag other" wx:for="{{list.recommendList[0].other}}" wx:key="key">
+              {{item.name}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <image mode="widthFix" class="bot-img" src="{{IMG_URL + '/api/mini/report_ai2.png'}}" />
+  </view> -->
+  <!-- 展开查看更多 -->
+  <view class="checkMore" bind:tap="check" wx:if="{{!more}}">
+    <view class="desc">点击查看更多商品说明</view>
+    <image src="/images/my_next.png" />
+  </view>
+  <view wx:if="{{more}}">
+    <view class="b-img">
+      <image mode="widthFix" src="{{setMealImg}}" />
+    </view>
+    <image class="make" mode="widthFix" style="width:750rpx;margin: 0 auto" src="https://prodstatic.weis1606.cn/api/smartFood/detail-1.png" />
+    <image class="make" mode="widthFix" style="width:750rpx;margin: 0 auto" src="https://prodstatic.weis1606.cn/api/smartFood/detail-2.png?a=1" />
+    <image class="make" mode="widthFix" style="width:750rpx;margin: 0 auto" src="https://prodstatic.weis1606.cn/api/smartFood/detail-3.png" />
+  </view>
+</view>
+<!-- 底部购物车 -->
+<view class="bot" hidden="{{type || !total.piece}}" wx:if="{{from != 'discover' && from != 'vote'}}" bind:tap="editCart">
+  <view class="cart" id="cart">
+    <image src="https://prodstatic.weis1606.cn/api/smartFood/%E7%BB%84%E4%BB%B6%EF%BC%8Ficon%EF%BC%8F%E8%B4%AD%E7%89%A9%E8%BD%A6.png" />
+    <view class="allNum {{scale ? 'active' : ''}} {{total.piece > 9 ? 'fang' : ''}} {{total.piece > 99 ? 'square' : ''}}" wx:if="{{total.piece>0}}">
+      {{total.piece}}
+    </view>
+  </view>
+  <view class="allPrice">
+    <!-- 现价 -->
+    <view class="price-t">
+      <view class="acturePrice">
+        <text>¥</text>
+        {{total.totalPrice>0 ? total.totalPrice : 0}}
+      </view>
+      <!-- 原价 -->
+      <view class="origin">¥{{total.totalOriginalPrice}}</view>
+    </view>
+    <text class="discount">已优惠{{filters.toFix(total.totalOriginalPrice - total.totalPrice)}}元</text>
+    <!-- <block wx:if="{{total.totalPrice !== 0 && total.totalOriginalPrice && total.totalOriginalPrice>total.totalPrice}}">
+      <text class="origin">¥{{total.totalOriginalPrice}}</text>
+      <text class="discount">
+        已优惠{{filters.toFix(total.totalOriginalPrice - total.totalPrice)}}元
+      </text>
+    </block> -->
+  </view>
+  <!-- 普通购买 可拼单 -->
+  <view class="spell" wx:if="{{total.dateList.length == 1 && total.dateList[0].category.length == 1 && !spellOrder && !spellGroup}}">
+    <view class="alone" catch:tap="buy">单独买</view>
+    <view class="spell-buy" catch:tap="spell" data-spell="true">
+      <view>拼单买</view>
+      <view>免配送费</view>
+    </view>
+  </view>
+  <view class="spell-order" bind:tap="spell" wx:elif="{{spellOrder || spellGroup}}">
+    <view>拼单买</view>
+    <view>免配送费</view>
+  </view>
+  <view class="btn" bind:tap="buy" wx:else>去结算</view>
+</view>
+<!-- 底部按钮 -->
+<!-- tfsStt 50预上架 60已上架 70已下架 -->
+<view class="bottomBtn" wx:if="{{from == 'discover'}}">
+  <view wx:if="{{tfsStt == '60'}}" class="remind active" data-reservetime="{{list.skuInfo[0].reserveTime}}" bind:tap="reserve">
+    去预定该菜品
+  </view>
+  <view wx:else class="remind {{subscribe?'':'active'}}" bind:tap="remind">
+    {{subscribe?'你已设置新菜上线提醒':'新菜上线时提醒我'}}
+  </view>
+</view>
+<view class="bottomBtn bottomBtn_vote" wx:if="{{from == 'vote' && skuInfo.skuStt == '60'}}" bind:tap="goOrderFn">
+  去点餐
+</view>
+<view wx:if="{{showComponent}}">
+  <!-- 先调用quitelogin 再加载组件 -->
+  <cp-login-view id="login-dialog" bind:updateSucc="updateLogin" />
+</view>
+<!-- 厨师简介 -->
+<van-popup show="{{showIntro}}" position="top" custom-style="border-radius:0rpx 0rpx 20rpx 20rpx;" bind:click-overlay="cookerIntroFn" z-index="99">
+  <view class="dialog-tip" style="padding-top:{{navStatusHeight * px2rpx + 40}}rpx;">
+    <image class="tip-l" class="icon" src="{{list.master.imgUrl}}" />
+    <view class="tip-r">
+      <view class="tip-r-man">
+        <view class="name">{{list.master.name}}</view>
+        <view class="name-e"></view>
+      </view>
+      <view class="tip-r-saying">{{list.master.introduce}}</view>
+    </view>
+  </view>
+  <view class="dialog-know" bind:tap="cookerIntroFn">好的，知道了</view>
+</van-popup>
+<!-- 分享套餐-底部弹窗 -->
+<cp-bottom-share model:show="{{showShare}}" bind:on-poster="saveShareTap"></cp-bottom-share>
+<!-- 海报 -->
+<canvas class="hide" canvas-id="share" style="width: 750rpx; height: {{marginTop}}px;"></canvas>
+<!-- 购物车弹窗 -->
+<view class="cartPoup" wx:if="{{showCart}}" catch:touchmove="true">
+  <view class="closePopup" bind:tap="hideCart"></view>
+  <view class="shopcart {{showCart ? 'active' : ''}}" wx:if="{{showCart}}">
+    <view class="wrap-date">
+      <image class="down" bind:tap="hideCart" src="/images/icon_down.png" />
+      <view class="title">购物车</view>
+      <view class="clear-box" bind:tap="clear" data-type="tip">
+        <image src="/images/clear.png" />
+        <view class="close clear">清空</view>
+      </view>
+    </view>
+    <view class="spell-tip">一次性购买一餐才可使用拼单免配送费</view>
+    <view class="skuList">
+      <scroll-view class="scroll" scroll-y="{{true}}">
+        <view class="list" wx:key="index1" wx:for="{{allCart}}" wx:for-item="item1" wx:for-index="index1">
+          <view class="heat-box" wx:for="{{item1.categoryCart}}" wx:key="key" wx:for-item="item2" wx:for-index="index2">
+            <view class="cateroy">
+              {{item1.dateTime}} {{cart[item2.category]}} {{item2.list[0].heatingPointIdName}}
+            </view>
+            <view class="wrap">
+              <view class="goods-wrap" wx:key="key" wx:if="{{item3.num}}" wx:for="{{item2.list}}" wx:for-item="item3" wx:for-index="index3">
+                <view class="l-img-box">
+                  <image class="img" src="{{item3.primaryImgUrl}}" />
+                </view>
+                <view class="goods-right">
+                  <view class="name">{{item3.skuname}}</view>
+                  <!-- <view class="tag-wrap">
+                                        <view class="tag {{item.type == '02' ? 'gm' : 'ph'}}" wx:key="key" wx:for="{{item3.dietLabelList}}">
+                                            {{item.name}}
+                                        </view>
+                                    </view> -->
+                  <view class="energy">热量{{item3.energy}}kcal</view>
+                  <view class="param">
+                    <view class="price">
+                      <view class="unit">￥</view>
+                      {{item3.discountPrice || item3.price}}
+                    </view>
+                    <!-- <view class="calculate">/{{item3.quality}}g</view> -->
+                  </view>
+                  <!-- 商品增减 -->
+                  <view class="operate">
+                    <image class="reduce" data-cid="{{item3.cid}}" data-category="{{item2.category}}" data-index1="{{index1}}" data-index2="{{index2}}" data-index3="{{index3}}" data-type="reduce" data-combo="{{item3.type == '01'  ? '01' : '00'}}" bind:tap="edit" src="/images/reduce.png" />
+                    <view class="num">{{item3.num}}</view>
+                    <image class="add" data-cid="{{item3.cid}}" data-category="{{item2.category}}" data-index1="{{index1}}" data-index2="{{index2}}" data-index3="{{index3}}" data-type="add" data-combo="{{item3.type == '01'  ? '01' : '00'}}" bind:tap="edit" src="/images/add.png" />
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+<!-- 清除购物车 -->
+<cp-confirm-dialog id="dialog" show="{{clearCartTip}}" title="确定清空购物车吗？" bind:on-cancel="cancelTap" bind:on-confirm="clear"></cp-confirm-dialog>

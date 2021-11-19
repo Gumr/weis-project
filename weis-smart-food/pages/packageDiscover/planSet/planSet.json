@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "cp-editPlan-dialog": "/components/cp-editPlan-dialog/cp-editPlan-dialog",
+    "cp-bottom-popup": "/components/cp-bottom-popup/cp-bottom-popup"
+  }
+}

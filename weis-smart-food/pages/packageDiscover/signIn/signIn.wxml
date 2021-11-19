@@ -1,0 +1,61 @@
+<!-- pages/packageDiscover/signIn/signIn.wxml -->
+<wxs module="util">
+  // 定位目前签到进度
+  function whichActive(todayIsSign, keepSignDay) {
+    var index = todayIsSign ? keepSignDay - 1 : keepSignDay
+
+    if(!todayIsSign && keepSignDay === 1) index = 0
+    return index
+  }
+  module.exports.whichActive = whichActive
+</wxs>
+<cp-nav-bar title-text="签到开红包" backIconColor></cp-nav-bar>
+<view class="signIn">
+  <!-- 签到周期 -->
+  <view class="sign-in-dates">
+    <view class="dates-tip">
+      <image src="{{imgPrefix + 'red_tips_bj.png'}}" />
+      <text class="dates-tip">记得每天签到哦，断签进度会重置</text>
+    </view>
+    <view class="dates-list">
+      <view class="dates-list__day" wx:for="{{signInDay}}" wx:key="day">
+        <image class="day-tip" wx:if="{{index === 3 || index === 6}}" src="{{item.tipIcon}}" />
+        <view class="day-box">
+          <image src="{{item.icon}}" />
+          <view class="{{signingDayInd === index ? 'active' : ''}}">{{item.cash || item.day}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="line-through"></view>
+  </view>
+  <!-- 当前签到天数 -->
+  <view class="sign-in-current">
+    <view class="current-tit">
+      {{!todayIsSign ? '连续第' + (signingDayInd + 1) + '天签到，开红包' : '已连续签到' + (signingDayInd + 1) + '天，明天继续哦'}}
+    </view>
+    <!-- 红包未打开 -->
+    <view class="current-hb" wx:if="{{!todayIsSign}}">
+      <image class="current-hb-bg" src="{{imgPrefix + 'red_2.png'}}" />
+      <image class="current-hb-open" animation="{{amData}}" bindtap="signinFn" src="{{imgPrefix + 'red_3.png'}}" />
+      <view class="current-hb-tap">点击开红包签到</view>
+    </view>
+    <!-- 开红包 -->
+    <view class="current-hb-opened" wx:else>
+      <view class="opened-part part-1 {{!isOpen ? 'opening' : 'opened'}}">
+        <image mode="widthFix" src="{{imgPrefix + 'red_5.png'}}" />
+      </view>
+      <view class="opened-part part-2">
+        <view class="amount">
+          <text>{{amount}}</text>
+          <text>元</text>
+        </view>
+        <image mode="widthFix" src="{{imgPrefix + 'red_6.png'}}" />
+      </view>
+      <view class="opened-part part-3 {{!isOpen ? 'opening' : 'opened'}}">
+        <image mode="widthFix" src="{{imgPrefix + 'red_4.png'}}" />
+        <view class="check" bind:tap="toRedPage">查看红包<image src="https://prodstatic.weis1606.cn/api/smartFood/red_next.png" /></view>
+        <view class="text" bind:tap="toIndex">用红包点餐</view>
+      </view>
+    </view>
+  </view>
+</view>

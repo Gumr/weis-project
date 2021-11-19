@@ -1,0 +1,39 @@
+<!--pages/index/index.ttml-->
+<cp-nav-bar title-text="维士小盒饭" title-style="color: #ffffff" background="#FA6400"></cp-nav-bar>
+<view class="index">
+	<!-- 轮播 -->
+    <view class="slideshow" wx:if="{{dietBanners && dietBanners.length > 0}}">
+        <swiper style="height: 300rpx" indicator-dots="{{false}}" circular autoplay="{{true}}" interval="{{4000}}" duration="{{400}}"  bindchange="slideshowChange">
+            <swiper-item wx:for="{{dietBanners}}" wx:key="key" data-type="{{item.linkType}}" data-url="{{item.link}}" bind:tap="slideshowTap">
+                <image class="slideshow__image" mode="aspectFill" src="{{item.imgUrl}}" />
+            </swiper-item>
+        </swiper>
+        <view class="slideshow__dots">
+            <view wx:for="{{dietBanners}}" wx:key="index" class="slideshow__dot {{index === currentSlideshow ? 'slideshow__dot--active' : ''}}"></view>
+        </view>
+    </view>
+    <!-- tab标签 -->
+    <scroll-view class="tab" scroll-x="{{true}}" style="width:690rpx;height: 80rpx;">
+        <view class="tabList {{tabIndex == index ? 'active' : ''}}" wx:for="{{tab}}" wx:key="index" data-index="{{index}}" bind:tap="tabTap">
+            {{item}}
+        </view>
+    </scroll-view>
+
+    <!-- 内容 -->
+    <view class="body">
+        <!-- 减脂餐 -->
+        <view class="fat">
+            <view class="list" tt:for="{{meal[tabIndex].list}}" data-tdpid="{{item.tdp_id}}" bindtap="detail">
+                <image class="img" mode="aspectFill" src="{{item.tdp_cover_img[0]}}" />
+                <view class="name">{{item.tdp_name}}</view>
+                <view class="bottom">
+                    <view class="price">
+                        <view class="price_now">¥<text>{{item.tdp_sale_price}}</text></view>
+                        <view class="price_origin">¥{{item.tdp_combo_price}}</view>
+                    </view>
+                    <view class="btn">马上抢</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,60 @@
+<!-- pages/market/sharePlay/index.wxml -->
+<cp-nav-bar home-icon="/images/backHome.png" background="transparent" backIconColor="black" userInfo="{{humanInfoWithScore}}"></cp-nav-bar>
+<view class="playcard">
+  <image class="topbg" mode="widthFix" src="{{imgPrefix}}share-play-bg.png" alt="" />
+  <image src="{{imgPrefix}}activedetail.png" class="activedetail" bindtap="toRules" />
+  <!-- 扑克牌 -->
+  <view class="playcard-poker">
+    <image class="pokerImg" src="https://prodstatic.weis1606.cn/api/smartFood/fanpai_self.png" />
+    <!-- 健康分 -->
+    <view class="poker__score">
+      <view class="poker__score__total">营养健康分：{{scoreForms.totalScore}}</view>
+      <view class="heal-score">
+        <cp-radar-panel radarStyle="width:424rpx;height:424rpx;" radius="50%" mode="image" score="{{score}}" />
+      </view>
+    </view>
+    <button class="shareBtn" open-type="share" wx:if="{{!isTimeout}}" hover-class="button-hover">
+      <image src="https://prodstatic.weis1606.cn/api/sodo/sharetypebtn.png" />
+    </button>
+    <view class="timeout" wx:else>
+      <image src="https://prodstatic.weis1606.cn/api/smartFood/share-timeout-slogan-new.png" />
+    </view>
+  </view>
+</view>
+<view class="shareList">
+  <view class="shareinfo">
+    <view class="cardslogn" style="margin-top:0rpx">菜要趁热吃，分享要趁早~</view>
+    <view class="cardslogn">距离分享结束还有</view>
+    <van-count-down use-slot class="control-count-down" time="{{ time }}" bind:change="onChange" bind:finish="finish">
+      <view class="cardslogn cutdown">
+        {{timeData.hours ? timeData.hours : 0 }}小时{{timeData.minutes ? timeData.minutes : 00}}分钟
+      </view>
+    </van-count-down>
+  </view>
+</view>
+<view class="shareLoading">
+  <image src="{{imgPrefix}}downline.png" />
+  <view class="shareinfo">
+    <view class="loadingtips" wx:if="{{sharePlayPlanList.length>0}}">
+      最高返现{{totalPrice}}元, 已翻出
+      <text>{{getPrice}}</text>
+      元
+    </view>
+    <text class="graycolor" wx:if="{{sharePlayPlanList.length>0}}">订单签收后，金额将返现到余额中</text>
+    <view class="progress" wx:if="{{sharePlayPlanList.length>0}}">
+      <progress percent="{{progress}}" activeColor="#FB892DFF" active stroke-width="14" border-radius="8" />
+    </view>
+    <view class="bglist" wx:if="{{sharePlayPlanList.length>0}}">
+      <view class="share-peo" wx:for="{{sharePlayPlanList}}" wx:key="index">
+        <view class="shview">
+          <image src="{{item.headImgUrl}}" />
+          <text>{{item.uName}}</text>
+        </view>
+        <view class="shmon">翻出{{item.tsppShareAmount}}元</view>
+      </view>
+    </view>
+    <view wx:if="{{sharePlayPlanList.length<=0}}" class="tips">
+      <text>最高返现{{totalPrice}}元，却没有人愿意帮我翻牌吗？\n  o(╥﹏╥)o</text>
+    </view>
+  </view>
+</view>

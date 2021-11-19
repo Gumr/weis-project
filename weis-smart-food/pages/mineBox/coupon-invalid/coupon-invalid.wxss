@@ -1,0 +1,314 @@
+.border {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 2rpx;
+  background: #e9e9e9;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+page {
+  background: #F3F4F5;
+}
+.coupon {
+  width: 100%;
+  height: 100%;
+  padding: 30rpx 35rpx 0;
+  position: relative;
+  background: #f3f4f5;
+}
+.coupon::before {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 2rpx;
+  background: #e9e9e9;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0;
+}
+.coupon .coupon-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.coupon .coupon-box .list {
+  position: relative;
+  width: 680rpx;
+  height: 192rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  color: #ffffff;
+  margin-bottom: 32rpx;
+}
+.coupon .coupon-box .list .bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.coupon .coupon-box .list .c-t {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  box-sizing: border-box;
+  position: relative;
+}
+.coupon .coupon-box .list .c-t .c-left {
+  width: 192rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: #fff;
+}
+.coupon .coupon-box .list .c-t .c-left .amount {
+  font-size: 36rpx;
+  font-family: "DINCondensedC";
+  font-weight: bold;
+  line-height: 24rpx;
+}
+.coupon .coupon-box .list .c-t .c-left .amount text {
+  font-size: 120rpx;
+  font-family: "DINCondensedC";
+  font-weight: bold;
+  line-height: 90rpx;
+  margin-left: -12rpx;
+}
+.coupon .coupon-box .list .c-t .c-left .limit {
+  font-size: 24rpx;
+  font-weight: bold;
+  line-height: 33rpx;
+  margin-top: 10rpx;
+}
+.coupon .coupon-box .list .c-t .c-right {
+  padding: 30rpx 0 20rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #666666;
+}
+.coupon .coupon-box .list .c-t .c-right .name {
+  max-width: 256rpx;
+  font-size: 32rpx;
+  line-height: 36rpx;
+  overflow: hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-line-clamp: 2;
+  font-weight: bold;
+}
+.coupon .coupon-box .list .c-t .c-right .bot-box .date {
+  font-size: 22rpx;
+  color: #A9A9A9;
+  margin-bottom: 10rpx;
+}
+.coupon .coupon-box .list .c-t .c-right .bot-box .userule {
+  font-size: 22rpx;
+  color: #A9A9A9;
+  display: flex;
+  align-items: center;
+}
+.coupon .coupon-box .list .c-t .c-right .bot-box .userule image {
+  width: 20rpx;
+  height: 20rpx;
+  margin-left: 6rpx;
+}
+.coupon .coupon-box .list .c-t .seal {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 168rpx;
+  height: 120rpx;
+}
+.coupon .no {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+}
+.coupon .no image {
+  width: 268rpx;
+  height: 268rpx;
+}
+.coupon .no .desc {
+  text-align: center;
+  color: #a9a9a9;
+  font-size: 22rpx;
+}
+.coupon .over {
+  font-size: 28rpx;
+  color: #000000;
+  line-height: 28rpx;
+  display: flex;
+  justify-content: center;
+  margin: 50rpx 0;
+}
+.redPacket {
+  width: 100%;
+  height: 100%;
+  padding: 30rpx 35rpx 0;
+  position: relative;
+  background: #f3f4f5;
+}
+.redPacket::before {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 2rpx;
+  background: #e9e9e9;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0;
+}
+.redPacket .redPacket-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.redPacket .redPacket-box .list {
+  position: relative;
+  width: 700rpx;
+  height: 212rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  color: #ffffff;
+  margin-bottom: 12rpx;
+}
+.redPacket .redPacket-box .list .bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.redPacket .redPacket-box .list .c-t {
+  width: 680rpx;
+  height: 192rpx;
+  display: flex;
+  box-sizing: border-box;
+  position: relative;
+  margin: 10rpx;
+}
+.redPacket .redPacket-box .list .c-t .c-left {
+  margin-left: 12rpx;
+  width: 192rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ABA9A9;
+}
+.redPacket .redPacket-box .list .c-t .c-left .amount {
+  font-size: 36rpx;
+  font-family: "DINCondensedC";
+  font-weight: bold;
+  line-height: 24rpx;
+}
+.redPacket .redPacket-box .list .c-t .c-left .amount text {
+  font-size: 90rpx;
+  font-family: "DINCondensedC";
+  font-weight: bold;
+  line-height: 90rpx;
+  margin-left: -12rpx;
+}
+.redPacket .redPacket-box .list .c-t .c-left .limit {
+  font-size: 24rpx;
+  font-weight: bold;
+  line-height: 33rpx;
+  margin-top: 10rpx;
+}
+.redPacket .redPacket-box .list .c-t .c-right {
+  margin-left: 12rpx;
+  padding: 30rpx 0 20rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #FFFFFF;
+}
+.redPacket .redPacket-box .list .c-t .c-right .name {
+  max-width: 256rpx;
+  font-size: 32rpx;
+  line-height: 36rpx;
+  overflow: hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-line-clamp: 2;
+  font-weight: bold;
+}
+.redPacket .redPacket-box .list .c-t .c-right .bot-box .date {
+  font-size: 22rpx;
+  color: #FFFFFF;
+  margin-bottom: 10rpx;
+}
+.redPacket .redPacket-box .list .c-t .c-right .bot-box .userule {
+  font-size: 22rpx;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+}
+.redPacket .redPacket-box .list .c-t .c-right .bot-box .userule image {
+  width: 20rpx;
+  height: 20rpx;
+  margin-left: 6rpx;
+}
+.redPacket .redPacket-box .list .c-t .seal {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 168rpx;
+  height: 120rpx;
+}
+.redPacket .no {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+}
+.redPacket .no image {
+  width: 268rpx;
+  height: 268rpx;
+}
+.redPacket .no .desc {
+  text-align: center;
+  color: #a9a9a9;
+  font-size: 22rpx;
+}
+.redPacket .over {
+  font-size: 28rpx;
+  color: #000000;
+  line-height: 28rpx;
+  display: flex;
+  justify-content: center;
+  margin: 50rpx 0;
+}

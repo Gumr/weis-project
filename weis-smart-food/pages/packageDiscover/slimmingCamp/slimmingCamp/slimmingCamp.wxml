@@ -1,0 +1,194 @@
+<!-- pages/marketing/slimmingCamp/slimmingCamp.wxml -->
+<cp-nav-bar title-text="牛年瘦身符" backIconColor mode="home"></cp-nav-bar>
+
+<view class="container" style="padding-bottom: {{isIpx ? 182 : 120}}rpx;">
+  <image
+    class="image banner"
+    src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/new_kv_bj.png"
+  />
+  <view class="header">
+    <view class="countdown-bar" wx:if="{{showCountdown}}">
+      <view class="content__countdown">
+        <view class="content__label">点餐倒计时：</view>
+        <van-count-down use-slot time="{{ countDown.time }}" bind:change="countDownChange">
+          <view class="flex-items-center">
+            <view class="count-down__time">{{countDown.data.days}}</view>
+            <view class="count-down__unit">天</view>
+            <view class="count-down__time">{{countDown.data.hours}}</view>
+            <view class="count-down__unit">时</view>
+            <view class="count-down__time">{{countDown.data.minutes}}</view>
+            <view class="count-down__unit">分</view>
+            <view class="count-down__time">{{countDown.data.seconds}}</view>
+            <view class="count-down__unit">秒</view>
+          </view>
+        </van-count-down>
+      </view>
+    </view>
+    <view
+      class="content__card-list"
+      style="border-radius: {{showCountdown ? '0 0 20rpx 20rpx' : '20rpx'}};"
+    >
+      <view class="content__card" bind:tap="integralTap">
+        <image
+          class="content__icon"
+          src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/new_integral.png"
+        />
+        <view class="content__btn">我的积分</view>
+      </view>
+      <view class="content__card" bind:tap="rankTap">
+        <image
+          class="content__icon"
+          src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/new_ranking.png"
+        />
+        <view class="content__btn">排行榜</view>
+      </view>
+    </view>
+  </view>
+  <view class="content">
+    <image
+      class="image"
+      style="height: 803rpx;"
+      src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/new_content_1.png"
+    />
+    <image
+      class="image"
+      style="height: 582rpx;"
+      src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/new_content_2.png"
+    />
+    <image
+      class="image"
+      style="height: 874rpx;"
+      src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/new_content_3.png"
+    />
+
+    <view id="camps" class="card">
+      <image
+        class="card__title"
+        src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/new_content_10.png"
+      />
+      <view class="team flex" wx:for="{{campList}}" wx:key="index">
+        <view class="team-avatar">
+          <image class="team-avatar__image" src="{{item.leaderImg}}" />
+          <image
+            class="team-avatar__tag"
+            src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/new_content_10_3.png"
+          />
+        </view>
+        <view class="team__right">
+          <view
+            class="team__name font-28 font-bold"
+            style="margin-bottom: 24rpx;"
+          >营长：{{item.leaderName}}</view>
+          <view
+            class="team__label font-20"
+            style="margin-bottom: 12rpx;"
+          >人数：{{item.camp.presentAmountLimit}}/{{item.camp.amountLimit}}</view>
+          <view
+            class="team__label font-20"
+            style="margin-bottom: 30rpx;"
+          >开营时间：{{item.startTime}}-{{item.endTime}}</view>
+          <view style="font-size: 0;" wx:if="{{ifJoin === '01'}}" bind:tap="inviteTap">
+            <image
+              class="team__invite-image"
+              src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/new_content_10_2.png"
+            />
+            <view class="team__btn font-24">邀请</view>
+          </view>
+          <view
+            class="team__btn font-24"
+            wx:else
+            bind:tap="joinTap"
+            data-id="{{item.activity.activityId}}"
+            data-cid="{{item.camp.campId}}"
+          >预约加入</view>
+        </view>
+        <image
+          wx:if="{{ifJoin === '01'}}"
+          class="team__tag"
+          src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/new_content_10_1.png"
+        />
+      </view>
+      <view wx:if="{{campList.length<=0}}" class="camp-placholder font-28">
+        <image
+          class="camp-placholder__image"
+          src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/pick_empty.png"
+        />
+        <view>一吃就瘦的减脂营，正在酝酿中...</view>
+        <view>请耐心等一等(っ´Ι`)っ</view>
+      </view>
+    </view>
+
+    <image
+      class="image"
+      style="height: 1344rpx;"
+      src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/new_content_4.png"
+    />
+    <image
+      catch:tap="integralRuleTap"
+      class="image"
+      style="height: 1218rpx;"
+      src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/new_content_5.png"
+    />
+    <image
+      class="image"
+      style="height: 1576rpx;"
+      src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/new_content_6.png"
+    />
+  </view>
+</view>
+<fixed-button
+  wx:if="{{historyActivity || btnTitle}}"
+  background-color="#FF5443"
+  use-slot
+  custom-style="padding-top: 20rpx;"
+>
+  <view class="flex-items-center">
+    <view class="btn btn__l" catch:tap="leftBtnTap" wx:if="{{historyActivity}}">查看结营报告</view>
+    <view class="btn-box">
+      <view class="btn btn__r" catch:tap="btnTap">{{btnTitle}}</view>
+    </view>
+  </view>
+</fixed-button>
+<confirm-dialog
+  show="{{warnDialog}}"
+  title="提示"
+  show-cancel="{{false}}"
+  bind:on-confirm="warnDialogConfirm"
+>
+  <view class="dialog dialog__label">
+    <view class="font-32" style="line-height:38rpx">只有目标为保持体型，减脂减重，增肌增重用户可以参加</view>
+  </view>
+</confirm-dialog>
+<confirm-dialog
+  bind:on-confirm="dialogConfirm"
+  bind:on-cancel="dialogCancel"
+  show="{{dialog.show}}"
+  title="预约开营通知"
+  show-cancel="{{false}}"
+  confirm-disabled="{{dialog.confirmDisabled}}"
+  show-close
+  auto-confirm="{{false}}"
+>
+  <view class="dialog">
+    <view class="dialog__label">
+      <view style="line-height:38rpx">预约成功后将收到微信消息通知！</view>
+      <view style="line-height:38rpx">3个工作日内将有客服联系通知您最新消息。</view>
+    </view>
+    <view class="dialog__input">
+      <input
+        value="{{phone}}"
+        maxlength="11"
+        placeholder="请输入您的手机号"
+        type="number"
+        bind:input="phoneInput"
+      />
+    </view>
+  </view>
+</confirm-dialog>
+<invite-dialog
+  wx:if="{{ifJoin === '01'}}"
+  model:show="{{showShare}}"
+  aid="{{activityId}}"
+  uid="{{uid}}"
+  name="{{uname}}"
+></invite-dialog>

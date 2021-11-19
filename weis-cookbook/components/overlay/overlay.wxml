@@ -1,0 +1,4 @@
+<!--components/mask/mask.wxml-->
+<view wx-if="{{ show }}" catchtap="handleClick" catchtouchmove="ture">
+  <view class="overlay" style="{{ bg }}"></view>
+</view>

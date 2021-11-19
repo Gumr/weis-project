@@ -1,0 +1,28 @@
+<!--pages/packageDiscover/slimmingCamp/InviteDialog/InviteDialog.wxml-->
+<van-popup show="{{show}}" custom-style="background: transparent;" capture-catch:touchmove="noop">
+  <view style="text-align: center;">
+    <view style="position: relative; display: inline-block;">
+      <image
+        class="share-poster"
+        src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/reduce_share_poster.png"
+      />
+      <view class="share-tag font-26">来自：“{{name}}”的邀请</view>
+      <image
+        bind:tap="closeTap"
+        class="share-close"
+        src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/reduce_share_off.png"
+      />
+      <view class="share-qrcode">
+        <image class="share-qrcode__image" src="{{qrcode}}" />
+      </view>
+    </view>
+    <view class="share-btns">
+      <view class="share-btn share-btn__left font-bold" bind:tap="downloadTap">下载海报</view>
+      <button hover-class="none" open-type="share">
+        <view class="share-btn share-btn__right font-bold">发送好友</view>
+      </button>
+    </view>
+  </view>
+</van-popup>
+
+<canvas class="hide" canvas-id="share" style="width: 636rpx; height: 969rpx;"></canvas>

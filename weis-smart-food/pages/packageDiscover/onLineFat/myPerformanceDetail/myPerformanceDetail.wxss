@@ -1,0 +1,123 @@
+.myPerformance {
+  width: 750rpx;
+}
+.myPerformance .Com {
+  font-size: 32rpx!important;
+}
+.myPerformance .sumPerformance {
+  height: 460rpx;
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+  margin-top: -230rpx;
+}
+.myPerformance .sumPerformance .IncomeDetail {
+  padding-top: 260rpx;
+  display: flex;
+  margin: 50rpx 40rpx 50rpx 40rpx;
+  justify-content: space-between;
+}
+.myPerformance .sumPerformance .IncomeDetail view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.myPerformance .sumPerformance .IncomeDetail view text:nth-child(1) {
+  font-size: 42rpx;
+  font-family: DINCondensed-Bold, DINCondensed;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+.myPerformance .sumPerformance .IncomeDetail view text:nth-child(2) {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FED5BE;
+}
+.myPerformance .sumPerformance .IncomeDetail .tipstxt {
+  position: relative;
+  color: #FED5BE;
+}
+.myPerformance .sumPerformance .IncomeDetail .tipsimg {
+  width: 22rpx;
+  height: 22rpx;
+  position: absolute;
+  right: -30rpx;
+  top: 8rpx;
+}
+.myPerformance .myPerformanceList {
+  height: 1000rpx;
+  background: #FFFFFF;
+  border-radius: 40rpx 40rpx 0rpx 0rpx;
+  padding: 50rpx 30rpx;
+  margin-top: -30rpx;
+}
+.myPerformance .myPerformanceList .title {
+  font-size: 30rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 24rpx;
+}
+.myPerformance .myPerformanceList .list {
+  height: 119rpx;
+  line-height: 119rpx;
+  border-top: 1rpx solid #EEEEEE;
+  display: flex;
+  justify-content: space-between;
+}
+.myPerformance .myPerformanceList .list .date {
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #7F7F7F;
+}
+.myPerformance .myPerformanceList .list .date image {
+  width: 68rpx;
+  height: 68rpx;
+  vertical-align: middle;
+  margin-right: 20rpx;
+}
+.myPerformance .myPerformanceList .list .listmoney {
+  font-size: 30rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 600;
+  color: #000000;
+}
+.myPerformance .myPerformanceList .list .listmoney image {
+  width: 24rpx;
+  height: 24rpx;
+  align-items: center;
+}
+.dialog {
+  width: 640rpx;
+  height: 300rpx;
+  padding: 34rpx 65rpx;
+  text-align: center;
+}
+.dialog .tip-label {
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 600;
+  color: #333333;
+}
+.dialog .content {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #666666;
+  margin-top: 44rpx;
+}
+.null {
+  margin-top: 123rpx;
+  text-align: center;
+}
+.null image {
+  width: 320rpx;
+  height: 240rpx;
+}
+.null view {
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #A9A9A9;
+}

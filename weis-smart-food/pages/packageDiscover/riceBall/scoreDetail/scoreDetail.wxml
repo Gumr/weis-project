@@ -1,0 +1,37 @@
+<!-- pages/packageDiscover/riceBall/scoreDetail/scoreDetail.wxml -->
+<wxs module="tools">
+  module.exports.getUnit = function(tabIndex) {
+    var units = ['分', 'kcal', 'kg', 'mmol/L', 'mmHg']
+    return units[tabIndex]
+  }
+</wxs>
+<cp-nav-bar userInfo="{{seeInfo}}" color="#333"></cp-nav-bar>
+<!-- 移除提示 -->
+<cp-confirm-dialog show="{{tipDialog}}" confirm-text="确定" auto-confirm="{{true}}" bind:on-confirm="clearUser">
+  <view class="tip-label">确定退出该饭团吗？</view>
+</cp-confirm-dialog>
+<cp-confirm-dialog class="confirmDialog" show="{{showConfirm}}" bind:on-confirm="dismissRiceBall">
+  <view class="title">确定解散你的饭团吗？</view>
+</cp-confirm-dialog>
+<view class="container">
+  <!-- <scroll-view class="tabs" scroll-x="{{true}}" scroll-with-animation="{{true}}" scroll-into-view="{{toView}}">
+    <view class="tabs-box">
+      <view class="tabs-item {{selectIndex == index ? 'active' : ''}}" id="_{{index}}" style="width: {{1 / tabs.length * 100}}%;" wx:for="{{tabs}}" wx:key="index" data-index="{{index}}" bindtap="switchTab">
+        {{item.name}}
+      </view>
+    </view>
+  </scroll-view> -->
+  <view class="scorelist">
+    <view class="scorelist__each" wx:for="{{tabs[selectIndex].score}}" wx:key="key">
+      <view class="date">{{item.time}}</view>
+      <view class="score">{{item.scoreValue}}{{tools.getUnit(selectIndex)}}</view>
+    </view>
+  </view>
+  <!-- <view class="btn remove" wx:if="{{groupInfo.uid == selfInfo.uid && selfInfo.uid != seeInfo.uid}}" bindtap="clear">
+    移出TA
+  </view> -->
+  <view class="btn remove" wx:if="{{groupInfo.uid != seeInfo.uid && selfInfo.uid == seeInfo.uid}}" bindtap="clear">
+    退出该团
+  </view>
+  <view class="btn remove" wx:if="{{chiefUid == selfInfo.uid}}" bindtap="preOperateFn">解散该团</view>
+</view>

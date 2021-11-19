@@ -1,0 +1,120 @@
+.integral {
+  height: 100%;
+}
+.integral .top-bg {
+  width: 750rpx;
+  height: 343rpx;
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+  position: relative;
+  box-sizing: border-box;
+  padding-left: 40rpx;
+}
+.integral .top-bg image {
+  width: 391rpx;
+  height: 356rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.integral .top-bg .title {
+  font-size: 70rpx;
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 70rpx;
+  padding-top: 58rpx;
+}
+.integral .top-bg .desc {
+  font-size: 28rpx;
+  color: #ffffff;
+  margin: 28rpx 0 20rpx 0;
+}
+.integral .top-bg .status {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 36rpx;
+  background: linear-gradient(332deg, #ffc202 0%, #ffdf0f 100%);
+  border-radius: 0px 22rpx 22rpx 22rpx;
+  padding: 11rpx 20rpx;
+  font-size: 22rpx;
+  font-weight: bold;
+  color: #935131;
+}
+.integral .box {
+  background: #ffffff;
+  border-radius: 40rpx 40rpx 20rpx 20rpx;
+  transform: translateY(-40rpx);
+  box-sizing: border-box;
+  padding: 60rpx 30rpx 0;
+}
+.integral .box .tab-box {
+  height: 52rpx;
+  line-height: 52rpx;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 26rpx;
+  color: #a9a9a9;
+  padding: 0 20rpx;
+  margin: 47rpx 0;
+}
+.integral .box .tab-box text:nth-child(1) {
+  margin-right: 136rpx;
+}
+.integral .box .tab-box text:nth-child(2) {
+  margin-right: 358rpx;
+}
+.integral .box .list-box {
+  box-sizing: border-box;
+  padding: 0 20rpx;
+}
+.integral .box .list-box .list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60rpx;
+  height: 88rpx;
+}
+.integral .box .list-box .list .left image {
+  width: 50rpx;
+  height: 58rpx;
+}
+.integral .box .list-box .list .left .num {
+  font-size: 42rpx;
+  font-family: "DINCondensedC";
+  font-weight: bold;
+  color: #a9a9a9;
+}
+.integral .box .list-box .list .middle {
+  width: 466rpx;
+  display: flex;
+  align-items: center;
+}
+.integral .box .list-box .list .middle .icon {
+  width: 88rpx;
+  height: 88rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+}
+.integral .box .list-box .list .middle .name {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #333333;
+}
+.integral .box .list-box .list .right {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #fe5e0f;
+}
+.integral .box .my-box .list {
+  margin-bottom: 0;
+}
+.integral .box .my-box .middle {
+  position: relative;
+}
+.integral .box .my-box .lose_crown {
+  width: 38rpx;
+  height: 36rpx;
+  position: absolute;
+  left: 64rpx;
+  top: -8px;
+}

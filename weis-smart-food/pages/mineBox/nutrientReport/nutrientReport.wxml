@@ -1,0 +1,78 @@
+<!--pages/mineBox/nutrientReport/nutrientReport.wxml-->
+<!-- {{share?'':'height: 50rpx;line-height: 50rpx;background: #DD6A1D;border-radius: 25rpx;'}} -->
+<cp-nav-bar 
+  title-text="{{title}}"
+  titleStyle="font-size: 32rpx;font-weight: blod;color: #fff;{{share?'':'width: 96%;height: 50rpx;line-height: 50rpx;background: #DD6A1D;border-radius: 25rpx;'}}"
+  background="transparent"
+  navBgImg="https://prodstatic.weis1606.cn/api/smartFood/navBgImg_top.png"
+  backIconColor='white'
+  zIndex="{{showTime ? 10002 : 100}}"
+  bind:titleTextTap="titleTextTap">
+</cp-nav-bar>
+
+<view class="nutrientReport">
+    <image class="navBarBg" src="https://prodstatic.weis1606.cn/api/smartFood/navBgImg_bottom.png" style="top:{{navStatusHeight * px2rpx}}rpx" />
+    <!-- 头部-进度条 -->
+    <view class="header">
+        <view class="title">
+          <text>{{headerData.title}}</text>
+          <text>({{headerData.unit}})</text>
+        </view>
+        <view class="content" data-fromtype="{{headerData.fromType}}" data-name="{{headerData.title}}" data-unit="{{headerData.unit}}" bind:tap="goDetail">
+            <view class="list" wx:for="{{headerData.list}}" wx:key="key">
+              <view class="list_name">{{item.name}}</view>
+              <view class="list_progress">
+                <view style="width: {{item.width}};background: {{item.bgColor}}"></view>
+              </view>
+              <view class="list_value">{{item.value}}</view>
+          </view>
+        </view>
+    </view>
+    <!-- 营养素 -->
+    <view class="nutrient">
+      <view class="title">
+        <view class="name">营养素</view>
+        <view class="share" wx:if="{{!share}}">
+            <image src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/nutrient_share.png" />
+            <button open-type="share"></button>
+        </view>
+      </view>
+
+      <view class="circle">
+          <cp-data-pie
+            wx:if="{{customOption}}"
+            mode="image"
+            delay="{{400}}"
+            custom-style="width: 630rpx;height: 500rpx;"
+            data="{{pieData}}"
+            customOption="{{customOption}}"
+            ishighlight="{{false}}"
+          ></cp-data-pie>
+      </view>
+
+      <view class="info">
+        <view class="name">
+            <view>营养素</view>
+            <view>摄入<text>(g)</text></view>
+            <view>计划<text>(g)</text></view>
+        </view>
+         <view class="content">
+           <view class="list" wx:for="{{infoData}}" wx:key="key" data-fromtype="{{item.fromType}}" data-name="{{item.name}}" data-unit="{{item.unit}}" bind:tap="goDetail">
+            <view class="list_name">{{item.name}}</view>
+            <view class="list_intake" style="color: {{item.actual > item.plan && item.plan? '#FA6400':'#18C5C1'}}">{{item.actual}}</view>
+            <view class="list_plan">{{item.plan}}</view>
+            <image class="list_img" wx:if="{{item.fromType}}" src="/images/list_next.png" />
+          </view>
+         </view>
+      </view>
+      
+    </view>
+    <!-- 提示 -->
+    <view class="tip">* 盐量和食物多样性只计算点餐后自动打卡的菜品</view>
+</view>
+
+<!-- 日历 -->
+<view class="popupshow {{ showTime ? 'active' : ''}}" style="top: {{navStatusHeight}}px;">
+    <multiSelect-calendar id="multiSelect" calendarConfig="{{calendarConfig}}" bind:sure="sureTime"></multiSelect-calendar>
+</view>
+<view class="mask" wx:if="{{showTime}}" bindtap="cancelTime"  style="margin-top:{{navStatusHeight * px2rpx}}rpx"></view>  

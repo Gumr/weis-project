@@ -1,0 +1,151 @@
+<!--pages/packSubAccount/coachPackage/coachPackage.wxml-->
+<cp-nav-bar title-text="减脂餐单" backIconColor="white" color="#fff" background="transparent"></cp-nav-bar>
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
+<view class="slim" wx:if="{{hideLoad}}" style="padding-top:{{calHeight}}px">
+  <view class="head" style="padding-top: {{navStatusHeight}}px;">
+    <view class="calendar">
+      <view class="cal-box">
+        <scroll-view class="scroll" scroll-x="{{true}}">
+          <view class="date {{index == selectIndex ? 'active' : ''}}" wx:for="{{dateList}}" wx:key="index" bind:tap="select" data-index="{{index}}">
+            <view class="d-left">
+              <view class="month">{{item.month}}</view>
+              <view class="name">月</view>
+            </view>
+            <view class="day">{{item.day}}</view>
+            <view class="week">{{item.week}}</view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+  <view class="meal-box" wx:if="{{healthyMenus && healthyMenus.length>0}}">
+    <view class="meal" wx:for="{{healthyMenus}}" wx:key="index">
+      <view class="ct-box">
+        <view class="title">{{item.categoryType}}</view>
+        <view class="status">
+          <view class="status-sub sub-free" data-category-type="{{item.categoryType}}" data-index="{{index}}" bindtap="freeOrder">
+            自由点餐
+          </view>
+          <view class="status-sub sub-change" bind:tap="change" data-category-type="{{item.categoryType}}" data-index="{{index}}">
+            换一套
+          </view>
+        </view>
+      </view>
+      <view class="day-data">
+        <view class="t-box">
+          <view class="t-name">当餐数据</view>
+          <view class="dif">差值/计划摄入</view>
+        </view>
+        <view class="data-box">
+          <view class="circle">
+            <van-circle mode="image" id="circle" value="{{item.energyPercent > 100 ? 100 : item.energyPercent}}" color="{{item.energyDifference > 0 ? '#FF5959' : '#FCA649'}}" layer-color="#E9E9E9" stroke-width="5" size="{{70}}">
+              <view class="today">
+                <view class="name">能量kcal</view>
+                <view class="percent">
+                  <view class="energy {{item.energyDifference > 0 ? 'active' : ''}}">
+                    <view wx:if="{{item.energyDifference > 0}}">+</view>
+                    {{item.energyDifference}}
+                  </view>
+                  <view class="denom">/{{item.planDetail.totalKcal}}</view>
+                </view>
+              </view>
+            </van-circle>
+          </view>
+          <view class="progress">
+            <view class="pro-box">
+              <view class="name">蛋白质</view>
+              <view class="bar">
+                <van-progress percentage="{{item.proteinPercent > 100 ? 100 : item.proteinPercent}}" show-pivot="{{false}}" color="{{item.proteinPercent > 100 ? '#FF5959' : '#FCA649'}}" track-color="#E9E9E9" stroke-width="6" />
+              </view>
+              <view class="num">
+                <view class="acture {{item.proteinPercent > 100 ? 'active' : ''}}">
+                  <view wx:if="{{item.proteinPercent > 100}}">+</view>
+                  {{item.proteinDifference}}g
+                </view>
+                /
+                <view class="all">{{item.planDetail.proteinTotal}}g</view>
+              </view>
+            </view>
+            <view class="pro-box">
+              <view class="name">脂肪</view>
+              <view class="bar">
+                <van-progress percentage="{{item.fatPercent > 100 ? 100 : item.fatPercent}}" show-pivot="{{false}}" color="{{item.fatPercent > 100 ? '#FF5959' : '#FCA649'}}" track-color="#E9E9E9" stroke-width="6" />
+              </view>
+              <view class="num">
+                <view class="acture {{item.fatPercent > 100 ? 'active' : ''}}">
+                  <view wx:if="{{item.fatPercent > 100}}">+</view>
+                  {{item.fatDifference}}g
+                </view>
+                /
+                <view class="all">{{item.planDetail.fatTotal}}g</view>
+              </view>
+            </view>
+            <view class="pro-box">
+              <view class="name">碳水</view>
+              <view class="bar">
+                <van-progress percentage="{{item.carbonwaterPercent > 100 ? 100 : item.carbonwaterPercent}}" show-pivot="{{false}}" color="{{item.carbonwaterPercent > 100 ? '#FF5959' : '#FCA649'}}" track-color="#E9E9E9" stroke-width="6" />
+              </view>
+              <view class="num">
+                <view class="acture {{item.carbonwaterPercent > 100 ? 'active' : ''}}">
+                  <view wx:if="{{item.carbonwaterPercent > 100}}">+</view>
+                  {{item.carbonwaterDifference}}g
+                </view>
+                /
+                <view class="all">{{item.planDetail.carbohydrateTotal}}g</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="good-box">
+        <scroll-view class="good-scroll" scroll-x="{{true}}" style="width:653rpx">
+          <view class="good" wx:for="{{item.getCategoryList}}" wx:for-item="sku" wx:for-index="skuIndex" wx:key="skuIndex">
+            <view class="icon-box" bind:tap="changeSingleSkuTap" data-cid="{{sku.cid}}" data-category-index="{{index}}" data-sku-index="{{skuIndex}}" data-category="{{item.planDetail.category}}">
+              <image class="icon" src="{{sku.primaryImgUrl}}" />
+              <!-- <view class="icon-box__text">点击更换</view> -->
+            </view>
+            <view class="name">{{sku.skuname}}</view>
+            <view class="trace">
+              <view class="trace-text">能量 {{sku.energy}}kcal</view>
+              <view class="trace-text">蛋白质 {{sku.protein}}g</view>
+              <view class="trace-text">脂肪 {{sku.fat}}g</view>
+              <view class="trace-text">碳水 {{sku.carbonwater}}g</view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+      <view class="price">
+        <text>合计：</text>
+        <text class="price-text">￥{{item.priceAfterDiscount}}</text>
+        <del style="text-decoration:line-through;margin-left:6rpx;color: #808080;font-size: 18rpx">
+          ￥{{item.tatolPrice}}
+        </del>
+      </view>
+    </view>
+  </view>
+  <view class="loading" wx:else>
+    <van-loading size="20" text-size="12" color="#FF5959" type="spinner" vertical>加载中...</van-loading>
+  </view>
+  <view class="btn-box">
+    <view class="btn button--primary" bind:tap="sure">选好了</view>
+    <view class="discount" wx:if="{{discount != 10}}">
+      <text>你享受</text>
+      <text>{{discount}}折</text>
+      <text>优惠</text>
+      <text class="triangle"></text>
+    </view>
+  </view>
+</view>
+<view class="snow" style="background:#FFFFFF" wx:else>
+  <view class="snowflake">
+    <image class="load_rotate" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/load_rotate.png" />
+    <image class="leaf leaf1" src="/images/leaf.png" />
+    <image class="leaf leaf2" src="/images/leaf.png" />
+    <image class="leaf leaf3" src="/images/leaf.png" />
+    <image class="leaf leaf4" src="/images/leaf.png" />
+    <view class="progress-animation"></view>
+    <view class="mark"></view>
+  </view>
+  <view class="ready">正在准备餐单…</view>
+</view>
+

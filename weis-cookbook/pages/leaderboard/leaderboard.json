@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "refresh": "/components/refresh/refresh",
+    "van-loading": "/components/vant/loading/index"
+  }
+}

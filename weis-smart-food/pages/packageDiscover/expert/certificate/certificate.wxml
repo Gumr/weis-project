@@ -1,0 +1,9 @@
+<!--pages/packageDiscover/coach/certificate/certificate.wxml-->
+<cp-nav-bar title-text="专业证书" background="#FFFFFF"></cp-nav-bar>
+<view class="certificate">
+    <view class="list" wx:if="{{dataList.length > 0}}" wx:for="{{dataList}}">
+        <image class="list__img" src="{{item}}" mode="aspectFit" data-imageurl="{{item}}" bind:tap="previewImage" />
+        <!-- <view class="list__name">{{item.name}}</view> -->
+    </view>
+    <cp-null show="{{dataList.length == 0}}" imgSrc="https://prodstatic.weis1606.cn/api/smartFood/null_certificate.png" text="暂无证书"></cp-null>
+</view>

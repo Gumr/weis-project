@@ -1,0 +1,76 @@
+<!-- pages/packageDiscover/riceBall/establish/establish.wxml -->
+<cp-nav-bar title-text="{{statusType == '' ?'创建':'编辑'}}我的饭团" background="#FFCB52" />
+<cp-rb-calendar id="calendar" show="{{showCalendar}}" statusType="{{statusType}}" dateType="{{dateType}}" selectDates="{{selectDates}}" bind:select="selectDate" bind:close="closeFn" />
+<view class="container">
+  <view class="header">
+    <image class="icon" src="{{preImg + '/meal_details_picture2.png'}}" />
+  </view>
+  <view class="steps">
+    <view class="steps__one steps__one--cover">
+      <view class="steps__one-label">饭团封面</view>
+      <view class="steps-imgs">
+        <view class="imgs-add" wx:if="{{!trrUrl}}" bind:tap="uploadImg">
+          <image class="icon" mode="aspectFill" src="{{preImg + '/icon_riceball_camera.png'}}" />
+        </view>
+        <!-- 饭团封面 -->
+        <view class="imgs-cover" wx:else>
+          <image class="icon icon-close" bind:tap="closeImg" src="{{preImg + '/icon_riceball_close.png'}}" />
+          <image class="icon" src="{{trrUrl}}" />
+        </view>
+      </view>
+    </view>
+    <view class="steps__one">
+      <view class="steps__one-label">饭团名称</view>
+      <input type="text" placeholder="输入饭团名称 (最多20字)" disabled="{{showCalendar}}" maxlength="20" bindinput="ballName" value="{{userBallname}}" style="text-align: right;" />
+    </view>
+    <view class="steps__one" data-type="sign" bindtap="showCalendarFn">
+      <view class="steps__one-label">报名日期</view>
+      <view class="ipt-box">
+        <input type="text" placeholder="不能多于30天" disabled="{{true}}" value="{{signDateStr}}" />
+        <image class="icon" src="{{preImg + '/time_icon_meal.png'}}" />
+      </view>
+    </view>
+    <view class="steps__one" data-type="act" bindtap="showCalendarFn">
+      <view class="steps__one-label">活动日期</view>
+      <view class="ipt-box">
+        <input type="text" placeholder="不能多于30天" disabled="{{true}}" value="{{actDateStr}}" />
+        <image class="icon" src="{{preImg + '/time_icon_meal.png'}}" />
+      </view>
+    </view>
+    <view class="rule">
+      <view class="tit">活动规则</view>
+      <image class="icon" src="{{preImg + '/riceball_rules.png'}}" />
+    </view>
+    <!-- <view class="steps__one">
+      <view class="steps__one-label">相互查看数据</view>
+      <view class="steps__one-opts">
+        <view class="radio" wx:for="{{opts}}" wx:key="index" data-selindex="{{index}}" bindtap="selSee">
+          <image class="icon" src="{{item.checked ? '/images/order_list_select.png' : '/images/order_list_unchecked.png'}}" />
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+    </view> -->
+  </view>
+  <!-- 创建饭团或邀请加入 -->
+  <view class="operate-btns">
+    <view class="pre btn {{!allCheck ? 'disabled' : ''}}" bindtap="setGroup">
+      {{statusType == ''?'创建':'编辑'}}饭团
+    </view>
+    <!-- <view class="next">
+      <view class="next-l" bind:tap="preOperateFn">
+        <image class="icon" src="{{preImg + '/icon_more.png'}}" />
+      </view>
+      <view class="next-r">邀请好友加入</view>
+    </view> -->
+  </view>
+</view>
+<!-- <cp-bottom-popup model:show="{{showOperate}}" show-close="{{false}}" use-slot show-button="{{false}}">
+  <view class="popup-operate">
+    <view class="operate edit">编辑该团</view>
+    <view class="operate">解散该团</view>
+    <view class="cancel" bind:tap="preOperateFn">取消</view>
+  </view>
+</cp-bottom-popup>
+<cp-confirm-dialog class="confirmDialog" show="{{showConfirm}}">
+  <view class="title">确定解散你的饭团吗？</view>
+</cp-confirm-dialog> -->

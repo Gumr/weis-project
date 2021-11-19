@@ -1,0 +1,61 @@
+<!-- pages/mineBox/aiFatSetInfo/aiFatSetInfo.wxml -->
+<cp-nav-bar title-text="{{step == 1?'设置目标':'设置时长'}}" background="#fff" color="#000000" backIconColor="black" />
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
+<view class="aiFatSetInfo">
+    <!-- 设置目标 -->
+    <view class="target" wx:if="{{step == 1}}">
+        <view class="title-box">
+            <view class="title">当前体重</view>
+        </view>
+        <view class="year">
+            <input class="year-ipt" maxlength="5" type="digit" placeholder="输入当前体重" value="{{curWeight}}" bindblur="curWeightBlur" />
+            <view class="sympol">kg</view>
+            <view class="error" wx:if="{{curWeightErr}}">你的体重过轻，不建议继续减肥</view>
+        </view>
+        <view class="title-box" style="margin-top:263rpx">
+            <view class="title">目标体重</view>
+        </view>
+        <view class="year">
+            <input class="year-ipt" maxlength="5" type="digit" placeholder="输入目标体重" value="{{tarWeight}}" bindblur="tarWeightBlur" />
+            <view class="sympol">kg</view>
+            <view class="error" wx:if="{{tarWeightErr}}">目标体重要小于当前体重</view>
+        </view>
+    </view>
+    <!-- 设置时长 -->
+    <view class="time" wx:if="{{step == 2}}">
+        <view class="title">你需减重{{filters.toFixOne(curWeight - tarWeight)}}kg</view>
+        <view class="scale-value">
+            需要
+            <text>{{days?days:standardDay}}</text>
+            天
+        </view>
+        <scale-component
+          id="scale"
+          value="{{days?days:standardDay}}"
+          interval-width="{{10}}"
+          interval-value="{{7}}"
+          precision="{{1}}"
+          min="{{1}}"
+          max="{{1000}}"
+          modal-show="{{false}}"
+          bind:change="dayChange"
+        ></scale-component>
+        <view class="scale-tip">
+            <view>
+                <!-- stt 01标准天数  02非标准天数  03减肥速度过快 -->
+                <text style="background: {{stt == '01'?'#41C48C':stt == '02'?'#BEBEBE':'#FA6400'}}" bind:tap="standardDay">{{stt == '01' || stt == '02'?'最科学推荐':'减肥速度过快'}}</text>
+                <image src="/images/help.png" bind:tap="help"/>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- 按钮 -->
+<view class="btn {{btnSelect ? 'active' : ''}}" bind:tap="nextStep">
+    {{btnText ? btnText : '下一步'}}
+</view>
+
+<!-- 帮助信息 -->
+<cp-confirm-dialog model:show="{{help}}" show-cancel="{{false}}" confirm-text="知道了" auto-confirm="{{true}}">
+  <view class="tip-label">该推荐天数以《中国超重/肥胖医学营养治疗专家共识（2016）》、《临床营养学》等文献为基础，用国际公认的合理能量差进行计算得出。</view>
+</cp-confirm-dialog>

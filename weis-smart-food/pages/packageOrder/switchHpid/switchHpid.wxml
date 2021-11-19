@@ -1,0 +1,134 @@
+<!-- pages/packageOrder/switchHpid/switchHpid.wxml -->
+<cp-nav-bar cutAddress="{{true}}" hideHome>
+    <view class="wrap" slot="cutAddress" style="height:{{navHeight}}px">
+        <view class="type {{typeIndex == index ? 'active' : ''}}" wx:for="{{typeList}}" bind:tap="cutType" data-index="{{index}}">
+            {{item.name}}
+        </view>
+    </view>
+</cp-nav-bar>
+<view class="cutAddress">
+    <view class="head" style="top:{{statusHeight}}px">
+        <view class="address" bind:tap="showCity">
+            <image class="addess-icon" src="/images/cut-icon.png" />
+            <view class="name">{{city}}</view>
+            <image class="arrow {{showCity ? 'active' : ''}}" src="/images/blackRight.png" />
+            <view class="shadow {{showCity ? 'active' : ''}}" wx:if="{{showCity}}">
+                <view class="list" wx:for="{{cityList}}" catch:tap="selectCity" data-city="{{item}}">{{item}}</view>
+            </view>
+        </view>
+        <!-- 输入框 -->
+        <view class="ipt">
+            <image src="/images/address_search.png" />
+            <input placeholder="请输入你的定位地址" placeholder-class="input-placeholder" type="text" value="{{searchKeyword}}" bindinput="inputchange" />
+        </view>
+    </view>
+    <!-- 当前定位地址 -->
+    <view class="cur" wx:if="{{!searchKeyword}}" bind:tap="sureAdd">
+        <view class="address">{{currenTPlace.title}}</view>
+        <view class="right-icon" catch:tap="location">
+            <image src="/images/dw.png" />
+            <view class="reLocation">重新定位</view>
+        </view>
+    </view>
+    <!-- tab 地址====地址===地址 -->
+    <view class="index0" wx:if="{{!searchKeyword && typeIndex == 0}}">
+        <!-- 我的收货地址 -->
+        <view class="myAddress">
+            <view class="left-icon">
+                <image src="/images/myicon.png" />
+                <view class="name">我的收货地址</view>
+            </view>
+            <view class="add" bind:tap="add">新增地址</view>
+        </view>
+        <!-- 我的地址列表 -->
+        <view class="wrap-address" wx:if="{{addressList && addressList.length>0}}">
+            <view class="list" wx:for="{{addressList}}" wx:key="key" data-index="{{index}}" bind:tap="select">
+                <view class="col-l">
+                    <view class="name">{{item.detail + item.houseNum}}</view>
+                    <view class="bot">
+                        <view class="tag-box">
+                            <view class="tag default" wx:if="{{item.tuaDef == '1'}}">默认</view>
+                            <view class="tag {{sortStatus[item.sortNum].class}}" wx:if="{{sortStatus[item.sortNum].name}}">
+                                {{sortStatus[item.sortNum].name}}
+                            </view>
+                        </view>
+                        <view class="info">
+                            <text>{{item.name}}</text>
+                            {{item.phone}}
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- 空地址 -->
+        <view class="empty" wx:if="{{addressList && addressList.length==0}}">
+            <image src="https://prodstatic.weis1606.cn/api/smartFood/emptyAddress.png" />
+            <view>暂无地址</view>
+        </view>
+    </view>
+    <!-- 搜索地址列表 -->
+    <view class="search" wx:if="{{searchKeyword && searchAddressList.length > 0}}">
+        <view class="list" wx:for="{{searchAddressList}}" data-index="{{index}}" bind:tap="sureAddress">
+            <view class="left">
+                <view class="title">{{item.title}}</view>
+                <view class="address">{{item.address}}</view>
+            </view>
+            <view class="distance">
+                {{item._distance < 1000 ? item._distance + 'm' : item._distance/1000 + 'km'}}
+            </view>
+        </view>
+    </view>
+    <!-- tab ====== 加热点列表 -->
+    <view class="hpid-list" wx:if="{{typeIndex == 1 && hpidList.length > 0 && (!searchAddressList || searchAddressList.length == 0)}}">
+        <view class="a-box" wx:for="{{hpidList}}" wx:key="key" data-index="{{index}}" data-shop-type="{{item.shopType}}" bind:tap="selectHpid">
+            <view class="box-l">
+                <view class="title">
+                    <view class="name">{{item.hpName}}</view>
+                    <view class="can {{item.selfTaking == 2 ? 'active' : ''}}" wx:if="{{item.selfTaking != 2}}">
+                        可配送
+                    </view>
+                    <view class="can {{item.selfTaking == 0 ? 'active' : ''}}" wx:if="{{item.selfTaking != 0}}">
+                        可自取
+                    </view>
+                </view>
+                <view class="box-c">
+                    <image src="/images/home_address.png" />
+                    <view class="distance">
+                        距离您{{item.shipDistance < 1000 ? item.shipDistance + 'm' : item.shipDistance/1000 + 'km'}}
+                    </view>
+                </view>
+                <view class="info">地址：{{item.address}}</view>
+                <view class="time">营业时间：{{item.stime ? item.stime + '-' + item.etime : '暂无'}}</view>
+            </view>
+            <view class="box-r">
+                <view class="xd" data-index="{{index}}">选择</view>
+                <view class="icon-b">
+                    <image catch:tap="phone" data-phone="{{item.phone}}" src="{{'/images/store_iphone.png'}}" />
+                    <image catch:tap="goMap" data-name="{{item.hpName}}" data-address="{{item.address}}" data-lat="{{item.hpLat}}" data-lon="{{item.hpLng}}" src="{{'/images/store_navigation.png'}}" />
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- tab === 贩卖机 -->
+    <view class="hpid-list" wx:if="{{typeIndex == 2 && machineList.length > 0 && (!searchAddressList || searchAddressList.length == 0)}}">
+        <view class="a-box" wx:for="{{machineList}}" wx:key="key" data-index="{{index}}" data-shop-type="{{item.shopType}}" bind:tap="selectHpid">
+            <view class="box-l">
+                <view class="title">
+                    <view class="name">{{item.hpName}}</view>
+                </view>
+                <view class="box-c">
+                    <image src="/images/home_address.png" />
+                    <view class="distance">
+                        距离您{{item.shipDistance < 1000 ? item.shipDistance + 'm' : item.shipDistance/1000 + 'km'}}
+                    </view>
+                </view>
+                <view class="info">地址：{{item.address}}</view>
+                <view class="remain" wx:if="{{item.surplusStock && item.surplusStock > 0}}">有{{item.surplusStock || 0}}份菜品可点</view>
+            </view>
+            <view class="box-r machine-info">
+                <image catch:tap="goImg" data-index="{{index}}" src="https://prodstatic.weis1606.cn/api/smartFood/icon_phone.png" />
+                <image catch:tap="goMap" data-name="{{item.hpName}}" data-address="{{item.address}}" data-lat="{{item.hpLat}}" data-lon="{{item.hpLng}}" src="{{'/images/store_navigation.png'}}" />
+            </view>
+        </view>
+    </view>
+</view>

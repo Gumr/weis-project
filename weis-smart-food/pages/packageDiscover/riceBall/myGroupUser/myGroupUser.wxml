@@ -1,0 +1,25 @@
+<cp-nav-bar title-text="已报名" />
+<view wx:if="{{riceRallRecordInfoList.length>0}}" class="MyuserList">
+  <view wx:for="{{riceRallRecordInfoList}}" wx:key="index" class="userList">
+   <view class="userinfo">
+     <image  src="{{item.headUrl}}"/>
+     <view class="user">
+        <view>{{item.uname}}</view>
+        <view>{{item.reportTime}}</view>   
+     </view>
+   </view>
+   <view class="exit"><button bindtap="exit" data-uid="{{item.trrrUid}}" data-trrid="{{item.trrrId}}" data-uindex="{{index}}" wx:if="{{item.trrStt == 'true' && !type}}">移出</button></view> 
+  </view>
+  
+</view>
+
+  <!-- 空状态 -->
+<view class="null" wx:else>
+    <image src="https://prodstatic.weis1606.cn/api/smartFood/emp.png" />
+    <text>暂无用户报名</text>
+</view>
+
+<!-- 移除提示 -->
+<cp-confirm-dialog show="{{tipDialog}}"  confirm-text="确定" auto-confirm="{{true}}" bind:on-confirm="clearUser">
+  <view class="tip-label">确定把该用户从饭团里移出吗？</view>
+</cp-confirm-dialog>

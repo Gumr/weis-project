@@ -1,0 +1,479 @@
+.scheme {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  // 背景图片
+  .bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+  }
+  // 页面内容
+  .page {
+    padding: 30rpx 50rpx 218rpx;
+    // 标题
+    .title {
+      text-align: center;
+      image {
+        width: 442rpx;
+        height: 120rpx;
+      }
+      .name {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .line {
+          width: 54rpx;
+          height: 2rpx;
+          background: #FFFFFF;
+          display: inline-block;
+        }
+        .planName {
+          font-size: 40rpx;
+          font-family: PingFangSC-Medium, PingFang SC;
+          font-weight: bold;
+          color: #FFFFFF;
+          line-height: 40rpx;
+          letter-spacing: 3rpx;
+          padding: 0 38rpx;
+        }
+      }
+      .description {
+        background: rgba(207, 102, 31, 0.3);
+        border-radius: 10rpx;
+        font-size: 28rpx;
+        font-family: PingFangSC-Regular, PingFang SC;
+        color: #FFFFFF;
+        line-height: 40rpx;
+        padding: 40rpx 30rpx;
+        margin-top: 50rpx;
+        text-align: left;
+        view {
+          display: inline-block;
+          color: #FACA00;
+          image {
+            width: 24rpx;
+            height: 24rpx;
+          }
+        }
+      }
+      // .description {
+      //   background: rgba(207, 102, 31, 0.3);
+      //   border-radius: 10rpx;
+      //   font-size: 28rpx;
+      //   font-family: PingFangSC-Regular, PingFang SC;
+      //   color: #FFFFFF;
+      //   line-height: 40rpx;
+      //   padding: 40rpx 30rpx;
+      //   margin-top: 50rpx;
+      //   text-align: left;
+      // }
+    }
+    // 标题 - 来自拉新工具包的方案页
+    .title-toolInfo {
+      text-align: center;
+      image {
+        width: 608rpx;
+        height: 110rpx;
+      }
+      .value {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        .num {
+          font-size: 90rpx;
+          font-family: 'DINCondensedC';
+          font-weight: bold;
+          color: #FFFFFF;
+          line-height: 90rpx;
+        }
+        .unit {
+          font-size: 24rpx;
+          font-weight: bold;
+          color: #FFFFFF;
+          line-height: 44rpx;
+          margin-left: 8rpx;
+        }
+      }
+      .description {
+        background: rgba(207, 102, 31, 0.3);
+        border-radius: 10rpx;
+        font-size: 28rpx;
+        font-family: PingFangSC-Regular, PingFang SC;
+        color: #FFFFFF;
+        line-height: 40rpx;
+        padding: 40rpx 30rpx;
+        margin-top: 50rpx;
+        text-align: left;
+      }
+    }
+    // 盒子
+    .box {
+      // 小目标
+      .smallTarget {
+        margin-bottom: 44rpx;
+        .header {
+          background: #ffffff !important;
+          margin-top: 40rpx;
+          text {
+            font-size: 40rpx;
+            font-weight: bold;
+            color: #c76421;
+            line-height: 40rpx;
+            margin-right: 10rpx;
+          }
+          image {
+            width: 100rpx;
+            height: 30rpx;
+          }
+        }
+        .content {
+          display: flex;
+          align-items: stretch!important;
+          .info {
+            text:nth-child(1) {
+              font-size: 26rpx;
+              color: #666666;
+              line-height: 56rpx;
+              display: block;
+            }
+            text:nth-child(2) {
+              font-weight: bold;
+              font-size: 40rpx;
+              color: #333333;
+              line-height: 56rpx;
+            }
+            text:nth-child(3) {
+              font-size: 26rpx;
+              color: #333333;
+              line-height: 56rpx;
+            }
+          }
+        }
+      }
+      // 每日饮食-标题
+      .intakeTitle {
+        font-size: 32rpx;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.85);
+      }
+      // 饼状图&信息的公共样式
+      .box_public {
+        background: #ffffff;
+        border-radius: 10rpx;
+        overflow: hidden;
+        margin-top: 20rpx;
+        .header {
+          height: 68rpx;
+          line-height: 68rpx;
+          font-size: 28rpx;
+          font-weight: 600;
+          color: #ffffff;
+          padding-left: 30rpx;
+        }
+        .content {
+          padding: 32rpx 30rpx 46rpx;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .circle {
+            width: 180rpx;
+            height: 220rpx;
+            background: #FFF3EB;
+            border-radius: 10rpx;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 36rpx;
+            .name{
+              color: #666666;
+              font-size: 24rpx;
+            }
+            .num{
+              color: #333333;
+              font-size: 90rpx;
+              font-family: "DINCondensedC";
+            }
+            .unit{
+              color: #A9A9A9;
+              font-size: 24rpx;
+            }
+            &.box0{
+              background: #FFF3EB;
+              .name,.num,.unit{
+                color: #FA6400;
+              }
+            }
+            &.box1{
+              background: #EDFDFC;
+              .name,.num,.unit{
+                color: #18C5C1;
+              }
+            }
+            &.box2{
+              background: #FFFAEB;
+              .name,.num,.unit{
+                color: #FFBB00;
+              }
+            }
+            &.box3{
+              background: #EDFDFC ;
+              .name,.num,.unit{
+                color: #32e1b7;
+              }
+            }
+          }
+          .box {
+            .all{
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 38rpx;
+              .name{
+                color: #333333;
+                font-size: 28rpx;
+              }
+              .num{
+                display: flex;
+                align-items: baseline;
+                color: #333333;
+                font-size: 32rpx;
+                font-weight: bold;
+                view{
+                  font-size: 24rpx;
+                }
+              }
+            }
+            .box-a {
+              display: flex;
+              align-items: center;
+              margin-bottom: 28rpx;
+              font-size: 24rpx;
+              color: #999999;
+              &:last-of-type {
+                margin-bottom: 0rpx;
+              }
+              // 颜色
+              .box-color {
+                width: 12rpx;
+                height: 12rpx;
+                border-radius: 50%;
+                // background: #d8d8d8;
+                margin-right: 8rpx;
+              }
+            }
+          }
+        }
+      }
+      // 每日消耗-------------
+      .consume {
+        // margin-top: 20rpx;
+        .header {
+          background: linear-gradient(135deg, #fa6400 0%, #faca00 100%);
+        }
+        .content {
+          .box {
+            .box-a {
+              // 颜色
+              .box-color {
+                background: #faca00;
+              }
+
+              &:nth-of-type(2) {
+                .box-color {
+                  background: #fa6400;
+                }
+              }
+
+              &:nth-of-type(3) {
+                .box-color {
+                  background: #18c5c1;
+                }
+              }
+              // 名称
+              .box-name {
+                width: 98rpx;
+                text-align: left;
+              }
+              // 值
+              .box-value {
+                // width: 147rpx;
+                width: 244rpx;
+                font-weight: bold;
+                text-align: right;
+                color: #333333;
+              }
+            }
+          }
+        }
+      }
+      // 每日应摄入-------------
+      .intake {
+        // margin-top: 20rpx;
+        .header {
+          background: linear-gradient(135deg, #32e1b7 0%, #fbc54a 100%);
+        }
+        .content {
+          .box {
+            .box-a {
+              // 颜色
+              .box-color {
+                border: 2rpx solid #C2C2C2;
+              }
+
+              // &:nth-of-type(2) {
+              //   .box-color {
+              //     background: #fa6400;
+              //   }
+              // }
+
+              // &:nth-of-type(3) {
+              //   .box-color {
+              //     background: #18c5c1;
+              //   }
+              // }
+              // 名称
+              .box-name {
+                width: 120rpx;
+                text-align: left;
+              }
+              // 百分比
+              .box-percent {
+                width: 70rpx;
+                font-weight: bold;
+                text-align: left;
+              }
+              // 值
+              .box-value {
+                //   width: 147rpx;
+                width: 220rpx;
+                font-weight: bold;
+                text-align: right;
+                color: #333333;
+              }
+            }
+          }
+        }
+      }
+      // 菜品
+      .good-box {
+        display: flex;
+        padding: 0 30rpx;
+        position: relative;
+        margin-bottom: 40rpx;
+        .good-scroll {
+          white-space: nowrap;
+          .good {
+            display: inline-block;
+            margin-right: 20rpx;
+            &:last-of-type {
+              margin-right: 0;
+            }
+            .icon {
+              width: 152rpx;
+              height: 152rpx;
+              border-radius: 12rpx;
+            }
+            .name {
+              font-size: 22rpx;
+              color: #333333;
+              margin-bottom: 16rpx;
+            }
+            .trace {
+              display: flex;
+              flex-direction: column;
+              .trace-text {
+                color: #808080;
+                font-size: 18rpx;
+                line-height: 18rpx;
+                margin-bottom: 12rpx;
+                &:last-of-type {
+                  margin-bottom: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+      .b {
+        padding: 0 0 30rpx;
+        .change {
+          width: 590rpx;
+          height: 80rpx;
+          background: #FFE7D6;
+          border-radius: 10rpx;
+          text-align: center;
+          line-height: 80rpx;
+          color: #FA6400;
+          font-size: 28rpx;
+          margin: 0 auto;
+          // margin: 40rpx auto 0;
+        }
+      }
+    }
+    // 说明
+    .explain {
+      padding: 40rpx 30rpx;
+      background: rgba(207, 102, 31, 0.3);
+      border-radius: 10rpx;
+      font-size: 28rpx;
+      color: #FFFFFF;
+      line-height: 40rpx;
+      margin-top: 20rpx;
+    }
+  }
+  // 底部
+  .bottom {
+    width: 100%;
+    height: 152rpx;
+    position: fixed;
+    bottom: 0;
+  }
+  // 底部-来源于-完善信息
+  .question {
+    background: linear-gradient(180deg, rgba(255, 147, 74, 0) 0%, #ff934a 100%);
+    .btn {
+      width: 524rpx;
+      height: 148rpx;
+      // width: 480rpx;
+      // height: 96rpx;
+      // background: #ffe600;
+      border-radius: 48rpx;
+      font-size: 36rpx;
+      font-weight: bold;
+      color: #333333;
+      line-height: 96rpx;
+      text-align: center;
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  // 底部-来源于-AI智能减脂营
+  .aiFat {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, #FFFFFF 100%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50rpx;
+    view {
+      width: 315rpx;
+      height: 88rpx;
+      line-height: 88rpx;
+      text-align: center;
+      border-radius: 44rpx;
+      font-size: 36rpx;
+    }
+    .btnLeft {
+      border: 1rpx solid #333333;
+      background: #F3F4F5;
+      color: #333333;
+    }
+    .btnRight {
+      background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+      color: #FFFFFF;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+<!--pages/searchCook/searchCook.wxml-->
+<wxs module="filters" src="../../utils/wxs/filters.wxs"></wxs>
+<nav title="搜索"></nav>
+<search placeholder="输入菜谱名称" bindsearchFn="searchFn"></search>
+<!-- 菜品列表 -->
+<scroll-view class="waterfall" wx:if="{{originData.length > 0}}">
+  <view class="box">
+    <view class="column" id="{{index % 2 === 0 ? 'waterfall_left' : 'waterfall_right'}}" wx:for="{{cookList}}" wx:key="index">
+      <view class="good" wx:for="{{item}}" wx:for-item="subItem" wx:for-index="subIndex" wx:key="subIndex" data-index="{{index}}" data-subindex="{{subIndex}}" data-id="{{subItem.trId}}" bindtap="toCookDetail">
+        <image class="status" mode="heightFix" wx:if="{{subItem.trAuditResult === '05' && !subItem.cook}}" src="{{filters.handleTopLeftIcon(subItem.trAuditResult)}}" />
+        <!-- 是否含视频 -->
+        <image class="video_icon" wx:if="{{subItem.trVideo}}" src="/images/icon_video_play_s.png" />
+        <view class="imgBox">
+          <image class="goodimg" mode="{{335 * (subItem.trCoverImageHeight / subItem.trCoverImageWide) < 300 || 335 * (subItem.trCoverImageHeight / subItem.trCoverImageWide) > 500 ? 'heightFix' : 'widthFix'}}"
+            style="height: {{335 * (subItem.trCoverImageHeight / subItem.trCoverImageWide) < 300 ? '300rpx' : 335 * (subItem.trCoverImageHeight / subItem.trCoverImageWide) > 500 ? '500rpx' : '100%'}}" src="{{subItem.trCoverImageUrl}}" />
+        </view>
+        <view class="name">{{subItem.trName}}</view>
+        <view class="author">
+          <view class="human" data-uid="{{subItem.trUid}}" data-subitem="{{subItem}}" catchtap="toUserInfo">
+            <view class="imgbox">
+              <image src="{{subItem.headImgUrl}}" />
+              <image class="icon" wx:if="{{subItem.cook}}" src="/images/icon_V_sm.png" />
+            </view>
+            <text>{{subItem.uname}}</text>
+          </view>
+          <view class="operate" wx:if="{{subItem.trAuditResult === '05'}}" data-status="{{subItem.vote}}" data-id="{{subItem.trId}}" data-index="{{index}}" data-subindex="{{subIndex}}" catchtap="voteRecipes">
+            <image src="{{subItem.vote ? '/images/icon_vote.png' : '/images/icon_vote2.png'}}" />
+            <text>{{subItem.trVoteNumber}}人投票</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<!-- 没有结果 -->
+<view class="cook-no" wx:if="{{isSearched && originData.length === 0}}">
+  <image src="/images/icon_search_null.png" />
+  <view>没有找到你想要的内容～</view>
+</view>

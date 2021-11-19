@@ -1,0 +1,194 @@
+page {
+  background: #F3F4F5;
+}
+.confirmList {
+  width: 750rpx;
+}
+.confirmList .com-tit {
+  display: flex;
+  height: 104rpx;
+  line-height: 104rpx;
+  padding-left: 30rpx;
+  justify-content: space-between;
+}
+.confirmList .com-tit view {
+  font-size: 30rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 600;
+  color: #333333;
+}
+.confirmList .com-tit button {
+  width: 210rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  border: 2rpx solid #FA6400;
+  font-size: 28rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #FA6400;
+  padding: unset;
+  margin: unset;
+  margin-right: 30rpx;
+  margin-top: 10rpx;
+}
+.confirmList .com-info {
+  width: 750rpx;
+  background: #FFFFFF;
+  box-shadow: 0px 4rpx 24rpx -6rpx rgba(186, 186, 186, 0.3);
+  border-radius: 10rpx;
+  padding: 40rpx 30rpx;
+  margin-bottom: 20rpx;
+  padding-bottom: unset;
+}
+.confirmList .com-info .telicon {
+  width: 28rpx;
+  height: 28rpx;
+  vertical-align: middle;
+  padding-left: 6rpx;
+}
+.confirmList .com-info view {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 40rpx;
+}
+.confirmList .com-info view text:nth-child(1) {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #A9A9A9;
+}
+.confirmList .com-info view text:nth-child(2) {
+  max-width: 420rpx;
+  text-align: right;
+}
+.confirmList .com-list {
+  background: #FFFFFF;
+  box-shadow: 0px 4rpx 24rpx -6rpx rgba(186, 186, 186, 0.3);
+  border-radius: 10rpx;
+  padding: 30rpx 26rpx;
+}
+.confirmList .com-list .catory {
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 33rpx;
+}
+.confirmList .com-list .catory image {
+  width: 38rpx;
+  height: 38rpx;
+  margin-right: 28rpx;
+  vertical-align: middle;
+}
+.confirmList .com-list .skulist .skuinfo {
+  display: flex;
+  margin-bottom: 36rpx;
+  justify-content: space-between;
+}
+.confirmList .com-list .skulist .l-img {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 16rpx;
+  position: relative;
+}
+.confirmList .com-list .skulist .l-img image {
+  width: 120rpx;
+  height: 100%;
+}
+.confirmList .com-list .skulist .l-img .isconfirm {
+  width: 100%;
+  height: 100%;
+  background: rgba(233, 233, 233, 0.15);
+  box-shadow: 0rpx 4rpx 20rpx 0rpx rgba(164, 180, 183, 0.2);
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: flex-end;
+}
+.confirmList .com-list .skulist .l-img .isconfirm .qs {
+  width: 100%;
+  height: 32rpx;
+  text-align: center;
+  line-height: 32rpx;
+  background: linear-gradient(180deg, rgba(251, 137, 45, 0.5) 0%, #FEB40F 100%);
+  color: #ffffff;
+  font-size: 18rpx;
+}
+.confirmList .com-list .skulist .l-name {
+  width: 228rpx;
+  text-align: left;
+  padding-top: 10rpx;
+}
+.confirmList .com-list .skulist .l-name .l-t {
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 600;
+}
+.confirmList .com-list .skulist .l-name .l-or {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FA6400;
+}
+.confirmList .com-list .skulist .l-num {
+  height: 64rpx;
+  border-radius: 10rpx;
+  opacity: 0.57;
+  border: 2rpx solid #979797;
+  display: flex;
+  line-height: 64rpx;
+  margin-top: 40rpx;
+  margin-right: 10rpx;
+  text-align: center;
+  padding-right: 10rpx;
+}
+.confirmList .com-list .skulist .l-num input {
+  margin-top: 8rpx;
+  width: 100rpx;
+}
+.confirmList .com-list .skulist .signview {
+  border: none!important;
+}
+.confirmList .com-list .skulist .signview input {
+  width: 60rpx!important;
+}
+.confirmList .com-list .skulist .l-btn {
+  display: flex;
+  padding-top: 40rpx;
+}
+.confirmList .com-list .skulist .l-btn button {
+  width: 156rpx;
+  height: 64rpx;
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+  border-radius: 32rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+.confirmList .com-list .skulist .l-btn image {
+  width: 48rpx;
+  height: 48rpx;
+  border: 2rpx solid #FCCC49;
+  border-radius: 24rpx;
+  margin-left: 20rpx;
+  vertical-align: middle;
+}
+.tip-label {
+  margin: 92rpx 48rpx 54rpx 49rpx;
+  width: 543rpx;
+  text-align: center;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #666666;
+}
+.graytxt {
+  color: #666666 !important;
+}
+.pd {
+  padding-top: 50rpx!important;
+}

@@ -1,0 +1,24 @@
+<!--pages/packSubAccount/getPerson/getPerson.wxml-->
+<cp-nav-bar title-text="领取人" background="#F3F4F5" color="#000000" backIconColor="black" />
+
+<view class="treat" wx:if="{{listOfRecipients && listOfRecipients.length > 0}}">
+    <view class="box" wx:for="{{listOfRecipients}}">
+        <view class="info">
+            <image class="head" src="{{item.headImgUrl}}" />
+            <view class="box-col">
+                <view class="name">{{item.uname}}<image wx:if="{{item.presentAmount > 0}}" src="https://prodstatic.weis1606.cn/api/smartFood/new.png" /></view>
+                <view class="date">{{item.ctime}}</view>
+            </view>
+        </view>
+        <view class="info-right">
+            <view class="price">¥{{item.receiverMoney}}</view>
+            <view class="backPrice" wx:if="{{item.presentAmount > 0}}">返¥{{item.presentAmount}}</view>
+        </view>
+    </view>
+</view>
+
+<!-- 无请客记录 -->
+<view class="empty" wx:if="{{listOfRecipients && listOfRecipients.length == 0}}">
+    <view>╮(╯▽╰)╭ </view>
+    <view>咦，竟然无人领取～</view>
+</view>

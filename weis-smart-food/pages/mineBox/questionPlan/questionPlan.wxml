@@ -1,0 +1,118 @@
+<!--pages/mineBox/question/question.wxml-->
+<cp-nav-bar title-text="{{navTitle}}" />
+<!-- 信息收集 -->
+<view class="info">
+<scroll-view scroll-y="true" style="height:{{overBtn == 1?scrollHeight:scrollHeight+80}}rpx">
+  <!-- 选择吃法 -->
+  <view class="block eat" wx:if="{{!isTarget}}">
+    <!-- <view class="title">
+      <text>选择吃法</text>
+    </view> -->
+    <view class="wrap" style="margin-top: 30rpx;margin-bottom: 28rpx;">
+      <view class="list {{targetSelect === index ? 'active' : ''}}" wx:for="{{targetList}}"  wx:key="key" data-index="{{index}}" data-value="{{item.value}}" data-planningtype="{{item.planningType}}" bind:tap="targetSelect">
+        <view class="text">
+          <view class="name">{{item.name}}</view>
+          <view class="detail">{{item.detail}}</view>
+        </view>
+        <view class="conne" wx:if="{{item.detail}}" data-planningtype="{{item.planningType}}" data-from="target" data-value="{{item.value}}" bind:tap="conneTip">
+          <image src="{{targetSelect === index ? '/images/conne_select.png':'/images/conne_unSelect.png'}}" />
+        </view>
+      </view>
+    </view>
+    <view class="eatDesc">只显示你的年龄合适的吃法</view>
+  </view>
+  <!-- 慢病饮食干预 -->
+  <view class="block" wx:if="{{isTarget && !isChronic && targetValue == '04'}}">
+    <view class="title">
+      <text>慢病饮食干预</text>
+    </view>
+    <view class="tip">请选择你的主要病种</view>
+    <view class="wrap">
+      <view class="list {{chronicSelect === index ? 'active' : ''}}" wx:for="{{chronicList}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" bind:tap="chronicSelect">
+        <view class="text">
+          <view class="name">{{item.name}}</view>
+          <view class="detail">{{item.detail}}</view>
+        </view>
+        <view class="conne" data-from="chronic" data-value="{{item.value}}" bind:tap="conneTip">
+          <image src="{{chronicSelect === index ? '/images/conne_select.png':'/images/conne_unSelect.png'}}" />
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 住院饮食干预 -->
+  <view class="block" wx:if="{{isTarget && !isLive && targetValue == '07'}}">
+    <view class="title">
+      <text>住院饮食干预</text>
+    </view>
+    <view class="tip">请选择你的主要病种</view>
+    <view class="wrap">
+      <view class="list {{liveSelect === index ? 'active' : ''}}" wx:for="{{liveList}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" bind:tap="liveSelect">
+        <view class="text">
+          <view class="name">{{item.name}}</view>
+          <view class="detail">{{item.detail}}</view>
+        </view>
+         <view class="conne" data-from="live" data-value="{{item.value}}" bind:tap="conneTip">
+          <image src="{{liveSelect === index ? '/images/conne_select.png':'/images/conne_unSelect.png'}}" />
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 血糖值&主食 -->
+  <view class="sugar" wx:if="{{(isChronic && !isSugar && chronicValue == '04') || (isLive && !isSugar && liveValue == '14')}}">
+    <view class="title">
+      <text>最近餐后2小时血糖值</text>
+    </view>
+    <view class="tip">控糖附加信息，填完立即获得控糖饮食方案</view>
+    <view class="wrap">
+      <view class="list {{sugarSelect === index ? 'active' : ''}}" wx:for="{{sugarList}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" bind:tap="sugarSelect">
+        <view class="name">{{item.name}}</view>
+        <view class="detail">{{item.title}}</view>
+      </view>
+    </view>
+
+    <view class="title" style="margin-top: 160rpx;">
+      <text>最近午餐吃几碗主食</text>
+    </view>
+    <view class="wrap">
+      <view class="list {{foodSelect === index ? 'active' : ''}}" wx:for="{{foodList}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" bind:tap="foodSelect">
+        <view class="name">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 你的怀孕周期 -->
+  <view class="block" wx:if="{{(isChronic && !isPregnant && chronicValue == '05') || (isLive && !isPregnant && liveValue == '15') || (isTarget && targetPlanningType == '25')}}">
+    <view class="title">
+      <text>你的怀孕周期</text>
+    </view>
+    <view class="tip">妊娠附加信息，填完立即获得控糖饮食方案</view>
+    <view class="wrap">
+      <view class="list {{pregnantSelect === index ? 'active' : ''}}" wx:for="{{pregnantList}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" bind:tap="pregnantSelect" style="display: initial;text-align: center;padding: 30rpx 0">
+        <view class="name">{{item.name}}</view>
+        <view class="name">{{item.title}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 你的肾病是第几期 -->
+  <view class="block" wx:if="{{(isChronic && !isKidney && chronicValue == '11') || (isLive && !isKidney && liveValue == '20')}}">
+    <view class="title">
+      <text>你的肾病是第几期</text>
+    </view>
+    <view class="tip">肾病附加信息，填完立即获得控糖饮食方案</view>
+    <view class="wrap">
+      <view class="list {{kidneySelect === index ? 'active' : ''}}" wx:for="{{kidneyList}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" bind:tap="kidneySelect" style="text-align: center;padding-top: 0;display: flex;justify-content: center;align-items: center;">
+        <text class="name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<!-- 下一步/确定 -->
+<view wx:if="{{overBtn == 0 || overBtn == 2}}" class="overBtn">
+  <view class="next {{btnSelected == true? 'active' : ''}}" bind:tap="nextStep">{{overBtn == 0?'下一步':'确定'}}</view>
+</view>
+</view>
+
+<!-- 目标、慢病、住院 的吃法介绍-弹窗 -->
+<cp-confirm-dialog show="{{conneTipShow}}" title="吃法介绍" titleStyle="margin: 34rpx 40rpx 44rpx" showClose leftClose showCancel="{{false}}" showConfirm="{{false}}" dialogStyle="width: 650rpx;">
+    <view class="conneTip">{{conneTipData}}</view>
+</cp-confirm-dialog>

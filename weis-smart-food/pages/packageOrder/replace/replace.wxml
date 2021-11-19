@@ -1,0 +1,38 @@
+<!--pages/orderFood/replace/replace.wxml-->
+<cp-nav-bar title-text="代点餐"></cp-nav-bar>
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
+<view class="replace">
+    <view class="tab-box">
+        <view class="tab {{selectIndex == index ? 'active' : ''}}" wx:for="{{tabList}}" wx:key="key"
+            data-index="{{index}}" bind:tap="select">{{item.name}}</view>
+    </view>
+    <scroll-view class="order-box" style="height:{{scrollHeight}}px" scroll-y="true" bindscrolltolower="" bindscroll=""
+        wx:if="{{list.length>0}}">
+        <view class="order-list" wx:for="{{list}}" wx:key="index" data-stt="{{item.dataStt}}" data-id="{{item.id}}"
+            bind:tap="go">
+            <view class="t-box">
+                <view class="title">
+                    <view class="name">{{filters.format(item.sdate)}}<text
+                            wx:if="{{item.sdate != item.edate}}">-{{filters.format(item.edate)}}</text></view>
+                    <view class="status {{item.dataStt == '04' || '14'  ? 'active' : ''}}">{{status[item.dataStt]}}
+                    </view>
+                </view>
+                <view class="lose" wx:if="{{selectIndex == 0}}">{{filters.format(item.losedate)}}18:00将失效该订单</view>
+            </view>
+            <view class="b-box">
+                <view class="all-box">
+                    <view class="all">共{{item.totalMeals}}餐</view>
+                    <view class="price">￥{{item.orderPrice}}</view>
+                </view>
+                <view class="btn-box" wx:if="{{selectIndex == 0}}">
+                    <view class="btn" bind:tap="detail" data-id="{{item.id}}">查看详情</view>
+                    <view class="btn pay" data-id="{{item.id}}" bind:tap="pay">去付款</view>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+    <view class="no" wx:if="{{list && list.length == 0}}">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/order-empty.png" />
+        <!-- <view class="desc">暂无记录</view> -->
+    </view>
+</view>

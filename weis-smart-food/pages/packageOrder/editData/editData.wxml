@@ -1,0 +1,232 @@
+<!-- pages/solution/dayPlan/dayPlan.wxml -->
+<!-- 引入过滤器 -->
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
+<cp-nav-bar title-text="修改数据" background="#fff"></cp-nav-bar>
+<!-- 饮食方案 -->
+<view class="plan">
+    <view class="head">
+        <view class="list">
+            <view class="name">当前账号</view>
+            <view class="r-row" bind:tap="close">
+                <image style="width: 44rpx;height:44rpx;border-radius:50%;margin-right:10rpx" src="{{subInfo.tsuSubUid ? subInfo.defaultAvatar : info.headImgUrl}}" />
+                <view class="r-name edit-color" style="color:rgba(0, 0, 0, 1);font-size:28rpx;">{{subInfo.tsuSubUid ? subInfo.tsuSubUname : info.uname}}</view>
+                <image wx:if="{{subUserInfoList.length > 0 && isshowchange!='true'}}" src="/images/arrow-color.png" />
+            </view>
+        </view>
+        <view class="list">
+            <view class="name">吃法名称</view>
+            <view class="r-row" bind:tap="editName">
+                <view class="r-name edit-color">{{dietPlan.planName}}</view>
+                <image src="/images/arrow-color.png" />
+            </view>
+        </view>
+        <view class="list">
+            <view class="name">方案日期</view>
+            <view class="r-row">
+                <view class="r-name">{{datePlan}}</view>
+            </view>
+        </view>
+        <view class="list">
+            <view class="name">方案采用方法</view>
+            <view class="r-row">
+                <view class="r-name">{{dietPlan.calculationMethod == '01' ? '综合比例法' : '固蛋法'}}</view>
+            </view>
+        </view>
+        <view class="list" wx:if="{{subInfo.tsuSubUid}}">
+            <view class="name">所属子账号</view>
+            <view class="r-row">
+                <view class="r-name">{{subInfo.tsuSubUname}}</view>
+            </view>
+        </view>
+    </view>
+    <!-- 每餐 -->
+    <view class="meals">
+        <!-- 方案参数设置 -->
+        <view class="box">
+            <view class="col-t">
+                <image src="/images/parameter_set.png" />
+                <view class="name">方案参数</view>
+            </view>
+            <view class="shrink">
+                <view class="list" bind:tap="editIntake">
+                    <view class="list-l">摄入量</view>
+                    <view class="list-r">
+                        <view class="percent edit-color">{{dietPlan.totalIntake}}kcal</view>
+                        <image src="/images/arrow-color.png" />
+                    </view>
+                </view>
+                <view class="list">
+                    <view class="list-l">食物热</view>
+                    <view class="list-r">
+                        <view class="percent">{{dietPlan.totalThermalEffect}}kcal</view>
+                    </view>
+                </view>
+                <view class="list">
+                    <view class="list-l">热量差</view>
+                    <view class="list-r">
+                        <view class="percent">{{dietPlan.energyDifference}}kcal</view>
+                    </view>
+                </view>
+            </view>
+            <!-- 固蛋法 -->
+            <view class="shrink fixP" wx:if="{{dietPlan.calculationMethod == '02'}}">
+                <view class="list" bind:tap="editPro">
+                    <view class="list-l">单位体重所需蛋白质</view>
+                    <view class="list-r">
+                        <view class="percent edit-color">
+                            {{dietPlan.planDetailList[0].energyRatio}}g/kg
+                        </view>
+                        <image src="/images/arrow-color.png" />
+                    </view>
+                </view>
+                <view class="list">
+                    <view class="list-l">蛋白质总量</view>
+                    <view class="list-r">
+                        <view class="percent">{{dietPlan.planDetailList[0].energyTotal}}g</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- 固蛋法 -->
+        <view wx:if="{{dietPlan.calculationMethod == '02'}}">
+            <view class="box" wx:for="{{dietPlan.planDetailList}}" wx:key="key">
+                <view class="col-t">
+                    <image src="/images/parameter_set.png" />
+                    <view class="name">{{status[item.category]}}</view>
+                </view>
+                <view class="title">
+                    <view class="name">类型</view>
+                    <view class="name">数值</view>
+                    <view class="name">百分比</view>
+                </view>
+                <view class="category">
+                    <view class="list" bind:tap="editEnergy">
+                        <view class="list-val">{{status[item.category]}}能量</view>
+                        <view class="list-val">{{item.totalKcal}}kcal</view>
+                        <view class="list-val">
+                            <view class="percent edit-color">{{item.totalRatio}}%</view>
+                            <image src="/images/arrow-color.png" />
+                        </view>
+                    </view>
+                    <view class="list" bind:tap="editThreeCate">
+                        <view class="list-val">蛋白质/每日总蛋白</view>
+                        <view class="list-val">{{item.fixedProteinTotal}}g</view>
+                        <view class="list-val">
+                            <view class="percent edit-color">{{item.fixedProteinRatio}}%</view>
+                            <image src="/images/arrow-color.png" />
+                        </view>
+                    </view>
+                    <view class="list" data-index="{{index}}" data-category="{{item.category}}" bind:tap="editOneFat">
+                        <view class="list-val">脂肪</view>
+                        <view class="list-val">{{item.fatTotal}}g</view>
+                        <view class="list-val">
+                            <view class="percent edit-color">{{item.fatRatio}}%</view>
+                            <image src="/images/arrow-color.png" />
+                        </view>
+                    </view>
+                    <view class="list">
+                        <view class="list-val">碳水化合物</view>
+                        <view class="list-val">{{item.carbohydrateTotal}}g</view>
+                        <view class="list-val">
+                            <view class="percent">{{item.carbohydrateRatio}}%</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- 综合法 -->
+        <view wx:else>
+            <view class="box" wx:for="{{dietPlan.planDetailList}}" wx:key="key">
+                <view class="col-t">
+                    <image src="{{item.category == '01' ? '/images/icon-b.png' : (item.category == '02' ? '/images/icon-d.png' : '/images/icon-l.png')}}" />
+                    <view class="name">{{status[item.category]}}</view>
+                </view>
+                <view class="title">
+                    <view class="name">类型</view>
+                    <view class="name">数值</view>
+                    <view class="name">百分比</view>
+                </view>
+                <view class="category">
+                    <view class="list" bind:tap="editEnergy">
+                        <view class="list-val">{{status[item.category]}}能量</view>
+                        <view class="list-val">{{item.totalKcal}}kcal</view>
+                        <view class="list-val">
+                            <view class="percent edit-color">{{item.totalRatio}}%</view>
+                            <image src="/images/arrow-color.png" />
+                        </view>
+                    </view>
+                    <view class="list" data-category="{{index}}" bind:tap="editOneCategory">
+                        <view class="list-val">碳水化合物</view>
+                        <view class="list-val">{{item.carbohydrateTotal}}g</view>
+                        <view class="list-val">
+                            <view class="percent edit-color">{{item.carbohydrateRatio}}%</view>
+                            <image src="/images/arrow-color.png" />
+                        </view>
+                    </view>
+                    <view class="list" data-category="{{index}}" bind:tap="editOneCategory">
+                        <view class="list-val">蛋白质</view>
+                        <view class="list-val">{{item.proteinTotal}}g</view>
+                        <view class="list-val">
+                            <view class="percent edit-color">{{item.proteinRatio}}%</view>
+                            <image src="/images/arrow-color.png" />
+                        </view>
+                    </view>
+                    <view class="list" data-category="{{index}}" bind:tap="editOneCategory">
+                        <view class="list-val">脂肪</view>
+                        <view class="list-val">{{item.fatTotal}}g</view>
+                        <view class="list-val">
+                            <view class="percent edit-color">{{item.fatRatio}}%</view>
+                            <image src="/images/arrow-color.png" />
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<!-- 咨询 -->
+<view class="advisory" bind:tap="contact" wx:if="{{counselorInfo.id}}">
+    <image src="https://prodstatic.weis1606.cn/api/smartFood/icon_%E5%92%A8%E8%AF%A2.png" />
+</view>
+<!-- 修改方案弹窗 -->
+<cp-editPlan-dialog id="editPopup" show="{{showEdit}}" errTip="{{errTip}}" oneObj="{{oneObj}}" iptType="{{iptType}}" listArr="{{listArr}}" iptVal="{{iptVal}}" btnText='{{btnText}}' subTitle="{{subTitle}}" title="{{title}}" bind:update="update"></cp-editPlan-dialog>
+<!-- 切换账户 -->
+<view class="shadow" catchtouchmove="true" wx:if="{{showAccount}}">
+    <view class="box">
+        <image class="close" bind:tap="close" src="/images/logistics_popup_off.png" />
+        <view class="title">切换账号</view>
+        <view class="main">
+            <view class="main_account">主账号</view>
+            <view class="info" bind:tap="goPerson">
+                <view class="info_left">
+                    <image class="head" src="{{info.headImgUrl}}" />
+                    <view class="name">{{info.uname}}</view>
+                </view>
+                <view class="status {{subInfo.tsuSubUid ? '' : 'active'}}" catch:tap="selectMain">
+                    {{subInfo.tsuSubUid ? '选择' : '当前使用'}}
+                </view>
+            </view>
+        </view>
+        <view class="main sub">
+            <view class="main_account">子账号<view class="grey">(子账号在“我的”→“切换账号”中添加)</view></view>
+            <scroll-view class="subList" scroll-y="{{true}}">
+                <view class="info" wx:for="{{subUserInfoList}}" wx:key="index" data-tsu-sub-uid="{{item.tsuSubUid}}" data-sub-token="{{item.subToken}}" bind:tap="goPerson">
+                    <view class="info_left">
+                        <!-- <image class="icon" src="/images/subAccount.png" /> -->
+                        <image class="head" src="{{item.defaultAvatar}}" />
+                        <view class="name">{{item.tsuSubUname}}</view>
+                    </view>
+                    <view class="status {{item.tsuSubUid == subInfo.tsuSubUid ? 'active' : ''}}" data-index="{{index}}" catch:tap="select">
+                        {{item.tsuSubUid == subInfo.tsuSubUid ? '当前使用' : '选择'}}
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+</view>
+<cp-confirm-dialog class="dialog" show="{{showDialog}}" title="提示" bind:on-confirm="targetConfirmDialog">
+    <view class="dialog-label">
+        <view>切换账号后【点餐方案】、【发现页】、【数据页】均会改变。</view>
+        <view>确定切换账号码？</view>
+    </view>
+</cp-confirm-dialog>

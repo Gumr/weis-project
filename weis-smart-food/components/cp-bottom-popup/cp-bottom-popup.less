@@ -1,0 +1,99 @@
+// picker底部窗口
+.cp-bottom-popup {
+  .pickerShadow {
+    // 头部
+    .header {
+      position: relative;
+      padding-top: 35rpx;
+      width: 100%;
+      .close {
+        width: 44rpx;
+        height: 44rpx;
+        position: absolute;
+        left: 35rpx;
+      }
+      .title {
+        font-size: 32rpx;
+        font-weight: bold;
+        color: #000000;
+        text-align: center;
+      }
+    }
+    // 内容
+    .wrap {
+      padding: 87rpx 50rpx 78rpx;
+      // 1列的情况
+      .list {
+        picker-view {
+          &.active {
+            font-size: 48rpx;
+            font-weight: 500;
+            color: #fa6400;
+          }
+          .active {
+            color: #fa6400;
+          }
+          picker-view-column {
+            &.dw {
+              width: 68rpx;
+              position: absolute;
+              left: 55%;
+              transform: translateX(70%);
+              background: #ffffff;
+              color: #fa6400;
+            }
+            view {
+              text-align: center;
+              &.selected {
+                color: #fa6400;
+                font-size: 48rpx !important;
+              }
+            }
+          }
+        }
+      }
+      // 2列的情况（年 && 月）
+      .two {
+        picker-view {
+          picker-view-column {
+            // 第1列
+            &.val {
+              padding-left: 145rpx;
+            }
+            &.dw {
+              background: none;
+              left: 30%;
+            }
+            // 第2列
+            &.val2 {
+              view {
+                padding-left: 60rpx;
+              }
+            }
+            &.dw2 {
+              background: none;
+              view {
+                margin-right: 130rpx;
+              }
+            }
+          }
+        }
+      }
+    }
+    // 确认按钮
+    .confirm-btn {
+      width: 650rpx;
+      height: 88rpx;
+      background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+      border-radius: 50rpx;
+      font-size: 36rpx;
+      color: #ffffff;
+      line-height: 88rpx;
+      text-align: center;
+      margin: 0 auto 65rpx;
+      &--disabled {
+        background: #DDDDDD;
+      }
+    }
+  }
+}

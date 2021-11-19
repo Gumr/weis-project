@@ -1,0 +1,91 @@
+<!--pages/packageOrder/preference/preference.wxml-->
+<cp-nav-bar title-text="偏好设置" home-icon="/images/backHome.png" color="rgba(0, 0, 0, 1)" background="#fff"></cp-nav-bar>
+
+<view class="preference">
+    <!-- <view class="header">
+        <view class="title">请设置你的喜好，以便更精准地为你推荐套餐</view>
+        <view class="name">热量</view>
+        <view class="info">
+            <view class="val">
+                {{total.totalEnergy}}<view class="unit">kcal</view>
+            </view>
+            <view class="adjust" bind:tap="control">
+                <image src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/adjust.png" />
+                <view class="">调整热量</view>
+            </view>
+        </view>
+    </view> -->
+    <view class="content">
+        <view class="box" wx:for="{{currLabelSuperBeans}}" wx:for-index="index1">
+            <view class="label">{{item.label}}</view>
+            <view class="list">
+                <view class="tag {{item.checked ? 'active' : ''}}" wx:for="{{item.dietaryIntakes}}" wx:for-index="index2" data-index1="{{index1}}" data-index2="{{index2}}" bind:tap="select">{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="fix">
+    <view class="btn" bind:tap="save">生成智能推荐套餐</view>
+</view>
+
+<van-popup duration="200" catchtouchmove="true" position="bottom" show="{{showControl}}" bind:click-overlay="hidePopup" close-on-click-overlay="{{true}}" custom-style="border-radius: 40rpx 40rpx 0rpx 0rpx;" z-index="200">
+    <view class="dialog-title">
+        <text class selectable="false" space="false" decode="false">调整本餐营养数据</text>
+        <image bindtap="hidePopup" class="close-icon" src="/images/icon_down.png" />
+    </view>
+    <!-- 总能量 -->
+    <view class="ruler-box">
+        <view class="title">总能量</view>
+        <view class="box">
+            <input type="number" value="{{currentData.totalEnergy}}" data-type="01" bindblur="changeRule" />
+            <view class="unit">kcal</view>
+        </view>
+        <view class="ruler">
+            <cp-ruler id="energy" min="{{nutrient.minEnergy}}" max="{{nutrient.maxEnergy}}" value="{{currentData.totalEnergy}}" scrollType="level" data-type="01" bind:change="changeRule"></cp-ruler>
+        </view>
+    </view>
+    <!-- 蛋白质 碳水 脂肪 -->
+    <view class="wrap-nut">
+        <view class="ruler-box">
+            <view class="title">蛋白质</view>
+            <view class="box">
+                <input type="number" value="{{currentData.totalProtein}}" data-type="02" bindblur="changeRule" />
+                <view class="unit">g</view>
+            </view>
+            <view class="percent">{{currentData.protePer}}%</view>
+            <view class="ruler">
+                <cp-ruler id="protein" min="{{nutrient.minProtein}}" max="{{nutrient.maxProtein}}" value="{{currentData.totalProtein}}" scrollType="vertical" data-type="02" bind:change="changeRule"></cp-ruler>
+            </view>
+        </view>
+        <!-- 碳水 -->
+        <view class="ruler-box">
+            <view class="title">碳水</view>
+            <view class="box">
+                <input type="number" value="{{currentData.totalCarbonwater}}" data-type="03" bindblur="changeRule" />
+                <view class="unit">g</view>
+            </view>
+            <view class="percent">{{currentData.carbPer}}%</view>
+            <view class="ruler">
+                <cp-ruler id="carbonwater" min="{{nutrient.minCarbonwater}}" max="{{nutrient.maxCarbonwater}}" value="{{currentData.totalCarbonwater}}" scrollType="vertical" data-type="03" bind:change="changeRule"></cp-ruler>
+            </view>
+        </view>
+        <!-- 脂肪 -->
+        <view class="ruler-box">
+            <view class="title">脂肪</view>
+            <view class="box">
+                <input type="number" value="{{currentData.totalFat}}" data-type="04" bindblur="changeRule" />
+                <view class="unit">g</view>
+            </view>
+            <view class="percent">{{currentData.fatPer}}%</view>
+            <view class="ruler">
+                <cp-ruler id="fat" min="{{nutrient.minFat}}" max="{{nutrient.maxFat}}" value="{{currentData.totalFat}}" scrollType="vertical" data-type="04" bind:change="changeRule"></cp-ruler>
+            </view>
+        </view>
+    </view>
+    <view class="bot-rule">
+        <view class="reset" bindtap="changeRule" data-type="01" data-value="{{total.originalIntake}}" data-reset="true">重置<view class="origin"><image src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/boss-icon.png" /><view>原方案: {{total.originalIntake}}kcal</view></view></view>
+        <view class="save" catch:tap="saveData">保存</view>
+    </view>
+</van-popup>
+  

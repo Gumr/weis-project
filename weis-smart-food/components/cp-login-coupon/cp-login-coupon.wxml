@@ -1,0 +1,24 @@
+<!--components/cp-login-coupon/cp-login-coupon.wxml-->
+<view class="login" wx:if="{{coupon.length > 0}}">
+    <!-- 新人券 -->
+    <view class="auth getCoupon">
+        <view class="c-box">
+            <image class="img" src="https://prodstatic.weis1606.cn/api/smartFood/%E7%BC%96%E7%BB%84.png" />
+            <view class="title">恭喜获得80元新人券快去点餐吧</view>
+            <scroll-view scroll-x="true" style="width: 470rpx;height: 283rpx;">
+                <view class="list-box">
+                    <view class="box" wx:for="{{coupon}}">
+                        <image class="coupon-bg" src="https://prodstatic.weis1606.cn/api/smartFood/bg_coupon.png" />
+                        <view class="c1"><view class="unit">￥</view>{{item.tcuAmount}}</view>
+                        <view class="c2">满{{item.tcuRestrictAmount}}可用</view>
+                        <view class="c3">有效期至{{item.tcuEtime}}</view>
+                        <view class="c4">×{{item.num}}</view>
+                    </view>
+                </view>
+            </scroll-view>
+            <image class="meal-question" wx:if="{{!loginInfo.isPerProfile}}" bind:tap="toQuestion" src="https://prodstatic.weis1606.cn/api/smartFood/btn_question.png" />
+            <image class="meal-index" wx:else bind:tap="close" src="https://prodstatic.weis1606.cn/api/smartFood/btn_%E5%8E%BB%E7%82%B9%E9%A4%90.png" />
+        </view>
+        <image class="close" bind:tap="close" src="https://prodstatic.weis1606.cn/api/smartFood/off.png"  />
+    </view>
+</view>

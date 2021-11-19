@@ -1,0 +1,224 @@
+<!-- pages/datas/meal/meal.wxml -->
+<cp-nav-bar title-text="{{category[type]}}" />
+<view class="meal">
+  <view class="circle">
+    <view class="box-circle">
+      <data-pie mode="image" delay="{{400}}" custom-style="width: 140rpx;height: 140rpx;" data="{{foodData.pieData}}"></data-pie>
+    </view>
+    <view class="kind-box">
+      <view class="box-a">
+        <view class="box-color"></view>
+        <view class="box-name">蛋白质</view>
+        <view class="box-percent">{{foodData.proteinRatio}}%</view>
+        <view class="box-value">{{foodData.proteinTotal}}g</view>
+      </view>
+      <view class="box-a">
+        <view class="box-color"></view>
+        <view class="box-name">脂肪</view>
+        <view class="box-percent">{{foodData.fatRatio}}%</view>
+        <view class="box-value">{{foodData.fatTotal}}g</view>
+      </view>
+      <view class="box-a">
+        <view class="box-color"></view>
+        <view class="box-name">碳水化合物</view>
+        <view class="box-percent">{{foodData.carbohydrateRatio}}%</view>
+        <view class="box-value">{{foodData.carbohydrateTotal}}g</view>
+      </view>
+      <view class="energy">能量：{{foodData.totaltCal}}kcal</view>
+    </view>
+  </view>
+  <!-- 商品列表 -->
+  <view class="meal-food-list">
+    <van-swipe-cell
+      wx:for="{{foodData.dietCardList}}"
+      wx:key="index"
+      left-width="{{0}}"
+      right-width="{{item.tdcType !== '01' ? 64 : 0}}"
+    >
+      <view
+        class="meal-food-item"
+        data-type="{{type}}"
+        data-index="{{index}}"
+        catch:tap="foodCardTap"
+      >
+        <view class="meal-food-box">
+          <view class="food-image-box">
+            <image
+              wx:if="{{item.tdcType === '01'}}"
+              class="card-head-label"
+              src="/images/datum/index/label_weis.png"
+            />
+            <image
+              class="meal-food-image"
+              src="{{item.tdcImage || 'https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/default_graph.png'}}"
+            />
+          </view>
+          <view>
+            <view class="meal-food-name">{{item.tdcFoodName}}</view>
+            <view class="meal-food-text">{{item.unitTotalLabel}}</view>
+          </view>
+        </view>
+        <view class="food-swipe-next-box">
+          <text
+            class="meal-food-text"
+            style="margin-right: 8rpx;"
+            wx:if="{{item.tdcType === '01'}}"
+          >食用程度{{item.tdcEdibleRatio}}%</text>
+          <text class="meal-food-text">{{item.tdcTotalKcal}}kcal</text>
+          <image class="next-icon" src="/images/list_next.png" />
+        </view>
+      </view>
+      <view
+        wx:if="{{item.tdcType !== '01'}}"
+        class="food-swipe-right"
+        slot="right"
+        bindtap="deleteOrderFoodTap"
+        data-type="{{type}}"
+        data-index="{{index}}"
+      >
+        <text class="food-swipe-text">删除</text>
+      </view>
+    </van-swipe-cell>
+  </view>
+  <!-- 添加 -->
+  <view class="bot" bind:tap="orderFoodTap">
+    <view class="add">继续添加</view>
+  </view>
+</view>
+<!-- 添加食物的弹窗 -->
+<van-popup
+  duration="200"
+  position="bottom"
+  show="{{showAddPopup}}"
+  bind:click-overlay="hideAddPopup"
+  close-on-click-overlay="{{true}}"
+  custom-style="width: 101%;"
+>
+  <view>
+    <view class="gray-bottom-border">
+      <view class="add-food-header">
+        <text class="add-food-action-text" bindtap="hideAddPopup">取消</text>
+        <text class="add-food-title">修改食物</text>
+        <text class="add-food-action-text add-text" bindtap="changeFoodCardTap">修改</text>
+      </view>
+    </view>
+    <view class="food-list-item popup-foot-item">
+      <view class="display-flex">
+        <image class="food-image" src="{{currentFood.tdcImage}}" />
+        <view class="food-text-wrap">
+          <view class="food-name">{{currentFood.tdcFoodName}}</view>
+          <view>
+            <text class="food-text food-kcal">{{currentFood.tdcTotalKcal}}</text>
+            <text
+              class="food-text"
+            >kcal/{{currentFood.tdcType === '04' ? currentFoodUnit.label : currentFood.$tdcTotalWeight + 'g'}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view>
+      <view class="food-count-bar">
+        <text
+          class="food-count-text"
+        >{{currentFood.tdcType === '04' ? currentFood.tdcFoodNum : currentFood.tdcTotalWeight}}</text>
+        <text>{{currentFoodUnit.label}}</text>
+      </view>
+      <view class="food-count-scale-wrap">
+        <scale-component
+          id="scale"
+          value="{{currentFood.tdcType === '04' ? currentFood.tdcFoodNum : currentFood.tdcTotalWeight}}"
+          interval-width="{{30}}"
+          precision="{{scale.precision}}"
+          min="{{1}}"
+          max="{{scale.max}}"
+          bind:change="foodCountChange"
+        ></scale-component>
+      </view>
+      <view class="food-unit-bar">
+        <scroll-view scroll-into-view="{{unitIntoView}}" scroll-x>
+          <text
+            id="unit-1"
+            class="food-unit-text {{currentFoodUnit.value === '1' ? 'food-unit-text-active' : ''}}"
+            data-unit="1"
+            bindtap="unitTap"
+          >克</text>
+          <text
+            id="unit-2"
+            wx:if="{{currentFood.tdcType === '04'}}"
+            class="food-unit-text {{currentFoodUnit.value === '2' ? 'food-unit-text-active' : ''}}"
+            data-unit="2"
+            bindtap="unitTap"
+          >勺</text>
+          <text
+            id="unit-3"
+            wx:if="{{currentFood.tdcType === '04'}}"
+            class="food-unit-text {{currentFoodUnit.value === '3' ? 'food-unit-text-active' : ''}}"
+            data-unit="3"
+            bindtap="unitTap"
+          >筷子</text>
+        </scroll-view>
+      </view>
+    </view>
+    <!-- <view class="gray-top-border" style="margin: 0 30rpx;">
+      <view
+        class="delete-food-bar {{isFullScreen ? 'full-screen-mg-bt' : ''}}"
+        hidden="{{ activeTab === '02' }}"
+      >
+        <view class="delete-food-box" bindtap="deleteCurrentFoodTap">
+          <image class="delete-food-icon" src="/images/popup_delete.png" />
+          <text class="delete-food-text">删除这条记录</text>
+        </view>
+      </view>
+    </view> -->
+  </view>
+</van-popup>
+<!-- 补充食用程度弹窗 -->
+<van-popup
+  position="bottom"
+  show="{{showExtendPopup}}"
+  bind:click-overlay="hideExtendPopup"
+  close-on-click-overlay="{{true}}"
+  custom-style="width: 101%;"
+>
+  <view>
+    <view class="gray-bottom-border">
+      <view class="add-food-header">
+        <text class="add-food-action-text" bindtap="hideExtendPopup">取消</text>
+        <text class="add-food-title">编辑食物记录</text>
+        <text class="add-food-action-text add-text" bindtap="changeFoodPercentTap">添加</text>
+      </view>
+    </view>
+    <view class="food-list-item popup-foot-item">
+      <view class="display-flex">
+        <image class="food-image" src="{{currentFood.tdcImage}}" />
+        <view class="food-text-wrap">
+          <view class="food-name">{{currentFood.tdcFoodName}}</view>
+          <view>
+            <text class="food-text food-kcal">{{currentFood.tdcTotalKcal}}</text>
+            <text class="food-text">kcal/{{currentFood.$tdcTotalWeight}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view>
+      <view class="food-count-bar">
+        <text class="food-count-text">{{currentFood.tdcEdibleRatio}}</text>
+        <text>%</text>
+      </view>
+      <view class="food-count-scale-wrap">
+        <scale-component
+          id="scale2"
+          value="{{currentFood.tdcEdibleRatio}}"
+          interval-width="{{30}}"
+          precision="{{1}}"
+          min="{{0}}"
+          max="{{100}}"
+          bind:change="foodPercentChange"
+        ></scale-component>
+      </view>
+      <view class="food-unit-bar {{isFullScreen ? 'full-screen-mg-bt' : ''}}">
+        <text class="food-unit-text food-unit-text-active">食用程度百分比</text>
+      </view>
+    </view>
+  </view>
+</van-popup>

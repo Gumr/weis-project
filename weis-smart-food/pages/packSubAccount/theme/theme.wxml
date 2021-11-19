@@ -1,0 +1,9 @@
+<!--pages/packSubAccount/theme/theme.wxml-->
+<cp-nav-bar title-text="换点餐仪表盘" background="#fff" color="#000000" backIconColor="black" />
+
+<view class="theme">
+    <view class="list"wx:for="{{themeList}}" wx:key="index" data-index="{{index}}" bind:tap="goTheme">
+        <image src="{{item.icon}}" />
+        <view class="name">{{item.title}}</view>
+    </view>
+</view>

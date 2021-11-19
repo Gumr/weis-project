@@ -1,0 +1,34 @@
+<!--pages/mine/income/income.wxml-->
+<nav title="我的收入"></nav>
+<view class="total">
+  <text>累计收入</text>
+  <text>{{historyBalance}}</text>
+  <text>元</text>
+</view>
+<view class="cashout">
+  <image class="bg" src="/images/icon_cashout_bg.png" />
+  <text>可提现余额</text>
+  <view class="overage">
+    <view class="num">
+      <text>{{balance}}</text>
+      <text>元</text>
+    </view>
+    <view class="btn {{balance == 0 ? 'disabled' : ''}}" hidden="{{true}}" bind:tap="cashout">提现</view>
+  </view>
+</view>
+<view class="detail" wx:if="{{balanceRecordList.length > 0}}">
+  <view class="title">记录详情</view>
+  <view class="content" wx:for="{{balanceRecordList}}" wx:key="id">
+    <view class="category">
+      <image class="icon" src="{{item.balanceType === '02' ? '/images/icon_out.png' : '/images/icon_in.png'}}" />
+      <view class="txtbox">
+        <view>{{item.balanceType === '02' ? '支出' : '收入'}}</view>
+        <view>{{item.balanceContent}}</view>
+      </view>
+    </view>
+    <view class="amount">
+      <text class="time">{{item.createTime}}</text>
+      <view class="num">{{item.balance}}元</view>
+    </view>
+  </view>
+</view>

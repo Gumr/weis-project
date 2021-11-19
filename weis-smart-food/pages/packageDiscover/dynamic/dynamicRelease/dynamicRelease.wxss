@@ -1,0 +1,138 @@
+.dynamicRelease .horseman .discuss-box {
+  width: 690rpx;
+  background: #ffffff;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  padding-bottom: 30rpx;
+}
+.dynamicRelease .horseman .discuss-box .area {
+  width: 100%;
+  height: 200rpx;
+  border-radius: 10rpx;
+  margin-top: 32rpx;
+  position: relative;
+}
+.dynamicRelease .horseman .discuss-box .area textarea {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  color: #333333;
+  font-size: 24rpx;
+}
+.dynamicRelease .horseman .discuss-box .area textarea.active {
+  color: #a9a9a9;
+}
+.dynamicRelease .horseman .discuss-box .area .limit {
+  position: absolute;
+  right: 10rpx;
+  bottom: 10rpx;
+  color: #a9a9a9;
+  font-size: 20rpx;
+}
+.dynamicRelease .horseman .discuss-box .img-box {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 24rpx;
+}
+.dynamicRelease .horseman .discuss-box .img-box .img {
+  display: flex;
+  flex-wrap: wrap;
+}
+.dynamicRelease .horseman .discuss-box .img-box .img .upload-img {
+  position: relative;
+  margin-top: 20rpx;
+  margin-right: 17rpx;
+}
+.dynamicRelease .horseman .discuss-box .img-box .img .upload-img:nth-child(4n) {
+  margin-right: 0;
+}
+.dynamicRelease .horseman .discuss-box .img-box .img .upload-img image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 12rpx;
+}
+.dynamicRelease .horseman .discuss-box .img-box .img .upload-img .upload__close {
+  position: absolute;
+  width: 36rpx;
+  height: 36rpx;
+  right: -18rpx;
+  top: -18rpx;
+}
+.dynamicRelease .horseman .discuss-box .img-box .img .camera {
+  margin-top: 20rpx;
+  width: 160rpx;
+  height: 160rpx;
+}
+.dynamicRelease .horseman .myMenu {
+  height: 120rpx;
+  background: #F3F4F5;
+  border-radius: 10rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12rpx 0 30rpx;
+}
+.dynamicRelease .horseman .myMenu view {
+  font-size: 28rpx;
+  color: #666666;
+}
+.dynamicRelease .horseman .myMenu image {
+  width: 38rpx;
+  height: 38rpx;
+}
+.dynamicRelease .horseman .menu {
+  height: 120rpx;
+  background: #f6f6f6;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+}
+.dynamicRelease .horseman .menu view:nth-child(1) {
+  width: 144rpx;
+  background: #d1fffc;
+  border-radius: 10rpx 0rpx 0rpx 10rpx;
+  font-size: 70rpx;
+  font-family: "DINCondensedC";
+  font-weight: bold;
+  color: #18c5c1;
+  line-height: 120rpx;
+  text-align: center;
+}
+.dynamicRelease .horseman .menu view:nth-child(1).addRed {
+  background: linear-gradient(180deg, #fff3eb 0%, #ffdac1 100%);
+  color: #fa6400;
+}
+.dynamicRelease .horseman .menu view:nth-child(2) {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 12rpx 0 24rpx;
+  width: 546rpx;
+  background: #f6f6f6;
+  font-size: 28rpx;
+  color: #333333;
+}
+.dynamicRelease .horseman .menu view:nth-child(2) image {
+  width: 38rpx;
+  height: 38rpx;
+}
+.dynamicRelease .bot {
+  width: 100%;
+  margin-top: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dynamicRelease .bot .submit {
+  border-radius: 44rpx;
+  width: 450rpx;
+  height: 88rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #d8d8d8;
+  color: #ffffff;
+  font-size: 36rpx;
+}
+.dynamicRelease .bot .submit.active {
+  background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+}

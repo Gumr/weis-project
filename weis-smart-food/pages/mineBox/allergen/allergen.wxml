@@ -1,0 +1,39 @@
+<!--pages/mineBox/allergen/allergen.wxml-->
+<cp-nav-bar title-text="口味＆过敏原" homeIcon />
+
+<view class="hobby">
+    <view class="title">
+        <text>请勾选你的口味和过敏原，然后点击保存。相关菜品将不在菜品列表展示</text>
+    </view>
+    <view class="list-box" wx:if="{{flavor.length > 0}}">
+        <view class="tip">口味</view>
+        <view class="wrap" style="padding-bottom: 20rpx">
+            <view class="list" wx:for="{{flavor}}" wx:key="key">
+                <view class="col-t" bind:tap="selectFlavor" data-index="{{index}}">
+                    <image class="vege" src="{{item.img}}" />
+                    <image class="icon" wx:if="{{item.checked}}" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/hobby_selection.png" />
+                    <image wx:else class="icon" src="/images/hobby_unselected.png" />
+                </view>
+                <view class="name">{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="list-box">
+        <view class="tip">过敏原</view>
+        <view class="wrap">
+            <view class="list" wx:for="{{allergy}}" wx:key="key">
+                <view class="col-t" bind:tap="selectErgy" data-index="{{index}}">
+                    <image class="vege" src="{{item.img}}" />
+                    <image class="icon" wx:if="{{item.checked}}" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/hobby_selection.png" />
+                    <image wx:else class="icon" src="/images/hobby_unselected.png" />
+                </view>
+                <view class="name">{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="btn-box">
+        <view class="btn active" bind:tap="complete">保存</view>
+    </view>
+      
+</view>
+

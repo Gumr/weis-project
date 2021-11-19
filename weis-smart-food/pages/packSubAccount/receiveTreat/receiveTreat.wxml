@@ -1,0 +1,57 @@
+<!-- pages/packSubAccount/receiveTreat/receiveTreat.wxml -->
+<cp-nav-bar title-text="" background="transparent" color="#fff" backIconColor="white" />
+<view class="treat" wx:if="{{info}}">
+    <view class="banner" style="margin-top:-{{navStatusHeight}}px">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/treat-bg.png" />
+    </view>
+    <!-- 领取自己 -->
+    <view class="get" wx:if="{{inviteUid == uid && info}}">
+        <image class="head" src="{{info.headImgUrl}}" />
+        <view class="name">{{info.uname}}</view>
+        <view class="title">你请{{info.inviteNum}}人体验维士健康餐</view>
+        <view class="title">每人</view>
+        <view class="price" style="margin-top:20rpx">
+            <view class="sympol">￥</view>
+            <view class="num">{{info.preAmount}}</view>
+        </view>
+        <view class="tip" style="font-size:28rpx;color:#666;" bind:tap="toList">
+            已有{{info.receivedNum}}人收下
+            <image src="/images/my/invalid_next.png" />
+        </view>
+    </view>
+    <view class="wrap" wx:if="{{inviteUid != uid && info}}">
+        <!-- 领取 -->
+        <view class="get" wx:if="{{info.surplusNum > 0 && !info.receiveStatus}}">
+            <image class="head" src="{{info.headImgUrl}}" />
+            <view class="name">{{info.uname}}</view>
+            <view class="title">请你体验一顿维士健康餐</view>
+            <view class="price">
+                <view class="sympol">￥</view>
+                <view class="num">{{info.preAmount}}</view>
+            </view>
+            <view class="btn" bind:tap="receive">收下后，去点餐</view>
+            <view class="tip">* 收下后金额将自动充值到余额中</view>
+        </view>
+        <!-- 已领取 -->
+        <view class="get" wx:if="{{info.receiveStatus}}">
+            <view class="title">成功收下，已充值到余额</view>
+            <view class="price">
+                <view class="sympol">￥</view>
+                <view class="num">{{info.preAmount}}</view>
+            </view>
+            <view class="tip" style="font-size:28rpx;color:#666;" bind:tap="toList">
+                已有{{info.receivedNum}}人收下
+                <image src="/images/my/invalid_next.png" />
+            </view>
+            <view class="btn" bind:tap="toMeal">去点餐</view>
+        </view>
+        <!-- 领完了 -->
+        <view class="get" wx:if="{{info.surplusNum == 0 && !info.receiveStatus}}">
+            <image class="head" src="{{info.headImgUrl}}" />
+            <view class="name">{{info.uname}}</view>
+            <view class="title">请你体验一顿维士健康餐</view>
+            <text class="empty">o(╯□╰)o\n哎呀，都领完了</text>
+            <view class="btn" style="margin-top:140rpx;" bind:tap="toMeal">去点餐</view>
+        </view>
+    </view>
+</view>

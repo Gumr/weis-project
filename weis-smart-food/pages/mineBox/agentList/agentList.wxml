@@ -1,0 +1,53 @@
+<!--pages/mineBox/agentList/agentList.wxml-->
+
+<cp-nav-bar title-text="{{planType == '04' ? '饮食顾问列表' : '饮食顾问列表'}}"></cp-nav-bar>
+<view class='agent'>
+	<view class='search-wrap' style="top:{{navStatusHeight}}px">
+		<view class='search'>
+			<image src="/images/address_search.png" />
+			<input placeholder-class='ipt' bindinput="search" value="{{searchValue}}" type="text" placeholder="{{planType == '04' ? '搜索饮食顾问' : '搜索饮食顾问'}}" auto-focus ="true"/>
+		</view>
+	</view>
+	<view class='list a' wx:if="{{!searchValue}}">
+		<view class="list-box" wx:for="{{recordList}}" wx:key="key" bind:tap="detail" data-index="{{index}}" data-state="{{item.bindState}}" data-counselorid="{{item.counselorId}}" data-id="{{item.id}}">
+			<view class='list-left'>
+				<image src="{{item.counselorIcon}}" />
+				<view class='c-box'>
+					<view class='t-cont'>
+						{{item.counselorName}}
+					</view>
+				</view>
+			</view>
+			<view class="add {{item.bindState == '01' ? 'active' : ''}}" data-index="{{index}}" data-state="{{item.bindState}}" data-name="{{item.counselorName}}" data-counselorid="{{item.counselorId}}" data-id="{{item.id}}" catch:tap="add">
+				{{item.bindState == '01' ? '已绑定' : '添加'}}
+			</view>
+		</view>
+		 <view class="load">
+			 <van-loading size="20" text-size="12" class="load" color="#FE5E0F" wx:if="{{more == true}}" vertical></van-loading>
+		 </view>
+	</view>
+
+	<view class='list' wx:else>
+		<view class="list-box" wx:for="{{searchList}}" wx:key="key" bind:tap="detail" data-index="{{index}}" data-state="{{item.bindState}}" data-counselorid="{{item.counselorId}}" data-id="{{item.id}}">
+			<view class='list-left'>
+				<image src="{{item.counselorIcon}}" />
+				<view class='c-box'>
+					<view class='t-cont'>
+						{{item.counselorName}}
+					</view>
+					<view class='b-cont'>
+						{{item.statisticsNum}}位用户喜爱
+					</view>
+				</view>
+			</view>
+			<view class="add {{item.bindState == '01' ? 'active' : ''}}" data-index="{{index}}" data-state="{{item.bindState}}" data-name="{{item.counselorName}}" data-counselorid="{{item.counselorId}}" data-id="{{item.id}}" catch:tap="add">
+				{{item.bindState == '01' ? '已添加' : '添加'}}
+			</view>
+		</view>
+		<van-loading size="20" text-size="12" color="#FE5E0F" wx:if="{{searchMore == true}}" type="circular" vertical></van-loading>
+		<view class="no" wx:if="{{searchList.length==0}}">
+			<image class="empty" src="https://prodstatic.weis1606.cn/api/smartFood/blank_case_ai.png" />
+		</view>
+	</view>
+</view>
+

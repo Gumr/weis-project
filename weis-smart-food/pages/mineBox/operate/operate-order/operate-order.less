@@ -1,0 +1,71 @@
+.border {
+  display: block;
+  content: "";
+  background: #f3f4f5;
+  position: absolute;
+  bottom: 0;
+  margin: auto;
+}
+.operate-order {
+  width: 100%;
+  padding: 16rpx 50rpx 0;
+  // 列表内容
+  .list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30rpx 0;
+    position: relative;
+    &::after {
+      .border();
+      width: 650rpx;
+      height: 2rpx;
+    }
+    .list-l {
+      width: 160rpx;
+      height: 160rpx;
+    }
+    .list-r {
+      width: 456rpx;
+      view:nth-child(1) {
+        font-size: 30rpx;
+        font-weight: bold;
+        color: #000000;
+        line-height: 42rpx;
+        margin-bottom: 26rpx;
+      }
+      view:nth-child(2) {
+        text-align: right;
+        line-height: 37rpx;
+        text:nth-child(1) {
+          font-size: 26rpx;
+          color: #666666;
+        }
+        text:nth-child(2) {
+          font-size: 26rpx;
+          color: #fa6400;
+          font-weight: bold;
+        }
+        text:nth-child(3) {
+          font-size: 36rpx;
+          color: #fa6400;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  // 空状态
+  .null {
+    margin-top: 270rpx;
+    text-align: center;
+    image {
+      width: 320rpx;
+      height: 240rpx;
+    }
+    view {
+      font-size: 28rpx;
+      color: #a9a9a9;
+      line-height: 40rpx;
+    }
+  }
+}

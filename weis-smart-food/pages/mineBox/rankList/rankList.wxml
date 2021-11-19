@@ -1,0 +1,58 @@
+<!--pages/mineBox/rankList/rankList.wxml-->
+<cp-nav-bar title-text=" " background="linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%)" backIconColor="white" />
+<view class="integral">
+  <view class="top-bg">
+    <image src="https://prodstatic.weis1606.cn/api/smartFood/ranking_list_bj.png" />
+    <view class="title">{{name}}排行榜</view>
+    <view class="desc">{{stt === '00'?'加油鸭，肉肉不是你的':'功夫不负减肥人'}}</view>
+    <!-- stt - 00: 正在进行中 01: 已结营 -->
+    <text class="status">{{stt === '00'?'正在进行中':'已结营'}}</text>
+  </view>
+  <view class="box">
+    <!-- 本人排名 -->
+    <view class="list-box my-box">
+      <view class="list">
+        <view class="left">
+          <image
+            wx:if="{{rankRecord.rank == 1 || rankRecord.rank == 2 || rankRecord.rank == 3}}"
+            src="{{'https://prodstatic.weis1606.cn/api/smartFood/ranking_medal_' + (rankRecord.rank) + '.png'}}"
+          />
+          <view class="num" wx:else>{{rankRecord.rank}}</view>
+        </view>
+
+        <view class="middle">
+          <image class="icon" src="{{rankRecord.headImgUrl}}" />
+          <image class="lose_crown" src="/images/my/lose_crown_1.png" />
+          <view class="name">{{rankRecord.uname}}</view>
+        </view>
+
+        <view class="right">{{rankRecord.scoreRecord}}分</view>
+      </view>
+    </view>
+    <!-- tab -->
+    <view class="tab-box">
+      <text>排名</text>
+      <text>昵称</text>
+      <text>积分</text>
+    </view>
+    <!-- 列表 -->
+    <view class="list-box">
+      <view class="list" wx:for="{{rankRecordList}}" wx:key="key">
+        <view class="left">
+          <image
+            wx:if="{{index == 0 || index == 1 || index == 2}}"
+            src="{{'https://prodstatic.weis1606.cn/api/smartFood/ranking_medal_' + (index+1) + '.png'}}"
+          />
+          <view class="num" wx:else>{{index+1}}</view>
+        </view>
+
+        <view class="middle">
+          <image class="icon" src="{{item.headImgUrl}}" />
+          <view class="name">{{item.uname}}</view>
+        </view>
+
+        <view class="right">{{item.scoreRecord}}分</view>
+      </view>
+    </view>
+  </view>
+</view>

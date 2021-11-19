@@ -1,0 +1,135 @@
+<cp-nav-bar title-text="减脂营详情" backIconColor></cp-nav-bar>
+<image class="image" src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/new_kv_bj.png" />
+<view class="page" style="padding-bottom: {{paddingBottom}}px;">
+  <view class="card">
+    <image
+      class="card__title"
+      src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/new_content_9.png"
+    />
+    <view class="labels">
+      <view class="labels__item">
+        <view class="dot"></view>
+        <view class="labels__text flex-items-center">
+          在减脂营的
+          <text class="num">{{detail.case.tcPeriod}}</text>天里
+        </view>
+      </view>
+      <view class="labels__item">
+        <view class="dot"></view>
+        <view class="labels__text">
+          <view style="margin-bottom: 26rpx;">
+            <text>根据方案数据按时订餐，可以燃烧</text>
+            <text class="num">{{detail.energyDifference}}</text>
+          </view>
+          <view class="flex-items-center">kcal卡路里</view>
+        </view>
+      </view>
+      <view class="labels__item">
+        <view class="dot"></view>
+        <view class="labels__text flex-items-center">
+          相当于减少
+          <text class="num">{{detail.weight}}</text>斤脂肪
+        </view>
+      </view>
+      <view class="labels__item">
+        <view class="dot"></view>
+        <view
+          class="labels__text flex-items-center"
+          wx:for="{{detail.case.caseLabelList}}"
+          wx:key="index"
+        >
+          等同于
+          {{item.tclName}}
+          <text class="num">{{item.num}}</text>
+          {{item.tclUnit}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="card">
+    <image
+      class="card__title"
+      src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/new_content_8.png"
+    />
+    <view class="process">
+      <view class="process__line"></view>
+      <view class="process-item" wx:for="{{logs}}" wx:key="index">
+        <view class="process-item__dot"></view>
+        <view
+          class="process-item__card {{index === activeIndex ? 'process-item__card--active' : ''}} {{index > activeIndex ? 'process-item__card--invaild' : ''}}"
+        >
+          <view class="font-32 font-bold" style="margin-bottom: 20rpx;">{{item.date}}</view>
+          <view class="font-24">{{item.label}}</view>
+        </view>
+      </view>
+      <!-- <view class="process-item">
+        <view class="process-item__dot"></view>
+        <view class="process-item__card process-item__card--active">
+          <view class="font-32 font-bold" style="margin-bottom: 20rpx;">12月29日</view>
+          <view class="font-24">预约入营成功</view>
+        </view>
+      </view>
+      <view class="process-item">
+        <view class="process-item__dot"></view>
+        <view class="process-item__card process-item__card--invaild">
+          <view class="font-32 font-bold" style="margin-bottom: 20rpx;">1月4日</view>
+          <view class="font-24">减脂营正式开始</view>
+        </view>
+      </view>-->
+    </view>
+  </view>
+  <view class="card" wx:if="{{!expired}}">
+    <image
+      class="card__title"
+      src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/new_content_7.png"
+    />
+    <view class="team">
+      <image
+        class="team__bg"
+        src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/qr_bj.png"
+      />
+      <view class="team__header flex-items-center">
+        <image class="team__avatar" src="{{captain.avatarImg}}" />
+        <view class="team__name font-26">营长：{{captain.uname}}</view>
+      </view>
+      <image class="team__qrcode" src="{{captain.qrcodeImg}}" />
+    </view>
+  </view>
+</view>
+<cp-bottom-button use-slot background-color="#FF5443" model:button-height="{{paddingBottom}}">
+  <view class="flex-items-center">
+    <view class="btn btn-r font-36" bind:tap="inviteTap">邀请好友</view>
+    <view class="btn btn-l font-36" bind:tap="orderTap">去订餐</view>
+  </view>
+</cp-bottom-button>
+
+<invite-dialog model:show="{{showShare}}" aid="{{activityId}}" uid="{{uid}}" name="{{uname}}"></invite-dialog>
+<!-- <van-popup
+  show="{{showShare}}"
+  custom-style="background: transparent;"
+  capture-catch:touchmove="noop"
+>
+  <view>
+    <view style="position: relative;">
+      <image
+        class="share-poster"
+        src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/reduce_share_poster.png"
+      />
+      <view class="share-tag font-26">来自：“{{userName}}”的邀请</view>
+      <image
+        bind:tap="closeTap"
+        class="share-close"
+        src="https://prodstatic.weis1606.cn/api/smartFood/camp_activity/reduce_share_off.png"
+      />
+      <view class="share-qrcode">
+        <image class="share-qrcode__image" src="{{qrcode}}" />
+      </view>
+    </view>
+    <view class="share-btns">
+      <view class="share-btn share-btn__left font-bold" bind:tap="downloadPosterTap">下载海报</view>
+      <view class="share-btn share-btn__right font-bold">发送好友</view>
+    </view>
+  </view>
+</van-popup>
+
+<canvas class="hidden-canvas" canvas-id="share" style="width: 636rpx; height: 969rpx;"></canvas>-->

@@ -1,0 +1,12 @@
+<!--pages/packSubAccount/preferential-order/preferential-order.wxml-->
+<cp-nav-bar title-text="优惠点餐" background="#fff" color="#333333" backIconColor="black" />
+<view class="meal">
+    <view class="title">优惠点餐</view>
+    <view class="sub-title">超多优惠点餐活动等你参加</view>
+    <view class="preferential">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/meal_ai.png" bind:tap="tap1" />
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/ai_ai.png" bind:tap="tap2" />
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/heart_ai.png" bind:tap="tap3" />
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/kettlebell_ai.png" bind:tap="coach" />
+    </view>
+</view>

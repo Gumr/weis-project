@@ -1,0 +1,73 @@
+<!--pages/aboutOrder/skuRefund/skuRefund.wxml-->
+<cp-nav-bar title-text="申请售后" background="#F3F4F5" />
+<view class="container" style="padding-bottom: {{isFullscreen ? '208rpx' : '158rpx'}};">
+  <view class="card">
+    <view class="flex sku">
+      <image class="sku-image" style="margin-right: 36rpx;" src="{{sku.primaryImgUrl}}" />
+      <view class="sku__content">
+        <view class="title">{{sku.skuname}}</view>
+        <view class="flex-content-end sku__count">
+          <image class="calc-icon" src="/images/reduce.png" bind:tap="calcTap" data-type="subtract" />
+          <text class="label">{{form.num}}</text>
+          <image class="calc-icon" src="/images/add.png" bind:tap="calcTap" data-type="add" />
+        </view>
+        <view class="flex-content-between">
+          <view>
+            <text class="sku__unit">￥</text>
+            <text class="sku__price">{{sku.price}}</text>
+          </view>
+          <view class="label__tip">可申请数量：{{sku.num}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="flex-content-between refund-price">
+      <view class="title">退款金额</view>
+      <view>
+        <text class="label__unit">￥</text>
+        <text class="label__price">{{refundPrice}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="card">
+    <view>
+      <view class="title refund-reason">申请原因</view>
+      <view class="textarea">
+        <textarea
+          bind:input="handleTextareaInput"
+          style="min-height: 200rpx;"
+          type="textarea"
+          auto-height="{{true}}"
+          maxlength="{{200}}"
+          placeholder="描述你的退款原因"
+        />
+        <view class="text-end label__tip">{{wordCount}}/200</view>
+      </view>
+    </view>
+    <view>
+      <view class="upload-list">
+        <view class="upload" wx:for="{{imgUrlList}}" wx:key="index">
+          <image class="upload__image" src="{{item}}" />
+          <image
+            class="upload__close"
+            src="/images/icons/upload_delete.png"
+            data-index="{{index}}"
+            bind:tap="deleteImage"
+          />
+        </view>
+        <image
+          class="upload__image upload__camera"
+          style="vertical-align: top;"
+          src="/images/icons/camera.png"
+          bind:tap="chosseCameraTap"
+        />
+        <!-- <view class="upload" style="vertical-align: top;" bind:tap="chosseCameraTap">
+        </view>-->
+      </view>
+      <view class="label__tip" style="padding-bottom: 30rpx;">请上传有问题的商品图片，订单详情；单张照片不超过5M，最多5张。</view>
+    </view>
+  </view>
+</view>
+
+<view class="fixed-bottom" style="padding-bottom: {{isFullscreen ? '90rpx' : '40rpx'}};">
+  <view class="btn {{!confirmable ? 'btn__disabled' : ''}}" bind:tap="refundConfirmTap">确定</view>
+</view>

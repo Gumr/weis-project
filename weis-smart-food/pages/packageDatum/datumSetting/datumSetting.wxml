@@ -1,0 +1,27 @@
+<!--pages/packageDatum/datumSetting/datumSetting.wxml-->
+<cp-nav-bar title-text="数据设置" backIconColor></cp-nav-bar>
+<view class="page-container">
+  <view class="data-tip" style="padding-top: 30rpx;">打开/关闭数据展示入口</view>
+  <view class="data-item" wx:for="{{userConfigs}}" wx:key="index" hidden="{{item.tucType == '06' && subToken}}">
+    <view>{{item.$label}}</view>
+    <cp-switch
+      value="{{item.tucStt}}"
+      active-value="01"
+      inactive-value="00"
+      data-id="{{item.id}}"
+      data-type="{{item.tucType}}"
+      bind:on-change="switchChange"
+      async="{{item.tucType === '06'}}"
+    ></cp-switch>
+  </view>
+  <view class="data-tip" style="padding-top: 48rpx;">关闭后，仅隐藏数据页相应数据入口，不会清空任何历史数据</view>
+</view>
+
+<cp-confirm-dialog
+  title="提示"
+  show="{{authDialog}}"
+  bind:on-confirm="authConfirm"
+  bind:on-cancel="authCancel"
+>
+  <view class="auth-dialog-label">未授权微信运动无法开启记步，是否打开？</view>
+</cp-confirm-dialog>

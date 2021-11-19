@@ -1,0 +1,53 @@
+.tab-bar-container {
+  width: 100%;
+  padding: 6rpx 0;
+  background: #fff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.tab-bar {
+  height: 108rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.tab-bar .tab-bar-item {
+  width: calc(1 / 3 * 100%);
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.tab-bar .tab-bar-item .tab-bar-icon {
+  width: 70rpx;
+  height: 70rpx;
+}
+
+.tab-bar .tab-bar-item .tab-bar-text {
+  font-size: 18rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #666666;
+  line-height: 25rpx;
+}
+
+.tab-bar .tab-bar-item .tab-bar-uncheck {
+  width: 18rpx;
+  height: 18rpx;
+  background: #FE2B0F;
+  border-radius: 50%;
+  position: absolute;
+  right: 54rpx;
+  top: 0;
+  z-index: 2021;
+}

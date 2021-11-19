@@ -1,0 +1,122 @@
+@import '../../style/common.less';
+
+.circle-hidden {
+  position: fixed;
+  top: -9999px;
+}
+
+.charts {
+  .bar-list {
+    .flex-content-between();
+    flex-grow: 1;
+    // margin: 0 30rpx 0 100rpx;
+    justify-content: space-between;
+    .bar-item {
+      text-align: center;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  .bar {
+    display: inline-block;
+    width: 14rpx;
+    height: 140rpx;
+    background: #f3f4f5;
+    border-radius: 100rpx;
+    position: relative;
+    margin-bottom: 13rpx;
+    &__value {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 14rpx;
+      // min-height: 14rpx;
+      background: #fca649;
+      border-radius: 100rpx;
+      transition: height 0.3s linear;
+      &--max {
+        background: #fa6400;
+      }
+    }
+  }
+
+  // .circle {
+  //   margin-left: 18rpx;
+  //   position: relative;
+  //   width: 202rpx;
+  //   height: 202rpx;
+  //   &__content {
+  //     text-align: center;
+  //     position: absolute;
+  //     left: 50%;
+  //     top: 50%;
+  //     transform: translate(-50%, -50%);
+  //   }
+  //   &__value {
+  //     white-space: nowrap;
+  //     margin: 10rpx 0;
+  //   }
+  // }
+}
+
+.label-18 {
+  font-size: 18rpx;
+  color: #666;
+}
+
+.label-20 {
+  font-size: 20rpx;
+  color: #666;
+}
+
+.number-52 {
+  font-family: 'DINCondensedC';
+  font-size: 52rpx;
+}
+
+.number-40 {
+  font-family: 'DINCondensedC';
+  font-size: 40rpx;
+}
+.number-28 {
+  font-family: 'DINCondensedC';
+  font-size: 28rpx;
+}
+.number-22 {
+  font-family: 'DINCondensedC';
+  font-size: 26rpx;
+  color: #333333;
+}
+
+.energy-bar{
+  width: 100%;
+  margin-top: 50rpx;
+  .box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .name{
+      color: #666666;
+      font-size: 20rpx;
+    }
+    .bar-line{
+      width: 418rpx;
+      height: 14rpx;
+      background: #F3F4F5;
+      border-radius: 100rpx;
+      .actual-bar{
+        // min-width: 14rpx;
+        height: 14rpx;
+        border-radius: 100rpx;
+        transition: width 0.3s linear;
+      }
+    }
+    .val{
+      color: #333333;
+      font-size: 28rpx;
+      font-weight: bold;
+      font-family: 'DINCondensedC';
+    }
+  }
+}

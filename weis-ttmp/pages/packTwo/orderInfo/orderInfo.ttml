@@ -1,0 +1,68 @@
+<!-- h:\material\weis-ttmp\pages\orderInfo\orderInfo.ttml -->
+
+<sjs module="utils">
+  function tipsText(v){ switch(v){ case 'WAITING_WRITER_OFF': return '天内完成核销点餐'; case 'DOING_WRITER_OFF': return '餐'; case 'DONE_WRITER_OFF': return '完成'; case 'REFUNDING_MONEY': return '钱款正在原路返还'; case 'REFUNDED_MONEY': return '钱款已原路返还，请查收'; case 'EXPIRED': return '你在30天内未核销点餐'; default : return ''; } } module.exports = { tipsText: tipsText , }
+</sjs>
+
+<cp-nav-bar title-text="订单详情" preventBack="{{true}}" bind:back="back" background="#F3F4F5"></cp-nav-bar>
+
+<view tt:if="{{detail}}" class="detail">
+  <view class="status-box">
+    <view class="status">{{detail.sttDesc}}</view>
+    <view tt:if="{{detail.descMapping==stt[0]||detail.descMapping==stt[1]||detail.descMapping==stt[2]}}" class="act{{detail.descMapping==stt[0]?'1':'2'}}" bindtap="tapAct">{{detail.descMapping==stt[0]?'去核销点餐':'查看餐单'}}</view>
+  </view>
+  <!-- 核销点餐提醒 -->
+  <view class="tip" style="{{detail.descMapping==stt[0]||detail.descMapping==stt[1]?'background: rgba(252, 204, 73, 0.2);':'padding-left: 0;'}}">
+    <image tt:if="{{detail.descMapping==stt[0]||detail.descMapping==stt[1]}}" src="/images/horn.png"></image>
+    <view class="title" style="color:{{detail.descMapping==stt[0]||detail.descMapping==stt[1]?'#333333':'rgba(0, 0, 0, 0.8)'}};">{{detail.descMapping==stt[0]?'请在':detail.descMapping==stt[1]||detail.descMapping==stt[2]?detail.total_sum+'餐已签收':''}} <view>{{detail.descMapping==stt[0]?deadTime:detail.descMapping==stt[1]?detail.finished_sum:''}}</view>{{utils.tipsText(detail.descMapping)}}</view>
+  </view>
+  <view class="box-square">
+    <view class="info">
+      <view class="col">
+        <image mode="aspectFill" src="{{detail.dou_pack.tdp_cover_img[0]}}"></image>
+        <view class="name">{{detail.dou_pack.tdp_name}}</view>
+      </view>
+      <!-- 状态 -->
+      <view class="col-r">
+        <!-- <view class="status">待核销</view> -->
+        <view class="price">￥{{detail.tdpoComboPrice}}</view>
+      </view>
+    </view>
+    <!-- 配送信息 实付 -->
+    <view class="info-b">
+      <view class="distribution">
+        <view class="ps"></view>
+        <view class="actual">实付：¥ <view>{{detail.dou_pack.tdp_sale_price}}</view></view>
+      </view>
+      <view bindtap="tapCancel" tt:if="{{detail.descMapping==stt[0]||detail.descMapping==stt[5]}}" class="btn">取消订单</view>
+    </view>
+  </view>
+  <!-- 订单信息 -->
+  <view class="orderInfo">
+    <view class="title">订单信息</view>
+    <view class="row" style="margin-top: 30rpx;" data-number="{{detail.tdpoTradeNo}}" bindtap="tapCopyNo">
+      <view class="name">订单编号</view>
+      <view class="col-r">
+        <view class="desc">{{detail.tdpoTradeNo}}</view>
+        <image src="/images/copy.png"></image>
+      </view>
+    </view>
+    <view class="row">
+      <view class="name">下单时间</view>
+      <view class="col-r">
+        <view class="desc">{{time}}</view>
+      </view>
+    </view>
+    <view class="row">
+      <view class="name">支付方式</view>
+      <view class="col-r">
+        <view class="desc">{{detail.tdpoPayWay=='wechat'?'微信支付':'微信支付'}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 联系客服 -->
+  <view class="contact">
+    <view>如有疑问，请点击</view>
+    <button open-type="contact">联系客服</button>
+  </view>
+</view>

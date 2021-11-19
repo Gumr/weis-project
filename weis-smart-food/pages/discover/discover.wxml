@@ -1,0 +1,284 @@
+<!-- pages/discover/discover.wxml -->
+<cp-nav-bar title-text="发现" background="#F6F6F6" custom left="icon" lefticonUrl="https://prodstatic.weis1606.cn/api/smartFood/icon_find_bell@2x.png" lefticonTip="{{unReadMsgCount > 0}}" bind:tapcustom="tapcustom"></cp-nav-bar>
+<wxs module="filters" src="../../utils/filter.wxs"></wxs>
+<view class="discover">
+    <view class="body">
+        <scroll-view class="scroll-box" scroll-x="{{true}}" style="width:720rpx" scroll-into-view="{{scrollIndex}}" scroll-with-animation="{{true}}">
+            <view class="tab">
+                <view class="box {{index == activeIdx ? 'active' : ''}}" id="{{'scroll-' + index}}" wx:for="{{tab}}" wx:key="index" data-index="{{index}}" bind:tap="tab">
+                    <view class="name">{{item.name}}</view>
+                    <image wx:if="{{index == activeIdx}}" src="https://prodstatic.weis1606.cn/api/smartFood/discover/icon_underline.png" />
+                </view>
+            </view>
+        </scroll-view>
+        <!-- 维粉饭圈 -->
+        <view class="dynamic-box" wx:if="{{activeIdx == 0}}">
+            <view class="dynamic-box-head">
+                <!-- 菜品投票 -->
+                <view class="dishesVote" bind:tap="goDishesVote">
+                    <image class="title_bg" mode="widthFix" src="https://prodstatic.oss-cn-shenzhen.aliyuncs.com/api/smartFood/vote_icon.png" />
+                    <view class="icon-box" wx:if="{{uncheck_vote}}">
+                        <!-- <image class="icon" mode="widthFix" src="https://prodstatic.oss-cn-shenzhen.aliyuncs.com/api/smartFood/vote_bg.png" /> -->
+                        <text>新一期投票开始</text>
+                    </view>
+                </view>
+                <!-- 饭圈新菜 -->
+                <view class="newDishes" wx:if="{{newDishes.length > 0}}">
+                    <image class="title_bg" src="https://prodstatic.weis1606.cn/api/smartFood/discover/fing_bj_orange@2x.png" />
+                    <view class="title" style="color: #FE5E0F">
+                        <image src="https://prodstatic.weis1606.cn/api/smartFood/discover/find_new_dishes@2x.png" />
+                        饭圈新菜
+                    </view>
+                    <scroll-view scroll-x="true" style="min-height: 200rpx;margin-top: 40rpx;">
+                        <view class="content">
+                            <view class="list" wx:for="{{newDishes}}" data-id="{{item.tfsId}}" data-index="{{index}}" data-tfsstt="{{item.tfsStt}}" bind:tap="goodsDetail">
+                                <image src="{{item.tfsSkuImgUrl[0].imgUrl}}" />
+                                <view>{{item.tfsSuggestedSkuname}}</view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
+            </view>
+            <!-- 饭圈动态 -->
+            <view class="dynamic">
+                <image class="title_bg" src="https://prodstatic.weis1606.cn/api/smartFood/discover/fing_bj_violet@2x.png" />
+                <view class="title" style="color: #6553A7">
+                    <image src="https://prodstatic.weis1606.cn/api/smartFood/discover/find_star@2x.png" />
+                    饭圈动态
+                </view>
+                <view class="content">
+                    <view class="list" wx:for="{{dynamic}}" data-index="{{index}}" bind:tap="dynamicDetail">
+                        <view class="head">
+                            <image class="headImg" src="{{item.headImgUrl}}"></image>
+                            <view class="headInfo">
+                                <view>{{item.uname}}</view>
+                                <view>{{item.tbdCtimeFilter}}</view>
+                            </view>
+                        </view>
+                        <!-- <view class="words">{{item.tbdDynamicText}}</view> -->
+                        <view class="words">
+                            <!-- <text wx:for="{{item.tbdDynamicTextArr}}" style="{{item.isUrl ? 'color: #2440B3' : ''}}" data-item="{{item}}" bind:tap="linkTap">{{item.text}}</text> -->
+                            <block wx:for="{{item.tbdDynamicTextArr}}" wx:for-item="item1">
+                                <view wx:if="{{item1.isUrl}}" class="wordsUrl" data-item1="{{item1}}" bind:tap="linkTap">
+                                    <image class="urlIcon" src="https://prodstatic.weis1606.cn/api/smartFood/link_icon@2x.png" />
+                                    点击链接
+                                </view>
+                                <view wx:else class="wordsText">{{item1.text}}</view>
+                            </block>
+                        </view>
+                        <view class="img">
+                            <image wx:for="{{item.picturesArr}}" mode="aspectFill" wx:for-item="item1" src="{{item1}}" style="{{item.picturesArr.length == 1?'width: 400rpx;height: 400rpx;':''}}" />
+                        </view>
+                        <view class="menu" wx:if="{{item.nutritionHealthScoreForm}}">
+                            <view class="{{item.nutritionHealthScoreForm.totalScore < 100?'addRed':''}}">
+                                {{item.nutritionHealthScoreForm.totalScore}}
+                            </view>
+                            <view>
+                                {{filters.toDates(item.nutritionHealthScoreForm.dateTime)}}{{categoryMap[item.nutritionHealthScoreForm.category]}}营养健康分{{item.nutritionHealthScoreForm.totalScore}}
+                            </view>
+                        </view>
+                        <view class="operate">
+                            <view class="operate_icon">
+                                <view>
+                                    <image src="https://prodstatic.weis1606.cn/api/smartFood/{{item.likeStatus?'icon_find_like_press@2x':'icon_find_like@2x'}}.png" data-likestatus="{{item.likeStatus}}" data-tbdid="{{item.tbdId}}" catch:tap="order" />
+                                    <view>{{item.tbdLikeSum}}</view>
+                                </view>
+                                <view>
+                                    <image src="https://prodstatic.weis1606.cn/api/smartFood/icon_find_new@2x.png" />
+                                    <view>{{item.tbdCommentSum}}</view>
+                                </view>
+                            </view>
+                            <view class="operate_delete" data-tbdid="{{item.tbdId}}" catch:tap="delete" wx:if="{{item.myDynamic}}">
+                                <image src="https://prodstatic.weis1606.cn/api/smartFood/icon_find_delete_orange@2x.png" />
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="end">～ 到底啦 ～</view>
+            <!-- 发布动态按钮 -->
+            <image wx:if="{{canPublish}}" class="release" bind:tap="release" src="https://prodstatic.weis1606.cn/api/smartFood/icon_find_pen@2x.png" />
+        </view>
+        <!-- 营养课堂-旧 -->
+        <!-- <view class="schoolroom-box" wx:if="{{activeIdx == 1}}"> -->
+        <!-- 百科文章 -->
+        <!-- <view class="article" style="display: none">
+                <image class="title_bg" src="https://prodstatic.weis1606.cn/api/smartFood/discover/fing_bj_orange@2x.png" />
+                <view class="title" style="color: #FE5E0F">
+                    <image src="https://prodstatic.weis1606.cn/api/smartFood/discover/find_article@2x.png" />
+                    极养百科
+                </view>
+                <scroll-view scroll-x="true" style="min-height: 100rpx;margin-top: 40rpx;">
+                    <view class="content">
+                        <view class="list" wx:for="{{article}}" data-title="{{item.title}}" data-catalogue="{{item.catalogue}}" bind:tap="article">
+                            <image src="{{item.img}}" />
+                        </view>
+                    </view>
+                </scroll-view>
+            </view> -->
+        <!-- 精彩视频 -->
+        <!-- <view class="video" style="display: none">
+                <image class="title_bg" src="https://prodstatic.weis1606.cn/api/smartFood/discover/fing_bj_violet@2x.png" />
+                <view class="title" style="color: #6553A7">
+                    <image src="https://prodstatic.weis1606.cn/api/smartFood/discover/find_video@2x.png" />
+                    极养VLOG
+                </view>
+                <view class="content">
+                    <view class="list" wx:for="{{video}}" data-item="{{item}}" bind:tap="video">
+                        <view class="cover">
+                            <image class="cover_img" src="{{item.cover}}" mode="aspectFill"/>
+                            <image class="cover_start" src="https://prodstatic.weis1606.cn/api/smartFood/discover/find_play.png" />
+                        </view>
+                        <view class="name">{{item.name}}</view>
+                    </view>
+                </view>
+            </view> -->
+        <!-- </view> -->
+        <!-- 营养课堂 -->
+        <view class="schoolroom-box" wx:if="{{activeIdx == 1}}">
+            <!-- 视频 -->
+            <view class="video">
+                <block wx:for="{{video}}" wx:key="index">
+                    <!-- 大图 -->
+                    <view class="largeList" wx:if="{{item.show == 'large'}}" data-item="{{item}}" bind:tap="video">
+                        <view class="cover">
+                            <image class="cover_img" src="{{item.CoverImg}}" mode="aspectFill" />
+                            <image class="cover_start" wx:if="{{item.contentType == '20'}}" src="https://prodstatic.weis1606.cn/api/smartFood/discover/find_play.png" />
+                            <!-- <view class="cover_duration">{{item.time}}</view> -->
+                            <view class="cover_name">{{item.mainTitle}}</view>
+                            <!-- <view class="cover_desc">{{item.desc}}</view> -->
+                            <image class="cover_mask" src="https://prodstatic.weis1606.cn/api/smartFood/discover/find_video_mask.png" />
+                        </view>
+                    </view>
+                    <!-- 小图 -->
+                    <view class="smallList" wx:if="{{item.show == 'small'}}" data-item="{{item}}" bind:tap="video">
+                        <view class="cover">
+                            <image class="cover_img" src="{{item.CoverImg}}" mode="aspectFill" />
+                            <image class="cover_start" wx:if="{{item.contentType == '20'}}" src="https://prodstatic.weis1606.cn/api/smartFood/discover/find_play.png" />
+                            <!-- <view class="cover_duration">{{item.time}}</view> -->
+                        </view>
+                        <view class="cont">
+                            <view class="cover_name">{{item.mainTitle}}</view>
+                            <!-- <view class="cover_desc">{{item.desc}}</view> -->
+                        </view>
+                    </view>
+                </block>
+            </view>
+        </view>
+        <!-- 减脂增肌 -->
+        <!-- <view class="reduction-box" wx:if="{{activeIdx == 3}}"> -->
+        <!-- <view class="reduction">
+                <image class="title_bg" src="https://prodstatic.weis1606.cn/api/smartFood/discover/fing_bj_orange@2x.png" />
+                <view class="head">
+                    <view class="title" style="color: #FE5E0F">
+                        <image src="https://prodstatic.weis1606.cn/api/smartFood/discover/find_coach@2x.png" />
+                        教练专区
+                    </view>
+                    <view class="all" bind:tap="coachAll">
+                        <view class="name">全部教练</view>
+                        <image src="/images/arrow-grey.png" />
+                    </view>
+                </view>
+                <scroll-view scroll-x="{{true}}" class="coach-box" style="width: 660rpx">
+                    <view class="coach" wx:for="{{coach}}" data-index="{{index}}" bind:tap="coachTap">
+                        <image src="{{item.headImageUrl}}" />
+                        <view class="name">{{item.uname}}</view>
+                        <view class="sub ellipsis">{{item.domain}}</view>
+                        <view class="star" wx:if="{{item.star}}">{{item.star}}</view>
+                    </view>
+                </scroll-view>
+            </view> -->
+        <!-- 精彩内容 -->
+        <!-- <view class="reduction" style="margin:20rpx auto">
+                <image class="title_bg" src="https://prodstatic.weis1606.cn/api/smartFood/discover/fing_bj_violet@2x.png" />
+                <view class="head">
+                    <view class="title" style="color: #6553A7">
+                        <image src="https://prodstatic.weis1606.cn/api/smartFood/discover/find_book@2x.png" />
+                        精彩内容
+                    </view>
+                </view>
+                <view class="contents">
+                    <view class="content " bind:tap="jumpPlan">
+                        <image src="https://prodstatic.weis1606.cn/api/smartFood/find_programme%402x.png" />
+                        <view class="box">
+                            <view class="name1">增肌减脂饮食吃法库</view>
+                            <view class="name2">多种饮食吃法，总有一种适合你</view>
+                        </view>
+                    </view>
+                    <view class="content" wx:for="{{contents}}" wx:key="index" data-index="{{index}}" bind:tap="contentTap">
+                        <image src="{{item.contentImg}}" />
+                        <view class="box">
+                            <view class="name1">{{item.title}}</view>
+                            <view class="name2">{{item.draftContent}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view> -->
+        <!-- </view> -->
+        <!-- 慢病康复 -->
+        <!-- <view class="reduction-box" wx:if="{{activeIdx == 4}}"> -->
+        <!-- 精彩内容 -->
+        <!-- <view class="reduction" style="margin:20rpx auto">
+                <view class="head">
+                    <view class="title">营养百科</view>
+                </view>
+                <view class="contents">
+                    <view class="content" wx:for="{{chronic}}" wx:key="index" data-index="{{index}}" bind:tap="contentTap">
+                        <image src="{{item.contentImg}}" />
+                        <view class="box">
+                            <view class="name1">{{item.title}}</view>
+                            <view class="name2">{{item.draftContent}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view> -->
+        <!-- </view> -->
+        <!-- 少儿成长 -->
+        <!-- <view class="reduction-box" wx:if="{{activeIdx == 5}}"> -->
+        <!-- 精彩内容 -->
+        <!-- <view class="reduction" style="margin:20rpx auto">
+                <view class="head">
+                    <view class="title">营养百科</view>
+                </view>
+                <view class="contents">
+                    <view class="content" wx:for="{{juvenile}}" wx:key="index" data-index="{{index}}" bind:tap="contentTap">
+                        <image src="{{item.contentImg}}" />
+                        <view class="box">
+                            <view class="name1">{{item.title}}</view>
+                            <view class="name2">{{item.draftContent}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view> -->
+        <!-- </view> -->
+        <!-- 维士星故事 -->
+        <view class="userStory-box" wx:if="{{activeIdx == 2}}">
+            <view class="list" wx:for="{{userStory}}" data-item="{{item}}" bind:tap="userStory">
+                <view class="cover">
+                    <image class="cover_img" src="{{item.CoverImg}}" mode="aspectFill" />
+                    <image class="cover_start" wx:if="{{item.contentType == '20'}}" src="https://prodstatic.weis1606.cn/api/smartFood/discover/find_play.png" />
+                    <!-- <view class="cover_duration">{{item.time}}</view> -->
+                    <view class="cover_name">{{item.mainTitle}}</view>
+                    <!-- <view class="cover_desc">{{item.desc}}</view> -->
+                    <image class="cover_mask" src="https://prodstatic.weis1606.cn/api/smartFood/discover/find_video_mask.png" />
+                </view>
+            </view>
+        </view>
+        <!-- 专家在线 -->
+        <view class="expertOnline-box" wx:if="{{activeIdx == 3}}">
+            <view class="list" wx:for="{{expertOnline}}" wx:key="index" data-index="{{index}}" bind:tap="expertTap">
+                <image class="list_img" src="{{item.headImage}}" mode="aspectFill" />
+                <view class="list_name">{{item.name}}</view>
+                <view class="list_desc">{{item.filed}}</view>
+                <!-- <view class="list_desc">{{item.desc1}}</view> -->
+            </view>
+            <!-- 客服 -->
+            <image class="customer" bind:tap="contact" src="https://prodstatic.weis1606.cn/api/smartFood/icon_ask.png" />
+        </view>
+    </view>
+</view>
+<cp-confirm-dialog show="{{showDelete}}" title="确定删除该动态吗？" bind:on-confirm="sureDelete"></cp-confirm-dialog>
+<!-- 运营弹窗 -->
+<cp-config-dialog discoverDialogs="{{discoverDialogs}}" bind:on-tap="configShowTap" bind:on-close="closeConfig" bind:on-noTip="noTipChange" />
+<!-- 拦截登录 -->
+<view class="login-view" wx:if="{{!(loginInfo.isAuthorized && loginInfo.isLogin && loginInfo.isPerProfile)}}" catch:tap="login"></view>

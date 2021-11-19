@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "cp-change-sku": "/components/cp-change-sku/cp-change-sku"
+  }
+}

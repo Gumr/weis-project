@@ -1,0 +1,19 @@
+<!-- pages/packageDiscover/onLineFat/rules/rules.wxml -->
+<cp-nav-bar title-text="活动规则" />
+<view class="rules">
+  <image class="rule_bj" src="https://prodstatic.weis1606.cn/api/smartFood/rule_bj.png" />
+  <!-- 规则 -->
+  <view class="info">
+    <view class="activityInfo">
+      <view class="rule" wx:if="{{img}}">
+        <image mode="widthFix" src="{{img}}" />
+      </view>
+      <view class="rule" wx:else>
+        <image mode="widthFix" src="https://prodstatic.weis1606.cn/api/smartFood/rules.png" />
+        <text class="smdis">5折优惠</text>
+        <text class="ladis">7折优惠</text>
+        <text class="dedis">8折优惠</text>
+      </view>
+    </view>
+  </view>
+</view>

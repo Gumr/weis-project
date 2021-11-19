@@ -1,0 +1,4 @@
+<!--components/bottomBtn/bottomBtn.wxml-->
+<view class="bottomBtn" bindtap="tapEvent">
+  <view class="btn {{isDisabled ? 'disabled' : ''}}" style="position: {{isFixed ? 'fixed' : 'relative'}}">{{text}}</view>
+</view>

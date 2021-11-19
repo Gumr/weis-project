@@ -1,0 +1,3 @@
+<!--pages/basic/uploadVideo/uploadVideo.wxml-->
+<!-- <web-view src="http://localhost:8080" bindmessage="getMessage"></web-view> -->
+<web-view src="https://h5-static.weis1606.cn/#/" bindmessage="getMessage"></web-view>

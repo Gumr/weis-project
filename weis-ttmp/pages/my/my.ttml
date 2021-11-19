@@ -1,0 +1,30 @@
+<!-- c:\Users\admin\Desktop\ttapp\pages\my\my.ttml -->
+<view class="my">
+    <!-- 头部-背景 -->
+    <image class="headBj" src="{{imgPrefix + 'headBj.png'}}" />
+    <!-- 头部 -->
+    <view class="headBox" bindtap="personal">
+        <view class="headBox_l" tt:if="{{isLogin}}">
+            <image class="headImg" src="{{userInfo.headImgUrl}}" />
+            <view class="uname">{{userInfo.uname}}</view>
+        </view>
+        <view class="headBox_l" tt:else>
+            <view class="headImg">
+                <image src="{{imgPrefix + 'menu_logo.png'}}" />
+            </view>
+            <view class="uname">请登录</view>
+        </view>
+        <image class="headBox_r" src="{{imgPrefix + 'arrow_black.png'}}" />
+    </view>
+    <!-- 内容 -->
+    <view class="content">
+        <view class="list" tt:for="{{myList}}" data-id="{{item.id}}" data-url="{{item.url}}" bindtap="myList">
+            <view class="list_l">
+                <image class="icon" src="{{imgPrefix + item.icon}}" />
+                <view class="title">{{item.title}}</view>
+            </view>
+            <image class="list_r" src="{{imgPrefix + 'arrow.png'}}" />
+            <button open-type="contact" tt:if="{{isLogin && item.id == 1}}"></button>
+        </view>
+    </view>
+</view>

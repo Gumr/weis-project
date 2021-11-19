@@ -1,0 +1,108 @@
+.flex {
+  display: flex;
+}
+.flex-items-center {
+  display: flex;
+  align-items: center;
+}
+.flex-content-between {
+  display: flex;
+  justify-content: space-between;
+}
+.eat-card {
+  width: 335rpx;
+  height: 160rpx;
+  border-radius: 10rpx;
+  position: relative;
+}
+.eat-card image {
+  width: 100%;
+  height: 100%;
+}
+.eat-card .eatMeal {
+  position: absolute;
+  left: 30rpx;
+  top: 32rpx;
+  line-height: 30rpx;
+}
+.eat-card .eatMeal .etit {
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: #000000;
+}
+.eat-card .eatMeal .etit image {
+  width: 46rpx;
+  height: 18rpx;
+  vertical-align: top;
+  margin-left: 6rpx;
+}
+.eat-card .eatMeal .online {
+  font-size: 18rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #808080;
+}
+.eat-card .eatMeal .onlinetext {
+  font-size: 18rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #808080;
+  margin-top: 30rpx;
+  display: flex;
+  align-items: center;
+}
+.eat-card .eatMeal .onlinetext__icon {
+  width: 22rpx;
+  height: 22rpx;
+  margin-right: 6rpx;
+}
+.tabs {
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 83rpx;
+}
+.tabs .tab {
+  padding: 20rpx 0 24rpx;
+  font-size: 28rpx;
+  color: #333;
+  position: relative;
+}
+.tabs .tab--active {
+  color: #fe5e0f;
+}
+.tabs .tab--active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-16rpx);
+  width: 32rpx;
+  height: 8rpx;
+  background: #fe5e0f;
+  border-radius: 4rpx;
+}
+.cards {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30rpx;
+}
+.cards .card {
+  display: inline-block;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+}
+.cards .card:nth-child(2n) {
+  margin-right: 0;
+}
+.cards .card__icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60rpx;
+  height: 40rpx;
+}

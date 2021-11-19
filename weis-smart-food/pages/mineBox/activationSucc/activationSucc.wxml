@@ -1,0 +1,27 @@
+<!--pages/mineBox/activationSucc/activationSucc.wxml-->
+<cp-nav-bar title-text="" color="#000000" background="#fff" backIconColor="black" />
+<view class="succ" wx:if="{{succType == 'activationCard'}}">
+    <image src="https://prodstatic.weis1606.cn/api/smartFood/icon_%E6%94%AF%E4%BB%98%E6%88%90%E5%8A%9F.png" />
+    <view class="name">实体卡激活成功</view>
+    <view class="total">
+        <view class="symbol">￥</view>
+        <view class="price">{{price}}</view>
+    </view>
+    <view class="grey" wx:if="{{donationAmount > 0}}">实体卡金额¥{{rechargeAmount}}，赠送¥{{donationAmount}}</view>
+    <view class="grey">已充值到余额中</view>
+    <view class="btn" bind:tap="back">完成</view>
+</view>
+
+<!-- 帮充值 -->
+<view class="succ helpRecharge" wx:if="{{succType == 'helpRecharge'}}">
+    <image src="https://prodstatic.weis1606.cn/api/smartFood/icon_%E6%94%AF%E4%BB%98%E6%88%90%E5%8A%9F.png" />
+    <view class="name">帮充值成功</view>
+    <view class="total">
+        <view class="symbol">￥</view>
+        <view class="price">{{price}}</view>
+    </view>
+    <view class="grey" wx:if="{{donationAmount > 0}}">实付¥{{rechargeAmount}}，赠送¥{{donationAmount}}</view>
+    <view class="grey phone">{{phone}}</view>
+    <view class="grey uname">{{uname}}</view>
+    <view class="btn" bind:tap="back">完成</view>
+</view>

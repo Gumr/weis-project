@@ -1,0 +1,38 @@
+<!--pages/mineBox/submitBody/submitBody.wxml-->
+
+<cp-nav-bar title-text="开始减肥啦" backIconColor></cp-nav-bar>
+
+<view class="container">
+  <view class="text">开始瘦身方案之前，请确认以下信息是否准确。</view>
+  <view class="text">如不准确，请修改。</view>
+
+  <view class="form">
+    <view class="gray-text">体重</view>
+    <input
+      value="{{body.weight}}"
+      bind:input="handleInput"
+      data-key="weight"
+      class="input"
+      type="text"
+    />
+    <view>kg</view>
+  </view>
+  <view class="form">
+    <view class="gray-text">身高</view>
+    <input
+      value="{{body.height}}"
+      bind:input="handleInput"
+      data-key="height"
+      class="input"
+      type="text"
+    />
+    <view>cm</view>
+  </view>
+</view>
+
+<view class="fixed-btn" style="bottom: {{keyboardHeight}}rpx;">
+  <view
+    class="btn {{confirmable ? 'button--primary' : 'button--disabled'}}"
+    bind:tap="confirmTap"
+  >确认</view>
+</view>

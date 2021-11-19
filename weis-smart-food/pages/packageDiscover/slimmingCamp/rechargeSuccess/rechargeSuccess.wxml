@@ -1,0 +1,17 @@
+<!--pages/marketing/slimmingCamp/rechargeSuccess/rechargeSuccess.wxml-->
+<cp-nav-bar title-text="充值成功" mode="home"></cp-nav-bar>
+<view class="container">
+  <image class="image" src="https://prodstatic.weis1606.cn/api/mini2/blank_success_ai.png" />
+  <view class="title">充值成功!</view>
+  <view>
+    <text class="label">充值金额：</text>
+    <text class="label label__price">¥{{price}}</text>
+  </view>
+  <view>
+    <view class="next-btn button--primary" bind:tap="nextTap">下一步</view>
+  </view>
+  <view class="tip">
+    <image class="tip__background" src="https://prodstatic.weis1606.cn/api/smartFood/aboutWeis/payment_bj.png" />
+    <text class="tip__label">要完成订餐才能入营哦！</text>
+  </view>
+</view>

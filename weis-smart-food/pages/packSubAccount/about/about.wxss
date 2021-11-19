@@ -1,0 +1,143 @@
+page {
+  background: #FFFFFF;
+}
+.border {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 4rpx;
+  background: #F3F4F5;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.about {
+  width: 100%;
+  padding: 30rpx 30rpx 0;
+}
+.about .top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #333333;
+}
+.about .top image {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 53rpx;
+}
+.about .top .name {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 4rpx;
+}
+.about .top .version {
+  font-size: 28rpx;
+}
+.about .contact {
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  background: #ffffff;
+  margin-top: 62rpx;
+}
+.about .contact::before {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 4rpx;
+  background: #F3F4F5;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0;
+}
+.about .contact .list {
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 0 12rpx 0 30rpx;
+}
+.about .contact .list:nth-of-type(1)::before {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 4rpx;
+  background: #F3F4F5;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0;
+}
+.about .contact .list::after {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 4rpx;
+  background: #F3F4F5;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 0;
+}
+.about .contact .list .name {
+  color: #333333;
+  font-size: 28rpx;
+  font-weight: 400;
+}
+.about .contact .list .col-r {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.about .contact .list .col-r .num {
+  font-size: 28rpx;
+  color: #666666;
+  font-weight: 400;
+  margin-right: 10rpx;
+}
+.about .contact .list .col-r image {
+  width: 28rpx;
+  height: 28rpx;
+}
+.time {
+  color: #A9A9A9;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  text-align: center;
+  margin: 64rpx auto 0;
+}
+button {
+  background: #ffffff;
+  border: none;
+  padding: 0;
+}
+button::after {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 4rpx;
+  background: #F3F4F5;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 0;
+  top: initial;
+}
+.button-hover {
+  color: initial;
+  background: #ffffff;
+}

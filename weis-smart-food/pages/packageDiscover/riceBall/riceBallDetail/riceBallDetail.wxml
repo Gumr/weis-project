@@ -1,0 +1,319 @@
+<!-- pages/packageDiscover/onLineFat/reduceFatDetail/reduceFatDetail.wxml -->
+<import src="/templates/rank-item/rank-item"></import>
+<wxs module="filters" src="../../../../utils/filter.wxs"></wxs>
+<cp-nav-bar background="transparent" />
+<view class="reduceFat {{riceRallInfo.trrStt !== '01' ? 'bg' : ''}}" style="margin-top: -{{navStatusHeight}}rpx;" wx:if="{{!showError}}">
+    <view class="banner">
+        <image mode="aspectFill" src="{{riceRallInfo.trrUrl}}" />
+        <image class="mengceng" src="{{preImg + '/ricaball_mc.png'}}" />
+        <text>{{riceRallInfo.trrName}}</text>
+    </view>
+    <view class="info">
+        <!-- 饭团报名中 -->
+        <view class="rice-ball-enroll" wx:if="{{riceRallInfo.trrStt === '01'}}">
+            <view class="enroll-row enroll-date">
+                <view class="enroll-row-l">开团/结团日期</view>
+                <view class="enroll-row-r">
+                    {{riceRallInfo.trrActivityBTime}}-{{riceRallInfo.trrActivityETime}}
+                </view>
+            </view>
+            <view class="enroll-row enroll-date">
+                <view class="enroll-row-l">当前状态</view>
+                <view class="enroll-row-r">{{riceBallStatus[status]}}</view>
+            </view>
+            <view class="enroll-row elroll-tz">
+                <view class="enroll-row-l">团长</view>
+                <view class="enroll-row-r">
+                    <text>{{groupInfo.uname}}</text>
+                    <image class="icon" src="{{groupInfo.headImgUrl}}" />
+                </view>
+            </view>
+            <view class="enroll-row enroll-date">
+                <view class="enroll-row-l">已报名</view>
+                <view class="enroll-row-r" bindtap="toGroupUser">
+                    <text>{{riceRallRecordBeans.length}}人</text>
+                    <image class="icon" src="/images/icon_right.png" />
+                </view>
+            </view>
+            <view class="enroll-row enroll-date">
+                <view class="enroll-row-l">是否符合开团条件</view>
+                <view class="enroll-row-r">
+                    {{riceRallRecordBeans.length>=5? '已满5人,开团后享受'+ratio*10+'折':'还差'+ (5-riceRallRecordBeans.length)+'人'}}
+                </view>
+            </view>
+            <view class="rice-ball-rules">
+                <view class="rules-tit">活动规则</view>
+                <image class="icon" src="{{preImg + '/riceball_rules.png'}}" />
+                <!-- <view class="rules-list">
+                    <view class="rules-list-slip" wx:for="{{riceBallRules}}">{{item}}</view>
+                </view> -->
+            </view>
+            <view class="operate-btns">
+                <!-- 邀请好友加入 -->
+                <view class="next" wx:if="{{inRiceRall}}">
+                    <view class="next-l" data-type="cancel" bind:tap="preOperateFn">
+                        <image class="icon" src="{{preImg + '/icon_more.png'}}" />
+                    </view>
+                    <view class="next-r">
+                        <button open-type="share">邀请好友加入</button>
+                    </view>
+                </view>
+                <view class="pre btn disabled" wx:elif="{{(inAllRiceRall && !inRiceRall) || riceRallInfo.totalNum >= 50}}">
+                    <button class="yq" open-type="share">
+                        <image class="icon" src="{{preImg + '/enterprise_share_fantuan.png'}}" />
+                        <view class="txt">邀请好友</view>
+                    </button>
+                    <view class="bmgt disabled">
+                        {{inAllRiceRall && !inRiceRall ? '已报名其他饭团，不可重复报名' : '该饭团报名人数已满'}}
+                    </view>
+                </view>
+                <view class="pre btn" wx:else>
+                    <button class="yq" open-type="share">
+                        <image class="icon" src="{{preImg + '/enterprise_share_fantuan.png'}}" />
+                        <view class="txt">邀请好友</view>
+                    </button>
+                    <view class="bmgt" bindtap="sign">报名该团</view>
+                </view>
+            </view>
+        </view>
+        <!-- 饭团进行中 -->
+        <view class="activityInfo" wx:else>
+            <view class="title-wrap">
+                <view class="title">活动信息</view>
+            </view>
+            <view class="wrap">
+                <view class="title">开团/结团日期</view>
+                <view class="boldtext">
+                    {{riceRallInfo.trrActivityBTime}}-{{riceRallInfo.trrActivityETime}}
+                </view>
+            </view>
+            <view class="wrap">
+                <view class="title">当前状态</view>
+                <view class="status" wx:if="{{remainDay && status == '02'}}">
+                    还有{{remainDay}}天结束
+                </view>
+                <view class="status" wx:else>{{riceBallStatus[status]}}</view>
+            </view>
+            <view class="wrap">
+                <view class="title">团长</view>
+                <view class="status status-box">
+                    <view class="battalion">
+                        <image src="{{groupInfo.headImgUrl}}" />
+                        <view class="name">{{groupInfo.uname}}</view>
+                    </view>
+                </view>
+            </view>
+            <!-- <view class="wrap">
+                <view class="title">相互看数据</view>
+                <view class="status status-box">
+                    <view class="battalion">
+                        <view class="name">
+                            饮食
+                            <text wx:for="{{riceRallInfo.trrDataPower}}" wx:key="index">
+                                {{item == '01'?'体重 ':item == '02'?'血糖 ':item == '03' ?'血压':''}}
+                            </text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="wrap">
+                <view class="title">已报名</view>
+                <view class="status status-box" bindtap="toGroupUser">
+                    <view class="battalion">
+                        <view class="name">{{riceRallRecordBeans.length}}人</view>
+                    </view>
+                    <image class="arrow" src="/images/enterprise_next.png" wx:if="{{!trrtype}}" />
+                </view>
+            </view>
+            <view class="wrap" wx:if="{{status == '01'}}">
+                <view class="title">是否符合开团条件</view>
+                <view class="status status-box" bindtap="">
+                    <view class="battalion">
+                        <view class="name">
+                            {{riceRallRecordBeans.length>=5? '已满5人,开团后享受'+ratio*10+'折':'还差'+ (5-riceRallRecordBeans.length)+'人'}}
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="wrap" bind:tap="CountTip">
+                <view class="title">
+                    可享受折扣
+                    <image src="/images/time1.png" />
+                </view>
+                <view class="status status-box">
+                    <view class="battalion">
+                        <view class="name">{{ratio == 1?'不打折':ratio*10+'折'}}</view>
+                    </view>
+                </view>
+            </view> -->
+            <view class="wrap" wx:if="{{status != '01'}}">
+                <view class="title">饭团等级</view>
+                <view class="status status-box" bind:tap="CountTip">
+                    <view class="battalion">
+                        <view class="name boldtext status">
+                            {{totalScore<400?'青铜':totalScore>=400&&totalScore<800?'白银': totalScore>=800&&totalScore<1200 ? '黄金' : totalScore>=1200&&totalScore<1600 ? '钻石' : '王者'}}饭团,享受{{ratio == 1?'不打折':ratio*10+'折'}}
+                        </view>
+                    </view>
+                    <image class="arrow" src="/images/enterprise_next.png" />
+                </view>
+            </view>
+            <view class="wrap" wx:if="{{status != '01'}}">
+                <view class="title">活动规则</view>
+                <view class="status status-box" bind:tap="toRules">
+                    <view class="battalion">
+                        <view class="name boldtext">查看详情</view>
+                    </view>
+                    <image class="arrow" src="/images/enterprise_next.png" />
+                </view>
+            </view>
+        </view>
+        <!-- 规则弹窗 -->
+        <!-- <view class="activityInfo" style="margin-top: 60rpx" wx:if="{{status == '01'}}">
+            <view class="title-wrap">
+                <view class="title">活动规则</view>
+            </view>
+            <view class="infos">
+                <view class="infos__step">1.吃饭有伴，你我成团，幸福就是一日三餐四季有你们的陪伴。</view>
+                <view class="infos__step">
+                    2.工作再繁杂，生活再忙碌，请记得好好吃饭。邀上好友一起饭团一下，在这里不仅能享受优惠，更能感受按数吃饭的健康生活方式。
+                </view>
+                <view class="infos__step">
+                    <view class="infos__step-label">3.健康饭团活动规则：</view>
+                    <view class="graytext">◎ 饭团最少5人才可开团，开团成功后立即享受8折点餐优惠</view>
+                    <view class="graytext">◎点一餐得5分，每日最多得15分</view>
+                    <image class="icon" mode="widthFix" src="https://prodstatic.weis1606.cn/api/smartFood/meal_details.png" />
+                    <view class="graytext">◎活动中途有团员退出，则团队总分中会扣除该团员所得积分</view>
+                </view>
+                <view class="infos__step">4.报名时间和活动时间均可自行设定，但均不得超过30天。</view>
+            </view>
+        </view> -->
+    </view>
+    <!-- 总得分&排名 -->
+    <view class="info" style="margin-top: 30rpx" wx:if="{{status != '01'}}">
+        <view class="today">
+            <view class="t-l">
+                <view class="title">饭团总得分</view>
+                <!-- <view class="tip">
+                    {{totalScore<400?'白银':totalScore>=400&&totalScore<600?'黄金':'钻石'}}饭团
+                </view> -->
+                <view class="box">
+                    <view class="val">{{totalScore || 0}}</view>
+                    <view class="sym">分</view>
+                </view>
+            </view>
+            <view class="t-r">
+                <view class="title">饭团已省</view>
+                <view class="box fen">
+                    <view class="val">{{totalPrice || 0}}</view>
+                    <view class="sym">元</view>
+                </view>
+                <!-- <view class="meal" style="margin-top: 40rpx" bind:tap="card">
+                    <view class="col">
+                        <view class="title">饮食＆运动打卡</view>
+                        <image src="/images/arrow-grey.png" />
+                    </view>
+                    <view class="fen">
+                        <view class="val">{{todayCardSocre }}</view>
+                        <view class="sym">分</view>
+                    </view>
+                </view> -->
+            </view>
+        </view>
+        <view class="rank-list">
+            <view class="title-wrap">
+                <view class="title">个人排名</view>
+            </view>
+            <view class="my-rank" data-index='-1' bind:tap="myRankClick" wx:if="{{myRank && !trrtype}}">
+                <template is="rank-item" data="{{...myRank}}"></template>
+            </view>
+            <view class="rank-list__item" wx:for="{{rankList}}" wx:key="index">
+                <template is="rank-item" data="{{...item}}"></template>
+            </view>
+        </view>
+    </view>
+    <view class="go-order" bind:tap="order" wx:if="{{inRiceRall && (status !== '01' && status !== '03' && status !== '09')}}">
+        享受{{ratio == 1 ? 10 : riceRallInfo.trrChiefUid == uid ? ratio * 10 -0.5 : ratio * 10}}折优惠，去点餐
+    </view>
+    <!-- <view class="bot" wx:if="{{!isjoin && status=='01'}}">
+        <view class="signUp singalbtn" bindtap="sign">报名该团</view>
+    </view>
+    <view class="bot" wx:if="{{isLeader &&status == '03'}}">
+        <view class="signUp singalbtn" bindtap="closed">关闭该饭团</view>
+    </view>
+    <view class="bot" wx:if="{{isjoin && status =='01'}}">
+        <view class="btn-l" style="padding-left: 22rpx" bind:tap="exit">
+            <image src="/images/more.png" />
+            <view class="invite">更多</view>
+        </view>
+        <view class="signUp">
+            邀请好友加入
+            <button open-type="share"></button>
+        </view>
+    </view> -->
+</view>
+<!-- 空状态 -->
+<view class="null" wx:else>
+    <image src="{{preImg + '/blank_balloon.png'}}" />
+    <text>该团报名已经结束</text>
+    <text>可以去“福利社”→“健康饭团”中创建自己的团哦</text>
+    <button bind:tap="tocreate">去看看</button>
+</view>
+<!-- 退出减脂营 -->
+<!-- <view class="shadow" wx:if="{{showExit}}">
+    <view class="exit {{showExit ? 'active' : ''}}" wx:if="{{isLeader}}">
+        <view class="exit-fat" bind:tap="exitBall">编辑该团</view>
+        <view class="cancel" bind:tap="exitBallTap">取消该团</view>
+        <view class="cancel" bind:tap="exit">取消</view>
+    </view>
+    <view class="exit miniexit {{showExit ? 'active' : ''}}" wx:if="{{!isLeader}}">
+        <view class="exit-fat" bind:tap="userexitBallTap">退出该团</view>
+        <view class="cancel" bind:tap="exit">取消</view>
+    </view>
+    <view class="hide" bind:tap="exit"></view>
+</view> -->
+<!-- 等级提示 -->
+<cp-confirm-dialog class="class-dialog" show="{{tipDialog}}" show-cancel="{{false}}" confirm-text="知道了" auto-confirm="{{true}}" title="饭团等级">
+    <view class="dialog-tb">
+        <view class="dialog-tb-th">
+            <view>等级</view>
+            <view>积分</view>
+            <view>折扣</view>
+            <view>团长折扣</view>
+        </view>
+        <view class="dialog-tb-td" wx:for="{{levelRules}}">
+            <view>{{item.level}}</view>
+            <view>{{item.score}}</view>
+            <view>{{item.discount}}</view>
+            <view>{{item.tzDiscount}}</view>
+        </view>
+    </view>
+    <!-- <view class="tip-image">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/meal_details.png" />
+    </view> -->
+</cp-confirm-dialog>
+<!-- 报名成功 -->
+<cp-confirm-dialog show="{{joinsuc}}" show-cancel="{{false}}" confirm-text="知道了" auto-confirm="{{true}}">
+    <view class="tip-label">报名成功，你可在“发现”→“健康饭团”里查看</view>
+</cp-confirm-dialog>
+<!-- 取消提示 -->
+<cp-confirm-dialog show="{{showtips}}" bind:on-cancel="tocreate" confirm-text="继续报名" auto-confirm="{{true}}" bind:on-confirm="newFill">
+    <view class="tip-label">{{trrrStt== '02' ?'你已被移出饭团，创建你自己的饭团吧':'该饭团已被团长取消，创建你自己的饭团吧'}}</view>
+</cp-confirm-dialog>
+<cp-bottom-popup model:show="{{showOperate}}" show-close="{{false}}" use-slot show-button="{{false}}">
+    <view class="popup-operate" wx:if="{{isLeader}}">
+        <view class="operate edit" data-type="edit" bind:tap="preOperateFn">编辑该团</view>
+        <view class="operate" data-type="dismiss" bind:tap="preOperateFn">解散该团</view>
+        <view class="cancel" data-type="cancel" bind:tap="preOperateFn">取消</view>
+    </view>
+    <view class="popup-operate" wx:else>
+        <view class="operate edit" data-type="edit" bind:tap="userExitRiceBall">退出饭团</view>
+        <view class="cancel" data-type="cancel" bind:tap="preOperateFn">取消</view>
+    </view>
+</cp-bottom-popup>
+<cp-confirm-dialog class="confirmDialog" show="{{showConfirm}}" bind:on-confirm="dismissRiceBall">
+    <view class="title">确定解散你的饭团吗？</view>
+</cp-confirm-dialog>
+<!-- 子账号进入提示不可加入 -->
+<cp-confirm-dialog class="subDialog" show="{{showSubDialog}}" show-cancel="{{false}}" bind:on-confirm="sureDialog">
+    <view class="title">子账号不可加入饭团，请切换成主账号</view>
+</cp-confirm-dialog>

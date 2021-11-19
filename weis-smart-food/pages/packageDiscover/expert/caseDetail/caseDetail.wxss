@@ -1,0 +1,76 @@
+page {
+  background: #fafafa;
+}
+.flex {
+  display: flex;
+}
+.flex-items-center {
+  display: flex;
+  align-items: center;
+}
+.flex-content-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.caseDetail {
+  width: 100%;
+  padding: 30rpx;
+}
+.caseDetail .boxBg {
+  background: #ffffff;
+  box-shadow: 0rpx 4rpx 24rpx -6rpx rgba(186, 186, 186, 0.3);
+  border-radius: 10rpx;
+}
+.caseDetail .header {
+  height: 256rpx;
+  padding-top: 50rpx;
+  justify-content: space-around;
+}
+.caseDetail .header .left,
+.caseDetail .header .right {
+  text-align: center;
+}
+.caseDetail .header .left view:nth-child(1),
+.caseDetail .header .right view:nth-child(1) {
+  font-size: 26rpx;
+  color: #333333;
+}
+.caseDetail .header .left view:nth-child(2),
+.caseDetail .header .right view:nth-child(2) {
+  font-size: 46rpx;
+  font-weight: bold;
+  color: #fa6400;
+  margin: 30rpx 0;
+}
+.caseDetail .header .left view:nth-child(3),
+.caseDetail .header .right view:nth-child(3) {
+  font-size: 24rpx;
+  color: #333333;
+}
+.caseDetail .before,
+.caseDetail .after {
+  margin-top: 30rpx;
+  padding: 30rpx 20rpx;
+}
+.caseDetail .before__title,
+.caseDetail .after__title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 30rpx;
+}
+.caseDetail .before__img,
+.caseDetail .after__img {
+  flex-wrap: wrap;
+}
+.caseDetail .before__img image,
+.caseDetail .after__img image {
+  width: 210rpx;
+  height: 210rpx;
+  margin-bottom: 10rpx;
+}
+.caseDetail .before__img image:not(:nth-child(3n + 3)),
+.caseDetail .after__img image:not(:nth-child(3n + 3)) {
+  margin-right: 10rpx;
+}

@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-swipe-cell": "/components/vant/swipe-cell/index",
+    "van-popup": "/components/vant/popup/index",
+    "scale-component": "/components/cp-scale/cp-scale",
+    "multiSelectCalendar": "/components/calendarPlugin/index",
+    "confirm-dialog": "/components/cp-confirm-dialog/cp-confirm-dialog",
+    "cp-semicircle-process": "/components/cp-semicircle-process/cp-semicircle-process"
+  }
+}

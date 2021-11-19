@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "operate-goods": "../operate-goods/operate-goods",
+    "operate-order": "../operate-order/operate-order"
+  }
+}

@@ -1,0 +1,22 @@
+<!--pages/mineBox/role/role.wxml-->
+<cp-nav-bar title-text="选择角色" background="#F3F4F5"/>
+<view class="role">
+    <image class="header" src="https://prodstatic.weis1606.cn/api/smartFood/role_headers.png" bind:tap="toQuestion"/>
+    <scroll-view scroll-y="true" style="height:{{scrollHeight}}rpx">
+        <view class="content">
+            <view class="list {{roleIndex == index ? 'active' : ''}}" wx:for="{{roleList}}" data-val="{{item.value}}" data-index="{{index}}" bind:tap="roleTap">
+                {{item.label}}
+            </view>
+        </view>
+        <view class="tip"  bind:tap="toQuestion">
+            <view>
+                输入详细信息
+                <image src="/images/my/find_chifa_next_gules.png" />
+            </view>
+            <view>生成个性化精准饮食方案</view>
+        </view>
+    </scroll-view>
+    <view class="footer">
+         <view class="btn {{roleVal ? 'active' : ''}}" bind:tap="submit">完成</view>
+    </view>
+</view>

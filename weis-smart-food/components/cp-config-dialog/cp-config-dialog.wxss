@@ -1,0 +1,87 @@
+.dialog-config {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dialog-config .img {
+  width: 600rpx;
+  height: 800rpx;
+  border-radius: 20rpx;
+}
+.dialog-config .close {
+  width: 72rpx;
+  height: 72rpx;
+  margin-top: 42rpx;
+}
+.openbox {
+  position: relative;
+}
+.openbox .openbg {
+  width: 590rpx;
+  height: 940rpx;
+  position: relative;
+}
+.openbox .closeimg {
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  right: 0;
+  top: 43rpx;
+}
+.openbox .opencontent {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 330rpx;
+  padding-bottom: 50rpx;
+  background: #fff;
+  border-radius: 0 0 20rpx 20rpx;
+}
+.openbox .opencontent .boxtitle {
+  margin: 0rpx 0 30rpx;
+  font-size: 36rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: #000000;
+}
+.openbox .opencontent .boxtips {
+  font-size: 32rpx;
+  font-family: YOUSHEhaoshenti;
+  color: #fa6400;
+  margin-bottom: 14rpx;
+  text-align: left;
+  padding-left: 108rpx;
+}
+.openbox .opencontent .boxtips image {
+  width: 114rpx;
+  height: 36rpx;
+  margin-right: 32rpx;
+  vertical-align: middle;
+}
+.openbox .opencontent button {
+  margin-top: 29rpx;
+  width: 440rpx;
+  height: 80rpx;
+  background: linear-gradient(135deg, #fb892d 0%, #fe5e0f 100%);
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: #ffffff;
+}
+.openbox .opencontent .footer-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 47rpx;
+}
+.openbox .opencontent .footer-box image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 12rpx;
+}
+.openbox .opencontent .footer-box .word {
+  color: #666666;
+  font-size: 24rpx;
+}

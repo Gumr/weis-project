@@ -1,0 +1,12 @@
+<!-- e:\project\weis-ttmp\weis-ttmp-nlm\weis-ttmp\pages\login\login\login.ttml -->
+
+<view class="login">
+    <image class="logo" src="{{imgPrefix}}about_logo.png" />
+    <view class="name">维士小盒饭</view>
+    <view class="xy">
+        <image class="xy_icon" src="{{imgPrefix}}{{xy ? 'selectXy' : 'not_selectXy'}}.png" bind:tap="xySelect"/>
+        <view class="xy_desc">同意</view>
+        <view class="xy_con" bind:tap="xy">《维士用户协议》</view>
+    </view>
+    <button class="btn {{xy ? 'select': ''}}" open-type="{{xy ? 'getPhoneNumber' : ''}}" bindgetphonenumber="getphonenumber" bindtap="loginTap">手机号一键登录</button>
+</view>

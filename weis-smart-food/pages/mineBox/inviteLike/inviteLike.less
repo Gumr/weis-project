@@ -1,0 +1,135 @@
+
+
+.score{
+    width: 100%;
+    padding: 10rpx 0rpx 0rpx;
+    .box{
+        .list{
+            .row{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 40rpx;
+                position: relative;
+                .date{
+                    color: rgba(51, 51, 51, 1);
+                    font-size: 28rpx;
+                    font-weight: bold;
+                }
+                .score-box{
+                    display: flex;
+                    align-items: center;
+                    .score-val{
+                        // color: rgba(254, 94, 15, 1);
+                        font-size: 30rpx;
+                    }
+                    .center-box{
+                        width: 80rpx;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin-left: 55rpx;
+                        image{
+                            width: 32rpx;
+                            height: 32rpx;
+                        }
+                        .num{
+                            color: #FE5E0F;
+                            font-size: 30rpx;
+                            font-weight: bold;
+                        }
+                    }
+                    .arr{
+                        width: 20rpx;
+                        height: 20rpx;
+                        margin-left: 10rpx;
+                        &.active{
+                            animation: sca 200ms ease forwards;
+                        }
+                        @keyframes sca {
+                            from {
+                              transform: rotate(0);
+                            }
+                        
+                        
+                            to {
+                                transform: rotate(180deg);
+                            }
+                          }
+                    }
+                }
+                &::after{
+                    display: block;
+                    content: '';
+                    width: 670rpx;
+                    height: 2rpx;
+                    background: rgba(51, 51, 51, 0.1);
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%) scaleY(0.5);
+                    bottom: 0;
+                }
+            }
+            .small-box{
+                background: rgba(249, 249, 249, 1);
+                padding: 0 70rpx 0 40rpx;
+                height: 0;
+                overflow: hidden;
+                &.active{
+                    animation: anima 200ms ease forwards;
+                }
+
+                @keyframes anima {
+                    from {
+                      height: 0;
+                    }
+                
+                
+                    to {
+                        height: initial;
+                        padding: 40rpx 70rpx 40rpx 40rpx;
+                    }
+                  }
+                .box-list{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 62rpx;
+                    &:last-of-type{
+                        margin-bottom: 0;
+                    }
+                    .l-box{
+                        display: flex;
+                        align-items: center;
+                        image{
+                            width: 52rpx;
+                            height: 52rpx;
+                            margin-right: 16rpx;
+                            border-radius: 50%;
+                        }
+                        .name{
+                            color: #6D7278;
+                            font-size: 26rpx;
+                        }
+                    }
+                    .r-box{
+                        display: flex;
+                        align-items: center;
+                        image{
+                            width: 32rpx;
+                            height: 32rpx;
+                            margin-right: 29rpx;
+                        }
+                        .val{
+                            color: #333333;
+                            font-size: 28rpx;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,72 @@
+.activeRule {
+  padding: 40rpx 30rpx;
+  font-size: 28rpx;
+  color: #333333;
+  line-height: 28rpx;
+}
+page {
+  background: #fe5e0f;
+}
+.rule {
+  background: #fe5e0f;
+  padding-bottom: 76rpx;
+}
+.rule image {
+  width: 750rpx;
+  height: 260rpx;
+}
+.rule .box {
+  width: 690rpx;
+  background: #FFFFFF;
+  border-radius: 14rpx;
+  margin: 0 auto;
+}
+.rule .box .list .tag {
+  width: 198rpx;
+  height: 56rpx;
+  background: #FFE600;
+  border-radius: 0rpx 100rpx 100rpx 0rpx;
+  line-height: 56rpx;
+  padding-left: 30rpx;
+  color: #333333;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.rule .box .list .list-box {
+  padding: 36rpx 30rpx 60rpx;
+}
+.rule .box .list .list-box .desc {
+  color: #666666;
+  font-size: 28rpx;
+  line-height: 48rpx;
+}
+.rule .box .list .list-box .small-box {
+  margin-bottom: 57rpx;
+}
+.rule .box .list .list-box .small-box:last-of-type {
+  margin-bottom: 0;
+}
+.rule .box .list .list-box .small-box .title {
+  color: #333333;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  font-weight: bold;
+  margin-bottom: 18rpx;
+}
+.rule .box .list .list-box .small-box .sub-title {
+  color: #666666;
+  font-size: 28rpx;
+  line-height: 48rpx;
+  margin-bottom: 12rpx;
+}
+.rule .box .list .list-box .small-box .sub-box {
+  width: 606rpx;
+  height: 68rpx;
+  background: #FFF4ED;
+  border-radius: 8rpx;
+  padding-left: 20rpx;
+  line-height: 68rpx;
+  color: #666666;
+  font-size: 20rpx;
+  margin-bottom: 34rpx;
+}

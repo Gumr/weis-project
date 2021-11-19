@@ -1,0 +1,119 @@
+<!-- pages/solution/solutionSet/solutionSet.wxml -->
+<cp-nav-bar title-text="创建饮食吃法" backIconColor="black"></cp-nav-bar>
+
+<view class="set">
+    <view class="wrap">
+        <view class="list" bind:tap="editName">
+            <view class="name">吃法名称</view>
+            <view class="col-r">
+                <view class="num">{{name ? name : '请输入'}}</view>
+                <image src="/images/my_next.png" />
+            </view>
+        </view>
+        <!-- <view class="list ts" bind:tap="aim">
+            <view class="name">目标</view>
+            <view class="col-r">
+                <view class="num">{{aimName ? aimName : '请选择'}}</view>
+                <image src="/images/my_next.png" />
+            </view>
+        </view> -->
+    </view>
+    <view class="wrap effect">
+        <view class="list" bind:tap="effect">
+            <view class="name nlc" catch:tap="know" data-type="2">
+                <text>食物热效应</text>
+                <image src="/images/explain_tagging.png" />
+            </view>
+            <view class="col-r hot">
+                <image class="{{effect ? 'active' : ''}}" src="/images/my_next.png" />
+            </view>
+        </view>
+        <view class="hid {{effect ? 'active' : ''}}">
+            <view class="list" bind:tap="edit">
+                <view class="name nlc">
+                    <text class="normal">蛋白质</text>
+                </view>
+                <view class="col-r">
+                    <view class="num">{{proteinRatio ? proteinRatio : 0}}%</view>
+                    <image src="/images/my_next.png" />
+                </view>
+            </view>
+            <view class="list" bind:tap="edit">
+                <view class="name nlc">
+                    <text class="normal">脂肪</text>
+                </view>
+                <view class="col-r">
+                    <view class="num">{{fatRatio ? fatRatio : 0}}%</view>
+                    <image src="/images/my_next.png" />
+                </view>
+            </view>
+            <view class="list" bind:tap="edit">
+                <view class="name nlc">
+                    <text class="normal">碳水化合物</text>
+                </view>
+                <view class="col-r">
+                    <view class="num">{{carbohydrateRatio ? carbohydrateRatio : 0}}%</view>
+                    <image src="/images/my_next.png" />
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="wrap a">
+        <view class="list" bind:tap="editDailyEnergy">
+            <view class="name">每日应摄入</view>
+            <view class="col-r">
+                <view class="num"><text wx:if="{{showRecom}}">推荐能量：</text>{{dailyEnergy ? dailyEnergy : 0}}kcal</view>
+                <image src="/images/my_next.png" />
+            </view>
+        </view>
+    </view>
+</view>
+
+
+<!-- 下一步 -->
+<view class="btn">
+    <view class="next {{name && id ? 'active' : ''}}" bind:tap="nexStep">下一步</view>
+</view>
+
+
+
+<view class="para {{warn ? 'active' : ''}}" wx:if="{{showPara}}">
+    <view class="goal" style="bottom:{{keyboardheight || 0}}px">
+        <view class="title">蛋白质/脂肪/碳水化合物</view>
+        <!-- <view class="tip">宏量营养元素总额应小于100%</view> -->
+        <view class="box">
+            <!-- <view class="name">蛋白质</view> -->
+            <input type="text" placeholder="蛋白质调整范围：20%-30%" bindkeyboardheightchange="keyboardheight" bindblur="bindblur" value="{{shortD}}" data-index="0" bindinput="goal" adjust-position="{{false}}" placeholder-class="ph-color"/>
+            <view class="unit">%</view>
+        </view>
+        <view class="box">
+            <!-- <view class="name">脂肪</view> -->
+            <input type="text" placeholder="脂肪调整范围：0%-5%" bindkeyboardheightchange="keyboardheight" bindblur="bindblur" value="{{shortZ}}" data-index="2" bindinput="goal"  adjust-position="{{false}}" placeholder-class="ph-color"/>
+            <view class="unit">%</view>
+        </view>
+        <view class="box">
+            <!-- <view class="name">碳水化合物</view> -->
+            <input type="text" placeholder="碳水化合物调整范围：5%-10%" bindkeyboardheightchange="keyboardheight" bindblur="bindblur" value="{{shortT}}" data-index="1" bindinput="goal" adjust-position="{{false}}" placeholder-class="ph-color"/>
+            <view class="unit">%</view>
+        </view>
+        <view class="warn" wx:if="{{warn}}"><image src="/images/explain_tagging_red.png" />数据不合法</view>
+        <view class="button">
+            <!-- <view class="qx" bind:tap="para">取消</view> -->
+            <view class="sure {{shortGoal ? 'active' : ''}}" data-type="goal" bind:tap="editPara">确定</view>
+        </view>
+        <image class="close" bind:tap="para" src="/images/icon_down.png" />
+    </view>
+</view>
+
+<!-- 日常消耗 -->
+<view class="daily" wx:if="{{dailyDialog}}">
+    <view class="box {{dailyDialog ? 'active' : ''}}">
+        <view class="title">{{showTitle}}</view>
+        <text space="ensp" decode="{{true}}" class="content">{{showContent}}</text>
+        <view class="an" bind:tap="know" data-type="close">了解了</view>
+    </view>
+</view>
+
+<cp-editPlan-dialog id="editPopup" show="{{showEdit}}" errTip="{{errTip}}" oneObj="{{oneObj}}" iptType="{{iptType}}" listArr="{{listArr}}" iptVal="{{iptVal}}" btnText='{{btnText}}' subTitle="{{subTitle}}" title="{{title}}" bind:update="update"></cp-editPlan-dialog>
+
+<!-- <cp-bottom-popup title="设置目标" show="{{showAim}}" data="{{targets}}" bind:on-change="targetChange" bind:on-confirm="targetConfirm"></cp-bottom-popup> -->

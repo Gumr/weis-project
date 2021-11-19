@@ -1,0 +1,53 @@
+<!--components/dispatch-select-popup/dispatch-select-popup.wxml-->
+<van-popup show="{{show}}" position="bottom" bind:click-overlay="closeTap" custom-style="border-radius:20rpx 20rpx 0rpx 0rpx;">
+  <view class="popup-header">
+    <view class="header-title">选择配送方式</view>
+    <image class="close-icon" src="/images/icon_down.png" bind:tap="closeTap" />
+  </view>
+  <view class="popup-section">
+    <view class="section-title">配送频率</view>
+    <view class="select-menu-wrap">
+      <view
+        bindtap="timeMenuTap"
+        class="select-menu multi-line {{selected.time === item.value ? 'select-menu-active' : (item.disabled ? 'select-menu-disabled' : '')}}"
+        data-value="{{item.value}}"
+        data-disabled="{{item.disabled}}"
+        wx:for="{{dispatchTimes}}"
+        wx:key="index"
+      >
+        <view>{{item.text}}</view>
+        <view class="plain">{{item.plain}}</view>
+        <image
+          wx:if="{{selected.time === item.value}}"
+          class="active-icon"
+          src="/images/distribution_select.png"
+        />
+      </view>
+    </view>
+  </view>
+  <view class="popup-section">
+    <view class="section-title">冷热配送</view>
+    <view class="select-menu-wrap">
+      <view
+        bindtap="modeMenuTap"
+        class="select-menu multi-line {{item.disabled ? 'select-menu-disabled' : ''}} {{selected.mode === item.value ? 'select-menu-active' : ''}}"
+        wx:for="{{dispatchModes}}"
+        wx:if="{{item.show}}"
+        wx:key="index"
+        data-value="{{item.value}}"
+        data-disabled="{{item.disabled}}"
+      >
+        <view>{{item.text}}</view>
+        <view class="plain" wx:if="{{item.plain}}">{{item.plain}}</view>
+        <image
+          wx:if="{{selected.mode === item.value}}"
+          class="active-icon"
+          src="/images/distribution_select.png"
+        />
+      </view>
+    </view>
+  </view>
+  <view class="popup-footer" style="padding-bottom: {{isIpx ? 84 : 26 }}rpx;">
+    <view class="btn {{!btnDisabled ? 'btn-active' : ''}}" bindtap="confirmTap">确定</view>
+  </view>
+</van-popup>

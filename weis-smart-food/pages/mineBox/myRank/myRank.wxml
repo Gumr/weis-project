@@ -1,0 +1,243 @@
+<!-- pages/mineBox/myRank/myRank.wxml -->
+<cp-nav-bar title-text="{{type == '01' ? '个人积分' : '个人效果'}}" background="transparent" backIconColor="white" color="white" zIndex="1000" />
+<image class="background" src="https://prodstatic.weis1606.cn/api/smartFood/ranking_bj.png" />
+<view class="page-container {{isIpx ? 'isIpx' : ''}}">
+  <!-- 管住嘴 -->
+  <view class="header" style="margin: 0 80rpx" wx:if="{{type == '01'}}">
+    <view>
+      <!-- <view class="text-center label-1">每天22:00获得当日得分</view> -->
+      <view class="text-center label-score">
+        {{obj.totalScore > 0 ? '+' + obj.totalScore : obj.totalScore}}
+      </view>
+      <view class="label-2 text-center" style="margin-bottom: 0">今日得分</view>
+      <!-- <view class="btns btn btn__yellow">
+        <view bind:tap="orderTap">去点餐</view>
+        <image class="btn-tag" src="https://prodstatic.weis1606.cn/api/smartFood/button_label.png" />
+      </view> -->
+    </view>
+    <!-- <view>
+      <view class="text-center label-1">计划摄入{{todayData.pIntake}}kcal</view>
+      <view class="text-center label-score">
+        <text>{{todayData.aIntake}}</text>
+        <text class="font-28">kcal</text>
+      </view>
+      <view class="label-2 text-center">今日摄入</view>
+      <view class="btns btn btn__border" bind:tap="cardTap">去打卡</view>
+    </view> -->
+    <view class="l-box" wx:if="{{tabType == '01'}}">
+      <view class="btns">
+        <view class="goOrder" bind:tap="orderTap">去点餐</view>
+        <image class="btn-tag" src="https://prodstatic.weis1606.cn/api/smartFood/button_label.png" />
+      </view>
+      <view class="btns btn btn__border" bind:tap="cardTap">去打卡</view>
+    </view>
+  </view>
+  <!-- 迈开腿 -->
+  <view class="header" wx:if="{{type == '02'}}" style="margin-top: 60rpx">
+    <!-- <view wx:if="{{!openStep}}" class="text-center label-score" style="font-size: 58rpx; margin-bottom: 88rpx;">
+      <navigator hover-class="none" class="navigator" url="/pages/packageDatum/datumSetting/datumSetting" open-type="navigate">
+        未开启记步
+      </navigator>
+    </view> -->
+    <view class="flex flex-items-center flex-content-between">
+      <view class="grow-1" bind:tap="todayScoreTap">
+        <view class="text-center">
+          <!-- <navigator hover-class="none" class="navigator label-score font-88" url="/pages/packageDatum/markStep/markStep" open-type="navigate">
+            {{todayValue > 0 ? '+' + todayValue : todayValue}}
+          </navigator> -->
+          <view class="text-center label-score font-88">{{obj.intakeScoreRepose.rankScore}}</view>
+        </view>
+        <view class="text-center label-2 flex-items-center flex-content-center" bind:tap="stepTap">
+          <view>减重（斤）</view>
+        </view>
+      </view>
+      <view class="grow-1">
+        <view class="text-center label-score font-88">{{obj.intakeScoreRepose.rankPart}}%</view>
+        <view class="text-center label-2 flex-items-center flex-content-center" bind:tap="stepTap">
+          <view>体重下降比例（%）</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 热情参与 -->
+  <view class="header" wx:if="{{$typeLabel === '热情参与'}}">
+    <view class="text-center label-score" style="margin-top: 88rpx;">
+      {{todayValue > 0 ? '+' + todayValue : todayValue}}
+    </view>
+    <view class="label-2 text-center flex-items-center flex-content-center">
+      <view>今日得分</view>
+      <!-- <image class="icon-next" src="/images/icons/enterprise_ranking_next.png" /> -->
+    </view>
+  </view>
+  <!-- 减脂效果 -->
+  <view class="header flex flex-items-center flex-content-between" wx:if="{{$typeLabel === '减脂效果'}}">
+    <view class="grow-1">
+      <view class="text-center label-score" style="margin-top: 88rpx;">
+        {{todayValue > 0 ? '+' + todayValue : todayValue}}
+      </view>
+      <view class="label-2 text-center">减重（斤）</view>
+    </view>
+    <view class="grow-1">
+      <view class="text-center label-score" style="margin-top: 88rpx;">
+        {{weightRadio > 0 ? '+' + weightRadio : weightRadio}}
+      </view>
+      <view class="label-2 text-center">体重下降比例（%）</view>
+    </view>
+  </view>
+  <view class="content">
+    <view wx:if="{{type == '01'}}">
+      <!-- tab -->
+      <view class="tab">
+        <view class="list {{item.tabType == tabType ? 'active' : ''}}" data-index="{{index}}" bind:tap="tab" wx:for="{{tab}}" wx:key="index">
+          {{item.val}}
+        </view>
+      </view>
+      <!-- 今日饮食得分 -->
+      <view class="diet" wx:if="{{tabType == '01'}}">
+        <view class="content-item flex-items-center flex-content-between">
+          <view class="label-3">今日饮食得分</view>
+          <view class="label-4 flex flex-items-center">
+            <view>
+              {{obj.todayIntakeScore > 0 ? '+' + obj.todayIntakeScore : obj.todayIntakeScore}}分
+            </view>
+          </view>
+        </view>
+        <view class="content-item flex-items-center flex-content-between">
+          <view class="label-3">今日摄入</view>
+          <view class="label-4">{{obj.todayIntake}}kcal</view>
+        </view>
+      </view>
+      <!-- 今日步数 -->
+      <view class="diet" wx:if="{{tabType == '02'}}">
+        <view class="content-item flex-items-center flex-content-between">
+          <view class="label-3">今日步数得分</view>
+          <view class="label-4 flex flex-items-center">
+            <view>{{obj.todayStepScore > 0 ? '+' + obj.todayStepScore : obj.todayStepScore}}分</view>
+          </view>
+        </view>
+        <view class="content-item flex-items-center flex-content-between">
+          <view class="label-3">今日步数</view>
+          <view class="label-4">{{obj.todayStep || 0}}步</view>
+        </view>
+      </view>
+      <!-- 今日参与 -->
+      <view class="diet" wx:if="{{tabType == '03'}}">
+        <view class="content-item flex-items-center flex-content-between" bind:tap="orderTap">
+          <view class="label-3">
+            每日订餐
+            <view class="absolute">减脂营期间点餐5折</view>
+          </view>
+          <view class="label-4 flex flex-items-center">
+            <view>{{obj.todayPartake['03'] > 0 ? '+' + obj.todayPartake['03'] : 0}}分</view>
+            <image class="icon-next" src="/images/my_next.png" />
+          </view>
+        </view>
+        <view class="content-item flex-items-center flex-content-between" bind:tap="cardTap">
+          <view class="label-3">饮食打卡</view>
+          <view class="label-4 flex flex-items-center">
+            <view>{{obj.todayPartake['02'] > 0 ? '+' + obj.todayPartake['02'] : 0}}分</view>
+            <image class="icon-next" src="/images/my_next.png" />
+          </view>
+        </view>
+        <view class="content-item flex-items-center flex-content-between" bind:tap="cardTap">
+          <view class="label-3">运动打卡</view>
+          <view class="label-4 flex flex-items-center">
+            <view>{{obj.todayPartake['01'] > 0 ? '+' + obj.todayPartake['01'] : 0}}分</view>
+            <image class="icon-next" src="/images/my_next.png" />
+          </view>
+        </view>
+        <view class="content-item flex-items-center flex-content-between" bind:tap="back">
+          <view class="label-3">邀请点赞</view>
+          <view class="label-4 flex flex-items-center">
+            <view>{{obj.todayPartake['04'] > 0 ? '+' + obj.todayPartake['04'] : 0}}分</view>
+            <image class="icon-next" src="/images/my_next.png" />
+          </view>
+        </view>
+        <view class="content-item flex-items-center flex-content-between">
+          <view class="label-3">登录小程序</view>
+          <view class="label-4">
+            {{obj.todayPartake['00'] > 0 ? '+' + obj.todayPartake['00'] : 0}}分
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="diet" wx:if="{{type == '02'}}">
+      <view class="content-item flex-items-center flex-content-between">
+        <view class="label-3">初始体重</view>
+        <view class="label-4">{{obj.tclwrWeightStart}}斤</view>
+      </view>
+      <view class="content-item flex-items-center flex-content-between" bind:tap="weightTap">
+        <view class="flex-items-center">
+          <view class="label-3">最新体重</view>
+          <view class="weight-tag">{{obj.date}}</view>
+        </view>
+        <view class="flex-items-center">
+          <view class="label-4">{{obj.tclwrWeightEnd}}斤</view>
+          <image class="icon-next-2" src="/images/my_next.png" />
+        </view>
+      </view>
+    </view>
+    <view wx:else class="diet score">
+      <view class="content-item flex-items-center flex-content-between" bind:tap="totalScoreTap">
+        <view class="label-3">总得分</view>
+        <view class="label-4 flex flex-items-center">
+          <view>{{value}}</view>
+          <image class="icon-next" src="/images/my_next.png" />
+        </view>
+      </view>
+      <view class="content-item flex-items-center flex-content-between">
+        <view class="label-3">排名</view>
+        <view class="label-4">第{{rank}}名</view>
+      </view>
+    </view>
+    <view class="label-rule-title">{{type == '01' ? (tabType == '01' ? '饮食积分规则' : (tabType == '02' ? '步数积分规则' : '热情参与积分规则')) : '减脂效果规则'}}</view>
+    <!-- <view class="label-rule" wx:if="{{type == '01'}}">
+      <text decode="{{true}}">①结营时，积分中至少有确认签收10单才能进入排行榜竞争；\n②删除运动打卡及外食打卡记录，将删除对应积分；\n③对于虚拟作假数据用户，将失去进榜机会，成绩作废。\n④手动确认收货后自动同步积分，若无操作24小时自动确认收货后将同步积分。</text>
+    </view> -->
+    <view class="small-box" wx:if="{{type == '01' && tabType == '01'}}">
+      <!-- <view class="title">1.饮食积分规则</view> -->
+      <view class="sub-title">a.吃多了，还想减肥？ -3分</view>
+      <view class="sub-box">每日摄入≥基础代谢+日常活动+食物热+运动消耗</view>
+      <view class="sub-title">b.没吃，要升仙？不能只要身材不要命。-1分</view>
+      <view class="sub-box">每日摄入=0</view>
+      <view class="sub-title">c.吃得太少，不利健康。+2分</view>
+      <view class="sub-box">{{'0<每日摄入<基础代谢-200'}}</view>
+      <view class="sub-title">d.吃得合理，健康减脂。+5分</view>
+      <view class="sub-box">{{'基础代谢-200≤每日摄入<基础代谢+日常活动+食物热+运动消耗'}}</view>
+      <view class="sub-title">e.摄入数据来源：手动饮食打卡和维士点餐（签收后自动饮食打卡）</view>
+      <view class="sub-title">f.每晚22:00统计当日摄入量，进行打分</view>
+    </view>
+    <view class="small-box" wx:if="{{type == '01' && tabType == '02'}}">
+      <!-- <view class="title">2.步数积分规则</view> -->
+      <view class="sub-title">a.数据来源微信步数</view>
+      <view class="sub-title">b.每日步数≤5000，+1分</view>
+      <view class="sub-title">c.5000＜每日步数≤10000，+2分</view>
+      <view class="sub-title">d.10000＜每日步数≤15000，+3分</view>
+      <view class="sub-title">e.15000＜每日步数≤20000，+4分</view>
+      <view class="sub-title">f.每日步数≥20000，+5分</view>
+    </view>
+    <view class="small-box" wx:if="{{type == '01' && tabType == '03'}}">
+      <!-- <view class="title">3.热情参与积分规则</view> -->
+      <view class="sub-title">a.每日登录小程序，+1分</view>
+      <view class="sub-title">b.每日运动打卡，+1分</view>
+      <view class="sub-title">c.每日饮食打卡，+1分</view>
+      <view class="sub-title">d.每餐订餐且签收，+1分，每日最多3分</view>
+      <view class="sub-title">e.邀请好友点1个赞，+1分，每日最多5分</view>
+    </view>
+    <view class="label-rule" wx:if="{{type == '02'}}">
+      <text>a.按体重下降比例排名\n体重下降比例=（最新体重-初始体重）/初始体重</text>
+    </view>
+    <!-- <view class="label-rule" wx:if="{{$typeLabel === '热情参与'}}">
+      <text>
+        1.每日登录小程序，+1分\n
+        2.每日运动打卡，+1分\n
+        3.每日饮食打卡，+1分\n
+        4.每餐订餐且签收，+1分，每日最多3分\n
+      </text>
+    </view>
+    <view class="label-rule" wx:if="{{$typeLabel === '减脂效果'}}">
+      <text>a.按体重下降比例排名\n
+        体重下降比例=（最新体重-初始体重）/初始体重</text>
+    </view> -->
+  </view>
+</view>

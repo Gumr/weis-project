@@ -1,0 +1,84 @@
+<!--components/comment/comment.wxml-->
+<view class="comments" id="comments" animation="{{animationData}}" style="height: {{comments.length === 0 ? (screenHeight - navBarHeight) / 2 + 'px' : '100%'}};">
+  <text class="total">{{commentTotal}}条评论</text>
+  <view class="publish">
+    <view class="txt" type="text" placeholder="喜欢评论的人，做菜一定很好吃~" data-type="0" data-id="{{}}" bindtap="showKbPublishFn">喜欢评论的人，做菜一定很好吃~</view>
+  </view>
+  <!-- 评论列表 -->
+  <view class="lists">
+    <view class="each comment-main" wx:if="{{comments.length > 0}}" wx:for="{{comments}}" wx:key="index">
+      <view class="infos">
+        <view class="humans">
+          <view class="detail">
+            <image class="img" src="{{item.headImgUrl}}" />
+            <text class="txt">{{item.uname}}</text>
+          </view>
+          <view class="likebox" data-index="{{index}}" data-id="{{item.id}}" data-tclid="{{item.tclId}}" data-type="1" bindtap="toggleCommentLike">
+            <text class="txt {{item.like ? 'liked' : ''}}">{{item.likeNumber}}</text>
+            <image mode="widthFix" class="like" src="{{item.like ? '/images/icon_zan_a.png' : '/images/icon_zan.png'}}" alt="点赞" />
+          </view>
+        </view>
+      </view>
+      <view class="content">
+        <!-- 主评论内容 -->
+        <p class="txt" data-id="{{item.id}}" data-index="{{index}}" data-uid="{{item.uid}}" data-uname="{{item.uname}}" data-type="1" bindtap="showKbPublishFn" bindlongpress="showMoreOperate">{{item.comment}}</p>
+        <view class="time">{{item.createTime}}</view>
+        <!-- 子评论 -->
+        <view class="comment-sub-container" wx:if="{{item.displayReplys.length > 0}}">
+          <view class="comment-sub" wx:for="{{item.displayReplys}}" wx:for-item="subItem" wx:for-index="subIndex" wx:key="index">
+            <view class="infos">
+              <view class="humans-sub">
+                <view class="detail">
+                  <image class="img" src="{{subItem.headImgUrl}}" />
+                  <text class="txt">{{subItem.uname}}</text>
+                </view>
+                <view class="likebox" data-index="{{index}}" data-subindex="{{subIndex}}" data-subid="{{subItem.id}}" data-subtclid="{{subItem.tclId}}" data-type="2" bindtap="toggleCommentLike">
+                  <text class="txt {{subItem.like ? 'liked' : ''}}">{{subItem.likeNumber}}</text>
+                  <image mode="widthFix" class="like" src="{{subItem.like ? '/images/icon_zan_a.png' : '/images/icon_zan.png'}}" alt="点赞" />
+                </view>
+              </view>
+            </view>
+            <view class="content" data-id="{{item.id}}" data-subid="{{subItem.id}}" data-index="{{index}}" data-subindex = "{{subIndex}}" data-uid="{{subItem.uid}}" data-uname="{{subItem.uname}}" data-type="2" bindtap="showKbPublishFn" bindlongpress="showMoreOperate">
+              <p class="replyBox">
+                <block wx:if="{{subItem.replyType === '02'}}">
+                  <text class="front">回复</text>
+                  <text class="name">{{subItem.replyUname}}：</text>
+                </block>
+                <text>{{subItem.content}}</text>
+              </p>
+              <view class="time">{{subItem.createTime}}</view>
+            </view>
+          </view>
+          <!-- 展开更多回复 -->
+          <view class="more-reply" wx:if="{{item.showMoreReplys}}" data-id="{{item.id}}" data-index="{{index}}" bindtap="showMoreReplys">展开更多回复</view>
+        </view>
+      </view>
+      <view class="line"></view>
+    </view>
+    <!-- <view class="line"></view> -->
+  </view>
+  <!-- 没有评论 -->
+  <view class="comments_null" wx:if="{{comments.length === 0}}">
+    <image class="icon" src="/images/icon_sofa.png" />
+    <view class="txt">发首条评论，抢占沙发</view>
+  </view>
+
+  <!-- 输入评论 - 键盘跟随 -->
+  <view class="publish-kb {{showKbPublish ? 'show' : ''}}" wx:if="{{showKbPublish}}">
+    <text class="zw">{{content}}</text>
+    <textarea class="txtarea" adjust-position="{{true}}" fixed="{{true}}" show-confirm-bar="{{false}}" disable-default-padding="{{true}}" focus="{{showKbPublish}}" cursor-spacing="{{cursorSpacing}}" type="text" placeholder="{{placeholderTxt}}" maxlength="100" hold-keyboard="{{holdFlag}}" value="{{content}}" bindinput="inputFn" />
+    <view class="submit {{!content ? 'disabled' : ''}}" bind:tap="submitComment">发布</view>
+  </view>
+</view>
+
+<!-- 更多操作弹窗 -->
+<view class="moreOperate {{moreOperateFlag ? 'show' : ''}}" style="bottom: {{!isFullScreen ? '-30rpx' : 0}}" wx:if="{{moreOperateFlag}}">
+  <view class="options">
+    <view class="opt" wx:for="{{moreOperate}}" wx:key="img" data-operate="{{item.operate}}" bind:tap="moreOperateFn">
+      <image class="icon" src="{{item.img}}" />
+      <view class="name">{{item.name}}</view>
+    </view>
+  </view>
+  <view class="cancel" bind:tap="cancelMoreOperate">取消</view>
+</view>
+<overlay show="{{showKbPublish || moreOperateFlag}}" bind:hideEvent="hideOverlay"></overlay>

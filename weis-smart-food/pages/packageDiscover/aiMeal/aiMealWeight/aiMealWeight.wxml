@@ -1,0 +1,50 @@
+<!--pages/solution/aiLossWeight/aiLossWeight.wxml-->
+<cp-nav-bar title-text="你想瘦多少" backIconColor></cp-nav-bar>
+<view class="step-1" style="height: calc(100vh - {{navHeight}}px);">
+  <view>
+    <!-- <image
+      bindtap="bannerTap"
+      src="https://prodstatic.weis1606.cn/api/banner/give_banner.png"
+      class="banner"
+    />-->
+    <view class="weight-input">
+      <input
+        value="{{plan.weight}}"
+        class="input"
+        placeholder="你想瘦多少"
+        type="text"
+        maxlength="6"
+        bindinput="handleWeightInput"
+        bindkeyboardheightchange="handleKeyboardheightchange"
+      />
+      <view class="unit">kg</view>
+    </view>
+  </view>
+
+  <view
+    class="btn {{plan.weight > 0 ? 'button--primary' : ''}}"
+    style="margin-bottom: {{keyboardHeight}}px;"
+    data-able="{{plan.weight>0}}"
+    bindtap="nextTap"
+  >下一步</view>
+</view>
+
+<!-- <van-popup show="{{showDateDialog}}" custom-style="border-radius:20rpx; width: 690rpx;">
+  <view class="date-popup-header">
+    <view class="title">
+      选择开始日期
+      <image bindtap="closeCalendarTap" class="close-icon" src="/images/logistics_popup_off.png" />
+    </view>
+  </view>
+  <mealCalendar
+    id="calendar"
+    bind:select="handleCalendarSelect"
+    expand
+    multiply="{{false}}"
+    complete
+    disableDate="{{disableDate}}"
+  ></mealCalendar>
+  <view class="btn-box">
+    <view class="btn" bind:tap="calendarConfirmTap">确定</view>
+  </view>
+</van-popup>-->

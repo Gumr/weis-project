@@ -1,0 +1,20 @@
+.open {
+  overflow: hidden;
+  position: relative;
+}
+.open image {
+  width: 750rpx;
+}
+.open .ing {
+  color: #E37831;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 88rpx;
+}
+.open .ing.isIpx {
+  bottom: 122rpx;
+}

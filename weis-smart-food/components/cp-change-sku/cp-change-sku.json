@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "cp-cart": "/components/cp-cart/cp-cart"
+  }
+}

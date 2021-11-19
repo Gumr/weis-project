@@ -1,0 +1,33 @@
+<!--pages/mineBox/groupAddressList/index.wxml-->
+<cp-nav-bar title-text="菜品签收" color="#333333" background="#fff" backIconColor="black" />
+<view class="AddressList" wx:if="{{corpOrderSignBeans.length>0}}">
+  <view wx:for="{{corpOrderSignBeans}}" wx:key="index" >
+    <view class="titlenumber" wx:if="{{!item.isshowdate}}">{{item.orderDate2}}</view>
+    <view
+      class="selectAdd"
+      wx:for="{{item.corpOrderSignBeans}}"
+      wx:for-item="item2"
+      wx:key="index2"
+      bindtap="toresever"
+      data-order-date="{{item.orderDate}}"
+      data-uid="{{item2.uid}}"
+      data-corp-address-id="{{item2.corpAddressId}}"
+    >
+      <view class="addname">
+        <view class="titfont">
+          {{item2.corpName}}
+          <view>{{item2.corpAddressName}}</view>
+        </view>
+      </view>
+      <view class="adddistance">
+        <view>签收进度</view>
+        <view class="orprent">{{item2.signPart}}%</view>
+      </view>
+    </view>
+  </view>
+   
+</view>
+ <view class="null" wx:else>
+      <image src="https://prodstatic.weis1606.cn/api/smartFood/nullFriends.png" />
+      <view>没有需要签收的菜品</view>
+    </view>

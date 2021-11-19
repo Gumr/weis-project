@@ -1,0 +1,558 @@
+page {
+  background: #f3f4f5;
+}
+.welfare {
+  // 头部
+  .header {
+    padding: 20rpx 30rpx 40rpx;
+    background: #f3f4f5;
+    // banner
+    .slideshow {
+      width: 690rpx;
+      height: 300rpx;
+      position: relative;
+
+      &__image {
+        width: 690rpx;
+        height: 300rpx;
+        border-radius: 10rpx;
+      }
+
+      &__dots {
+        position: absolute;
+        bottom: 12rpx;
+        left: 345rpx;
+        transform: translateX(-50%);
+        display: flex;
+      }
+
+      &__dot {
+        width: 8rpx;
+        height: 8rpx;
+        background: #ffffff;
+        margin-right: 6rpx;
+        border-radius: 4rpx;
+        display: flex;
+
+        &--active {
+          width: 24rpx;
+          height: 8rpx;
+          opacity: 0.5;
+        }
+      }
+    }
+    // 维士会员
+    .member {
+      width: 690rpx;
+      height: 172rpx;
+      // background: linear-gradient(90deg, #dddddd 0%, #e0e0e0 100%);
+      border-radius: 10rpx;
+      
+      margin-top: 20rpx;
+      position: relative;
+
+      .crownBg {
+        width: 100%;
+        height: 100%;
+      }
+      .content {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 24rpx 30rpx 16rpx;
+        .top {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          &_l {
+            .head {
+              display: flex;
+              align-items: center;
+              .headImg {
+                width: 80rpx;
+                height: 80rpx;
+                margin-right: 20rpx;
+                border-radius: 50%;
+              }
+              .headName {
+                .uname {
+                  font-size: 28rpx;
+                  font-weight: bold;
+                  color: #644201;
+                }
+                .crown {
+                  display: flex;
+                  align-items: center;
+                  image {
+                    width: 30rpx;
+                    height: 28rpx;
+                    margin-right: 10rpx;
+                  }
+                  text {
+                    font-size: 24rpx;
+                    color: #8f5e00;
+                  }
+                }
+              }
+            }
+          }
+          &_r {
+            padding: 0 23rpx;
+            background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+            border-radius: 26rpx;
+            font-size: 22rpx;
+            font-weight: bold;
+            color: #fff1d6;
+            height: 52rpx;
+            line-height: 52rpx;
+          }
+        }
+        .bottom {
+          font-size: 24rpx;
+          color: #644201;
+          margin-top: 28rpx;
+          text {
+            font-size: 28rpx;
+            font-weight: bold;
+          }
+        }
+      }
+      // 会员样式
+      &.vipStyle {
+        .top_r {
+          background: #C68B1C;
+          color: #F8DBA3;
+        }
+      }
+    }
+    // tab栏
+    .square-box {
+      width: 690rpx;
+      height: 196rpx;
+      background: #ffffff;
+      border-radius: 10rpx;
+      margin: 30rpx auto 0;
+      padding: 23rpx 26rpx 0;
+      display: flex;
+      justify-content: space-between;
+      .box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        image {
+          width: 120rpx;
+          height: 120rpx;
+        }
+        .name {
+          color: #333333;
+          font-size: 24rpx;
+        }
+        .desc {
+          height: 28rpx;
+          background: #FFE191;
+          border-radius: 12rpx;
+          line-height: 28rpx;
+          font-size: 17rpx;
+          color: #AD8312;
+          text-align: center;
+          padding: 0 8rpx;
+          position: absolute;
+          left: 12rpx;
+          bottom: 76rpx;
+        }
+      }
+    }
+    // 内容引导栏
+    .content-box {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20rpx;
+      .list {
+        width: 218rpx;
+        height: 144rpx;
+        background: #FFFFFF;
+        border-radius: 10rpx;
+        position: relative;
+        .img {
+          width: 100rpx;
+          height: 100rpx;
+          position: absolute;
+          right: 0;
+          bottom: 0;
+        }
+        .cont {
+          padding: 20rpx;
+          &_name {
+            font-size: 28rpx;
+            font-weight: bold;
+            color: #4159C0;
+            line-height: 40rpx;
+            margin-bottom: 6rpx;
+          }
+          &_desc {
+            font-size: 20rpx;
+            color: #8D9BD9;
+            line-height: 28rpx;
+          }
+        }
+      }
+    }
+  }
+  // 领券中心
+  .coupon-center {
+    width: 100%;
+    // padding-top: 40rpx;
+    .title {
+      font-size: 32rpx;
+      font-weight: bold;
+      color: #333333;
+      padding-left: 30rpx;
+      margin-bottom: 36rpx;
+    }
+    // .slideshow {
+    //   width: 680rpx;
+    //   height: 180rpx;
+    //   position: relative;
+    //   margin: 0 auto 40rpx;
+
+    //   &__image {
+    //     width: 680rpx;
+    //     height: 180rpx;
+    //     border-radius: 10rpx;
+    //   }
+    // }
+
+    .tab {
+      width: 100%;
+      padding-left: 35rpx;
+      margin-bottom: 20rpx;
+      .scroll-box {
+        height: 100rpx;
+        display: flex;
+        white-space: nowrap;
+        .box {
+          display: inline-flex;
+          flex-direction: column;
+          align-items: center;
+          color: #747474;
+          &.overRow {
+            margin-right: 40rpx;
+          }
+          &.active {
+            color: #fa6400;
+            .status {
+              width: 128rpx;
+              height: 38rpx;
+              background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+              border-radius: 19rpx;
+              text-align: center;
+              line-height: 38rpx;
+              color: #ffffff;
+              font-weight: bold;
+            }
+          }
+          .time {
+            font-size: 40rpx;
+            font-weight: bold;
+            margin-bottom: 10rpx;
+            font-family: "DINCondensedC";
+          }
+          .status {
+            width: 128rpx;
+            height: 38rpx;
+            text-align: center;
+            line-height: 38rpx;
+            font-size: 22rpx;
+          }
+        }
+      }
+    }
+
+    // 公共-------
+    .flex {
+      display: flex;
+    }
+
+    .flex-items-center {
+      .flex();
+      align-items: center;
+    }
+
+    // 2行省略
+    .ellipsis {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+
+    .tip {
+      background: rgba(250, 100, 0, 0.1);
+      padding: 18rpx 0;
+      text-align: center;
+
+      &_not {
+        margin-bottom: 20rpx;
+        font-size: 24rpx;
+        color: #fa6400;
+      }
+
+      &_time {
+        .flex-items-center();
+        justify-content: center;
+
+        image {
+          width: 44rpx;
+          height: 32rpx;
+          margin-right: 20rpx;
+        }
+
+        view {
+          font-size: 30rpx;
+          font-weight: bold;
+          color: #fa6400;
+        }
+      }
+    }
+
+    .content {
+      padding: 0 34rpx;
+
+      .list {
+        position: relative;
+        margin-top: 28rpx;
+
+        .bg {
+          width: 100%;
+          height: 192rpx;
+          position: absolute;
+          left: 0;
+          top: 0;
+          z-index: -1;
+        }
+
+        .info {
+          height: 192rpx;
+          .flex-items-center();
+          justify-content: space-around;
+
+          .left {
+            text-align: center;
+
+            &_price {
+              font-size: 36rpx;
+              font-family: "DINCondensedC";
+              font-weight: bold;
+              color: #ffffff;
+              line-height: 72rpx;
+              margin-top: 30rpx;
+
+              text {
+                font-size: 120rpx;
+              }
+            }
+
+            &_threshold {
+              font-size: 24rpx;
+              font-weight: bold;
+              color: #ffffff;
+            }
+          }
+        }
+      }
+    }
+
+    // 未开始-------
+    .startNot {
+      .info {
+        .center {
+          // width: 300rpx;
+          width: 270rpx;
+          height: 100%;
+          padding: 30rpx 0 20rpx;
+
+          &_name {
+            font-size: 32rpx;
+            font-weight: bold;
+            color: #000000;
+            //   margin-bottom: 56rpx;
+            height: 80rpx;
+          }
+
+          &_time {
+            font-size: 22rpx;
+            color: #a9a9a9;
+          }
+        }
+
+        .right {
+          height: 100%;
+
+          &_btn {
+            width: 122rpx;
+            height: 44rpx;
+            line-height: 44rpx;
+            border-radius: 22rpx;
+            font-size: 24rpx;
+            font-weight: bold;
+            margin-top: 26rpx;
+            text-align: center;
+          }
+
+          .use {
+            color: #fa6400;
+            border: 2rpx solid #ff9b59;
+          }
+        }
+      }
+    }
+
+    // 已开始-------
+    .start {
+      .info {
+        .center {
+          width: 270rpx;
+
+          &_name {
+            font-size: 32rpx;
+            font-weight: bold;
+            color: #000000;
+            //   margin-bottom: 56rpx;
+            // height: 80rpx;
+            min-height: 60rpx;
+            max-height: 80rpx;
+            margin-bottom: 20rpx;
+          }
+
+          &_progress {
+            position: relative;
+            height: 12rpx;
+            background: #f3f4f5;
+            border-radius: 8rpx;
+            border: 1rpx solid #e8e8e8;
+
+            //   margin-top: 20rpx;
+            text {
+              position: absolute;
+              left: 0;
+              top: 0;
+              height: 100%;
+              background: #fa6400;
+              border-radius: 8rpx;
+            }
+          }
+
+          &_date {
+            font-size: 22rpx;
+            color: #a9a9a9;
+            //   margin-top: 20rpx;
+          }
+
+          &_rule {
+            font-size: 22rpx;
+            color: #a9a9a9;
+            margin-top: 10rpx;
+            .flex-items-center();
+
+            image {
+              width: 20rpx;
+              height: 20rpx;
+              margin-left: 8rpx;
+            }
+          }
+        }
+
+        .right {
+          height: 100%;
+
+          &_btn {
+            width: 122rpx;
+            height: 44rpx;
+            line-height: 44rpx;
+            border-radius: 22rpx;
+            font-size: 24rpx;
+            font-weight: bold;
+            margin-top: 26rpx;
+            text-align: center;
+            margin-bottom: 42rpx;
+          }
+
+          // 去使用
+          .use {
+            color: #fa6400;
+            border: 2rpx solid #ff9b59;
+          }
+
+          // 领取
+          .receive {
+            color: #ffffff;
+            border: 2rpx solid #ff9b59;
+            background: #fa6400;
+          }
+
+          // 已抢完
+          .over {
+            border: 2rpx solid #a9a9a9;
+            color: #a9a9a9;
+          }
+
+          &_num {
+            font-size: 22rpx;
+            font-weight: bold;
+            color: #333333;
+          }
+
+          .numOver {
+            color: #a9a9a9;
+          }
+
+          &_img {
+            width: 132rpx;
+            height: 88rpx;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+          }
+        }
+      }
+    }
+
+    // 到底啦
+    .end {
+      font-size: 24rpx;
+      color: #ADADAD;
+      margin: 30rpx 0;
+      text-align: center;
+    }
+
+    // 空状态
+    .null {
+      margin: 120rpx 0 200rpx;
+      text-align: center;
+      image {
+        width: 240rpx;
+        height: 240rpx;
+        margin-bottom: 20rpx;
+      }
+      view {
+        font-size: 28rpx;
+        color: #a9a9a9;
+      }
+    }
+
+    
+  }
+}
+
+// 拦截登录
+.login-view {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 101;
+}

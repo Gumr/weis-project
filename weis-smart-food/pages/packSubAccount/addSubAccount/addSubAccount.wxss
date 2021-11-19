@@ -1,0 +1,408 @@
+.addSub {
+  width: 100%;
+}
+.addSub .box {
+  margin-top: 50rpx;
+}
+.addSub .box .title-box {
+  display: flex;
+  align-items: baseline;
+  margin-left: 50rpx;
+}
+.addSub .box .title-box .title {
+  color: #333333;
+  font-size: 48rpx;
+  font-weight: bold;
+}
+.addSub .box .title-box .step {
+  color: #000000;
+  font-size: 24rpx;
+  margin-left: 26rpx;
+}
+.addSub .box .head {
+  display: block;
+  width: 200rpx;
+  height: 200rpx;
+  margin: 72rpx auto;
+}
+.addSub .box .name {
+  width: 650rpx;
+  height: 80rpx;
+  background: #E3E5E6;
+  border-radius: 40rpx;
+  margin: 44rpx auto 0;
+  font-size: 28rpx;
+  color: #333333;
+  box-sizing: border-box;
+  padding-left: 40rpx;
+}
+.addSub .box .input-placeholder {
+  color: #A9A9A9;
+}
+.addSub .box .campus {
+  margin-top: 160rpx;
+}
+.addSub .box .sex-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50rpx auto 52rpx;
+}
+.addSub .box .sex-list .sex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.addSub .box .sex-list .sex:first-of-type {
+  margin-right: 80rpx;
+}
+.addSub .box .sex-list .sex image {
+  width: 225rpx;
+  height: 225rpx;
+  margin-bottom: 16rpx;
+}
+.addSub .box .sex-list .sex .sex-name {
+  color: #666666;
+  font-size: 36rpx;
+}
+.addSub .box .sex-list .sex .sex-name.active {
+  color: #FA6400;
+}
+.addSub .box .year {
+  width: 690rpx;
+  height: 80rpx;
+  background: #E3E5E6;
+  border-radius: 40rpx;
+  display: flex;
+  align-items: center;
+  margin: 50rpx auto 0;
+}
+.addSub .box .year .year-ipt {
+  height: 100%;
+  flex: 1;
+  padding-left: 40rpx;
+  color: #333333;
+  font-size: 28rpx;
+}
+.addSub .box .year .sympol {
+  padding: 0 40rpx;
+  color: #333333;
+  font-size: 28rpx;
+}
+.addSub .box .wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 650rpx;
+  margin: 0 auto;
+  border-radius: 10rpx;
+  margin-top: 87rpx;
+}
+.addSub .box .wrap .list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 28rpx 0 29rpx 35rpx;
+  position: relative;
+  background: #f2f3f4;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+}
+.addSub .box .wrap .list:last-of-type::after {
+  display: none;
+}
+.addSub .box .wrap .list .name-wrap {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 4rpx;
+}
+.addSub .box .wrap .list .detail {
+  font-size: 20rpx;
+  color: #666666;
+}
+.addSub .box .wrap .list.active {
+  position: relative;
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+}
+.addSub .box .wrap .list.active view {
+  color: #ffffff;
+}
+.addSub .sugar {
+  padding-top: 100rpx;
+}
+.addSub .sugar .title {
+  color: #333333;
+  font-size: 48rpx;
+  font-weight: bold;
+  margin: 0 0 20rpx 50rpx;
+}
+.addSub .sugar .title text:nth-of-type(2) {
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #000000;
+  margin-left: 14rpx;
+}
+.addSub .sugar .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 650rpx;
+  margin: 0 auto;
+  margin-top: 60rpx;
+}
+.addSub .sugar .wrap .list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  background: #f2f3f4;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+  height: 180rpx;
+  text-align: center;
+}
+.addSub .sugar .wrap .list:last-of-type {
+  margin-right: 0;
+}
+.addSub .sugar .wrap .list .name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 4rpx;
+}
+.addSub .sugar .wrap .list .detail {
+  font-size: 24rpx;
+  color: #333333;
+}
+.addSub .sugar .wrap .list.active {
+  position: relative;
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+}
+.addSub .sugar .wrap .list.active view {
+  color: #ffffff;
+}
+.btn {
+  width: 650rpx;
+  height: 88rpx;
+  background: #D8D8D8;
+  border-radius: 50rpx;
+  color: #FFFFFF;
+  font-size: 36rpx;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100rpx;
+  text-align: center;
+  line-height: 88rpx;
+}
+.btn.active {
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+  color: #ffffff;
+}
+.block {
+  padding-top: 20rpx;
+}
+.block .title-box {
+  display: flex;
+  align-items: baseline;
+}
+.block .title-box .title {
+  color: #333333;
+  font-size: 48rpx;
+  font-weight: bold;
+}
+.block .title-box .step {
+  color: #000000;
+  font-size: 24rpx;
+  margin-left: 26rpx;
+}
+.block .title {
+  color: #333333;
+  font-size: 48rpx;
+  font-weight: bold;
+  margin: 0 0 20rpx;
+  margin-left: 50rpx;
+}
+.block .title text:nth-of-type(2) {
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #000000;
+  margin-left: 14rpx;
+}
+.block .tip {
+  font-size: 24rpx;
+  color: #666666;
+  margin-left: 50rpx;
+}
+.block .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 650rpx;
+  margin: 0 auto;
+  border-radius: 10rpx;
+  margin-top: 87rpx;
+}
+.block .wrap .list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 48%;
+  height: 150rpx;
+  box-sizing: border-box;
+  position: relative;
+  background: #f2f3f4;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+}
+.block .wrap .list:last-of-type::after {
+  display: none;
+}
+.block .wrap .list .text {
+  padding-left: 30rpx;
+}
+.block .wrap .list .name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+}
+.block .wrap .list .detail {
+  font-size: 20rpx;
+  color: #666666;
+  margin-top: 4rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.block .wrap .list .conne {
+  height: 100%;
+  width: 48rpx;
+  background: #E7E8E9;
+  opacity: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+.block .wrap .list .conne image {
+  width: 32rpx;
+  height: 32rpx;
+}
+.block .wrap .list.active {
+  position: relative;
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+}
+.block .wrap .list.active view {
+  color: #ffffff;
+}
+.block .wrap .list.active text {
+  color: #ffffff;
+}
+.block .wrap .list.active .conne {
+  background: #E9590F;
+}
+.block .subTitle {
+  color: #333333;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  margin-bottom: 30rpx;
+  margin-left: 50rpx;
+}
+.block.eatMeth {
+  padding-bottom: 200rpx;
+}
+.block.eatMeth .wrap .list {
+  width: 100%;
+}
+.block.eatMeth .wrap .list .text {
+  width: 628rpx;
+}
+.block.eatMeth .wrap .list .text .detail {
+  max-width: 628rpx!important;
+}
+.block.eatMeth .wrap .list .conne {
+  width: 80rpx;
+}
+.block.eatMeth .intro {
+  width: 650rpx;
+  height: 364rpx;
+  background: #FAFAFA;
+  border-radius: 10rpx;
+  margin: 0 auto;
+  transform: translateY(-54rpx);
+  padding: 0rpx 32rpx 0;
+  position: relative;
+  z-index: -1;
+}
+.block.eatMeth .intro .title-eat {
+  color: #666666;
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+  padding-top: 56rpx;
+}
+.block.eatMeth .intro view {
+  color: #666666;
+  font-size: 24rpx;
+  line-height: 33rpx;
+}
+.block.eatMeth .intro view:nth-of-type(2) {
+  margin-bottom: 24rpx;
+}
+.block.eatMeth .intro.active {
+  overflow: hidden;
+  height: 0;
+  transition: all 0.3s linear;
+  padding: 0;
+}
+.block.eatMeth .more {
+  width: 650rpx;
+  height: 96rpx;
+  background: #FAFAFA;
+  border-radius: 10rpx;
+  border: 2rpx solid #ECEDEE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999999;
+  font-size: 28rpx;
+  margin: -34rpx auto 0;
+}
+.block.eatMeth .more image {
+  width: 32rpx;
+  height: 32rpx;
+  transform: rotate(90deg);
+  margin-left: 8rpx;
+}
+.campus-box {
+  max-height: 770rpx;
+}
+.campus-box .name {
+  width: 650rpx;
+  height: 132rpx;
+  background: #F2F3F4;
+  border-radius: 10rpx;
+  text-align: center;
+  line-height: 132rpx;
+  color: #333333;
+  font-size: 32rpx;
+  margin: 0 auto 20rpx;
+}
+.campus-box .name:first-of-type {
+  margin-top: 40rpx;
+}
+.campus-box .name.active {
+  background: linear-gradient(90deg, #FB892D 0%, #FE5E0F 100%);
+  color: #ffffff;
+}
+.conneTip {
+  padding: 0 40rpx 64rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #999999;
+  line-height: 40rpx;
+}

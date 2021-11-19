@@ -1,0 +1,73 @@
+.cp-bottom-popup .pickerShadow .header {
+  position: relative;
+  padding-top: 35rpx;
+  width: 100%;
+}
+.cp-bottom-popup .pickerShadow .header .close {
+  width: 44rpx;
+  height: 44rpx;
+  position: absolute;
+  left: 35rpx;
+}
+.cp-bottom-popup .pickerShadow .header .title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+}
+.cp-bottom-popup .pickerShadow .wrap {
+  padding: 87rpx 50rpx 78rpx;
+}
+.cp-bottom-popup .pickerShadow .wrap .list picker-view.active {
+  font-size: 48rpx;
+  font-weight: 500;
+  color: #fa6400;
+}
+.cp-bottom-popup .pickerShadow .wrap .list picker-view .active {
+  color: #fa6400;
+}
+.cp-bottom-popup .pickerShadow .wrap .list picker-view picker-view-column.dw {
+  width: 68rpx;
+  position: absolute;
+  left: 55%;
+  transform: translateX(70%);
+  background: #ffffff;
+  color: #fa6400;
+}
+.cp-bottom-popup .pickerShadow .wrap .list picker-view picker-view-column view {
+  text-align: center;
+}
+.cp-bottom-popup .pickerShadow .wrap .list picker-view picker-view-column view.selected {
+  color: #fa6400;
+  font-size: 48rpx !important;
+}
+.cp-bottom-popup .pickerShadow .wrap .two picker-view picker-view-column.val {
+  padding-left: 145rpx;
+}
+.cp-bottom-popup .pickerShadow .wrap .two picker-view picker-view-column.dw {
+  background: none;
+  left: 30%;
+}
+.cp-bottom-popup .pickerShadow .wrap .two picker-view picker-view-column.val2 view {
+  padding-left: 60rpx;
+}
+.cp-bottom-popup .pickerShadow .wrap .two picker-view picker-view-column.dw2 {
+  background: none;
+}
+.cp-bottom-popup .pickerShadow .wrap .two picker-view picker-view-column.dw2 view {
+  margin-right: 130rpx;
+}
+.cp-bottom-popup .pickerShadow .confirm-btn {
+  width: 650rpx;
+  height: 88rpx;
+  background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+  border-radius: 50rpx;
+  font-size: 36rpx;
+  color: #ffffff;
+  line-height: 88rpx;
+  text-align: center;
+  margin: 0 auto 65rpx;
+}
+.cp-bottom-popup .pickerShadow .confirm-btn--disabled {
+  background: #DDDDDD;
+}

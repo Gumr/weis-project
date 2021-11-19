@@ -1,0 +1,10 @@
+<!-- pages/packageDiscover/riceBall/establish/establish.wxml -->
+<cp-nav-bar title-text="健康饭团" color="#333" home-icon="/images/backHome.png"></cp-nav-bar>
+<view class="container">
+  <image src="https://prodstatic.weis1606.cn/api/smartFood/folder_state.png" class="errimage" />
+  <view class="tips">开启饭团失败</view>
+  <view class="number" bind:tap="toJoins">已报名人数{{riceRallRecordBeans.length}}人<image src="/images/arrow-color.png" /></view>
+  <view class="gray">开启饭团人数最少5人</view>
+  <button bind:tap="torules">知道了</button>
+  
+</view>

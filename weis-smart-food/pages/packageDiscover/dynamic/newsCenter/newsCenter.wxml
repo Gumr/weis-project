@@ -1,0 +1,35 @@
+<!--pages/packageDiscover/dynamic/newsCenter/newsCenter.wxml-->
+<cp-nav-bar title-text="消息中心"></cp-nav-bar>
+<view class="newsCenter">
+    <!-- 导航 -->
+    <view class="nav">
+        <view class="navList" wx:for="{{navList}}" data-url="{{item.url}}" bind:tap="navTap">
+            <image src="{{item.icon}}" />
+            <view>{{item.title}}</view>
+        </view>
+    </view>
+    <!-- 消息 -->
+    <view class="dynamic" wx:if="{{canPublish && dynamic.length > 0}}">
+        <view class="content">
+            <view class="list" wx:for="{{dynamic}}" data-index="{{index}}" bind:tap="dynamicDetail">
+                <view class="head">
+                    <image class="headImg" src="{{item.operateHeadImgUrl}}" />
+                    <view class="headInfo">
+                        <view>{{item.operateUname}}</view>
+                        <view>{{item.sortTimeFilter}}</view>
+                    </view>
+                </view>
+                <view class="words" wx:if="{{item.bbsCommentBean}}">{{item.bbsCommentBean.tbcCommentText}}</view>
+                <view class="words" wx:if="{{item.bbsLikeBean}}">赞了你的动态</view>
+                <view class="con">
+                    <image class="con_start" src="https://prodstatic.weis1606.cn/api/smartFood/icon_symbol@2x.png" />
+                    <view class="con_text">{{item.tbdDynamicTextFilter}}</view>
+                    <image class="con_end" src="https://prodstatic.weis1606.cn/api/smartFood/icon_symbol_1@2x.png" />
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 空状态 -->
+    <cp-null show="{{canPublish && dynamic.length == 0}}" imgStyle="width:300rpx;height: 226rpx;margin-bottom: 40rpx;" imgSrc="https://prodstatic.weis1606.cn/api/smartFood/ai_blank_bell@2x.png" text="暂无消息"></cp-null>
+    <cp-null show="{{!canPublish}}" imgStyle="width:300rpx;height: 226rpx;margin-bottom: 40rpx;" imgSrc="https://prodstatic.weis1606.cn/api/smartFood/ai_blank_bell2@2x.png" text="暂无发布动态权限"></cp-null>
+</view>

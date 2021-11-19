@@ -1,0 +1,174 @@
+.info {
+  width: 100%;
+  padding: 0 30rpx 200rpx;
+}
+.info .head {
+  display: flex;
+  align-items: center;
+  margin-top: 40rpx;
+}
+.info .head .headImg {
+  width: 96rpx;
+  height: 96rpx;
+  border: 3rpx solid #fa6400;
+  border-radius: 50%;
+  margin-right: 40rpx;
+}
+.info .head .headName {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333333;
+}
+.info .content .list {
+  position: relative;
+}
+.info .content .list .title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333333;
+  margin: 60rpx 0 24rpx 20rpx;
+}
+.info .content .list .ipt {
+  height: 80rpx;
+  background: #e3e5e6;
+  border-radius: 40rpx;
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+  color: #333333;
+}
+.info .content .list .ipt .input {
+  height: 100%;
+  flex: 1;
+  padding-left: 40rpx;
+  color: #333333;
+  font-size: 28rpx;
+}
+.info .content .list .ipt .sympol {
+  padding: 0 40rpx;
+  color: #333333;
+  font-size: 28rpx;
+}
+.info .content .list .ipt .arrow {
+  padding: 0 40rpx;
+  width: 24rpx;
+  height: 24rpx;
+}
+.info .content .list .err {
+  position: absolute;
+  left: 20rpx;
+  bottom: -40rpx;
+  font-size: 24rpx;
+  color: #fa6400;
+}
+.info .bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  padding: 10rpx 50rpx 58rpx;
+  background: #ffffff;
+}
+.info .bottom .btn {
+  width: 650rpx;
+  height: 88rpx;
+  background: #d8d8d8;
+  border-radius: 50rpx;
+  font-size: 36rpx;
+  color: #ffffff;
+  line-height: 88rpx;
+  text-align: center;
+}
+.info .bottom .btn.active {
+  background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+}
+.header {
+  position: relative;
+  padding-top: 35rpx;
+  width: 100%;
+}
+.header .close {
+  width: 44rpx;
+  height: 44rpx;
+  position: absolute;
+  left: 35rpx;
+}
+.header .title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+}
+.scale-btn {
+  width: 650rpx;
+  height: 88rpx;
+  background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+  border-radius: 50rpx;
+  font-size: 36rpx;
+  color: #ffffff;
+  line-height: 88rpx;
+  text-align: center;
+  margin: 0 auto 65rpx;
+}
+.sexShadow {
+  width: 750rpx;
+  background: #ffffff;
+}
+.sexShadow .wrap {
+  padding: 125rpx 90rpx 93rpx 90rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.sexShadow .wrap .list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sexShadow .wrap .list image {
+  width: 250rpx;
+  height: 250rpx;
+}
+.sexShadow .wrap .list .sex {
+  font-size: 36rpx;
+  color: #000000;
+  line-height: 50rpx;
+  margin-top: 4rpx;
+}
+.sexShadow .wrap .list .sex.active {
+  font-weight: bold;
+  color: #fa6400;
+}
+.activityShadow .wrap {
+  padding: 88rpx 50rpx 78rpx;
+}
+.activityShadow .wrap .list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 28rpx 0 29rpx 35rpx;
+  position: relative;
+  background: #f2f3f4;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+}
+.activityShadow .wrap .list:last-of-type {
+  margin-bottom: 0;
+}
+.activityShadow .wrap .list .name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 4rpx;
+}
+.activityShadow .wrap .list .detail {
+  font-size: 20rpx;
+  color: #666666;
+}
+.activityShadow .wrap .list.active {
+  background: linear-gradient(90deg, #fb892d 0%, #fe5e0f 100%);
+  color: #ffffff;
+}
+.activityShadow .wrap .list.active view {
+  color: #ffffff;
+}

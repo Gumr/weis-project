@@ -1,0 +1,65 @@
+.close {
+  position: fixed;
+  left: 0;
+  top: 0;
+  text-align: center;
+  padding-top: 14rpx;
+  width: 90rpx;
+  height: 56rpx;
+  background: rgba(194, 114, 36, 0.4);
+  border-radius: 20rpx 0rpx 20rpx 0rpx;
+  z-index: 1;
+  image {
+    width: 34rpx;
+    height: 34rpx;
+  }
+}
+.residentDiet {
+  width: 100%;
+  .info {
+    width: 100%;
+    height: 620rpx;
+  }
+  .tip {
+    font-size: 24rpx;
+    line-height: 36rpx;
+    color: #333333;
+    padding: 48rpx 34rpx 32rpx;
+    text {
+      font-weight: bold;
+    }
+  }
+  .intake {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 34rpx;
+    .list {
+      padding: 24rpx 6rpx;
+      background: #fffbf2;
+      border-radius: 10rpx;
+      border: 2rpx solid #ffdcba;
+      text-align: center;
+      view:nth-child(1) {
+        font-size: 20rpx;
+        color: #e7923f;
+      }
+      view:nth-child(2) {
+        font-family: "DIN";
+        // font-size: 56rpx;
+        font-size: 38rpx;
+        color: #c27224;
+        font-weight: bold;
+        text {
+          // font-size: 36rpx;
+          font-size: 24rpx;
+        }
+      }
+    }
+  }
+  .describe {
+    font-size: 24rpx;
+    line-height: 36rpx;
+    color: #333333;
+    padding: 32rpx 34rpx 32rpx;
+  }
+}

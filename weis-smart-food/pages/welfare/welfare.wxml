@@ -1,0 +1,218 @@
+<!--pages/discover/discover.wxml-->
+<cp-nav-bar title-text="福利社" background="#F3F4F5"></cp-nav-bar>
+<view class="welfare">
+      <!-- 头部 -->  
+     <view class="header">
+        <!-- banner -->
+        <view class="slideshow" wx:if="{{imgUrls.length > 0}}">
+            <swiper style="height: inherit;" indicator-dots="{{false}}" bindchange="slideshowChange" circular autoplay="{{true}}" interval="{{4000}}" duration="{{400}}">
+                <swiper-item wx:for="{{imgUrls}}" wx:key="key" bind:tap="slideshowTap" data-id="{{item.id}}" data-type="{{item.linkType}}" data-url="{{item.link}}">
+                    <image src="{{item.imgUrl}}" class="slideshow__image" />
+                </swiper-item>
+            </swiper>
+            <view class="slideshow__dots">
+                <view wx:for="{{imgUrls.length}}" wx:key="index" class="slideshow__dot {{index === currentSlideshow ? 'slideshow__dot--active' : ''}}"></view>
+            </view>
+        </view>
+        <!-- 维士会员 -->
+        <view class="member {{isVip ? 'vipStyle' : ''}}" bind:tap="member">
+            <image class="crownBg"  src="https://prodstatic.weis1606.cn/api/smartFood/discover/{{isVip?'crownYes':'crownNo'}}.png"/>
+            <view class="content">
+                <view class="top">
+                    <view class="top_l">
+                        <view class="head">
+                            <image class="headImg" src="{{info.userInfo && info.userInfo.headImgUrl ? info.userInfo.headImgUrl : 'https://prodstatic.weis1606.cn/api/smartFood/defaultAvatar.png'}}" />
+                            <view class="headName">
+                                <view class="uname">{{info.userInfo && info.userInfo.uname ? info.userInfo.uname : '请登录'}}</view>
+                                <view class="crown">
+                                    <image wx:if="{{isVip}}" src="https://prodstatic.weis1606.cn/api/smartFood/crown_welfare.png" />
+                                    <text>{{vipCouponTip.title}}</text>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="top_r">{{vipCouponTip.btnText}}</view>
+                </view>
+                <view class="bottom" wx:if="{{vipCoupon.vipStt == '01' || vipCoupon.vipStt == '02'}}">{{vipCoupon.firstJoinVip ? 3 : 4}}折开通会员，得{{vipCoupon.couponNum}}张{{vipCoupon.couponAmount}}元无门槛券</view>
+                <view class="bottom" wx:if="{{vipCoupon.vipStt == '03'}}">
+                    你本月还有
+                    <text>{{vipCoupon.couponNum}}</text>
+                    张会员券可用
+                </view>
+                <view class="bottom" wx:if="{{vipCoupon.vipStt == '04'}}">
+                    本月会员券已用完，可以
+                    <text>{{vipCoupon.couponDiscount?vipCoupon.couponDiscount:5}}折</text>
+                    购买加量包
+                </view>
+            </view>
+            <!-- <view class="bottom">{{vipCouponTip.text}}</view> -->
+        </view>
+        <!-- tab栏 -->
+        <view class="square-box">
+            <view class="box" wx:for="{{diamondArr}}" wx:key="index" data-index="{{index}}" bind:tap="tabBox">
+                <image src="{{item.img}}" />
+                <view class="name">{{item.name}}</view>
+                <view class="desc" wx:if="{{item.desc}}">{{item.desc}}</view>
+            </view>
+        </view>
+        <!-- 内容引导栏 -->
+        <view class="content-box">
+            <view class="list" wx:for="{{contentArr}}" data-path="{{item.path}}" bind:tap="contentTap">
+                <image class="img" src="{{item.img}}" />
+                <view class="cont">
+                    <view class="cont_name" style="color: {{item.nameColor}}">{{item.name}}</view>
+                    <view class="cont_desc" style="color: {{item.descColor}}" wx:for="{{item.desc}}" wx:for-item="item1">{{item1}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    
+    <!-- 领券中心 -->  
+    <!-- <cp-refresh-view id="refresh-view" backgroundColor="#F8F8F8" bind:onRefresh="onPullDownRefresh"></cp-refresh-view> -->
+    <view class="coupon-center">
+        <view class="title">领券中心</view>
+        <!-- tab -->
+        <view class="tab" wx:if="{{infoVoResponseList && infoVoResponseList.length > 0}}">
+            <scroll-view class="scroll-box" scroll-x="{{infoVoResponseList.length <= 3 ? false : true}}" style="width: {{infoVoResponseList.length <= 3 ? 680 : 715}}rpx">
+                <view class="box {{infoVoResponseList.length > 3 ? 'overRow' : ''}} {{selectIndex == index ? 'active' : ''}}" style="width: {{infoVoResponseList.length <= 3 ? (680/infoVoResponseList.length) + 'rpx' : 'fit-content'}}" wx:for="{{infoVoResponseList}}" data-index="{{index}}" bind:tap="select">
+                    <view class="time">{{item.startTime}}:00-{{item.endTime}}:00</view>
+                    <view class="status">{{map[item.couponActivityStt]}}</view>
+                </view>
+            </scroll-view>
+        </view>
+        <!-- 已抢完 -->
+        <view class="start" wx:if="{{infoVoResponseList && infoVoResponseList[selectIndex].couponActivityStt == '01'}}">
+            <view class="content">
+                <view class="list" wx:for="{{infoVoResponseList[selectIndex].couponUsers}}" wx:key="index">
+                    <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/BG-coupon.png"></image>
+                    <view class="info">
+                        <view class="left">
+                            <view class="left_price">
+                                ¥
+                                <text>{{item.tcuAmount}}</text>
+                            </view>
+                            <view class="left_threshold">满{{item.tcuRestrictAmount}}可用</view>
+                        </view>
+                        <view class="center">
+                            <view class="center_name ellipsis">{{item.tcuName}}</view>
+                            <view class="center_progress" wx:if="{{item.tcuStt != '01'}}">
+                                <text style="width: 100%"></text>
+                            </view>
+                            <view class="center_date" wx:if="{{item.tcuStt == '01'}}">
+                                有效期至{{item.tcuEtime}}
+                            </view>
+                            <view class="center_rule" data-index="{{index}}" bind:tap="rule">
+                                <text>使用规则</text>
+                                <image src="/images/arrow-grey.png"></image>
+                            </view>
+                        </view>
+                        <view class="right" wx:if="{{item.tcuStt == '01'}}">
+                            <view class="right_btn use" bind:tap="goUse">
+                                去使用
+                            </view>
+                            <image class="right_img" src="https://prodstatic.weis1606.cn/api/smartFood/received.png"></image>
+                        </view>
+                        <view class="right" wx:else>
+                            <view class="right_btn over">
+                                已抢完
+                            </view>
+                            <view class="right_num numOver">
+                                已抢100%
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- 已开始 -->
+        <view class="start" wx:if="{{infoVoResponseList && infoVoResponseList[selectIndex].couponActivityStt == '02'}}">
+            <view class="content">
+                <view class="list" wx:for="{{infoVoResponseList[selectIndex].couponUsers}}" wx:key="index">
+                    <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/BG-coupon.png"></image>
+                    <view class="info">
+                        <view class="left">
+                            <view class="left_price">
+                                ¥
+                                <text>{{item.tcuAmount}}</text>
+                            </view>
+                            <view class="left_threshold">满{{item.tcuRestrictAmount}}可用</view>
+                        </view>
+                        <view class="center">
+                            <view class="center_name ellipsis">{{item.tcuName}}</view>
+                            <view class="center_progress" wx:if="{{item.tcuStt != '01'}}">
+                                <text style="width: {{item.percent}}"></text>
+                            </view>
+                            <view class="center_date" wx:if="{{item.tcuStt == '01'}}">
+                                有效期至{{item.tcuEtime}}
+                            </view>
+                            <view class="center_rule" data-index="{{index}}" bind:tap="rule">
+                                <text>使用规则</text>
+                                <image src="/images/arrow-grey.png"></image>
+                            </view>
+                        </view>
+                        <view class="right">
+                            <view class="right_btn receive" wx:if="{{item.tcuStt != '01' && item.curCouponNum > 0}}" data-index="{{index}}" bind:tap="receive">
+                                领取
+                            </view>
+                            <view class="right_btn use" wx:if="{{item.tcuStt == '01'}}" bind:tap="goUse">
+                                去使用
+                            </view>
+                            <view class="right_btn over" wx:if="{{item.tcuStt !== '01' && item.curCouponNum == 0}}">
+                                已抢完
+                            </view>
+                            <view class="right_num {{item.curCouponNum == 0 ? 'numOver' : ''}}" wx:if="{{item.tcuStt != '01'}}">
+                                已抢{{item.percent}}
+                            </view>
+                            <image class="right_img" wx:if="{{item.tcuStt == '01'}}" src="https://prodstatic.weis1606.cn/api/smartFood/received.png"></image>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- 未开始 -->
+        <view class="startNot" wx:if="{{infoVoResponseList && infoVoResponseList[selectIndex].couponActivityStt == '03'}}">
+            <view class="content">
+                <view class="list" wx:for="{{infoVoResponseList[selectIndex].couponUsers}}">
+                    <image class="bg" src="https://prodstatic.weis1606.cn/api/smartFood/BG-coupon.png"></image>
+                    <view class="info">
+                        <view class="left">
+                            <view class="left_price">
+                                ¥
+                                <text>{{item.tcuAmount}}</text>
+                            </view>
+                            <view class="left_threshold">满{{item.tcuRestrictAmount}}可用</view>
+                        </view>
+                        <view class="center">
+                            <view class="center_name">{{item.tcuName}}</view>
+                            <view class="center_time" style="margin-top:20rpx">今天{{infoVoResponseList[selectIndex].startTime}}:00-{{infoVoResponseList[selectIndex].endTime}}:00 开抢</view>
+                        </view>
+                        <view class="right">
+                            <view class="right_btn use" data-index="{{index}}" bind:tap="remind">
+                                提醒我
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="end">～ 到底啦 ～</view>
+        <!-- 空状态 -->
+        <view wx:if="{{infoVoResponseList && infoVoResponseList.length == 0}}" class="null">
+            <image src="https://prodstatic.weis1606.cn/api/smartFood/coupons_blank_ai.png" />
+            <view style="margin-bottom: 16rpx;">╮(￣▽￣")╭</view>
+            <view>今天没有优惠券</view>
+        </view>
+        <!-- 空状态 -->
+        <!-- <cp-null show="{{infoVoResponseList && infoVoResponseList.length == 0}}" imgStyle="width:240rpx;margin-bottom: 30rpx;" imgSrc="https://prodstatic.weis1606.cn/api/smartFood/coupons_blank_ai.png" text="今天没有优惠券"></cp-null> -->
+    </view>
+</view>
+
+<!-- 运营弹窗 -->
+<cp-config-dialog discoverDialogs="{{discoverDialogs}}" bind:on-tap="configShowTap" bind:on-close="closeConfig" bind:on-noTip="noTipChange" />
+
+<!-- 拦截登录 -->
+<view
+  class="login-view"
+  wx:if="{{!(loginInfo.isAuthorized && loginInfo.isLogin && loginInfo.isPerProfile)}}"
+  catch:tap="login"
+></view>

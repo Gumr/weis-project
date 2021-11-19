@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-count-down": "/components/vant/count-down/index",
+    "van-popup": "../../../components/vant/popup/index",
+    "cp-radar-panel": "/components/cp-radar-panel/cp-radar-panel"
+  }
+}

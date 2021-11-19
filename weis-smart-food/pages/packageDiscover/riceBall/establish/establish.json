@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "cp-rb-calendar": "/components/cp-rb-calendar/cp-rb-calendar",
+    "cp-bottom-popup": "/components/cp-bottom-popup/cp-bottom-popup",
+    "cp-confirm-dialog": "/components/cp-confirm-dialog/cp-confirm-dialog"
+  }
+}

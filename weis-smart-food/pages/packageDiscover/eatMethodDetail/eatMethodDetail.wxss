@@ -1,0 +1,104 @@
+.page-container {
+  background: #f6f6f6;
+  height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20rpx 30rpx 0;
+}
+.encicle {
+  width: 690rpx;
+  padding: 29rpx 0;
+  background: #ffffff;
+  border-radius: 20rpx;
+}
+.encicle .recom {
+  color: #000000;
+  font-size: 28rpx;
+  font-weight: 550;
+  padding-left: 45rpx;
+}
+.encicle .echart-box {
+  display: flex;
+  align-items: center;
+  padding-left: 45rpx;
+  margin-top: 20rpx;
+}
+.encicle .echart-box .echart {
+  width: 160rpx;
+  height: 160rpx;
+  position: relative;
+}
+.encicle .echart-box .echart .cover {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.encicle .echart-box .kind-box {
+  float: left;
+  margin-left: 44rpx;
+}
+.encicle .echart-box .kind-box .box-a {
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+}
+.encicle .echart-box .kind-box .box-a:first-of-type {
+  margin-top: 23rpx;
+}
+.encicle .echart-box .kind-box .box-a .box-color {
+  width: 16rpx;
+  height: 16rpx;
+  background: #ffb93f;
+  margin-right: 10rpx;
+}
+.encicle .echart-box .kind-box .box-a:nth-of-type(2) .box-color {
+  background: #ff5959;
+}
+.encicle .echart-box .kind-box .box-a:nth-of-type(3) .box-color {
+  background: #21c4c0;
+}
+.encicle .echart-box .kind-box .box-a .box-name {
+  color: #000000;
+  font-size: 24rpx;
+  width: 180rpx;
+  text-align: left;
+}
+.encicle .echart-box .kind-box .box-a .box-percent {
+  width: 148rpx;
+  color: #a9a9a9;
+  font-size: 24rpx;
+  text-align: left;
+}
+.encicle .echart-box .kind-box .box-a .box-value {
+  flex: 1;
+  text-align: left;
+  color: #a9a9a9;
+  font-size: 24rpx;
+}
+.encicle .echart-box .kind-box .energy {
+  color: #333333;
+  font-size: 24rpx;
+  margin-top: 30rpx;
+}
+.intits {
+  box-sizing: border-box;
+  width: 690rpx;
+  height: 186rpx;
+  background: #ffffff;
+  border-radius: 20rpx;
+  margin-top: 30rpx;
+  padding: 30rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #808080;
+  padding-top: 40rpx;
+  line-height: 34rpx;
+}

@@ -1,0 +1,683 @@
+.shadow {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.shadow .close {
+  width: 100%;
+  flex: 1;
+}
+.cp-confirm-dialog__title {
+  text-align: center;
+  margin: 78rpx 0 40rpx 0;
+}
+.cladar {
+  width: 100%;
+  height: 184rpx;
+  background: #21c4c0;
+  box-sizing: border-box;
+  padding: 20rpx 0 0;
+}
+.border {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 2rpx;
+  background: #e9e9e9;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.plan {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30rpx;
+  background: #F3F4F5;
+}
+.plan .head {
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  padding: 0 30rpx;
+  margin: 0 auto 20rpx;
+}
+.plan .head .name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30rpx;
+}
+.plan .head .name .name-l {
+  color: #333333;
+  font-size: 28rpx;
+  font-weight: 550;
+}
+.plan .head .name .name-r {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.plan .head .name .name-r .percent {
+  color: #fe5e0f;
+  font-size: 30rpx;
+  font-family: "DIN";
+  font-weight: 550;
+}
+.plan .head .name .name-r image {
+  width: 28rpx;
+  height: 28rpx;
+  margin-left: 10rpx;
+}
+.plan .head .type {
+  padding: 40rpx 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.plan .head .type .title {
+  color: #333333;
+  font-size: 28rpx;
+  font-weight: 550;
+}
+.plan .head .type .tab {
+  display: flex;
+  align-items: center;
+}
+.plan .head .type .tab .tag {
+  box-sizing: border-box;
+  width: 140rpx;
+  height: 40rpx;
+  border: 2rpx solid #fe5e0f;
+  text-align: center;
+  line-height: 36rpx;
+  color: #fe5e0f;
+  font-size: 22rpx;
+}
+.plan .head .type .tab .tag:first-of-type {
+  border-radius: 100rpx 0 0 100rpx;
+}
+.plan .head .type .tab .tag:last-of-type {
+  border-radius: 0 100rpx 100rpx 0;
+}
+.plan .head .type .tab .tag.active {
+  background: #fe5e0f;
+  color: #ffffff;
+}
+.plan .meals {
+  width: 690rpx;
+  background: #ffffff;
+  margin: 0 auto 188rpx;
+  box-sizing: border-box;
+}
+.plan .meals .top {
+  width: 100%;
+  padding-top: 83rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.plan .meals .top::before {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 2rpx;
+  background: #e9e9e9;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 41rpx;
+}
+.plan .meals .top .name {
+  width: 276rpx;
+  color: #333333;
+  font-size: 28rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.plan .meals .top .col-c {
+  width: 110rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: #333333;
+  font-size: 30rpx;
+  font-weight: 550;
+  font-family: "DIN";
+}
+.plan .meals .top .col-r {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.plan .meals .top .col-r .num {
+  color: #FE5E0F;
+  font-size: 30rpx;
+  display: flex;
+  align-items: flex-end;
+  font-family: "DIN";
+}
+.plan .meals .top .col-r .num text {
+  font-size: 20rpx;
+}
+.plan .meals .top .col-r image {
+  width: 28rpx;
+  height: 28rpx;
+  margin-left: 10rpx;
+}
+.plan .meals .box {
+  box-sizing: border-box;
+  padding: 40rpx 30rpx;
+  box-shadow: 0rpx 4rpx 20rpx 0rpx rgba(164, 180, 183, 0.2);
+  border-radius: 10rpx;
+  margin: 0 auto 20rpx;
+  position: relative;
+}
+.plan .meals .box::after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 2rpx;
+  background: #e9e9e9;
+  transform: scaleY(0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 0;
+}
+.plan .meals .box .col-t {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.plan .meals .box .col-t .col-l {
+  display: flex;
+  align-items: center;
+}
+.plan .meals .box .col-t .col-l image {
+  width: 44rpx;
+  height: 44rpx;
+  margin-right: 10rpx;
+}
+.plan .meals .box .col-t .col-l .name {
+  color: #333333;
+  font-size: 32rpx;
+  font-weight: 550;
+}
+.plan .meals .box .col-t .addc_del image {
+  width: 38rpx;
+  height: 38rpx;
+}
+.plan .meals .box .col-t .arrow {
+  transition: all 300ms ease;
+  width: 28rpx;
+  height: 28rpx;
+}
+.plan .meals .box .col-t .arrow image {
+  width: 100%;
+  height: 100%;
+}
+.plan .meals .box .col-t.active .arrow {
+  transform: rotate(180deg);
+}
+.plan .meals .box .list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 38rpx;
+}
+.plan .meals .box .list .list-l {
+  width: 276rpx;
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #a9a9a9;
+  font-weight: 400;
+}
+.plan .meals .box .list .list-c {
+  width: 110rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 30rpx;
+  color: #333333;
+  font-family: "DIN";
+}
+.plan .meals .box .list .list-r {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.plan .meals .box .list .list-r .percent {
+  color: #fe5e0f;
+  font-size: 30rpx;
+  font-family: "DIN";
+  font-weight: 550;
+}
+.plan .meals .box .list .list-r .percent text {
+  font-size: 20rpx;
+}
+.plan .meals .box .list .list-r .percent.color {
+  color: #333333;
+}
+.plan .meals .box .list .list-r image {
+  width: 28rpx;
+  height: 28rpx;
+  margin-left: 10rpx;
+}
+.plan .meals .box .list.title .list-l {
+  color: #a9a9a9;
+  font-size: 24rpx;
+}
+.plan .meals .box .list.title .list-c {
+  width: 120rpx;
+  color: #a9a9a9;
+  font-size: 24rpx;
+}
+.plan .meals .box .list.title .list-r .percent {
+  color: #a9a9a9;
+  font-size: 24rpx;
+}
+.plan .meals .box .shrink {
+  height: 0;
+  overflow: hidden;
+  transition: all 300ms ease;
+}
+.plan .meals .box .shrink.active {
+  height: 240rpx;
+}
+.plan .meals .box .shrink.show {
+  overflow: inherit;
+  height: inherit;
+}
+.plan .meals .box .shrink .bd1 {
+  padding-bottom: 30rpx;
+  border-bottom: 1px solid #e9e9e9;
+}
+.plan .meals .box .shrink .recom {
+  width: 100%;
+  height: 250rpx;
+  margin-top: 38rpx;
+}
+.plan .meals .box .shrink .recom .name {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 28rpx;
+}
+.plan .meals .box .shrink .recom .wrap_list {
+  white-space: nowrap;
+  margin-top: 20rpx;
+}
+.plan .meals .box .shrink .recom .wrap_list .img_box {
+  display: inline-block;
+  position: relative;
+  width: 202rpx;
+  height: 202rpx;
+  margin-right: 12rpx;
+}
+.plan .meals .box .shrink .recom .wrap_list .img_box image {
+  width: 100%;
+  height: 100%;
+}
+.plan .meals .box .shrink .recom .wrap_list .img_box .bot_shadow {
+  position: absolute;
+  width: 100%;
+  height: 32rpx;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  left: 0;
+  bottom: 25rpx;
+  box-sizing: border-box;
+  padding: 0 6rpx;
+}
+.plan .meals .box .shrink .recom .wrap_list .img_box .bot_shadow .mz {
+  flex: 1;
+  color: #ffffff;
+  font-size: 20rpx;
+  overflow: hidden;
+  /*超出部分隐藏*/
+  text-overflow: ellipsis;
+  /* 超出部分显示省略号 */
+  white-space: nowrap;
+  /*规定段落中的文本不进行换行 */
+}
+.plan .meals .box .shrink .recom .wrap_list .img_box .bot_shadow .num {
+  color: #ffb93f;
+  font-size: 20rpx;
+}
+.plan .meals .box .shrink .recom .wrap_list .img_box:last-of-type {
+  margin-right: 0;
+}
+.plan .meals .box .shrink .meal-delete {
+  width: 240rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  border-radius: 36rpx;
+  border: 1rpx solid #333333;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  text-align: center;
+  margin: 30rpx auto 0;
+}
+.plan .meals .addc {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 124rpx;
+  box-shadow: 0rpx 4rpx 20rpx 0rpx rgba(164, 180, 183, 0.2);
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  padding: 0 30rpx 0 35rpx;
+}
+.plan .meals .addc .add-l {
+  display: flex;
+  align-items: center;
+}
+.plan .meals .addc .add-l image {
+  width: 44rpx;
+  height: 44rpx;
+  margin-right: 10rpx;
+}
+.plan .meals .addc .add-l .name {
+  font-size: 32rpx;
+  color: #333333;
+  font-weight: 550;
+}
+.plan .meals .addc .append {
+  width: 28rpx;
+  height: 28rpx;
+}
+.plan .meals .addc .append image {
+  width: 28rpx;
+  height: 28rpx;
+}
+.plan .meals.gd .shrink {
+  height: 0;
+  overflow: hidden;
+  transition: all 300ms ease;
+}
+.plan .meals.gd .shrink.active {
+  height: 168rpx;
+}
+.plan .meals.gd .shrink .bd1 {
+  padding-bottom: 30rpx;
+  border-bottom: 1px solid #e9e9e9;
+}
+.plan .meals.gd .shrink .recom {
+  width: 100%;
+  height: 250rpx;
+  margin-top: 38rpx;
+}
+.plan .meals.gd .shrink .recom .name {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 28rpx;
+}
+.plan .meals.gd .shrink .recom .wrap_list {
+  white-space: nowrap;
+  margin-top: 20rpx;
+}
+.plan .meals.gd .shrink .recom .wrap_list .img_box {
+  display: inline-block;
+  position: relative;
+  width: 202rpx;
+  height: 202rpx;
+  margin-right: 12rpx;
+}
+.plan .meals.gd .shrink .recom .wrap_list .img_box image {
+  width: 100%;
+  height: 100%;
+}
+.plan .meals.gd .shrink .recom .wrap_list .img_box .bot_shadow {
+  position: absolute;
+  width: 100%;
+  height: 32rpx;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  left: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  padding: 0 6rpx;
+}
+.plan .meals.gd .shrink .recom .wrap_list .img_box .bot_shadow .mz {
+  color: #ffffff;
+  font-size: 20rpx;
+  flex: 1;
+  overflow: hidden;
+  /*超出部分隐藏*/
+  text-overflow: ellipsis;
+  /* 超出部分显示省略号 */
+  white-space: nowrap;
+  /*规定段落中的文本不进行换行 */
+}
+.plan .meals.gd .shrink .recom .wrap_list .img_box .bot_shadow .num {
+  color: #ffb93f;
+  font-size: 20rpx;
+}
+.plan .meals.gd .shrink .recom .wrap_list .img_box:last-of-type {
+  margin-right: 0;
+}
+.bot {
+  width: 750rpx;
+  height: 148rpx;
+  background: #ffffff;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-top: 20rpx;
+}
+.bot .btn {
+  width: 690rpx;
+  height: 88rpx;
+  background: linear-gradient(180deg, #ff9722 0%, #fe5e0f 100%);
+  box-shadow: 0rpx 6rpx 14rpx 0rpx rgba(254, 94, 15, 0.5);
+  border-radius: 44rpx;
+  color: #ffffff;
+  font-size: 30rpx;
+  font-weight: 550;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.para {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 10001;
+}
+.para .empty {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+.para .goal {
+  width: 100%;
+  background: #ffffff;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  padding-bottom: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20rpx 20rpx 0 0;
+  z-index: 10;
+}
+.para .goal .title {
+  color: #000000;
+  font-size: 32rpx;
+  font-weight: 550;
+  text-align: center;
+  margin: 35rpx auto 0rpx;
+}
+.para .goal .tip {
+  color: #a9a9a9;
+  font-size: 28rpx;
+  text-align: center;
+  margin: 10rpx auto 14rpx;
+}
+.para .goal .wrap_box {
+  width: 660rpx;
+  box-sizing: border-box;
+  padding-top: 30rpx;
+  display: flex;
+}
+.para .goal .wrap_box.uniq {
+  height: initial;
+}
+.para .goal .wrap_box .box {
+  width: 200rpx;
+  height: 200rpx;
+  background: rgba(233, 233, 233, 0.5);
+  border-radius: 10rpx;
+  margin-bottom: 30rpx;
+  text-align: center;
+  padding: 32rpx 0;
+  display: inline-block;
+  margin-right: 20rpx;
+}
+.para .goal .wrap_box .box:nth-of-type(3n) {
+  margin-right: 0;
+}
+.para .goal .wrap_box .box:last-of-type {
+  margin-bottom: 0;
+}
+.para .goal .wrap_box .box .name {
+  font-size: 28rpx;
+  color: #000000;
+  margin-bottom: 20rpx;
+}
+.para .goal .wrap_box .box input {
+  width: 110rpx;
+  height: 80rpx;
+  box-sizing: border-box;
+  font-size: 80rpx;
+  font-family: 'DINCondensedC';
+  font-weight: bold;
+  color: #333333;
+  display: inline-block;
+}
+.para .goal .wrap_box .box .ph-color {
+  color: #a9a9a9;
+  font-size: 28rpx;
+}
+.para .goal .wrap_box .box .unit {
+  font-size: 46rpx;
+  font-family: 'DINCondensedC';
+  font-weight: bold;
+  color: #333333;
+  display: inline-block;
+}
+.para .goal .warn {
+  font-size: 22rpx;
+  color: #FA6400;
+}
+.para .goal .warn image {
+  width: 26rpx;
+  height: 26rpx;
+  margin-right: 10rpx;
+}
+.para .goal .btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 52rpx auto 0;
+}
+.para .goal .btn .qx {
+  box-sizing: border-box;
+  width: 285rpx;
+  height: 88rpx;
+  border: 2rpx solid #e9e9e9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333333;
+  font-size: 32rpx;
+  margin-right: 19rpx;
+}
+.para .goal .btn .sure {
+  width: 590rpx;
+  height: 88rpx;
+  background: linear-gradient(180deg, #ff9722 0%, #fe5e0f 100%);
+  box-shadow: 0rpx 6rpx 14rpx 0rpx rgba(254, 94, 15, 0.5);
+  border-radius: 44rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32rpx;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 550;
+}
+.para .goal .btn .sure.active {
+  color: #ffffff;
+}
+.para .goal .close {
+  width: 44rpx;
+  height: 44rpx;
+  position: absolute;
+  left: 35rpx;
+  top: 35rpx;
+}
+.para.active .goal .box {
+  background: rgba(255, 89, 89, 0.1);
+  border: 1rpx solid #ff5959;
+}
+.popupshow {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  height: 0;
+  overflow: hidden;
+  background-color: #fff;
+}
+.popupshow.active {
+  height: auto;
+  overflow: visible;
+}
+.mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.6);
+}

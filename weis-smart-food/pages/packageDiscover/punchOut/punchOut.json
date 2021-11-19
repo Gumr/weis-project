@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "StepSelect": "/components/cp-stepSelect/cp-stepSelect",
+    "van-popup": "/components/vant/popup/index"
+  }
+}

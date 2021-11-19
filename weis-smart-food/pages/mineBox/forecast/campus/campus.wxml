@@ -1,0 +1,7 @@
+<!--pages/mineBox/forecast/campus/campus.wxml-->
+<cp-nav-bar title-text="选择校区" color="#333333" background="#F3F4F5" backIconColor="black" />
+<view class="campus">
+    <view class="content">
+        <view class="list" wx:for="{{list}}" wx:key="index" data-item="{{item}}" bind:tap="select">{{item.tgcaName}}</view>
+    </view>
+</view>

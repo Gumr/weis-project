@@ -1,0 +1,54 @@
+<!-- pages/packageDiscover/signIn/signIn.wxml -->
+<cp-nav-bar title-text=" " backIconColor background="transparent"></cp-nav-bar>
+<view class="signIn" style="margin-top: -{{navStatusHeight * px2rpx}}rpx;padding-top: {{navStatusHeight * px2rpx}}rpx;">
+  <!-- 成功 -->
+  <view wx:if="{{status}}" class="redPacket">
+    <!-- 头部 -->
+    <view class="sign-in-header">
+      <image src="{{imgPrefix + 'recovery_red_title@2x.png'}}"  />
+    </view>
+    <!-- 当前签到天数 -->
+    <view class="sign-in-current">
+      <!-- 红包未打开 -->
+      <view class="current-hb" wx:if="{{!todayIsSign}}">
+        <image class="current-hb-bg" src="{{imgPrefix + 'red_2.png'}}" />
+        <image class="current-hb-open" animation="{{amData}}" bindtap="signinFn" src="{{imgPrefix + 'red_3.png'}}" />
+        <!-- <view class="current-hb-tap">点击开红包签到</view> -->
+      </view>
+      <!-- 开红包 -->
+      <view class="current-hb-opened" wx:else>
+        <view class="opened-part part-1 {{!isOpen ? 'opening' : 'opened'}}">
+          <image mode="widthFix" src="{{imgPrefix + 'red_5.png'}}" />
+        </view>
+        <view class="opened-part part-2">
+          <view class="amount">
+            <text>{{amount}}</text>
+            <text>元</text>
+          </view>
+          <image mode="widthFix" src="{{imgPrefix + 'red_6.png'}}" />
+        </view>
+        <view class="opened-part part-3 {{!isOpen ? 'opening' : 'opened'}}">
+          <image mode="widthFix" src="{{imgPrefix + 'red_4.png'}}" />
+          <view class="check" bind:tap="toRedPage">查看红包<image src="https://prodstatic.weis1606.cn/api/smartFood/red_next.png" /></view>
+          <view class="text" bind:tap="toIndex">用红包点餐</view>
+        </view>
+      </view>
+    </view>
+    <!-- 返回首页 -->
+    <view class="sign-in-return" bind:tap="toIndex">返回首页</view>
+  </view>
+  <!-- 失败 -->
+  <view wx:if="{{!status}}" class="fail">
+    <view wx:if="{{!status}}">
+      <view class="head">
+        <image src="https://prodstatic.weis1606.cn/api/smartFood/icon_%E6%94%AF%E4%BB%98%E5%A4%B1%E8%B4%A5.png" />
+        <view class="status">餐盒回收失败</view>
+      </view>
+      <view class="btn-box">
+        <view class="btn" bind:tap="toIndex">返回首页</view>
+        <view class="btn reset" bind:tap="reset">重试</view>
+      </view>
+    </view>
+  </view>
+</view>
+

@@ -1,0 +1,52 @@
+<!-- 控糖算法升级(选择血糖值&主食)-弹窗 -->
+<cp-confirm-dialog class="dialog" show="{{show}}" showClose="{{showClose}}" leftClose title="{{title}}" showCancel="{{false}}"  confirmText="完成" confirmDisabled="{{!btnSelected}}" confirmStyle="flex-grow: initial;width: 450rpx;margin: 0 auto;" bind:on-confirm="sugarConfirmDialog" bind:on-cancel="sugarCancelDialog">
+    <!-- 血糖值 -->
+    <view class="sugar" wx:if="{{from == 'sugar'}}">
+        <view class="tip">请填写两个信息，为你升级更精准的数字饮食方案</view>
+        <view class="title" style="margin: 60rpx 0 30rpx;">
+            <text>最近餐后2小时血糖值</text>
+        </view>
+        <view class="wrap">
+            <view class="list {{sugarSelect === index ? 'active' : ''}}" wx:for="{{sugarList}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" bind:tap="sugarSelect">
+            <view class="name">{{item.name}}</view>
+            <view class="detail">{{item.title}}</view>
+            </view>
+        </view>
+
+        <view class="title" style="margin: 80rpx 0 30rpx;">
+            <text>最近午餐吃几碗主食</text>
+        </view>
+        <view class="wrap">
+            <view class="list {{foodSelect === index ? 'active' : ''}}" wx:for="{{foodList}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" bind:tap="foodSelect">
+            <view class="name">{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+    <!-- 你的怀孕周期 -->
+    <view class="sugar" wx:if="{{from == 'pregnant'}}">
+        <view class="tip">请填写信息，为你升级更精准的数字饮食方案</view>
+        <view class="title" style="margin: 60rpx 0 30rpx;">
+            <text>你的怀孕周期</text>
+        </view>
+        <view class="wrap">
+            <view class="list {{pregnantSelect === index ? 'active' : ''}}" wx:for="{{pregnantList}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" bind:tap="pregnantSelect">
+            <view class="name">{{item.name}}</view>
+            <view class="detail">{{item.title}}</view>
+            </view>
+        </view>
+    </view>
+    <!-- 你的肾病是第几期 -->
+    <view class="sugar" wx:if="{{from == 'kidney'}}">
+        <view class="tip">请填写信息，为你升级更精准的数字饮食方案</view>
+        <view class="title" style="margin: 60rpx 0 30rpx;">
+            <text>你的肾病是第几期</text>
+        </view>
+        <view class="wrap" style="flex-wrap: wrap;">
+            <view class="list {{kidneySelect === index ? 'active' : ''}}" wx:for="{{kidneyList}}" wx:key="key" data-index="{{index}}" data-value="{{item.value}}" bind:tap="kidneySelect" style="width: 180rpx;margin-right: 0;margin-bottom: 20rpx;">
+            <text class="name">{{item.name}}</text>
+            <!-- <view class="detail">{{item.title}}</view> -->
+            </view>
+        </view>
+    </view>
+</cp-confirm-dialog>
+

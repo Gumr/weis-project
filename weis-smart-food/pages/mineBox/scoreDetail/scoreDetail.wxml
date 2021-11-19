@@ -1,0 +1,22 @@
+<!--pages/mineBox/scoreDetail/scoreDetail.wxml-->
+<cp-nav-bar title-text="积分详情"/>
+
+<view class="score">
+    <view class="box">
+        <view class="list" wx:for="{{list}}" wx:key="index">
+            <view class="row" bind:tap="open" data-index="{{index}}">
+                <view class="date">{{item.date}}</view>
+                <view class="score-box">
+                    <view class="score-val">+{{item.val}}分</view>
+                    <image class="{{item.openBox ? 'active' : ''}}" src="/images/scheme_open.png" />
+                </view>
+            </view>
+            <view class="small-box {{item.openBox ? 'active' : ''}}">
+                <view class="box-list" wx:for="{{item.detail}}">
+                    <view class="name">{{scoreType[item.scoreType]}}得分</view>
+                    <view class="val">{{item.scoreValue > 0 ? '+' + item.scoreValue : item.scoreValue}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
